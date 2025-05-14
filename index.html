@@ -2663,83 +2663,6 @@ footer {
   height: 100%;
   border: none;
 }
-/* ===== LOCATION SECTION ===== */
-.location-section {
-    position: relative;
-    overflow: hidden;
-}
-
-.location-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin: 40px 0;
-}
-
-.location-card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: all 0.3s;
-    border: 2px solid rgba(46, 204, 113, 0.3);
-}
-
-.location-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    border-color: var(--hijau);
-}
-
-.location-icon {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 1.8rem;
-    transition: all 0.3s;
-}
-
-.location-card:hover .location-icon {
-    transform: scale(1.1) rotate(5deg);
-}
-
-.location-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    color: var(--hitam);
-}
-
-.location-card p {
-    font-size: 0.95rem;
-    color: #666;
-}
-
-.location-card p strong {
-    color: var(--hijau-tua);
-    font-weight: 700;
-}
-
-.location-map-container {
-    margin-top: 50px;
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.location-cta {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
-
 /* Responsive Styles */
 @media (max-width: 768px) {
     .location-grid {
@@ -2813,62 +2736,90 @@ footer {
         grid-template-columns: 1fr;
     }
 }        
-/* ===== ENHANCED LOCATION SECTION ===== */
+/* ===== ENHANCED LOCATION CARD ===== */
 .location-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
+    border-left: 4px solid var(--hijau);
+    margin-bottom: 20px;
     position: relative;
     overflow: hidden;
 }
 
 .location-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
 }
 
-.location-card::after {
-    content: '';
+.location-distance {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--hijau), var(--hijau-tua));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+    top: -10px;
+    right: 15px;
+    background: var(--hijau);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    animation: pulse 2s infinite;
 }
 
-.location-card:hover::after {
-    transform: scaleX(1);
+.location-icon-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.location-content {
+    display: flex;
+    align-items: center;
+}
+
+.location-text {
+    flex: 1;
 }
 
 .view-route-btn {
-    transition: all 0.3s ease;
+    background: rgba(46,204,113,0.1);
+    color: var(--hijau);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
 }
 
 .view-route-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: var(--hijau);
+    color: white;
 }
 
 #liveViewBtn {
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--hijau), var(--hijau-tua));
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
 }
 
 #liveViewBtn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(46,204,113,0.3);
-}
-
-/* Pulse animation for distance indicator */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.location-distance {
-    animation: pulse 2s infinite;
 }
 
         
@@ -3238,7 +3189,7 @@ footer {
             </div>
         </div>
     </section>
-<!-- ===== LOCATION SECTION PREMIUM ===== -->
+<!-- ===== ENHANCED LOCATION SECTION ===== -->
 <section class="location-section" style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 80px 0; position: relative;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <div class="section-title" style="text-align: center; margin-bottom: 50px;">
@@ -3246,10 +3197,10 @@ footer {
                 <span style="background: linear-gradient(135deg, #2ecc71, #27ae60); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LOKASI STRATEGIS</span>
             </h2>
             <div style="height: 4px; width: 100px; background: linear-gradient(90deg, #2ecc71, #27ae60); margin: 15px auto; border-radius: 2px;"></div>
-            <p style="font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto;">Pusat kota Kuningan dengan akses mudah ke segala fasilitas</p>
+            <p style="font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto;">Pusat kota Kuningan dengan akses mudah ke segala fasilitas (Update September 2024)</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;">
+        <div class="location-grid" style="display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;">
             <!-- Enhanced Map Container -->
             <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1); height: 500px;">
                 <iframe 
@@ -3263,9 +3214,9 @@ footer {
                     id="liveMap">
                 </iframe>
                 <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white; text-align: center;">
-                    <h3 style="margin: 0; font-size: 1.3rem;">Jl. Kertayasa, Blok Congkleng, Kuningan</h3>
-                    <button id="liveViewBtn" style="margin-top: 10px; background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 8px 20px; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-street-view"></i> Lihat Tampilan Live
+                    <h3 style="margin: 0; font-size: 1.3rem;">Jl. Kertayasa, Blok Congkleng, Kuningan (Update 2025)</h3>
+                    <button id="liveViewBtn" style="margin-top: 10px;">
+                        <i class="fas fa-street-view"></i> Lihat Tampilan Live Terbaru
                     </button>
                 </div>
             </div>
@@ -3273,88 +3224,75 @@ footer {
             <!-- Enhanced Location Highlights -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                 <!-- Highlight 1 - Enhanced with distance indicator -->
-                <div class="location-card" style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 4px solid #2ecc71; position: relative;">
-                    <div class="location-distance" style="position: absolute; top: -10px; right: 15px; background: #2ecc71; color: white; padding: 3px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
-                        5 menit
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                        <div style="width: 50px; height: 50px; background: rgba(46,204,113,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <div class="location-card">
+                    <div class="location-distance">5 menit</div>
+                    <div class="location-content">
+                        <div class="location-icon-container" style="background: rgba(46,204,113,0.1);">
                             <i class="fas fa-road" style="color: #2ecc71; font-size: 1.5rem;"></i>
                         </div>
-                        <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Akses Jalan Utama</h3>
-                    </div>
-                    <p style="color: #666; line-height: 1.6; margin: 0;">Hanya 5 menit dari pusat kota Kuningan dan jalan utama nasional</p>
-                    <div class="location-cta" style="margin-top: 15px;">
-                        <button class="view-route-btn" data-destination="Jl. Siliwangi, Kuningan" style="background: rgba(46,204,113,0.1); color: #2ecc71; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; cursor: pointer;">
-                            Lihat Rute
-                        </button>
+                        <div class="location-text">
+                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Akses Jalan Utama</h3>
+                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Hanya 5 menit dari pusat kota Kuningan dan jalan utama nasional</p>
+                            <button class="view-route-btn" data-destination="Jl. Siliwangi, Kuningan">
+                                <i class="fas fa-route"></i> Lihat Rute
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Highlight 2 - Enhanced with distance indicator -->
-                <div class="location-card" style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 4px solid #3498db; position: relative;">
-                    <div class="location-distance" style="position: absolute; top: -10px; right: 15px; background: #3498db; color: white; padding: 3px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
-                        7 menit
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                        <div style="width: 50px; height: 50px; background: rgba(52,152,219,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <div class="location-card">
+                    <div class="location-distance">7 menit</div>
+                    <div class="location-content">
+                        <div class="location-icon-container" style="background: rgba(52,152,219,0.1);">
                             <i class="fas fa-graduation-cap" style="color: #3498db; font-size: 1.5rem;"></i>
                         </div>
-                        <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Kawasan Pendidikan</h3>
-                    </div>
-                    <p style="color: #666; line-height: 1.6; margin: 0;">Dekat dengan sekolah, pesantren, dan kampus terbaik di Kuningan</p>
-                    <div class="location-cta" style="margin-top: 15px;">
-                        <button class="view-route-btn" data-destination="Universitas Kuningan" style="background: rgba(52,152,219,0.1); color: #3498db; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; cursor: pointer;">
-                            Lihat Rute
-                        </button>
+                        <div class="location-text">
+                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Kawasan Pendidikan</h3>
+                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Dekat dengan sekolah, pesantren, dan kampus terbaik di Kuningan</p>
+                            <button class="view-route-btn" data-destination="Universitas Kuningan">
+                                <i class="fas fa-route"></i> Lihat Rute
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Highlight 3 - Enhanced with distance indicator -->
-                <div class="location-card" style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 4px solid #9b59b6; position: relative;">
-                    <div class="location-distance" style="position: absolute; top: -10px; right: 15px; background: #9b59b6; color: white; padding: 3px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
-                        10 menit
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                        <div style="width: 50px; height: 50px; background: rgba(155,89,182,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <div class="location-card">
+                    <div class="location-distance">10 menit</div>
+                    <div class="location-content">
+                        <div class="location-icon-container" style="background: rgba(155,89,182,0.1);">
                             <i class="fas fa-shopping-bag" style="color: #9b59b6; font-size: 1.5rem;"></i>
                         </div>
-                        <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Pusat Perbelanjaan</h3>
-                    </div>
-                    <p style="color: #666; line-height: 1.6; margin: 0;">10 menit ke pasar modern dan pusat perbelanjaan utama</p>
-                    <div class="location-cta" style="margin-top: 15px;">
-                        <button class="view-route-btn" data-destination="Kuningan City Mall" style="background: rgba(155,89,182,0.1); color: #9b59b6; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; cursor: pointer;">
-                            Lihat Rute
-                        </button>
+                        <div class="location-text">
+                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Pusat Perbelanjaan</h3>
+                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">10 menit ke pasar modern dan pusat perbelanjaan utama</p>
+                            <button class="view-route-btn" data-destination="Kuningan City Mall">
+                                <i class="fas fa-route"></i> Lihat Rute
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Highlight 4 - Enhanced with distance indicator -->
-                <div class="location-card" style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-left: 4px solid #e67e22; position: relative;">
-                    <div class="location-distance" style="position: absolute; top: -10px; right: 15px; background: #e67e22; color: white; padding: 3px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">
-                        3 km
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                        <div style="width: 50px; height: 50px; background: rgba(230,126,34,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <div class="location-card">
+                    <div class="location-distance">3 km</div>
+                    <div class="location-content">
+                        <div class="location-icon-container" style="background: rgba(230,126,34,0.1);">
                             <i class="fas fa-heartbeat" style="color: #e67e22; font-size: 1.5rem;"></i>
                         </div>
-                        <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Fasilitas Kesehatan</h3>
-                    </div>
-                    <p style="color: #666; line-height: 1.6; margin: 0;">Rumah sakit dan klinik terbaik dalam radius 3 km</p>
-                    <div class="location-cta" style="margin-top: 15px;">
-                        <button class="view-route-btn" data-destination="RSUD Kuningan" style="background: rgba(230,126,34,0.1); color: #e67e22; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; cursor: pointer;">
-                            Lihat Rute
-                        </button>
+                        <div class="location-text">
+                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Fasilitas Kesehatan</h3>
+                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Rumah sakit dan klinik terbaik dalam radius 3 km</p>
+                            <button class="view-route-btn" data-destination="RSUD Kuningan">
+                                <i class="fas fa-route"></i> Lihat Rute
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Enhanced Decorative Elements -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://i.imgur.com/QJfJq2l.jpeg') center/cover; opacity: 0.02; z-index: 0;"></div>
-    <div style="position: absolute; bottom: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(46,204,113,0.05) 0%, transparent 70%); z-index: 0;"></div>
-    <div style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(241,196,15,0.05) 0%, transparent 70%); z-index: 0;"></div>
 </section>
     <!-- Facilities Section -->
     <section class="section" id="fasilitas">
@@ -4766,7 +4704,7 @@ document.addEventListener('DOMContentLoaded', loadTikTokVideos);
 
 // ===== ENHANCED LOCATION MAP FUNCTIONS =====
 function initEnhancedMap() {
-    // Live view button
+    // Live view button - updated coordinates
     const liveViewBtn = document.getElementById('liveViewBtn');
     if (liveViewBtn) {
         liveViewBtn.addEventListener('click', function() {
@@ -4774,7 +4712,7 @@ function initEnhancedMap() {
         });
     }
 
-    // Route buttons
+    // Route buttons with updated destinations
     document.querySelectorAll('.view-route-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const destination = encodeURIComponent(this.getAttribute('data-destination'));
