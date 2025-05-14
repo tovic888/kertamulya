@@ -2853,7 +2853,6 @@ footer {
 #liveViewBtn i {
     font-size: 1rem;
 }
-/* ===== ENHANCED EXIT POPUP ===== */
 .exit-popup-overlay {
     position: fixed;
     top: 0;
@@ -2893,140 +2892,70 @@ footer {
     transform: scale(1);
 }
 
-.exit-popup-header {
-    position: relative;
-    padding: 30px 30px 20px;
-    text-align: center;
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
-    color: white;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .exit-popup-container {
+        max-width: 90%;
+    }
+    
+    .exit-popup-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .exit-popup-header p {
+        font-size: 1rem;
+    }
+    
+    .offer-title {
+        font-size: 1.3rem;
+    }
+    
+    .countdown-timer {
+        font-size: 1.2rem;
+    }
 }
-
-.exit-popup-header h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    font-weight: 800;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.exit-popup-header p {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    opacity: 0.9;
-}
-
-.exit-popup-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255,255,255,0.2);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-}
-
-.exit-popup-close:hover {
-    background: rgba(255,255,255,0.3);
-    transform: rotate(90deg);
-}
-
-.exit-popup-body {
-    padding: 30px;
-    text-align: center;
-    position: relative;
-}
-
-.exit-popup-offer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 25px 0;
-    padding: 20px;
-    background: rgba(241,196,15,0.1);
-    border-radius: 15px;
-    border: 2px dashed #f1c40f;
-}
-
-.offer-title {
-    font-size: 1.5rem;
-    color: #e74c3c;
-    margin-bottom: 10px;
-    font-weight: 800;
-}
-
-.offer-desc {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.exit-popup-countdown {
-    margin-top: 15px;
-}
-
-.exit-popup-countdown p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #e74c3c;
-}
-
-.exit-popup-features {
-    margin: 25px 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 1rem;
-    color: #111;
-    font-weight: 600;
-}
-
-.feature-item i {
-    color: #2ecc71;
-    font-size: 1.2rem;
-}
-
-.exit-popup-footer {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 0 30px 30px;
-}
-
-.exit-popup-btn {
-    background: linear-gradient(45deg, #25D366, #128C7E);
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    cursor:
+/* Exit Popup Responsive Fixes */
+@media (max-width: 480px) {
+    .exit-popup-header {
+        padding: 20px 15px;
+    }
+    
+    .exit-popup-header h3 {
+        font-size: 1.3rem;
+        padding-right: 30px;
+    }
+    
+    .exit-popup-header p {
+        font-size: 0.9rem;
+    }
+    
+    .exit-popup-body {
+        padding: 20px;
+    }
+    
+    .offer-title {
+        font-size: 1.1rem;
+    }
+    
+    .offer-desc {
+        font-size: 0.9rem;
+    }
+    
+    .feature-item {
+        font-size: 0.9rem;
+        text-align: left;
+        justify-content: flex-start;
+    }
+    
+    .countdown-timer {
+        font-size: 1rem;
+    }
+    
+    .exit-popup-btn {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}        
 </style>
 </head>
 <body>
@@ -5070,59 +4999,47 @@ document.addEventListener('DOMContentLoaded', initEnhancedMap);
 function initializeExitPopup() {
     const exitPopup = document.getElementById('exitPopup');
     const closeExitPopup = document.getElementById('closeExitPopup');
-    const faqSection = document.getElementById('faq');
     
-    if (!exitPopup || !closeExitPopup || !faqSection) return;
+    if (!exitPopup || !closeExitPopup) return;
     
     let mouseY = 0;
     let shown = false;
     const threshold = 50;
+    let faqSection = document.getElementById('faq');
     
-    // Only track when in FAQ section
-    function checkFAQVisibility() {
+    // Function to check if FAQ section is visible
+    function isFAQVisible() {
+        if (!faqSection) return false;
         const rect = faqSection.getBoundingClientRect();
         return (
-            rect.top <= (window.innerHeight / 2) && 
-            rect.bottom >= (window.innerHeight / 2)
+            rect.top <= window.innerHeight && 
+            rect.bottom >= 0
         );
     }
     
-    document.addEventListener('mousemove', function(e) {
-        if (!checkFAQVisibility()) return;
-        
-        mouseY = e.clientY;
-        
-        if (mouseY < threshold && !shown && document.visibilityState === 'visible') {
+    // Mouse leave detection
+    document.addEventListener('mouseleave', function(e) {
+        if (e.clientY < threshold && isFAQVisible() && !shown) {
             showExitPopup();
             shown = true;
         }
     });
     
-    document.addEventListener('visibilitychange', function() {
-        if (!checkFAQVisibility()) return;
-        
-        if (document.visibilityState === 'hidden' && !shown) {
-            showExitPopup();
-            shown = true;
+    // Scroll detection
+    window.addEventListener('scroll', function() {
+        if (isFAQVisible() && !shown) {
+            // Delay slightly for better UX
+            setTimeout(() => {
+                showExitPopup();
+                shown = true;
+            }, 1000);
         }
     });
     
-    window.addEventListener('beforeunload', function(e) {
-        if (!checkFAQVisibility()) return;
-        
-        if (!shown) {
-            showExitPopup();
-            shown = true;
-            e.preventDefault();
-            e.returnValue = '';
-            return '';
-        }
-    });
+    // Close button
+    closeExitPopup.addEventListener('click', closeExitPopupFunc);
     
-    closeExitPopup.addEventListener('click', function() {
-        closeExitPopupFunc();
-    });
-    
+    // Start countdown
     startExitCountdown();
 }
 
@@ -5184,6 +5101,14 @@ function startExitCountdown() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeExitPopup();
+    
+    // Pastikan semua tombol booking bekerja
+    document.querySelectorAll('[onclick="showFormModal()"], .btn-premium').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showFormModal();
+        });
+    });
 });
 </script>
 </body>
