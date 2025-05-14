@@ -5202,6 +5202,20 @@ function initializeExitPopup() {
     
     // Start countdown timer
     startExitCountdown();
+    
+    // Close when clicking outside
+    exitPopup.addEventListener('click', function(e) {
+        if (e.target === exitPopup) {
+            closeExitPopupFunc();
+        }
+    });
+    
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && exitPopup.classList.contains('active')) {
+            closeExitPopupFunc();
+        }
+    });
 }
 
 function showExitPopup() {
@@ -5210,6 +5224,7 @@ function showExitPopup() {
     
     exitPopup.classList.add('active');
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = window.innerWidth - document.documentElement.clientWidth + 'px';
     
     // Track popup view
     if (typeof fbq !== 'undefined') {
@@ -5226,6 +5241,7 @@ function closeExitPopupFunc() {
     
     exitPopup.classList.remove('active');
     document.body.style.overflow = 'auto';
+    document.body.style.paddingRight = '0';
 }
 
 function startExitCountdown() {
