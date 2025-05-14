@@ -2853,14 +2853,14 @@ footer {
 #liveViewBtn i {
     font-size: 1rem;
 }
-  /* ===== ENHANCED EXIT POPUP ===== */
+/* ===== ENHANCED EXIT POPUP ===== */
 .exit-popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     backdrop-filter: blur(10px);
     z-index: 999999;
     display: none;
@@ -2959,14 +2959,6 @@ footer {
     background: rgba(241,196,15,0.1);
     border-radius: 15px;
     border: 2px dashed #f1c40f;
-}
-
-.offer-image {
-    width: 100%;
-    max-width: 300px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .offer-title {
@@ -3099,7 +3091,7 @@ footer {
     .feature-item {
         font-size: 0.9rem;
     }
-}  
+}
 </style>
 </head>
 <body>
@@ -4304,7 +4296,7 @@ footer {
     </div>
   </div>
 </div>
- <!-- ===== ENHANCED EXIT POPUP ===== -->
+<!-- ===== ENHANCED EXIT POPUP ===== -->
 <div class="exit-popup-overlay" id="exitPopup">
     <div class="exit-popup-container">
         <div class="exit-popup-header">
@@ -4316,9 +4308,20 @@ footer {
         
         <div class="exit-popup-body">
             <div class="exit-popup-offer">
-                <img src="https://imgur.com/vXXXVkU.png" alt="Motor Listrik Gratis" class="offer-image">
-                <h4 class="offer-title">MOTOR LISTRIK GRATIS!</h4>
-                <p class="offer-desc">Booking hari ini dapatkan motor listrik gratis setelah 6x angsuran. Promo terbatas hanya untuk 50 unit pertama!</p>
+                <h4 class="offer-title">PROMO TERBATAS HARI INI!</h4>
+                <p class="offer-desc">Booking hari ini dapatkan fasilitas istimewa:</p>
+                
+                <div class="exit-popup-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> Booking Fee Hanya Rp500.000
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> DP 0% via Bank Syariah
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> Cicilan Mulai Rp1 Juta-an/Bulan
+                    </div>
+                </div>
                 
                 <div class="exit-popup-countdown">
                     <p>Promo berakhir dalam:</p>
@@ -4329,8 +4332,7 @@ footer {
                     </div>
                 </div>
             </div>
-            
-                   </div>
+        </div>
         
         <div class="exit-popup-footer">
             <button class="exit-popup-btn" onclick="showFormModal()">
@@ -5129,6 +5131,7 @@ function initEnhancedMap() {
     });
 }
 document.addEventListener('DOMContentLoaded', initEnhancedMap);  
+
 // ===== ENHANCED EXIT INTENT POPUP =====
 function initializeExitPopup() {
     const exitPopup = document.getElementById('exitPopup');
