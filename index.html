@@ -2760,7 +2760,59 @@ footer {
         grid-template-columns: 1fr;
     }
 }
-        
+/* ===== TIKTOK SECTION ===== */
+.tiktok-section {
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+}
+
+.tiktok-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.tiktok-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background: #000;
+    aspect-ratio: 9/16;
+}
+
+.tiktok-embed {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.tiktok-loader {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.1rem;
+    color: #666;
+    grid-column: 1 / -1;
+}
+
+.tiktok-loader i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+    color: var(--hijau);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tiktok-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .tiktok-grid {
+        grid-template-columns: 1fr;
+    }
+}        
 
         
 </style>
@@ -2972,6 +3024,22 @@ footer {
                 <img src="https://i.imgur.com/brDuyYM.jpg" alt="Denah Rumah Tipe 30/60" width="600" height="400" loading="lazy">
                 <div class="gallery-caption">Denah Rumah Tipe 30/60</div>
             </a>
+        </div>
+    </div>
+</section>
+<!-- ===== TIKTOK GALLERY SECTION ===== -->
+<section class="section tiktok-section">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>AKTIVITAS TERBARU DI TIKTOK</h2>
+            <p>Ikuti perkembangan terbaru Kertamulya Residence di TikTok</p>
+        </div>
+        
+        <div class="tiktok-grid" id="tiktokVideos">
+            <!-- Video akan dimuat via JS -->
+            <div class="tiktok-loader">
+                <i class="fas fa-spinner fa-spin"></i> Memuat video terbaru...
+            </div>
         </div>
     </div>
 </section>
@@ -4561,7 +4629,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-  
+// ===== TIKTOK VIDEO LOADER =====
+function loadTikTokVideos() {
+    const tiktokContainer = document.getElementById('tiktokVideos');
+    if (!tiktokContainer) return;
+
+    // Daftar video TikTok dari akun @bimulia_land (harus diupdate manual)
+    const tiktokVideos = [
+        { id: '7325953187856624902', title: 'Tour Rumah Tipe 36' },
+        { id: '7322616394769927430', title: 'Fasilitas Perumahan' },
+        { id: '7319289601682107653', title: 'Testimoni Penghuni' },
+        { id: '7315962808595598598', title: 'Proses Pembangunan' }
+    ];
+
+    // Kosongkan loader
+    tiktokContainer.innerHTML = '';
+
+    // Tambahkan embed video
+    tiktokVideos.forEach(video => {
+        const videoItem = document.createElement('div');
+        videoItem.className = 'tiktok-item';
+        videoItem.innerHTML = `
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bimulia_land/video/${video.id}" 
+                data-video-id="${video.id}" style="max-width: 605px;min-width: 325px;">
+                <section></section>
+            </blockquote>
+            <div class="video-label">${video.title}</div>
+        `;
+        tiktokContainer.appendChild(videoItem);
+    });
+
+    // Load script TikTok
+    const tiktokScript = document.createElement('script');
+    tiktokScript.src = 'https://www.tiktok.com/embed.js';
+    document.body.appendChild(tiktokScript);
+}
+
+// Panggil saat halaman dimuat
+document.addEventListener('DOMContentLoaded', loadTikTokVideos);
+     
 </script>
 </body>
 </html>
