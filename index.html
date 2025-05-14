@@ -2872,6 +2872,7 @@ footer {
     transition: opacity 0.5s ease;
     padding: 20px;
     box-sizing: border-box;
+    overflow-y: auto; /* Enable scrolling if content is too long */
 }
 
 .exit-popup-overlay.active {
@@ -2884,11 +2885,13 @@ footer {
     border-radius: 20px;
     width: 100%;
     max-width: 500px;
-    overflow: hidden;
+    max-height: 90vh; /* Limit height to 90% of viewport */
+    overflow-y: auto; /* Enable scrolling inside popup */
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     transform: scale(0.9);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
+    margin: auto; /* Center vertically and horizontally */
 }
 
 .exit-popup-overlay.active .exit-popup-container {
@@ -2897,10 +2900,13 @@ footer {
 
 .exit-popup-header {
     position: relative;
-    padding: 30px 30px 20px;
+    padding: 25px 25px 15px;
     text-align: center;
     background: linear-gradient(135deg, #2ecc71, #27ae60);
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .exit-popup-logo-container {
@@ -2908,22 +2914,23 @@ footer {
 }
 
 .exit-popup-logo {
-    max-width: 150px;
+    max-width: 120px;
     margin: 0 auto;
     filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
 }
 
 .exit-popup-header h3 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 10px;
     font-weight: 800;
     text-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .exit-popup-header p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.5;
     opacity: 0.9;
+    margin-bottom: 0;
 }
 
 .exit-popup-close {
@@ -2933,10 +2940,10 @@ footer {
     background: rgba(255,255,255,0.2);
     color: white;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
     z-index: 2;
     display: flex;
@@ -2951,7 +2958,7 @@ footer {
 }
 
 .exit-popup-body {
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     position: relative;
 }
@@ -2960,52 +2967,52 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 25px 0;
-    padding: 20px;
+    margin: 20px 0;
+    padding: 15px;
     background: rgba(241,196,15,0.1);
     border-radius: 15px;
     border: 2px dashed #f1c40f;
 }
 
 .offer-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #e74c3c;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 800;
 }
 
 .offer-desc {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #555;
     line-height: 1.6;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .exit-popup-features {
-    margin: 25px 0;
+    margin: 20px 0;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
 }
 
 .feature-item {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
-    font-size: 1rem;
+    gap: 8px;
+    font-size: 0.95rem;
     color: #111;
     font-weight: 600;
     text-align: left;
-    padding: 8px 15px;
+    padding: 8px 12px;
     background: rgba(255,255,255,0.7);
     border-radius: 8px;
 }
 
 .feature-item i {
     color: #2ecc71;
-    font-size: 1.2rem;
-    min-width: 25px;
+    font-size: 1.1rem;
+    min-width: 22px;
 }
 
 .exit-popup-countdown {
@@ -3013,17 +3020,17 @@ footer {
 }
 
 .exit-popup-countdown p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #666;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 600;
 }
 
 .countdown-timer {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    font-size: 1.5rem;
+    gap: 8px;
+    font-size: 1.3rem;
     font-weight: 700;
     color: #e74c3c;
 }
@@ -3031,25 +3038,29 @@ footer {
 .exit-popup-footer {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 0 30px 30px;
+    gap: 12px;
+    padding: 0 20px 20px;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    z-index: 10;
 }
 
 .exit-popup-btn {
     background: linear-gradient(45deg, #25D366, #128C7E);
     color: white;
     border: none;
-    padding: 16px;
+    padding: 14px;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s;
     box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .exit-popup-btn:hover {
@@ -3060,21 +3071,25 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+    .exit-popup-header {
+        padding: 20px 15px 10px;
+    }
+    
     .exit-popup-header h3 {
-        font-size: 1.5rem;
-    }
-    
-    .exit-popup-header p {
-        font-size: 1rem;
-    }
-    
-    .offer-title {
         font-size: 1.3rem;
     }
     
+    .exit-popup-header p {
+        font-size: 0.95rem;
+    }
+    
+    .offer-title {
+        font-size: 1.2rem;
+    }
+    
     .exit-popup-btn {
-        font-size: 1rem;
-        padding: 14px;
+        font-size: 0.95rem;
+        padding: 12px;
     }
     
     .feature-item {
@@ -3087,27 +3102,37 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .exit-popup-overlay {
+        padding: 10px;
+    }
+    
     .exit-popup-header {
-        padding: 20px 15px;
+        padding: 15px 10px 8px;
     }
     
     .exit-popup-body {
-        padding: 20px 15px;
+        padding: 15px 10px;
     }
     
     .exit-popup-footer {
-        padding: 0 15px 15px;
+        padding: 0 10px 15px;
     }
     
     .exit-popup-header h3 {
-        font-size: 1.3rem;
-    }
-    
-    .countdown-timer {
         font-size: 1.2rem;
     }
     
+    .countdown-timer {
+        font-size: 1.1rem;
+        gap: 5px;
+    }
+    
     .feature-item {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+    
+    .exit-popup-btn {
         font-size: 0.9rem;
     }
 }
@@ -4315,11 +4340,14 @@ footer {
     </div>
   </div>
 </div>
-<!-- ===== ENHANCED EXIT POPUP ===== -->
+<!-- ===== ENHANCED EXIT INTENT POPUP ===== -->
 <div class="exit-popup-overlay" id="exitPopup">
     <div class="exit-popup-container">
         <button class="exit-popup-close" id="closeExitPopup">&times;</button>
         <div class="exit-popup-header">
+            <div class="exit-popup-logo-container">
+                <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="exit-popup-logo">
+            </div>
             <h3>TUNGGU SEBENTAR! ✅</h3>
             <p>Anda hampir meninggalkan halaman penawaran spesial kami!</p>
         </div>
@@ -4327,13 +4355,17 @@ footer {
         <div class="exit-popup-body">
             <div class="exit-popup-offer">
                 <h4 class="offer-title">PROMO TERBATAS HARI INI!</h4>
-                            
+                <p class="offer-desc">Booking sekarang dan dapatkan motor listrik gratis setelah 6x angsuran</p>
+                
                 <div class="exit-popup-features">
                     <div class="feature-item">
                         <i class="fas fa-check-circle"></i> Booking Fee Hanya Rp500.000
                     </div>
                     <div class="feature-item">
                         <i class="fas fa-check-circle"></i> Cicilan Mulai Rp1 Juta-an/Bulan
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> Proses KPR Cepat 1-3 Hari
                     </div>
                 </div>
                 
@@ -4355,6 +4387,7 @@ footer {
         </div>
     </div>
 </div>
+
     <!-- Deferred Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/glide.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
