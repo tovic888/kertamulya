@@ -3758,10 +3758,12 @@ footer {
                         <input type="text" id="modalCity" required placeholder="Contoh: Kuningan, Cirebon, Jakarta">
                     </div>
                     
-                    <div class="form-group">
-                        <label for="modalPhone">Nomor WhatsApp</label>
-                        <input type="tel" id="modalPhone" required placeholder="0812-3456-7890">
-                    </div>
+                  <div class="form-group">
+    <label for="modalPhone">Nomor WhatsApp <span class="phone-format">(Format: 628xx-xxxx-xxxx)</span></label>
+    <input type="tel" id="modalPhone" required placeholder="6281234567890" pattern="^628[0-9]{8,11}$" 
+           title="Harus diawali 628 dan total 11-14 digit">
+    <div class="tooltip">Contoh: 6281234567890</div>
+</div>
                     
                     <div class="form-group">
                         <label for="modalJob">Pekerjaan</label>
@@ -4471,12 +4473,30 @@ function initializeFormSubmission() {
         const job = document.getElementById('modalJob').value;
         const income = document.getElementById('modalIncome').value;
 
-        // Validate phone number - more flexible validation
-        const cleanPhone = phone.replace(/\D/g, '');
-        if (cleanPhone.length < 10 || cleanPhone.length > 15) {
-            alert('Nomor WhatsApp harus antara 10-15 digit');
-            return;
+        // Update pada form submission validation
+const cleanPhone = phone.replace(/\D/g, '');
+if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
+    alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
+    return;
+}
+
+// Add tooltip functionality
+const phoneInput = document.getElementById('modalPhone');
+if (phoneInput) {
+    phoneInput.addEventListener('focus', function() {
+        const tooltip = this.nextElementSibling;
+        if (tooltip && tooltip.classList.contains('tooltip')) {
+            tooltip.style.display = 'block';
         }
+    });
+    
+    phoneInput.addEventListener('blur', function() {
+        const tooltip = this.nextElementSibling;
+        if (tooltip && tooltip.classList.contains('tooltip')) {
+            tooltip.style.display = 'none';
+        }
+    });
+}
 
         // Get marketing person
         const marketing = getNextMarketing();
