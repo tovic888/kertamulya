@@ -2853,7 +2853,7 @@ footer {
 #liveViewBtn i {
     font-size: 1rem;
 }
-   /* ===== EXIT INTENT POPUP ===== */
+  /* ===== ENHANCED EXIT POPUP ===== */
 .exit-popup-overlay {
     position: fixed;
     top: 0;
@@ -2861,11 +2861,11 @@ footer {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.9);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     z-index: 999999;
     display: none;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     opacity: 0;
     transition: opacity 0.5s ease;
     padding: 20px;
@@ -2883,7 +2883,7 @@ footer {
     width: 100%;
     max-width: 500px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     transform: scale(0.9);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
@@ -2893,11 +2893,38 @@ footer {
     transform: scale(1);
 }
 
+.exit-popup-header {
+    position: relative;
+    padding: 30px 30px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+
+.exit-popup-logo {
+    max-width: 120px;
+    margin-bottom: 15px;
+    animation: pulse 1.5s infinite;
+}
+
+.exit-popup-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 800;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.exit-popup-header p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
 .exit-popup-close {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: #e74c3c;
+    background: rgba(255,255,255,0.2);
     color: white;
     border: none;
     width: 40px;
@@ -2913,36 +2940,14 @@ footer {
 }
 
 .exit-popup-close:hover {
-    background: #c0392b;
+    background: rgba(255,255,255,0.3);
     transform: rotate(90deg);
 }
 
-.exit-popup-content {
+.exit-popup-body {
     padding: 30px;
     text-align: center;
-}
-
-.exit-popup-header {
-    margin-bottom: 25px;
-}
-
-.exit-popup-logo {
-    max-width: 120px;
-    margin-bottom: 15px;
-    animation: pulse 1.5s infinite;
-}
-
-.exit-popup-header h3 {
-    font-size: 1.8rem;
-    color: #e74c3c;
-    margin-bottom: 10px;
-    font-weight: 800;
-}
-
-.exit-popup-header p {
-    font-size: 1.1rem;
-    color: #666;
-    line-height: 1.5;
+    position: relative;
 }
 
 .exit-popup-offer {
@@ -2956,61 +2961,26 @@ footer {
     border: 2px dashed #f1c40f;
 }
 
-.offer-percentage {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.percentage-circle {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
-}
-
-.percentage-svg {
+.offer-image {
     width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
+    max-width: 300px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.percentage-bg {
-    fill: none;
-    stroke: #f0f0f0;
-    stroke-width: 4;
-}
-
-.percentage-fill {
-    fill: none;
-    stroke: #e74c3c;
-    stroke-width: 4;
-    stroke-dasharray: 100;
-    stroke-dashoffset: 30; /* 70% filled */
-    animation: percentage-fill 1.5s ease-out forwards;
-}
-
-.percentage-value {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    font-weight: 800;
+.offer-title {
+    font-size: 1.5rem;
     color: #e74c3c;
+    margin-bottom: 10px;
+    font-weight: 800;
 }
 
-.offer-text h4 {
-    font-size: 1.3rem;
-    color: #111;
-    margin-bottom: 5px;
-    text-align: left;
-}
-
-.offer-text p {
+.offer-desc {
     font-size: 1rem;
-    color: #666;
-    text-align: left;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
 }
 
 .exit-popup-countdown {
@@ -3021,6 +2991,7 @@ footer {
     font-size: 1rem;
     color: #666;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
 .countdown-timer {
@@ -3058,6 +3029,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    padding: 0 30px 30px;
 }
 
 .exit-popup-btn {
@@ -3083,60 +3055,51 @@ footer {
     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
 }
 
-.exit-popup-secondary-btn {
-    background: transparent;
-    color: #666;
-    border: 1px solid #ddd;
-    padding: 12px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.exit-popup-secondary-btn:hover {
-    background: #f5f5f5;
-}
-
-@keyframes percentage-fill {
-    from {
-        stroke-dashoffset: 100;
-    }
-    to {
-        stroke-dashoffset: 30;
-    }
-}
-
-@media (max-width: 480px) {
-    .exit-popup-content {
-        padding: 20px 15px;
-    }
-    
-    .offer-percentage {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .percentage-circle {
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
-    
-    .offer-text h4,
-    .offer-text p {
-        text-align: center;
-    }
-    
+/* Responsive Styles */
+@media (max-width: 768px) {
     .exit-popup-header h3 {
         font-size: 1.5rem;
+    }
+    
+    .exit-popup-header p {
+        font-size: 1rem;
+    }
+    
+    .offer-title {
+        font-size: 1.3rem;
     }
     
     .exit-popup-btn {
         font-size: 1rem;
         padding: 14px;
     }
-}     
+}
+
+@media (max-width: 480px) {
+    .exit-popup-header {
+        padding: 20px 15px;
+    }
+    
+    .exit-popup-body {
+        padding: 20px 15px;
+    }
+    
+    .exit-popup-footer {
+        padding: 0 15px 15px;
+    }
+    
+    .exit-popup-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .countdown-timer {
+        font-size: 1.2rem;
+    }
+    
+    .feature-item {
+        font-size: 0.9rem;
+    }
+}  
 </style>
 </head>
 <body>
@@ -4341,54 +4304,52 @@ footer {
     </div>
   </div>
 </div>
- <!-- ===== EXIT INTENT POPUP ===== -->
+ <!-- ===== ENHANCED EXIT POPUP ===== -->
 <div class="exit-popup-overlay" id="exitPopup">
     <div class="exit-popup-container">
-        <button class="exit-popup-close" id="closeExitPopup">&times;</button>
+        <div class="exit-popup-header">
+            <button class="exit-popup-close" id="closeExitPopup">&times;</button>
+            <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="exit-popup-logo">
+            <h3>TUNGGU SEBENTAR! 🚀</h3>
+            <p>Anda hampir meninggalkan halaman penawaran spesial kami!</p>
+        </div>
         
-        <div class="exit-popup-content">
-            <div class="exit-popup-header">
-                <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="exit-popup-logo">
-                <h3>TUNGGU DULU! 🚀</h3>
-                <p>Anda hampir meninggalkan halaman ini tanpa mendapatkan penawaran spesial kami!</p>
-            </div>
-            
-            <div class="exit-popup-body">
-                <div class="exit-popup-offer">
-                    <div class="offer-percentage">
-                        <div class="percentage-circle">
-                            <svg class="percentage-svg" viewBox="0 0 36 36">
-                                <path class="percentage-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                <path class="percentage-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            </svg>
-                            <span class="percentage-value">70%</span>
-                        </div>
-                        <div class="offer-text">
-                            <h4>DISKON KHUSUS HARI INI!</h4>
-                            <p>Booking hari ini dapat potongan hingga Rp 150.000</p>
-                        </div>
-                    </div>
-                    
-                    <div class="exit-popup-countdown">
-                        <p>Penawaran berakhir dalam:</p>
-                        <div class="countdown-timer">
-                            <span id="exitHours">00</span>:
-                            <span id="exitMinutes">00</span>:
-                            <span id="exitSeconds">00</span>
-                        </div>
+        <div class="exit-popup-body">
+            <div class="exit-popup-offer">
+                <img src="https://imgur.com/vXXXVkU" alt="Motor Listrik Gratis" class="offer-image">
+                <h4 class="offer-title">MOTOR LISTRIK GRATIS!</h4>
+                <p class="offer-desc">Booking hari ini dapatkan motor listrik gratis setelah 6x angsuran. Promo terbatas hanya untuk 50 unit pertama!</p>
+                
+                <div class="exit-popup-countdown">
+                    <p>Promo berakhir dalam:</p>
+                    <div class="countdown-timer">
+                        <span id="exitHours">00</span>:
+                        <span id="exitMinutes">00</span>:
+                        <span id="exitSeconds">00</span>
                     </div>
                 </div>
-                
-           </div>
-            
-            <div class="exit-popup-footer">
-                <button class="exit-popup-btn" onclick="showFormModal()">
-                    <i class="fab fa-whatsapp"></i> DAPATKAN DISKON Rp.150 rb
-                </button>
-                <button class="exit-popup-secondary-btn" id="continueExit">
-                    Tutup
-                </button>
             </div>
+            
+            <div class="exit-popup-features">
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Booking Fee Rp500rb saja</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>DP 0% via Bank Syariah</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Cicilan mulai Rp1 juta-an/bulan</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exit-popup-footer">
+            <button class="exit-popup-btn" onclick="showFormModal()">
+                <i class="fab fa-whatsapp"></i> BOOKING SEKARANG
+            </button>
         </div>
     </div>
 </div>
@@ -5182,19 +5143,19 @@ function initEnhancedMap() {
     });
 }
 document.addEventListener('DOMContentLoaded', initEnhancedMap);  
-// ===== EXIT INTENT POPUP =====
+// ===== ENHANCED EXIT INTENT POPUP =====
 function initializeExitPopup() {
     const exitPopup = document.getElementById('exitPopup');
     const closeExitPopup = document.getElementById('closeExitPopup');
-    const continueExit = document.getElementById('continueExit');
     
-    if (!exitPopup || !closeExitPopup || !continueExit) return;
+    if (!exitPopup || !closeExitPopup) return;
     
-    // Track mouse movement
+    // Track mouse movement and page exit
     let mouseY = 0;
     let shown = false;
     const threshold = 50; // Pixels from top to trigger
     
+    // Mouse movement tracking
     document.addEventListener('mousemove', function(e) {
         mouseY = e.clientY;
         
@@ -5205,7 +5166,7 @@ function initializeExitPopup() {
         }
     });
     
-    // Also track when user leaves tab
+    // Page visibility tracking
     document.addEventListener('visibilitychange', function() {
         if (document.visibilityState === 'hidden' && !shown) {
             showExitPopup();
@@ -5213,9 +5174,21 @@ function initializeExitPopup() {
         }
     });
     
-    // Close buttons
-    closeExitPopup.addEventListener('click', closeExitPopupFunc);
-    continueExit.addEventListener('click', closeExitPopupFunc);
+    // Before unload tracking
+    window.addEventListener('beforeunload', function(e) {
+        if (!shown) {
+            showExitPopup();
+            shown = true;
+            e.preventDefault();
+            e.returnValue = '';
+            return '';
+        }
+    });
+    
+    // Close button
+    closeExitPopup.addEventListener('click', function() {
+        closeExitPopupFunc();
+    });
     
     // Start countdown timer
     startExitCountdown();
