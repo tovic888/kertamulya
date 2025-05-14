@@ -2854,7 +2854,55 @@ footer {
 #liveViewBtn i {
     font-size: 1rem;
 }
+/* KPR Requirements Section */
+.kpr-requirements-section {
+    background: linear-gradient(135deg, #f5f5f5, #e9f5ee);
+}
 
+.document-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.document-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    display: flex;
+    align-items: center;
+}
+
+.document-list i {
+    margin-right: 10px;
+    color: #2ecc71;
+    min-width: 20px;
+}
+
+.payment-cta {
+    max-width: 600px;
+    margin: 40px auto 0;
+    text-align: center;
+}
+
+.cta-box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid #f1c40f;
+}
+
+.cta-box .price {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #e67e22;
+    margin: 10px 0;
+}
+
+/* Animasi hover */
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(46, 204, 113, 0.2);
+}
 
 </style>
 </head>
@@ -3472,7 +3520,80 @@ footer {
             </div>
         </div>
     </section>
+<!-- ===== KPR REQUIREMENTS SECTION ===== -->
+<section class="section kpr-requirements-section" id="syarat-kpr">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2><i class="fas fa-file-signature" style="color: #27ae60;"></i> PERSYARATAN KPR SYARIAH</h2>
+            <p>Dokumen yang perlu disiapkan untuk pengajuan rumah dengan skema Syariah</p>
+        </div>
+        
+        <div class="features-grid" data-aos="fade-up" data-aos-delay="200">
+            <!-- Dokumen Umum -->
+            <div class="feature-card">
+                <div class="feature-content">
+                    <div class="feature-icon" style="background: rgba(39, 174, 96, 0.1);">
+                        <i class="fas fa-file-alt" style="color: #27ae60;"></i>
+                    </div>
+                    <h3 style="color: #27ae60;">Dokumen Umum</h3>
+                    <ul class="document-list">
+                        <li><i class="fas fa-check-circle"></i> Surat permohonan KPR</li>
+                        <li><i class="fas fa-check-circle"></i> FC KTP pemohon & pasangan (4 rangkap)</li>
+                        <li><i class="fas fa-check-circle"></i> FC Kartu Keluarga</li>
+                        <li><i class="fas fa-check-circle"></i> FC Surat Nikah/Cerai</li>
+                        <li><i class="fas fa-check-circle"></i> Foto 3x4 (4 lembar)</li>
+                        <li><i class="fas fa-check-circle"></i> FC NPWP pribadi</li>
+                        <li><i class="fas fa-check-circle"></i> Rekening koran 3 bulan terakhir</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Karyawan Tetap -->
+            <div class="feature-card">
+                <div class="feature-content">
+                    <div class="feature-icon" style="background: rgba(41, 128, 185, 0.1);">
+                        <i class="fas fa-user-tie" style="color: #2980b9;"></i>
+                    </div>
+                    <h3 style="color: #2980b9;">Karyawan Tetap</h3>
+                    <ul class="document-list">
+                        <li><i class="fas fa-check-circle"></i> Surat aktif bekerja (asli)</li>
+                        <li><i class="fas fa-check-circle"></i> FC SK Pegawai Tetap</li>
+                        <li><i class="fas fa-check-circle"></i> Slip gaji 3 bulan terakhir</li>
+                        <li><i class="fas fa-check-circle"></i> FC Kartu Pegawai</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Wiraswasta -->
+            <div class="feature-card">
+                <div class="feature-content">
+                    <div class="feature-icon" style="background: rgba(142, 68, 173, 0.1);">
+                        <i class="fas fa-store" style="color: #8e44ad;"></i>
+                    </div>
+                    <h3 style="color: #8e44ad;">Wiraswasta</h3>
+                    <ul class="document-list">
+                        <li><i class="fas fa-check-circle"></i> Surat keterangan usaha</li>
+                        <li><i class="fas fa-check-circle"></i> Foto tempat usaha</li>
+                        <li><i class="fas fa-check-circle"></i> Pembukuan 3 bulan terakhir</li>
+                        <li><i class="fas fa-check-circle"></i> SIUP/TDP</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
+        <!-- CTA Box -->
+        <div class="payment-cta" data-aos="zoom-in">
+            <div class="cta-box">
+                <h4><i class="fas fa-money-bill-wave"></i> Booking Fee</h4>
+                <div class="price">Rp500.000</div>
+                <p><i class="fas fa-university"></i> BSI: 664 5566 446 a.n PT. Rumah Mulia Indonesia</p>
+                <button onclick="showFormModal()" class="btn btn-primary">
+                    <i class="fab fa-whatsapp"></i> Konfirmasi Pembayaran
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
    <!-- Live Counter Section -->
 <section class="stats-section">
     <div class="container">
