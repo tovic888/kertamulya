@@ -3108,6 +3108,45 @@ footer {
         font-size: 1rem;
     }
 }     
+        /* ===== ENHANCED EXIT POPUP ===== */
+.exit-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 999999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.exit-popup-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.exit-popup-container {
+    background: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.exit-popup-overlay.active .exit-popup-container {
+    transform: scale(1);
+}
 </style>
 </head>
 <body>
@@ -4312,50 +4351,7 @@ footer {
     </div>
   </div>
 </div>
-<!-- ===== ENHANCED EXIT POPUP ===== -->
-<div class="exit-popup-overlay" id="exitPopup">
-    <div class="exit-popup-container">
-        <div class="exit-popup-header">
-            <button class="exit-popup-close" id="closeExitPopup">&times;</button>
-            <h3>TUNGGU SEBENTAR! 🚀</h3>
-            <p>Anda hampir meninggalkan halaman penawaran spesial kami!</p>
-        </div>
-        
-        <div class="exit-popup-body">
-            <div class="exit-popup-offer">
-                <h4 class="offer-title">PROMO TERBATAS HARI INI!</h4>
-                <p class="offer-desc">Booking hari ini dapatkan fasilitas istimewa:</p>
-                
-                <div class="exit-popup-features">
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> Booking Fee Hanya Rp500.000
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> DP 0% via Bank Syariah
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> Cicilan Mulai Rp1 Juta-an/Bulan
-                    </div>
-                </div>
-                
-                <div class="exit-popup-countdown">
-                    <p>Promo berakhir dalam:</p>
-                    <div class="countdown-timer">
-                        <span id="exitHours">00</span>:
-                        <span id="exitMinutes">00</span>:
-                        <span id="exitSeconds">00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="exit-popup-footer">
-            <button class="exit-popup-btn" onclick="showFormModal(); closeExitPopupFunc();">
-                <i class="fab fa-whatsapp"></i> BOOKING SEKARANG
-            </button>
-        </div>
-    </div>
-</div>
+
     <!-- Deferred Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/glide.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
@@ -5274,5 +5270,49 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeExitPopup();
 });
 </script>
+<!-- ===== ENHANCED EXIT POPUP ===== -->
+<div class="exit-popup-overlay" id="exitPopup">
+    <div class="exit-popup-container">
+        <div class="exit-popup-header">
+            <button class="exit-popup-close" id="closeExitPopup">&times;</button>
+            <h3>TUNGGU SEBENTAR! 🚀</h3>
+            <p>Anda hampir meninggalkan halaman penawaran spesial kami!</p>
+        </div>
+        
+        <div class="exit-popup-body">
+            <div class="exit-popup-offer">
+                <h4 class="offer-title">PROMO TERBATAS HARI INI!</h4>
+                <p class="offer-desc">Booking hari ini dapatkan fasilitas istimewa:</p>
+                
+                <div class="exit-popup-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> Booking Fee Hanya Rp500.000
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> DP 0% via Bank Syariah
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> Cicilan Mulai Rp1 Juta-an/Bulan
+                    </div>
+                </div>
+                
+                <div class="exit-popup-countdown">
+                    <p>Promo berakhir dalam:</p>
+                    <div class="countdown-timer">
+                        <span id="exitHours">00</span>:
+                        <span id="exitMinutes">00</span>:
+                        <span id="exitSeconds">00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exit-popup-footer">
+            <button class="exit-popup-btn" onclick="showFormModal(); closeExitPopupFunc();">
+                <i class="fab fa-whatsapp"></i> BOOKING SEKARANG
+            </button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
