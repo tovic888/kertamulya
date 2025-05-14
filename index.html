@@ -2828,7 +2828,31 @@ footer {
     color: #e74c3c;
     font-weight: 500;
 }
+/* Tambahkan ini di bagian CSS */
+#liveViewBtn {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
 
+#liveViewBtn:hover {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+#liveViewBtn i {
+    font-size: 1rem;
+}
         
 </style>
 </head>
@@ -3247,56 +3271,107 @@ footer {
                     </div>
                 </div>
 
-                <!-- Highlight 2 - Enhanced with distance indicator -->
-                <div class="location-card">
-                    <div class="location-distance">7 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(52,152,219,0.1);">
-                            <i class="fas fa-graduation-cap" style="color: #3498db; font-size: 1.5rem;"></i>
-                        </div>
-                        <div class="location-text">
-                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Kawasan Pendidikan</h3>
-                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Dekat dengan sekolah, pesantren, dan kampus terbaik di Kuningan</p>
-                            <button class="view-route-btn" data-destination="Universitas Kuningan">
-                                <i class="fas fa-route"></i> Lihat Rute
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <!-- Card 1 - Existing -->
+<div class="location-card">
+    <div class="location-distance">5 menit</div>
+    <div class="location-content">
+        <div class="location-icon-container" style="background: rgba(46,204,113,0.1);">
+            <i class="fas fa-road" style="color: #2ecc71; font-size: 1.5rem;"></i>
+        </div>
+        <div class="location-text">
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Akses Jalan Utama</h3>
+            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Hanya 5 menit dari pusat kota Kuningan dan jalan utama nasional</p>
+            <button class="view-route-btn" data-destination="Jl. Siliwangi, Kuningan">
+                <i class="fas fa-route"></i> Lihat Rute
+            </button>
+        </div>
+    </div>
+</div>
 
-                <!-- Highlight 3 - Enhanced with distance indicator -->
-                <div class="location-card">
-                    <div class="location-distance">10 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(155,89,182,0.1);">
-                            <i class="fas fa-shopping-bag" style="color: #9b59b6; font-size: 1.5rem;"></i>
-                        </div>
-                        <div class="location-text">
-                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Pusat Perbelanjaan</h3>
-                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">10 menit ke pasar modern dan pusat perbelanjaan utama</p>
-                            <button class="view-route-btn" data-destination="Kuningan City Mall">
-                                <i class="fas fa-route"></i> Lihat Rute
-                            </button>
-                        </div>
-                    </div>
-                </div>
+<!-- Card 2 - Existing -->
+<div class="location-card">
+    <div class="location-distance">7 menit</div>
+    <div class="location-content">
+        <div class="location-icon-container" style="background: rgba(52,152,219,0.1);">
+            <i class="fas fa-graduation-cap" style="color: #3498db; font-size: 1.5rem;"></i>
+        </div>
+        <div class="location-text">
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Kawasan Pendidikan</h3>
+            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Dekat dengan sekolah, pesantren, dan kampus terbaik di Kuningan</p>
+            <button class="view-route-btn" data-destination="Universitas Kuningan">
+                <i class="fas fa-route"></i> Lihat Rute
+            </button>
+        </div>
+    </div>
+</div>
 
-                <!-- Highlight 4 - Enhanced with distance indicator -->
-                <div class="location-card">
-                    <div class="location-distance">3 km</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(230,126,34,0.1);">
-                            <i class="fas fa-heartbeat" style="color: #e67e22; font-size: 1.5rem;"></i>
-                        </div>
-                        <div class="location-text">
-                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Fasilitas Kesehatan</h3>
-                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Rumah sakit dan klinik terbaik dalam radius 3 km</p>
-                            <button class="view-route-btn" data-destination="RSUD Kuningan">
-                                <i class="fas fa-route"></i> Lihat Rute
-                            </button>
-                        </div>
-                    </div>
-                </div>
+<!-- Card 3 - Existing -->
+<div class="location-card">
+    <div class="location-distance">10 menit</div>
+    <div class="location-content">
+        <div class="location-icon-container" style="background: rgba(155,89,182,0.1);">
+            <i class="fas fa-shopping-bag" style="color: #9b59b6; font-size: 1.5rem;"></i>
+        </div>
+        <div class="location-text">
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Pusat Perbelanjaan</h3>
+            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">10 menit ke pasar modern dan pusat perbelanjaan utama</p>
+            <button class="view-route-btn" data-destination="Kuningan City Mall">
+                <i class="fas fa-route"></i> Lihat Rute
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Card 4 - Existing -->
+<div class="location-card">
+    <div class="location-distance">3 km</div>
+    <div class="location-content">
+        <div class="location-icon-container" style="background: rgba(230,126,34,0.1);">
+            <i class="fas fa-heartbeat" style="color: #e67e22; font-size: 1.5rem;"></i>
+        </div>
+        <div class="location-text">
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Fasilitas Kesehatan</h3>
+            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Rumah sakit dan klinik terbaik dalam radius 3 km</p>
+            <button class="view-route-btn" data-destination="RSUD Kuningan">
+                <i class="fas fa-route"></i> Lihat Rute
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Card 5 - Baru: Kota Wisata Kuningan -->
+<div class="location-card">
+    <div class="location-distance">4 km</div>
+    <div class="location-content">
+        <div class="location-icon-container" style="background: rgba(241,196,15,0.1);">
+            <i class="fas fa-umbrella-beach" style="color: #f1c40f; font-size: 1.5rem;"></i>
+        </div>
+        <div class="location-text">
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Kota Wisata Kuningan</h3>
+            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Hanya 4 km dari kawasan wisata utama Kuningan</p>
+            <button class="view-route-btn" data-destination="Kota Wisata Kuningan">
+                <i class="fas fa-route"></i> Lihat Rute
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Card 6 - Baru: Terminal Kuningan -->
+<div class="location-card">
+    <div class="location-distance">2 km</div>
+    <div class="location-content">
+        <div class="location-icon-container" style="background: rgba(231,76,60,0.1);">
+            <i class="fas fa-bus" style="color: #e74c3c; font-size: 1.5rem;"></i>
+        </div>
+        <div class="location-text">
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Terminal Kuningan</h3>
+            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Akses mudah ke terminal utama hanya 2 km</p>
+            <button class="view-route-btn" data-destination="Terminal Kuningan">
+                <i class="fas fa-route"></i> Lihat Rute
+            </button>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </div>
@@ -4709,7 +4784,6 @@ function loadTikTokVideos() {
 // Panggil saat halaman dimuat
 document.addEventListener('DOMContentLoaded', loadTikTokVideos);
 
-// ===== ENHANCED LOCATION MAP FUNCTIONS =====
 function initEnhancedMap() {
     // Live view button with confirmation
     const liveViewBtn = document.getElementById('liveViewBtn');
@@ -4729,11 +4803,12 @@ function initEnhancedMap() {
             const url = `https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/${encodeURIComponent(destination)}`;
             
             // Show loading effect
+            const originalText = this.innerHTML;
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Membuka Maps...';
             
             setTimeout(() => {
                 window.open(url, '_blank');
-                this.innerHTML = '<i class="fas fa-route"></i> Lihat Rute di Google Maps';
+                this.innerHTML = originalText;
             }, 500);
         });
         
@@ -4756,7 +4831,6 @@ function initEnhancedMap() {
         }, 100);
     });
 }
-// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initEnhancedMap);  
 </script>
 </body>
