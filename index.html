@@ -2727,85 +2727,106 @@ footer {
     background: white;
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    border-left: 4px solid var(--hijau);
-    margin-bottom: 20px;
+    border: 2px solid #f1f1f1;
+    margin-bottom: 25px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .location-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(46,204,113,0.2);
+    border-color: var(--hijau);
 }
 
-.location-distance {
+.location-badge {
     position: absolute;
-    top: -10px;
+    top: 15px;
     right: 15px;
     background: var(--hijau);
     color: white;
-    padding: 3px 10px;
+    padding: 5px 15px;
     border-radius: 50px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    animation: pulse 2s infinite;
-}
-
-.location-icon-container {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
+    box-shadow: 0 5px 15px rgba(46,204,113,0.3);
 }
 
 .location-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 15px;
 }
 
-.location-text {
+.location-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    font-size: 1.8rem;
+    color: white;
+    background: linear-gradient(135deg, var(--hijau), var(--hijau-tua));
+    flex-shrink: 0;
+}
+
+.location-details {
     flex: 1;
 }
 
-.view-route-btn {
-    background: rgba(46,204,113,0.1);
-    color: var(--hijau);
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.3s;
+.location-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--hijau-tua);
+    margin-bottom: 8px;
+}
+
+.location-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.location-note {
+    font-size: 0.85rem;
+    color: #999;
     margin-top: 10px;
+    font-style: italic;
 }
 
-.view-route-btn:hover {
-    background: var(--hijau);
-    color: white;
-}
-
-#liveViewBtn {
+.view-route-btn {
+    display: inline-flex;
+    align-items: center;
     background: linear-gradient(135deg, var(--hijau), var(--hijau-tua));
     color: white;
     border: none;
-    padding: 8px 20px;
+    padding: 10px 20px;
     border-radius: 50px;
-    font-weight: 600;
+    font-size: 0.9rem;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
     transition: all 0.3s;
+    margin-top: 10px;
+    text-decoration: none;
 }
 
-#liveViewBtn:hover {
+.view-route-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(46,204,113,0.3);
+}
+
+.map-note {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #e74c3c;
+    font-weight: 500;
 }
 
         
@@ -4690,44 +4711,51 @@ document.addEventListener('DOMContentLoaded', loadTikTokVideos);
 
 // ===== ENHANCED LOCATION MAP FUNCTIONS =====
 function initEnhancedMap() {
-    // Live view button - updated coordinates
+    // Live view button with confirmation
     const liveViewBtn = document.getElementById('liveViewBtn');
     if (liveViewBtn) {
         liveViewBtn.addEventListener('click', function() {
-            window.open('https://maps.app.goo.gl/8Jhhrth5AL2RxoMZ8', '_blank');
+            if(confirm('Anda akan dibuka ke Google Maps untuk melihat lokasi live terbaru. Lanjutkan?')) {
+                window.open('https://maps.app.goo.gl/8Jhhrth5AL2RxoMZ8', '_blank');
+            }
         });
     }
 
-    // Route buttons with updated destinations
+    // Enhanced route buttons with tooltips
     document.querySelectorAll('.view-route-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const destination = encodeURIComponent(this.getAttribute('data-destination'));
-            const url = `https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/${destination}`;
-            window.open(url, '_blank');
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const destination = this.getAttribute('data-destination');
+            const url = `https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/${encodeURIComponent(destination)}`;
+            
+            // Show loading effect
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Membuka Maps...';
+            
+            setTimeout(() => {
+                window.open(url, '_blank');
+                this.innerHTML = '<i class="fas fa-route"></i> Lihat Rute di Google Maps';
+            }, 500);
+        });
+        
+        // Add tooltip on hover
+        btn.addEventListener('mouseenter', function() {
+            const destination = this.getAttribute('data-destination');
+            this.setAttribute('title', `Rute ke ${destination}`);
         });
     });
 
-    // Enhanced map interaction
-    const mapIframe = document.getElementById('liveMap');
-    if (mapIframe) {
-        // Add hover effect container
-        const mapContainer = mapIframe.parentElement;
-        mapContainer.style.transition = 'all 0.3s ease';
+    // Add animation to location cards
+    document.querySelectorAll('.location-card').forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `all 0.5s ease ${index * 0.1}s`;
         
-        mapContainer.addEventListener('mouseenter', function() {
-            this.style.boxShadow = '0 30px 60px rgba(46,204,113,0.3)';
-            this.style.transform = 'translateY(-5px)';
-        });
-        
-        mapContainer.addEventListener('mouseleave', function() {
-            this.style.boxShadow = '0 30px 60px rgba(0,0,0,0.1)';
-            this.style.transform = 'translateY(0)';
-        });
-    }
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 100);
+    });
 }
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initEnhancedMap);
      
 </script>
 </body>
