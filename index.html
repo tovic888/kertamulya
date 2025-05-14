@@ -2852,7 +2852,7 @@ footer {
 
 #liveViewBtn i {
     font-size: 1rem;
-}
+/* ===== ENHANCED EXIT POPUP ===== */
 .exit-popup-overlay {
     position: fixed;
     top: 0;
@@ -2892,6 +2892,155 @@ footer {
     transform: scale(1);
 }
 
+.exit-popup-header {
+    padding: 25px;
+    text-align: center;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    position: relative;
+}
+
+.exit-popup-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 800;
+    padding-right: 40px;
+}
+
+.exit-popup-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.exit-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.exit-popup-close:hover {
+    background: rgba(255,255,255,0.3);
+    transform: rotate(90deg);
+}
+
+.exit-popup-body {
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.exit-popup-offer {
+    margin-bottom: 25px;
+}
+
+.offer-title {
+    font-size: 1.5rem;
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.offer-desc {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.exit-popup-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #333;
+    text-align: left;
+    padding: 12px 15px;
+    background: rgba(46,204,113,0.1);
+    border-radius: 8px;
+    border-left: 4px solid #2ecc71;
+}
+
+.feature-item i {
+    color: #2ecc71;
+    font-size: 1.2rem;
+    min-width: 25px;
+}
+
+.exit-popup-countdown {
+    background: rgba(241,196,15,0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border: 1px dashed #f1c40f;
+}
+
+.exit-popup-countdown p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.countdown-timer {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #e74c3c;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+}
+
+.exit-popup-footer {
+    padding: 0 30px 30px;
+}
+
+.exit-popup-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #f1c40f, #e67e22);
+    color: #111;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(241,196,15,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.exit-popup-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(241,196,15,0.4);
+}
+
+.exit-popup-btn i {
+    font-size: 1.3rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .exit-popup-container {
@@ -2914,7 +3063,7 @@ footer {
         font-size: 1.2rem;
     }
 }
-/* Exit Popup Responsive Fixes */
+
 @media (max-width: 480px) {
     .exit-popup-header {
         padding: 20px 15px;
@@ -5007,6 +5156,11 @@ function initializeExitPopup() {
     const threshold = 50;
     let faqSection = document.getElementById('faq');
     
+    // Track mouse movement
+    document.addEventListener('mousemove', function(e) {
+        mouseY = e.clientY;
+    });
+    
     // Function to check if FAQ section is visible
     function isFAQVisible() {
         if (!faqSection) return false;
@@ -5025,7 +5179,7 @@ function initializeExitPopup() {
         }
     });
     
-    // Scroll detection
+    // Scroll detection - show when user reaches FAQ section
     window.addEventListener('scroll', function() {
         if (isFAQVisible() && !shown) {
             // Delay slightly for better UX
@@ -5038,6 +5192,20 @@ function initializeExitPopup() {
     
     // Close button
     closeExitPopup.addEventListener('click', closeExitPopupFunc);
+    
+    // Close when clicking outside
+    exitPopup.addEventListener('click', function(e) {
+        if (e.target === exitPopup) {
+            closeExitPopupFunc();
+        }
+    });
+    
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && exitPopup.classList.contains('active')) {
+            closeExitPopupFunc();
+        }
+    });
     
     // Start countdown
     startExitCountdown();
@@ -5101,14 +5269,6 @@ function startExitCountdown() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeExitPopup();
-    
-    // Pastikan semua tombol booking bekerja
-    document.querySelectorAll('[onclick="showFormModal()"], .btn-premium').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            showFormModal();
-        });
-    });
 });
 </script>
 </body>
