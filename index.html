@@ -2901,12 +2901,6 @@ footer {
     color: white;
 }
 
-.exit-popup-logo {
-    max-width: 120px;
-    margin-bottom: 15px;
-    animation: pulse 1.5s infinite;
-}
-
 .exit-popup-header h3 {
     font-size: 1.8rem;
     margin-bottom: 10px;
@@ -3032,66 +3026,7 @@ footer {
     border-radius: 50px;
     font-weight: 700;
     font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.exit-popup-btn:hover {
-    background: linear-gradient(45deg, #128C7E, #25D366);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .exit-popup-header h3 {
-        font-size: 1.5rem;
-    }
-    
-    .exit-popup-header p {
-        font-size: 1rem;
-    }
-    
-    .offer-title {
-        font-size: 1.3rem;
-    }
-    
-    .exit-popup-btn {
-        font-size: 1rem;
-        padding: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .exit-popup-header {
-        padding: 20px 15px;
-    }
-    
-    .exit-popup-body {
-        padding: 20px 15px;
-    }
-    
-    .exit-popup-footer {
-        padding: 0 15px 15px;
-    }
-    
-    .exit-popup-header h3 {
-        font-size: 1.3rem;
-    }
-    
-    .countdown-timer {
-        font-size: 1.2rem;
-    }
-    
-    .feature-item {
-        font-size: 0.9rem;
-    }
-}
+    cursor:
 </style>
 </head>
 <body>
@@ -4301,7 +4236,6 @@ footer {
     <div class="exit-popup-container">
         <div class="exit-popup-header">
             <button class="exit-popup-close" id="closeExitPopup">&times;</button>
-            <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="exit-popup-logo">
             <h3>TUNGGU SEBENTAR! 🚀</h3>
             <p>Anda hampir meninggalkan halaman penawaran spesial kami!</p>
         </div>
@@ -4335,7 +4269,7 @@ footer {
         </div>
         
         <div class="exit-popup-footer">
-            <button class="exit-popup-btn" onclick="showFormModal()">
+            <button class="exit-popup-btn" onclick="showFormModal(); closeExitPopupFunc();">
                 <i class="fab fa-whatsapp"></i> BOOKING SEKARANG
             </button>
         </div>
@@ -5136,35 +5070,46 @@ document.addEventListener('DOMContentLoaded', initEnhancedMap);
 function initializeExitPopup() {
     const exitPopup = document.getElementById('exitPopup');
     const closeExitPopup = document.getElementById('closeExitPopup');
+    const faqSection = document.getElementById('faq');
     
-    if (!exitPopup || !closeExitPopup) return;
+    if (!exitPopup || !closeExitPopup || !faqSection) return;
     
-    // Track mouse movement and page exit
     let mouseY = 0;
     let shown = false;
-    const threshold = 50; // Pixels from top to trigger
+    const threshold = 50;
     
-    // Mouse movement tracking
+    // Only track when in FAQ section
+    function checkFAQVisibility() {
+        const rect = faqSection.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight / 2) && 
+            rect.bottom >= (window.innerHeight / 2)
+        );
+    }
+    
     document.addEventListener('mousemove', function(e) {
+        if (!checkFAQVisibility()) return;
+        
         mouseY = e.clientY;
         
-        // Show popup when mouse moves towards top
         if (mouseY < threshold && !shown && document.visibilityState === 'visible') {
             showExitPopup();
             shown = true;
         }
     });
     
-    // Page visibility tracking
     document.addEventListener('visibilitychange', function() {
+        if (!checkFAQVisibility()) return;
+        
         if (document.visibilityState === 'hidden' && !shown) {
             showExitPopup();
             shown = true;
         }
     });
     
-    // Before unload tracking
     window.addEventListener('beforeunload', function(e) {
+        if (!checkFAQVisibility()) return;
+        
         if (!shown) {
             showExitPopup();
             shown = true;
@@ -5174,12 +5119,10 @@ function initializeExitPopup() {
         }
     });
     
-    // Close button
     closeExitPopup.addEventListener('click', function() {
         closeExitPopupFunc();
     });
     
-    // Start countdown timer
     startExitCountdown();
 }
 
@@ -5190,7 +5133,6 @@ function showExitPopup() {
     exitPopup.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Track popup view
     if (typeof fbq !== 'undefined') {
         fbq('track', 'ViewContent', {
             content_name: 'Exit Intent Popup',
@@ -5208,7 +5150,6 @@ function closeExitPopupFunc() {
 }
 
 function startExitCountdown() {
-    // Set target time (30 minutes from now)
     const targetTime = new Date();
     targetTime.setMinutes(targetTime.getMinutes() + 30);
     
