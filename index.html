@@ -3973,7 +3973,7 @@ function initializeLiveCounters() {
                         const currentLeft = parseInt(document.getElementById('unitsLeft').textContent);
                         const currentSold = parseInt(document.getElementById('unitsSold').textContent);
                         
-                        animateCounter('unitsLeft', Math.max(0, currentLeft - sold), ((currentLeft - sold)/150)*100, 1000);
+                        animateCounter('unitsLeft', Math.max(0, currentLeft - sold), ((currentLeft - sold)/391)*100, 1000);
                         animateCounter('unitsSold', currentSold + sold, ((currentSold + sold)/150)*100, 1000);
                         
                         // Update time
