@@ -2855,7 +2855,7 @@ footer {
     font-size: 1rem;
 }
 
-/* ===== ENHANCED EXIT POPUP ===== */
+/* ===== ENHANCED EXIT POPUP STYLES ===== */
 .exit-popup-overlay {
     position: fixed;
     top: 0;
@@ -2896,22 +2896,33 @@ footer {
 }
 
 .exit-popup-header {
-    padding: 25px;
+    position: relative;
+    padding: 30px 30px 20px;
     text-align: center;
     background: linear-gradient(135deg, #2ecc71, #27ae60);
     color: white;
-    position: relative;
+}
+
+.exit-popup-logo-container {
+    margin-bottom: 15px;
+}
+
+.exit-popup-logo {
+    max-width: 150px;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
 }
 
 .exit-popup-header h3 {
     font-size: 1.8rem;
     margin-bottom: 10px;
     font-weight: 800;
-    padding-right: 40px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .exit-popup-header p {
     font-size: 1.1rem;
+    line-height: 1.5;
     opacity: 0.9;
 }
 
@@ -2925,7 +2936,7 @@ footer {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    font-size: 1.2rem;
+    font-size: 20px;
     cursor: pointer;
     z-index: 2;
     display: flex;
@@ -2946,41 +2957,69 @@ footer {
 }
 
 .exit-popup-offer {
-    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(241,196,15,0.1);
+    border-radius: 15px;
+    border: 2px dashed #f1c40f;
 }
 
 .offer-title {
     font-size: 1.5rem;
     color: #e74c3c;
-    margin-bottom: 15px;
-    font-weight: 700;
+    margin-bottom: 10px;
+    font-weight: 800;
 }
 
 .offer-desc {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #555;
-    margin-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.exit-popup-countdown {
+    margin-top: 15px;
+}
+
+.exit-popup-countdown p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e74c3c;
 }
 
 .exit-popup-features {
-    display: flex;
-    flex-direction: column;
+    margin: 25px 0;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 12px;
-    margin-bottom: 25px;
 }
 
 .feature-item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10px;
     font-size: 1rem;
-    color: #333;
+    color: #111;
+    font-weight: 600;
     text-align: left;
-    padding: 12px 15px;
-    background: rgba(46,204,113,0.1);
+    padding: 8px 15px;
+    background: rgba(255,255,255,0.7);
     border-radius: 8px;
-    border-left: 4px solid #2ecc71;
 }
 
 .feature-item i {
@@ -2989,46 +3028,24 @@ footer {
     min-width: 25px;
 }
 
-.exit-popup-countdown {
-    background: rgba(241,196,15,0.1);
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    border: 1px dashed #f1c40f;
-}
-
-.exit-popup-countdown p {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.countdown-timer {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #e74c3c;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-}
-
 .exit-popup-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     padding: 0 30px 30px;
 }
 
 .exit-popup-btn {
-    width: 100%;
-    padding: 16px;
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    color: white;
     border: none;
+    padding: 16px;
     border-radius: 50px;
-    background: linear-gradient(45deg, #f1c40f, #e67e22);
-    color: #111;
     font-weight: 700;
     font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 5px 15px rgba(241,196,15,0.3);
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3036,20 +3053,89 @@ footer {
 }
 
 .exit-popup-btn:hover {
+    background: linear-gradient(45deg, #128C7E, #25D366);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(241,196,15,0.4);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
 }
 
-.exit-popup-btn i {
+.exit-popup-footer-note {
+    padding: 20px;
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+}
+
+.marketing-person {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 15px;
+    transition: all 0.3s;
+    border: 2px solid #f1c40f;
+    background: white;
+}
+
+.marketing-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 3px solid #f1c40f;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.marketing-info h4 {
+    color: #f1c40f;
+    margin-bottom: 8px;
     font-size: 1.3rem;
 }
 
-/* Responsive adjustments */
+.marketing-info p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin: 0 0 8px 0;
+}
+
+.marketing-badge {
+    display: inline-block;
+    background: #2ecc71;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 20px;
+}
+
+.legal-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.legal-links a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.legal-links a:hover {
+    color: #2ecc71;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-    .exit-popup-container {
-        max-width: 90%;
-    }
-    
     .exit-popup-header h3 {
         font-size: 1.5rem;
     }
@@ -3062,6 +3148,15 @@ footer {
         font-size: 1.3rem;
     }
     
+    .exit-popup-btn {
+        font-size: 1rem;
+        padding: 14px;
+    }
+    
+    .feature-item {
+        font-size: 0.9rem;
+    }
+    
     .countdown-timer {
         font-size: 1.2rem;
     }
@@ -3072,80 +3167,40 @@ footer {
         padding: 20px 15px;
     }
     
+    .exit-popup-body {
+        padding: 20px 15px;
+    }
+    
+    .exit-popup-footer {
+        padding: 0 15px 15px;
+    }
+    
     .exit-popup-header h3 {
         font-size: 1.3rem;
-        padding-right: 30px;
     }
     
-    .exit-popup-header p {
-        font-size: 0.9rem;
-    }
-    
-    .exit-popup-body {
-        padding: 20px;
-    }
-    
-    .offer-title {
-        font-size: 1.1rem;
-    }
-    
-    .offer-desc {
-        font-size: 0.9rem;
+    .countdown-timer {
+        font-size: 1.2rem;
     }
     
     .feature-item {
         font-size: 0.9rem;
-        text-align: left;
-        justify-content: flex-start;
     }
     
-    .countdown-timer {
-        font-size: 1rem;
+    .marketing-person {
+        flex-direction: column;
+        text-align: center;
     }
     
-    .exit-popup-btn {
-        padding: 12px;
-        font-size: 1rem;
+    .marketing-avatar {
+        margin-right: 0;
+        margin-bottom: 10px;
     }
-}     
-        /* ===== ENHANCED EXIT POPUP ===== */
-.exit-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.95);
-    backdrop-filter: blur(10px);
-    z-index: 999999;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.exit-popup-overlay.active {
-    display: flex;
-    opacity: 1;
-}
-
-.exit-popup-container {
-    background: white;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 500px;
-    overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    transform: scale(0.9);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-}
-
-.exit-popup-overlay.active .exit-popup-container {
-    transform: scale(1);
+    
+    .legal-links {
+        flex-direction: column;
+        gap: 8px;
+    }
 }
 </style>
 </head>
@@ -4351,7 +4406,73 @@ footer {
     </div>
   </div>
 </div>
-
+<!-- ===== ENHANCED EXIT POPUP ===== -->
+<div class="exit-popup-overlay" id="exitPopup">
+    <div class="exit-popup-container">
+        <div class="exit-popup-header">
+            <button class="exit-popup-close" id="closeExitPopup">&times;</button>
+            <div class="exit-popup-logo-container">
+                <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="exit-popup-logo">
+            </div>
+            <h3>TUNGGU SEBENTAR! ✅</h3>
+            <p>Anda hampir meninggalkan halaman penawaran spesial kami!</p>
+        </div>
+        
+        <div class="exit-popup-body">
+            <div class="exit-popup-offer">
+                <h4 class="offer-title">PROMO TERBATAS HARI INI!</h4>
+                <p class="offer-desc">Booking hari ini dapatkan fasilitas istimewa:</p>
+                
+                <div class="exit-popup-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> Booking Fee Hanya Rp500.000
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> DP 0% via Bank Syariah
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i> Cicilan Mulai Rp1 Juta-an/Bulan
+                    </div>
+                </div>
+                
+                <div class="exit-popup-countdown">
+                    <p>Promo berakhir dalam:</p>
+                    <div class="countdown-timer">
+                        <span id="exitHours">00</span>:
+                        <span id="exitMinutes">00</span>:
+                        <span id="exitSeconds">00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exit-popup-footer">
+            <button class="exit-popup-btn" onclick="showFormModal()">
+                <i class="fab fa-whatsapp"></i> BOOKING SEKARANG
+            </button>
+        </div>
+        
+        <div class="exit-popup-footer-note">
+            <div class="marketing-person">
+                <img src="https://i.imgur.com/o3rxcu0.jpeg" alt="Rahma" class="marketing-avatar">
+                <div class="marketing-info">
+                    <h4>Rahma</h4>
+                    <p>Admin Digital Marketing</p>
+                    <div class="marketing-badge">Respon Cepat</div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 PT. Rumah Mulia Indonesia Land - Taufik Marie. All Rights Reserved.
+                <div class="legal-links">
+                    <a href="Kebijakan Privasi.html">Kebijakan Privasi</a>
+                    <a href="Syarat & Ketentuan.html">Syarat & Ketentuan</a>
+                    <a href="Disclaimer.html">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Deferred Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/glide.min.js" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
@@ -5150,63 +5271,47 @@ function initializeExitPopup() {
     
     if (!exitPopup || !closeExitPopup) return;
     
+    // Track mouse movement and page exit
     let mouseY = 0;
     let shown = false;
-    const threshold = 50;
-    let faqSection = document.getElementById('faq');
+    const threshold = 50; // Pixels from top to trigger
     
-    // Track mouse movement
+    // Mouse movement tracking
     document.addEventListener('mousemove', function(e) {
         mouseY = e.clientY;
-    });
-    
-    // Function to check if FAQ section is visible
-    function isFAQVisible() {
-        if (!faqSection) return false;
-        const rect = faqSection.getBoundingClientRect();
-        return (
-            rect.top <= window.innerHeight && 
-            rect.bottom >= 0
-        );
-    }
-    
-    // Mouse leave detection
-    document.addEventListener('mouseleave', function(e) {
-        if (e.clientY < threshold && isFAQVisible() && !shown) {
+        
+        // Show popup when mouse moves towards top
+        if (mouseY < threshold && !shown && document.visibilityState === 'visible') {
             showExitPopup();
             shown = true;
         }
     });
     
-    // Scroll detection - show when user reaches FAQ section
-    window.addEventListener('scroll', function() {
-        if (isFAQVisible() && !shown) {
-            // Delay slightly for better UX
-            setTimeout(() => {
-                showExitPopup();
-                shown = true;
-            }, 1000);
+    // Page visibility tracking
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden' && !shown) {
+            showExitPopup();
+            shown = true;
+        }
+    });
+    
+    // Before unload tracking
+    window.addEventListener('beforeunload', function(e) {
+        if (!shown) {
+            showExitPopup();
+            shown = true;
+            e.preventDefault();
+            e.returnValue = '';
+            return '';
         }
     });
     
     // Close button
-    closeExitPopup.addEventListener('click', closeExitPopupFunc);
-    
-    // Close when clicking outside
-    exitPopup.addEventListener('click', function(e) {
-        if (e.target === exitPopup) {
-            closeExitPopupFunc();
-        }
+    closeExitPopup.addEventListener('click', function() {
+        closeExitPopupFunc();
     });
     
-    // Close with ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && exitPopup.classList.contains('active')) {
-            closeExitPopupFunc();
-        }
-    });
-    
-    // Start countdown
+    // Start countdown timer
     startExitCountdown();
 }
 
@@ -5217,6 +5322,7 @@ function showExitPopup() {
     exitPopup.classList.add('active');
     document.body.style.overflow = 'hidden';
     
+    // Track popup view
     if (typeof fbq !== 'undefined') {
         fbq('track', 'ViewContent', {
             content_name: 'Exit Intent Popup',
@@ -5234,6 +5340,7 @@ function closeExitPopupFunc() {
 }
 
 function startExitCountdown() {
+    // Set target time (30 minutes from now)
     const targetTime = new Date();
     targetTime.setMinutes(targetTime.getMinutes() + 30);
     
@@ -5270,49 +5377,5 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeExitPopup();
 });
 </script>
-<!-- ===== ENHANCED EXIT POPUP ===== -->
-<div class="exit-popup-overlay" id="exitPopup">
-    <div class="exit-popup-container">
-        <div class="exit-popup-header">
-            <button class="exit-popup-close" id="closeExitPopup">&times;</button>
-            <h3>TUNGGU SEBENTAR! 🚀</h3>
-            <p>Anda hampir meninggalkan halaman penawaran spesial kami!</p>
-        </div>
-        
-        <div class="exit-popup-body">
-            <div class="exit-popup-offer">
-                <h4 class="offer-title">PROMO TERBATAS HARI INI!</h4>
-                <p class="offer-desc">Booking hari ini dapatkan fasilitas istimewa:</p>
-                
-                <div class="exit-popup-features">
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> Booking Fee Hanya Rp500.000
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> DP 0% via Bank Syariah
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i> Cicilan Mulai Rp1 Juta-an/Bulan
-                    </div>
-                </div>
-                
-                <div class="exit-popup-countdown">
-                    <p>Promo berakhir dalam:</p>
-                    <div class="countdown-timer">
-                        <span id="exitHours">00</span>:
-                        <span id="exitMinutes">00</span>:
-                        <span id="exitSeconds">00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="exit-popup-footer">
-            <button class="exit-popup-btn" onclick="showFormModal(); closeExitPopupFunc();">
-                <i class="fab fa-whatsapp"></i> BOOKING SEKARANG
-            </button>
-        </div>
-    </div>
-</div>
 </body>
 </html>
