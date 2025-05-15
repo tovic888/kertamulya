@@ -3299,19 +3299,51 @@ footer {
                 </div>
             </div>
 
-            <!-- Enhanced Location Highlights -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+           <!-- ===== ENHANCED LOCATION SECTION ===== -->
+<section class="location-section" style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 80px 0; position: relative;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; color: #111; position: relative; display: inline-block; padding-bottom: 15px;">
+                <span style="background: linear-gradient(135deg, #2ecc71, #27ae60); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LOKASI STRATEGIS</span>
+            </h2>
+            <div style="height: 4px; width: 100px; background: linear-gradient(90deg, #2ecc71, #27ae60); margin: 15px auto; border-radius: 2px;"></div>
+            <p style="font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto;">Pusat kota Kuningan dengan akses mudah ke segala fasilitas (Update 2024)</p>
+        </div>
+
+        <div class="location-grid" style="display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;">
+            <!-- Enhanced Map Container -->
+            <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1); height: 500px;">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                    aria-label="Peta Lokasi Kertamulya Residence"
+                    id="liveMap">
+                </iframe>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white; text-align: center;">
+                    <h3 style="margin: 0; font-size: 1.3rem;">Jl. Kertayasa, Blok Congkleng, Kertayasa, Kuningan, Jawa Barat 45573</h3>
+                    <button id="liveViewBtn" style="margin-top: 10px; background: #25D366; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s;">
+                        <i class="fas fa-street-view"></i> Lihat Tampilan Live
+                    </button>
+                </div>
+            </div>
+
+            <!-- Enhanced Location Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                 <!-- Card 1 -->
-                <div class="location-card">
-                    <div class="location-distance">5 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(46,204,113,0.1);">
+                <div class="location-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(46,204,113,0.2); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #2ecc71; color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 5px 15px rgba(46,204,113,0.3);">5 menit</div>
+                    <div style="display: flex; align-items: flex-start; margin-top: 15px; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: rgba(46,204,113,0.1); flex-shrink: 0;">
                             <i class="fas fa-road" style="color: #2ecc71; font-size: 1.5rem;"></i>
                         </div>
-                        <div class="location-text">
+                        <div style="flex: 1;">
                             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Jalan Nasional</h3>
                             <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Hanya 5 menit ke Jalan Nasional Kuningan-Cirebon</p>
-                            <button class="view-route-btn" data-destination="Jl. Nasional Kuningan-Cirebon">
+                            <button class="view-route-btn" data-destination="Jl. Nasional Kuningan-Cirebon" style="margin-top: 10px; background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.3s;">
                                 <i class="fas fa-route"></i> Lihat Rute
                             </button>
                         </div>
@@ -3319,16 +3351,16 @@ footer {
                 </div>
 
                 <!-- Card 2 -->
-                <div class="location-card">
-                    <div class="location-distance">12 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(52,152,219,0.1);">
+                <div class="location-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(52,152,219,0.2); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #3498db; color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 5px 15px rgba(52,152,219,0.3);">12 menit</div>
+                    <div style="display: flex; align-items: flex-start; margin-top: 15px; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: rgba(52,152,219,0.1); flex-shrink: 0;">
                             <i class="fas fa-graduation-cap" style="color: #3498db; font-size: 1.5rem;"></i>
                         </div>
-                        <div class="location-text">
+                        <div style="flex: 1;">
                             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Universitas Kuningan</h3>
                             <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">7 menit ke kampus utama Universitas Kuningan</p>
-                            <button class="view-route-btn" data-destination="Universitas Kuningan">
+                            <button class="view-route-btn" data-destination="Universitas Kuningan" style="margin-top: 10px; background: linear-gradient(135deg, #3498db, #2980b9); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.3s;">
                                 <i class="fas fa-route"></i> Lihat Rute
                             </button>
                         </div>
@@ -3336,16 +3368,16 @@ footer {
                 </div>
 
                 <!-- Card 3 -->
-                <div class="location-card">
-                    <div class="location-distance">15 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(155,89,182,0.1);">
+                <div class="location-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(155,89,182,0.2); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #9b59b6; color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 5px 15px rgba(155,89,182,0.3);">15 menit</div>
+                    <div style="display: flex; align-items: flex-start; margin-top: 15px; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: rgba(155,89,182,0.1); flex-shrink: 0;">
                             <i class="fas fa-shopping-bag" style="color: #9b59b6; font-size: 1.5rem;"></i>
                         </div>
-                        <div class="location-text">
+                        <div style="flex: 1;">
                             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Esbe Mart</h3>
                             <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">10 menit ke pusat perbelanjaan terbesar di Kuningan</p>
-                            <button class="view-route-btn" data-destination="Esbe Mart Kuningan">
+                            <button class="view-route-btn" data-destination="Esbe Mart Kuningan" style="margin-top: 10px; background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.3s;">
                                 <i class="fas fa-route"></i> Lihat Rute
                             </button>
                         </div>
@@ -3353,33 +3385,33 @@ footer {
                 </div>
 
                 <!-- Card 4 -->
-                <div class="location-card">
-    <div class="location-distance">5 menit</div>
-    <div class="location-content">
-        <div class="location-icon-container" style="background: rgba(230,126,34,0.1);">
-            <i class="fas fa-heartbeat" style="color: #e67e22; font-size: 1.5rem;"></i>
-        </div>
-        <div class="location-text">
-            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">RS Kuningan Medical Center</h3>
-            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">5 menit ke rumah sakit modern di Kuningan</p>
-            <button class="view-route-btn" data-destination="RS Kuningan Medical Center">
-                <i class="fas fa-route"></i> Lihat Rute
-            </button>
-        </div>
-    </div>
-</div>
+                <div class="location-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(230,126,34,0.2); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #e67e22; color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 5px 15px rgba(230,126,34,0.3);">5 menit</div>
+                    <div style="display: flex; align-items: flex-start; margin-top: 15px; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: rgba(230,126,34,0.1); flex-shrink: 0;">
+                            <i class="fas fa-heartbeat" style="color: #e67e22; font-size: 1.5rem;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">RS Kuningan Medical Center</h3>
+                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">5 menit ke rumah sakit modern di Kuningan</p>
+                            <button class="view-route-btn" data-destination="RS Kuningan Medical Center" style="margin-top: 10px; background: linear-gradient(135deg, #e67e22, #d35400); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.3s;">
+                                <i class="fas fa-route"></i> Lihat Rute
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Card 5 -->
-                <div class="location-card">
-                    <div class="location-distance">27 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(241,196,15,0.1);">
+                <div class="location-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(241,196,15,0.2); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #f1c40f; color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 5px 15px rgba(241,196,15,0.3);">27 menit</div>
+                    <div style="display: flex; align-items: flex-start; margin-top: 15px; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: rgba(241,196,15,0.1); flex-shrink: 0;">
                             <i class="fas fa-umbrella-beach" style="color: #f1c40f; font-size: 1.5rem;"></i>
                         </div>
-                        <div class="location-text">
+                        <div style="flex: 1;">
                             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Arunika Waterpark</h3>
                             <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">15 menit ke wisata air terbaik di Kuningan</p>
-                            <button class="view-route-btn" data-destination="Arunika Waterpark Kuningan">
+                            <button class="view-route-btn" data-destination="Arunika Waterpark Kuningan" style="margin-top: 10px; background: linear-gradient(135deg, #f1c40f, #f39c12); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.3s;">
                                 <i class="fas fa-route"></i> Lihat Rute
                             </button>
                         </div>
@@ -3387,16 +3419,16 @@ footer {
                 </div>
 
                 <!-- Card 6 -->
-                <div class="location-card">
-                    <div class="location-distance">16 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(142,68,173,0.1);">
+                <div class="location-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(142,68,173,0.2); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #8e44ad; color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 5px 15px rgba(142,68,173,0.3);">16 menit</div>
+                    <div style="display: flex; align-items: flex-start; margin-top: 15px; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: rgba(142,68,173,0.1); flex-shrink: 0;">
                             <i class="fas fa-landmark" style="color: #8e44ad; font-size: 1.5rem;"></i>
                         </div>
-                        <div class="location-text">
+                        <div style="flex: 1;">
                             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Kantor Bupati</h3>
                             <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">12 menit ke pusat pemerintahan Kabupaten Kuningan</p>
-                            <button class="view-route-btn" data-destination="Kantor Bupati Kuningan">
+                            <button class="view-route-btn" data-destination="Kantor Bupati Kuningan" style="margin-top: 10px; background: linear-gradient(135deg, #8e44ad, #7d3c98); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.3s;">
                                 <i class="fas fa-route"></i> Lihat Rute
                             </button>
                         </div>
@@ -3404,16 +3436,16 @@ footer {
                 </div>
 
                 <!-- Card 7 -->
-                <div class="location-card">
-                    <div class="location-distance">19 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(41,128,185,0.1);">
+                <div class="location-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(41,128,185,0.2); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #2980b9; color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 5px 15px rgba(41,128,185,0.3);">19 menit</div>
+                    <div style="display: flex; align-items: flex-start; margin-top: 15px; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: rgba(41,128,185,0.1); flex-shrink: 0;">
                             <i class="fas fa-mosque" style="color: #2980b9; font-size: 1.5rem;"></i>
                         </div>
-                        <div class="location-text">
+                        <div style="flex: 1;">
                             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Masjid Agung</h3>
                             <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">6 menit ke Masjid Agung Kuningan</p>
-                            <button class="view-route-btn" data-destination="Masjid Agung Kuningan">
+                            <button class="view-route-btn" data-destination="Masjid Agung Kuningan" style="margin-top: 10px; background: linear-gradient(135deg, #2980b9, #2471a3); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.3s;">
                                 <i class="fas fa-route"></i> Lihat Rute
                             </button>
                         </div>
@@ -3421,16 +3453,16 @@ footer {
                 </div>
 
                 <!-- Card 8 -->
-                <div class="location-card">
-                    <div class="location-distance">6 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(231,76,60,0.1);">
+                <div class="location-card" style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(231,76,60,0.2); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #e74c3c; color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; box-shadow: 0 5px 15px rgba(231,76,60,0.3);">6 menit</div>
+                    <div style="display: flex; align-items: flex-start; margin-top: 15px; gap: 15px;">
+                        <div style="width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: rgba(231,76,60,0.1); flex-shrink: 0;">
                             <i class="fas fa-bus" style="color: #e74c3c; font-size: 1.5rem;"></i>
                         </div>
-                        <div class="location-text">
+                        <div style="flex: 1;">
                             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Terminal Kuningan</h3>
                             <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">15 menit ke terminal utama Kuningan</p>
-                            <button class="view-route-btn" data-destination="Terminal Kuningan">
+                            <button class="view-route-btn" data-destination="Terminal Kuningan" style="margin-top: 10px; background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.3s;">
                                 <i class="fas fa-route"></i> Lihat Rute
                             </button>
                         </div>
