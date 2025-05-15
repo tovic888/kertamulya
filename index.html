@@ -3365,17 +3365,10 @@ footer {
             <!-- Enhanced Map Container -->
             <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1); height: 500px;">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy"
-                    aria-label="Peta Lokasi Kertamulya Residence"
-                    id="liveMap">
-                </iframe>
+    src="https://www.google.com/maps/embed?pb=!4v1715752802290!6m8!1m7!1sCAoSLEFGMVFpcE5yZG05SkR4dFFmVndqYkt3bndCc3FuVTh6N2ZaU3l5Qk9KaFli!2m2!1d-6.9830006!2d108.4822154!3f22.87!4f0!5f0.7820865974627469"
+
                 <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white; text-align: center;">
-                    <h3 style="margin: 0; font-size: 1.3rem;">Jl. Kertayasa, Blok Congkleng, Kuningan (Update 2025)</h3>
+                    <h3 style="margin: 0; font-size: 1.3rem;">Jl. Kertayasa, Blok Congkleng, Kertayasa, Kec. Sindangagung, Kuningan (Update 2025)</h3>
                     <button id="liveViewBtn" style="margin-top: 10px;">
                         <i class="fas fa-street-view"></i> Lihat Tampilan Live Terbaru
                     </button>
@@ -3385,40 +3378,22 @@ footer {
             <!-- Enhanced Location Highlights -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                 <!-- Highlight 1 - Enhanced with distance indicator -->
-                <div class="location-card">
-                    <div class="location-distance">3 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(46,204,113,0.1);">
-                            <i class="fas fa-road" style="color: #2ecc71; font-size: 1.5rem;"></i>
-                        </div>
-                        <div class="location-text">
-                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Akses Jalan Utama</h3>
-                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Hanya 3 menit dari pusat kota Kuningan dan jalan utama nasional</p>
-                            <button class="view-route-btn" data-destination="Jl. Siliwangi, Kuningan">
-                                <i class="fas fa-route"></i> Lihat Rute
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 1 - Existing -->
+                <!-- Card 1 - Akses Jalan Utama -->
 <div class="location-card">
-    <div class="location-distance">5 menit</div>
+    <div class="location-distance">3 menit</div>
     <div class="location-content">
         <div class="location-icon-container" style="background: rgba(46,204,113,0.1);">
             <i class="fas fa-road" style="color: #2ecc71; font-size: 1.5rem;"></i>
         </div>
         <div class="location-text">
             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Akses Jalan Utama</h3>
-            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Hanya 5 menit dari pusat kota Kuningan dan jalan utama nasional</p>
-            <button class="view-route-btn" data-destination="Jl. Siliwangi, Kuningan">
-                <i class="fas fa-route"></i> Lihat Rute
-            </button>
+            <p style="color: #666;">3 menit ke Jl. Siliwangi Kuningan (jalan nasional utama)</p>
+            <button class="view-route-btn" data-destination="Jl. Siliwangi, Kuningan"> <i class="fas fa-route"></i> Lihat Rute </button>
         </div>
     </div>
 </div>
 
-<!-- Card 2 - Existing -->
+<!-- Card 2 - Kawasan Pendidikan -->
 <div class="location-card">
     <div class="location-distance">7 menit</div>
     <div class="location-content">
@@ -3427,15 +3402,13 @@ footer {
         </div>
         <div class="location-text">
             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Kawasan Pendidikan</h3>
-            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Dekat dengan sekolah, pesantren, dan kampus terbaik di Kuningan</p>
-            <button class="view-route-btn" data-destination="Universitas Kuningan">
-                <i class="fas fa-route"></i> Lihat Rute
-            </button>
+            <p style="color: #666;">7 menit ke Universitas Kuningan dan sekolah besar</p>
+            <button class="view-route-btn" data-destination="Universitas Kuningan"> <i class="fas fa-route"></i> Lihat Rute </button>
         </div>
     </div>
 </div>
 
-<!-- Card 3 - Existing -->
+<!-- Card 3 - Esbe Mart (Pusat Perbelanjaan) -->
 <div class="location-card">
     <div class="location-distance">10 menit</div>
     <div class="location-content">
@@ -3443,16 +3416,14 @@ footer {
             <i class="fas fa-shopping-bag" style="color: #9b59b6; font-size: 1.5rem;"></i>
         </div>
         <div class="location-text">
-            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Pusat Perbelanjaan</h3>
-            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">10 menit ke pasar modern dan pusat perbelanjaan utama</p>
-            <button class="view-route-btn" data-destination="Kuningan City Mall">
-                <i class="fas fa-route"></i> Lihat Rute
-            </button>
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Esbe Mart Kuningan</h3>
+            <p style="color: #666;">10 menit ke Esbe Toserba Kuningan, pusat belanja harian</p>
+            <button class="view-route-btn" data-destination="Esbe Mart Kuningan"> <i class="fas fa-route"></i> Lihat Rute </button>
         </div>
     </div>
 </div>
 
-<!-- Card 4 - Existing -->
+<!-- Card 4 - Fasilitas Kesehatan -->
 <div class="location-card">
     <div class="location-distance">3 km</div>
     <div class="location-content">
@@ -3461,32 +3432,28 @@ footer {
         </div>
         <div class="location-text">
             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Fasilitas Kesehatan</h3>
-            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Rumah sakit dan klinik terbaik dalam radius 3 km</p>
-            <button class="view-route-btn" data-destination="RSUD Kuningan">
-                <i class="fas fa-route"></i> Lihat Rute
-            </button>
+            <p style="color: #666;">3 km ke RSUD Kuningan dan klinik besar</p>
+            <button class="view-route-btn" data-destination="RSUD Kuningan"> <i class="fas fa-route"></i> Lihat Rute </button>
         </div>
     </div>
 </div>
 
-<!-- Card 5 - Baru: Kota Wisata Kuningan -->
+<!-- Card 5 - Arunika Kuningan (Wisata) -->
 <div class="location-card">
-    <div class="location-distance">4 km</div>
+    <div class="location-distance">5.5 km</div>
     <div class="location-content">
         <div class="location-icon-container" style="background: rgba(241,196,15,0.1);">
             <i class="fas fa-umbrella-beach" style="color: #f1c40f; font-size: 1.5rem;"></i>
         </div>
         <div class="location-text">
-            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Kota Wisata Kuningan</h3>
-            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Hanya 4 km dari kawasan wisata utama Kuningan</p>
-            <button class="view-route-btn" data-destination="Kota Wisata Kuningan">
-                <i class="fas fa-route"></i> Lihat Rute
-            </button>
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Arunika Kuningan</h3>
+            <p style="color: #666;">5.5 km ke tempat wisata alam hits Kuningan</p>
+            <button class="view-route-btn" data-destination="Arunika Kuningan"> <i class="fas fa-route"></i> Lihat Rute </button>
         </div>
     </div>
 </div>
 
-<!-- Card 6 - Baru: Terminal Kuningan -->
+<!-- Card 6 - Terminal Kuningan -->
 <div class="location-card">
     <div class="location-distance">2 km</div>
     <div class="location-content">
@@ -3495,15 +3462,13 @@ footer {
         </div>
         <div class="location-text">
             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Terminal Kuningan</h3>
-            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Akses mudah ke terminal utama hanya 2 km</p>
-            <button class="view-route-btn" data-destination="Terminal Kuningan">
-                <i class="fas fa-route"></i> Lihat Rute
-            </button>
+            <p style="color: #666;">2 km ke terminal utama Kuningan</p>
+            <button class="view-route-btn" data-destination="Terminal Kuningan"> <i class="fas fa-route"></i> Lihat Rute </button>
         </div>
     </div>
 </div>
 
-<!-- Card 7 - Baru: Alun-Alun Kuningan -->
+<!-- Card 7 - Alun-Alun Kuningan -->
 <div class="location-card">
     <div class="location-distance">1.5 km</div>
     <div class="location-content">
@@ -3512,13 +3477,27 @@ footer {
         </div>
         <div class="location-text">
             <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Alun-Alun Kuningan</h3>
-            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">Pusat kota dan ruang publik hanya 1.5 km</p>
-            <button class="view-route-btn" data-destination="Alun-Alun Kuningan">
-                <i class="fas fa-route"></i> Lihat Rute
-            </button>
+            <p style="color: #666;">Ruang publik dan pusat kota hanya 1.5 km</p>
+            <button class="view-route-btn" data-destination="Alun-Alun Kuningan"> <i class="fas fa-route"></i> Lihat Rute </button>
         </div>
     </div>
 </div>
+
+<!-- Card 8 - Baru: Kantor Pemerintahan -->
+<div class="location-card">
+    <div class="location-distance">6 menit</div>
+    <div class="location-content">
+        <div class="location-icon-container" style="background: rgba(52,73,94,0.1);">
+            <i class="fas fa-building" style="color: #34495e; font-size: 1.5rem;"></i>
+        </div>
+        <div class="location-text">
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">Kantor Pemerintah</h3>
+            <p style="color: #666;">6 menit ke Kantor Bupati dan pusat layanan publik</p>
+            <button class="view-route-btn" data-destination="Kantor Bupati Kuningan"> <i class="fas fa-route"></i> Lihat Rute </button>
+        </div>
+    </div>
+</div>
+
             </div>
         </div>
     </div>
