@@ -4957,6 +4957,20 @@ function initEnhancedMap() {
     });
 }
 document.addEventListener('DOMContentLoaded', initEnhancedMap);  
+// Untuk Tab System
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Logic tab switching
+  });
+});
+
+// Untuk Accordion
+document.querySelectorAll('.accordion-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.parentElement.classList.toggle('active');
+  });
+});
+
 </script>
 </body>
 </html>
