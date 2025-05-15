@@ -2854,56 +2854,223 @@ footer {
 #liveViewBtn i {
     font-size: 1rem;
 }
-/* Modern Tab System */
-.kpr-tabs {
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 25px 50px rgba(46, 204, 113, 0.1);
+/* ===== KPR REQUIREMENTS STYLES ===== */
+.kpr-requirements {
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+  padding: 6rem 0;
+  position: relative;
   overflow: hidden;
 }
 
-.tab-buttons {
-  display: flex;
-  background: #f8f9fa;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.tab-btn {
-  flex: 1;
-  padding: 18px;
-  border: none;
-  background: transparent;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
-.tab-btn.active {
-  background: #27ae60;
-  color: white;
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #27ae60, #2ecc71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.document-card {
-  padding: 30px;
+.section-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.kpr-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.kpr-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(46, 204, 113, 0.1);
   position: relative;
-  border-left: 4px solid #27ae60;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(46, 204, 113, 0.2);
 }
 
-.checklist li {
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
+.kpr-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(46, 204, 113, 0.2);
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(46, 204, 113, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #27ae60;
+  font-size: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  color: #111;
+  margin-bottom: 1.5rem;
+}
+
+.document-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.document-list li {
+  padding: 0.8rem 0;
+  border-bottom: 1px dashed #e0e0e0;
   display: flex;
   align-items: center;
 }
 
-.checklist i {
+.document-list i {
   color: #27ae60;
-  margin-right: 12px;
-  font-size: 1.2em;
+  margin-right: 1rem;
+  font-size: 1.1rem;
 }
 
-/* Glow Effect */
-.glow-card:hover {
-  box-shadow: 0 10px 30px rgba(46, 204, 113, 0.2);
+.document-list span {
+  flex: 1;
+}
+
+.card-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(241, 196, 15, 0.1);
+  color: #f1c40f;
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* CTA Styles */
+.kpr-cta {
+  max-width: 800px;
+  margin: 4rem auto 0;
+}
+
+.cta-box {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.cta-content {
+  flex: 1;
+  min-width: 250px;
+}
+
+.price-tag {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.price-tag span:first-child {
+  color: #666;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #e67e22;
+}
+
+.bank-info {
+  color: #444;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.note {
+  color: #888;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cta-btn {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+  white-space: nowrap;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+}
+
+/* Animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kpr-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-box {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .price-tag {
+    justify-content: center;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
 }
 </style>
 </head>
@@ -3521,56 +3688,152 @@ footer {
             </div>
         </div>
     </section>
-<section class="kpr-section premium-section">
+<!-- ===== MODERN KPR REQUIREMENTS SECTION ===== -->
+<section class="kpr-requirements">
   <div class="container">
+    <!-- Section Header -->
     <div class="section-header" data-aos="fade-up">
-      <h2><span class="text-gradient">Persyaratan</span> KPR Syariah</h2>
-      <p class="subtitle">Lengkapi dokumen untuk proses mudah</p>
+      <h2 class="section-title">
+        <span class="text-gradient">Persyaratan</span> KPR Syariah
+      </h2>
+      <p class="section-subtitle">
+        Dokumen yang diperlukan untuk pengajuan pembiayaan properti syariah
+      </p>
     </div>
 
-    <!-- Tab System -->
-    <div class="kpr-tabs" data-aos="fade-up">
-      <div class="tab-buttons">
-        <button class="tab-btn active" data-tab="umum">Dokumen Umum</button>
-        <button class="tab-btn" data-tab="karyawan">Karyawan</button>
-        <button class="tab-btn" data-tab="wiraswasta">Wiraswasta</button>
+    <!-- Interactive Cards -->
+    <div class="kpr-cards">
+      <!-- Card 1 - Dokumen Umum -->
+      <div class="kpr-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-icon">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <h3 class="card-title">Dokumen Umum</h3>
+        <ul class="document-list">
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Surat permohonan KPR</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>FC KTP pemohon & pasangan (4 rangkap)</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>FC Kartu Keluarga (4 lembar)</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>FC Surat Nikah/Cerai (4 rangkap)</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Foto 3x4 (4 lembar)</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>FC NPWP pribadi (4 lembar)</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Rekening koran 3 bulan terakhir</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Surat belum punya rumah dari kelurahan</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Surat belum menikah (bagi lajang)</span>
+          </li>
+        </ul>
+        <div class="card-badge">Semua Wajib</div>
       </div>
-      
-      <div class="tab-content">
-        <!-- Tab 1 -->
-        <div class="tab-pane active" id="umum">
-          <div class="document-card glow-card">
-            <ul class="checklist">
-              <li><i class="fas fa-check-circle"></i> FC KTP & KK (4 rangkap)</li>
-              <li><i class="fas fa-check-circle"></i> Surat permohonan KPR</li>
-              <li><i class="fas fa-check-circle"></i> FC NPWP pribadi</li>
-              <li><i class="fas fa-check-circle"></i> Rekening koran 3 bulan</li>
-            </ul>
-            <div class="badge">Semua Wajib</div>
-          </div>
+
+      <!-- Card 2 - Karyawan Tetap -->
+      <div class="kpr-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-icon">
+          <i class="fas fa-user-tie"></i>
         </div>
-        
-        <!-- Tab 2 -->
-        <div class="tab-pane" id="karyawan">
-          <!-- Konten serupa -->
+        <h3 class="card-title">Karyawan Tetap</h3>
+        <ul class="document-list">
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Surat aktif bekerja (asli)</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>FC SK Pegawai Tetap</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>FC Kartu Pegawai/Jamsostek</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>FC Slip Gaji 3 bulan terakhir</span>
+          </li>
+        </ul>
+        <div class="card-badge">Untuk Karyawan</div>
+      </div>
+
+      <!-- Card 3 - Wiraswasta -->
+      <div class="kpr-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-icon">
+          <i class="fas fa-store"></i>
         </div>
+        <h3 class="card-title">Wiraswasta</h3>
+        <ul class="document-list">
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Surat keterangan usaha</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Foto tempat usaha</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Denah lokasi usaha</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>Pembukuan usaha 3 bulan terakhir</span>
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            <span>FC SIUP/TDP (jika ada)</span>
+          </li>
+        </ul>
+        <div class="card-badge">Untuk Bisnis</div>
       </div>
     </div>
-    
+
     <!-- Floating CTA -->
-    <div class="floating-cta" data-aos="zoom-in">
+    <div class="kpr-cta" data-aos="fade-up">
       <div class="cta-box">
-        <div class="price-tag">
-          <span>Booking Fee</span>
-          <span class="price">Rp500rb</span>
+        <div class="cta-content">
+          <div class="price-tag">
+            <span>Booking Fee</span>
+            <span class="price">Rp500.000</span>
+          </div>
+          <p class="bank-info">
+            <i class="fas fa-university"></i>
+            BSI: 664 5566 446 a.n PT. Rumah Mulia Indonesia
+          </p>
+          <p class="note">
+            <i class="fas fa-info-circle"></i>
+            Sudah termasuk biaya administrasi & non-refundable
+          </p>
         </div>
-        <button class="cta-btn pulse-btn">
-          <i class="fab fa-whatsapp"></i> Konsultasi Dokumen
+        <button class="cta-btn pulse" onclick="window.open('https://wa.me/628977771080?text=Saya%20ingin%20konsultasi%20KPR%20Syariah%20Kertamulya%20Residence', '_blank')">
+          <i class="fab fa-whatsapp"></i> Konsultasi Sekarang
         </button>
       </div>
     </div>
   </div>
 </section>
+    
    <!-- Live Counter Section -->
 <section class="stats-section">
     <div class="container">
@@ -4957,20 +5220,13 @@ function initEnhancedMap() {
     });
 }
 document.addEventListener('DOMContentLoaded', initEnhancedMap);  
-// Untuk Tab System
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Logic tab switching
-  });
-});
 
-// Untuk Accordion
-document.querySelectorAll('.accordion-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    btn.parentElement.classList.toggle('active');
+ document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+      duration: 800,
+      once: true
+    });
   });
-});
-
 </script>
 </body>
 </html>
