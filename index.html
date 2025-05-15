@@ -2765,8 +2765,28 @@ footer {
     display: flex;
     align-items: flex-start;
     margin-top: 15px;
+    gap: 20px; /* Added gap between icon and text */
 }
 
+        .location-icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(46,204,113,0.1);
+    flex-shrink: 0;
+}
+
+.location-icon-container i {
+    color: #2ecc71;
+    font-size: 1.8rem;
+}
+
+.location-text {
+    flex: 1;
+}
 .location-icon {
     width: 60px;
     height: 60px;
@@ -3364,23 +3384,23 @@ footer {
         <div class="location-grid" style="display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;">
             <!-- Enhanced Map Container -->
             <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1); height: 500px;">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy"
-                    aria-label="Peta Lokasi Kertamulya Residence"
-                    id="liveMap">
-                </iframe>
+               <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy"
+        aria-label="Peta Lokasi Kertamulya Residence"
+        id="liveMap">
+    </iframe>
                 <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white; text-align: center;">
-                    <h3 style="margin: 0; font-size: 1.3rem;">Jl. Kertayasa, Blok Congkleng, Kuningan (Update 2025)</h3>
-                    <button id="liveViewBtn" style="margin-top: 10px;">
-                        <i class="fas fa-street-view"></i> Lihat Tampilan Live Terbaru
-                    </button>
-                </div>
-            </div>
+        <h3 style="margin: 0; font-size: 1.3rem;">Jl. Kertayasa, Blok Congkleng, Kertayasa, Kuningan, Jawa Barat 45573</h3>
+        <a href="https://maps.app.goo.gl/MvW8BMGXstCPv8aW6" target="_blank" style="margin-top: 10px; background: #25D366; color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-block; text-decoration: none;">
+            <i class="fas fa-street-view"></i> Lihat Tampilan Live
+        </a>
+    </div>
+</div>
 
             <!-- ===== ENHANCED LOCATION SECTION ===== -->
 <section class="location-section" style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 80px 0; position: relative;">
@@ -3501,20 +3521,20 @@ footer {
 
                 <!-- Card 4 -->
                 <div class="location-card">
-                    <div class="location-distance">8 menit</div>
-                    <div class="location-content">
-                        <div class="location-icon-container" style="background: rgba(230,126,34,0.1);">
-                            <i class="fas fa-heartbeat" style="color: #e67e22; font-size: 1.5rem;"></i>
-                        </div>
-                        <div class="location-text">
-                            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">RSUD Kuningan</h3>
-                            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">8 menit ke rumah sakit terbesar di Kuningan</p>
-                            <button class="view-route-btn" data-destination="RSUD Kuningan">
-                                <i class="fas fa-route"></i> Lihat Rute
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    <div class="location-distance">5 menit</div>
+    <div class="location-content">
+        <div class="location-icon-container" style="background: rgba(230,126,34,0.1);">
+            <i class="fas fa-heartbeat" style="color: #e67e22; font-size: 1.5rem;"></i>
+        </div>
+        <div class="location-text">
+            <h3 style="margin: 0; font-size: 1.2rem; color: #111;">RS Kuningan Medical Center</h3>
+            <p style="color: #666; line-height: 1.6; margin: 5px 0 0; font-size: 0.95rem;">5 menit ke rumah sakit modern di Kuningan</p>
+            <button class="view-route-btn" data-destination="RS Kuningan Medical Center">
+                <i class="fas fa-route"></i> Lihat Rute
+            </button>
+        </div>
+    </div>
+</div>
 
                 <!-- Card 5 -->
                 <div class="location-card">
