@@ -4776,6 +4776,7 @@ function initEnhancedMap() {
     if (liveViewBtn) {
         liveViewBtn.addEventListener('click', function(e) {
             e.preventDefault();
+            // Updated to use correct Google Maps URL
             window.open('https://maps.app.goo.gl/MvW8BMGXstCPv8aW6', '_blank');
         });
     }
@@ -4786,16 +4787,16 @@ function initEnhancedMap() {
             e.preventDefault();
             const destination = this.getAttribute('data-destination');
             
-            // Mapping of destinations to Google Maps URLs
+            // Mapping of destinations to actual Google Maps directions URLs
             const destinations = {
-                "Jl. Nasional Kuningan-Cirebon": "https://goo.gl/maps/5Jz6X9YQZz8XyY3z8",
-                "Universitas Kuningan": "https://goo.gl/maps/9wLwvKzQ9Z1XyY3z6",
-                "Esbe Mart Kuningan": "https://goo.gl/maps/5tX9JvZ1qy7XyY3z8",
-                "RSUD Kuningan": "https://goo.gl/maps/3tX9JvZ1qy7XyY3z9",
-                "Arunika Waterpark Kuningan": "https://goo.gl/maps/2tX9JvZ1qy7XyY3z0",
-                "Kantor Bupati Kuningan": "https://goo.gl/maps/1tX9JvZ1qy7XyY3z1",
-                "Masjid Agung Kuningan": "https://goo.gl/maps/0tX9JvZ1qy7XyY3z2",
-                "Terminal Kuningan": "https://goo.gl/maps/7z1FJQq9XgJxYh5J7"
+                "Jl. Nasional Kuningan-Cirebon": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/Jl.+Raya+Kuningan-Cirebon,+Kuningan",
+                "Universitas Kuningan": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/Universitas+Kuningan,+Jl.+Cut+Nyak+Dien+No.36A,+Cijoho,+Kuningan",
+                "Esbe Mart Kuningan": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/Esbe+Mart+Kuningan,+Jl.+Siliwangi,+Kuningan",
+                "RSUD Kuningan": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/RSUD+Kuningan,+Jl.+R.E.+Martadinata,+Kuningan",
+                "Arunika Waterpark Kuningan": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/Arunika+Waterpark,+Jl.+Raya+Cirendang,+Kuningan",
+                "Kantor Bupati Kuningan": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/Kantor+Bupati+Kuningan,+Jl.+Siliwangi,+Kuningan",
+                "Masjid Agung Kuningan": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/Masjid+Agung+Kuningan,+Jl.+Siliwangi,+Kuningan",
+                "Terminal Kuningan": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/Terminal+Kuningan,+Jl.+Pramuka,+Kuningan"
             };
             
             const url = destinations[destination] || `https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/${encodeURIComponent(destination)}`;
@@ -4830,60 +4831,6 @@ function initEnhancedMap() {
 document.addEventListener('DOMContentLoaded', function() {
     initEnhancedMap();
 });
-
-// ===== RESPONSIVE HANDLING (OPTIMIZED) =====
-function handleResponsive() {
-    function updateLayout() {
-        const width = window.innerWidth;
-        
-        // Hero section
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.style.minHeight = width < 768 ? 'auto' : '100vh';
-            hero.style.padding = width < 768 ? '80px 0' : '0';
-        }
-        
-        // Gallery columns
-        const gallery = document.querySelector('.gallery-container');
-        if (gallery) {
-            gallery.style.gridTemplateColumns = 
-                width < 768 ? '1fr' : 
-                width < 1024 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)';
-        }
-        
-        // Video grid columns
-        const videoGrid = document.querySelector('.video-grid');
-        if (videoGrid) {
-            videoGrid.style.gridTemplateColumns = 
-                width < 768 ? '1fr' : 
-                width < 1024 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)';
-        }
-    }
-    
-    // Initial update
-    updateLayout();
-    
-    // Update on resize (with debounce)
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(updateLayout, 200);
-    });
-}
-
-// ===== FACEBOOK PIXEL (UNCHANGED) =====
-if (typeof fbq === 'undefined') {
-    !function(f,b,e,v,n,t,s) {
-        if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'YOUR_PIXEL_ID');
-    fbq('track', 'PageView');
-}
 </script>
 </body>
 </html>
