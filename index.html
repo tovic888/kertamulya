@@ -4275,785 +4275,318 @@ footer {
 
     <!-- Main JavaScript -->
  <script>
+/**
+ * Kertamulya Residence - Optimized JS
+ * Fitur: Countdown, Animasi, Form Handling, dll.
+ * Dibuat untuk fast loading & smooth UX.
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
-    initializeAllComponents();
+  // ================ INITIALIZE COMPONENTS ================
+  initCountdown();
+  initLiveCounters();
+  initTestimonialSlider();
+  initFAQ();
+  initNotifications();
+  initLightGallery();
+  initFormSubmission();
+  initSmoothScrolling();
+  initVideoHandlers();
+  initRunningText();
+  initEnhancedMap();
+  initMarketingRotation();
+  handleResponsive();
+
+  // ================ AOS ANIMATION ================
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+  }
 });
 
-function initializeAllComponents() {
-    // Initialize AOS Animation
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
+// ====================== FUNCTIONS ======================
+
+// 1. COUNTDOWN TIMER
+function initCountdown() {
+  const targetDate = new Date();
+  targetDate.setDate(targetDate.getDate() + 30); // 30 hari dari sekarang
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      document.querySelectorAll('.countdown-value').forEach(el => el.textContent = '00');
+      return;
     }
-    
-    // Initialize all components
-    initializeCountdown();
-    initializeLiveCounters();
-    initializeTestimonialSlider();
-    initializeFAQ();
-    initializeNotifications();
-    initializeLightGallery();
-    initializeFormSubmission();
-    initializeSmoothScrolling();
-    initializeVideoHandlers();
-    initializeRunningText();
-    initializeLegalPages();
-    handleResponsive();
-}
-// ===== COUNTDOWN TIMER =====
-function initializeCountdown() {
-    // Set target date (30 days from now)
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() +30);
-    
-    // Update countdown every second
-    const countdownInterval = setInterval(updateCountdown, 1000);
-    
-    function updateCountdown() {
-        const now = new Date();
-        const diff = targetDate - now;
-        
-        // If countdown is finished
-        if (diff <= 0) {
-            clearInterval(countdownInterval);
-            updateCountdownDisplay(0, 0, 0, 0);
-            return;
-        }
-        
-        // Calculate time units
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        // Update display
-        updateCountdownDisplay(days, hours, minutes, seconds);
-    }
-    
-    function updateCountdownDisplay(days, hours, minutes, seconds) {
-        document.getElementById('days-premium').textContent = padZero(days);
-        document.getElementById('hours-premium').textContent = padZero(hours);
-        document.getElementById('minutes-premium').textContent = padZero(minutes);
-        document.getElementById('seconds-premium').textContent = padZero(seconds);
-    }
-    
-    function padZero(num) {
-        return num < 10 ? `0${num}` : num;
-    }
-    
-    // Initial call
-    updateCountdown();
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('days-premium').textContent = padZero(days);
+    document.getElementById('hours-premium').textContent = padZero(hours);
+    document.getElementById('minutes-premium').textContent = padZero(minutes);
+    document.getElementById('seconds-premium').textContent = padZero(seconds);
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown(); // Panggil sekali di awal
 }
 
-// ===== LIVE COUNTERS =====
-function initializeLiveCounters() {
-    const statsSection = document.querySelector('.stats-section');
-    if (!statsSection) return;
+// 2. LIVE COUNTERS
+function initLiveCounters() {
+  const statsSection = document.querySelector('.stats-section');
+  if (!statsSection) return;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Animate all counters
-                animateCounter('unitsSold', 120, 80);
-                animateCounter('happyFamilies', 58, 65);
-                animateCounter('motorGiven', 37, 45);
-                animateCounter('unitsLeft', 271, 235);
-                animateCounter('unitsLeftToday', 12, 20);
-                
-                // Update last update time
-                const now = new Date();
-                document.getElementById('lastUpdate').textContent = now.toLocaleTimeString();
-                
-                // Set up random updates for unitsLeftToday
-                setInterval(() => {
-                    const current = parseInt(document.getElementById('unitsLeftToday').textContent);
-                    const sold = Math.floor(Math.random() * 3);
-                    if (sold > 0 && current > 0) {
-                        const newCount = Math.max(0, current - sold);
-                        animateCounter('unitsLeftToday', newCount, (newCount/12)*100, 1000);
-                        
-                        // Also update unitsLeft and unitsSold
-                        const currentLeft = parseInt(document.getElementById('unitsLeft').textContent);
-                        const currentSold = parseInt(document.getElementById('unitsSold').textContent);
-                        
-                        animateCounter('unitsLeft', Math.max(0, currentLeft - sold), ((currentLeft - sold)/391)*100, 1000);
-                        animateCounter('unitsSold', currentSold + sold, ((currentSold + sold)/150)*100, 1000);
-                        
-                        // Update time
-                        const now = new Date();
-                        document.getElementById('lastUpdate').textContent = now.toLocaleTimeString();
-                    }
-                }, 30000); // Update every 30 seconds
-                
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      animateCounter('unitsSold', 120, 80);
+      animateCounter('happyFamilies', 58, 65);
+      animateCounter('motorGiven', 37, 45);
+      animateCounter('unitsLeft', 271, 235);
+      animateCounter('unitsLeftToday', 12, 20);
+      document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+      observer.unobserve(statsSection);
+    }
+  }, { threshold: 0.3 });
 
-    observer.observe(statsSection);
+  observer.observe(statsSection);
 }
 
 function animateCounter(elementId, target, progressPercent = 0, duration = 2000) {
-    const element = document.getElementById(elementId);
-    if (!element) return;
-    
-    const start = parseInt(element.textContent) || 0;
-    const increment = (target - start) / (duration / 16);
-    let current = start;
-    
-    // Animate progress bar if exists
-    const progressBar = element.closest('.stat-card')?.querySelector('.progress-bar');
-    if (progressBar) {
-        progressBar.style.width = `${progressPercent}%`;
+  const element = document.getElementById(elementId);
+  if (!element) return;
+
+  const start = parseInt(element.textContent) || 0;
+  const increment = (target - start) / (duration / 16);
+  let current = start;
+
+  const progressBar = element.closest('.stat-card')?.querySelector('.progress-bar');
+  if (progressBar) progressBar.style.width = `${progressPercent}%`;
+
+  const counter = () => {
+    current += increment;
+    if ((increment > 0 && current < target) || (increment < 0 && current > target)) {
+      element.textContent = Math.floor(current);
+      requestAnimationFrame(counter);
+    } else {
+      element.textContent = target;
     }
-    
-    const counter = () => {
-        current += increment;
-        if ((increment > 0 && current < target) || (increment < 0 && current > target)) {
-            element.textContent = Math.floor(current);
-            requestAnimationFrame(counter);
-        } else {
-            element.textContent = target;
+  };
+  counter();
+}
+
+// 3. TESTIMONIAL SLIDER (jika menggunakan Glide.js)
+function initTestimonialSlider() {
+  if (typeof Glide !== 'undefined' && document.querySelector('.testimonial-slider')) {
+    new Glide('.testimonial-slider', {
+      type: 'carousel',
+      perView: 1,
+      autoplay: 4000,
+      hoverpause: true,
+      gap: 30,
+      breakpoints: { 768: { perView: 1 } }
+    }).mount();
+  }
+}
+
+// 4. FAQ ACCORDION
+function initFAQ() {
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.parentNode;
+      item.classList.toggle('active');
+      
+      // Tutup FAQ lain yang terbuka
+      document.querySelectorAll('.faq-item').forEach(faq => {
+        if (faq !== item && faq.classList.contains('active')) {
+          faq.classList.remove('active');
         }
-    };
-    
-    counter();
-}
-
-// ===== TESTIMONIAL SLIDER =====
-function initializeTestimonialSlider() {
-    if (document.querySelector('.testimonial-slider') && typeof Glide !== 'undefined') {
-        new Glide('.testimonial-slider', {
-            type: 'carousel',
-            perView: 1,
-            autoplay: 4000,
-            hoverpause: true,
-            gap: 30,
-            breakpoints: {
-                768: { perView: 1 }
-            }
-        }).mount();
-    }
-}
-
-// ===== FAQ ACCORDION =====
-function initializeFAQ() {
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-            const item = question.parentNode;
-            item.classList.toggle('active');
-            
-            // Close other open FAQs
-            document.querySelectorAll('.faq-item').forEach(faq => {
-                if (faq !== item && faq.classList.contains('active')) {
-                    faq.classList.remove('active');
-                }
-            });
-        });
+      });
     });
-}
-
-// ===== NOTIFICATIONS =====
-function initializeNotifications() {
-    const notifications = [
-        {text: "🔥 Baru saja! Pak Budiman booking unit tipe 36 via BJB Syariah", icon: "fa-fire"},
-        {text: "🎉 Hari ini 3 unit sudah terjual! Tinggal 47 unit tersisa", icon: "fa-trophy"},
-        {text: "🚀 Pekan ini 12 orang sudah dapat motor listrik gratis", icon: "fa-rocket"},
-        {text: "💎 Bu Siti dari Cirebon baru saja booking via BTN Syariah", icon: "fa-gem"},
-        {text: "🏡 Minggu lalu 8 keluarga sudah menempati rumah mereka", icon: "fa-home"}
-    ];
-    
-    function showRandomNotification() {
-        const notification = document.getElementById('notification');
-        const notificationText = document.getElementById('notificationText');
-        
-        if (!notification || !notificationText) return;
-        
-        const randomIndex = Math.floor(Math.random() * notifications.length);
-        const notif = notifications[randomIndex];
-        
-        notificationText.innerHTML = `<i class="fas ${notif.icon}"></i> ${notif.text}`;
-        
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.style.opacity = '1';
-        }, 100);
-        
-        setTimeout(() => {
-            notification.style.opacity = '0';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 500);
-        }, 5000);
-    }
-    
-    // Show first notification after 5 seconds
-    setTimeout(showRandomNotification, 5000);
-    
-    // Then show every 2 minutes (120000ms)
-    setInterval(showRandomNotification, 120000);
-    
-    // Also show when user scrolls to certain points
-    window.addEventListener('scroll', function() {
-        const scrollPos = window.scrollY;
-        const windowHeight = window.innerHeight;
-        const docHeight = document.body.offsetHeight;
-        
-        // Show when scrolled 25%, 50%, 75%
-        if (scrollPos === 0 || 
-            Math.abs(scrollPos - (docHeight - windowHeight)) < 50 ||
-            Math.abs(scrollPos - (docHeight * 0.25)) < 50 ||
-            Math.abs(scrollPos - (docHeight * 0.5)) < 50 ||
-            Math.abs(scrollPos - (docHeight * 0.75)) < 50) {
-            showRandomNotification();
-        }
-    });
-}
-
-
-// ===== SMOOTH SCROLLING =====
-function initializeSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            if (href === 'javascript:void(0);' || href === '#booking-form') return;
-            
-            e.preventDefault();
-            
-            const targetElement = document.querySelector(href);
-            if (targetElement) {
-                const headerHeight = document.querySelector('header')?.offsetHeight || 100;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                if (history.pushState) {
-                    history.pushState(null, null, href);
-                } else {
-                    window.location.hash = href;
-                }
-            }
-        });
-    });
-    
-    document.querySelectorAll('a[href="#booking-form"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            showFormModal();
-        });
-    });
-}
-
-// ===== VIDEO HANDLERS =====
-let videoModal = null;
-let videoIframe = null;
-let videoCloseBtn = null;
-
-function initVideoModal() {
-  videoModal = document.getElementById('videoModal');
-  videoIframe = document.getElementById('videoIframe');
-  videoCloseBtn = document.getElementById('videoCloseBtn');
-  
-  if (!videoModal || !videoIframe || !videoCloseBtn) return;
-  
-  // Close modal when clicking close button
-  videoCloseBtn.addEventListener('click', closeVideoModal);
-  
-  // Close modal when clicking outside content
-  videoModal.addEventListener('click', function(e) {
-    if (e.target === videoModal) {
-      closeVideoModal();
-    }
   });
-  
-  // Close modal with ESC key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-      closeVideoModal();
-    }
-  });
-  
-  // Initialize video click handlers
-  document.querySelectorAll('.video-wrapper').forEach(wrapper => {
-    wrapper.addEventListener('click', function() {
-      const videoId = this.getAttribute('data-video-id');
-      if (videoId) {
-        openVideoModal(videoId);
+}
+
+// 5. NOTIFICATIONS
+function initNotifications() {
+  const notifications = [
+    { text: "🔥 Baru saja! Pak Budiman booking unit tipe 36 via BJB Syariah", icon: "fa-fire" },
+    { text: "🎉 Hari ini 3 unit sudah terjual! Tinggal 47 unit tersisa", icon: "fa-trophy" }
+  ];
+
+  function showRandomNotification() {
+    const notification = document.getElementById('notification');
+    if (!notification) return;
+
+    const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
+    notification.innerHTML = `<i class="fas ${randomNotif.icon}"></i> ${randomNotif.text}`;
+    
+    notification.style.display = 'block';
+    setTimeout(() => notification.style.opacity = '1', 100);
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      setTimeout(() => notification.style.display = 'none', 500);
+    }, 5000);
+  }
+
+  setTimeout(showRandomNotification, 5000);
+  setInterval(showRandomNotification, 120000);
+}
+
+// 6. SMOOTH SCROLLING
+function initSmoothScrolling() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#booking-form') {
+        e.preventDefault();
+        showFormModal();
+        return;
+      }
+
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        e.preventDefault();
+        const headerHeight = document.querySelector('header')?.offsetHeight || 100;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        history.pushState(null, null, href);
       }
     });
   });
 }
 
+// 7. VIDEO HANDLERS
+function initVideoHandlers() {
+  const videoModal = document.getElementById('videoModal');
+  if (!videoModal) return;
+
+  document.querySelectorAll('[onclick^="openVideoModal"]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const videoId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+      openVideoModal(videoId);
+    });
+  });
+
+  document.getElementById('videoCloseBtn')?.addEventListener('click', closeVideoModal);
+  videoModal.addEventListener('click', (e) => e.target === videoModal && closeVideoModal());
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && closeVideoModal());
+}
+
 function openVideoModal(videoId) {
-  if (!videoModal || !videoIframe) return;
-  
-  videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-  videoModal.classList.add('active');
+  const iframe = document.getElementById('videoIframe');
+  if (!iframe) return;
+
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  document.getElementById('videoModal').classList.add('active');
   document.body.style.overflow = 'hidden';
-  document.body.style.paddingRight = '15px'; // Prevent scrollbar jump
 }
 
 function closeVideoModal() {
-  if (!videoModal || !videoIframe) return;
+  const iframe = document.getElementById('videoIframe');
+  if (iframe) iframe.src = '';
   
-  videoIframe.src = '';
-  videoModal.classList.remove('active');
+  document.getElementById('videoModal').classList.remove('active');
   document.body.style.overflow = 'auto';
-  document.body.style.paddingRight = '0';
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initVideoModal);
+// 8. FORM SUBMISSION & MARKETING ROTATION
+function initFormSubmission() {
+  const form = document.getElementById('modalContactForm');
+  if (!form) return;
 
-     
-// ===== RUNNING TEXT =====
-function initializeRunningText() {
-    const runningText = document.querySelector('.running-text-content');
-    if (!runningText) return;
-
-    function adjustAnimationSpeed() {
-        const contentWidth = runningText.scrollWidth / 2;
-        const viewportWidth = window.innerWidth;
-        const duration = Math.max(20, Math.min(60, (contentWidth / viewportWidth) * 40));
-        runningText.style.animationDuration = `${duration}s`;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const phone = document.getElementById('modalPhone').value.replace(/\D/g, '');
+    
+    if (!phone.startsWith('628') || phone.length < 11) {
+      alert('Nomor WhatsApp harus diawali 628 dan 11-14 digit (contoh: 6281234567890)');
+      return;
     }
 
-    const wrapper = document.querySelector('.running-text-wrapper');
-    wrapper.addEventListener('mouseenter', () => {
-        runningText.style.animationPlayState = 'paused';
-    });
+    const marketing = getNextMarketing();
+    const message = generateWhatsAppMessage(form, marketing);
+    const whatsappUrl = `https://wa.me/${marketing.phone}?text=${encodeURIComponent(message)}`;
     
-    wrapper.addEventListener('mouseleave', () => {
-        runningText.style.animationPlayState = 'running';
-    });
-
-    adjustAnimationSpeed();
-    window.addEventListener('resize', adjustAnimationSpeed);
+    window.open(whatsappUrl, '_blank');
+    showWaConfirm(marketing.name);
+    closeFormModal();
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  });
 }
 
-// ===== LIGHTGALLERY =====
-function initializeLightGallery() {
-    if (document.getElementById('lightgallery') && typeof lightGallery !== 'undefined') {
-        lightGallery(document.getElementById('lightgallery'), {
-            selector: 'a',
-            download: false,
-            counter: false,
-            mode: 'lg-fade',
-            speed: 300,
-            hideBarsDelay: 2000
-        });
-    }
+function initMarketingRotation() {
+  window.marketingTeam = [
+    { name: "Taufik Marie", phone: "628977771080", counter: 0, available: true }
+    // Tambahkan tim marketing lain di sini
+  ];
+  window.lastAssignedIndex = -1;
 }
- 
-// ===== RESPONSIVE BEHAVIORS =====
-function handleResponsive() {
-    // Hero section
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.minHeight = window.innerWidth < 768 ? 'auto' : '100vh';
-        hero.style.padding = window.innerWidth < 768 ? '80px 0' : '0';
-    }
-    
-    // Gallery columns
-    const gallery = document.querySelector('.gallery-container');
-    if (gallery) {
-        gallery.style.gridTemplateColumns = 
-            window.innerWidth < 768 ? '1fr' : 
-            window.innerWidth < 1024 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)';
-    }
-    
-    // Video grid columns
-    const videoGrid = document.querySelector('.video-grid');
-    if (videoGrid) {
-        videoGrid.style.gridTemplateColumns = 
-            window.innerWidth < 768 ? '1fr' : 
-            window.innerWidth < 1024 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)';
-    }
-}
-
-// ===== MODAL FUNCTIONS =====
-window.showFormModal = function() {
-    const modal = document.getElementById('formModal');
-    if (!modal) return;
-    
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    
-    setTimeout(() => {
-        modal.style.opacity = '1';
-    }, 10);
-};
-
-window.closeFormModal = function() {
-    const modal = document.getElementById('formModal');
-    if (!modal) return;
-    
-    modal.style.opacity = '0';
-    
-    setTimeout(() => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }, 300);
-};
-
-// ===== LOGO ANIMATION =====
-function pulseLogo(element) {
-    element.classList.add('pulse');
-    setTimeout(() => {
-        element.classList.remove('pulse');
-    }, 500);
-}
-
-// Initialize Facebook Pixel
-if (typeof fbq === 'undefined') {
-    !function(f,b,e,v,n,t,s) {
-        if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'YOUR_PIXEL_ID');
-    fbq('track', 'PageView');
-}
-// ===== MARKETING TEAM ROTATION SYSTEM =====
-const marketingTeam = [
-    { 
-        name: "Taufik Marie", 
-        phone: "628977771080",
-        counter: 0,
-        role: "Digital Manager",
-        available: true
-    },
-    { 
-        name: "Rahma", 
-        phone: "6285523613940",
-        counter: 0,
-        role: "Marketing Executive",
-        available: true
-    },
-    { 
-        name: "Syifa", 
-        phone: "6285794058368",
-        counter: 0,
-        role: "Marketing Executive",
-        available: true
-    },
-    { 
-        name: "Royyan", 
-        phone: "6281223202218",
-        counter: 0,
-        role: "Marketing Executive",
-        available: true
-    }
-];
-
-// Get next available marketing person with true round-robin
-let lastAssignedIndex = -1;
-let currentCountdownInterval = null;
 
 function getNextMarketing() {
-    // Filter only available marketers
-    const availableMarketers = marketingTeam.filter(m => m.available);
-    
-    if (availableMarketers.length === 0) {
-        // Fallback to first marketing if none available
-        return marketingTeam[0];
-    }
-    
-    // Get next index with round-robin
-    lastAssignedIndex = (lastAssignedIndex + 1) % availableMarketers.length;
-    const selected = availableMarketers[lastAssignedIndex];
-    
-    // Update counter
-    selected.counter++;
-    
-    // Return a copy to avoid modification
-    return {
-        name: selected.name,
-        phone: selected.phone,
-        role: selected.role
-    };
+  const available = window.marketingTeam.filter(m => m.available);
+  if (available.length === 0) return window.marketingTeam[0];
+
+  window.lastAssignedIndex = (window.lastAssignedIndex + 1) % available.length;
+  const selected = available[window.lastAssignedIndex];
+  selected.counter++;
+  return selected;
 }
 
-// ===== WHATSAPP CONFIRMATION FUNCTIONS =====
-window.closeWaConfirm = function() {
-    const modal = document.getElementById('waConfirmModal');
-    if (!modal) return;
-    
-    // Clear any existing countdown
-    if (currentCountdownInterval) {
-        clearInterval(currentCountdownInterval);
-        currentCountdownInterval = null;
-    }
-    
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-};
-
-window.showWaConfirm = function(marketingName) {
-    const modal = document.getElementById('waConfirmModal');
-    if (!modal) return;
-    
-    // Find the marketing person
-    const marketing = marketingTeam.find(m => m.name === marketingName) || marketingTeam[0];
-    
-    // Format WhatsApp URL
-    const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
-                         marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
-                         '62' + marketing.phone;
-    const whatsappUrl = `https://wa.me/${formattedPhone}`;
-    
-    // Update WhatsApp link
-    const whatsappLink = document.getElementById('whatsappLink');
-    if (whatsappLink) {
-        whatsappLink.href = whatsappLink.getAttribute('href', whatsappUrl);
-    }
-    
-    // Update modal content with marketing name
-    const confirmTitle = modal.querySelector('.wa-confirm-title');
-    if (confirmTitle) {
-        confirmTitle.textContent = `Formulir Terkirim ke ${marketing.name}!`;
-    }
-    
-    const confirmSubtitle = modal.querySelector('.wa-confirm-subtitle');
-    if (confirmSubtitle) {
-        confirmSubtitle.textContent = `Anda akan diarahkan ke WhatsApp ${marketing.name} dalam 5 detik`;
-    }
-    
-    const whatsappBtn = modal.querySelector('.whatsapp-btn');
-    if (whatsappBtn) {
-        whatsappBtn.textContent = `Chat ${marketing.name} Sekarang`;
-        whatsappBtn.href = whatsappUrl;
-    }
-    
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    let count = 5;
-    const countdownElement = document.getElementById('countdown');
-    if (countdownElement) {
-        countdownElement.textContent = count;
-        
-        // Clear any existing countdown
-        if (currentCountdownInterval) {
-            clearInterval(currentCountdownInterval);
-        }
-        
-        currentCountdownInterval = setInterval(() => {
-            count--;
-            countdownElement.textContent = count;
-            
-            if (count <= 0) {
-                clearInterval(currentCountdownInterval);
-                currentCountdownInterval = null;
-                window.open(whatsappUrl, '_blank');
-                closeWaConfirm();
-            }
-        }, 1000);
-    }
-};
-
-// ===== FORM SUBMISSION =====
-function initializeFormSubmission() {
-    const form = document.getElementById('modalContactForm');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const name = document.getElementById('modalName').value;
-        const city = document.getElementById('modalCity').value;
-        const phone = document.getElementById('modalPhone').value;
-        const job = document.getElementById('modalJob').value;
-        const income = document.getElementById('modalIncome').value;
-
-        // Update pada form submission validation
-const cleanPhone = phone.replace(/\D/g, '');
-if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
-    alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
-    return;
+function generateWhatsAppMessage(form, marketing) {
+  const name = form.querySelector('#modalName').value;
+  const city = form.querySelector('#modalCity').value;
+  return `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*DATA PEMESANAN*\nNama: ${name}\nKota: ${city}\n\n*Ditangani oleh:* ${marketing.name}`;
 }
 
-// Add tooltip functionality
-const phoneInput = document.getElementById('modalPhone');
-if (phoneInput) {
-    phoneInput.addEventListener('focus', function() {
-        const tooltip = this.nextElementSibling;
-        if (tooltip && tooltip.classList.contains('tooltip')) {
-            tooltip.style.display = 'block';
-        }
-    });
-    
-    phoneInput.addEventListener('blur', function() {
-        const tooltip = this.nextElementSibling;
-        if (tooltip && tooltip.classList.contains('tooltip')) {
-            tooltip.style.display = 'none';
-        }
-    });
-}
+// 9. WHATSAPP CONFIRM MODAL
+function showWaConfirm(marketingName) {
+  const modal = document.getElementById('waConfirmModal');
+  if (!modal) return;
 
-        // Get marketing person
-        const marketing = getNextMarketing();
-        
-        // Format WhatsApp message - ensure all fields are included
-        const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${name || '-'}\n🏙️ *Kota Asal/Tinggal*: ${city || '-'}\n📱 *Nomor WhatsApp*: ${phone || '-'}\n💼 *Pekerjaan*: ${job || '-'}\n💰 *Penghasilan Per Bulan*: ${income || '-'}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
-        
-        // Encode message for URL
-        const encodedMessage = encodeURIComponent(message);
-        
-        // Create WhatsApp URL - ensure phone number is properly formatted
-        const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
-                             marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
-                             '62' + marketing.phone;
-        
-        const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
-        
-        // Open WhatsApp
-        window.open(whatsappUrl, '_blank');
-        
-        // Show confirmation with marketing name
-        showWaConfirm(marketing.name);
-        
-        // Close form modal
-        if (typeof closeFormModal === 'function') {
-            closeFormModal();
-        }
-        
-        // Reset form
-        form.reset();
-        
-        // Track conversion
-        if (typeof fbq !== 'undefined') {
-            fbq('track', 'Lead');
-        }
-    });
-}
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  let count = 5;
+  const countdownElement = document.getElementById('countdown');
+  if (!countdownElement) return;
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initializeFormSubmission();
-});
-
-// ===== CACHE BUSTING =====
-// Tambahkan parameter versi pada CSS dan JS
-document.addEventListener('DOMContentLoaded', function() {
-    const version = '1.0.3'; // Update versi ini setiap ada perubahan
-    
-    // Update CSS
-    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-    stylesheets.forEach(sheet => {
-        if (sheet.href.includes('style.css')) {
-            sheet.href = sheet.href.split('?')[0] + '?v=' + version;
-        }
-    });
-    
-    // Update JS
-    const scripts = document.querySelectorAll('script[src]');
-    scripts.forEach(script => {
-        if (script.src.includes('main.js')) {
-            script.src = script.src.split('?')[0] + '?v=' + version;
-        }
-    });
-});
-// ===== TIKTOK VIDEO LOADER =====
-function loadTikTokVideos() {
-    const tiktokContainer = document.getElementById('tiktokVideos');
-    if (!tiktokContainer) return;
-
-    // Daftar video TikTok dari akun @bimulia_land (harus diupdate manual)
-    const tiktokVideos = [
-        { id: '7005078576081030426', title: 'Kawasan Milenial' },
-        { id: '7005076867602599195', title: '60 Unit Terjual Bulan ini' },
-        { id: '7013548931787361537', title: 'Beli Rumah Gratis Motor Listrik' },
-        { id: '7013552088269573378', title: 'Akad Kredit Konsumen' },
-        { id: '6977192858528926977', title: 'Rumah Islami di Kuningan' },
-        { id: '7005085927492046107', title: 'Rumah Subsidi Keren' }
-    ];
-
-    // Kosongkan loader
-    tiktokContainer.innerHTML = '';
-
-    // Tambahkan embed video
-    tiktokVideos.forEach(video => {
-        const videoItem = document.createElement('div');
-        videoItem.className = 'tiktok-item';
-        videoItem.innerHTML = `
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bimulia_land/video/${video.id}" 
-                data-video-id="${video.id}" style="max-width: 605px;min-width: 325px;">
-                <section></section>
-            </blockquote>
-            <div class="video-label">${video.title}</div>
-        `;
-        tiktokContainer.appendChild(videoItem);
-    });
-
-    // Load script TikTok
-    const tiktokScript = document.createElement('script');
-    tiktokScript.src = 'https://www.tiktok.com/embed.js';
-    document.body.appendChild(tiktokScript);
-}
-
-// Panggil saat halaman dimuat
-document.addEventListener('DOMContentLoaded', loadTikTokVideos);
-
-function initEnhancedMap() {
-    // Live view button with confirmation
-    const liveViewBtn = document.getElementById('liveViewBtn');
-    if (liveViewBtn) {
-        liveViewBtn.addEventListener('click', function() {
-            if(confirm('Anda akan dibuka ke Google Maps untuk melihat lokasi live terbaru. Lanjutkan?')) {
-                window.open('https://maps.app.goo.gl/8Jhhrth5AL2RxoMZ8', '_blank');
-            }
-        });
+  const countdownInterval = setInterval(() => {
+    countdownElement.textContent = --count;
+    if (count <= 0) {
+      clearInterval(countdownInterval);
+      closeWaConfirm();
     }
-
-    // Enhanced route buttons with tooltips
-    document.querySelectorAll('.view-route-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const destination = this.getAttribute('data-destination');
-            const url = `https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/${encodeURIComponent(destination)}`;
-            
-            // Show loading effect
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Membuka Maps...';
-            
-            setTimeout(() => {
-                window.open(url, '_blank');
-                this.innerHTML = originalText;
-            }, 500);
-        });
-        
-        // Add tooltip on hover
-        btn.addEventListener('mouseenter', function() {
-            const destination = this.getAttribute('data-destination');
-            this.setAttribute('title', `Rute ke ${destination}`);
-        });
-    });
-
-    // Add animation to location cards
-    document.querySelectorAll('.location-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = `all 0.5s ease ${index * 0.1}s`;
-        
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, 100);
-    });
+  }, 1000);
 }
-document.addEventListener('DOMContentLoaded', initEnhancedMap);  
+
+function closeWaConfirm() {
+  const modal = document.getElementById('waConfirmModal');
+  if (modal) modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// 10. UTILITY FUNCTIONS
+function padZero(num) {
+  return num < 10 ? `0${num}` : num;
+}
+
+function handleResponsive() {
+  // Contoh: Sesuaikan gallery grid berdasarkan lebar layar
+  const gallery = document.querySelector('.gallery-container');
+  if (gallery) {
+    gallery.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : 
+      window.innerWidth < 1024 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)';
+  }
+}
+
+// ====================== END OF CODE ======================
 
 </script>
 </body>
