@@ -2859,223 +2859,130 @@ footer {
 #liveViewBtn i {
     font-size: 1rem;
 }
-/* ===== KPR REQUIREMENTS STYLES ===== */
-.kpr-requirements {
-  background: linear-gradient(135deg, #f8fafc, #ffffff);
-  padding: 6rem 0;
-  position: relative;
-  overflow: hidden;
+/* Modern Requirements Section */
+.modern-requirements-section {
+    background: linear-gradient(135deg, #f8fafc, #ffffff);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+.modern-requirements-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
+.modern-requirements-section .section-header {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(90deg, #27ae60, #2ecc71);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.modern-requirements-section .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.section-subtitle {
-  color: #666;
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 0 auto;
+.modern-requirements-section .section-header p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
-.kpr-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+.requirements-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
 }
 
-.kpr-card {
-  background: white;
-  border-radius: 16px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 30px rgba(46, 204, 113, 0.1);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border: 1px solid rgba(46, 204, 113, 0.2);
+.requirements-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(46, 204, 113, 0.2);
 }
 
-.kpr-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(46, 204, 113, 0.2);
+.requirements-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(46, 204, 113, 0.1);
+}
+
+.card-header {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #eee;
 }
 
 .card-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(46, 204, 113, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  color: #27ae60;
-  font-size: 1.5rem;
+    width: 60px;
+    height: 60px;
+    background: rgba(46, 204, 113, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #27ae60;
+    font-size: 1.5rem;
 }
 
-.card-title {
-  font-size: 1.4rem;
-  color: #111;
-  margin-bottom: 1.5rem;
+.requirements-card h3 {
+    font-size: 1.4rem;
+    color: #111;
+    margin-bottom: 5px;
 }
 
-.document-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0;
+.requirements-card .card-header p {
+    font-size: 0.95rem;
+    color: #666;
 }
 
-.document-list li {
-  padding: 0.8rem 0;
-  border-bottom: 1px dashed #e0e0e0;
-  display: flex;
-  align-items: center;
+.requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.document-list i {
-  color: #27ae60;
-  margin-right: 1rem;
-  font-size: 1.1rem;
+.requirements-list li {
+    padding: 12px 0;
+    border-bottom: 1px dashed #f0f0f0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #444;
 }
 
-.document-list span {
-  flex: 1;
+.requirements-list li:last-child {
+    border-bottom: none;
 }
 
-.card-badge {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: rgba(241, 196, 15, 0.1);
-  color: #f1c40f;
-  padding: 0.3rem 1rem;
-  border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-/* CTA Styles */
-.kpr-cta {
-  max-width: 800px;
-  margin: 4rem auto 0;
-}
-
-.cta-box {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  border: 1px solid rgba(46, 204, 113, 0.3);
-}
-
-.cta-content {
-  flex: 1;
-  min-width: 250px;
-}
-
-.price-tag {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.price-tag span:first-child {
-  color: #666;
-}
-
-.price {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #e67e22;
-}
-
-.bank-info {
-  color: #444;
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.note {
-  color: #888;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.cta-btn {
-  background: linear-gradient(135deg, #27ae60, #2ecc71);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
-  white-space: nowrap;
-}
-
-.cta-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
-}
-
-/* Animation */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-.pulse {
-  animation: pulse 2s infinite;
+.requirements-list i {
+    color: #2ecc71;
+    font-size: 1.1rem;
+    margin-top: 2px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .kpr-cards {
-    grid-template-columns: 1fr;
-  }
-  
-  .cta-box {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .price-tag {
-    justify-content: center;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
+    .modern-requirements-section {
+        padding: 60px 0;
+    }
+    
+    .modern-requirements-section .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .requirements-container {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
@@ -3693,129 +3600,72 @@ footer {
             </div>
         </div>
     </section>
-<!-- ===== MODERN KPR REQUIREMENTS SECTION ===== -->
-<section class="kpr-requirements">
-  <div class="container">
-    <!-- Section Header -->
-    <div class="section-header" data-aos="fade-up">
-      <h2 class="section-title">
-        <span class="text-gradient">Persyaratan</span> KPR Syariah
-      </h2>
-      <p class="section-subtitle">
-        Dokumen yang diperlukan untuk pengajuan pembiayaan properti syariah
-      </p>
+<!-- Modern Requirements Section -->
+<section class="modern-requirements-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Persyaratan KPR Syariah</h2>
+            <p>Dokumen yang diperlukan untuk pengajuan pembiayaan properti syariah</p>
+        </div>
+        
+        <div class="requirements-container">
+            <!-- General Requirements -->
+            <div class="requirements-card" data-aos="fade-up">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Persyaratan Umum</h3>
+                    <p>Berlaku untuk semua pemohon</p>
+                </div>
+                <ul class="requirements-list">
+                    <li><i class="fas fa-check-circle"></i> Surat permohonan KPR</li>
+                    <li><i class="fas fa-check-circle"></i> FC KTP pemohon & suami/istri (4 rangkap)</li>
+                    <li><i class="fas fa-check-circle"></i> FC Kartu Keluarga (4 lembar)</li>
+                    <li><i class="fas fa-check-circle"></i> FC Surat Nikah/Cerai (4 rangkap)</li>
+                    <li><i class="fas fa-check-circle"></i> Foto 3x4 pemohon & suami/istri (masing-masing 4 buah)</li>
+                    <li><i class="fas fa-check-circle"></i> FC NPWP pribadi (4 lembar)</li>
+                    <li><i class="fas fa-check-circle"></i> FC Buku Tabungan / Rekening Koran 3 bulan terakhir (4 rangkap)</li>
+                    <li><i class="fas fa-check-circle"></i> Surat keterangan belum memiliki rumah dari kelurahan (asli)</li>
+                    <li><i class="fas fa-check-circle"></i> Surat keterangan belum menikah dari kelurahan (bagi yang lajang)</li>
+                </ul>
+            </div>
+            
+            <!-- Employee Requirements -->
+            <div class="requirements-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Karyawan Tetap</h3>
+                    <p>Tambahan untuk pemohon dengan penghasilan tetap</p>
+                </div>
+                <ul class="requirements-list">
+                    <li><i class="fas fa-check-circle"></i> Surat keterangan aktif bekerja (asli)</li>
+                    <li><i class="fas fa-check-circle"></i> FC Kartu Pegawai / Jamsostek (4 lembar)</li>
+                    <li><i class="fas fa-check-circle"></i> FC SK Pegawai Tetap (4 lembar)</li>
+                    <li><i class="fas fa-check-circle"></i> FC Slip Gaji 3 bulan terakhir (4 lembar, asli)</li>
+                </ul>
+            </div>
+            
+            <!-- Business Owner Requirements -->
+            <div class="requirements-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Wiraswasta</h3>
+                    <p>Tambahan untuk pemohon dengan penghasilan tidak tetap</p>
+                </div>
+                <ul class="requirements-list">
+                    <li><i class="fas fa-check-circle"></i> Surat keterangan usaha</li>
+                    <li><i class="fas fa-check-circle"></i> Foto tempat usaha</li>
+                    <li><i class="fas fa-check-circle"></i> Denah lokasi usaha</li>
+                    <li><i class="fas fa-check-circle"></i> Pembukuan usaha 3 bulan terakhir</li>
+                </ul>
+            </div>
+        </div>
     </div>
-
-    <!-- Interactive Cards -->
-    <div class="kpr-cards">
-      <!-- Card 1 - Dokumen Umum -->
-      <div class="kpr-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="card-icon">
-          <i class="fas fa-file-alt"></i>
-        </div>
-        <h3 class="card-title">Dokumen Umum</h3>
-        <ul class="document-list">
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Surat permohonan KPR</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>FC KTP pemohon & pasangan (4 rangkap)</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>FC Kartu Keluarga (4 lembar)</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>FC Surat Nikah/Cerai (4 rangkap)</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Foto 3x4 (4 lembar)</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>FC NPWP pribadi (4 lembar)</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Rekening koran 3 bulan terakhir</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Surat belum punya rumah dari kelurahan</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Surat belum menikah (bagi lajang)</span>
-          </li>
-        </ul>
-        <div class="card-badge">Semua Wajib</div>
-      </div>
-
-      <!-- Card 2 - Karyawan Tetap -->
-      <div class="kpr-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="card-icon">
-          <i class="fas fa-user-tie"></i>
-        </div>
-        <h3 class="card-title">Karyawan Tetap</h3>
-        <ul class="document-list">
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Surat aktif bekerja (asli)</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>FC SK Pegawai Tetap</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>FC Kartu Pegawai/Jamsostek</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>FC Slip Gaji 3 bulan terakhir</span>
-          </li>
-        </ul>
-        <div class="card-badge">Untuk Karyawan</div>
-      </div>
-
-      <!-- Card 3 - Wiraswasta -->
-      <div class="kpr-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="card-icon">
-          <i class="fas fa-store"></i>
-        </div>
-        <h3 class="card-title">Wiraswasta</h3>
-        <ul class="document-list">
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Surat keterangan usaha</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Foto tempat usaha</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Denah lokasi usaha</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>Pembukuan usaha 3 bulan terakhir</span>
-          </li>
-          <li>
-            <i class="fas fa-check"></i>
-            <span>FC SIUP/TDP (jika ada)</span>
-          </li>
-        </ul>
-        <div class="card-badge">Untuk Bisnis</div>
-      </div>
-    </div>
-
-  
-  </div>
 </section>
     
    <!-- Live Counter Section -->
