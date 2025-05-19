@@ -4246,46 +4246,40 @@ footer {
 
     <!-- Main JavaScript -->
 <script>
-// ===== OPTIMIZED INITIALIZATION =====
+// ===== MAIN INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize critical components first
-    initializeCriticalComponents();
-    
-    // Defer non-critical components
-    setTimeout(initializeNonCriticalComponents, 500);
+    // Initialize all components
+    initializeComponents();
 });
 
-function initializeCriticalComponents() {
-    // Components needed immediately
+function initializeComponents() {
+    // Core components
     initializeCountdown();
-    initializeFormSubmission();
-    initializeSmoothScrolling();
+    initializeFormHandling();
     initializeFAQ();
+    initializeVideoModal();
+    initializeSmoothScrolling();
     
-    // Lightweight AOS initialization
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            offset: 120
-        });
-    }
-}
-
-function initializeNonCriticalComponents() {
-    // Components that can load after page is visible
+    // UI components
     initializeLiveCounters();
-    initializeTestimonialSlider();
     initializeNotifications();
-    initializeLightGallery();
-    initializeVideoHandlers();
     initializeRunningText();
+    
+    // Third-party components
+    initializeAOS();
+    initializeLightGallery();
+    
+    // Marketing components
+    initializeMarketingTeam();
+    
+    // Location features
+    initializeLocationFeatures();
+    
+    // Social media
     loadTikTokVideos();
-    initEnhancedMap();
 }
 
-// ===== COUNTDOWN TIMER (OPTIMIZED) =====
+// ===== COUNTDOWN TIMER =====
 function initializeCountdown() {
     const elements = {
         days: document.getElementById('days-premium'),
@@ -4294,13 +4288,12 @@ function initializeCountdown() {
         seconds: document.getElementById('seconds-premium')
     };
 
-    // Check if all elements exist
     if (!elements.days || !elements.hours || !elements.minutes || !elements.seconds) return;
 
     const targetDate = new Date();
     targetDate.setDate(targetDate.getDate() + 30);
 
-    function update() {
+    function updateCountdown() {
         const now = new Date();
         const diff = targetDate - now;
 
@@ -4322,13 +4315,148 @@ function initializeCountdown() {
         elements.minutes.textContent = minutes < 10 ? `0${minutes}` : minutes;
         elements.seconds.textContent = seconds < 10 ? `0${seconds}` : seconds;
 
-        requestAnimationFrame(update);
+        requestAnimationFrame(updateCountdown);
     }
 
-    update();
+    updateCountdown();
 }
 
-// ===== LIVE COUNTERS (OPTIMIZED) =====
+// ===== FORM HANDLING =====
+function initializeFormHandling() {
+    // Form modal controls
+    window.showFormModal = function() {
+        const modal = document.getElementById('formModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            setTimeout(() => modal.style.opacity = '1', 10);
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
+    window.closeFormModal = function() {
+        const modal = document.getElementById('formModal');
+        if (modal) {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+    };
+
+    // Form submission
+    const form = document.getElementById('modalContactForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const phoneInput = document.getElementById('modalPhone');
+        const cleanPhone = phoneInput.value.replace(/\D/g, '');
+        
+        if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
+            alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
+            return;
+        }
+
+        const marketing = getNextMarketingPerson();
+        const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
+                             marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
+                             '62' + marketing.phone;
+        
+        const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${document.getElementById('modalName').value || '-'}\n🏙️ *Kota Asal/Tinggal*: ${document.getElementById('modalCity').value || '-'}\n📱 *Nomor WhatsApp*: ${phoneInput.value || '-'}\n💼 *Pekerjaan*: ${document.getElementById('modalJob').value || '-'}\n💰 *Penghasilan Per Bulan*: ${document.getElementById('modalIncome').value || '-'}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
+        
+        window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`, '_blank');
+        
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'Lead');
+        }
+        
+        form.reset();
+        closeFormModal();
+    });
+}
+
+// ===== FAQ ACCORDION =====
+function initializeFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (!faqItems.length) return;
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all first
+            faqItems.forEach(faq => faq.classList.remove('active'));
+            
+            // Open current if wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+}
+
+// ===== VIDEO MODAL =====
+function initializeVideoModal() {
+    const videoModal = document.getElementById('videoModal');
+    const videoIframe = document.getElementById('videoIframe');
+    const videoCloseBtn = document.getElementById('videoCloseBtn');
+    
+    if (!videoModal || !videoIframe || !videoCloseBtn) return;
+    
+    // Global function to open videos
+    window.openVideoModal = function(videoId) {
+        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+        videoModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+    
+    function closeVideoModal() {
+        videoIframe.src = '';
+        videoModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    videoCloseBtn.addEventListener('click', closeVideoModal);
+    videoModal.addEventListener('click', (e) => e.target === videoModal && closeVideoModal());
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && closeVideoModal());
+}
+
+// ===== SMOOTH SCROLLING =====
+function initializeSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href === '#' || href === '#booking-form') {
+                if (href === '#booking-form') {
+                    e.preventDefault();
+                    showFormModal();
+                }
+                return;
+            }
+            
+            e.preventDefault();
+            const target = document.querySelector(href);
+            
+            if (target) {
+                const headerHeight = document.querySelector('header')?.offsetHeight || 100;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                history.replaceState(null, null, href);
+            }
+        });
+    });
+}
+
+// ===== LIVE COUNTERS =====
 function initializeLiveCounters() {
     const statsSection = document.querySelector('.stats-section');
     if (!statsSection) return;
@@ -4351,24 +4479,6 @@ function initializeLiveCounters() {
     }, { threshold: 0.1 });
 
     observer.observe(statsSection);
-}
-
-function updateCounters() {
-    const current = parseInt(document.getElementById('unitsLeftToday').textContent);
-    const sold = Math.floor(Math.random() * 3);
-    
-    if (sold > 0 && current > 0) {
-        const newCount = Math.max(0, current - sold);
-        animateCounter('unitsLeftToday', newCount, (newCount/12)*100, 1000);
-        
-        const currentLeft = parseInt(document.getElementById('unitsLeft').textContent);
-        const currentSold = parseInt(document.getElementById('unitsSold').textContent);
-        
-        animateCounter('unitsLeft', Math.max(0, currentLeft - sold), ((currentLeft - sold)/391)*100, 1000);
-        animateCounter('unitsSold', currentSold + sold, ((currentSold + sold)/150)*100, 1000);
-        
-        document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
-    }
 }
 
 function animateCounter(elementId, target, progressPercent = 0, duration = 2000) {
@@ -4398,44 +4508,25 @@ function animateCounter(elementId, target, progressPercent = 0, duration = 2000)
     requestAnimationFrame(update);
 }
 
-// ===== TESTIMONIAL SLIDER (UNCHANGED) =====
-function initializeTestimonialSlider() {
-    if (document.querySelector('.testimonial-slider') && typeof Glide !== 'undefined') {
-        new Glide('.testimonial-slider', {
-            type: 'carousel',
-            perView: 1,
-            autoplay: 4000,
-            hoverpause: true,
-            gap: 30,
-            breakpoints: {
-                768: { perView: 1 }
-            }
-        }).mount();
+function updateCounters() {
+    const current = parseInt(document.getElementById('unitsLeftToday').textContent);
+    const sold = Math.floor(Math.random() * 3);
+    
+    if (sold > 0 && current > 0) {
+        const newCount = Math.max(0, current - sold);
+        animateCounter('unitsLeftToday', newCount, (newCount/12)*100, 1000);
+        
+        const currentLeft = parseInt(document.getElementById('unitsLeft').textContent);
+        const currentSold = parseInt(document.getElementById('unitsSold').textContent);
+        
+        animateCounter('unitsLeft', Math.max(0, currentLeft - sold), ((currentLeft - sold)/391)*100, 1000);
+        animateCounter('unitsSold', currentSold + sold, ((currentSold + sold)/150)*100, 1000);
+        
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
     }
 }
 
-// ===== FAQ ACCORDION (OPTIMIZED) =====
-function initializeFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    if (!faqItems.length) return;
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            
-            // Close all first
-            faqItems.forEach(faq => faq.classList.remove('active'));
-            
-            // Open current if wasn't active
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        });
-    });
-}
-
-// ===== NOTIFICATIONS (OPTIMIZED) =====
+// ===== NOTIFICATIONS =====
 function initializeNotifications() {
     const notifications = [
         {text: "🔥 Baru saja! Pak Budiman booking unit tipe 36 via BJB Syariah", icon: "fa-fire"},
@@ -4481,71 +4572,7 @@ function initializeNotifications() {
     });
 }
 
-// ===== SMOOTH SCROLLING (OPTIMIZED) =====
-function initializeSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            if (href === '#' || href === '#booking-form') {
-                if (href === '#booking-form') {
-                    e.preventDefault();
-                    showFormModal();
-                }
-                return;
-            }
-            
-            e.preventDefault();
-            const target = document.querySelector(href);
-            
-            if (target) {
-                const headerHeight = document.querySelector('header')?.offsetHeight || 100;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                history.replaceState(null, null, href);
-            }
-        });
-    });
-}
-
-// ===== VIDEO HANDLERS (OPTIMIZED) =====
-function initializeVideoHandlers() {
-    const videoModal = document.getElementById('videoModal');
-    const videoIframe = document.getElementById('videoIframe');
-    const videoCloseBtn = document.getElementById('videoCloseBtn');
-    
-    if (!videoModal || !videoIframe || !videoCloseBtn) return;
-    
-    function openVideo(videoId) {
-        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-        videoModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeVideo() {
-        videoIframe.src = '';
-        videoModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-    
-    videoCloseBtn.addEventListener('click', closeVideo);
-    videoModal.addEventListener('click', (e) => e.target === videoModal && closeVideo());
-    document.addEventListener('keydown', (e) => e.key === 'Escape' && closeVideo());
-    
-    document.querySelectorAll('[onclick^="openVideoModal"]').forEach(el => {
-        el.addEventListener('click', function() {
-            const videoId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-            openVideo(videoId);
-        });
-    });
-}
-
-// ===== RUNNING TEXT (OPTIMIZED) =====
+// ===== RUNNING TEXT =====
 function initializeRunningText() {
     const runningText = document.querySelector('.running-text-content');
     if (!runningText) return;
@@ -4564,7 +4591,19 @@ function initializeRunningText() {
     window.addEventListener('resize', adjustSpeed);
 }
 
-// ===== LIGHTGALLERY (OPTIMIZED) =====
+// ===== AOS INITIALIZATION =====
+function initializeAOS() {
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 120
+        });
+    }
+}
+
+// ===== LIGHTGALLERY =====
 function initializeLightGallery() {
     const gallery = document.getElementById('lightgallery');
     if (!gallery || typeof lightGallery === 'undefined') return;
@@ -4578,117 +4617,30 @@ function initializeLightGallery() {
     });
 }
 
-// ===== FORM MODAL (UNCHANGED) =====
-window.showFormModal = function() {
-    const modal = document.getElementById('formModal');
-    if (modal) {
-        modal.style.display = 'flex';
-        setTimeout(() => modal.style.opacity = '1', 10);
-        document.body.style.overflow = 'hidden';
-    }
-};
-
-window.closeFormModal = function() {
-    const modal = document.getElementById('formModal');
-    if (modal) {
-        modal.style.opacity = '0';
-        setTimeout(() => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }, 300);
-    }
-};
-
-// ===== MARKETING TEAM (UNCHANGED) =====
-const marketingTeam = [
-    { name: "Taufik Marie", phone: "628977771080", role: "Digital Manager" },
-    { name: "Rahma", phone: "6285523613940", role: "Marketing Executive" },
-    { name: "Syifa", phone: "6285794058368", role: "Marketing Executive" },
-    { name: "Royyan", phone: "6281223202218", role: "Marketing Executive" }
-];
-
-let lastAssignedIndex = -1;
-
-function getNextMarketing() {
-    lastAssignedIndex = (lastAssignedIndex + 1) % marketingTeam.length;
-    return marketingTeam[lastAssignedIndex];
-}
-
-// ===== FORM SUBMISSION (OPTIMIZED) =====
-function initializeFormSubmission() {
-    const form = document.getElementById('modalContactForm');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const phoneInput = document.getElementById('modalPhone');
-        const cleanPhone = phoneInput.value.replace(/\D/g, '');
-        
-        if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
-            alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
-            return;
-        }
-
-        const marketing = getNextMarketing();
-        const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
-                             marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
-                             '62' + marketing.phone;
-        
-        const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${document.getElementById('modalName').value || '-'}\n🏙️ *Kota Asal/Tinggal*: ${document.getElementById('modalCity').value || '-'}\n📱 *Nomor WhatsApp*: ${phoneInput.value || '-'}\n💼 *Pekerjaan*: ${document.getElementById('modalJob').value || '-'}\n💰 *Penghasilan Per Bulan*: ${document.getElementById('modalIncome').value || '-'}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
-        
-        window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`, '_blank');
-        
-        if (typeof fbq !== 'undefined') {
-            fbq('track', 'Lead');
-        }
-        
-        form.reset();
-        closeFormModal();
-    });
-}
-
-// ===== TIKTOK LOADER (OPTIMIZED) =====
-function loadTikTokVideos() {
-    const tiktokContainer = document.getElementById('tiktokVideos');
-    if (!tiktokContainer) return;
-
-    const tiktokVideos = [
-        { id: '7005078576081030426', title: 'Kawasan Milenial' },
-        { id: '7005076867602599195', title: '60 Unit Terjual Bulan ini' },
-        { id: '7013548931787361537', title: 'Beli Rumah Gratis Motor Listrik' }
+// ===== MARKETING TEAM =====
+function initializeMarketingTeam() {
+    const marketingTeam = [
+        { name: "Taufik Marie", phone: "628977771080", role: "Digital Manager" },
+        { name: "Rahma", phone: "6285523613940", role: "Marketing Executive" },
+        { name: "Syifa", phone: "6285794058368", role: "Marketing Executive" },
+        { name: "Royyan", phone: "6281223202218", role: "Marketing Executive" }
     ];
 
-    tiktokContainer.innerHTML = tiktokVideos.map(video => `
-        <div class="tiktok-item">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bimulia_land/video/${video.id}" 
-                data-video-id="${video.id}">
-                <section></section>
-            </blockquote>
-            <div class="video-label">${video.title}</div>
-        </div>
-    `).join('');
+    let lastAssignedIndex = -1;
 
-    if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
-        const script = document.createElement('script');
-        script.src = 'https://www.tiktok.com/embed.js';
-        document.body.appendChild(script);
-    }
+    window.getNextMarketingPerson = function() {
+        lastAssignedIndex = (lastAssignedIndex + 1) % marketingTeam.length;
+        return marketingTeam[lastAssignedIndex];
+    };
 }
 
-// ===== ENHANCED LOCATION FUNCTIONALITY =====
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize map and buttons
-    initLocationSection();
-});
-
-function initLocationSection() {
+// ===== LOCATION FEATURES =====
+function initializeLocationFeatures() {
     // Live View Button
     const liveViewBtn = document.getElementById('liveViewBtn');
     if (liveViewBtn) {
         liveViewBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            // Updated to use correct Google Maps URL
             window.open('https://maps.app.goo.gl/MvW8BMGXstCPv8aW6', '_blank', 'noopener,noreferrer');
         });
     }
@@ -4699,7 +4651,6 @@ function initLocationSection() {
             e.preventDefault();
             const destination = this.getAttribute('data-destination');
             
-            // Mapping of destinations to actual Google Maps directions URLs
             const destinations = {
                 "Jl. Nasional Kuningan-Cirebon": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/Jl.+Raya+Kuningan-Cirebon,+Kuningan",
                 "Universitas Kuningan": "https://www.google.com/maps/dir/Kertamulya+Residence,+Jl.+Kertayasa,+Kuningan/Universitas+Kuningan,+Jl.+Cut+Nyak+Dien+No.36A,+Cijoho,+Kuningan",
@@ -4718,7 +4669,6 @@ function initLocationSection() {
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Membuka...';
             this.disabled = true;
             
-            // Open in new tab after short delay
             setTimeout(() => {
                 window.open(url, '_blank', 'noopener,noreferrer');
                 this.innerHTML = originalText;
@@ -4748,6 +4698,34 @@ function initLocationSection() {
         card.style.transition = `all 0.5s ease ${index * 0.1}s`;
         observer.observe(card);
     });
+}
+
+// ===== TIKTOK VIDEOS =====
+function loadTikTokVideos() {
+    const tiktokContainer = document.getElementById('tiktokVideos');
+    if (!tiktokContainer) return;
+
+    const tiktokVideos = [
+        { id: '7005078576081030426', title: 'Kawasan Milenial' },
+        { id: '7005076867602599195', title: '60 Unit Terjual Bulan ini' },
+        { id: '7013548931787361537', title: 'Beli Rumah Gratis Motor Listrik' }
+    ];
+
+    tiktokContainer.innerHTML = tiktokVideos.map(video => `
+        <div class="tiktok-item">
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bimulia_land/video/${video.id}" 
+                data-video-id="${video.id}">
+                <section></section>
+            </blockquote>
+            <div class="video-label">${video.title}</div>
+        </div>
+    `).join('');
+
+    if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://www.tiktok.com/embed.js';
+        document.body.appendChild(script);
+    }
 }
 </script>
 </body>
