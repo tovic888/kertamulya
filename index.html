@@ -4365,8 +4365,34 @@ function initializeCountdown() {
     updateCountdown();
 }
 
-// Update fungsi form submission untuk handle tipe rumah
-    document.getElementById('modalContactForm').addEventListener('submit', function(e) {
+// ===== FORM HANDLING =====
+function initializeFormHandling() {
+    // Form modal controls
+    window.showFormModal = function() {
+        const modal = document.getElementById('formModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            setTimeout(() => modal.style.opacity = '1', 10);
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
+    window.closeFormModal = function() {
+        const modal = document.getElementById('formModal');
+        if (modal) {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+    };
+
+    // Form submission
+    const form = document.getElementById('modalContactForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         const phoneInput = document.getElementById('modalPhone');
@@ -4382,10 +4408,7 @@ function initializeCountdown() {
                              marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
                              '62' + marketing.phone;
         
-        const houseType = document.getElementById('modalType').value;
-        const price = houseType === 'Suite' ? 'Rp277 Juta' : 'Rp168 Juta';
-        
-        const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${document.getElementById('modalName').value || '-'}\n🏙️ *Kota Asal/Tinggal*: ${document.getElementById('modalCity').value || '-'}\n📱 *Nomor WhatsApp*: ${phoneInput.value || '-'}\n🏡 *Tipe Rumah*: ${houseType} (${price})\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
+        const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${document.getElementById('modalName').value || '-'}\n🏙️ *Kota Asal/Tinggal*: ${document.getElementById('modalCity').value || '-'}\n📱 *Nomor WhatsApp*: ${phoneInput.value || '-'}\n💼 *Pekerjaan*: ${document.getElementById('modalJob').value || '-'}\n💰 *Penghasilan Per Bulan*: ${document.getElementById('modalIncome').value || '-'}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
         
         window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`, '_blank');
         
@@ -4393,9 +4416,10 @@ function initializeCountdown() {
             fbq('track', 'Lead');
         }
         
-        this.reset();
+        form.reset();
         closeFormModal();
     });
+}
 
 // ===== FAQ ACCORDION =====
 function initializeFAQ() {
