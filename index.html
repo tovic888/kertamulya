@@ -844,6 +844,10 @@ button {
   text-align: center;
 }
 
+.comparison-table th:nth-child(2) {
+  background: linear-gradient(90deg, #f1c40f, #e67e22);
+}
+
 .comparison-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
@@ -859,17 +863,23 @@ button {
   margin-right: 8px;
 }
 
-.times-icon {
-  color: var(--merah);
-  font-size: 1.2rem;
-  margin-right: 8px;
-}
-
 .comparison-highlight {
   background-color: rgba(241, 196, 15, 0.1) !important;
   font-weight: 600;
+  color: #e67e22;
 }
 
+@media (max-width: 768px) {
+  .comparison-table {
+    min-width: 100%;
+  }
+  
+  .comparison-table th, 
+  .comparison-table td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
 /* ===== SEGMENTATION SECTION ===== */
 .segmentation-section {
   background: linear-gradient(135deg, var(--hijau-muda), #e8f8ef);
@@ -3308,51 +3318,76 @@ footer {
             
             <div class="comparison-wrapper" data-aos="fade-up" data-aos-delay="200">
                 <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Spesifikasi</th>
-                            <th>Kertamulya</th>
-                            <th>Subsidi Lain</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Pondasi</td>
-                            <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Batu Kali Cakar Ayam</td>
-                            <td><i class="fas fa-times times-icon"></i> Batu Kali</td>
-                        </tr>
-                        <tr>
-                            <td>Struktur</td>
-                            <td><i class="fas fa-check check-icon"></i> Beton Bertulang</td>
-                            <td><i class="fas fa-check check-icon"></i> Beton Bertulang</td>
-                        </tr>
-                        <tr>
-                            <td>Dinding</td>
-                            <td><i class="fas fa-check check-icon"></i> Batu Bata, Plester & Aci</td>
-                            <td><i class="fas fa-check check-icon"></i> Batu Bata, Plester & Aci</td>
-                        </tr>
-                        <tr>
-                            <td>Lantai</td>
-                            <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Keramik Milan Motif Granit 40x40 cm</td>
-                            <td><i class="fas fa-times times-icon"></i> Keramik Putih Polos 30x30 cm</td>
-                        </tr>
-                        <tr>
-                            <td>Plafon</td>
-                            <td><i class="fas fa-check check-icon"></i> GRC / Rangka Hollow</td>
-                            <td><i class="fas fa-check check-icon"></i> GRC</td>
-                        </tr>
-                        <tr>
-                            <td>Atap</td>
-                            <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Baja Ringan</td>
-                            <td><i class="fas fa-times times-icon"></i> Kayu Lokal</td>
-                        </tr>
-                        <tr>
-                            <td>Penutup Atap</td>
-                            <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Metal Roof Lapis Pasir (Koko Roof)</td>
-                            <td><i class="fas fa-times times-icon"></i> Genteng Plentong</td>
-                        </tr>
-                    </tbody>
-                </table>
+  <thead>
+    <tr>
+      <th>Spesifikasi</th>
+      <th>Tipe Suite</th>
+      <th>Tipe Subsidi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pondasi</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Batu Kali Cakar Ayam + Sloof</td>
+      <td><i class="fas fa-check check-icon"></i> Batu Kali Cakar Ayam</td>
+    </tr>
+    <tr>
+      <td>Struktur</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Beton Bertulang + Besi Ulir</td>
+      <td><i class="fas fa-check check-icon"></i> Beton Bertulang</td>
+    </tr>
+    <tr>
+      <td>Dinding</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Bata Ringan + Plester Aci Halus</td>
+      <td><i class="fas fa-check check-icon"></i> Batu Bata + Plester Aci</td>
+    </tr>
+    <tr>
+      <td>Keramik Lantai</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Granit 60x60 Premium</td>
+      <td><i class="fas fa-check check-icon"></i> Keramik Milan 40x40</td>
+    </tr>
+    <tr>
+      <td>Plafond</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Gypsum + Rangka Hollow Galvanis</td>
+      <td><i class="fas fa-check check-icon"></i> GRC + Rangka Hollow</td>
+    </tr>
+    <tr>
+      <td>Rangka Atap</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Baja Ringan Tebal 0.75mm</td>
+      <td><i class="fas fa-check check-icon"></i> Baja Ringan 0.5mm</td>
+    </tr>
+    <tr>
+      <td>Penutup Atap</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Metal Roof Lapis Pasir + Insulasi</td>
+      <td><i class="fas fa-check check-icon"></i> Metal Roof Lapis Pasir</td>
+    </tr>
+    <tr>
+      <td>Kusen</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Aluminium Premium</td>
+      <td><i class="fas fa-check check-icon"></i> Aluminium Standar</td>
+    </tr>
+    <tr>
+      <td>Pintu</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Pintu Solid + Handle Premium</td>
+      <td><i class="fas fa-check check-icon"></i> Pintu Minimalis</td>
+    </tr>
+    <tr>
+      <td>Daun Jendela</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Aluminium + Kaca 6mm</td>
+      <td><i class="fas fa-check check-icon"></i> Aluminium + Kaca 5mm</td>
+    </tr>
+    <tr>
+      <td>Kloset</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> Kloset Duduk + Shower</td>
+      <td><i class="fas fa-check check-icon"></i> Kloset Jongkok</td>
+    </tr>
+    <tr>
+      <td>Garansi</td>
+      <td class="comparison-highlight"><i class="fas fa-check check-icon"></i> 5 Tahun</td>
+      <td><i class="fas fa-check check-icon"></i> 1 Tahun</td>
+    </tr>
+  </tbody>
+</table>
             </div>
         </div>
     </section>
