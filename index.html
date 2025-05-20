@@ -4262,66 +4262,51 @@ footer {
 
     <!-- Form Modal -->
     <div class="form-modal" id="formModal">
-        <div class="form-modal-content">
-            <button class="form-modal-close" onclick="closeFormModal()" aria-label="Close form">&times;</button>
-            <div class="lead-form">
-                <div class="form-title">
-                    <h3>FORM BOOKING UNIT</h3>
-                    <p>Silakan isi data dibawah ini untuk survey / booking unit</p>
-                </div>
-                
-                <form id="modalContactForm">
-                    <div class="form-group">
-                        <label for="modalName">Nama Lengkap</label>
-                        <input type="text" id="modalName" required placeholder="Nama Anda">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="modalCity">Kota Asal/Tinggal</label>
-                        <input type="text" id="modalCity" required placeholder="Contoh: Kuningan, Cirebon, Jakarta">
-                    </div>
-                    
-                  <div class="form-group">
-    <label for="modalPhone">Nomor WhatsApp <span class="phone-format"></span></label>
-    <input type="tel" id="modalPhone" required placeholder="6281234567890" pattern="^628[0-9]{8,11}$" 
-           title="Harus diawali 628 dan total 11-14 digit">
-    <div class="tooltip">Contoh: 6281234567890</div>
-</div>
-                    
-                    <div class="form-group">
-                        <label for="modalJob">Pekerjaan</label>
-                        <select id="modalJob" required>
-                            <option value="" disabled selected>Pilih Pekerjaan</option>
-                            <option value="PNS">PNS</option>
-                            <option value="Karyawan Swasta">Karyawan Swasta</option>
-                            <option value="Wiraswasta">Wiraswasta</option>
-                            <option value="Freelancer">Freelancer</option>
-                            <option value="Mahasiswa">Mahasiswa</option>
-                            <option value="Lainnya">Lainnya</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="modalIncome">Penghasilan Per Bulan</label>
-                        <select id="modalIncome" required>
-                            <option value="" disabled selected>Pilih Penghasilan</option>
-                            <option value="<3jt">< Rp3 juta</option>
-                            <option value="3-5jt">Rp3-5 juta</option>
-                            <option value="5-10jt">Rp5-10 juta</option>
-                            <option value=">10jt">> Rp10 juta</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="form-submit">
-                        <i class="fab fa-whatsapp"></i> KIRIM SEKARANG
-                    </button>
-                    
-                    <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #666;">
-                        <i class="fas fa-lock"></i> Data Anda 100% aman</p>
-                </form>
-            </div>
+  <div class="form-modal-content">
+    <button class="form-modal-close" onclick="closeFormModal()" aria-label="Close form">&times;</button>
+    <div class="lead-form">
+      <div class="form-title">
+        <h3>FORM BOOKING UNIT</h3>
+        <p>Silakan isi data dibawah ini untuk survey / booking unit</p>
+      </div>
+      
+      <form id="modalContactForm">
+        <div class="form-group">
+          <label for="modalName">Nama Lengkap</label>
+          <input type="text" id="modalName" required placeholder="Nama Anda">
         </div>
+        
+        <div class="form-group">
+          <label for="modalCity">Kota Asal/Tinggal</label>
+          <input type="text" id="modalCity" required placeholder="Contoh: Kuningan, Cirebon, Jakarta">
+        </div>
+        
+        <div class="form-group">
+          <label for="modalPhone">Nomor WhatsApp <span class="phone-format">(contoh: 6281234567890)</span></label>
+          <input type="tel" id="modalPhone" required placeholder="6281234567890" pattern="^628[0-9]{8,11}$" 
+                 title="Harus diawali 628 dan total 11-14 digit">
+        </div>
+        
+        <div class="form-group">
+          <label for="modalType">Tipe Rumah</label>
+          <select id="modalType" required>
+            <option value="" disabled selected>Pilih Tipe Rumah</option>
+            <option value="Subsidi (Mulai Rp168 Juta)">Subsidi (Mulai Rp168 Juta)</option>
+            <option value="Suite (Mulai Rp277 Juta)">Suite (Mulai Rp277 Juta)</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="form-submit">
+          <i class="fab fa-whatsapp"></i> KIRIM SEKARANG
+        </button>
+        
+        <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #666;">
+          <i class="fas fa-lock"></i> Data Anda 100% aman</p>
+      </form>
     </div>
+  </div>
+</div>
+
 
 <!-- WhatsApp Confirmation Modal - Premium Redesign -->
 <div class="wa-confirm-modal" id="waConfirmModal">
@@ -4491,38 +4476,34 @@ function initializeFormHandling() {
         }
     };
 
-    // Form submission
-    const form = document.getElementById('modalContactForm');
-    if (!form) return;
+    // Update form submission to include house type
+document.getElementById('modalContactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const phoneInput = document.getElementById('modalPhone');
+  const cleanPhone = phoneInput.value.replace(/\D/g, '');
+  
+  if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
+    alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
+    return;
+  }
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const phoneInput = document.getElementById('modalPhone');
-        const cleanPhone = phoneInput.value.replace(/\D/g, '');
-        
-        if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
-            alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
-            return;
-        }
-
-        const marketing = getNextMarketingPerson();
-        const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
-                             marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
-                             '62' + marketing.phone;
-        
-        const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${document.getElementById('modalName').value || '-'}\n🏙️ *Kota Asal/Tinggal*: ${document.getElementById('modalCity').value || '-'}\n📱 *Nomor WhatsApp*: ${phoneInput.value || '-'}\n💼 *Pekerjaan*: ${document.getElementById('modalJob').value || '-'}\n💰 *Penghasilan Per Bulan*: ${document.getElementById('modalIncome').value || '-'}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
-        
-        window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`, '_blank');
-        
-        if (typeof fbq !== 'undefined') {
-            fbq('track', 'Lead');
-        }
-        
-        form.reset();
-        closeFormModal();
-    });
-}
+  const marketing = getNextMarketingPerson();
+  const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
+                       marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
+                       '62' + marketing.phone;
+  
+  const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${document.getElementById('modalName').value || '-'}\n🏙️ *Kota Asal/Tinggal*: ${document.getElementById('modalCity').value || '-'}\n📱 *Nomor WhatsApp*: ${phoneInput.value || '-'}\n🏠 *Tipe Rumah*: ${document.getElementById('modalType').value || '-'}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
+  
+  window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`, '_blank');
+  
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Lead');
+  }
+  
+  this.reset();
+  closeFormModal();
+});
 
 // ===== FAQ ACCORDION =====
 function initializeFAQ() {
