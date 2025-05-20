@@ -2956,6 +2956,30 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+.price-type-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.type-btn {
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 2px solid white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.type-btn.active {
+  background: linear-gradient(45deg, var(--emas), var(--orange));
+  color: var(--hitam);
+  border-color: transparent;
+}
     
 </style>
 </head>
@@ -2968,7 +2992,12 @@ footer {
            <h1>PERUMAHAAN ISLAMI TERBESAR DI KUNINGAN</h1>
             <p>Cicilan mulai <span style="font-weight: 700;">Rp 1 Juta-an/bulan</span> - Lokasi di Pusat Kota Kuningan</p>
 
-            <div class="price-box-container">
+            <div class="price-type-selector">
+  <button class="type-btn active" data-type="subsidi">Tipe Subsidi</button>
+  <button class="type-btn" data-type="suite">Tipe Suite</button>
+</div>
+
+<div class="price-box-container" id="subsidi-price">
   <div class="price-box old">
     <div class="price-label">Harga Normal</div>
     <div class="price-amount">185 Juta</div>
@@ -2976,6 +3005,17 @@ footer {
   <div class="price-box new">
     <div class="price-label">Harga Promo</div>
     <div class="price-amount">168 Juta</div>
+  </div>
+</div>
+
+<div class="price-box-container" id="suite-price" style="display:none;">
+  <div class="price-box old">
+    <div class="price-label">Harga Normal</div>
+    <div class="price-amount">309 Juta</div>
+  </div>
+  <div class="price-box new">
+    <div class="price-label">Harga Promo</div>
+    <div class="price-amount">277 Juta</div>
   </div>
 </div>
 
