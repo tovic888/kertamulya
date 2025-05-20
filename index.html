@@ -2980,7 +2980,43 @@ footer {
   color: var(--hitam);
   border-color: transparent;
 }
-    
+ .gallery-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--merah);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  z-index: 2;
+  animation: pulse 1.5s infinite;
+}
+
+.suite-item {
+  border: 3px solid var(--emas);
+  position: relative;
+}
+
+.suite-item .gallery-caption {
+  background: linear-gradient(to top, rgba(241,196,15,0.8), transparent);
+}
+
+.gallery-item:hover .gallery-caption {
+  transform: translateY(0);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+   
 </style>
 </head>
 <body>
@@ -3175,39 +3211,75 @@ footer {
 </section>
 <!-- Gallery Section -->
 <section class="gallery-section">
-    <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>GALERI KERTAMULYA RESIDENCE</h2>
-            <p>Lihat keindahan dan kenyamanan Perumahan Islami pertama di Kuningan</p>
-        </div>
-        
-        <div class="gallery-container" id="lightgallery">
-            <a href="https://i.imgur.com/JKpZ6YT.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="100" data-sub-html="<h4>Tampak Depan Rumah 1</h4>">
-                <img src="https://i.imgur.com/JKpZ6YT.jpeg" alt="Tampak Depan Rumah 1" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Tampak Depan Rumah 1</div>
-            </a>
-            <a href="https://i.imgur.com/NXt5lhy.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="200" data-sub-html="<h4>Tampak Depan Rumah 2</h4>">
-                <img src="https://i.imgur.com/NXt5lhy.jpeg" alt="Tampak Depan Rumah 2" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Tampak Depan Rumah 2</div>
-            </a>
-            <a href="https://i.imgur.com/kN5ddyp.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="300" data-sub-html="<h4>Area Dapur</h4>">
-                <img src="https://i.imgur.com/kN5ddyp.jpeg" alt="Area Dapur" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Area Dapur</div>
-            </a>
-            <a href="https://i.imgur.com/yCkpfGP.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="400" data-sub-html="<h4>Area Tengah Rumah</h4>">
-                <img src="https://i.imgur.com/yCkpfGP.jpeg" alt="Area Tengah Rumah" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Area Tengah Rumah</div>
-            </a>
-            <a href="https://imgur.com/mF6vSAW.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="400" data-sub-html="<h4>Area Mezzaine Tambahan</h4>">
-                <img src="https://imgur.com/mF6vSAW.jpeg" alt="Area Mezzaine Tambahan" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Area Mezzaine Tambahan</div>
-            </a>
-            <a href="https://i.imgur.com/brDuyYM.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="500" data-sub-html="<h4>Denah Rumah Tipe 30/60</h4>">
-                <img src="https://i.imgur.com/brDuyYM.jpg" alt="Denah Rumah Tipe 30/60" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Denah Rumah Tipe 30/60</div>
-            </a>
-        </div>
-    </div>
+    <div class="gallery-container" id="lightgallery">
+  <!-- Tipe Suite Items -->
+  <a href="https://imgur.com/SG7lFvg.jpg" class="gallery-item suite-item" data-aos="fade-up" data-aos-delay="100" data-sub-html="<h4>Tipe Suite - Tampak Depan</h4>">
+    <img src="https://imgur.com/SG7lFvg.jpg" alt="Tipe Suite - Tampak Depan" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Suite - Tampak Depan</div>
+    <div class="gallery-badge">TERLARIS</div>
+  </a>
+  
+  <a href="https://imgur.com/LJpsD3m.jpg" class="gallery-item suite-item" data-aos="fade-up" data-aos-delay="150" data-sub-html="<h4>Tipe Suite - Ruang Tamu</h4>">
+    <img src="https://imgur.com/LJpsD3m.jpg" alt="Tipe Suite - Ruang Tamu" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Suite - Ruang Tamu</div>
+  </a>
+  
+  <a href="https://imgur.com/9Vonwvs.jpg" class="gallery-item suite-item" data-aos="fade-up" data-aos-delay="200" data-sub-html="<h4>Tipe Suite - Kamar Utama</h4>">
+    <img src="https://imgur.com/9Vonwvs.jpg" alt="Tipe Suite - Kamar Utama" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Suite - Kamar Utama</div>
+  </a>
+  
+  <a href="https://imgur.com/UmdNjnI.jpg" class="gallery-item suite-item" data-aos="fade-up" data-aos-delay="250" data-sub-html="<h4>Tipe Suite - Kamar Tidur</h4>">
+    <img src="https://imgur.com/UmdNjnI.jpg" alt="Tipe Suite - Kamar Tidur" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Suite - Kamar Tidur</div>
+  </a>
+  
+  <a href="https://imgur.com/laNvfa3.jpg" class="gallery-item suite-item" data-aos="fade-up" data-aos-delay="300" data-sub-html="<h4>Tipe Suite - Dapur Modern</h4>">
+    <img src="https://imgur.com/laNvfa3.jpg" alt="Tipe Suite - Dapur Modern" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Suite - Dapur Modern</div>
+  </a>
+  
+  <a href="https://imgur.com/GJHKDwY.jpg" class="gallery-item suite-item" data-aos="fade-up" data-aos-delay="350" data-sub-html="<h4>Tipe Suite - Kamar Mandi</h4>">
+    <img src="https://imgur.com/GJHKDwY.jpg" alt="Tipe Suite - Kamar Mandi" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Suite - Kamar Mandi</div>
+  </a>
+  
+  <a href="https://imgur.com/K3YECpb.jpg" class="gallery-item suite-item" data-aos="fade-up" data-aos-delay="400" data-sub-html="<h4>Tipe Suite - Taman Pribadi</h4>">
+    <img src="https://imgur.com/K3YECpb.jpg" alt="Tipe Suite - Taman Pribadi" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Suite - Taman Pribadi</div>
+  </a>
+
+  <!-- Tipe Subsidi Items -->
+  <a href="https://i.imgur.com/JKpZ6YT.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="450" data-sub-html="<h4>Tipe Subsidi - Tampak Depan</h4>">
+    <img src="https://i.imgur.com/JKpZ6YT.jpeg" alt="Tipe Subsidi - Tampak Depan" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Subsidi - Tampak Depan</div>
+  </a>
+  
+  <a href="https://i.imgur.com/NXt5lhy.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="500" data-sub-html="<h4>Tipe Subsidi - Tampak Samping</h4>">
+    <img src="https://i.imgur.com/NXt5lhy.jpeg" alt="Tipe Subsidi - Tampak Samping" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Subsidi - Tampak Samping</div>
+  </a>
+  
+  <a href="https://i.imgur.com/kN5ddyp.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="550" data-sub-html="<h4>Tipe Subsidi - Dapur</h4>">
+    <img src="https://i.imgur.com/kN5ddyp.jpeg" alt="Tipe Subsidi - Dapur" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Subsidi - Dapur</div>
+  </a>
+  
+  <a href="https://i.imgur.com/yCkpfGP.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="600" data-sub-html="<h4>Tipe Subsidi - Ruang Tengah</h4>">
+    <img src="https://i.imgur.com/yCkpfGP.jpeg" alt="Tipe Subsidi - Ruang Tengah" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Subsidi - Ruang Tengah</div>
+  </a>
+  
+  <a href="https://imgur.com/mF6vSAW.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="650" data-sub-html="<h4>Tipe Subsidi - Area Mezzanine</h4>">
+    <img src="https://imgur.com/mF6vSAW.jpeg" alt="Tipe Subsidi - Area Mezzanine" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Subsidi - Area Mezzanine</div>
+  </a>
+  
+  <a href="https://i.imgur.com/brDuyYM.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="700" data-sub-html="<h4>Tipe Subsidi - Denah Rumah</h4>">
+    <img src="https://i.imgur.com/brDuyYM.jpg" alt="Tipe Subsidi - Denah Rumah" width="600" height="400" loading="lazy">
+    <div class="gallery-caption">Tipe Subsidi - Denah Rumah</div>
+  </a>
+</div>
 </section>
 <!-- ===== TIKTOK GALLERY SECTION ===== -->
 <section class="section tiktok-section">
