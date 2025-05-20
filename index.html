@@ -4767,6 +4767,16 @@ function loadTikTokVideos() {
         document.body.appendChild(script);
     }
 }
+// Type selector functionality
+document.querySelectorAll('.type-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    
+    document.getElementById('subsidi-price').style.display = this.dataset.type === 'subsidi' ? 'flex' : 'none';
+    document.getElementById('suite-price').style.display = this.dataset.type === 'suite' ? 'flex' : 'none';
+  });
+});
 </script>
 </body>
 </html>
