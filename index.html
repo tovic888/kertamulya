@@ -23,19 +23,18 @@
   <!-- Basic Meta -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>🔥 Rumah Suite & Subsidi Syariah Kuningan | DP 0% + Motor Gratis</title>
-<meta name="description" content="PILIH TIPE FAVORIT ANDA: Suite (Rp277 Juta) atau Subsidi (Rp168 Juta). Booking Fee 500rb via BJB/BTN Syariah. Cicilan Mulai Rp1 juta-an/bulan. Gratis Motor Listrik. Lokasi Pusat Kota Kuningan.">
-<meta name="keywords" content="rumah suite kuningan, rumah subsidi syariah, perumahan islami kuningan, dp 0% syariah, kpr bjb syariah, kpr btn syariah, cicilan 1 juta, motor gratis, kertamulya residence, rumah keluarga modern">
+  <title>🔥 DP 0% Rumah Syariah Kuningan + Motor Gratis | Booking Fee 500rb Saja</title>
+  <meta name="description" content="SOLUSI KEPEMILIKAN RUMAH SYARIAH! Booking Fee 500rb via BJB Syariah & BTN Syariah. Cicilan Mulai Rp1 juta-an/bulan. Dapatkan Motor Listrik Gratis. Lokasi Strategis Pusat Kota Kuningan.">
+  <meta name="keywords" content="rumah syariah kuningan, Perumahan Islami, dp 0% syariah, kpr bjb syariah, kpr btn syariah, cicilan 1 juta, motor gratis, kertamulya residence">
 
- <meta property="og:title" content="🔥 Rumah Suite & Subsidi Syariah Kuningan | DP 0% + Motor Gratis">
-<meta property="og:description" content="PILIH TIPE FAVORIT ANDA: Suite (Rp277 Juta) atau Subsidi (Rp168 Juta). Booking Fee 500rb via BJB/BTN Syariah.">
-<meta property="twitter:title" content="🔥 Rumah Suite & Subsidi Syariah Kuningan | DP 0% + Motor Gratis">
-<meta property="twitter:description" content="PILIH TIPE FAVORIT ANDA: Suite (Rp277 Juta) atau Subsidi (Rp168 Juta). Booking Fee 500rb via BJB/BTN Syariah.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://kertamulyaresidence.com/">
-<meta property="og:image" content="https://i.imgur.com/EimqXek.jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+  <!-- Open Graph (Facebook) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kertamulyaresidence.com/">
+  <meta property="og:title" content="🔥 DP 0% Rumah Syariah Kuningan + Motor Gratis">
+  <meta property="og:description" content="SOLUSI KEPEMILIKAN RUMAH SYARIAH! Booking Fee 500rb via BJB Syariah & BTN Syariah. Cicilan Mulai Rp1 juta-an/bulan">
+  <meta property="og:image" content="https://i.imgur.com/EimqXek.jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta property="twitter:card" content="summary_large_image">
@@ -754,102 +753,53 @@ button {
   line-height: 1.6;
 }
 
-/* Gallery Styles */
+/* ===== GALLERY SECTION ===== */
+.gallery-section {
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  padding: 80px 0;
+}
+
 .gallery-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 40px;
 }
 
 .gallery-item {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    height: 250px;
-    cursor: pointer;
-    border: 3px solid white;
-    transition: all 0.3s ease;
-}
-
-.gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  height: 250px;
+  cursor: pointer;
+  border: 3px solid white;
 }
 
 .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.05);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
 .gallery-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    color: white;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-    font-size: 1rem;
-    font-weight: 600;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .gallery-item:hover .gallery-caption {
-    transform: translateY(0);
-}
-
-/* Suite Featured Styles */
-.gallery-item.suite-featured {
-    position: relative;
-    border: 3px solid var(--emas);
-    grid-column: 1 / -1;
-    height: 400px;
-}
-
-.suite-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: linear-gradient(45deg, #e74c3c, #c0392b);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    z-index: 2;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    animation: pulse 2s infinite;
-}
-
-.gallery-item:hover .suite-badge {
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .gallery-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .gallery-item.suite-featured {
-        height: 300px;
-    }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+  transform: translateY(0);
 }
 
 /* ===== COMPARISON SECTION ===== */
@@ -3006,135 +2956,7 @@ footer {
         grid-template-columns: 1fr;
     }
 }
-/* Mobile-first enhancements */
-@media (max-width: 767px) {
-    .section {
-        padding: 50px 0;
-    }
     
-    .section-title h2 {
-        font-size: 1.8rem;
-    }
-    
-    .gallery-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .comparison-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .comparison-table {
-        min-width: 600px;
-    }
-    
-    .price-box-container {
-        flex-direction: column;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-    }
-    
-    .hero h1 {
-        font-size: 2rem;
-        line-height: 1.2;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-}
-
-/* Performance optimizations */
-img {
-    width: 100%;
-    height: auto;
-    loading: lazy;
-}
-
-/* Smooth animations */
-[data-aos] {
-    transition-property: transform, opacity;
-    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Touch target sizes */
-button, .btn, a[role="button"] {
-    min-height: 48px;
-    min-width: 48px;
-}   
-
-/* Add to your existing CSS */
-.suite-highlight {
-    background-color: rgba(241, 196, 15, 0.1) !important;
-    font-weight: 600;
-    border-left: 3px solid var(--emas);
-}
-
-.comparison-table th:nth-child(2) {
-    background: linear-gradient(90deg, #f1c40f, #e67e22);
-}
- /* Mobile-first enhancements */
-@media (max-width: 767px) {
-    .section {
-        padding: 50px 0;
-    }
-    
-    .section-title h2 {
-        font-size: 1.8rem;
-    }
-    
-    .gallery-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .comparison-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .comparison-table {
-        min-width: 600px;
-    }
-    
-    .price-box-container {
-        flex-direction: column;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-    }
-    
-    .hero h1 {
-        font-size: 2rem;
-        line-height: 1.2;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-}
-
-/* Performance optimizations */
-img {
-    width: 100%;
-    height: auto;
-    loading: lazy;
-}
-
-/* Smooth animations */
-[data-aos] {
-    transition-property: transform, opacity;
-    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Touch target sizes */
-button, .btn, a[role="button"] {
-    min-height: 48px;
-    min-width: 48px;
-}
 </style>
 </head>
 <body>
@@ -3311,7 +3133,7 @@ button, .btn, a[role="button"] {
         </div>
     </div>
 </section>
-
+<!-- Gallery Section -->
 <section class="gallery-section">
     <div class="container">
         <div class="section-title" data-aos="fade-up">
@@ -3320,71 +3142,27 @@ button, .btn, a[role="button"] {
         </div>
         
         <div class="gallery-container" id="lightgallery">
-            <!-- Suite Type - Featured with Badge -->
-            <a href="https://imgur.com/SG7lFvg.jpg" class="gallery-item suite-featured" data-aos="fade-up" data-aos-delay="50" data-sub-html="<h4>Tipe Suite - Rumah Keluarga Modern</h4>">
-                <div class="suite-badge">TERLARIS</div>
-                <img src="https://imgur.com/SG7lFvg.jpg" alt="Tipe Suite - Rumah Keluarga Modern" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Tipe Suite - Rumah Keluarga Modern</div>
-            </a>
-            
-            <!-- Other Suite Images -->
-            <a href="https://imgur.com/LJpsD3m.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="100" data-sub-html="<h4>Tipe Suite - Kamar Tidur Utama</h4>">
-                <img src="https://imgur.com/LJpsD3m.jpg" alt="Tipe Suite - Kamar Tidur Utama" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Tipe Suite - Kamar Tidur Utama</div>
-            </a>
-            
-            <a href="https://imgur.com/9Vonwvs.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="150" data-sub-html="<h4>Tipe Suite - Ruang Keluarga</h4>">
-                <img src="https://imgur.com/9Vonwvs.jpg" alt="Tipe Suite - Ruang Keluarga" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Tipe Suite - Ruang Keluarga</div>
-            </a>
-            
-            <a href="https://imgur.com/UmdNjnI.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="200" data-sub-html="<h4>Tipe Suite - Kamar Tidur Anak</h4>">
-                <img src="https://imgur.com/UmdNjnI.jpg" alt="Tipe Suite - Kamar Tidur Anak" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Tipe Suite - Kamar Tidur Anak</div>
-            </a>
-            
-            <a href="https://imgur.com/laNvfa3.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="250" data-sub-html="<h4>Tipe Suite - Dapur Modern</h4>">
-                <img src="https://imgur.com/laNvfa3.jpg" alt="Tipe Suite - Dapur Modern" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Tipe Suite - Dapur Modern</div>
-            </a>
-            
-            <a href="https://imgur.com/GJHKDwY.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="300" data-sub-html="<h4>Tipe Suite - Kamar Mandi Mewah</h4>">
-                <img src="https://imgur.com/GJHKDwY.jpg" alt="Tipe Suite - Kamar Mandi Mewah" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Tipe Suite - Kamar Mandi Mewah</div>
-            </a>
-            
-            <a href="https://imgur.com/K3YECpb.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="350" data-sub-html="<h4>Tipe Suite - Taman Pribadi</h4>">
-                <img src="https://imgur.com/K3YECpb.jpg" alt="Tipe Suite - Taman Pribadi" width="600" height="400" loading="lazy">
-                <div class="gallery-caption">Tipe Suite - Taman Pribadi</div>
-            </a>
-            
-            <!-- Original Gallery Items -->
-            <a href="https://i.imgur.com/JKpZ6YT.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="400" data-sub-html="<h4>Tampak Depan Rumah 1</h4>">
+            <a href="https://i.imgur.com/JKpZ6YT.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="100" data-sub-html="<h4>Tampak Depan Rumah 1</h4>">
                 <img src="https://i.imgur.com/JKpZ6YT.jpeg" alt="Tampak Depan Rumah 1" width="600" height="400" loading="lazy">
                 <div class="gallery-caption">Tampak Depan Rumah 1</div>
             </a>
-            
-            <a href="https://i.imgur.com/NXt5lhy.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="450" data-sub-html="<h4>Tampak Depan Rumah 2</h4>">
+            <a href="https://i.imgur.com/NXt5lhy.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="200" data-sub-html="<h4>Tampak Depan Rumah 2</h4>">
                 <img src="https://i.imgur.com/NXt5lhy.jpeg" alt="Tampak Depan Rumah 2" width="600" height="400" loading="lazy">
                 <div class="gallery-caption">Tampak Depan Rumah 2</div>
             </a>
-            
-            <a href="https://i.imgur.com/kN5ddyp.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="500" data-sub-html="<h4>Area Dapur</h4>">
+            <a href="https://i.imgur.com/kN5ddyp.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="300" data-sub-html="<h4>Area Dapur</h4>">
                 <img src="https://i.imgur.com/kN5ddyp.jpeg" alt="Area Dapur" width="600" height="400" loading="lazy">
                 <div class="gallery-caption">Area Dapur</div>
             </a>
-            
-            <a href="https://i.imgur.com/yCkpfGP.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="550" data-sub-html="<h4>Area Tengah Rumah</h4>">
+            <a href="https://i.imgur.com/yCkpfGP.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="400" data-sub-html="<h4>Area Tengah Rumah</h4>">
                 <img src="https://i.imgur.com/yCkpfGP.jpeg" alt="Area Tengah Rumah" width="600" height="400" loading="lazy">
                 <div class="gallery-caption">Area Tengah Rumah</div>
             </a>
-            
-            <a href="https://imgur.com/mF6vSAW.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="600" data-sub-html="<h4>Area Mezzaine Tambahan</h4>">
+            <a href="https://imgur.com/mF6vSAW.jpeg" class="gallery-item" data-aos="fade-up" data-aos-delay="400" data-sub-html="<h4>Area Mezzaine Tambahan</h4>">
                 <img src="https://imgur.com/mF6vSAW.jpeg" alt="Area Mezzaine Tambahan" width="600" height="400" loading="lazy">
                 <div class="gallery-caption">Area Mezzaine Tambahan</div>
             </a>
-            
-            <a href="https://i.imgur.com/brDuyYM.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="650" data-sub-html="<h4>Denah Rumah Tipe 30/60</h4>">
+            <a href="https://i.imgur.com/brDuyYM.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="500" data-sub-html="<h4>Denah Rumah Tipe 30/60</h4>">
                 <img src="https://i.imgur.com/brDuyYM.jpg" alt="Denah Rumah Tipe 30/60" width="600" height="400" loading="lazy">
                 <div class="gallery-caption">Denah Rumah Tipe 30/60</div>
             </a>
@@ -4124,22 +3902,7 @@ button, .btn, a[role="button"] {
                         <p>BENAR 100%! Booking fee 500rb untuk mengamankan unit, proses KPR akan kami bantu sampai disetujui. Tidak ada DP, langsung cicilan mulai Rp 1 juta-an per bulan.</p>
                     </div>
                 </div>
-     <div class="faq-item">
-    <div class="faq-question">
-        <span>Apa perbedaan tipe Subsidi dan Suite?</span>
-        <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="faq-answer">
-        <p>
-            Kedua tipe sama-sama menggunakan sistem syariah dan memiliki fasilitas lengkap, namun Tipe Suite menawarkan:<br><br>
-            <strong>✓ Material Premium:</strong> Bata ringan, rangka baja tebal, dan finishing berkualitas tinggi<br>
-            <strong>✓ Desain Eksklusif:</strong> Arsitektur modern dengan sentuhan Eropa Utara<br>
-            <strong>✓ Ruang Lebih Luas:</strong> 3 kamar tidur dengan tata letak optimal<br>
-            <strong>✓ Investasi Jangka Panjang:</strong> Nilai properti lebih stabil dan cepat naik<br><br>
-            Untuk keluarga muda yang mengutamakan kenyamanan dan gaya hidup modern, Tipe Suite adalah pilihan ideal. Namun, Tipe Subsidi tetap solusi terbaik bagi yang ingin memiliki rumah pertama dengan cicilan ringan.
-        </p>
-    </div>
-</div>    
+                
               <!-- FAQ 2 -->
 <div class="faq-item">
     <div class="faq-question">
