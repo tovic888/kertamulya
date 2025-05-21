@@ -1904,72 +1904,22 @@ footer {
   animation: confetti-fall 5s linear infinite;
 }
 
-.confetti:nth-child(1) {
-  left: 10%;
-  animation-delay: 0s;
-  background: #25D366;
-}
-.confetti:nth-child(2) {
-  left: 20%;
-  animation-delay: 0.5s;
-  background: #128C7E;
-}
-.confetti:nth-child(3) {
-  left: 30%;
-  animation-delay: 1.2s;
-  background: #34B7F1;
-}
-.confetti:nth-child(4) {
-  left: 40%;
-  animation-delay: 0.8s;
-  background: #25D366;
-}
-.confetti:nth-child(5) {
-  left: 50%;
-  animation-delay: 1.5s;
-  background: #128C7E;
-}
-.confetti:nth-child(6) {
-  left: 60%;
-  animation-delay: 0.3s;
-  background: #34B7F1;
-}
-.confetti:nth-child(7) {
-  left: 70%;
-  animation-delay: 1s;
-  background: #25D366;
-}
-.confetti:nth-child(8) {
-  left: 80%;
-  animation-delay: 0.7s;
-  background: #128C7E;
-}
-.confetti:nth-child(9) {
-  left: 90%;
-  animation-delay: 1.3s;
-  background: #34B7F1;
-}
-.confetti:nth-child(10) {
-  left: 100%;
-  animation-delay: 0.2s;
-  background: #25D366;
-}
-
 .wa-confirm-title {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #333;
+  color: #e74c3c;
   position: relative;
   z-index: 1;
 }
 
 .wa-confirm-subtitle {
   font-size: 16px;
-  color: #666;
+  color: #333;
   margin-bottom: 30px;
   position: relative;
   z-index: 1;
+  line-height: 1.5;
 }
 
 .countdown-container {
@@ -2025,55 +1975,9 @@ footer {
   margin-top: 10px;
 }
 
+/* Remove footer completely */
 .wa-confirm-footer {
-  padding: 0 30px 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.whatsapp-btn {
-  background: #25D366;
-  color: white;
-  border: none;
-  padding: 15px;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-}
-
-.whatsapp-btn:hover {
-  background: #128C7E;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
-}
-
-.whatsapp-btn.pulse {
-  animation: pulse 2s infinite;
-}
-
-.close-btn {
-  background: #f5f5f5;
-  color: #666;
-  border: none;
-  padding: 15px;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.close-btn:hover {
-  background: #e0e0e0;
+  display: none;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -4299,8 +4203,11 @@ footer {
         <div class="confetti"></div>
       </div>
       
-      <h3 class="wa-confirm-title">Formulir Terkirim!</h3>
-      <p class="wa-confirm-subtitle">Tim marketing kami akan segera menghubungi Anda</p>
+      <h3 class="wa-confirm-title">🔥 PROMO TERBATAS! 🔥</h3>
+      <p class="wa-confirm-subtitle">
+        <strong>GRATIS MOTOR LISTRIK</strong> untuk 75 booking pertama!<br>
+        Booking fee hanya <strong>Rp500.000</strong> via transfer bank syariah
+      </p>
       
       <div class="countdown-container">
         <div class="countdown-circle">
@@ -4312,15 +4219,6 @@ footer {
         </div>
         <p class="countdown-text">Mengarahkan ke WhatsApp dalam...</p>
       </div>
-    </div>
-    
-    <div class="wa-confirm-footer">
-      <a href="#" id="whatsappLink" class="whatsapp-btn pulse" target="_blank">
-        <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
-      </a>
-      <button class="close-btn" onclick="closeWaConfirm()">
-        Tetap di Halaman Ini
-      </button>
     </div>
   </div>
 </div>
