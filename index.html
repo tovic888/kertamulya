@@ -390,15 +390,18 @@
     }
 
     .type-card-actions {
-      position: absolute;
-      bottom: 1rem;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      z-index: 2;
-    }
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 2;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
 
    /* Center Booking Button */
 .type-card-body .btn-block {
@@ -436,8 +439,9 @@
     }
 
     .type-card-features {
-      margin-bottom: 1.5rem;
-    }
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
 
     .type-card-feature {
       display: flex;
@@ -1274,10 +1278,16 @@
       }
     }
 
-    @media (max-width: 576px) {
-      .hero h1 {
-        font-size: 1.75rem;
-      }
+    /* Responsiveness untuk tombol aksi */
+@media (max-width: 576px) {
+  .type-card-actions {
+    gap: 0.3rem;
+  }
+ .type-card-actions .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+}
       
       .section-title h2 {
         font-size: 1.5rem;
@@ -1458,10 +1468,12 @@
   height: 100%;
 }
 
+
 .type-card-features {
   flex-grow: 1;
   margin-bottom: 1.5rem;
 }
+
 
 /* Animasi harga yang lebih elegan */
 .type-card-price .new {
@@ -1488,36 +1500,82 @@
 }
 .gallery-modal .modal-content {
   max-width: 90%;
-  height: 90vh;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
 }
+
+
 
 .gallery-modal .modal-body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   padding: 0;
+  overflow: hidden;
 }
+
+
 
 .gallery-carousel {
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  position: relative;
 }
+
 
 .slick-list, .slick-track {
   height: 100%;
 }
-
 .slick-slide {
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slick-slide img {
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
+  margin: 0 auto;
 }
+/* Navigation arrows styling */
+.slick-prev, .slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.slick-prev:hover, .slick-next:hover {
+  background: var(--primary);
+}
+
+.slick-prev:before, .slick-next:before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: white;
+  font-size: 20px;
+}
+
+.slick-prev:before {
+  content: '\f053';
+}
+
+.slick-next:before {
+  content: '\f054';
+}
+
+.slick-prev {
+  left: 15px;
+}
+
+.slick-next {
+  right: 15px;
+}
+
 /* Gallery Modal Responsive */
 .gallery-carousel {
   width: 100%;
@@ -1578,6 +1636,7 @@
   color: var(--accent);
   opacity: 1;
 }
+
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
@@ -1649,26 +1708,55 @@
     
     <div class="type-cards">
       <!-- Standard Type -->
-      <div class="type-card" data-type="standard">
-        <div class="type-card-header">
-          <div class="type-card-badge">
-            <span class="badge badge-primary">Terlaris</span>
-          </div>
-          <div class="type-card-image">
-            <img src="https://imgur.com/kYxjjEX.jpg" alt="Tipe Standard 30/60" loading="lazy">
-          </div>
-          <div class="type-card-actions">
-    <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'standard')">
-      <i class="fas fa-images"></i> Galeri
-    </button>
-    <button class="btn btn-accent btn-sm" onclick="showModal('video', 'standard')">
-      <i class="fas fa-play"></i> Video
-    </button>
-    <button class="btn btn-outline btn-sm" onclick="showModal('booking', 'Standard 30/60')">
-      <i class="fas fa-comments"></i> Konsultasi Gratis
+    <div class="type-card" data-type="standard">
+  <div class="type-card-header">
+    <div class="type-card-badge">
+      <span class="badge badge-primary">Terlaris</span>
+    </div>
+    <div class="type-card-image">
+      <img src="https://imgur.com/kYxjjEX.jpg" alt="Tipe Standard 30/60" loading="lazy">
+    </div>
+    <div class="type-card-actions">
+      <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'standard')">
+        <i class="fas fa-images"></i> Galeri
+      </button>
+      <button class="btn btn-accent btn-sm" onclick="showModal('video', 'standard')">
+        <i class="fas fa-play"></i> Video
+      </button>
+      <button class="btn btn-outline btn-sm" onclick="showModal('booking', 'Standard 30/60')">
+        <i class="fas fa-comments"></i> Konsultasi
+      </button>
+    </div>
+  </div>
+  <div class="type-card-body">
+    <h3 class="type-card-title">Tipe Standard 30/60</h3>
+    <div class="type-card-price">
+      <span class="old">Rp185 Juta</span>
+      <span class="new">Rp168 Juta</span>
+    </div>
+    <div class="type-card-features">
+      <div class="type-card-feature">
+        <i class="fas fa-map-marked-alt"></i> Luas Tanah: 60 m²
+      </div>
+      <div class="type-card-feature">
+        <i class="fas fa-home"></i> Luas Bangunan: 30 m²
+      </div>
+      <div class="type-card-feature">
+        <i class="fas fa-bed"></i> 2 Kamar Tidur
+      </div>
+      <div class="type-card-feature">
+        <i class="fas fa-bath"></i> 1 Kamar Mandi
+      </div>
+      <div class="type-card-feature">
+        <i class="fas fa-car"></i> Carport & Taman
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" onclick="showModal('booking', 'Standard 30/60')">
+      <i class="fab fa-whatsapp"></i> Booking Sekarang
     </button>
   </div>
 </div>
+
 
         </div>
         <div class="type-card-body">
@@ -2389,11 +2477,11 @@ function showModal(type, subtype = null, houseType = null) {
     
     images[subtype].forEach(img => {
       const slide = document.createElement('div');
-      slide.innerHTML = `<img src="${img}" alt="Galeri ${subtype}" loading="lazy" style="width:100%; height:auto;">`;
+      slide.innerHTML = `<img src="${img}" alt="Galeri ${subtype}" loading="lazy">`;
       galleryCarousel.appendChild(slide);
     });
     
-    // Initialize Slick carousel with responsive settings
+    // Initialize Slick carousel
     $('#galleryCarousel').slick({
       dots: true,
       arrows: true,
@@ -2421,7 +2509,6 @@ function showModal(type, subtype = null, houseType = null) {
         }
       ]
     });
-
     
     document.getElementById('galleryModal').classList.add('active');
   }
