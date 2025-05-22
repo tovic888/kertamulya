@@ -731,64 +731,7 @@
       border: none;
     }
 
-    /* TikTok Section */
-    .tiktok-section {
-      padding: 5rem 0;
-    }
-
-    .tiktok-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .tiktok-card {
-      position: relative;
-      border-radius: 0.5rem;
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      aspect-ratio: 9/16;
-      background: #000;
-    }
-
-    .tiktok-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .tiktok-play {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.3);
-      color: var(--light);
-      font-size: 2rem;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .tiktok-card:hover .tiktok-play {
-      opacity: 1;
-    }
-
-    .tiktok-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 1rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      color: var(--light);
-      font-size: 0.875rem;
-      font-weight: 500;
-    }
+   
 
     /* CTA Section */
     .cta-section {
@@ -2159,47 +2102,7 @@
     </div>
   </section>
 
-  <!-- TikTok Section -->
-  <section class="tiktok-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Konten Terbaru di TikTok</h2>
-        <p>Ikuti perkembangan terbaru Kertamulya Residence</p>
-      </div>
-      
-      <div class="tiktok-grid">
-        <div class="tiktok-card">
-          <video class="tiktok-video" loop muted playsinline>
-            <source src="https://v16m-webapp.tiktokcdn-us.com/ed129ec01a9a7c0b5b7e0895d0e6e0e3/62f5a4d2/video/tos/useast5/tos-useast5-pve-0068-tx/699b9e0e4b114a7d9a3c0a5f0e5e5e5e/?a=1988&ch=0&cr=0&dr=0&lr=tiktok_m&cd=0%7C0%7C1%7C0&cv=1&br=4020&bt=2010&cs=0&ds=3&ft=4a~OySYq8Zmo0jzTt64jVXwQYp~rM~Gb&mime_type=video_mp4&qs=0&rc=OTw4Ozw8ZjVnOjQ6Zjs1NEBpanQ0aDc6ZmY1ZTMzZjgzM0AzLzAvLi0xLzExMTYtYy8wYSNfcjRvcjRnZGpgLS1kMTZzcw%3D%3D&l=202208101644490101910650160D00B3A9" type="video/mp4">
-          </video>
-          <div class="tiktok-play">
-            <i class="fas fa-play"></i>
-          </div>
-          <div class="tiktok-caption">Kawasan Milenial Islami</div>
-        </div>
-        
-        <div class="tiktok-card">
-          <video class="tiktok-video" loop muted playsinline>
-            <source src="https://v16m-webapp.tiktokcdn-us.com/ed129ec01a9a7c0b5b7e0895d0e6e0e3/62f5a4d2/video/tos/useast5/tos-useast5-pve-0068-tx/699b9e0e4b114a7d9a3c0a5f0e5e5e5e/?a=1988&ch=0&cr=0&dr=0&lr=tiktok_m&cd=0%7C0%7C1%7C0&cv=1&br=4020&bt=2010&cs=0&ds=3&ft=4a~OySYq8Zmo0jzTt64jVXwQYp~rM~Gb&mime_type=video_mp4&qs=0&rc=OTw4Ozw8ZjVnOjQ6Zjs1NEBpanQ0aDc6ZmY1ZTMzZjgzM0AzLzAvLi0xLzExMTYtYy8wYSNfcjRvcjRnZGpgLS1kMTZzcw%3D%3D&l=202208101644490101910650160D00B3A9" type="video/mp4">
-          </video>
-          <div class="tiktok-play">
-            <i class="fas fa-play"></i>
-          </div>
-          <div class="tiktok-caption">60 Unit Terjual Bulan Ini</div>
-        </div>
-        
-        <div class="tiktok-card">
-          <video class="tiktok-video" loop muted playsinline>
-            <source src="https://v16m-webapp.tiktokcdn-us.com/ed129ec01a9a7c0b5b7e0895d0e6e0e3/62f5a4d2/video/tos/useast5/tos-useast5-pve-0068-tx/699b9e0e4b114a7d9a3c0a5f0e5e5e5e/?a=1988&ch=0&cr=0&dr=0&lr=tiktok_m&cd=0%7C0%7C1%7C0&cv=1&br=4020&bt=2010&cs=0&ds=3&ft=4a~OySYq8Zmo0jzTt64jVXwQYp~rM~Gb&mime_type=video_mp4&qs=0&rc=OTw4Ozw8ZjVnOjQ6Zjs1NEBpanQ0aDc6ZmY1ZTMzZjgzM0AzLzAvLi0xLzExMTYtYy8wYSNfcjRvcjRnZGpgLS1kMTZzcw%3D%3D&l=202208101644490101910650160D00B3A9" type="video/mp4">
-          </video>
-          <div class="tiktok-play">
-            <i class="fas fa-play"></i>
-          </div>
-          <div class="tiktok-caption">Beli Rumah Gratis Motor</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- CTA Section -->
   <section class="cta-section">
@@ -2644,16 +2547,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
     // Then show every 2-5 minutes
     setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
 
-    // TikTok videos - this would be replaced with actual TikTok embed code
-    // For demo purposes, we're just using placeholder videos
-    const tiktokVideos = document.querySelectorAll('.tiktok-video');
-    tiktokVideos.forEach(video => {
-      video.addEventListener('click', function() {
-        this.requestFullscreen();
-        this.muted = false;
-        this.play();
-      });
-    });
+    
 
 
 // Initialize on page load
