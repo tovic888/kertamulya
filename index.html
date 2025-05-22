@@ -1382,71 +1382,103 @@
         padding: 1.5rem;
       }
     }
+
+/* Sold Today Animation */
+.sold-today {
+  background: rgba(0,0,0,0.7);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 300px;
+  text-align: center;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
+  animation: pulse-glow 2s infinite;
+}
+
+.sold-count {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, var(--accent), var(--accent-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(241, 196, 15, 0.3);
+  animation: count-bounce 1s ease;
+}
+
+.sold-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
+  50% { box-shadow: 0 0 25px rgba(241, 196, 15, 0.8); }
+  100% { box-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
+}
+
+@keyframes count-bounce {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(0.95); }
+  75% { transform: scale(1.05); }
+}
+
+// CSS for fireworks (tambahkan ke CSS)
+.firework-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: firework-explode 1s ease-out forwards;
+}
+
+@keyframes firework-explode {
+  0% { 
+    transform: translate(0, 0);
+    opacity: 1;
+    width: 6px;
+    height: 6px;
+  }
+  100% { 
+    transform: translate(var(--random-x), var(--random-y));
+    opacity: 0;
+    width: 2px;
+    height: 2px;
+  }
+}
   </style>
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="hero-logo" loading="lazy">
-        
-        <h1>Perumahan Islami Terbaik di Kuningan</h1>
-        <p>DP 0% + Motor Listrik Gratis | Cicilan Mulai Rp1 Juta-an/Bulan</p>
-        
-        <div class="price-comparison">
-          <div class="old-price">Harga Normal: Rp185 Juta</div>
-          <div class="new-price">Harga Promo: Rp168 Juta</div>
-        </div>
-        
-        <div class="price-tag">PROMO TERBATAS 2025</div>
-        
-        <div class="cta-buttons">
-          <button class="btn btn-accent" onclick="showModal('booking')">
-            <i class="fab fa-whatsapp"></i> Booking Sekarang
-          </button>
-          <a href="#house-types" class="btn btn-outline">
-            <i class="fas fa-home"></i> Lihat Tipe Rumah
-          </a>
-        </div>
-        
-        <div class="social-proof">
-          <div class="social-proof-item">
-            <i class="fas fa-star"></i> 4.9/5 (128 Reviews)
-          </div>
-          <div class="social-proof-item">
-            <i class="fas fa-home"></i> 200+ Unit Terjual
-          </div>
-          <div class="social-proof-item">
-            <i class="fas fa-bolt"></i> 12 Terjual Hari Ini
-          </div>
-        </div>
-        
-        <div class="running-text">
-          <div class="running-text-content">
-            <div class="running-text-item">
-              <i class="fas fa-gift"></i> Booking Fee 500rb Dapat Motor Listrik
-            </div>
-            <div class="running-text-item">
-              <i class="fas fa-clock"></i> Promo Berakhir dalam 3 Hari
-            </div>
-            <div class="running-text-item">
-              <i class="fas fa-home"></i> Kuota Terbatas Hanya 75 Unit
-            </div>
-            <div class="running-text-item">
-              <i class="fas fa-gift"></i> Booking Fee 500rb Dapat Motor Listrik
-            </div>
-            <div class="running-text-item">
-              <i class="fas fa-clock"></i> Promo Berakhir dalam 3 Hari
-            </div>
-            <div class="running-text-item">
-              <i class="fas fa-home"></i> Kuota Terbatas Hanya 75 Unit
-            </div>
-          </div>
-        </div>
+ <!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="hero-logo" loading="lazy">
+      
+      <h1>Perumahan Islami Terbaik di Kuningan</h1>
+      <p>DP 0% + Motor Listrik Gratis | Cicilan Mulai Rp1 Juta-an/Bulan</p>
+      
+      <div class="sold-today">
+        <div class="sold-count">12</div>
+        <div class="sold-label">Unit Terjual Hari Ini</div>
+      </div>
+      
+      <div class="cta-buttons">
+        <a href="#house-types" class="btn btn-outline">
+          <i class="fas fa-home"></i> Lihat Tipe Rumah
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Notification -->
   <div class="notification" id="notification">
@@ -2370,6 +2402,57 @@
         this.play();
       });
     });
+
+// Animate sold today count
+function animateSoldCount() {
+  const soldCount = document.querySelector('.sold-count');
+  let current = 0;
+  const target = 12;
+  const duration = 2000;
+  const increment = target / (duration / 16);
+  
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      clearInterval(timer);
+      current = target;
+      // Add fireworks effect after count completes
+      addFireworks();
+    }
+    soldCount.textContent = Math.floor(current);
+  }, 16);
+}
+
+// Add fireworks effect
+function addFireworks() {
+  const soldToday = document.querySelector('.sold-today');
+  const colors = ['#f1c40f', '#e74c3c', '#2ecc71', '#3498db'];
+  
+  for (let i = 0; i < 8; i++) {
+    const firework = document.createElement('div');
+    firework.className = 'firework-particle';
+    firework.style.left = `${Math.random() * 100}%`;
+    firework.style.top = `${Math.random() * 100}%`;
+    firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    firework.style.animationDelay = `${Math.random() * 0.5}s`;
+    soldToday.appendChild(firework);
+    
+    // Remove after animation
+    setTimeout(() => {
+      firework.remove();
+    }, 1000);
+  }
+}
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  animateSoldCount();
+  
+  // Re-animate every 10 seconds
+  setInterval(() => {
+    animateSoldCount();
+  }, 10000);
+});
+
   </script>
 </body>
 </html> 
