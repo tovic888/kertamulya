@@ -2223,29 +2223,116 @@ button, input, textarea, select {
       </div>
     </div>
   </div>
-
-  <!-- Scripts -->
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
   <script>
-    // Initialize AOS animation
-    document.addEventListener('DOMContentLoaded', function() {
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true
-      });
+    // Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize countdown timer
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  
+  // Initialize type selector functionality
+  setupTypeSelector();
+  
+  // Initialize random notifications
+  setTimeout(showRandomNotification, 10000);
+  setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
+  
+  // Initialize sold count animation
+  animateSoldCount();
+  
+  // Initialize form submission
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const type = document.getElementById('type').value;
+    
+    const message = `Assalamu'alaikum wr wb,\n\nSaya ${name} tertarik dengan Kertamulya Residence tipe ${type}.\n\nMohon info lebih lanjut mengenai:\n- Proses pembelian\n- Syarat KPR\n- Promo yang berlaku\n\nTerima kasih.`;
+    const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+    
+    window.location.href = waLink;
+  });
+});
+
+// Countdown timer function
+function updateCountdown() {
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 3); // 3 days from now
+  
+  const now = new Date().getTime();
+  const distance = endDate - now;
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  document.getElementById('days').textContent = days.toString().padStart(2, '0');
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+}
+
+// Type selector functionality
+function setupTypeSelector() {
+  const typeButtons = document.querySelectorAll('.type-btn');
+  const typeCards = document.querySelectorAll('.type-card');
+  
+  typeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      typeButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
       
-      // Initialize lightGallery
-      lightGallery(document.getElementById('lightgallery'), {
-        selector: '.gallery-item',
-        download: false,
-        counter: false
+      const type = button.dataset.type;
+      typeCards.forEach(card => {
+        card.style.display = (type === 'all' || card.dataset.type === type) ? 'block' : 'none';
       });
     });
+  });
+}
 
-  // Update the showModal function
+// Random notifications function
+function showRandomNotification() {
+  const notifications = [
+    "Pak Budi baru saja booking unit Tipe Suite!",
+    "Bu Ani menyelesaikan KPR untuk Tipe Standard",
+    "12 unit terjual hari ini!",
+    "Promo motor gratis hanya sampai 3 hari lagi",
+    "Kuota tersisa hanya 24 unit"
+  ];
+  
+  const notification = document.getElementById('notification');
+  const notificationText = document.getElementById('notificationText');
+  
+  notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
+  notification.style.display = 'flex';
+  notification.style.opacity = '1';
+  
+  setTimeout(() => {
+    notification.style.opacity = '0';
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 300);
+  }, 5000);
+}
+
+// Sold count animation
+function animateSoldCount() {
+  const soldCount = document.querySelector('.sold-count');
+  let count = 0;
+  const target = 12;
+  const interval = setInterval(() => {
+    count++;
+    soldCount.textContent = count;
+    if(count >= target) clearInterval(interval);
+  }, 150);
+}
+
+// Modal functions
 function showModal(type, subtype = null, houseType = null) {
   if(type === 'gallery' && subtype) {
     document.getElementById('galleryTitle').textContent = `Galeri Tipe ${subtype.charAt(0).toUpperCase() + subtype.slice(1)}`;
@@ -2276,7 +2363,6 @@ function showModal(type, subtype = null, houseType = null) {
       galleryCarousel.appendChild(slide);
     });
     
-    // Initialize Slick carousel
     $('#galleryCarousel').slick({
       dots: true,
       arrows: true,
@@ -2286,23 +2372,7 @@ function showModal(type, subtype = null, houseType = null) {
       slidesToScroll: 1,
       adaptiveHeight: true,
       autoplay: true,
-      autoplaySpeed: 3000,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            arrows: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            arrows: true,
-            dots: true
-          }
-        }
-      ]
+      autoplaySpeed: 3000
     });
     
     document.getElementById('galleryModal').classList.add('active');
@@ -2338,176 +2408,6 @@ function hideModal(type) {
     document.getElementById('videoModal').classList.remove('active');
   }
 }
-
-
-  // Update the form submission
-document.getElementById('bookingForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const type = document.getElementById('type').value;
-  
-  const message = `Assalamu'alaikum wr wb,\n\nSaya ${name} tertarik dengan Kertamulya Residence tipe ${type}.\n\nMohon info lebih lanjut mengenai:\n- Proses pembelian\n- Syarat KPR\n- Promo yang berlaku\n\nTerima kasih.`;
-  const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-  
-  window.location.href = waLink;
-});
-
-
-
-    // Countdown timer
-    function updateCountdown() {
-      const endDate = new Date();
-      endDate.setDate(endDate.getDate() + 3); // 3 days from now
-      
-      const now = new Date().getTime();
-      const distance = endDate - now;
-      
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-      document.getElementById('days').textContent = days.toString().padStart(2, '0');
-      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-    }
-    
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // Type selector
-    const typeButtons = document.querySelectorAll('.type-btn');
-    const typeCards = document.querySelectorAll('.type-card');
-    
-    typeButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        typeButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        const type = button.dataset.type;
-        typeCards.forEach(card => {
-          if(type === 'all' || card.dataset.type === type) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // Random notifications
-    const notifications = [
-      "Pak Budi baru saja booking unit Tipe Suite!",
-      "Bu Ani menyelesaikan KPR untuk Tipe Standard",
-      "12 unit terjual hari ini!",
-      "Promo motor gratis hanya sampai 3 hari lagi",
-      "Kuota tersisa hanya 24 unit"
-    ];
-    
-    function showRandomNotification() {
-      const notification = document.getElementById('notification');
-      const notificationText = document.getElementById('notificationText');
-      
-      notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
-      notification.style.display = 'flex';
-      notification.style.opacity = '1';
-      
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        setTimeout(() => {
-          notification.style.display = 'none';
-        }, 300);
-      }, 5000);
-    }
-    
-    // Show first notification after 10 seconds
-    setTimeout(showRandomNotification, 10000);
-    
-    // Then show every 2-5 minutes
-    setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
-
-    
-
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  animateSoldCount();
-  
-  // Re-animate every 10 seconds
-  setInterval(() => {
-    animateSoldCount();
-  }, 10000);
-});
-
-// Add blinking effect to promo prices
-document.addEventListener('DOMContentLoaded', function() {
-  const promoPrices = document.querySelectorAll('.type-card-price .new');
-  
-  promoPrices.forEach(price => {
-    setInterval(() => {
-      price.style.color = price.style.color === 'var(--accent)' ? 
-        'var(--primary)' : 'var(--accent)';
-    }, 1000);
-  });
-});
-// Fungsi form submission yang diperbarui
-document.getElementById('bookingForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const type = document.getElementById('type').value;
-  
-  // Pesan WhatsApp yang lebih personal
-  const message = `Assalamu'alaikum wr wb,\n\nSaya ${name} tertarik dengan Kertamulya Residence tipe ${type}.\n\nMohon info lebih lanjut mengenai:\n- Proses pembelian\n- Syarat KPR\n- Promo yang berlaku\n\nTerima kasih.`;
-  const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-  
-  // Redirect langsung tanpa modal tambahan
-  window.location.href = waLink;
-});
-
-// Fungsi untuk mengisi otomatis tipe rumah
-function setupTypeButtons() {
-  const typeButtons = document.querySelectorAll('.type-btn');
-  const bookingButtons = document.querySelectorAll('[onclick="showModal(\'booking\')"]');
-  
-  typeButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const type = button.dataset.type;
-      // Update semua tombol booking di card yang sesuai
-      document.querySelectorAll(`.type-card[data-type="${type}"] .btn-block`).forEach(btn => {
-        btn.setAttribute('data-house-type', type);
-      });
-    });
-  });
-  
-  // Handler untuk tombol booking
-  bookingButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const card = this.closest('.type-card');
-      const type = card.dataset.type;
-      document.getElementById('type').value = `${type.charAt(0).toUpperCase() + type.slice(1)} ${card.querySelector('.type-card-title').textContent.split(' ')[1]}`;
-    });
-  });
-}
-
-// Panggil fungsi saat DOM siap
-document.addEventListener('DOMContentLoaded', function() {
-  setupTypeButtons();
-  
-  // Animasi sold count yang lebih sederhana
-  const soldCount = document.querySelector('.sold-count');
-  let count = 0;
-  const target = 12;
-  const interval = setInterval(() => {
-    count++;
-    soldCount.textContent = count;
-    if(count >= target) clearInterval(interval);
-  }, 150);
-});
   </script>
 </body>
 </html> 
