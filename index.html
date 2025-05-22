@@ -332,20 +332,7 @@
   overflow: hidden;
 }
 
-.type-card-badge .badge:after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(255,255,255,0.3) 0%,
-    rgba(255,255,255,0) 60%
-  );
-  transform: rotate(30deg);
-}
+
 /* New Price Animation */
 .type-card-price .new {
   font-size: 1.5rem;
@@ -1460,12 +1447,6 @@
   color: var(--primary);
   position: relative;
   display: inline-block;
-  animation: blink 1s infinite alternate;
-}
-
-@keyframes blink {
-  0% { color: var(--primary); }
-  100% { color: var(--accent); }
 }
 
 .type-card-price .new:after {
@@ -1522,7 +1503,42 @@
   color: white;
 }
 
+/* Tambahkan ini untuk posisi tombol yang konsisten */
+.type-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
+.type-card-features {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+/* Animasi harga yang lebih elegan */
+.type-card-price .new {
+  position: relative;
+  display: inline-block;
+}
+
+.type-card-price .new::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+.type-card:hover .type-card-price .new::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
   </style>
 </head>
 <body>
@@ -1616,9 +1632,9 @@
                 <i class="fas fa-check"></i> Carport & Taman
               </div>
             </div>
-            <button class="btn btn-primary btn-block" onclick="showModal('booking')">
-              <i class="fab fa-whatsapp"></i> Konsultasi Sekarang
-            </button>
+           <button class="btn btn-primary btn-block" onclick="showModal('booking')">
+  Konsultasi Sekarang
+</button>
           </div>
         </div>
         
@@ -2472,46 +2488,7 @@
       });
     });
 
-// Animate sold today count
-function animateSoldCount() {
-  const soldCount = document.querySelector('.sold-count');
-  let current = 0;
-  const target = 12;
-  const duration = 2000;
-  const increment = target / (duration / 16);
-  
-  const timer = setInterval(() => {
-    current += increment;
-    if (current >= target) {
-      clearInterval(timer);
-      current = target;
-      // Add fireworks effect after count completes
-      addFireworks();
-    }
-    soldCount.textContent = Math.floor(current);
-  }, 16);
-}
 
-// Add fireworks effect
-function addFireworks() {
-  const soldToday = document.querySelector('.sold-today');
-  const colors = ['#f1c40f', '#e74c3c', '#2ecc71', '#3498db'];
-  
-  for (let i = 0; i < 8; i++) {
-    const firework = document.createElement('div');
-    firework.className = 'firework-particle';
-    firework.style.left = `${Math.random() * 100}%`;
-    firework.style.top = `${Math.random() * 100}%`;
-    firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    firework.style.animationDelay = `${Math.random() * 0.5}s`;
-    soldToday.appendChild(firework);
-    
-    // Remove after animation
-    setTimeout(() => {
-      firework.remove();
-    }, 1000);
-  }
-}
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
   animateSoldCount();
@@ -2533,22 +2510,61 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
   });
 });
-
-<script>
-// Animate promo prices
-document.addEventListener('DOMContentLoaded', function() {
-  // Blinking text effect
-  const promoPrices = document.querySelectorAll('.type-card-price .new');
+// Fungsi form submission yang diperbarui
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
   
-  setInterval(() => {
-    promoPrices.forEach(price => {
-      price.style.color = price.style.color === 'var(--accent)' ? 
-        'var(--primary)' : 'var(--accent)';
-    });
-  }, 1000);
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+  const type = document.getElementById('type').value;
+  
+  // Pesan WhatsApp yang lebih personal
+  const message = `Assalamu'alaikum wr wb,\n\nSaya ${name} tertarik dengan Kertamulya Residence tipe ${type}.\n\nMohon info lebih lanjut mengenai:\n- Proses pembelian\n- Syarat KPR\n- Promo yang berlaku\n\nTerima kasih.`;
+  const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+  
+  // Redirect langsung tanpa modal tambahan
+  window.location.href = waLink;
 });
-</script>
 
+// Fungsi untuk mengisi otomatis tipe rumah
+function setupTypeButtons() {
+  const typeButtons = document.querySelectorAll('.type-btn');
+  const bookingButtons = document.querySelectorAll('[onclick="showModal(\'booking\')"]');
+  
+  typeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const type = button.dataset.type;
+      // Update semua tombol booking di card yang sesuai
+      document.querySelectorAll(`.type-card[data-type="${type}"] .btn-block`).forEach(btn => {
+        btn.setAttribute('data-house-type', type);
+      });
+    });
+  });
+  
+  // Handler untuk tombol booking
+  bookingButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const card = this.closest('.type-card');
+      const type = card.dataset.type;
+      document.getElementById('type').value = `${type.charAt(0).toUpperCase() + type.slice(1)} ${card.querySelector('.type-card-title').textContent.split(' ')[1]}`;
+    });
+  });
+}
+
+// Panggil fungsi saat DOM siap
+document.addEventListener('DOMContentLoaded', function() {
+  setupTypeButtons();
+  
+  // Animasi sold count yang lebih sederhana
+  const soldCount = document.querySelector('.sold-count');
+  let count = 0;
+  const target = 12;
+  const interval = setInterval(() => {
+    count++;
+    soldCount.textContent = count;
+    if(count >= target) clearInterval(interval);
+  }, 150);
+});
   </script>
 </body>
 </html> 
