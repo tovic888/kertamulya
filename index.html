@@ -1425,6 +1425,104 @@
     height: 2px;
   }
 }
+/* Modern Badge Styles */
+.type-card-badge .badge {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.type-card-badge .badge:after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255,255,255,0.3) 0%,
+    rgba(255,255,255,0) 60%
+  );
+  transform: rotate(30deg);
+}
+
+/* Price Animation */
+.type-card-price .new {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% { color: var(--primary); }
+  100% { color: var(--accent); }
+}
+
+.type-card-price .new:after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  animation: pulse-border 1.5s infinite;
+  opacity: 0;
+}
+
+@keyframes pulse-border {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+}
+
+/* Center Booking Button */
+.type-card-body .btn-block {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem auto 0;
+  width: 90%;
+  padding: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Badge Colors */
+.badge-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+
+.badge-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+}
+
+.badge-danger {
+  background: linear-gradient(135deg, #ff4d4d, #cc0000);
+  color: white;
+}
+
+
   </style>
 </head>
 <body>
