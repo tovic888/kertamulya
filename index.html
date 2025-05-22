@@ -1788,6 +1788,65 @@ button, input, textarea, select {
 @media (max-width: 576px) {
   /* styles untuk mobile kecil */
 }
+
+/* ===== STOCK INDICATOR STYLES ===== */
+.stock-indicator {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  background: rgba(255,255,255,0.9);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.stock-progress {
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.stock-text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--dark);
+  display: block;
+  text-align: center;
+}
+
+/* Warna berbeda berdasarkan stok */
+[data-stock="1"] .progress-fill {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+[data-stock="2"] .progress-fill,
+[data-stock="3"] .progress-fill,
+[data-stock="4"] .progress-fill {
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stock-indicator {
+    padding: 0.3rem;
+  }
+  .stock-text {
+    font-size: 0.6rem;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1841,57 +1900,76 @@ button, input, textarea, select {
     
     <div class="type-cards">
       <!-- Standard Type -->
-    <div class="type-card" data-type="standard">
-  <div class="type-card-header">
-    <div class="type-card-badge">
-      <span class="badge badge-primary">Terlaris</span>
-    </div>
-    <div class="type-card-image">
-      <img src="https://imgur.com/kYxjjEX.jpg" alt="Tipe Standard 30/60" loading="lazy">
-    </div>
-    <div class="type-card-actions">
-      <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'standard')">
-        <i class="fas fa-images"></i> Galeri
-      </button>
-      <button class="btn btn-accent btn-sm" onclick="showModal('video', 'standard')">
-        <i class="fas fa-play"></i> Video
-      </button>
+      <div class="type-card" data-type="standard" data-stock="3">
+        <div class="type-card-header">
+          <div class="type-card-badge">
+            <span class="badge badge-primary">Terlaris</span>
+          </div>
+          
+          <!-- Stock Indicator -->
+          <div class="stock-indicator">
+            <div class="stock-progress">
+              <div class="progress-fill" style="width: 30%"></div>
+            </div>
+            <span class="stock-text">Tersisa 3 unit</span>
+          </div>
+          
+          <div class="type-card-image">
+            <img src="https://imgur.com/kYxjjEX.jpg" alt="Tipe Standard 30/60" loading="lazy">
+          </div>
+          <div class="type-card-actions">
+            <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'standard')">
+              <i class="fas fa-images"></i> Galeri
+            </button>
+            <button class="btn btn-accent btn-sm" onclick="showModal('video', 'standard')">
+              <i class="fas fa-play"></i> Video
+            </button>
+          </div>
+        </div>
+        <div class="type-card-body">
+          <h3 class="type-card-title">Tipe Standard 30/60</h3>
+          <div class="type-card-price">
+            <span class="old">Rp185 Juta</span>
+            <span class="new">Rp168 Juta</span>
+          </div>
+          <div class="type-card-features">
+            <div class="type-card-feature">
+              <i class="fas fa-map-marked-alt"></i> Luas Tanah: 60 m²
+            </div>
+            <div class="type-card-feature">
+              <i class="fas fa-home"></i> Luas Bangunan: 30 m²
+            </div>
+            <div class="type-card-feature">
+              <i class="fas fa-bed"></i> 2 Kamar Tidur
+            </div>
+            <div class="type-card-feature">
+              <i class="fas fa-bath"></i> 1 Kamar Mandi
+            </div>
+            <div class="type-card-feature">
+              <i class="fas fa-car"></i> Carport & Taman
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block" onclick="showModal('booking', 'Standard 30/60')">
+            <i class="fab fa-whatsapp"></i> Booking Sekarang
+          </button>
+        </div>
       </div>
-  </div>
-  <div class="type-card-body">
-    <h3 class="type-card-title">Tipe Standard 30/60</h3>
-    <div class="type-card-price">
-      <span class="old">Rp185 Juta</span>
-      <span class="new">Rp168 Juta</span>
-    </div>
-    <div class="type-card-features">
-      <div class="type-card-feature">
-        <i class="fas fa-map-marked-alt"></i> Luas Tanah: 60 m²
-      </div>
-      <div class="type-card-feature">
-        <i class="fas fa-home"></i> Luas Bangunan: 30 m²
-      </div>
-      <div class="type-card-feature">
-        <i class="fas fa-bed"></i> 2 Kamar Tidur
-      </div>
-      <div class="type-card-feature">
-        <i class="fas fa-bath"></i> 1 Kamar Mandi
-      </div>
-      <div class="type-card-feature">
-        <i class="fas fa-car"></i> Carport & Taman
-      </div>
-    </div>
-    <button class="btn btn-primary btn-block" onclick="showModal('booking', 'Standard 30/60')">
-      <i class="fab fa-whatsapp"></i> Booking Sekarang
-    </button>
-  </div>
-</div>
-    <!-- Suite Type -->
-      <div class="type-card" data-type="suite">
+      
+      <!-- Suite Type -->
+      <div class="type-card" data-type="suite" data-stock="1">
         <div class="type-card-header">
           <div class="type-card-badge">
             <span class="badge badge-accent">Premium</span>
           </div>
+          
+          <!-- Stock Indicator -->
+          <div class="stock-indicator stock-warning">
+            <div class="stock-progress">
+              <div class="progress-fill" style="width: 10%"></div>
+            </div>
+            <span class="stock-text">Hanya 1 unit tersisa!</span>
+          </div>
+          
           <div class="type-card-image">
             <img src="https://imgur.com/rzlJAkz.jpg" alt="Tipe Suite 50/60" loading="lazy">
           </div>
@@ -1934,11 +2012,20 @@ button, input, textarea, select {
       </div>
       
       <!-- Premium Type -->
-      <div class="type-card" data-type="premium">
+      <div class="type-card" data-type="premium" data-stock="5">
         <div class="type-card-header">
           <div class="type-card-badge">
             <span class="badge badge-danger">Eksklusif</span>
           </div>
+          
+          <!-- Stock Indicator -->
+          <div class="stock-indicator">
+            <div class="stock-progress">
+              <div class="progress-fill" style="width: 50%"></div>
+            </div>
+            <span class="stock-text">Tersisa 5 unit</span>
+          </div>
+          
           <div class="type-card-image">
             <img src="https://imgur.com/xFgp9FL.jpg" alt="Tipe Premium 50/120" loading="lazy">
           </div>
@@ -1982,6 +2069,7 @@ button, input, textarea, select {
     </div>
   </div>
 </section>
+
 
   <!-- Why Choose Us -->
   <section class="why-choose section">
@@ -2867,6 +2955,39 @@ function hideVideoModal() {
   document.getElementById('videoFrame').src = '';
   document.getElementById('videoModal').classList.remove('active');
 }
+
+// Animate progress bars on scroll
+function animateProgressBars() {
+  const progressBars = document.querySelectorAll('.progress-fill');
+  
+  progressBars.forEach(bar => {
+    const card = bar.closest('.type-card');
+    const stock = parseInt(card.dataset.stock);
+    const percentage = (stock / 10) * 100;
+    
+    // Reset width for animation
+    bar.style.width = '0%';
+    
+    // Animate after a small delay
+    setTimeout(() => {
+      bar.style.width = `${percentage}%`;
+    }, 300);
+  });
+}
+
+// Run on load and when cards come into view
+document.addEventListener('DOMContentLoaded', animateProgressBars);
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateProgressBars();
+    }
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.type-card').forEach(card => {
+  observer.observe(card);
+});
   </script>
 </body>
 </html> 
