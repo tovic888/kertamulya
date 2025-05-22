@@ -1980,5 +1980,475 @@ Mohon info detail tentang:
     setInterval(updateCountdown, 1000);
     updateCountdown();
     
-    // ===== FAQ ACCORDION =====
+        // ===== FAQ ACCORDION =====
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', function() {
+        const faqItem = this.parentElement;
+        faqItem.classList.toggle('active');
+        
+        // Close other open FAQs
+        document.querySelectorAll('.faq-item').forEach(item => {
+          if (item !== faqItem && item.classList.contains('active')) {
+            item.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // ===== NOTIFICATION SYSTEM =====
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      if (!notification) return;
+      
+      const notificationText = document.getElementById('notificationText');
+      notificationText.textContent = message;
+      
+      notification.style.display = 'flex';
+      notification.style.opacity = '1';
+      
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 300);
+      }, 5000);
+    }
+
+    // Sample notifications - rotate every 10 seconds
+    const notifications = [
+      "🔥 Baru saja! Pak Budiman booking unit tipe 36 via BJB Syariah",
+      "🚀 Ibu Siti dari Cirebon baru saja booking unit tipe Suite",
+      "💎 Kuota terbatas - Hanya 12 unit tersisa!",
+      "🏡 Baru saja 3 unit terjual dalam 1 jam"
+    ];
+
+    let notificationIndex = 0;
+    function rotateNotifications() {
+      showNotification(notifications[notificationIndex]);
+      notificationIndex = (notificationIndex + 1) % notifications.length;
+    }
+
+    // Show first notification after 5 seconds
+    setTimeout(() => {
+      rotateNotifications();
+      setInterval(rotateNotifications, 10000);
+    }, 5000);
+
+    // ===== SMOOTH SCROLLING =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // ===== BANK LOGO ANIMATION =====
+    function pulseLogo(element) {
+      element.classList.add('pulse');
+      setTimeout(() => {
+        element.classList.remove('pulse');
+      }, 1000);
+    }
+
+    document.querySelectorAll('.bank-logo-container').forEach(logo => {
+      logo.addEventListener('click', function() {
+        pulseLogo(this);
+      });
+    });
+
+    // ===== AOS INITIALIZATION =====
+    function initializeAOS() {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true,
+          mirror: false
+        });
+      } else {
+        // Fallback if AOS is not loaded
+        document.querySelectorAll('[data-aos]').forEach(element => {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        });
+      }
+    }
+
+    // ===== LIGHTGALLERY INITIALIZATION =====
+    function initializeLightGallery() {
+      if (typeof lightGallery !== 'undefined') {
+        lightGallery(document.getElementById('lightgallery'), {
+          selector: 'a',
+          download: false,
+          counter: false,
+          getCaptionFromTitleOrAlt: true
+        });
+      }
+    }
+
+    // ===== TIKTOK VIDEO LOADER =====
+    function loadTikTokVideos() {
+      const tiktokContainer = document.getElementById('tiktokVideos');
+      if (!tiktokContainer) return;
+
+      // Remove loading indicator
+      const loader = tiktokContainer.querySelector('.tiktok-loader');
+      if (loader) loader.remove();
+
+      // Sample TikTok videos - in a real implementation, you would fetch these from an API
+      const tiktokVideos = [
+        {
+          id: '1',
+          embedCode: '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bimulia_land/video/123456789" data-video-id="123456789" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>'
+        },
+        {
+          id: '2',
+          embedCode: '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bimulia_land/video/987654321" data-video-id="987654321" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>'
+        }
+      ];
+
+      // Add TikTok videos to container
+      tiktokVideos.forEach(video => {
+        const videoItem = document.createElement('div');
+        videoItem.className = 'tiktok-item';
+        videoItem.innerHTML = video.embedCode;
+        tiktokContainer.appendChild(videoItem);
+      });
+
+      // Load TikTok script if not already loaded
+      if (!document.getElementById('tiktok-script')) {
+        const script = document.createElement('script');
+        script.id = 'tiktok-script';
+        script.src = 'https://www.tiktok.com/embed.js';
+        document.body.appendChild(script);
+      }
+    }
+
+    // ===== LIVE COUNTERS =====
+    function animateCounter(element, target, duration = 2000) {
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          clearInterval(timer);
+          current = target;
+        }
+        element.textContent = Math.floor(current).toLocaleString();
+      }, 16);
+    }
+
+    function initializeLiveCounters() {
+      const counters = [
+        { id: 'unitsSold', target: 128 },
+        { id: 'happyFamilies', target: 97 },
+        { id: 'motorGiven', target: 42 },
+        { id: 'unitsLeftToday', target: 12 }
+      ];
+
+      // Only animate when counters are in viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = counters.find(c => c.id === entry.target.id);
+            if (counter) {
+              animateCounter(entry.target, counter.target);
+              observer.unobserve(entry.target);
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(counter => {
+        const element = document.getElementById(counter.id);
+        if (element) observer.observe(element);
+      });
+
+      // Update last update time
+      const lastUpdateElement = document.getElementById('lastUpdate');
+      if (lastUpdateElement) {
+        const now = new Date();
+        lastUpdateElement.textContent = now.toLocaleTimeString('id-ID', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+      }
+    }
+
+    // ===== RUNNING TEXT ANIMATION =====
+    function initializeRunningText() {
+      const runningText = document.querySelector('.running-text-content');
+      if (!runningText) return;
+
+      // Duplicate content for seamless looping
+      const originalContent = runningText.innerHTML;
+      runningText.innerHTML += originalContent;
+
+      // Adjust animation duration based on content length
+      const textWidth = runningText.scrollWidth / 2;
+      const duration = Math.max(40, textWidth / 30); // Minimum 40s
+
+      runningText.style.animationDuration = `${duration}s`;
+    }
+
+    // ===== MARKETING TEAM ROTATION =====
+    function initializeMarketingTeam() {
+      const marketingPersons = [
+        {
+          name: 'Taufik Marie',
+          role: 'Digital Manager',
+          phone: '628977771080',
+          avatar: 'https://i.imgur.com/o3rxcu0.jpeg'
+        },
+        {
+          name: 'Royyan',
+          role: 'Marketing Executive',
+          phone: '628123456789',
+          avatar: 'https://imgur.com/3zxXZrm.jpg'
+        },
+        {
+          name: 'Syifa',
+          role: 'Marketing Executive',
+          phone: '628987654321',
+          avatar: 'https://imgur.com/G2HP9Jp.jpg'
+        }
+      ];
+
+      let currentMarketer = 0;
+      
+      function updateMarketingPerson() {
+        const person = marketingPersons[currentMarketer];
+        const elements = [
+          { selector: '.marketing-person h4', value: person.name },
+          { selector: '.marketing-person p', value: person.role },
+          { selector: '.marketing-person img', attribute: 'src', value: person.avatar }
+        ];
+
+        elements.forEach(element => {
+          const el = document.querySelector(element.selector);
+          if (el) {
+            if (element.attribute) {
+              el.setAttribute(element.attribute, element.value);
+            } else {
+              el.textContent = element.value;
+            }
+          }
+        });
+
+        currentMarketer = (currentMarketer + 1) % marketingPersons.length;
+      }
+
+      // Rotate every 30 seconds
+      updateMarketingPerson();
+      setInterval(updateMarketingPerson, 30000);
+    }
+
+    // ===== LOCATION FEATURES =====
+    function initializeLocationFeatures() {
+      document.querySelectorAll('.view-route-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const destination = this.getAttribute('data-destination');
+          const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=Kertamulya+Residence,Kuningan&travelmode=driving&destination_place_id=${encodeURIComponent(destination)}`;
+          window.open(mapsUrl, '_blank');
+        });
+      });
+
+      document.getElementById('liveViewBtn')?.addEventListener('click', function() {
+        const iframe = document.querySelector('#liveMap');
+        if (iframe) {
+          iframe.src = iframe.src.replace('embed', 'embed&live=1');
+          this.innerHTML = '<i class="fas fa-eye-slash"></i> Tutup Live View';
+          this.onclick = function() {
+            iframe.src = iframe.src.replace('&live=1', '');
+            this.innerHTML = '<i class="fas fa-street-view"></i> Lihat Tampilan Live';
+            this.onclick = arguments.callee;
+          };
+        }
+      });
+    }
+
+    // ===== INITIALIZE EVERYTHING WHEN DOM LOADED =====
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeAOS();
+      initializeLightGallery();
+      initializeLiveCounters();
+      initializeRunningText();
+      initializeMarketingTeam();
+      initializeLocationFeatures();
+      loadTikTokVideos();
+      
+      // FAQ - Open first item by default
+      document.querySelector('.faq-item')?.classList.add('active');
+    });
+
+    // ===== VIDEO MODAL FUNCTIONALITY =====
+    function openVideoModal(videoId) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      
+      if (modal && iframe) {
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    document.getElementById('videoCloseBtn')?.addEventListener('click', function() {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      
+      if (modal && iframe) {
+        iframe.src = '';
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close video modal when clicking outside
+    document.getElementById('videoModal')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+        const iframe = document.getElementById('videoIframe');
+        iframe.src = '';
+        this.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // ===== PRICE TYPE SELECTOR =====
+    document.querySelectorAll('.type-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Remove active class from all buttons
+        document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Show/hide price boxes
+        document.getElementById('subsidi-price').style.display = this.dataset.type === 'subsidi' ? 'flex' : 'none';
+        document.getElementById('suite-price').style.display = this.dataset.type === 'suite' ? 'flex' : 'none';
+        
+        // Update form field if exists
+        const typeSelect = document.getElementById('modalType');
+        if (typeSelect) {
+          typeSelect.value = this.dataset.type === 'subsidi' ? 'Subsidi' : 'Suite';
+        }
+      });
+    });
+
+    // ===== WHATSAPP CONFIRMATION MODAL =====
+    function showWhatsAppConfirmation() {
+      const modal = document.getElementById('waConfirmModal');
+      if (!modal) return;
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // Start countdown
+      let countdown = 5;
+      const countdownElement = document.getElementById('countdown');
+      const countdownInterval = setInterval(() => {
+        countdown--;
+        countdownElement.textContent = countdown;
+        
+        if (countdown <= 0) {
+          clearInterval(countdownInterval);
+          window.open('https://wa.me/628977771080', '_blank');
+          closeWhatsAppConfirmation();
+        }
+      }, 1000);
+    }
+
+    function closeWhatsAppConfirmation() {
+      const modal = document.getElementById('waConfirmModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    document.querySelector('.wa-confirm-close')?.addEventListener('click', closeWhatsAppConfirmation);
+    document.getElementById('waConfirmModal')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeWhatsAppConfirmation();
+      }
+    });
+
+    // ===== FORM SUBMISSION WITH WA CONFIRMATION =====
+    document.getElementById('modalContactForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('modalName').value.trim();
+      const city = document.getElementById('modalCity')?.value.trim() || '-';
+      const phone = document.getElementById('modalPhone').value.trim();
+      const type = document.getElementById('modalType').value;
+      
+      // Validate WhatsApp number
+      const cleanPhone = phone.replace(/\D/g, '');
+      if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
+        alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
+        return;
+      }
+
+      // Get next marketing person
+      const marketingPersons = [
+        { name: 'Taufik Marie', phone: '628977771080', role: 'Digital Manager' },
+        { name: 'Royyan', phone: '628123456789', role: 'Marketing Executive' },
+        { name: 'Syifa', phone: '628987654321', role: 'Marketing Executive' }
+      ];
+      
+      const marketing = marketingPersons[Math.floor(Math.random() * marketingPersons.length)];
+      
+      // Create WhatsApp message
+      const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh
+
+*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*
+
+👤 *Nama Lengkap*: ${name || '-'}
+🏙️ *Kota Asal/Tinggal*: ${city || '-'}
+📱 *Nomor WhatsApp*: ${phone || '-'}
+🏠 *Tipe Rumah*: ${type || '-'}
+
+*📢 INFO PROMO TERBARU*
+🔹 Booking Fee *Rp500.000* saja
+🔹 *DP 0%* via Bank Syariah
+🔹 Cicilan mulai *Rp1 juta-an/Bulan*
+🔹 Gratis *Motor Listrik* setelah 6x angsuran
+
+Mohon info detail tentang:
+1. Spesifikasi rumah lengkap untuk tipe ${type || '-'}
+2. Cara pengajuan KPR Syariah
+3. Jadwal survey lokasi
+4. Perkiraan cicilan per bulan
+
+*🤝 DITANGANI OLEH*
+${marketing.role}: *${marketing.name}*`;
+      
+      // Store message in localStorage for WhatsApp confirmation modal
+      localStorage.setItem('whatsappMessage', message);
+      localStorage.setItem('marketingPhone', marketing.phone);
+      
+      // Close form modal and show WhatsApp confirmation
+      closeModal('formModal');
+      showWhatsAppConfirmation();
+      
+      // Track conversion if Facebook Pixel is available
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead');
+      }
+    });
+  </script>
+</body>
+</html>
    
