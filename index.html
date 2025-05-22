@@ -3049,7 +3049,29 @@ footer {
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
-   
+/* Tambahkan di bagian style */
+.video-gallery-section .section {
+  padding: 40px 0 !important;
+}
+
+.video-gallery-section .section-title {
+  margin-bottom: 20px !important;
+}
+
+.video-gallery-section .video-grid {
+  margin-top: 20px !important;
+  gap: 15px !important;
+}
+
+@media (min-width: 768px) {
+  .video-gallery-section .section {
+    padding: 50px 0 !important;
+  }
+  
+  .video-gallery-section .video-grid {
+    gap: 20px !important;
+  }
+}   
 </style>
 </head>
 <body>
@@ -4530,7 +4552,7 @@ function closeWaConfirm() {
   }
 }
 
-// Marketing team data
+
 const marketingTeam = [
   { name: "Taufik Marie", phone: "628977771080", role: "Digital Manager" },
   { name: "Rahma", phone: "6285523613940", role: "Marketing Executive" },
@@ -4545,7 +4567,7 @@ function getNextMarketingPerson() {
   return marketingTeam[lastAssignedIndex];
 }
 
-function submitFormData() {
+
   // Get form values
   const name = document.getElementById('modalName').value || '-';
   const city = document.getElementById('modalCity').value || '-';
@@ -4565,8 +4587,8 @@ function submitFormData() {
                        marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
                        '62' + marketing.phone;
   
-  // Create WhatsApp message
-  const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${name}\n🏙️ *Kota Asal/Tinggal*: ${city}\n📱 *Nomor WhatsApp*: ${phone}\n🏠 *Tipe Rumah*: ${type}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
+  // Create detailed WhatsApp message
+  const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${name}\n🏙️ *Kota Asal/Tinggal*: ${city}\n📱 *Nomor WhatsApp*: ${phone}\n🏠 *Tipe Rumah*: ${type}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap untuk tipe ${type}\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n4. Perkiraan cicilan per bulan\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
   
   // Show WhatsApp confirmation modal
   showWaConfirmModal(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`);
