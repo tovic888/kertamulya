@@ -398,7 +398,7 @@ button, input, textarea, select {
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: var(--transition);
-  display: flex;
+  display: flex; /* Tambahkan ini */
   flex-direction: column;
 }
 
@@ -2445,12 +2445,15 @@ function setupTypeSelector() {
       
       const type = button.dataset.type;
       typeCards.forEach(card => {
-        card.style.display = (type === 'all' || card.dataset.type === type) ? 'block' : 'none';
+        if (type === 'all' || card.dataset.type === type) {
+          card.style.display = 'flex'; // Ubah dari 'block' ke 'flex'
+        } else {
+          card.style.display = 'none';
+        }
       });
     });
   });
 }
-
 // Random notifications function
 function showRandomNotification() {
   const notifications = [
