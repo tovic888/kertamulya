@@ -55,6 +55,32 @@
   --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0 15px;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .type-card-actions {
+    padding: 0 0.5rem;
+  }
+  
+  .type-card-actions .btn {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
 
 * {
   margin: 0;
