@@ -4336,7 +4336,7 @@ footer {
             <path class="countdown-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
             <path class="countdown-fg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
           </svg>
-          <span id="countdown" class="countdown-number">10</span>
+          <span id="countdown" class="countdown-number">5</span>
         </div>
         <p class="countdown-text">Mengarahkan ke WhatsApp dalam...</p>
       </div>
@@ -4456,42 +4456,44 @@ function initializeCountdown() {
     updateCountdown();
 }
 
-// ===== FORM HANDLING =====
-function initializeFormHandling() {
-    // Form modal controls
-    window.showFormModal = function() {
-        const modal = document.getElementById('formModal');
-        if (modal) {
-            modal.style.display = 'flex';
-            setTimeout(() => modal.style.opacity = '1', 10);
-            document.body.style.overflow = 'hidden';
-        }
-    };
+// ===== WHATSAPP CONFIRMATION MODAL FUNCTIONS =====
+function showWaConfirmModal(whatsappUrl) {
+  const waConfirmModal = document.getElementById('waConfirmModal');
+  if (!waConfirmModal) return;
+  
+  // Show modal
+  waConfirmModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Reset countdown
+  const countdownElement = document.getElementById('countdown');
+  if (countdownElement) countdownElement.textContent = '5';
+  
+  // Start 5-second countdown
+  let countdown = 5;
+  const countdownInterval = setInterval(() => {
+    countdown--;
+    if (countdownElement) countdownElement.textContent = countdown;
+    
+    if (countdown <= 0) {
+      clearInterval(countdownInterval);
+      // Open WhatsApp directly without popup blocker issues
+      window.location.href = whatsappUrl;
+      closeWaConfirm();
+    }
+  }, 1000);
+}
 
-    window.closeFormModal = function() {
-        const modal = document.getElementById('formModal');
-        if (modal) {
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
-        }
-    };
+function closeWaConfirm() {
+  const modal = document.getElementById('waConfirmModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+}
 
-    // WhatsApp confirmation modal
-    window.closeWaConfirm = function() {
-        const modal = document.getElementById('waConfirmModal');
-        if (modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    };
-
-    // Form submission
-    // WhatsApp Confirmation Modal Functionality
+// ===== FORM SUBMISSION HANDLER =====
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize form submission handler
   const contactForm = document.getElementById('modalContactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -4552,46 +4554,6 @@ function submitFormData() {
   closeFormModal();
 }
 
-function showWaConfirmModal(whatsappUrl) {
-  const waConfirmModal = document.getElementById('waConfirmModal');
-  if (!waConfirmModal) return;
-  
-  waConfirmModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  
-  // Start 10-second countdown
-  let countdown = 10;
-  const countdownElement = document.getElementById('countdown');
-  const countdownInterval = setInterval(() => {
-    countdown--;
-    if (countdownElement) countdownElement.textContent = countdown;
-    
-    if (countdown <= 0) {
-      clearInterval(countdownInterval);
-      window.open(whatsappUrl, '_blank');
-      closeWaConfirm();
-    }
-  }, 1000);
-}
-
-function closeWaConfirm() {
-  const modal = document.getElementById('waConfirmModal');
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-}
-
-function closeFormModal() {
-  const modal = document.getElementById('formModal');
-  if (modal) {
-    modal.style.opacity = '0';
-    setTimeout(() => {
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }, 300);
-  }
-}
 
 // ===== FAQ ACCORDION =====
 function initializeFAQ() {
