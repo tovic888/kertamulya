@@ -4391,6 +4391,44 @@ function initializeComponents() {
     initializePriceTypeSelector();
 }
 
+// ===== FORM MODAL FUNCTIONS =====
+function showFormModal() {
+    const formModal = document.getElementById('formModal');
+    if (formModal) {
+        formModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeFormModal() {
+    const formModal = document.getElementById('formModal');
+    if (formModal) {
+        formModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// ===== FORM HANDLING =====
+function initializeFormHandling() {
+    const contactForm = document.getElementById('modalContactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitFormData();
+        });
+    }
+    
+    // Close modal when clicking outside
+    const formModal = document.getElementById('formModal');
+    if (formModal) {
+        formModal.addEventListener('click', function(e) {
+            if (e.target === formModal) {
+                closeFormModal();
+            }
+        });
+    }
+}
+
 // ===== PRICE TYPE SELECTOR =====
 function initializePriceTypeSelector() {
     document.querySelectorAll('.type-btn').forEach(btn => {
@@ -4492,17 +4530,6 @@ function closeWaConfirm() {
   }
 }
 
-// ===== FORM SUBMISSION HANDLER =====
-document.addEventListener('DOMContentLoaded', function() {
-  const contactForm = document.getElementById('modalContactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      submitFormData();
-    });
-  }
-});
-
 // Marketing team data
 const marketingTeam = [
   { name: "Taufik Marie", phone: "628977771080", role: "Digital Manager" },
@@ -4553,7 +4580,6 @@ function submitFormData() {
   document.getElementById('modalContactForm').reset();
   closeFormModal();
 }
-
 
 // ===== FAQ ACCORDION =====
 function initializeFAQ() {
