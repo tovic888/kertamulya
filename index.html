@@ -630,6 +630,7 @@ button, input, textarea, select {
 /* ===== LOKASI ===== */
 .location {
   background: var(--gray);
+  position: relative;
 }
 
 .location-container {
@@ -638,18 +639,52 @@ button, input, textarea, select {
   gap: 2rem;
 }
 
+.location-map-container {
+  position: relative;
+}
+
 .location-map {
-  height: 400px;
+  height: 450px;
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   border: 3px solid var(--light);
+  position: relative;
 }
 
 .location-map iframe {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+.btn-map-directions {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
+  animation: pulse 2s infinite;
+}
+
+.location-address {
+  background: var(--primary-dark);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.location-address i {
+  color: var(--accent);
+  font-size: 1.2rem;
 }
 
 .location-access {
@@ -735,10 +770,23 @@ button, input, textarea, select {
   color: var(--accent);
 }
 
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
 /* Responsive adjustments */
+@media (max-width: 992px) {
+  .location-map {
+    height: 400px;
+  }
+}
+
 @media (max-width: 768px) {
   .location-map {
-    height: 300px;
+    height: 350px;
   }
   
   .access-item {
@@ -746,21 +794,34 @@ button, input, textarea, select {
   }
   
   .access-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 576px) {
   .location-map {
-    height: 250px;
+    height: 300px;
   }
   
   .location-access {
     grid-template-columns: 1fr;
   }
+  
+  .btn-map-directions {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .location-address {
+    font-size: 0.85rem;
+    padding: 0.8rem;
+  }
 }
+
 /* ===== TESTIMONI ===== */
 .testimonials {
   background: linear-gradient(135deg, #111, #222);
@@ -1892,7 +1953,7 @@ button, input, textarea, select {
     </div>
   </section>
 
- <!-- Location -->
+<!-- Location Section -->
 <section class="location section" id="location">
   <div class="container">
     <div class="section-title">
@@ -1901,8 +1962,17 @@ button, input, textarea, select {
     </div>
     
     <div class="location-container">
-      <div class="location-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence%2C%20Jl.%20Kertayasa%2C%20Blok%20Congkleng%2C%20Kertayasa%2C%20Kec.%20Sindangagung%2C%20Kabupaten%20Kuningan%2C%20Jawa%20Barat%2045573!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+      <div class="location-map-container">
+        <div class="location-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence%2C%20Jl.%20Kertayasa%2C%20Blok%20Congkleng%2C%20Kertayasa%2C%20Kec.%20Sindangagung%2C%20Kabupaten%20Kuningan%2C%20Jawa%20Barat%2045573!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+          <a href="https://maps.app.goo.gl/mdAmsNKHCpSuX7mo9" class="btn btn-accent btn-map-directions" target="_blank">
+            <i class="fas fa-directions"></i> Petunjuk Arah
+          </a>
+        </div>
+        <div class="location-address">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Kertamulya Residence, Jl. Kertayasa, Blok Congkleng, Kertayasa, Kec. Sindangagung, Kab. Kuningan, Jawa Barat 45573 (2GJQ+QR Kertayasa)</span>
+        </div>
       </div>
       
       <div class="location-access">
