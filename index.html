@@ -1288,12 +1288,13 @@ button, input, textarea, select {
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
   font-weight: 600;
-  font-size: 0.9375rem;
+  color: var(--dark);
 }
-
+.form-group label.important:after {
+  content: ' *';
+  color: var(--danger);
+}
 .form-group input,
 .form-group select {
   width: 100%;
@@ -2309,24 +2310,25 @@ button, input, textarea, select {
         
         <form id="bookingForm">
           <div class="form-group">
-            <label for="name">Nama Lengkap</label>
-            <input type="text" id="name" required placeholder="Nama Anda">
-          </div>
-          
-          <div class="form-group">
-            <label for="phone">Nomor WhatsApp</label>
-            <input type="tel" id="phone" required placeholder="6281234567890" pattern="^628[0-9]{8,11}$">
-          </div>
-          
-          <div class="form-group">
-            <label for="type">Tipe Rumah</label>
-            <select id="type" required>
-              <option value="" disabled selected>Pilih Tipe Rumah</option>
-              <option value="Standard 30/60">Standard 30/60 - Rp168 Juta</option>
-              <option value="Suite 50/60">Suite 50/60 - Rp277 Juta</option>
-              <option value="Premium 50/120">Premium 50/120 - Rp408 Juta</option>
-            </select>
-          </div>
+  <label for="name" class="important">Nama Lengkap</label>
+  <input type="text" id="name" required placeholder="Nama Anda">
+</div>
+
+<div class="form-group">
+  <label for="phone" class="important">Nomor WhatsApp</label>
+  <input type="tel" id="phone" required placeholder="6281234567890" pattern="^628[0-9]{8,11}$">
+</div>
+
+<div class="form-group">
+  <label for="type" class="important">Tipe Rumah</label>
+  <select id="type" required>
+    <option value="" disabled selected>Pilih Tipe Rumah</option>
+    <option value="Standard 30/60">Standard 30/60 - Rp168 Juta</option>
+    <option value="Suite 50/60">Suite 50/60 - Rp277 Juta</option>
+    <option value="Premium 50/120">Premium 50/120 - Rp408 Juta</option>
+  </select>
+</div>
+
           
           <button type="submit" class="form-submit">
             <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
