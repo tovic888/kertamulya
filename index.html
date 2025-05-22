@@ -24,6 +24,10 @@
   <!-- Preload Critical Resources -->
   <link rel="preload" href="https://i.imgur.com/EimqXek.jpeg" as="image">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
+
+<!-- Slick Carousel CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
   
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -1539,6 +1543,33 @@
   transform: scaleX(1);
   transform-origin: left;
 }
+
+/* Add to your CSS */
+.gallery-carousel {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.gallery-carousel .slick-slide {
+  padding: 0 5px;
+}
+
+.gallery-carousel img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.slick-prev:before, 
+.slick-next:before {
+  color: var(--primary);
+  font-size: 24px;
+}
+
+.slick-dots li button:before {
+  color: var(--primary);
+}
   </style>
 </head>
 <body>
@@ -2279,18 +2310,18 @@
     </div>
   </div>
 
-  <!-- Gallery Modal -->
-  <div class="modal" id="galleryModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
-      <div class="modal-body">
-        <h3 class="modal-title" id="galleryTitle">Galeri Foto</h3>
-        <div class="gallery-container" id="galleryContainer">
-          <!-- Gallery items will be loaded here -->
-        </div>
+ <!-- Gallery Modal -->
+<div class="modal" id="galleryModal">
+  <div class="modal-content" style="max-width: 800px;">
+    <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
+    <div class="modal-body">
+      <h3 class="modal-title" id="galleryTitle">Galeri Foto</h3>
+      <div class="gallery-carousel" id="galleryCarousel">
+        <!-- Slides will be inserted here by JS -->
       </div>
     </div>
   </div>
+</div>
 
   <!-- Video Modal -->
   <div class="video-modal" id="videoModal">
@@ -2320,6 +2351,9 @@
   </div>
 
   <!-- Scripts -->
+<!-- Slick JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
   <script>
     // Initialize AOS animation
     document.addEventListener('DOMContentLoaded', function() {
@@ -2339,51 +2373,47 @@
 
   // Update the showModal function
 function showModal(type, subtype = null, houseType = null) {
-  const modal = document.getElementById(`${type}Modal`);
-  modal.classList.add('active');
-  
   if(type === 'gallery' && subtype) {
     document.getElementById('galleryTitle').textContent = `Galeri Tipe ${subtype.charAt(0).toUpperCase() + subtype.slice(1)}`;
-    const galleryContainer = document.getElementById('galleryContainer');
-    galleryContainer.innerHTML = '';
+    const galleryCarousel = document.getElementById('galleryCarousel');
+    galleryCarousel.innerHTML = '';
     
-    // Add images based on type
     const images = {
       standard: [
-        'https://imgur.com/JKpZ6YT.jpg',
-        'https://imgur.com/NXt5lhy.jpg',
-        'https://imgur.com/yCkpfGP.jpg',
-        'https://imgur.com/kN5ddyp.jpg',
-        'https://imgur.com/brDuyYM.jpg',
-        'https://imgur.com/TaVNzlw.jpg'
+        'https://i.imgur.com/JKpZ6YT.jpg',
+        'https://i.imgur.com/NXt5lhy.jpg',
+        'https://i.imgur.com/yCkpfGP.jpg'
       ],
       suite: [
-        'https://imgur.com/SG7lFvg.jpg',
-        'https://imgur.com/LJpsD3m.jpg',
-        'https://imgur.com/UmdNjnI.jpg',
-        'https://imgur.com/payEgTH.jpg',
-        'https://imgur.com/laNvfa3.jpg'
+        'https://i.imgur.com/SG7lFvg.jpg',
+        'https://i.imgur.com/LJpsD3m.jpg',
+        'https://i.imgur.com/UmdNjnI.jpg'
       ],
       premium: [
-        'https://imgur.com/SG7lFvg.jpg',
-        'https://imgur.com/LJpsD3m.jpg',
-        'https://imgur.com/UmdNjnI.jpg',
-        'https://imgur.com/payEgTH.jpg',
-        'https://imgur.com/laNvfa3.jpg'
+        'https://i.imgur.com/SG7lFvg.jpg',
+        'https://i.imgur.com/LJpsD3m.jpg',
+        'https://i.imgur.com/UmdNjnI.jpg'
       ]
     };
     
     images[subtype].forEach(img => {
-      const imgElement = document.createElement('img');
-      imgElement.src = img;
-      imgElement.alt = `Galeri ${subtype}`;
-      imgElement.loading = 'lazy';
-      imgElement.style.width = '100%';
-      imgElement.style.marginBottom = '1rem';
-      imgElement.style.borderRadius = '0.5rem';
-      galleryContainer.appendChild(imgElement);
+      const slide = document.createElement('div');
+      slide.innerHTML = `<img src="${img}" alt="Galeri ${subtype}" loading="lazy">`;
+      galleryCarousel.appendChild(slide);
     });
+    
+    // Initialize Slick after images are loaded
+    setTimeout(() => {
+      $('#galleryCarousel').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true
+      });
+    }, 100);
   }
+
   
   if(type === 'booking' && houseType) {
     document.getElementById('type').value = houseType;
