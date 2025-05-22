@@ -1792,39 +1792,39 @@ button, input, textarea, select {
 /* ===== STOCK INDICATOR STYLES ===== */
 .stock-indicator {
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
+  top: 1rem;
   right: 1rem;
-  background: rgba(255,255,255,0.9);
+  background: rgba(0,0,0,0.7);
   padding: 0.5rem;
   border-radius: 0.5rem;
   z-index: 2;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   backdrop-filter: blur(5px);
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  min-width: 80px;
+}
+
+.stock-indicator .stock-text {
+  color: white;
+  display: block;
+  margin-top: 0.2rem;
 }
 
 .stock-progress {
-  height: 6px;
-  background: #eee;
-  border-radius: 3px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
   overflow: hidden;
-  margin-bottom: 0.3rem;
 }
 
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-  border-radius: 3px;
-  transition: width 0.5s ease;
-}
-
-.stock-text {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--dark);
-  display: block;
-  text-align: center;
+  border-radius: 2px;
 }
 
 /* Warna berbeda berdasarkan stok */
@@ -1836,6 +1836,7 @@ button, input, textarea, select {
 [data-stock="4"] .progress-fill {
   background: linear-gradient(90deg, #f39c12, #e67e22);
 }
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
