@@ -4410,12 +4410,16 @@ function initializeComponents() {
 
 // ===== FORM MODAL FUNCTIONS =====
 function showFormModal() {
+    // Reset form terlebih dahulu
+    document.getElementById('modalContactForm').reset();
+    
     const formModal = document.getElementById('formModal');
     if (formModal) {
         formModal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 }
+
 
 function closeFormModal() {
     const formModal = document.getElementById('formModal');
@@ -4446,40 +4450,72 @@ function initializeFormHandling() {
     }
 }
 
-function submitFormData() {
-    // Get form values
-    const name = document.getElementById('modalName').value || '-';
-    const city = document.getElementById('modalCity').value || '-';
-    const phone = document.getElementById('modalPhone').value || '-';
-    const type = document.getElementById('modalType').value || '-';
+
+    // Ambil nilai form
+    const name = document.getElementById('modalName').value.trim();
+    const city = document.getElementById('modalCity').value.trim();
+    const phone = document.getElementById('modalPhone').value.trim();
+    const type = document.getElementById('modalType').value;
     
-    // Validate phone number
+    // Validasi nomor WhatsApp
     const cleanPhone = phone.replace(/\D/g, '');
     if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
         alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
         return;
     }
 
-    // Get marketing person
+    // Dapatkan marketing person
     const marketing = getNextMarketingPerson();
+    
+    // Format nomor telepon
     const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
                          marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
                          '62' + marketing.phone;
     
-    // Create detailed WhatsApp message
-    const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${name}\n🏙️ *Kota Asal/Tinggal*: ${city}\n📱 *Nomor WhatsApp*: ${phone}\n🏠 *Tipe Rumah*: ${type}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap untuk tipe ${type}\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n4. Perkiraan cicilan per bulan\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
+    // Buat pesan WhatsApp
+    const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh
+
+*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*
+
+👤 *Nama Lengkap*: ${name || '-'}
+🏙️ *Kota Asal/Tinggal*: ${city || '-'}
+📱 *Nomor WhatsApp*: ${phone || '-'}
+🏠 *Tipe Rumah*: ${type || '-'}
+
+*📢 INFO PROMO TERBARU*
+🔹 Booking Fee *Rp500.000* saja
+🔹 *DP 0%* via Bank Syariah
+🔹 Cicilan mulai *Rp1 juta-an/Bulan*
+🔹 Gratis *Motor Listrik* setelah 6x angsuran
+
+Mohon info detail tentang:
+1. Spesifikasi rumah lengkap untuk tipe ${type || '-'}
+2. Cara pengajuan KPR Syariah
+3. Jadwal survey lokasi
+4. Perkiraan cicilan per bulan
+
+*🤝 DITANGANI OLEH*
+${marketing.role}: *${marketing.name}*`;
     
-    // Show WhatsApp confirmation modal
-    showWaConfirmModal(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`);
+    // Encode message untuk URL
+    const encodedMessage = encodeURIComponent(message);
     
-    // Track conversion if Facebook Pixel is available
-    if (typeof fbq !== 'undefined') {
-        fbq('track', 'Lead');
-    }
+    // Buat URL WhatsApp
+    const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
+    
+    // Buka WhatsApp di tab baru
+    window.open(whatsappUrl, '_blank');
+    
+    // Tutup modal
+    closeFormModal();
     
     // Reset form
     document.getElementById('modalContactForm').reset();
-    closeFormModal();
+    
+    // Track conversion jika Facebook Pixel tersedia
+    if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead');
+    }
 }
 
 // ===== PRICE TYPE SELECTOR =====
