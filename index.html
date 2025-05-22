@@ -643,6 +643,7 @@ button, input, textarea, select {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: var(--shadow-md);
+  border: 3px solid var(--light);
 }
 
 .location-map iframe {
@@ -653,7 +654,7 @@ button, input, textarea, select {
 
 .location-access {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 
@@ -663,11 +664,26 @@ button, input, textarea, select {
   padding: 1.5rem;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  border-left: 4px solid var(--primary);
+  position: relative;
+  overflow: hidden;
 }
 
 .access-item:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
+  border-left-color: var(--accent);
+}
+
+.access-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.05), rgba(241, 196, 15, 0.05));
+  z-index: 0;
 }
 
 .access-icon {
@@ -681,13 +697,27 @@ button, input, textarea, select {
   margin-bottom: 1rem;
   color: var(--primary-dark);
   font-size: 1.25rem;
+  box-shadow: 0 4px 8px rgba(46, 204, 113, 0.2);
+  position: relative;
+  z-index: 1;
 }
 
 .access-title {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--dark);
+  position: relative;
+  z-index: 1;
+}
+
+.access-info {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  position: relative;
+  z-index: 1;
 }
 
 .access-time {
@@ -696,10 +726,40 @@ button, input, textarea, select {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
 }
 
 .access-time i {
   color: var(--accent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .location-map {
+    height: 300px;
+  }
+  
+  .access-item {
+    padding: 1.25rem;
+  }
+  
+  .access-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .location-map {
+    height: 250px;
+  }
+  
+  .location-access {
+    grid-template-columns: 1fr;
+  }
 }
 /* ===== TESTIMONI ===== */
 .testimonials {
@@ -1832,83 +1892,89 @@ button, input, textarea, select {
     </div>
   </section>
 
-  <!-- Location -->
-  <section class="location section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Lokasi Strategis</h2>
-        <p>Pusat kota Kuningan dengan akses mudah ke berbagai fasilitas</p>
+ <!-- Location -->
+<section class="location section" id="location">
+  <div class="container">
+    <div class="section-title">
+      <h2>Lokasi Strategis</h2>
+      <p>Pusat kota Kuningan dengan akses mudah ke berbagai fasilitas</p>
+    </div>
+    
+    <div class="location-container">
+      <div class="location-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence%2C%20Jl.%20Kertayasa%2C%20Blok%20Congkleng%2C%20Kertayasa%2C%20Kec.%20Sindangagung%2C%20Kabupaten%20Kuningan%2C%20Jawa%20Barat%2045573!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
       </div>
       
-      <div class="location-container">
-        <div class="location-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+      <div class="location-access">
+        <div class="access-item">
+          <div class="access-icon">
+            <i class="fas fa-road"></i>
+          </div>
+          <h4 class="access-title">Jalan Nasional</h4>
+          <p class="access-info">5 menit ke Jalan Nasional Kuningan-Cirebon</p>
+          <div class="access-time">
+            <i class="fas fa-clock"></i> 5 menit
+          </div>
         </div>
         
-        <div class="location-access">
-          <div class="access-item">
-            <div class="access-icon">
-              <i class="fas fa-road"></i>
-            </div>
-            <h4 class="access-title">Jalan Nasional</h4>
-            <div class="access-time">
-              <i class="fas fa-clock"></i> 5 menit
-            </div>
+        <div class="access-item">
+          <div class="access-icon">
+            <i class="fas fa-hospital-alt"></i>
           </div>
-          
-          <div class="access-item">
-            <div class="access-icon">
-              <i class="fas fa-hospital"></i>
-            </div>
-            <h4 class="access-title">RS Kuningan</h4>
-            <div class="access-time">
-              <i class="fas fa-clock"></i> 5 menit
-            </div>
+          <h4 class="access-title">RS Kuningan Medical Center</h4>
+          <p class="access-info">5 menit ke rumah sakit modern di Kuningan</p>
+          <div class="access-time">
+            <i class="fas fa-clock"></i> 5 menit
           </div>
-          
-          <div class="access-item">
-            <div class="access-icon">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
-            <h4 class="access-title">Universitas</h4>
-            <div class="access-time">
-              <i class="fas fa-clock"></i> 12 menit
-            </div>
+        </div>
+        
+        <div class="access-item">
+          <div class="access-icon">
+            <i class="fas fa-bus"></i>
           </div>
-          
-          <div class="access-item">
-            <div class="access-icon">
-              <i class="fas fa-shopping-cart"></i>
-            </div>
-            <h4 class="access-title">Pusat Perbelanjaan</h4>
-            <div class="access-time">
-              <i class="fas fa-clock"></i> 15 menit
-            </div>
+          <h4 class="access-title">Terminal Kuningan</h4>
+          <p class="access-info">6 menit ke terminal utama Kuningan</p>
+          <div class="access-time">
+            <i class="fas fa-clock"></i> 6 menit
           </div>
-          
-          <div class="access-item">
-            <div class="access-icon">
-              <i class="fas fa-landmark"></i>
-            </div>
-            <h4 class="access-title">Kantor Bupati</h4>
-            <div class="access-time">
-              <i class="fas fa-clock"></i> 16 menit
-            </div>
+        </div>
+        
+        <div class="access-item">
+          <div class="access-icon">
+            <i class="fas fa-university"></i>
           </div>
-          
-          <div class="access-item">
-            <div class="access-icon">
-              <i class="fas fa-water"></i>
-            </div>
-            <h4 class="access-title">Waterpark</h4>
-            <div class="access-time">
-              <i class="fas fa-clock"></i> 27 menit
-            </div>
+          <h4 class="access-title">Universitas Kuningan</h4>
+          <p class="access-info">12 menit ke kampus utama Universitas Kuningan</p>
+          <div class="access-time">
+            <i class="fas fa-clock"></i> 12 menit
+          </div>
+        </div>
+        
+        <div class="access-item">
+          <div class="access-icon">
+            <i class="fas fa-shopping-basket"></i>
+          </div>
+          <h4 class="access-title">Esbe Mart</h4>
+          <p class="access-info">15 menit ke pusat perbelanjaan terbesar di Kuningan</p>
+          <div class="access-time">
+            <i class="fas fa-clock"></i> 15 menit
+          </div>
+        </div>
+        
+        <div class="access-item">
+          <div class="access-icon">
+            <i class="fas fa-landmark"></i>
+          </div>
+          <h4 class="access-title">Kantor Bupati</h4>
+          <p class="access-info">16 menit ke pusat pemerintahan Kabupaten Kuningan</p>
+          <div class="access-time">
+            <i class="fas fa-clock"></i> 16 menit
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Testimonials -->
   <section class="testimonials section">
