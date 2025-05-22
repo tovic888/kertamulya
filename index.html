@@ -4489,60 +4489,108 @@ function initializeFormHandling() {
     };
 
     // Form submission
-    const contactForm = document.getElementById('modalContactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const phoneInput = document.getElementById('modalPhone');
-            const cleanPhone = phoneInput.value.replace(/\D/g, '');
-            
-            if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
-                alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
-                return;
-            }
+    // WhatsApp Confirmation Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize form submission handler
+  const contactForm = document.getElementById('modalContactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitFormData();
+    });
+  }
+});
 
-            const marketing = getNextMarketingPerson();
-            const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
-                                 marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
-                                 '62' + marketing.phone;
-            
-            const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${document.getElementById('modalName').value || '-'}\n🏙️ *Kota Asal/Tinggal*: ${document.getElementById('modalCity').value || '-'}\n📱 *Nomor WhatsApp*: ${phoneInput.value || '-'}\n🏠 *Tipe Rumah*: ${document.getElementById('modalType').value || '-'}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
-            
-            const whatsappLink = document.getElementById('whatsappLink');
-            if (whatsappLink) {
-                whatsappLink.href = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`;
-            }
-            
-            // Show WhatsApp confirmation modal
-            const waConfirmModal = document.getElementById('waConfirmModal');
-            if (waConfirmModal) {
-                waConfirmModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Start countdown
-                let countdown = 5;
-                const countdownElement = document.getElementById('countdown');
-                const countdownInterval = setInterval(() => {
-                    countdown--;
-                    if (countdownElement) countdownElement.textContent = countdown;
-                    
-                    if (countdown <= 0) {
-                        clearInterval(countdownInterval);
-                        window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`, '_blank');
-                        closeWaConfirm();
-                    }
-                }, 1000);
-            }
-            
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Lead');
-            }
-            
-            this.reset();
-            closeFormModal();
-        });
+// Marketing team data
+const marketingTeam = [
+  { name: "Taufik Marie", phone: "628977771080", role: "Digital Manager" },
+  { name: "Rahma", phone: "6285523613940", role: "Marketing Executive" },
+  { name: "Syifa", phone: "6285794058368", role: "Marketing Executive" },
+  { name: "Royyan", phone: "6281223202218", role: "Marketing Executive" }
+];
+
+let lastAssignedIndex = -1;
+
+function getNextMarketingPerson() {
+  lastAssignedIndex = (lastAssignedIndex + 1) % marketingTeam.length;
+  return marketingTeam[lastAssignedIndex];
+}
+
+function submitFormData() {
+  // Get form values
+  const name = document.getElementById('modalName').value || '-';
+  const city = document.getElementById('modalCity').value || '-';
+  const phone = document.getElementById('modalPhone').value || '-';
+  const type = document.getElementById('modalType').value || '-';
+  
+  // Validate phone number
+  const cleanPhone = phone.replace(/\D/g, '');
+  if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
+    alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
+    return;
+  }
+
+  // Get marketing person
+  const marketing = getNextMarketingPerson();
+  const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
+                       marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
+                       '62' + marketing.phone;
+  
+  // Create WhatsApp message
+  const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${name}\n🏙️ *Kota Asal/Tinggal*: ${city}\n📱 *Nomor WhatsApp*: ${phone}\n🏠 *Tipe Rumah*: ${type}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
+  
+  // Show WhatsApp confirmation modal
+  showWaConfirmModal(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`);
+  
+  // Track conversion if Facebook Pixel is available
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Lead');
+  }
+  
+  // Reset form
+  document.getElementById('modalContactForm').reset();
+  closeFormModal();
+}
+
+function showWaConfirmModal(whatsappUrl) {
+  const waConfirmModal = document.getElementById('waConfirmModal');
+  if (!waConfirmModal) return;
+  
+  waConfirmModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Start 10-second countdown
+  let countdown = 10;
+  const countdownElement = document.getElementById('countdown');
+  const countdownInterval = setInterval(() => {
+    countdown--;
+    if (countdownElement) countdownElement.textContent = countdown;
+    
+    if (countdown <= 0) {
+      clearInterval(countdownInterval);
+      window.open(whatsappUrl, '_blank');
+      closeWaConfirm();
     }
+  }, 1000);
+}
+
+function closeWaConfirm() {
+  const modal = document.getElementById('waConfirmModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function closeFormModal() {
+  const modal = document.getElementById('formModal');
+  if (modal) {
+    modal.style.opacity = '0';
+    setTimeout(() => {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 300);
+  }
 }
 
 // ===== FAQ ACCORDION =====
