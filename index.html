@@ -3,100 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🔥 Kertamulya Residence - Perumahan Islami Modern Kuningan | DP 0% + Motor Gratis</title>
-  <meta name="description" content="Perumahan Islami pertama di Kuningan dengan konsep Green Living. Cicilan mulai Rp1 juta/bulan via BJB Syariah & BTN Syariah. Booking Fee 500rb saja!">
+  <title>🔥 DP 0% Rumah Syariah Kuningan + Motor Gratis | Booking Fee 500rb</title>
+  <meta name="description" content="Perumahan Islami pertama di Kuningan. DP 0% via BJB Syariah & BTN Syariah. Cicilan Mulai Rp1 juta-an/bulan. Dapatkan Motor Listrik Gratis.">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kertamulyaresidence.com/">
-  <meta property="og:title" content="🔥 Kertamulya Residence - Perumahan Islami Modern Kuningan">
-  <meta property="og:description" content="Perumahan Islami pertama di Kuningan dengan konsep Green Living. Cicilan mulai Rp1 juta/bulan via BJB Syariah & BTN Syariah.">
+  <meta property="og:title" content="🔥 DP 0% Rumah Syariah Kuningan + Motor Gratis">
+  <meta property="og:description" content="Perumahan Islami pertama di Kuningan. DP 0% via BJB Syariah & BTN Syariah. Cicilan Mulai Rp1 juta-an/bulan.">
   <meta property="og:image" content="https://i.imgur.com/EimqXek.jpeg">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://kertamulyaresidence.com/">
-  <meta property="twitter:title" content="🔥 Kertamulya Residence - Perumahan Islami Modern Kuningan">
-  <meta property="twitter:description" content="Perumahan Islami pertama di Kuningan dengan konsep Green Living. Cicilan mulai Rp1 juta/bulan via BJB Syariah & BTN Syariah.">
+  <meta property="twitter:title" content="🔥 DP 0% Rumah Syariah Kuningan + Motor Gratis">
+  <meta property="twitter:description" content="Perumahan Islami pertama di Kuningan. DP 0% via BJB Syariah & BTN Syariah. Cicilan Mulai Rp1 juta-an/bulan.">
   <meta property="twitter:image" content="https://i.imgur.com/EimqXek.jpeg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.imgur.com/aVIjrGJ.png" type="image/png">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     /* ===== GLOBAL STYLES ===== */
     :root {
       --primary: #2ecc71;
       --primary-dark: #27ae60;
-      --accent: #f1c40f;
-      --accent-dark: #f39c12;
+      --secondary: #f1c40f;
+      --accent: #e67e22;
       --danger: #e74c3c;
-      --dark: #2c3e50;
-      --light: #ecf0f1;
+      --dark: #111;
+      --light: #f5f5f5;
       --white: #ffffff;
-      --shadow: 0 10px 30px rgba(0,0,0,0.1);
-      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     html {
+      font-size: 16px;
       scroll-behavior: smooth;
-      overflow-x: hidden;
     }
-    
+
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       color: var(--dark);
       background-color: var(--light);
       overflow-x: hidden;
     }
-    
+
     img {
       max-width: 100%;
       height: auto;
       display: block;
     }
-    
+
     a {
       text-decoration: none;
       color: inherit;
     }
-    
-    button, .btn {
+
+    button {
       cursor: pointer;
-      transition: var(--transition);
+      border: none;
+      background: none;
+      font-family: inherit;
     }
-    
+
     .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
-    
+
     .section {
-      padding: 80px 0;
+      padding: 60px 0;
     }
-    
+
     .section-title {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
-    
+
     .section-title h2 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 800;
+      color: var(--dark);
       margin-bottom: 15px;
-      background: linear-gradient(90deg, var(--primary), var(--accent-dark));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       position: relative;
       display: inline-block;
     }
-    
+
     .section-title h2::after {
       content: "";
       position: absolute;
@@ -105,539 +111,617 @@
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent-dark));
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
       border-radius: 2px;
     }
-    
+
     .section-title p {
       font-size: 1.1rem;
-      color: #7f8c8d;
+      color: #666;
       max-width: 700px;
       margin: 0 auto;
     }
-    
+
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 28px;
+      display: inline-block;
+      padding: 12px 24px;
       border-radius: 50px;
       font-weight: 600;
       text-align: center;
-      gap: 10px;
-      border: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
     }
-    
+
     .btn-primary {
-      background: linear-gradient(45deg, var(--accent), var(--accent-dark));
+      background: linear-gradient(45deg, var(--secondary), var(--accent));
       color: var(--dark);
       box-shadow: var(--shadow);
     }
-    
+
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(241, 196, 15, 0.3);
+      box-shadow: var(--shadow-lg);
     }
-    
+
     .btn-outline {
-      background: transparent;
-      color: var(--white);
       border: 2px solid var(--white);
+      color: var(--white);
+      background: transparent;
     }
-    
+
     .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
     }
-    
-    .badge {
-      display: inline-block;
-      padding: 5px 15px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    .badge-primary {
-      background: var(--primary);
-      color: white;
-    }
-    
-    .badge-accent {
-      background: var(--accent);
-      color: var(--dark);
-    }
-    
-    .price-tag {
-      display: inline-block;
-      background: var(--danger);
-      color: white;
-      padding: 10px 25px;
-      border-radius: 50px;
-      font-weight: 700;
-      margin: 15px 0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 0.9rem;
-      animation: pulse 1.5s infinite;
-    }
-    
+
     /* ===== HERO SECTION ===== */
     .hero {
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.imgur.com/EimqXek.jpeg');
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://i.imgur.com/EimqXek.jpeg');
       background-size: cover;
       background-position: center;
       min-height: 100vh;
       display: flex;
       align-items: center;
-      color: white;
+      color: var(--white);
       position: relative;
       text-align: center;
     }
-    
+
     .hero-content {
       position: relative;
       z-index: 2;
       width: 100%;
       padding: 20px;
     }
-    
+
     .hero-logo {
       max-width: 200px;
       margin: 0 auto 20px;
-      filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+      filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
     }
-    
+
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-weight: 800;
       margin-bottom: 20px;
       line-height: 1.3;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
-    
+
     .hero p {
       font-size: 1.2rem;
       margin-bottom: 25px;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
     }
-    
-    .price-comparison {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      margin: 20px 0;
-      background: rgba(0,0,0,0.5);
-      padding: 15px 30px;
+
+    .price-tag {
+      display: inline-block;
+      background-color: var(--danger);
+      color: var(--white);
+      padding: 10px 25px;
       border-radius: 50px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+      font-weight: 700;
+      margin: 20px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      animation: pulse 1.5s infinite;
     }
-    
-    .old-price {
-      text-decoration: line-through;
-      color: #ccc;
-      font-size: 1.2rem;
-    }
-    
-    .new-price {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--accent);
-    }
-    
+
     .cta-buttons {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       gap: 15px;
       margin-top: 30px;
-      flex-wrap: wrap;
+      justify-content: center;
     }
-    
+
+    /* ===== SOCIAL PROOF ===== */
     .social-proof {
-      background: rgba(0,0,0,0.5);
-      padding: 12px 20px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 15px;
       border-radius: 50px;
       margin: 30px auto 0;
       max-width: 600px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
       flex-wrap: wrap;
     }
-    
+
     .social-proof-item {
       display: flex;
       align-items: center;
-      color: white;
+      color: var(--white);
       font-weight: 600;
       font-size: 0.9rem;
-      background: rgba(255,255,255,0.1);
-      padding: 8px 15px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
       border-radius: 30px;
       white-space: nowrap;
     }
-    
+
+    /* ===== RUNNING TEXT ===== */
     .running-text {
       max-width: 800px;
       margin: 20px auto 0;
-      background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(46,204,113,0.2));
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(46, 204, 113, 0.2));
       border-radius: 30px;
-      padding: 12px 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-      border: 2px solid rgba(241,196,15,0.6);
+      padding: 10px 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(241, 196, 15, 0.6);
       backdrop-filter: blur(5px);
       overflow: hidden;
     }
-    
+
     .running-text-content {
+      display: inline-block;
       white-space: nowrap;
       animation: runningText 30s linear infinite;
+      padding-left: 100%;
     }
-    
-    /* ===== HOUSE TYPES ===== */
+
+    .running-text-content span {
+      display: inline-block;
+      margin-right: 30px;
+      font-weight: 500;
+      color: var(--white);
+      position: relative;
+    }
+
+    .running-text-content span::after {
+      content: "•";
+      position: absolute;
+      right: -15px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ===== TRIGGER SECTION ===== */
+    .trigger-section {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .trigger-list {
+      list-style: none;
+      margin: 30px 0;
+      text-align: left;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .trigger-list li {
+      margin-bottom: 20px;
+      padding-left: 40px;
+      position: relative;
+      font-size: 1.1rem;
+    }
+
+    .trigger-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      background-color: var(--secondary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+      font-weight: bold;
+    }
+
+    .trigger-list li:nth-child(1)::before {
+      content: "1";
+    }
+
+    .trigger-list li:nth-child(2)::before {
+      content: "2";
+    }
+
+    .trigger-list li:nth-child(3)::before {
+      content: "3";
+    }
+
+    /* ===== SEGMENTATION SECTION ===== */
+    .segmentation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .segment-card {
+      background: var(--white);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      text-align: center;
+      border-top: 5px solid var(--secondary);
+    }
+
+    .segment-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+
+    .segment-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .segment-desc {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ===== HOUSE TYPES SECTION ===== */
     .house-types {
       background: var(--white);
     }
-    
-    .house-grid {
+
+    .house-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .house-tab {
+      padding: 10px 20px;
+      border-radius: 50px;
+      background: rgba(46, 204, 113, 0.1);
+      color: var(--primary-dark);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .house-tab.active {
+      background: linear-gradient(45deg, var(--secondary), var(--accent));
+      color: var(--dark);
+      border-color: var(--secondary);
+    }
+
+    .house-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
-      margin-top: 40px;
     }
-    
+
     .house-card {
-      background: white;
+      background: var(--white);
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      position: relative;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.3s;
     }
-    
+
     .house-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
-    
+
+    .house-image {
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .house-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .house-card:hover .house-image img {
+      transform: scale(1.05);
+    }
+
     .house-badge {
       position: absolute;
       top: 15px;
       right: 15px;
       background: var(--danger);
-      color: white;
+      color: var(--white);
       padding: 5px 15px;
       border-radius: 50px;
       font-weight: 700;
       font-size: 0.8rem;
-      z-index: 2;
     }
-    
-    .house-image {
-      height: 250px;
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .house-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-    
-    .house-card:hover .house-image img {
-      transform: scale(1.05);
-    }
-    
-    .house-buttons {
-      position: absolute;
-      bottom: 15px;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      z-index: 2;
-    }
-    
-    .house-button {
-      background: rgba(0,0,0,0.7);
-      color: white;
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      transition: var(--transition);
-    }
-    
-    .house-button:hover {
-      background: var(--primary);
-      transform: scale(1.1);
-    }
-    
+
     .house-content {
       padding: 20px;
     }
-    
-    .house-content h3 {
-      font-size: 1.5rem;
+
+    .house-title {
+      font-size: 1.4rem;
       margin-bottom: 10px;
       color: var(--primary-dark);
     }
-    
-    .house-specs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 15px 0;
-    }
-    
-    .house-spec {
+
+    .house-size {
       display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .house-features {
+      margin-bottom: 20px;
+    }
+
+    .house-features ul {
+      list-style: none;
+      columns: 2;
+      column-gap: 20px;
+    }
+
+    .house-features li {
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .house-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .house-price {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .price-old {
+      text-decoration: line-through;
+      color: #999;
       font-size: 0.9rem;
     }
-    
-    .house-spec i {
-      color: var(--primary);
-    }
-    
-    .house-price {
-      margin-top: 20px;
-      padding-top: 15px;
-      border-top: 1px dashed #ddd;
-    }
-    
-    .house-price .old-price {
-      text-decoration: line-through;
-      color: #95a5a6;
-      font-size: 1rem;
-    }
-    
-    .house-price .new-price {
-      font-size: 1.5rem;
+
+    .price-new {
+      font-size: 1.4rem;
       font-weight: 800;
       color: var(--danger);
     }
-    
-    /* ===== FEATURES ===== */
-    .features {
-      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+
+    .house-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
     }
-    
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
-    
-    .feature-card {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      border-bottom: 5px solid var(--primary);
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-    
-    .feature-icon {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(45deg, var(--primary), var(--primary-dark));
-      border-radius: 50%;
+
+    .action-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      font-weight: 600;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
-      color: white;
-      font-size: 1.5rem;
+      gap: 5px;
     }
-    
-    .feature-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 15px;
+
+    .action-btn.primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .action-btn.secondary {
+      background: rgba(46, 204, 113, 0.1);
       color: var(--primary-dark);
     }
-    
-    .feature-card p {
-      color: #7f8c8d;
-      font-size: 0.95rem;
-      line-height: 1.6;
+
+    /* ===== FACILITIES SECTION ===== */
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
     }
-    
-    /* ===== LOCATION ===== */
+
+    .facility-card {
+      background: var(--white);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+    }
+
+    .facility-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .facility-image {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .facility-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .facility-card:hover .facility-image img {
+      transform: scale(1.1);
+    }
+
+    .facility-content {
+      padding: 20px;
+    }
+
+    .facility-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+    }
+
+    .facility-desc {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    /* ===== LOCATION SECTION ===== */
+    .location-section {
+      background: #f9f9f9;
+    }
+
+    .location-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
     .location-map {
       height: 400px;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      margin-top: 40px;
+      box-shadow: var(--shadow-lg);
       position: relative;
     }
-    
+
     .location-map iframe {
       width: 100%;
       height: 100%;
       border: none;
     }
-    
-    .location-button {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-weight: 600;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      border: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .location-button:hover {
-      background: var(--primary-dark);
-    }
-    
-    /* ===== TESTIMONIALS ===== */
-    .testimonials {
-      background: linear-gradient(135deg, var(--dark), #34495e);
-      color: white;
-    }
-    
-    .testimonial-slider {
-      margin-top: 40px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .testimonial-track {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-    
-    .testimonial-card {
-      min-width: 100%;
-      padding: 30px;
-      box-sizing: border-box;
-    }
-    
-    .testimonial-content {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 30px;
-      border-left: 5px solid var(--accent);
-    }
-    
-    .testimonial-text {
-      font-style: italic;
-      margin-bottom: 20px;
-      line-height: 1.8;
-      position: relative;
-    }
-    
-    .testimonial-text::before {
-      content: '"';
-      font-size: 4rem;
-      position: absolute;
-      top: -20px;
-      left: -15px;
-      color: rgba(255,255,255,0.1);
-      font-family: serif;
-    }
-    
-    .testimonial-author {
-      display: flex;
-      align-items: center;
+
+    .location-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 15px;
     }
-    
+
+    .location-item {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .location-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(46, 204, 113, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .location-text {
+      font-size: 0.9rem;
+    }
+
+    .location-text strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--dark);
+    }
+
+    /* ===== TESTIMONIAL SECTION ===== */
+    .testimonial-section {
+      background: linear-gradient(135deg, #111, #222);
+      color: var(--white);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(241, 196, 15, 0.2);
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      gap: 15px;
+    }
+
     .testimonial-avatar {
       width: 60px;
       height: 60px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--accent);
+      border: 2px solid var(--secondary);
     }
-    
-    .author-info h4 {
-      font-size: 1.2rem;
-      margin-bottom: 5px;
-      color: var(--accent);
+
+    .testimonial-name {
+      font-size: 1.1rem;
+      color: var(--secondary);
     }
-    
-    .author-info p {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-    
+
     .testimonial-rating {
-      color: var(--accent);
+      color: var(--secondary);
+      font-size: 0.9rem;
       margin-top: 5px;
     }
-    
-    .slider-controls {
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .testimonial-footer {
       display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 30px;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
     }
-    
-    .slider-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    
-    .slider-dot.active {
-      background: var(--accent);
-      transform: scale(1.2);
-    }
-    
+
     /* ===== VIDEO SECTION ===== */
-    .video-section {
-      background: white;
-    }
-    
     .video-container {
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
       border-radius: 15px;
-      margin-top: 40px;
-      box-shadow: var(--shadow);
+      margin-top: 30px;
     }
-    
+
     .video-container iframe {
       position: absolute;
       top: 0;
@@ -646,510 +730,386 @@
       height: 100%;
       border: none;
     }
-    
+
     /* ===== TIKTOK SECTION ===== */
-    .tiktok-section {
-      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    }
-    
     .tiktok-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      margin-top: 40px;
+      margin-top: 30px;
     }
-    
-    .tiktok-card {
-      background: black;
+
+    .tiktok-item {
+      position: relative;
       border-radius: 10px;
       overflow: hidden;
+      box-shadow: var(--shadow-lg);
       aspect-ratio: 9/16;
-      position: relative;
+      background: #000;
     }
-    
-    .tiktok-card img {
+
+    .tiktok-item video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.8;
     }
-    
-    .tiktok-play {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      background: var(--danger);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.5rem;
-    }
-    
-    .tiktok-label {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      color: white;
-      text-align: center;
-      font-weight: 600;
-    }
-    
-    /* ===== CTA SECTION ===== */
-    .cta-section {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      text-align: center;
+
+    /* ===== COUNTDOWN SECTION ===== */
+    .countdown-section {
+      background: linear-gradient(135deg, var(--danger), #c0392b);
+      color: var(--white);
       padding: 60px 0;
+      text-align: center;
     }
-    
-    .cta-section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-    }
-    
-    .cta-section p {
-      max-width: 700px;
-      margin: 0 auto 30px;
-      font-size: 1.1rem;
-    }
-    
-    /* ===== COUNTDOWN ===== */
-    .countdown {
+
+    .countdown-grid {
       display: flex;
       justify-content: center;
       gap: 15px;
       margin: 30px 0;
+      flex-wrap: wrap;
     }
-    
+
     .countdown-item {
-      text-align: center;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 15px;
+      min-width: 80px;
+      backdrop-filter: blur(5px);
     }
-    
+
     .countdown-number {
       font-size: 2rem;
       font-weight: 800;
-      background: rgba(0,0,0,0.2);
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 10px;
+      margin-bottom: 5px;
     }
-    
+
     .countdown-label {
       font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
-    
-    /* ===== FORM ===== */
-    .booking-form {
+
+    /* ===== BANK PARTNER SECTION ===== */
+    .bank-section {
+      background: var(--white);
+    }
+
+    .bank-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .bank-item {
+      padding: 20px;
+      background: rgba(46, 204, 113, 0.1);
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+
+    .bank-item:hover {
+      transform: scale(1.05);
+    }
+
+    .bank-item img {
+      height: 60px;
+      object-fit: contain;
+    }
+
+    /* ===== FORM SECTION ===== */
+    .form-section {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+    }
+
+    .form-container {
       max-width: 600px;
-      margin: 40px auto 0;
-      background: white;
+      margin: 0 auto;
+      background: var(--white);
       border-radius: 15px;
-      padding: 40px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
+      padding: 30px;
+      box-shadow: var(--shadow-lg);
     }
-    
-    .booking-form::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 10px;
-      background: linear-gradient(90deg, var(--primary), var(--accent-dark));
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--dark);
     }
-    
+
+    .form-title h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
     .form-group {
       margin-bottom: 20px;
     }
-    
+
     .form-group label {
       display: block;
       margin-bottom: 8px;
       font-weight: 600;
       color: var(--dark);
     }
-    
+
     .form-group input,
     .form-group select {
       width: 100%;
-      padding: 15px;
-      border: 2px solid #ddd;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
       border-radius: 8px;
       font-size: 1rem;
-      transition: var(--transition);
     }
-    
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: var(--primary);
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
-    }
-    
+
     .form-submit {
       width: 100%;
-      padding: 16px;
-      background: linear-gradient(45deg, var(--accent), var(--accent-dark));
+      padding: 15px;
+      background: linear-gradient(45deg, var(--secondary), var(--accent));
       color: var(--dark);
-      border: none;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
       margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3);
+      transition: all 0.3s;
     }
-    
+
     .form-submit:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(241, 196, 15, 0.4);
+      box-shadow: var(--shadow-lg);
     }
-    
-    /* ===== FOOTER ===== */
-    .footer {
-      background: var(--dark);
-      color: white;
-      padding: 60px 0 30px;
-    }
-    
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-    
-    .footer-logo {
-      max-width: 200px;
-      margin-bottom: 20px;
-      filter: brightness(0) invert(1);
-    }
-    
-    .footer-about p {
-      margin-bottom: 20px;
-      opacity: 0.8;
-      line-height: 1.6;
-    }
-    
-    .footer-social {
-      display: flex;
-      gap: 15px;
-    }
-    
-    .footer-social a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    
-    .footer-social a:hover {
-      background: var(--primary);
-      transform: translateY(-3px);
-    }
-    
-    .footer-heading {
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      color: var(--accent);
-      position: relative;
-      padding-bottom: 10px;
-    }
-    
-    .footer-heading::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: var(--accent);
-    }
-    
-    .footer-links {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 15px;
-    }
-    
-    .footer-links a {
-      color: white;
-      opacity: 0.8;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .footer-links a:hover {
-      opacity: 1;
-      color: var(--accent);
-      transform: translateX(5px);
-    }
-    
-    .footer-links i {
-      color: var(--accent);
-    }
-    
-    .bank-partners {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    
-    .bank-logo {
-      height: 40px;
-      filter: grayscale(100%) brightness(2);
-      opacity: 0.7;
-      transition: var(--transition);
-    }
-    
-    .bank-logo:hover {
-      filter: grayscale(0) brightness(1);
-      opacity: 1;
-    }
-    
-    .copyright {
-      text-align: center;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.6);
-      font-size: 0.9rem;
-    }
-    
-    .legal-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    
-    .legal-links a {
-      color: rgba(255,255,255,0.6);
-      font-size: 0.9rem;
-      transition: var(--transition);
-    }
-    
-    .legal-links a:hover {
-      color: var(--accent);
-    }
-    
-    /* ===== WHATSAPP BUTTON ===== */
-    .whatsapp-button {
+
+    /* ===== WHATSAPP FLOAT ===== */
+    .whatsapp-float {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
+      bottom: 25px;
+      right: 25px;
       width: 60px;
       height: 60px;
       background: #25D366;
-      color: white;
+      color: var(--white);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: var(--shadow-lg);
       z-index: 100;
       animation: float 3s ease-in-out infinite;
     }
-    
+
     /* ===== NOTIFICATION ===== */
     .notification {
       position: fixed;
       bottom: 100px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--danger);
-      color: white;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      color: var(--white);
       padding: 12px 25px;
       border-radius: 50px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: var(--shadow-lg);
       z-index: 99;
       display: none;
-      opacity: 0;
-      transition: var(--transition);
-      font-size: 0.9rem;
-      white-space: nowrap;
-      max-width: 90%;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      animation: slideIn 0.5s ease-out;
     }
-    
-    .notification i {
-      margin-right: 8px;
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #111;
+      color: var(--white);
+      padding: 60px 0 30px;
     }
-    
-    /* ===== MODAL ===== */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      z-index: 999;
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-logo {
+      margin-bottom: 20px;
+    }
+
+    .footer-logo img {
+      max-width: 200px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-about p {
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
+      transition: all 0.3s;
     }
-    
-    .modal.active {
-      opacity: 1;
-      visibility: visible;
+
+    .footer-social a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
     }
-    
-    .modal-content {
-      background: white;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 900px;
-      max-height: 90vh;
-      overflow: hidden;
-      position: relative;
-      transform: scale(0.9);
-      transition: var(--transition);
-    }
-    
-    .modal.active .modal-content {
-      transform: scale(1);
-    }
-    
-    .modal-close {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      width: 40px;
-      height: 40px;
-      background: var(--danger);
-      color: white;
-      border: none;
-      border-radius: 50%;
+
+    .footer-heading {
       font-size: 1.2rem;
-      cursor: pointer;
-      z-index: 2;
+      margin-bottom: 20px;
+      color: var(--secondary);
+      position: relative;
+      padding-bottom: 10px;
     }
-    
-    .modal-body {
-      padding: 30px;
+
+    .footer-heading::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--secondary);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: var(--white);
+      opacity: 0.8;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--secondary);
+      transform: translateX(5px);
+    }
+
+    .footer-links i {
+      color: var(--secondary);
+    }
+
+    .footer-contact p {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+
+    .footer-contact i {
+      color: var(--secondary);
+    }
+
+    .copyright {
       text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.7;
     }
-    
-    .modal-image {
-      max-width: 100%;
-      max-height: 70vh;
-      border-radius: 10px;
+
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
     }
-    
+
+    .legal-links a {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .legal-links a:hover {
+      color: var(--secondary);
+    }
+
     /* ===== ANIMATIONS ===== */
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-    
+
     @keyframes float {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0px); }
     }
-    
+
     @keyframes runningText {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
-    
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .section {
-        padding: 60px 0;
-      }
-      
-      .section-title h2 {
-        font-size: 2rem;
-      }
-      
+
+    @keyframes slideIn {
+      from { transform: translate(-50%, 100px); opacity: 0; }
+      to { transform: translate(-50%, 0); opacity: 1; }
+    }
+
+    /* ===== RESPONSIVE STYLES ===== */
+    @media (min-width: 576px) {
       .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .hero p {
-        font-size: 1.1rem;
-      }
-      
-      .price-comparison {
-        flex-direction: column;
-        gap: 5px;
+        font-size: 2.5rem;
       }
       
       .cta-buttons {
-        flex-direction: column;
-      }
-      
-      .house-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .features-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      
-      .tiktok-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .booking-form {
-        padding: 30px 20px;
+        flex-direction: row;
       }
     }
-    
-    @media (max-width: 480px) {
+
+    @media (min-width: 768px) {
       .section {
-        padding: 50px 0;
+        padding: 80px 0;
       }
       
       .section-title h2 {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
       }
       
+      .location-container {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .house-tabs {
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (min-width: 992px) {
       .hero h1 {
-        font-size: 1.8rem;
+        font-size: 3rem;
       }
       
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .footer-grid {
-        grid-template-columns: 1fr;
+      .section {
+        padding: 100px 0;
       }
     }
   </style>
@@ -1159,23 +1119,18 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="hero-logo" loading="lazy">
-        <h1>Perumahan Islami Modern Pertama di Kuningan</h1>
-        <p>Cicilan mulai <strong>Rp1 juta-an/bulan</strong> via Bank Syariah • Booking Fee 500rb saja</p>
-        
-        <div class="price-comparison">
-          <span class="old-price">Harga Normal: 185 Juta</span>
-          <span class="new-price">Promo: 168 Juta</span>
-        </div>
+        <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="hero-logo" width="200" height="auto" loading="lazy">
+        <h1>DP 0% Rumah Syariah Kuningan + Bonus Motor Listrik</h1>
+        <p>Cicilan mulai <strong>Rp1 juta-an/bulan</strong> - Booking fee hanya 500rb</p>
         
         <div class="price-tag">PROMO TERBATAS 2025</div>
         
         <div class="cta-buttons">
-          <button onclick="showBookingForm()" class="btn btn-primary">
+          <button onclick="showForm()" class="btn btn-primary">
             <i class="fab fa-whatsapp"></i> BOOKING SEKARANG
           </button>
-          <a href="#house-types" class="btn btn-outline">
-            <i class="fas fa-home"></i> LIHAT TIPE RUMAH
+          <a href="#lokasi" class="btn btn-outline">
+            <i class="fas fa-map-marker-alt"></i> LIHAT LOKASI
           </a>
         </div>
         
@@ -1186,754 +1141,252 @@
           <div class="social-proof-item">
             <i class="fas fa-home"></i> 200+ Unit Terjual
           </div>
-          <div class="social-proof-item">
-            <i class="fas fa-bolt"></i> 12 Unit Terjual Hari Ini
-          </div>
         </div>
         
         <div class="running-text">
           <div class="running-text-content">
-            🚀 Promo terbatas! Booking fee 500rb dapat motor listrik gratis • 💰 DP 0% via BJB Syariah & BTN Syariah • 🏡 Harga naik bulan depan!
+            <span>🔥 Promo terbatas! Harga akan naik bulan depan</span>
+            <span>🚀 Baru saja 3 unit terjual hari ini</span>
+            <span>💎 Gratis motor listrik setelah 6x angsuran</span>
+            <span>🔥 Promo terbatas! Harga akan naik bulan depan</span>
+            <span>🚀 Baru saja 3 unit terjual hari ini</span>
+            <span>💎 Gratis motor listrik setelah 6x angsuran</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- House Types -->
-  <section class="section house-types" id="house-types">
+  <!-- Trigger Section -->
+  <section class="trigger-section">
     <div class="container">
       <div class="section-title">
-        <h2>Pilih Tipe Rumah Islami Anda</h2>
-        <p>Desain modern dengan konsep Green Living</p>
+        <h2>KENAPA HARUS KERTAMULYA RESIDENCE?</h2>
+        <p>Perumahan Islami pertama di Kuningan dengan konsep Green Living</p>
       </div>
       
-      <div class="house-grid">
-        <!-- Tipe Standart -->
-        <div class="house-card">
-          <div class="house-badge">TERPOPULER</div>
+      <ul class="trigger-list">
+        <li><strong>Investasi dunia-akhirat</strong> - Nilai properti naik + pahala dari lingkungan islami</li>
+        <li><strong>Lingkungan bebas maksiat</strong> - Komunitas muslim yang menjaga syariat</li>
+        <li><strong>Warisan generasi Qur'ani</strong> - Fasilitas pendidikan islam untuk anak-anak</li>
+      </ul>
+      
+      <div style="text-align: center; margin-top: 30px;">
+        <button onclick="showForm()" class="btn btn-primary">
+          <i class="fab fa-whatsapp"></i> BOOKING UNIT SEKARANG
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Segmentation Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>UNTUK SIAPA RUMAH INI?</h2>
+        <p>Solusi kepemilikan rumah untuk semua kalangan muslim</p>
+      </div>
+      
+      <div class="segmentation-grid">
+        <div class="segment-card">
+          <div class="segment-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3 class="segment-title">Pasangan Muda</h3>
+          <p class="segment-desc">Mulai hidup barokah dengan cicilan Rp1 juta-an/bulan. Lingkungan islami untuk keluarga kecil Anda.</p>
+        </div>
+        
+        <div class="segment-card">
+          <div class="segment-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="segment-title">Investor</h3>
+          <p class="segment-desc">Investasi di kawasan wisata halal. Nilai properti diprediksi naik 25% per tahun.</p>
+        </div>
+        
+        <div class="segment-card">
+          <div class="segment-icon">
+            <i class="fas fa-mosque"></i>
+          </div>
+          <h3 class="segment-title">Pensiunan</h3>
+          <p class="segment-desc">Kawasan Perumahaan Islami dengan fasilitas ibadah agar fokus ibadah di usia senja.</p>
+        </div>
+        
+        <div class="segment-card">
+          <div class="segment-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="segment-title">Keluarga</h3>
+          <p class="segment-desc">Ramah Anak dengan fasilitas taman dan sekolah di lingkungan terbaik untuk generasi Qur'ani.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- House Types Section -->
+  <section class="section house-types">
+    <div class="container">
+      <div class="section-title">
+        <h2>PILIHAN TIPE RUMAH</h2>
+        <p>Desain modern dengan konsep islami</p>
+      </div>
+      
+      <div class="house-tabs">
+        <button class="house-tab active" data-type="standard">Tipe Standard</button>
+        <button class="house-tab" data-type="suite">Tipe Suite</button>
+        <button class="house-tab" data-type="premium">Tipe Premium</button>
+      </div>
+      
+      <div class="house-cards">
+        <!-- Standard Type -->
+        <div class="house-card" data-type="standard">
           <div class="house-image">
-            <img src="https://imgur.com/kYxjjEX.jpg" alt="Tipe Standart 30/60" loading="lazy">
-            <div class="house-buttons">
-              <button class="house-button" onclick="showGallery('standart')">
-                <i class="fas fa-images"></i>
-              </button>
-              <button class="house-button" onclick="showVideo('standart')">
-                <i class="fas fa-play"></i>
-              </button>
-            </div>
+            <img src="https://i.imgur.com/kYxjjEX.jpg" alt="Tipe Standard 30/60" loading="lazy">
+            <div class="house-badge">PALING DIMINATI</div>
           </div>
           <div class="house-content">
-            <h3>Tipe Standart 30/60</h3>
-            
-            <div class="house-specs">
-              <div class="house-spec">
-                <i class="fas fa-ruler-combined"></i> Tanah: 60 m²
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-home"></i> Bangunan: 30 m²
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-bed"></i> 2 Kamar Tidur
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-bath"></i> 1 Kamar Mandi
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-car"></i> Carport
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-tree"></i> Taman Depan/Belakang
-              </div>
+            <h3 class="house-title">Tipe Standard 30/60</h3>
+            <div class="house-size">
+              <span>Tanah: 60 m²</span>
+              <span>Bangunan: 30 m²</span>
             </div>
-            
+            <div class="house-features">
+              <ul>
+                <li>Carport</li>
+                <li>Taman Depan</li>
+                <li>Ruang Keluarga</li>
+                <li>Kamar Tidur 1</li>
+                <li>Kamar Tidur 2</li>
+                <li>Taman Belakang</li>
+                <li>Kamar Mandi</li>
+              </ul>
+            </div>
             <div class="house-price">
-              <div class="old-price">Harga Normal: 185 Juta</div>
-              <div class="new-price">Promo: 168 Juta</div>
+              <div>
+                <div class="price-old">Rp185 Juta</div>
+                <div class="price-new">Rp168 Juta</div>
+              </div>
             </div>
-            
-            <button onclick="showBookingForm('Tipe Standart 30/60')" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
-              <i class="fab fa-whatsapp"></i> INFO LEBIH LANJUT
-            </button>
+            <div class="house-actions">
+              <button class="action-btn primary" onclick="showForm('Tipe Standard 30/60')">
+                <i class="fab fa-whatsapp"></i> Booking
+              </button>
+              <button class="action-btn secondary" onclick="openVideoModal('standard')">
+                <i class="fas fa-play"></i> Video
+              </button>
+            </div>
           </div>
         </div>
         
-        <!-- Tipe Suite -->
-        <div class="house-card">
-          <div class="house-badge">TERLARIS</div>
+        <!-- Suite Type -->
+        <div class="house-card" data-type="suite">
           <div class="house-image">
-            <img src="https://imgur.com/rzlJAkz.jpg" alt="Tipe Suite 50/60" loading="lazy">
-            <div class="house-buttons">
-              <button class="house-button" onclick="showGallery('suite')">
-                <i class="fas fa-images"></i>
-              </button>
-              <button class="house-button" onclick="showVideo('suite')">
-                <i class="fas fa-play"></i>
-              </button>
-            </div>
+            <img src="https://i.imgur.com/rzlJAkz.jpg" alt="Tipe Suite 50/60" loading="lazy">
           </div>
           <div class="house-content">
-            <h3>Tipe Suite 50/60</h3>
-            
-            <div class="house-specs">
-              <div class="house-spec">
-                <i class="fas fa-ruler-combined"></i> Tanah: 60 m²
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-home"></i> Bangunan: 50 m²
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-bed"></i> 3 Kamar Tidur
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-bath"></i> 1 Kamar Mandi
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-car"></i> Carport
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-tree"></i> Taman Dalam
-              </div>
+            <h3 class="house-title">Tipe Suite 50/60</h3>
+            <div class="house-size">
+              <span>Tanah: 60 m²</span>
+              <span>Bangunan: 50 m²</span>
             </div>
-            
+            <div class="house-features">
+              <ul>
+                <li>Carport</li>
+                <li>Taman Depan</li>
+                <li>Ruang Tamu</li>
+                <li>Ruang Keluarga</li>
+                <li>Kamar Tidur 1</li>
+                <li>Kamar Tidur 2</li>
+                <li>Kamar Tidur 3</li>
+                <li>Taman Dalam</li>
+                <li>Kamar Mandi</li>
+              </ul>
+            </div>
             <div class="house-price">
-              <div class="old-price">Harga Normal: 309 Juta</div>
-              <div class="new-price">Promo: 277 Juta</div>
+              <div>
+                <div class="price-old">Rp309 Juta</div>
+                <div class="price-new">Rp277 Juta</div>
+              </div>
             </div>
-            
-            <button onclick="showBookingForm('Tipe Suite 50/60')" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
-              <i class="fab fa-whatsapp"></i> INFO LEBIH LANJUT
-            </button>
+            <div class="house-actions">
+              <button class="action-btn primary" onclick="showForm('Tipe Suite 50/60')">
+                <i class="fab fa-whatsapp"></i> Booking
+              </button>
+              <button class="action-btn secondary" onclick="openVideoModal('suite')">
+                <i class="fas fa-play"></i> Video
+              </button>
+            </div>
           </div>
         </div>
         
-        <!-- Tipe Premium -->
-        <div class="house-card">
+        <!-- Premium Type -->
+        <div class="house-card" data-type="premium">
           <div class="house-image">
-            <img src="https://imgur.com/xFgp9FL.jpg" alt="Tipe Premium 50/120" loading="lazy">
-            <div class="house-buttons">
-              <button class="house-button" onclick="showGallery('premium')">
-                <i class="fas fa-images"></i>
-              </button>
-              <button class="house-button" onclick="showVideo('premium')">
-                <i class="fas fa-play"></i>
-              </button>
-            </div>
+            <img src="https://i.imgur.com/xFgp9FL.jpg" alt="Tipe Premium 50/120" loading="lazy">
           </div>
           <div class="house-content">
-            <h3>Tipe Premium 50/120</h3>
-            
-            <div class="house-specs">
-              <div class="house-spec">
-                <i class="fas fa-ruler-combined"></i> Tanah: 120 m²
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-home"></i> Bangunan: 50 m² + Mezanin
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-bed"></i> 3 Kamar Tidur
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-bath"></i> 2 Kamar Mandi
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-umbrella-beach"></i> Gazebo
-              </div>
-              <div class="house-spec">
-                <i class="fas fa-fish"></i> Kolam Ikan
-              </div>
+            <h3 class="house-title">Tipe Premium 50/120</h3>
+            <div class="house-size">
+              <span>Tanah: 120 m²</span>
+              <span>Bangunan: 50 m²</span>
             </div>
-            
+            <div class="house-features">
+              <ul>
+                <li>Carport</li>
+                <li>Taman Depan</li>
+                <li>Ruang Tamu</li>
+                <li>Kamar Tidur 1</li>
+                <li>Kamar Tidur 2</li>
+                <li>Kamar Tidur 3</li>
+                <li>Taman Dalam</li>
+                <li>Kamar Mandi</li>
+                <li>Kolam Ikan</li>
+                <li>Gazebo</li>
+              </ul>
+            </div>
             <div class="house-price">
-              <div class="old-price">Harga Normal: 459 Juta</div>
-              <div class="new-price">Promo: 408 Juta</div>
+              <div>
+                <div class="price-old">Rp459 Juta</div>
+                <div class="price-new">Rp408 Juta</div>
+              </div>
             </div>
-            
-            <button onclick="showBookingForm('Tipe Premium 50/120')" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
-              <i class="fab fa-whatsapp"></i> INFO LEBIH LANJUT
-            </button>
+            <div class="house-actions">
+              <button class="action-btn primary" onclick="showForm('Tipe Premium 50/120')">
+                <i class="fab fa-whatsapp"></i> Booking
+              </button>
+              <button class="action-btn secondary" onclick="openVideoModal('premium')">
+                <i class="fas fa-play"></i> Video
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section class="section features">
+  <!-- Facilities Section -->
+  <section class="section" id="fasilitas">
     <div class="container">
       <div class="section-title">
-        <h2>Fasilitas Premium</h2>
+        <h2>FASILITAS PREMIUM</h2>
         <p>Konsep Islami Green Living Pertama di Kuningan</p>
       </div>
       
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-mosque"></i>
+      <div class="facilities-grid">
+        <div class="facility-card">
+          <div class="facility-image">
+            <img src="https://i.imgur.com/QJfJq2l.jpeg" alt="Masjid Al Fawwaz" loading="lazy">
           </div>
-          <h3>Masjid Al Fawwaz</h3>
-          <p>Kapasitas 400 jamaah dengan desain modern dan tempat wudhu nyaman</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-book-quran"></i>
-          </div>
-          <h3>Saung Tahfidz</h3>
-          <p>Tempat menghafal Al-Qur'an dengan metode modern dan guru bersanad</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-bowling-ball"></i>
-          </div>
-          <h3>Sunnah Sport</h3>
-          <p>Lapangan panahan, berkuda, jogging track dan olahraga sunnah lainnya</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-users"></i>
-          </div>
-          <h3>Community Center</h3>
-          <p>Tempat berkumpul keluarga dengan cafe dan ruang serbaguna</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-leaf"></i>
-          </div>
-          <h3>Green House</h3>
-          <p>Area hijau dengan tanaman produktif untuk ketahanan pangan penghuni</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-child"></i>
-          </div>
-          <h3>Playground</h3>
-          <p>Area bermain anak dengan permainan edukatif dan aman</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Location -->
-  <section class="section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Lokasi Strategis</h2>
-        <p>Pusat kota Kuningan dengan akses mudah ke segala fasilitas</p>
-      </div>
-      
-      <div class="location-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
-        <button class="location-button" onclick="window.open('https://maps.app.goo.gl/MvW8BMGXstCPv8aW6', '_blank')">
-          <i class="fas fa-street-view"></i> Lihat Tampilan Live
-        </button>
-      </div>
-      
-      <div style="text-align: center; margin-top: 40px;">
-        <button onclick="showBookingForm()" class="btn btn-primary">
-          <i class="fas fa-calendar-check"></i> JADWALKAN SURVEY LOKASI
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="section testimonials">
-    <div class="container">
-      <div class="section-title">
-        <h2>Apa Kata Mereka?</h2>
-        <p>Testimoni asli dari penghuni Kertamulya Residence</p>
-      </div>
-      
-      <div class="testimonial-slider">
-        <div class="testimonial-track" id="testimonialTrack">
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <div class="testimonial-text">
-                "Dulu sewa Rp3jt/bulan, sekarang punya rumah + motor gratis! Proses KPR mudah dengan BTN Syariah. Lingkungan islami sangat mendukung keluarga kami."
-              </div>
-              <div class="testimonial-author">
-                <img src="https://i.imgur.com/bb6khHw.jpeg" alt="Pak Encep" class="testimonial-avatar" loading="lazy">
-                <div class="author-info">
-                  <h4>Pak Encep Indra Ginanjar</h4>
-                  <p>Pemilik 3 Unit</p>
-                  <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <div class="testimonial-text">
-                "Booking fee 500rb langsung dapat unit. Proses KPR hanya 3 hari. Motor listrik benar-benar diberikan setelah 6x angsuran. Sangat recommended!"
-              </div>
-              <div class="testimonial-author">
-                <img src="https://i.imgur.com/CT06pWI.jpeg" alt="Pak Erfan" class="testimonial-avatar" loading="lazy">
-                <div class="author-info">
-                  <h4>Pak Erfan Primanto</h4>
-                  <p>Penghuni Sejak 2024</p>
-                  <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <div class="testimonial-text">
-                "Alhamdulillah, meski single parent bisa punya rumah. Cicilan Rp1,2jt via BJB Syariah. Fasilitas tahfidz membuat anak saya senang belajar Quran."
-              </div>
-              <div class="testimonial-author">
-                <img src="https://i.imgur.com/sP9dCSq.jpeg" alt="Bu Sofyan" class="testimonial-avatar" loading="lazy">
-                <div class="author-info">
-                  <h4>Bu Sofyan Heryana</h4>
-                  <p>Ibu Rumah Tangga</p>
-                  <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="facility-content">
+            <h3 class="facility-title">Masjid Al Fawwaz</h3>
+            <p class="facility-desc">Kapasitas 400 jamaah dengan desain modern dan tempat wudhu nyaman</p>
           </div>
         </div>
         
-        <div class="slider-controls">
-          <button class="slider-dot active" onclick="goToSlide(0)"></button>
-          <button class="slider-dot" onclick="goToSlide(1)"></button>
-          <button class="slider-dot" onclick="goToSlide(2)"></button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Video Section -->
-  <section class="section video-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Video Profil</h2>
-        <p>Lihat langsung keindahan Kertamulya Residence</p>
-      </div>
-      
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/2vYd5Fd_-Q8?si=-_V7M7Yw_a_Aa090" title="Video Profil Kertamulya Residence" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-      
-      <div style="text-align: center; margin-top: 40px;">
-        <button onclick="showBookingForm()" class="btn btn-primary">
-          <i class="fab fa-whatsapp"></i> TANYAKAN VIA WHATSAPP
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- TikTok Section -->
-  <section class="section tiktok-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Konten Terbaru Kami</h2>
-        <p>Ikuti perkembangan terbaru Kertamulya Residence</p>
-      </div>
-      
-      <div class="tiktok-grid">
-        <div class="tiktok-card" onclick="openTikTok('7005078576081030426')">
-          <img src="https://i.imgur.com/JKpZ6YT.jpeg" alt="TikTok 1" loading="lazy">
-          <div class="tiktok-play">
-            <i class="fab fa-tiktok"></i>
+        <div class="facility-card">
+          <div class="facility-image">
+            <img src="https://i.imgur.com/Fc4wxey.jpeg" alt="Saung Tahfidz" loading="lazy">
           </div>
-          <div class="tiktok-label">Kawasan Milenial</div>
-        </div>
-        
-        <div class="tiktok-card" onclick="openTikTok('7005076867602599195')">
-          <img src="https://i.imgur.com/NXt5lhy.jpeg" alt="TikTok 2" loading="lazy">
-          <div class="tiktok-play">
-            <i class="fab fa-tiktok"></i>
-          </div>
-          <div class="tiktok-label">60 Unit Terjual Bulan ini</div>
-        </div>
-        
-        <div class="tiktok-card" onclick="openTikTok('7013548931787361537')">
-          <img src="https://i.imgur.com/kN5ddyp.jpeg" alt="TikTok 3" loading="lazy">
-          <div class="tiktok-play">
-            <i class="fab fa-tiktok"></i>
-          </div>
-          <div class="tiktok-label">Beli Rumah Gratis Motor Listrik</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="section cta-section">
-    <div class="container">
-      <h2>Promo Terbatas 2025</h2>
-      <p>Booking sebelum waktu habis dan dapatkan motor listrik gratis setelah angsuran ke-6</p>
-      
-      <div class="countdown">
-        <div class="countdown-item">
-          <div class="countdown-number" id="days">07</div>
-          <div class="countdown-label">Hari</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="hours">23</div>
-          <div class="countdown-label">Jam</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="minutes">45</div>
-          <div class="countdown-label">Menit</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="seconds">12</div>
-          <div class="countdown-label">Detik</div>
-        </div>
-      </div>
-      
-      <button onclick="showBookingForm()" class="btn btn-primary" style="margin-top: 30px;">
-        <i class="fab fa-whatsapp"></i> BOOKING SEKARANG
-      </button>
-      
-      <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
-        <i class="fas fa-exclamation-circle"></i> Kuota terbatas hanya untuk 75 unit pertama
-      </p>
-    </div>
-  </section>
-
-  <!-- Booking Form -->
-  <section class="section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Form Booking Unit</h2>
-        <p>Isi data dibawah ini untuk survey atau booking unit</p>
-      </div>
-      
-      <form class="booking-form" id="bookingForm">
-        <div class="form-group">
-          <label for="name">Nama Lengkap</label>
-          <input type="text" id="name" required placeholder="Nama Anda">
-        </div>
-        
-        <div class="form-group">
-          <label for="phone">Nomor WhatsApp</label>
-          <input type="tel" id="phone" required placeholder="6281234567890" pattern="^628[0-9]{8,11}$">
-        </div>
-        
-        <div class="form-group">
-          <label for="type">Tipe Rumah</label>
-          <select id="type" required>
-            <option value="" disabled selected>Pilih Tipe Rumah</option>
-            <option value="Tipe Standart 30/60">Tipe Standart 30/60</option>
-            <option value="Tipe Suite 50/60">Tipe Suite 50/60</option>
-            <option value="Tipe Premium 50/120">Tipe Premium 50/120</option>
-          </select>
-        </div>
-        
-        <button type="submit" class="form-submit">
-          <i class="fab fa-whatsapp"></i> KIRIM SEKARANG
-        </button>
-        
-        <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #7f8c8d;">
-          <i class="fas fa-lock"></i> Data Anda 100% aman
-        </p>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-about">
-          <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="footer-logo" loading="lazy">
-          <p>Perumahan Islami pertama di Kuningan dengan konsep Green Living. Memberikan solusi kepemilikan rumah mudah melalui kerjasama dengan bank syariah.</p>
-          
-          <div class="footer-social">
-            <a href="https://www.instagram.com/kertamulyaresidence/" target="_blank" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://facebook.com/kertamulyaresidence" target="_blank" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.youtube.com/@bimulialand759" target="_blank" aria-label="YouTube">
-              <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://www.tiktok.com/@bimulia_land" target="_blank" aria-label="TikTok">
-              <i class="fab fa-tiktok"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div class="footer-links">
-          <h3 class="footer-heading">Link Cepat</h3>
-          <ul>
-            <li><a href="#house-types"><i class="fas fa-chevron-right"></i> Tipe Rumah</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Fasilitas</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> Testimoni</a></li>
-            <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
-            <li><a href="#" onclick="showBookingForm()"><i class="fas fa-chevron-right"></i> Form Booking</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-contact">
-          <h3 class="footer-heading">Kontak Kami</h3>
-          <p><i class="fas fa-map-marker-alt"></i> Jl. Kertayasa, Blok Congkleng, Kuningan</p>
-          <p><i class="fas fa-phone"></i> +62 897-7771-080</p>
-          <p><i class="fas fa-clock"></i> Buka Setiap Hari 08.00 - 17.00 WIB</p>
-          
-          <h3 class="footer-heading" style="margin-top: 20px;">Bank Partner</h3>
-          <div class="bank-partners">
-            <img src="https://imgur.com/kAgZf2d.png" alt="BJB Syariah" class="bank-logo" loading="lazy">
-            <img src="https://imgur.com/m4sPRLK.png" alt="BSI" class="bank-logo" loading="lazy">
-            <img src="https://imgur.com/KLYrQTa.png" alt="BTN Syariah" class="bank-logo" loading="lazy">
-          </div>
-        </div>
-      </div>
-      
-      <div class="copyright">
-        &copy; 2025 <strong>Kertamulya Residence</strong>. All Rights Reserved.
-      </div>
-      
-      <div class="legal-links">
-        <a href="Kebijakan Privasi.html">Kebijakan Privasi</a>
-        <a href="Syarat & Ketentuan.html">Syarat & Ketentuan</a>
-        <a href="Disclaimer.html">Disclaimer</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/628977771080?text=Saya%20tertarik%20Kertamulya%20Residence%20dan%20mau%20info%20lebih%20lanjut" class="whatsapp-button" target="_blank" aria-label="Chat via WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
-  <!-- Notification -->
-  <div class="notification" id="notification">
-    <i class="fas fa-bolt"></i> <span id="notificationText">Baru saja! Pak Budiman booking unit tipe 36 via BJB Syariah</span>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()">
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="modal-body">
-        <img src="" alt="" class="modal-image" id="modalImage">
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // ===== INITIALIZATION =====
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize components
-      initCountdown();
-      initTestimonialSlider();
-      initBookingForm();
-      showRandomNotification();
-      
-      // Show notification periodically
-      setInterval(showRandomNotification, 15000);
-    });
-    
-    // ===== COUNTDOWN =====
-    function initCountdown() {
-      const targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + 7);
-      
-      function updateCountdown() {
-        const now = new Date();
-        const diff = targetDate - now;
-        
-        if (diff <= 0) {
-          document.getElementById('days').textContent = '00';
-          document.getElementById('hours').textContent = '00';
-          document.getElementById('minutes').textContent = '00';
-          document.getElementById('seconds').textContent = '00';
-          return;
-        }
-        
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        document.getElementById('days').textContent = days < 10 ? '0' + days : days;
-        document.getElementById('hours').textContent = hours < 10 ? '0' + hours : hours;
-        document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
-        document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
-        
-        setTimeout(updateCountdown, 1000);
-      }
-      
-      updateCountdown();
-    }
-    
-    // ===== TESTIMONIAL SLIDER =====
-    function initTestimonialSlider() {
-      const track = document.getElementById('testimonialTrack');
-      const dots = document.querySelectorAll('.slider-dot');
-      let currentSlide = 0;
-      
-      function goToSlide(index) {
-        currentSlide = index;
-        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-        
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentSlide);
-        });
-      }
-      
-      // Auto slide
-      setInterval(() => {
-        currentSlide = (currentSlide + 1) % 3;
-        goToSlide(currentSlide);
-      }, 5000);
-      
-      window.goToSlide = goToSlide;
-    }
-    
-    // ===== BOOKING FORM =====
-    function initBookingForm() {
-      const form = document.getElementById('bookingForm');
-      
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('name').value;
-        const phone = document.getElementById('phone').value;
-        const type = document.getElementById('type').value;
-        
-        if (!phone.startsWith('628')) {
-          alert('Nomor WhatsApp harus diawali 628\nContoh: 6281234567890');
-          return;
-        }
-        
-        const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${name}\n📱 *Nomor WhatsApp*: ${phone}\n🏠 *Tipe Rumah*: ${type}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi`;
-        
-        window.open(`https://wa.me/628977771080?text=${encodeURIComponent(message)}`, '_blank');
-        
-        // Reset form
-        form.reset();
-        
-        // Show confirmation
-        showNotification('Terima kasih! Tim marketing kami akan segera menghubungi Anda.');
-      });
-    }
-    
-    // ===== MODAL =====
-    function showModal(imageUrl) {
-      document.getElementById('modalImage').src = imageUrl;
-      document.getElementById('modal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeModal() {
-      document.getElementById('modal').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-    
-    // ===== NOTIFICATION =====
-    function showNotification(text) {
-      const notification = document.getElementById('notification');
-      const notificationText = document.getElementById('notificationText');
-      
-      notificationText.textContent = text;
-      notification.style.display = 'flex';
-      setTimeout(() => notification.style.opacity = '1', 10);
-      
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        setTimeout(() => notification.style.display = 'none', 500);
-      }, 5000);
-    }
-    
-    function showRandomNotification() {
-      const notifications = [
-        "🔥 Baru saja! Pak Budiman booking unit tipe 36 via BJB Syariah",
-        "🎉 Hari ini 3 unit sudah terjual! Tinggal 47 unit tersisa",
-        "🚀 Pekan ini 12 orang sudah dapat motor listrik gratis",
-        "🏡 Unit Premium tersisa 5 saja! Segera booking sekarang"
-      ];
-      
-      const randomIndex = Math.floor(Math.random() * notifications.length);
-      showNotification(notifications[randomIndex]);
-    }
-    
-    // ===== HOUSE FUNCTIONS =====
-    function showBookingForm(houseType = '') {
-      if (houseType) {
-        document.getElementById('type').value = houseType;
-      }
-      
-      document.getElementById('bookingForm').scrollIntoView({
-        behavior: 'smooth'
-      });
-      
-      // Auto focus on name field
-      setTimeout(() => {
-        document.getElementById('name').focus();
-      }, 500);
-    }
-    
-    function showGallery(type) {
-      let imageUrl = '';
-      
-      switch(type) {
-        case 'standart':
-          imageUrl = 'https://imgur.com/kYxjjEX.jpg';
-          break;
-        case 'suite':
-          imageUrl = 'https://imgur.com/rzlJAkz.jpg';
-          break;
-        case 'premium':
-          imageUrl = 'https://imgur.com/xFgp9FL.jpg';
-          break;
-      }
-      
-      showModal(imageUrl);
-    }
-    
-    function showVideo(type) {
-      let videoId = '';
-      
-      switch(type) {
-        case 'standart':
-          videoId = '7Fl9zHdHb7s';
-          break;
-        case 'suite':
-          videoId = 'ThOEc35ktFM';
-          break;
-        case 'premium':
-          videoId = 'fhjtbdQ8epI';
-          break;
-      }
-      
-      window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
-    }
-    
-    function openTikTok(videoId) {
-      window.open(`https://www.tiktok.com/@bimulia_land/video/${videoId}`, '_blank');
-    }
-  </script>
-</body>
-</html>
+          <div class="facility-content">
+            <h3 class="facility-title">Saung Tahfidz</h3>
+            <p class="facility-desc">Tempat menghafal Al-Qur'an dengan metode modern dan guru bersanad
