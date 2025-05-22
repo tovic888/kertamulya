@@ -2189,34 +2189,43 @@ button, input, textarea, select {
 
   <!-- CTA Section -->
   <section class="cta-section">
-    <div class="container">
-      <h2 class="cta-title">Siap Memiliki Rumah Islami Impian?</h2>
-      <p class="cta-desc">Booking sekarang dengan DP 0% dan dapatkan motor listrik gratis setelah 6x angsuran</p>
-      
+  <div class="container">
+    <h2 class="cta-title">Siap Memiliki Rumah Islami Impian?</h2>
+    <p class="cta-desc">Booking sekarang dengan DP 0% dan dapatkan motor listrik gratis setelah 6x angsuran</p>
+    
+    <div class="countdown-container">
       <div class="countdown">
         <div class="countdown-item">
-          <div class="countdown-number" id="days">03</div>
+          <div class="countdown-number" id="days">00</div>
           <div class="countdown-label">Hari</div>
         </div>
+        <div class="countdown-separator">:</div>
         <div class="countdown-item">
-          <div class="countdown-number" id="hours">12</div>
+          <div class="countdown-number" id="hours">00</div>
           <div class="countdown-label">Jam</div>
         </div>
+        <div class="countdown-separator">:</div>
         <div class="countdown-item">
-          <div class="countdown-number" id="minutes">45</div>
+          <div class="countdown-number" id="minutes">00</div>
           <div class="countdown-label">Menit</div>
         </div>
+        <div class="countdown-separator">:</div>
         <div class="countdown-item">
-          <div class="countdown-number" id="seconds">30</div>
+          <div class="countdown-number" id="seconds">00</div>
           <div class="countdown-label">Detik</div>
         </div>
       </div>
-      
-      <button class="btn btn-accent btn-lg" onclick="showModal('booking')">
-        <i class="fab fa-whatsapp"></i> Booking Sekarang
-      </button>
+      <div class="countdown-progress">
+        <div class="progress-bar"></div>
+      </div>
     </div>
-  </section>
+    
+    <button class="btn btn-accent btn-lg pulse-animation" onclick="showModal('booking')">
+      <i class="fab fa-whatsapp"></i> Booking Sekarang
+    </button>
+  </div>
+</section>
+
 
   <!-- FAQ -->
   <section class="section">
@@ -2470,43 +2479,54 @@ Terima kasih.`;
 });
 // Countdown timer function
 function updateCountdown() {
+  // Set end date (3 days from now)
   const endDate = new Date();
-  endDate.setDate(endDate.getDate() + 3); // 3 days from now
-  
+  endDate.setDate(endDate.getDate() + 3);
+  endDate.setHours(23, 59, 59, 0); // Set to end of day
+
   const now = new Date().getTime();
   const distance = endDate - now;
   
+  // Calculate time units
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
   
+  // Update display
   document.getElementById('days').textContent = days.toString().padStart(2, '0');
   document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
   document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
   document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  
+  // Calculate progress percentage
+  const totalDuration = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
+  const elapsed = totalDuration - distance;
+  const progressPercent = (elapsed / totalDuration) * 100;
+  
+  // Update progress bar
+  document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
+  
+  // Change color when less than 24 hours remaining
+  if (distance < (24 * 60 * 60 * 1000)) {
+    document.querySelectorAll('.countdown-number').forEach(el => {
+      el.style.color = '#ff6b6b';
+    });
+    document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
+  }
+  
+  // If countdown finished
+  if (distance < 0) {
+    clearInterval(countdownInterval);
+    document.getElementById('countdown').innerHTML = '<div class="countdown-ended">PROMO TELAH BERAKHIR!</div>';
+  }
 }
 
-// Type selector functionality
-function setupTypeSelector() {
-  const typeButtons = document.querySelectorAll('.type-btn');
-  const typeCards = document.querySelectorAll('.type-card');
-  
-  typeButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      typeButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      const type = button.dataset.type;
-      typeCards.forEach(card => {
-        if (type === 'all' || card.dataset.type === type) {
-          card.style.display = 'flex'; // Ubah dari 'block' ke 'flex'
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
+// Initialize countdown
+let countdownInterval;
+document.addEventListener('DOMContentLoaded', function() {
+  updateCountdown();
+  countdownInterval = setInterval(updateCountdown, 1000);
 }
 // Random notifications function
 function showRandomNotification() {
