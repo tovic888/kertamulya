@@ -4372,6 +4372,7 @@ footer {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/zoom/lg-zoom.min.js"></script>
 <script>
 // ===== MAIN INITIALIZATION =====
+// ===== MAIN INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initializeComponents();
@@ -4445,6 +4446,42 @@ function initializeFormHandling() {
     }
 }
 
+function submitFormData() {
+    // Get form values
+    const name = document.getElementById('modalName').value || '-';
+    const city = document.getElementById('modalCity').value || '-';
+    const phone = document.getElementById('modalPhone').value || '-';
+    const type = document.getElementById('modalType').value || '-';
+    
+    // Validate phone number
+    const cleanPhone = phone.replace(/\D/g, '');
+    if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
+        alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
+        return;
+    }
+
+    // Get marketing person
+    const marketing = getNextMarketingPerson();
+    const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
+                         marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
+                         '62' + marketing.phone;
+    
+    // Create detailed WhatsApp message
+    const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${name}\n🏙️ *Kota Asal/Tinggal*: ${city}\n📱 *Nomor WhatsApp*: ${phone}\n🏠 *Tipe Rumah*: ${type}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap untuk tipe ${type}\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n4. Perkiraan cicilan per bulan\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
+    
+    // Show WhatsApp confirmation modal
+    showWaConfirmModal(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`);
+    
+    // Track conversion if Facebook Pixel is available
+    if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead');
+    }
+    
+    // Reset form
+    document.getElementById('modalContactForm').reset();
+    closeFormModal();
+}
+
 // ===== PRICE TYPE SELECTOR =====
 function initializePriceTypeSelector() {
     document.querySelectorAll('.type-btn').forEach(btn => {
@@ -4512,89 +4549,53 @@ function initializeCountdown() {
 
 // ===== WHATSAPP CONFIRMATION MODAL FUNCTIONS =====
 function showWaConfirmModal(whatsappUrl) {
-  const waConfirmModal = document.getElementById('waConfirmModal');
-  if (!waConfirmModal) return;
-  
-  // Show modal
-  waConfirmModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  
-  // Reset countdown
-  const countdownElement = document.getElementById('countdown');
-  if (countdownElement) countdownElement.textContent = '5';
-  
-  // Start 5-second countdown
-  let countdown = 5;
-  const countdownInterval = setInterval(() => {
-    countdown--;
-    if (countdownElement) countdownElement.textContent = countdown;
+    const waConfirmModal = document.getElementById('waConfirmModal');
+    if (!waConfirmModal) return;
     
-    if (countdown <= 0) {
-      clearInterval(countdownInterval);
-      // Open WhatsApp directly without popup blocker issues
-      window.location.href = whatsappUrl;
-      closeWaConfirm();
-    }
-  }, 1000);
+    // Show modal
+    waConfirmModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Reset countdown
+    const countdownElement = document.getElementById('countdown');
+    if (countdownElement) countdownElement.textContent = '5';
+    
+    // Start 5-second countdown
+    let countdown = 5;
+    const countdownInterval = setInterval(() => {
+        countdown--;
+        if (countdownElement) countdownElement.textContent = countdown;
+        
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            // Open WhatsApp directly without popup blocker issues
+            window.location.href = whatsappUrl;
+            closeWaConfirm();
+        }
+    }, 1000);
 }
 
 function closeWaConfirm() {
-  const modal = document.getElementById('waConfirmModal');
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
+    const modal = document.getElementById('waConfirmModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 }
 
-
+// Marketing team data
 const marketingTeam = [
-  { name: "Taufik Marie", phone: "628977771080", role: "Digital Manager" },
-  { name: "Rahma", phone: "6285523613940", role: "Marketing Executive" },
-  { name: "Syifa", phone: "6285794058368", role: "Marketing Executive" },
-  { name: "Royyan", phone: "6281223202218", role: "Marketing Executive" }
+    { name: "Taufik Marie", phone: "628977771080", role: "Digital Manager" },
+    { name: "Rahma", phone: "6285523613940", role: "Marketing Executive" },
+    { name: "Syifa", phone: "6285794058368", role: "Marketing Executive" },
+    { name: "Royyan", phone: "6281223202218", role: "Marketing Executive" }
 ];
 
 let lastAssignedIndex = -1;
 
 function getNextMarketingPerson() {
-  lastAssignedIndex = (lastAssignedIndex + 1) % marketingTeam.length;
-  return marketingTeam[lastAssignedIndex];
-}
-
-
-  // Get form values
-  const name = document.getElementById('modalName').value || '-';
-  const city = document.getElementById('modalCity').value || '-';
-  const phone = document.getElementById('modalPhone').value || '-';
-  const type = document.getElementById('modalType').value || '-';
-  
-  // Validate phone number
-  const cleanPhone = phone.replace(/\D/g, '');
-  if (!cleanPhone.startsWith('628') || cleanPhone.length < 11 || cleanPhone.length > 14) {
-    alert('Nomor WhatsApp harus diawali 628 dan total 11-14 digit\nContoh: 6281234567890');
-    return;
-  }
-
-  // Get marketing person
-  const marketing = getNextMarketingPerson();
-  const formattedPhone = marketing.phone.startsWith('62') ? marketing.phone : 
-                       marketing.phone.startsWith('0') ? '62' + marketing.phone.substring(1) : 
-                       '62' + marketing.phone;
-  
-  // Create detailed WhatsApp message
-  const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh\n\n*📌 DATA PEMESANAN KERTAMULYA RESIDENCE*\n\n👤 *Nama Lengkap*: ${name}\n🏙️ *Kota Asal/Tinggal*: ${city}\n📱 *Nomor WhatsApp*: ${phone}\n🏠 *Tipe Rumah*: ${type}\n\n*📢 INFO PROMO TERBARU*\n🔹 Booking Fee *Rp500.000* saja\n🔹 *DP 0%* via Bank Syariah\n🔹 Cicilan mulai *Rp1 juta-an/Bulan*\n🔹 Gratis *Motor Listrik* setelah 6x angsuran\n\nMohon info detail tentang:\n1. Spesifikasi rumah lengkap untuk tipe ${type}\n2. Cara pengajuan KPR Syariah\n3. Jadwal survey lokasi\n4. Perkiraan cicilan per bulan\n\n*🤝 DITANGANI OLEH*\n${marketing.role}: *${marketing.name}*`;
-  
-  // Show WhatsApp confirmation modal
-  showWaConfirmModal(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`);
-  
-  // Track conversion if Facebook Pixel is available
-  if (typeof fbq !== 'undefined') {
-    fbq('track', 'Lead');
-  }
-  
-  // Reset form
-  document.getElementById('modalContactForm').reset();
-  closeFormModal();
+    lastAssignedIndex = (lastAssignedIndex + 1) % marketingTeam.length;
+    return marketingTeam[lastAssignedIndex];
 }
 
 // ===== FAQ ACCORDION =====
@@ -4841,21 +4842,32 @@ function initializeLightGallery() {
     });
 }
 
-// ===== MARKETING TEAM =====
-function initializeMarketingTeam() {
-    const marketingTeam = [
-        { name: "Taufik Marie", phone: "628977771080", role: "Digital Manager" },
-        { name: "Rahma", phone: "6285523613940", role: "Marketing Executive" },
-        { name: "Syifa", phone: "6285794058368", role: "Marketing Executive" },
-        { name: "Royyan", phone: "6281223202218", role: "Marketing Executive" }
+// ===== TIKTOK VIDEOS =====
+function loadTikTokVideos() {
+    const tiktokContainer = document.getElementById('tiktokVideos');
+    if (!tiktokContainer) return;
+
+    const tiktokVideos = [
+        { id: '7005078576081030426', title: 'Kawasan Milenial' },
+        { id: '7005076867602599195', title: '60 Unit Terjual Bulan ini' },
+        { id: '7013548931787361537', title: 'Beli Rumah Gratis Motor Listrik' }
     ];
 
-    let lastAssignedIndex = -1;
+    tiktokContainer.innerHTML = tiktokVideos.map(video => `
+        <div class="tiktok-item">
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bimulia_land/video/${video.id}" 
+                data-video-id="${video.id}">
+                <section></section>
+            </blockquote>
+            <div class="video-label">${video.title}</div>
+        </div>
+    `).join('');
 
-    window.getNextMarketingPerson = function() {
-        lastAssignedIndex = (lastAssignedIndex + 1) % marketingTeam.length;
-        return marketingTeam[lastAssignedIndex];
-    };
+    if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://www.tiktok.com/embed.js';
+        document.body.appendChild(script);
+    }
 }
 
 // ===== LOCATION FEATURES =====
@@ -4922,34 +4934,6 @@ function initializeLocationFeatures() {
         card.style.transition = `all 0.5s ease ${index * 0.1}s`;
         observer.observe(card);
     });
-}
-
-// ===== TIKTOK VIDEOS =====
-function loadTikTokVideos() {
-    const tiktokContainer = document.getElementById('tiktokVideos');
-    if (!tiktokContainer) return;
-
-    const tiktokVideos = [
-        { id: '7005078576081030426', title: 'Kawasan Milenial' },
-        { id: '7005076867602599195', title: '60 Unit Terjual Bulan ini' },
-        { id: '7013548931787361537', title: 'Beli Rumah Gratis Motor Listrik' }
-    ];
-
-    tiktokContainer.innerHTML = tiktokVideos.map(video => `
-        <div class="tiktok-item">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@bimulia_land/video/${video.id}" 
-                data-video-id="${video.id}">
-                <section></section>
-            </blockquote>
-            <div class="video-label">${video.title}</div>
-        </div>
-    `).join('');
-
-    if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
-        const script = document.createElement('script');
-        script.src = 'https://www.tiktok.com/embed.js';
-        document.body.appendChild(script);
-    }
 }
 </script>
 </body>
