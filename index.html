@@ -2407,11 +2407,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const phone = document.getElementById('phone').value;
     const type = document.getElementById('type').value;
     
-    const message = `Assalamu'alaikum wr wb,\n\nSaya ${name} tertarik dengan Kertamulya Residence tipe ${type}.\n\nMohon info lebih lanjut mengenai:\n- Proses pembelian\n- Syarat KPR\n- Promo yang berlaku\n\nTerima kasih.`;
-    const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-    
-    window.location.href = waLink;
-  });
+    const message = `Assalamu'alaikum wr wb,
+
+*Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
+
+Mohon info lebih lanjut mengenai:
+- *Proses pembelian*
+- *Syarat KPR*
+- *Promo yang berlaku*
+
+Terima kasih.`;
+  
+  const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+  
+  window.location.href = waLink;
 });
 
 // Countdown timer function
