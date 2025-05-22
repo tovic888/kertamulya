@@ -2022,4 +2022,355 @@
           </div>
           <div class="faq-answer">
             <p>Proses biasanya memakan waktu 14-30 hari kerja setelah dokumen lengkap, tergantung bank yang dipilih. BTN Syariah biasanya paling cepat (14-21 hari), sedangkan BJB Syariah sekitar 21-30 hari.</p>
+                      </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Apakah ada jaminan motor listrik benar-benar diberikan?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Ya, kami memberikan jaminan tertulis dalam akad bahwa motor listrik akan diberikan setelah 6x angsuran tepat waktu. Sudah ada 37 penghuni yang menerimanya sesuai janji.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Bagaimana jika KPR saya tidak disetujui bank?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Kami menyediakan opsi pembelian cash bertahap langsung ke developer dengan skema yang fleksibel. Booking fee 500rb bisa dialihkan ke skema ini jika KPR tidak disetujui.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Apa perbedaan tipe Standard dan Suite?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Tipe Suite memiliki material lebih premium (keramik granit, rangka baja tebal), desain lebih modern, dan fasilitas tambahan seperti shower. Tipe Standard tetap berkualitas dengan harga lebih terjangkau.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <img src="https://i.imgur.com/oE8kXBw.png" alt="Kertamulya Residence" class="footer-logo" loading="lazy">
+          <p class="footer-about">Perumahan Islami pertama di Kuningan dengan konsep Green Living. Memberikan solusi kepemilikan rumah mudah melalui kerjasama dengan bank syariah terkemuka.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/kertamulyaresidence/" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://facebook.com/kertamulyaresidence" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.youtube.com/@bimulialand759" target="_blank" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.tiktok.com/@bimulia_land" target="_blank" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h3 class="footer-heading">Link Cepat</h3>
+          <ul>
+            <li><a href="#house-types"><i class="fas fa-chevron-right"></i> Tipe Rumah</a></li>
+            <li><a href="#facilities"><i class="fas fa-chevron-right"></i> Fasilitas</a></li>
+            <li><a href="#location"><i class="fas fa-chevron-right"></i> Lokasi</a></li>
+            <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimoni</a></li>
+            <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h3 class="footer-heading">Kontak Kami</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Jl. Kertayasa, Blok Congkleng, Kuningan</p>
+          <p><i class="fas fa-phone"></i> +62 897-7771-080</p>
+          <p><i class="fas fa-envelope"></i> info@kertamulyaresidence.com</p>
+          <p><i class="fas fa-clock"></i> Buka Setiap Hari 08.00 - 17.00 WIB</p>
+          
+          <h3 class="footer-heading" style="margin-top: 1.5rem;">Bank Partner</h3>
+          <div class="bank-partners">
+            <img src="https://i.imgur.com/L5XLdjM.png" alt="BJB Syariah" class="bank-logo" loading="lazy">
+            <img src="https://i.imgur.com/zI0Pazj.png" alt="BTN Syariah" class="bank-logo" loading="lazy">
+            <img src="https://i.imgur.com/t2Uj0bv.png" alt="BSI" class="bank-logo" loading="lazy">
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2025 PT. Rumah Mulia Indonesia. All Rights Reserved.
+      </div>
+      
+      <div class="legal-links">
+        <a href="privacy-policy.html">Kebijakan Privasi</a>
+        <a href="terms.html">Syarat & Ketentuan</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <!-- Booking Modal -->
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="hideModal('booking')">&times;</button>
+      <div class="modal-body">
+        <h3 class="modal-title">Form Booking Unit</h3>
+        <p class="modal-desc">Isi data dibawah ini untuk mendapatkan informasi lebih lanjut</p>
+        
+        <form id="bookingForm">
+          <div class="form-group">
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" required placeholder="Nama Anda">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Nomor WhatsApp</label>
+            <input type="tel" id="phone" required placeholder="6281234567890" pattern="^628[0-9]{8,11}$">
+          </div>
+          
+          <div class="form-group">
+            <label for="type">Tipe Rumah</label>
+            <select id="type" required>
+              <option value="" disabled selected>Pilih Tipe Rumah</option>
+              <option value="Standard 30/60">Standard 30/60 - Rp168 Juta</option>
+              <option value="Suite 50/60">Suite 50/60 - Rp277 Juta</option>
+              <option value="Premium 50/120">Premium 50/120 - Rp408 Juta</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="form-submit">
+            <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
+          </button>
+          
+          <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: var(--text-light);">
+            <i class="fas fa-lock"></i> Data Anda 100% aman
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery Modal -->
+  <div class="modal" id="galleryModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
+      <div class="modal-body">
+        <h3 class="modal-title" id="galleryTitle">Galeri Foto</h3>
+        <div class="gallery-container" id="galleryContainer">
+          <!-- Gallery items will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" onclick="hideModal('video')">&times;</button>
+      <div class="video-iframe">
+        <iframe id="videoFrame" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Confirmation Modal -->
+  <div class="modal" id="waModal">
+    <div class="modal-content">
+      <div class="modal-body" style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+          <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
+        </div>
+        <h3 class="modal-title">Formulir Terkirim!</h3>
+        <p class="modal-desc">Tim marketing kami akan segera menghubungi Anda melalui WhatsApp</p>
+        <p id="countdownText" style="margin: 1rem 0;">Mengarahkan ke WhatsApp dalam 5 detik...</p>
+        <a href="#" id="waLink" class="btn btn-accent" style="display: inline-flex;">
+          <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize AOS animation
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+      });
+      
+      // Initialize lightGallery
+      lightGallery(document.getElementById('lightgallery'), {
+        selector: '.gallery-item',
+        download: false,
+        counter: false
+      });
+    });
+
+    // Show modal function
+    function showModal(type, subtype = null) {
+      const modal = document.getElementById(`${type}Modal`);
+      modal.classList.add('active');
+      
+      if(type === 'gallery' && subtype) {
+        document.getElementById('galleryTitle').textContent = `Galeri Tipe ${subtype.charAt(0).toUpperCase() + subtype.slice(1)}`;
+        // Here you would load the appropriate gallery items based on subtype
+      }
+      
+      if(type === 'video' && subtype) {
+        let videoId = '';
+        switch(subtype) {
+          case 'standard':
+            videoId = '7Fl9zHdHb7s';
+            break;
+          case 'suite':
+            videoId = 'ThOEc35ktFM';
+            break;
+          case 'premium':
+            videoId = 'fhjtbdQ8epI';
+            break;
+        }
+        document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      }
+    }
+
+    // Hide modal function
+    function hideModal(type) {
+      const modal = document.getElementById(`${type}Modal`);
+      modal.classList.remove('active');
+      
+      if(type === 'video') {
+        document.getElementById('videoFrame').src = '';
+      }
+    }
+
+    // Form submission
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const type = document.getElementById('type').value;
+      
+      // Create WhatsApp link
+      const message = `Halo, saya ${name} tertarik dengan Kertamulya Residence tipe ${type}. Mohon info lebih lanjut.`;
+      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+      
+      document.getElementById('waLink').href = waLink;
+      hideModal('booking');
+      showModal('wa');
+      
+      // Start countdown
+      let count = 5;
+      const countdown = document.getElementById('countdownText');
+      const countdownInterval = setInterval(() => {
+        count--;
+        countdown.textContent = `Mengarahkan ke WhatsApp dalam ${count} detik...`;
+        
+        if(count <= 0) {
+          clearInterval(countdownInterval);
+          window.location.href = waLink;
+        }
+      }, 1000);
+    });
+
+    // Countdown timer
+    function updateCountdown() {
+      const endDate = new Date();
+      endDate.setDate(endDate.getDate() + 3); // 3 days from now
+      
+      const now = new Date().getTime();
+      const distance = endDate - now;
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Type selector
+    const typeButtons = document.querySelectorAll('.type-btn');
+    const typeCards = document.querySelectorAll('.type-card');
+    
+    typeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        typeButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        const type = button.dataset.type;
+        typeCards.forEach(card => {
+          if(type === 'all' || card.dataset.type === type) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Random notifications
+    const notifications = [
+      "Pak Budi baru saja booking unit Tipe Suite!",
+      "Bu Ani menyelesaikan KPR untuk Tipe Standard",
+      "12 unit terjual hari ini!",
+      "Promo motor gratis hanya sampai 3 hari lagi",
+      "Kuota tersisa hanya 24 unit"
+    ];
+    
+    function showRandomNotification() {
+      const notification = document.getElementById('notification');
+      const notificationText = document.getElementById('notificationText');
+      
+      notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
+      notification.style.display = 'flex';
+      notification.style.opacity = '1';
+      
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 300);
+      }, 5000);
+    }
+    
+    // Show first notification after 10 seconds
+    setTimeout(showRandomNotification, 10000);
+    
+    // Then show every 2-5 minutes
+    setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
+
+    // TikTok videos - this would be replaced with actual TikTok embed code
+    // For demo purposes, we're just using placeholder videos
+    const tiktokVideos = document.querySelectorAll('.tiktok-video');
+    tiktokVideos.forEach(video => {
+      video.addEventListener('click', function() {
+        this.requestFullscreen();
+        this.muted = false;
+        this.play();
+      });
+    });
+  </script>
+</body>
+</html>
          
