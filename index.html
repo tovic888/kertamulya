@@ -1544,32 +1544,7 @@
   transform-origin: left;
 }
 
-/* Add to your CSS */
-.gallery-carousel {
-  margin: 0 auto;
-  max-width: 100%;
-}
 
-.gallery-carousel .slick-slide {
-  padding: 0 5px;
-}
-
-.gallery-carousel img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.slick-prev:before, 
-.slick-next:before {
-  color: var(--primary);
-  font-size: 24px;
-}
-
-.slick-dots li button:before {
-  color: var(--primary);
-}
   </style>
 </head>
 <body>
@@ -2398,41 +2373,52 @@ function showModal(type, subtype = null, houseType = null) {
     
     images[subtype].forEach(img => {
       const slide = document.createElement('div');
-      slide.innerHTML = `<img src="${img}" alt="Galeri ${subtype}" loading="lazy">`;
+      slide.innerHTML = `<img src="${img}" alt="Galeri ${subtype}" loading="lazy" style="width:100%; height:400px; object-fit:cover;">`;
       galleryCarousel.appendChild(slide);
     });
     
-    // Initialize Slick after images are loaded
-    setTimeout(() => {
-      $('#galleryCarousel').slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        adaptiveHeight: true
-      });
-    }, 100);
+    // Initialize Slick carousel
+    $('#galleryCarousel').slick({
+      dots: true,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 1,
+      adaptiveHeight: true,
+      autoplay: true,
+      autoplaySpeed: 3000
+    });
+    
+    document.getElementById('galleryModal').classList.add('active');
   }
-
-  
-  if(type === 'booking' && houseType) {
-    document.getElementById('type').value = houseType;
+  else if(type === 'booking') {
+    if(houseType) {
+      document.getElementById('type').value = houseType;
+    }
+    document.getElementById('bookingModal').classList.add('active');
   }
-  
-  if(type === 'video' && subtype) {
+  else if(type === 'video' && subtype) {
     let videoId = '';
     switch(subtype) {
-      case 'standard':
-        videoId = '7Fl9zHdHb7s';
-        break;
-      case 'suite':
-        videoId = 'ThOEc35ktFM';
-        break;
-      case 'premium':
-        videoId = 'fhjtbdQ8epI';
-        break;
+      case 'standard': videoId = '7Fl9zHdHb7s'; break;
+      case 'suite': videoId = 'ThOEc35ktFM'; break;
+      case 'premium': videoId = 'fhjtbdQ8epI'; break;
     }
     document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    document.getElementById('videoModal').classList.add('active');
+  }
+}
+
+function hideModal(type) {
+  if(type === 'gallery') {
+    $('#galleryCarousel').slick('unslick');
+    document.getElementById('galleryModal').classList.remove('active');
+  }
+  else if(type === 'booking') {
+    document.getElementById('bookingModal').classList.remove('active');
+  }
+  else if(type === 'video') {
+    document.getElementById('videoFrame').src = '';
+    document.getElementById('videoModal').classList.remove('active');
   }
 }
 
@@ -2445,13 +2431,12 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
   const phone = document.getElementById('phone').value;
   const type = document.getElementById('type').value;
   
-  // Create WhatsApp link with Islamic greeting and bold type
-  const message = `Assalamu'alaikum wr wb,\n\nSaya ${name} tertarik dengan *${type}* di Kertamulya Residence.\n\nMohon info lebih lanjut mengenai:\n- Proses pembelian\n- Syarat KPR\n- Promo yang berlaku\n\nTerima kasih.`;
+  const message = `Assalamu'alaikum wr wb,\n\nSaya ${name} tertarik dengan Kertamulya Residence tipe ${type}.\n\nMohon info lebih lanjut mengenai:\n- Proses pembelian\n- Syarat KPR\n- Promo yang berlaku\n\nTerima kasih.`;
   const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
   
-  // Redirect directly to WhatsApp
   window.location.href = waLink;
 });
+
 
 
     // Countdown timer
