@@ -1382,184 +1382,71 @@
         padding: 1.5rem;
       }
     }
-
-/* Pricing Tabs */
-.pricing-tabs {
-    max-width: 500px;
-    margin: 25px auto;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-.tab-buttons {
-    display: flex;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.tab-btn {
-    flex: 1;
-    padding: 12px;
-    background: transparent;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-weight: 600;
-    position: relative;
-}
-
-.tab-btn.active {
-    background: linear-gradient(45deg, var(--emas), var(--orange));
-    color: var(--hitam);
-}
-
-.price-display {
-    padding: 20px;
-    text-align: center;
-}
-
-.old-price {
-    font-size: 1.2rem;
-    text-decoration: line-through;
-    opacity: 0.7;
-    margin-right: 10px;
-}
-
-.new-price {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--emas);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-/* Pulse CTA */
-.pulse-cta {
-    position: relative;
-    background: linear-gradient(45deg, var(--emas), var(--orange));
-    color: var(--hitam);
-    border: none;
-    padding: 16px 40px;
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 1.1rem;
-    cursor: pointer;
-    overflow: hidden;
-    z-index: 1;
-    margin: 20px 0;
-    box-shadow: 0 10px 30px rgba(241, 196, 15, 0.5);
-}
-
-.pulse-effect {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: linear-gradient(45deg, #f39c12, #f1c40f);
-    border-radius: 50px;
-    z-index: -1;
-    opacity: 0;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 0.7; }
-    70% { transform: scale(1.05); opacity: 0; }
-    100% { transform: scale(1); opacity: 0; }
-}
-
-/* Social Proof Animated */
-.social-proof-animated {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
-
-.proof-item {
-    background: rgba(0,0,0,0.3);
-    padding: 15px 20px;
-    border-radius: 10px;
-    text-align: center;
-    min-width: 100px;
-}
-
-.proof-item.highlight {
-    background: linear-gradient(45deg, #e74c3c, #c0392b);
-    animation: highlightPulse 2s infinite;
-}
-
-.counter {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--emas);
-    margin-bottom: 5px;
-}
-
-@keyframes highlightPulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 rgba(231, 76, 60, 0.7); }
-    70% { transform: scale(1.02); box-shadow: 0 0 15px rgba(231, 76, 60, 0.7); }
-    100% { transform: scale(1); box-shadow: 0 0 0 rgba(231, 76, 60, 0.7); }
-}
   </style>
 </head>
 <body>
- <header class="hero">
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="container">
-        <div class="hero-content">
-            <img src="logo.png" alt="Logo" class="hero-logo">
-            
-            <h1>PERUMAHAN ISLAMI TERBESAR DI KUNINGAN</h1>
-            <p>Cicilan mulai <strong>Rp 1 Juta-an/bulan</strong> - Lokasi Pusat Kota</p>
-            
-            <!-- Pricing Tabs -->
-            <div class="pricing-tabs">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="subsidi">Tipe Subsidi</button>
-                    <button class="tab-btn" data-tab="suite">Tipe Suite</button>
-                    <button class="tab-btn" data-tab="premium">Tipe Premium</button>
-                </div>
-                
-                <div class="tab-content active" id="subsidi-tab">
-                    <div class="price-display">
-                        <span class="old-price">Rp 185.000.000</span>
-                        <span class="new-price">Rp 168.000.000</span>
-                    </div>
-                </div>
-                
-                <!-- Tab lainnya -->
-            </div>
-            
-            <!-- Pulse CTA -->
-            <button class="pulse-cta" onclick="showFormModal()">
-                <span class="pulse-effect"></span>
-                <span class="btn-text">
-                    <i class="fab fa-whatsapp"></i> BOOKING SEKARANG
-                </span>
-            </button>
-            
-            <!-- Animated Social Proof -->
-            <div class="social-proof-animated">
-                <div class="proof-item">
-                    <div class="counter" data-target="128">0</div>
-                    <span>Review 5★</span>
-                </div>
-                <div class="proof-item">
-                    <div class="counter" data-target="120">0</div>
-                    <span>Unit Terjual</span>
-                </div>
-                <div class="proof-item highlight">
-                    <div class="counter" data-target="12">0</div>
-                    <span>Terjual Hari Ini</span>
-                </div>
-            </div>
+      <div class="hero-content">
+        <img src="https://i.imgur.com/aVIjrGJ.png" alt="Kertamulya Residence" class="hero-logo" loading="lazy">
+        
+        <h1>Perumahan Islami Terbaik di Kuningan</h1>
+        <p>DP 0% + Motor Listrik Gratis | Cicilan Mulai Rp1 Juta-an/Bulan</p>
+        
+        <div class="price-comparison">
+          <div class="old-price">Harga Normal: Rp185 Juta</div>
+          <div class="new-price">Harga Promo: Rp168 Juta</div>
         </div>
+        
+        <div class="price-tag">PROMO TERBATAS 2025</div>
+        
+        <div class="cta-buttons">
+          <button class="btn btn-accent" onclick="showModal('booking')">
+            <i class="fab fa-whatsapp"></i> Booking Sekarang
+          </button>
+          <a href="#house-types" class="btn btn-outline">
+            <i class="fas fa-home"></i> Lihat Tipe Rumah
+          </a>
+        </div>
+        
+        <div class="social-proof">
+          <div class="social-proof-item">
+            <i class="fas fa-star"></i> 4.9/5 (128 Reviews)
+          </div>
+          <div class="social-proof-item">
+            <i class="fas fa-home"></i> 200+ Unit Terjual
+          </div>
+          <div class="social-proof-item">
+            <i class="fas fa-bolt"></i> 12 Terjual Hari Ini
+          </div>
+        </div>
+        
+        <div class="running-text">
+          <div class="running-text-content">
+            <div class="running-text-item">
+              <i class="fas fa-gift"></i> Booking Fee 500rb Dapat Motor Listrik
+            </div>
+            <div class="running-text-item">
+              <i class="fas fa-clock"></i> Promo Berakhir dalam 3 Hari
+            </div>
+            <div class="running-text-item">
+              <i class="fas fa-home"></i> Kuota Terbatas Hanya 75 Unit
+            </div>
+            <div class="running-text-item">
+              <i class="fas fa-gift"></i> Booking Fee 500rb Dapat Motor Listrik
+            </div>
+            <div class="running-text-item">
+              <i class="fas fa-clock"></i> Promo Berakhir dalam 3 Hari
+            </div>
+            <div class="running-text-item">
+              <i class="fas fa-home"></i> Kuota Terbatas Hanya 75 Unit
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</header>
+  </section>
 
   <!-- Notification -->
   <div class="notification" id="notification">
@@ -2483,54 +2370,6 @@
         this.play();
       });
     });
-
-// Animated Counter
-function animateCounters() {
-    const counters = document.querySelectorAll('.counter');
-    const speed = 200;
-    
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
-        const increment = target / speed;
-
-        if (count < target) {
-            counter.innerText = Math.ceil(count + increment);
-            setTimeout(animateCounters, 1);
-        } else {
-            counter.innerText = target;
-        }
-    });
-}
-
-// Tab System
-function initTabs() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all
-            tabBtns.forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            // Add active class to clicked
-            btn.classList.add('active');
-            document.getElementById(`${btn.dataset.tab}-tab`).classList.add('active');
-        });
-    });
-}
-
-// Initialize when visible
-const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-        animateCounters();
-        initTabs();
-        observer.disconnect();
-    }
-}, { threshold: 0.1 });
-
-observer.observe(document.querySelector('.hero'));
   </script>
 </body>
-</html>
-         
+</html> 
