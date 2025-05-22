@@ -188,20 +188,24 @@
       letter-spacing: 0.5px;
     }
 
-    .badge-primary {
-      background-color: var(--primary-light);
-      color: var(--primary-dark);
-    }
+   /* Modern Badge Colors */
+.badge-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border-left: 3px solid white;
+}
 
-    .badge-accent {
-      background-color: rgba(241, 196, 15, 0.2);
-      color: var(--accent-dark);
-    }
+.badge-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+  border-left: 3px solid white;
+}
 
-    .badge-danger {
-      background-color: rgba(231, 76, 60, 0.2);
-      color: var(--danger);
-    }
+.badge-danger {
+  background: linear-gradient(135deg, #ff4d4d, #cc0000);
+  color: white;
+  border-left: 3px solid white;
+}
 
     /* Hero Section */
     .hero {
@@ -316,12 +320,67 @@
       position: relative;
     }
 
-    .type-card-badge {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      z-index: 2;
-    }
+ /* Update Type Card Badge */
+.type-card-badge .badge {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.type-card-badge .badge:after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255,255,255,0.3) 0%,
+    rgba(255,255,255,0) 60%
+  );
+  transform: rotate(30deg);
+}
+/* New Price Animation */
+.type-card-price .new {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+}
+
+.type-card-price .new:after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  animation: pulse-border 1.5s infinite;
+  opacity: 0;
+}
+
+@keyframes pulse-border {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+}
 
     .type-card-image {
       height: 250px;
@@ -350,9 +409,14 @@
       z-index: 2;
     }
 
-    .type-card-body {
-      padding: 1.5rem;
-    }
+   /* Center Booking Button */
+.type-card-body .btn-block {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
 
     .type-card-title {
       font-size: 1.5rem;
@@ -2359,6 +2423,33 @@ document.addEventListener('DOMContentLoaded', function() {
     animateSoldCount();
   }, 10000);
 });
+
+// Add blinking effect to promo prices
+document.addEventListener('DOMContentLoaded', function() {
+  const promoPrices = document.querySelectorAll('.type-card-price .new');
+  
+  promoPrices.forEach(price => {
+    setInterval(() => {
+      price.style.color = price.style.color === 'var(--accent)' ? 
+        'var(--primary)' : 'var(--accent)';
+    }, 1000);
+  });
+});
+
+<script>
+// Animate promo prices
+document.addEventListener('DOMContentLoaded', function() {
+  // Blinking text effect
+  const promoPrices = document.querySelectorAll('.type-card-price .new');
+  
+  setInterval(() => {
+    promoPrices.forEach(price => {
+      price.style.color = price.style.color === 'var(--accent)' ? 
+        'var(--primary)' : 'var(--accent)';
+    });
+  }, 1000);
+});
+</script>
 
   </script>
 </body>
