@@ -1994,8 +1994,6 @@ button, input, textarea, select {
   }
 }
 
-  
-  
   </style>
 </head>
 <body>
@@ -2583,6 +2581,8 @@ button, input, textarea, select {
     </div>
   </section>
 
+  
+
   <!-- CTA Section -->
   <section class="cta-section">
   <div class="container">
@@ -2747,6 +2747,7 @@ button, input, textarea, select {
     </div>
   </footer>
 
+  <!-- Modals -->
   <!-- Booking Modal -->
   <div class="modal" id="bookingModal">
     <div class="modal-content">
@@ -2811,508 +2812,316 @@ button, input, textarea, select {
   </div>
 </div>
 
-<!-- WhatsApp Confirmation Modal -->
-<div class="modal" id="waModal">
-  <div class="modal-content">
-    <div class="promo-badge">PROMO TERBATAS!</div>
-    <div class="modal-body">
-      <div class="whatsapp-confirm-icon">
-        <i class="fab fa-whatsapp"></i>
-      </div>
-      <h3 class="modal-title">Booking Terkonfirmasi!</h3>
-      
-      <div class="booking-details">
-        <div class="booking-detail-item">
-          <span class="booking-detail-label">Nama:</span>
-          <span class="booking-detail-value" id="waName"></span>
+  <!-- WhatsApp Confirmation Modal -->
+  <div class="modal" id="waModal">
+    <div class="modal-content">
+      <div class="modal-body" style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+          <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
         </div>
-        <div class="booking-detail-item">
-          <span class="booking-detail-label">No. HP:</span>
-          <span class="booking-detail-value" id="waPhone"></span>
-        </div>
-        <div class="booking-detail-item">
-          <span class="booking-detail-label">Tipe Unit:</span>
-          <span class="booking-detail-value" id="waType"></span>
-        </div>
-        <div class="booking-detail-item">
-          <span class="booking-detail-label">Booking Fee:</span>
-          <span class="booking-detail-value" id="waFee"></span>
-        </div>
-      </div>
-      
-      <div class="motor-promo">
-        <i class="fas fa-motorcycle"></i>
-        DAPATKAN MOTOR LISTRIK GRATIS SETELAH 6x ANGSURAN TEPAT WAKTU!
-      </div>
-      
-      <p style="color: var(--text-light); margin-bottom: 1.5rem;">
-        Anda akan diarahkan ke WhatsApp dalam <span id="countdownText" style="color: var(--primary-dark); font-weight: 700;">5</span> detik...
-      </p>
-      
-      <div class="countdown-circle">
-        <i class="fas fa-check"></i>
+        <h3 class="modal-title">Formulir Terkirim!</h3>
+        <p class="modal-desc">Tim marketing kami akan segera menghubungi Anda melalui WhatsApp</p>
+        <p id="countdownText" style="margin: 1rem 0;">Mengarahkan ke WhatsApp dalam 5 detik...</p>
+        <a href="#" id="waLink" class="btn btn-accent" style="display: inline-flex;">
+          <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
+        </a>
       </div>
     </div>
   </div>
-</div>
-  
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
-/**
- * Kertamulya Residence - Main Application
- * A complete rewrite of all JavaScript functionality
- */
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize all components
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  setupTypeSelector();
+  setTimeout(showRandomNotification, 10000);
+  setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
+  animateSoldCount();
+  setupFAQAccordion();
+  setupBookingForm();
+  initGalleryModal();
+  animateProgressBars();
+});
 
-class KertamulyaApp {
-  constructor() {
-    // Initialize when DOM is ready
-    if (document.readyState !== 'loading') {
-      this.init();
-    } else {
-      document.addEventListener('DOMContentLoaded', () => this.init());
-    }
-  }
+// ========== COUNTDOWN TIMER ==========
+function updateCountdown() {
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 3);
+  endDate.setHours(23, 59, 59, 0);
 
-  init() {
-    // Initialize all components
-    this.initModals();
-    this.initCountdown();
-    this.initTypeSelector();
-    this.initNotifications();
-    this.initSoldCount();
-    this.initFAQ();
-    this.initBookingForm();
-    this.initProgressBars();
-    this.initVideoElements();
-    
-    // Make app globally available
-    window.app = this;
-  }
-
-  // ======================
-  // MODAL MANAGEMENT
-  // ======================
-  initModals() {
-    // Close modals when clicking outside
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          this.hideModal(modal.id.replace('Modal', ''));
-        }
-      });
+  const now = new Date().getTime();
+  const distance = endDate - now;
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  document.getElementById('days').textContent = days.toString().padStart(2, '0');
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  
+  const totalDuration = 3 * 24 * 60 * 60 * 1000;
+  const elapsed = totalDuration - distance;
+  const progressPercent = (elapsed / totalDuration) * 100;
+  
+  document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
+  
+  if (distance < (24 * 60 * 60 * 1000)) {
+    document.querySelectorAll('.countdown-number').forEach(el => {
+      el.style.color = '#ff6b6b';
     });
-
-    // Close buttons
-    document.querySelectorAll('[data-modal-close]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const modalId = btn.closest('.modal').id.replace('Modal', '');
-        this.hideModal(modalId);
-      });
-    });
-  }
-
-  showModal(type, data = null) {
-    const modal = document.getElementById(`${type}Modal`);
-    if (!modal) return;
-
-    // Handle specific modal types
-    switch (type) {
-      case 'gallery':
-        this.showGalleryModal(data);
-        return;
-      case 'video':
-        this.showVideoModal(data);
-        return;
-      case 'booking':
-        if (data) document.getElementById('type').value = data;
-        break;
-    }
-
-    // Show the modal
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  hideModal(type) {
-    const modal = document.getElementById(`${type}Modal`);
-    if (!modal) return;
-
-    // Handle specific modal types
-    if (type === 'video') {
-      const iframe = modal.querySelector('iframe');
-      if (iframe) iframe.src = '';
-    }
-
-    // Hide the modal
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-
-  // Gallery Modal
-  showGalleryModal(type) {
-    const galleryData = {
-      'standard': {
-        title: 'Tipe Standard 30/60',
-        images: [
-          'https://i.imgur.com/kYxjjEX.jpg',
-          'https://i.imgur.com/QJfJq2l.jpeg',
-          'https://i.imgur.com/Fc4wxey.jpeg'
-        ]
-      },
-      'suite': {
-        title: 'Tipe Suite 50/60',
-        images: [
-          'https://i.imgur.com/rzlJAkz.jpg',
-          'https://i.imgur.com/QwwyO9T.jpeg',
-          'https://i.imgur.com/fjZalPE.jpeg'
-        ]
-      },
-      'premium': {
-        title: 'Tipe Premium 50/120',
-        images: [
-          'https://i.imgur.com/xFgp9FL.jpg',
-          'https://i.imgur.com/DLAHtSG.jpeg',
-          'https://i.imgur.com/THJSL1O.jpeg'
-        ]
-      }
-    };
-
-    const gallery = galleryData[type] || galleryData.standard;
-    const carousel = document.getElementById('galleryCarousel');
-    
-    // Set title
-    document.getElementById('galleryTitle').textContent = `Galeri ${gallery.title}`;
-    
-    // Clear and rebuild carousel
-    carousel.innerHTML = '';
-    gallery.images.forEach(img => {
-      const slide = document.createElement('div');
-      slide.innerHTML = `<img src="${img}" alt="${gallery.title}" loading="lazy">`;
-      carousel.appendChild(slide);
-    });
-
-    // Initialize/reinitialize Slick
-    if (window.jQuery && window.jQuery.fn.slick) {
-      if ($('#galleryCarousel').hasClass('slick-initialized')) {
-        $('#galleryCarousel').slick('unslick');
-      }
-      
-      $('#galleryCarousel').slick({
-        dots: true,
-        arrows: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        adaptiveHeight: true,
-        prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-        nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-      });
-    }
-
-    this.showModal('gallery');
-  }
-
-  // Video Modal
-  showVideoModal(type) {
-    const videoMap = {
-      'standard': '2vYd5Fd_-Q8',
-      'suite': '2vYd5Fd_-Q8',
-      'premium': '2vYd5Fd_-Q8',
-      'testimonial1': 'LgHbkuOKsw0',
-      'testimonial2': 'UF5V1-Vu6uI'
-    };
-
-    const videoId = videoMap[type] || videoMap.standard;
-    const iframe = document.getElementById('videoFrame');
-    
-    if (iframe) {
-      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-      this.showModal('video');
-    }
-  }
-
-  // ======================
-  // COUNTDOWN TIMER
-  // ======================
-  initCountdown() {
-    this.updateCountdown();
-    setInterval(() => this.updateCountdown(), 1000);
-  }
-
-  updateCountdown() {
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 3);
-    endDate.setHours(23, 59, 59, 0);
-
-    const now = new Date();
-    const distance = endDate - now;
-    
-    if (distance <= 0) return;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    this.setElementText('days', days.toString().padStart(2, '0'));
-    this.setElementText('hours', hours.toString().padStart(2, '0'));
-    this.setElementText('minutes', minutes.toString().padStart(2, '0'));
-    this.setElementText('seconds', seconds.toString().padStart(2, '0'));
-    
-    const progress = 100 - (distance / (3 * 24 * 60 * 60 * 1000)) * 100;
-    document.querySelector('.progress-bar').style.width = `${progress}%`;
-    
-    if (distance < (24 * 60 * 60 * 1000)) {
-      document.querySelectorAll('.countdown-number').forEach(el => {
-        el.style.color = '#ff6b6b';
-      });
-      document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
-    }
-  }
-
-  // ======================
-  // TYPE SELECTOR
-  // ======================
-  initTypeSelector() {
-    const typeBtns = document.querySelectorAll('.type-btn');
-    const typeCards = document.querySelectorAll('.type-card');
-    
-    typeBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        typeBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const type = btn.dataset.type;
-        typeCards.forEach(card => {
-          card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
-        });
-      });
-    });
-  }
-
-  // ======================
-  // NOTIFICATIONS
-  // ======================
-  initNotifications() {
-    setTimeout(() => this.showRandomNotification(), 10000);
-    setInterval(() => this.showRandomNotification(), (Math.random() * 3 + 2) * 60000);
-  }
-
-  showRandomNotification() {
-    const messages = [
-      "Pak Budi baru saja booking unit Tipe Suite!",
-      "Bu Siti berhasil mendapatkan KPR BJB Syariah untuk Tipe Standard",
-      "Unit Premium 50/120 tersisa 5 unit terakhir!",
-      "Promo DP 0% + motor gratis hanya sampai besok!",
-      "3 unit Standard terjual dalam 1 jam terakhir!"
-    ];
-    
-    const notification = document.getElementById('notification');
-    if (!notification) return;
-    
-    notification.querySelector('#notificationText').textContent = 
-      messages[Math.floor(Math.random() * messages.length)];
-    notification.style.display = 'flex';
-    
-    setTimeout(() => {
-      notification.style.display = 'none';
-    }, 5000);
-  }
-
-  // ======================
-  // SOLD COUNT ANIMATION
-  // ======================
-  initSoldCount() {
-    const soldCount = document.querySelector('.sold-count');
-    if (!soldCount) return;
-    
-    let count = parseInt(soldCount.textContent) || 12;
-    
-    setInterval(() => {
-      count += Math.floor(Math.random() * 3) + 1;
-      soldCount.textContent = count;
-      
-      // Trigger animation
-      soldCount.style.animation = 'none';
-      void soldCount.offsetWidth;
-      soldCount.style.animation = 'count-bounce 1s ease';
-    }, 180000);
-  }
-
-  // ======================
-  // FAQ ACCORDION
-  // ======================
-  initFAQ() {
-    document.querySelectorAll('.faq-question').forEach(question => {
-      question.addEventListener('click', () => {
-        const item = question.closest('.faq-item');
-        const isActive = item.classList.contains('active');
-        
-        // Close all items first
-        document.querySelectorAll('.faq-item').forEach(i => {
-          i.classList.remove('active');
-        });
-        
-        // Open clicked item if it wasn't active
-        if (!isActive) {
-          item.classList.add('active');
-        }
-      });
-    });
-  }
-
-  // ======================
-  // BOOKING FORM
-  // ======================
-  initBookingForm() {
-    const form = document.getElementById('bookingForm');
-    if (!form) return;
-    
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const name = this.getValue('name');
-      const phone = this.getValue('phone');
-      const type = this.getValue('type');
-      
-      if (!name || !phone || !type) {
-        this.showAlert('Mohon lengkapi semua data terlebih dahulu', 'error');
-        return;
-      }
-      
-      if (!/^628[0-9]{8,11}$/.test(phone)) {
-        this.showAlert('Format nomor WhatsApp harus diawali 628 dan 10-13 digit', 'error');
-        return;
-      }
-      
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      
-      try {
-        // Show loading state
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
-        submitBtn.disabled = true;
-        
-        // Prepare data
-        const formData = {
-          name,
-          phone,
-          type,
-          timestamp: new Date().toISOString(),
-          source: 'Website Kertamulya'
-        };
-        
-        // Here you would normally send to Firebase/backend
-        // await this.sendToBackend(formData);
-        
-        // Create WhatsApp message
-        const message = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
-        const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-        
-        // Show confirmation
-        this.showWhatsAppConfirmation(name, phone, type, whatsappUrl);
-        
-      } catch (error) {
-        console.error('Error:', error);
-        this.showAlert('Terjadi kesalahan saat mengirim data', 'error');
-      } finally {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }
-    });
-  }
-
-  showWhatsAppConfirmation(name, phone, type, url) {
-    const bookingFee = type.includes('Standard') ? 'Rp500.000' : 'Rp2.000.000';
-    
-    // Update modal content
-    this.setElementText('waName', name);
-    this.setElementText('waPhone', phone);
-    this.setElementText('waType', type);
-    this.setElementText('waFee', bookingFee);
-    
-    // Show modal
-    this.showModal('wa');
-    
-    // Start countdown
-    let seconds = 5;
-    const countdownEl = document.getElementById('countdownText');
-    const countdownInterval = setInterval(() => {
-      seconds--;
-      countdownEl.textContent = seconds;
-      
-      if (seconds <= 0) {
-        clearInterval(countdownInterval);
-        window.open(url, '_blank');
-        this.hideModal('wa');
-      }
-    }, 1000);
-  }
-
-  // ======================
-  // PROGRESS BARS
-  // ======================
-  initProgressBars() {
-    document.querySelectorAll('.progress-fill').forEach(bar => {
-      const parent = bar.closest('[data-stock]');
-      if (!parent) return;
-      
-      const stock = parseInt(parent.getAttribute('data-stock'));
-      let width;
-      
-      if (stock === 1) width = '10%';
-      else if (stock === 2) width = '30%';
-      else if (stock === 3) width = '50%';
-      else if (stock === 4) width = '70%';
-      else width = '90%';
-      
-      bar.style.width = width;
-    });
-  }
-
-  // ======================
-  // VIDEO ELEMENTS
-  // ======================
-  initVideoElements() {
-    // Add click handlers to video thumbnails
-    document.querySelectorAll('[data-video-type]').forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        this.showVideoModal(thumb.getAttribute('data-video-type'));
-      });
-    });
-  }
-
-  // ======================
-  // HELPER FUNCTIONS
-  // ======================
-  getValue(id) {
-    const el = document.getElementById(id);
-    return el ? el.value.trim() : '';
-  }
-
-  setElementText(id, text) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = text;
-  }
-
-  showAlert(message, type = 'success') {
-    const alert = document.createElement('div');
-    alert.className = `alert alert-${type}`;
-    alert.innerHTML = message;
-    document.body.appendChild(alert);
-    
-    setTimeout(() => {
-      alert.classList.add('fade-out');
-      setTimeout(() => alert.remove(), 300);
-    }, 3000);
+    document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
   }
 }
 
-// Initialize the application
-new KertamulyaApp();
-</script>
- 
+// ========== TYPE SELECTOR ==========
+function setupTypeSelector() {
+  const typeBtns = document.querySelectorAll('.type-btn');
+  const typeCards = document.querySelectorAll('.type-card');
+  
+  typeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const type = this.dataset.type;
+      
+      typeBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      typeCards.forEach(card => {
+        card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
+      });
+    });
+  });
+}
+
+// ========== NOTIFICATIONS ==========
+function showRandomNotification() {
+  const notifications = [
+    "Pak Budi baru saja booking unit Tipe Suite!",
+    "Bu Ani membeli Tipe Standard",
+    "12 unit terjual hari ini!",
+    "Promo motor gratis hanya sampai 3 hari lagi",
+    "Kuota tersisa hanya 24 unit"
+  ];
+  
+  const notification = document.getElementById('notification');
+  const notificationText = document.getElementById('notificationText');
+  
+  notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
+  notification.style.display = 'flex';
+  
+  setTimeout(() => {
+    notification.style.opacity = '1';
+  }, 10);
+  
+  setTimeout(() => {
+    notification.style.opacity = '0';
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 300);
+  }, 5000);
+}
+
+// ========== SOLD COUNT ==========
+function animateSoldCount() {
+  const soldCount = document.querySelector('.sold-count');
+  let count = 0;
+  const target = 12;
+  const interval = setInterval(() => {
+    count++;
+    soldCount.textContent = count;
+    if(count >= target) clearInterval(interval);
+  }, 150);
+}
+
+// ========== FAQ ACCORDION ==========
+function setupFAQAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) otherItem.classList.remove('active');
+      });
+      item.classList.toggle('active');
+    });
+  });
+}
+
+// ========== BOOKING FORM ==========
+function setupBookingForm() {
+  const bookingForm = document.getElementById('bookingForm');
+  
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const type = document.getElementById('type').value;
+      
+      const message = `Assalamu'alaikum wr wb,
+
+*Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
+
+Mohon info lebih lanjut mengenai:
+- *Proses pembelian*
+- *Syarat KPR*
+
+Terima kasih.`;
+    
+      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+      window.open(waLink, '_blank');
+      hideModal('booking');
+    });
+  }
+}
+
+// ========== GALLERY MODAL ==========
+function initGalleryModal() {
+  // Image sets with direct image URLs
+  const galleryImages = {
+    standard: [
+      'https://i.imgur.com/kYxjjEX.jpg',
+      'https://i.imgur.com/JKpZ6YT.jpg',
+      'https://i.imgur.com/NXt5lhy.jpg'
+    ],
+    suite: [
+      'https://i.imgur.com/rzlJAkz.jpg',
+      'https://i.imgur.com/SG7lFvg.jpg',
+      'https://i.imgur.com/LJpsD3m.jpg'
+    ],
+    premium: [
+      'https://i.imgur.com/xFgp9FL.jpg',
+      'https://i.imgur.com/UmdNjnI.jpg',
+      'https://i.imgur.com/yCkpfGP.jpg'
+    ]
+  };
+
+  // Initialize gallery buttons
+  document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
+      showGalleryModal(type, galleryImages);
+    });
+  });
+}
+
+function showGalleryModal(type, images) {
+  const titleMap = {
+    standard: 'Standard 30/60',
+    suite: 'Suite 50/60',
+    premium: 'Premium 50/120'
+  };
+  
+  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
+  const carousel = document.getElementById('galleryCarousel');
+  carousel.innerHTML = '';
+
+  // Add slides to carousel
+  images[type].forEach(img => {
+    const slide = document.createElement('div');
+    slide.className = 'gallery-slide';
+    slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
+    carousel.appendChild(slide);
+  });
+
+  // Initialize Slick Carousel
+  $(carousel).slick({
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    adaptiveHeight: true,
+    autoplay: false,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+  });
+
+  // Show modal
+  document.getElementById('galleryModal').classList.add('active');
+}
+
+// ========== MODAL FUNCTIONS ==========
+// ========== MODAL FUNCTIONS ==========
+function showModal(type, subtype = null, houseType = null) {
+  if (type === 'gallery' && subtype) {
+    showGalleryModal(subtype);
+  }
+  else if (type === 'booking') {
+    if (houseType) document.getElementById('type').value = houseType;
+    document.getElementById('bookingModal').classList.add('active');
+  }
+  else if (type === 'video' && subtype) {
+    const videoId = getVideoId(subtype);
+    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    document.getElementById('videoModal').classList.add('active');
+  }
+}
+
+function hideModal(type) {
+  if (type === 'gallery') {
+    const carousel = document.getElementById('galleryCarousel');
+    if ($(carousel).hasClass('slick-initialized')) {
+      $(carousel).slick('unslick');
+    }
+    document.getElementById('galleryModal').classList.remove('active');
+  } 
+  else if (type === 'booking') {
+    document.getElementById('bookingModal').classList.remove('active');
+  } 
+  else if (type === 'video') {
+    document.getElementById('videoFrame').src = '';
+    document.getElementById('videoModal').classList.remove('active');
+  }
+}
+
+function getVideoId(subtype) {
+  const videoIds = {
+    standard: '7Fl9zHdHb7s',
+    suite: 'ThOEc35ktFM',
+    premium: 'fhjtbdQ8epI',
+    testimonial1: 'LgHbkuOKsw0',  // Video testimoni pertama
+    testimonial2: 'UF5V1-Vu6uI'   // Video testimoni kedua
+  };
+  return videoIds[subtype] || '';
+}
+
+// ========== PROGRESS BARS ==========
+function animateProgressBars() {
+  const progressBars = document.querySelectorAll('.progress-fill');
+  
+  progressBars.forEach(bar => {
+    const card = bar.closest('.type-card');
+    const stock = parseInt(card.dataset.stock);
+    const percentage = (stock / 10) * 100;
+    
+    bar.style.width = '0%';
+    setTimeout(() => {
+      bar.style.width = `${percentage}%`;
+    }, 300);
+  });
+}
+
+// Initialize Intersection Observer for progress bars
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) animateProgressBars();
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.type-card').forEach(card => {
+  observer.observe(card);
+});
+  </script>
 </body>
 </html> 
