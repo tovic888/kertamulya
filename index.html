@@ -1993,7 +1993,34 @@ button, input, textarea, select {
     font-size: 0.6rem;
   }
 }
-
+ /* Style for the confirmation modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal.active {
+    opacity: 1;
+    display: flex;
+  }
+  
+  .countdown-circle {
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
   </style>
 </head>
 <body>
@@ -2842,7 +2869,7 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
   animateSoldCount();
   setupFAQAccordion();
-  setupBookingForm();
+  setupBookingFormWithConfirmation(); // Changed from setupBookingForm()
   initGalleryModal();
   animateProgressBars();
 });
@@ -2955,32 +2982,111 @@ function setupFAQAccordion() {
   });
 }
 
-// ========== BOOKING FORM ==========
-function setupBookingForm() {
+// ========== BOOKING FORM WITH CONFIRMATION ==========
+function setupBookingFormWithConfirmation() {
   const bookingForm = document.getElementById('bookingForm');
   
   if (bookingForm) {
-    bookingForm.addEventListener('submit', function(e) {
+    bookingForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
+      // Validate form inputs
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
       const type = document.getElementById('type').value;
       
-      const message = `Assalamu'alaikum wr wb,
-
-*Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
-
-Mohon info lebih lanjut mengenai:
-- *Proses pembelian*
-- *Syarat KPR*
-
-Terima kasih.`;
-    
-      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-      window.open(waLink, '_blank');
-      hideModal('booking');
+      if (!name || !phone || !type) {
+        alert('Mohon lengkapi semua data terlebih dahulu');
+        return;
+      }
+      
+      // Show confirmation modal with appropriate message
+      const confirmationMessage = type.includes('Standard') 
+        ? "Booking fee cukup Rp. 500.000. Segera amankan unitmu sekarang juga!"
+        : "Booking fee Rp. 2.000.000. Dapatkan motor listrik gratis setelah 6x angsuran! Tidak diundi! Booking sekarang sebelum kehabisan.";
+      
+      showConfirmationModal(confirmationMessage);
+      
+      // Prepare data for Google Sheets
+      const formData = {
+        nama: name,
+        nomor: phone,
+        tipe: type
+      };
+      
+      try {
+        // Wait for 5 seconds before submitting to Google Sheets
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        
+        // Submit to Google Sheets
+        await fetch('https://script.google.com/macros/s/AKfycbyqUdScjjL2Gonn2r3VPZaufyC6Fgtl68HMKQVQqt01GNLn9h0_I0auCyuWe0PnKMc_/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        // Redirect to WhatsApp
+        const whatsappMessage = `Halo saya ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
+        const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
+        
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        // Even if submission fails, still redirect to WhatsApp
+        const whatsappMessage = `Halo saya ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
+        const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
+      } finally {
+        hideModal('booking');
+        hideConfirmationModal();
+      }
     });
+  }
+}
+
+// ========== CONFIRMATION MODAL FUNCTIONS ==========
+function showConfirmationModal(message) {
+  // Create modal if it doesn't exist
+  if (!document.getElementById('confirmationModal')) {
+    const modalHTML = `
+      <div class="modal" id="confirmationModal" style="display: flex; align-items: center; justify-content: center;">
+        <div class="modal-content" style="max-width: 400px; text-align: center; padding: 2rem; background: white; border-radius: 10px;">
+          <div style="margin-bottom: 1.5rem;">
+            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--primary);"></i>
+          </div>
+          <h3 style="margin-bottom: 1rem; color: var(--dark);">Konfirmasi Booking</h3>
+          <p id="confirmationMessage" style="margin-bottom: 1.5rem; color: var(--text);">${message}</p>
+          <div style="display: flex; justify-content: center;">
+            <div class="countdown-circle" style="width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--primary); display: flex; align-items: center; justify-content: center;">
+              <span id="countdownNumber" style="font-weight: bold; color: var(--primary);">5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Start countdown
+    let seconds = 5;
+    const countdownElement = document.getElementById('countdownNumber');
+    const countdownInterval = setInterval(() => {
+      seconds--;
+      countdownElement.textContent = seconds;
+      
+      if (seconds <= 0) {
+        clearInterval(countdownInterval);
+      }
+    }, 1000);
+  }
+}
+
+function hideConfirmationModal() {
+  const modal = document.getElementById('confirmationModal');
+  if (modal) {
+    modal.remove();
   }
 }
 
@@ -3052,7 +3158,6 @@ function showGalleryModal(type, images) {
 }
 
 // ========== MODAL FUNCTIONS ==========
-// ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
   if (type === 'gallery' && subtype) {
     showGalleryModal(subtype);
@@ -3090,8 +3195,8 @@ function getVideoId(subtype) {
     standard: '7Fl9zHdHb7s',
     suite: 'ThOEc35ktFM',
     premium: 'fhjtbdQ8epI',
-    testimonial1: 'LgHbkuOKsw0',  // Video testimoni pertama
-    testimonial2: 'UF5V1-Vu6uI'   // Video testimoni kedua
+    testimonial1: 'LgHbkuOKsw0',
+    testimonial2: 'UF5V1-Vu6uI'
   };
   return videoIds[subtype] || '';
 }
@@ -3122,6 +3227,7 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.type-card').forEach(card => {
   observer.observe(card);
 });
+
   </script>
 </body>
 </html> 
