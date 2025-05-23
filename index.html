@@ -2747,6 +2747,7 @@ button, input, textarea, select {
     </div>
   </footer>
 
+  <!-- Modals -->
   <!-- Booking Modal -->
   <div class="modal" id="bookingModal">
     <div class="modal-content">
@@ -2810,7 +2811,8 @@ button, input, textarea, select {
     </div>
   </div>
 </div>
-<!-- WhatsApp Confirmation Modal -->
+
+  <!-- WhatsApp Confirmation Modal -->
 <div class="modal" id="waModal">
   <div class="modal-content" style="max-width: 450px;">
     <div class="modal-body" style="padding: 2.5rem; text-align: center;">
@@ -2875,280 +2877,362 @@ button, input, textarea, select {
     </div>
   </div>
 </div>
-  
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
-// Inisialisasi Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyB03FOq5QiqZNea4ZbKUNoV4c4WOyWf0UY",
-  authDomain: "kertamulyaresidence-d0353.firebaseapp.com",
-  projectId: "kertamulyaresidence-d0353",
-  storageBucket: "kertamulyaresidence-d0353.appspot.com",
-  messagingSenderId: "339688232872",
-  appId: "1:339688232872:web:07efff955249fddfd96f9d",
-  measurementId: "G-DZN9BPWRJE"
-};
+// Main Application Class
+class KertamulyaApp {
+  constructor() {
+    this.init();
+  }
 
-// Initialize Firebase
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
-const db = firebase.firestore();
+  init() {
+    // Initialize all components
+    this.setupCountdown();
+    this.setupTypeSelector();
+    this.setupNotifications();
+    this.setupFAQAccordion();
+    this.setupBookingForm();
+    this.setupGalleryModal();
+    this.setupVideoModal();
+    this.setupWhatsAppModal();
+    this.animateSoldCount();
+    this.animateProgressBars();
+  }
 
-// Fungsi Modal Dasar
-function showModal(modalId) {
-  document.getElementById(modalId).classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+  // ========== COUNTDOWN TIMER ==========
+  setupCountdown() {
+    this.updateCountdown();
+    setInterval(() => this.updateCountdown(), 1000);
+  }
 
-function hideModal(modalId) {
-  document.getElementById(modalId).classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
+  updateCountdown() {
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 3);
+    endDate.setHours(23, 59, 59, 0);
 
-// Event Delegation untuk semua tombol
-document.addEventListener('click', function(e) {
-  // Tombol Close Modal
-  if (e.target.classList.contains('modal-close') || e.target.closest('.modal-close')) {
-    const modal = e.target.closest('.modal');
-    if (modal) {
-      hideModal(modal.id);
+    const now = new Date().getTime();
+    const distance = endDate - now;
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Update main countdown
+    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    
+    // Update modal countdown
+    document.getElementById('modalDays').textContent = days.toString().padStart(2, '0');
+    document.getElementById('modalHours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('modalMinutes').textContent = minutes.toString().padStart(2, '0');
+    
+    const totalDuration = 3 * 24 * 60 * 60 * 1000;
+    const elapsed = totalDuration - distance;
+    const progressPercent = (elapsed / totalDuration) * 100;
+    
+    document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
+    
+    if (distance < (24 * 60 * 60 * 1000)) {
+      document.querySelectorAll('.countdown-number').forEach(el => {
+        el.style.color = '#ff6b6b';
+      });
+      document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
     }
-    return;
   }
-  
-  // Tombol Gallery
-  if (e.target.closest('[data-action="gallery"]')) {
-    const card = e.target.closest('.type-card');
-    const type = card ? card.dataset.type : 'standard';
-    openGallery(type);
-    return;
-  }
-  
-  // Tombol Video
-  if (e.target.closest('[data-action="video"]')) {
-    const card = e.target.closest('.type-card');
-    const type = card ? card.dataset.type : 'standard';
-    openVideo(type);
-    return;
-  }
-  
-  // Tombol Booking
-  if (e.target.closest('[data-action="booking"]')) {
-    const card = e.target.closest('.type-card');
-    const type = card ? card.querySelector('.type-card-title').textContent : '';
-    openBookingForm(type);
-    return;
-  }
-  
-  // Klik di luar modal untuk close
-  if (e.target.classList.contains('modal')) {
-    hideModal(e.target.id);
-  }
-});
 
-// Fungsi Gallery
-function openGallery(type) {
-  // Set judul gallery
-  const titleMap = {
-    'standard': 'Galeri Tipe Standard 30/60',
-    'suite': 'Galeri Tipe Suite 50/60', 
-    'premium': 'Galeri Tipe Premium 50/120'
-  };
-  document.getElementById('galleryTitle').textContent = titleMap[type] || 'Galeri Rumah';
-  
-  // Load gambar (gunakan gambar aktual Anda)
-  const galleryCarousel = document.getElementById('galleryCarousel');
-  galleryCarousel.innerHTML = '';
-  
-  const images = {
-    'standard': ['https://i.imgur.com/kYxjjEX.jpg', 'https://i.imgur.com/QJfJq2l.jpeg'],
-    'suite': ['https://i.imgur.com/rzlJAkz.jpg', 'https://i.imgur.com/QwwyO9T.jpeg'],
-    'premium': ['https://i.imgur.com/xFgp9FL.jpg', 'https://i.imgur.com/DLAHtSG.jpeg']
-  };
-  
-  const typeImages = images[type] || images['standard'];
-  
-  typeImages.forEach(img => {
-    const div = document.createElement('div');
-    div.innerHTML = `<img src="${img}" alt="${type}" loading="lazy">`;
-    galleryCarousel.appendChild(div);
-  });
-  
-  // Inisialisasi Slick Carousel
-  if ($('#galleryCarousel').hasClass('slick-initialized')) {
-    $('#galleryCarousel').slick('unslick');
-  }
-  
-  $('#galleryCarousel').slick({
-    dots: true,
-    arrows: true,
-    infinite: true,
-    adaptiveHeight: true
-  });
-  
-  showModal('galleryModal');
-}
-
-// Fungsi Video
-function openVideo(type) {
-  const videoMap = {
-    'standard': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
-    'suite': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
-    'premium': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
-    'testimonial1': 'https://www.youtube.com/embed/LgHbkuOKsw0',
-    'testimonial2': 'https://www.youtube.com/embed/UF5V1-Vu6uI'
-  };
-  
-  document.getElementById('videoFrame').src = videoMap[type] || videoMap['standard'];
-  showModal('videoModal');
-}
-
-// Fungsi Booking Form
-function openBookingForm(type = '') {
-  if (type && document.getElementById('type')) {
-    document.getElementById('type').value = type;
-  }
-  showModal('bookingModal');
-}
-
-// Handle Form Submission
-document.getElementById('bookingForm')?.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const name = document.getElementById('name').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const type = document.getElementById('type').value;
-  
-  // Validasi
-  if (!name || !phone || !type) {
-    alert('Mohon lengkapi semua data');
-    return;
-  }
-  
-  if (!/^628[0-9]{8,11}$/.test(phone)) {
-    alert('Format nomor WhatsApp harus diawali 628 dan 10-13 digit');
-    return;
-  }
-  
-  const submitBtn = this.querySelector('button[type="submit"]');
-  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
-  submitBtn.disabled = true;
-  
-  try {
-    // Simpan ke Firebase
-    await db.collection("bookings").add({
-      name,
-      phone,
-      type,
-      timestamp: new Date().toISOString()
+  // ========== TYPE SELECTOR ==========
+  setupTypeSelector() {
+    const typeBtns = document.querySelectorAll('.type-btn');
+    const typeCards = document.querySelectorAll('.type-card');
+    
+    typeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.dataset.type;
+        
+        typeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        typeCards.forEach(card => {
+          card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
+        });
+      });
     });
-    
-    // Redirect ke WhatsApp
-    const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
-    const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
-    
-    hideModal('bookingModal');
-    window.open(whatsappUrl, '_blank');
-    
-  } catch (error) {
-    console.error("Error saving data:", error);
-    alert('Gagal mengirim data, silakan coba lagi');
-  } finally {
-    submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Kirim via WhatsApp';
-    submitBtn.disabled = false;
   }
-});
 
-// Countdown Timer
-function updateCountdown() {
-  const endDate = new Date();
-  endDate.setDate(endDate.getDate() + 3);
-  endDate.setHours(23, 59, 59, 0);
+  // ========== NOTIFICATIONS ==========
+  setupNotifications() {
+    setTimeout(() => this.showRandomNotification(), 10000);
+    setInterval(() => this.showRandomNotification(), (Math.floor(Math.random() * 3) + 2) * 60000);
+  }
 
-  const now = new Date().getTime();
-  const distance = endDate - now;
-  
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-  document.getElementById('days').textContent = days.toString().padStart(2, '0');
-  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-  
-  const totalDuration = 3 * 24 * 60 * 60 * 1000;
-  const elapsed = totalDuration - distance;
-  const progressPercent = (elapsed / totalDuration) * 100;
-  
-  document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
-}
-
-// Jalankan countdown
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-// Sold Count Animation
-let soldCount = 12;
-setInterval(() => {
-  soldCount += Math.floor(Math.random() * 3);
-  document.querySelector('.sold-count').textContent = soldCount;
-  
-  // Trigger animation
-  const element = document.querySelector('.sold-count');
-  element.style.animation = 'none';
-  void element.offsetWidth;
-  element.style.animation = 'count-bounce 1s ease';
-}, 180000);
-
-// FAQ Accordion
-document.querySelectorAll('.faq-question').forEach(question => {
-  question.addEventListener('click', () => {
-    const item = question.closest('.faq-item');
-    item.classList.toggle('active');
-  });
-});
-
-// Type Selector
-document.querySelectorAll('.type-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+  showRandomNotification() {
+    const notifications = [
+      "Pak Budi baru saja booking unit Tipe Suite!",
+      "Bu Ani membeli Tipe Standard",
+      "12 unit terjual hari ini!",
+      "Promo motor gratis hanya sampai 3 hari lagi",
+      "Kuota tersisa hanya 24 unit"
+    ];
     
-    const type = btn.dataset.type;
-    document.querySelectorAll('.type-card').forEach(card => {
-      card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notificationText');
+    
+    notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
+    notification.style.display = 'flex';
+    
+    setTimeout(() => {
+      notification.style.opacity = '1';
+    }, 10);
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 300);
+    }, 5000);
+  }
+
+  // ========== SOLD COUNT ==========
+  animateSoldCount() {
+    const soldCount = document.querySelector('.sold-count');
+    let count = 0;
+    const target = 12;
+    const interval = setInterval(() => {
+      count++;
+      soldCount.textContent = count;
+      if(count >= target) clearInterval(interval);
+    }, 150);
+  }
+
+  // ========== FAQ ACCORDION ==========
+  setupFAQAccordion() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) otherItem.classList.remove('active');
+        });
+        item.classList.toggle('active');
+      });
     });
-  });
-});
+  }
 
-// Notifikasi
-const notifications = [
-  "Pak Budi baru saja booking unit Tipe Suite!",
-  "Bu Siti berhasil mendapatkan KPR BJB Syariah untuk Tipe Standard",
-  "Unit Premium 50/120 tersisa 5 unit terakhir!"
-];
+  // ========== BOOKING FORM ==========
+  setupBookingForm() {
+    const bookingForm = document.getElementById('bookingForm');
+    
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const type = document.getElementById('type').value;
+        
+        // Set booking fee based on type
+        let bookingFee = 'Rp500.000';
+        if (type.includes('Suite')) bookingFee = 'Rp2.000.000';
+        if (type.includes('Premium')) bookingFee = 'Rp2.000.000';
+        
+        // Update modal content
+        document.getElementById('modalUnitType').textContent = type;
+        document.getElementById('modalBookingFee').textContent = bookingFee;
+        
+        const message = `Assalamu'alaikum wr wb,
 
-function showRandomNotification() {
-  const notification = document.getElementById('notification');
-  const text = document.getElementById('notificationText');
-  
-  text.textContent = notifications[Math.floor(Math.random() * notifications.length)];
-  notification.style.display = 'flex';
-  
-  setTimeout(() => {
-    notification.style.display = 'none';
-  }, 5000);
+*Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
+
+Mohon info lebih lanjut mengenai:
+- *Proses pembelian*
+- *Syarat KPR*
+
+Terima kasih.`;
+      
+        const waLink = document.getElementById('waLink');
+        waLink.href = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+        
+        // Show WhatsApp confirmation modal
+        this.showModal('wa');
+        
+        // Hide booking modal
+        this.hideModal('booking');
+      });
+    }
+  }
+
+  // ========== GALLERY MODAL ==========
+  setupGalleryModal() {
+    // Image sets with direct image URLs
+    this.galleryImages = {
+      standard: [
+        'https://i.imgur.com/kYxjjEX.jpg',
+        'https://i.imgur.com/JKpZ6YT.jpg',
+        'https://i.imgur.com/NXt5lhy.jpg'
+      ],
+      suite: [
+        'https://i.imgur.com/rzlJAkz.jpg',
+        'https://i.imgur.com/SG7lFvg.jpg',
+        'https://i.imgur.com/LJpsD3m.jpg'
+      ],
+      premium: [
+        'https://i.imgur.com/xFgp9FL.jpg',
+        'https://i.imgur.com/UmdNjnI.jpg',
+        'https://i.imgur.com/yCkpfGP.jpg'
+      ]
+    };
+
+    // Initialize gallery buttons
+    document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const type = btn.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
+        this.showGalleryModal(type);
+      });
+    });
+  }
+
+  showGalleryModal(type) {
+    const titleMap = {
+      standard: 'Standard 30/60',
+      suite: 'Suite 50/60',
+      premium: 'Premium 50/120'
+    };
+    
+    document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
+    const carousel = document.getElementById('galleryCarousel');
+    carousel.innerHTML = '';
+
+    // Add slides to carousel
+    this.galleryImages[type].forEach(img => {
+      const slide = document.createElement('div');
+      slide.className = 'gallery-slide';
+      slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
+      carousel.appendChild(slide);
+    });
+
+    // Initialize Slick Carousel
+    $(carousel).slick({
+      dots: true,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 1,
+      adaptiveHeight: true,
+      autoplay: false,
+      arrows: true,
+      prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+      nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+    });
+
+    // Show modal
+    document.getElementById('galleryModal').classList.add('active');
+  }
+
+  // ========== VIDEO MODAL ==========
+  setupVideoModal() {
+    this.videoIds = {
+      standard: '7Fl9zHdHb7s',
+      suite: 'ThOEc35ktFM',
+      premium: 'fhjtbdQ8epI',
+      testimonial1: 'LgHbkuOKsw0',
+      testimonial2: 'UF5V1-Vu6uI'
+    };
+
+    document.querySelectorAll('[onclick*="showModal(\'video\'"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const type = btn.getAttribute('onclick').match(/showModal\('video', '([^']+)'/)[1];
+        this.showVideoModal(type);
+      });
+    });
+  }
+
+  showVideoModal(type) {
+    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${this.videoIds[type]}?autoplay=1`;
+    document.getElementById('videoModal').classList.add('active');
+  }
+
+  // ========== WHATSAPP MODAL ==========
+  setupWhatsAppModal() {
+    // No additional setup needed
+  }
+
+  // ========== MODAL FUNCTIONS ==========
+  showModal(type, subtype = null, houseType = null) {
+    if (type === 'gallery' && subtype) {
+      this.showGalleryModal(subtype);
+    }
+    else if (type === 'booking') {
+      if (houseType) document.getElementById('type').value = houseType;
+      document.getElementById('bookingModal').classList.add('active');
+    }
+    else if (type === 'video' && subtype) {
+      this.showVideoModal(subtype);
+    }
+    else if (type === 'wa') {
+      document.getElementById('waModal').classList.add('active');
+    }
+  }
+
+  hideModal(type) {
+    if (type === 'gallery') {
+      const carousel = document.getElementById('galleryCarousel');
+      if ($(carousel).hasClass('slick-initialized')) {
+        $(carousel).slick('unslick');
+      }
+      document.getElementById('galleryModal').classList.remove('active');
+    } 
+    else if (type === 'booking') {
+      document.getElementById('bookingModal').classList.remove('active');
+    } 
+    else if (type === 'video') {
+      document.getElementById('videoFrame').src = '';
+      document.getElementById('videoModal').classList.remove('active');
+    }
+    else if (type === 'wa') {
+      document.getElementById('waModal').classList.remove('active');
+    }
+  }
+
+  // ========== PROGRESS BARS ==========
+  animateProgressBars() {
+    const progressBars = document.querySelectorAll('.progress-fill');
+    
+    progressBars.forEach(bar => {
+      const card = bar.closest('.type-card');
+      const stock = parseInt(card.dataset.stock);
+      const percentage = (stock / 10) * 100;
+      
+      bar.style.width = '0%';
+      setTimeout(() => {
+        bar.style.width = `${percentage}%`;
+      }, 300);
+    });
+  }
 }
 
-// Tampilkan notifikasi pertama setelah 10 detik
-setTimeout(showRandomNotification, 10000);
-// Tampilkan notifikasi acak setiap 2-5 menit
-setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
-</script>
+// Initialize the application when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  const app = new KertamulyaApp();
+  
+  // Initialize Intersection Observer for progress bars
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) app.animateProgressBars();
+    });
+  }, {threshold: 0.1});
+
+  document.querySelectorAll('.type-card').forEach(card => {
+    observer.observe(card);
+  });
+});
+  </script>
 </body>
 </html> 
