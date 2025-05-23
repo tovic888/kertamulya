@@ -1628,95 +1628,124 @@ button, input, textarea, select {
 
 /* Gallery Modal */
 .gallery-modal .modal-content {
-  max-width: 90%;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-}
+      max-width: 90%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+      box-shadow: none;
+    }
 
-.gallery-modal .modal-body {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  overflow: hidden;
-}
+    .gallery-modal .modal-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      overflow: hidden;
+      background: rgba(0,0,0,0.8);
+      border-radius: 10px;
+    }
 
-.gallery-carousel {
-  flex-grow: 1;
-  position: relative;
-}
+    .gallery-carousel {
+      flex-grow: 1;
+      position: relative;
+      height: 80vh;
+    }
 
-.slick-list, .slick-track {
-  height: 100%;
-}
+    .slick-list, .slick-track {
+      height: 100%;
+    }
 
-.slick-slide {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .slick-slide {
+      height: 100%;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
 
-.slick-slide img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  margin: 0 auto;
-}
+    .slick-slide img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 5px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
 
-/* Navigation arrows styling */
-.slick-prev, .slick-next {
-  width: 40px;
-  height: 40px;
-  z-index: 10;
-  background: rgba(0,0,0,0.5);
-  border-radius: 50%;
-  transition: var(--transition);
-}
+    /* Navigation arrows styling */
+    .slick-prev, .slick-next {
+      width: 50px;
+      height: 50px;
+      z-index: 10;
+      background: rgba(0,0,0,0.7) !important;
+      border-radius: 50%;
+      transition: var(--transition);
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
 
-.slick-prev:hover, .slick-next:hover {
-  background: var(--primary);
-}
+    .slick-prev:hover, .slick-next:hover {
+      background: var(--primary) !important;
+    }
 
-.slick-prev:before, .slick-next:before {
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900;
-  color: white;
-  font-size: 20px;
-}
+    .slick-prev:before, .slick-next:before {
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: white;
+      font-size: 24px;
+      opacity: 1 !important;
+    }
 
-.slick-prev:before {
-  content: '\f053';
-}
+    .slick-prev:before {
+      content: '\f053';
+    }
 
-.slick-next:before {
-  content: '\f054';
-}
+    .slick-next:before {
+      content: '\f054';
+    }
 
-.slick-prev {
-  left: 15px;
-}
+    .slick-prev {
+      left: 25px;
+    }
 
-.slick-next {
-  right: 15px;
-}
+    .slick-next {
+      right: 25px;
+    }
 
-/* Dots Navigation */
-.slick-dots {
-  bottom: 15px;
-}
+    /* Dots Navigation */
+    .slick-dots {
+      bottom: 20px;
+    }
 
-.slick-dots li button:before {
-  color: white;
-  opacity: 0.5;
-  font-size: 10px;
-}
+    .slick-dots li button:before {
+      color: white;
+      opacity: 0.5;
+      font-size: 10px;
+    }
 
-.slick-dots li.slick-active button:before {
-  color: var(--accent);
-  opacity: 1;
-}
+    .slick-dots li.slick-active button:before {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .gallery-modal .modal-title {
+      color: white;
+      padding: 15px;
+      margin: 0;
+      text-align: center;
+      background: rgba(0,0,0,0.7);
+      border-radius: 10px 10px 0 0;
+    }
+
+    .gallery-modal .modal-close {
+      top: 10px;
+      right: 10px;
+      background: var(--danger);
+      color: white;
+      z-index: 11;
+    }
 
 /* Animations */
 @keyframes pulse {
@@ -2720,15 +2749,15 @@ button, input, textarea, select {
   </div>
 
 <!-- Gallery Modal -->
-<div class="modal" id="galleryModal">
-  <div class="modal-content" style="max-width: 90%; max-height: 90vh;">
-    <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
-    <div class="modal-body" style="padding: 0; height: 100%;">
-      <h3 class="modal-title" id="galleryTitle" style="padding: 1rem; text-align: center; margin: 0;">Galeri Foto</h3>
-      <div class="gallery-carousel" id="galleryCarousel" style="height: calc(100% - 60px);"></div>
+  <div class="modal gallery-modal" id="galleryModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
+      <div class="modal-body">
+        <h3 class="modal-title" id="galleryTitle">Galeri Foto</h3>
+        <div class="gallery-carousel" id="galleryCarousel"></div>
+      </div>
     </div>
   </div>
-</div>
 
 
  <!-- Video Modal -->
@@ -2944,63 +2973,81 @@ Terima kasih.`;
 // Gallery modal initialization
 function initGalleryModal() {
   // Image sets for each type
-  const imageSets = {
-    standard: [
-      'https://i.imgur.com/JKpZ6YT.jpg',
-      'https://i.imgur.com/NXt5lhy.jpg',
-      'https://i.imgur.com/yCkpfGP.jpg'
-    ],
-    suite: [
-      'https://i.imgur.com/SG7lFvg.jpg',
-      'https://i.imgur.com/LJpsD3m.jpg',
-      'https://i.imgur.com/UmdNjnI.jpg'
-    ],
-    premium: [
-      'https://i.imgur.com/xFgp9FL.jpg',
-      'https://i.imgur.com/rzlJAkz.jpg',
-      'https://i.imgur.com/kYxjjEX.jpg'
-    ]
-  };
+  const galleryImages = {
+      standard: [
+        'https://i.imgur.com/JKpZ6YT.jpg',
+        'https://i.imgur.com/NXt5lhy.jpg',
+        'https://i.imgur.com/yCkpfGP.jpg'
+      ],
+      suite: [
+        'https://i.imgur.com/SG7lFvg.jpg',
+        'https://i.imgur.com/LJpsD3m.jpg',
+        'https://i.imgur.com/UmdNjnI.jpg'
+      ],
+      premium: [
+        'https://i.imgur.com/xFgp9FL.jpg',
+        'https://i.imgur.com/rzlJAkz.jpg',
+        'https://i.imgur.com/kYxjjEX.jpg'
+      ]
+    };
 
-  // Set up gallery buttons
-  document.querySelectorAll('[onclick^="showModal(\'gallery\'"]').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
-      showGalleryModal(type, imageSets[type]);
+    // Fungsi untuk menampilkan gallery modal
+    function showGalleryModal(type) {
+      const titleMap = {
+        standard: 'Standard 30/60',
+        suite: 'Suite 50/60',
+        premium: 'Premium 50/120'
+      };
+      
+      document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
+      const carousel = document.getElementById('galleryCarousel');
+      carousel.innerHTML = '';
+
+      // Tambahkan gambar ke carousel
+      galleryImages[type].forEach(img => {
+        const slide = document.createElement('div');
+        slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
+        carousel.appendChild(slide);
+      });
+
+      // Inisialisasi Slick Carousel
+      $('#galleryCarousel').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: false,
+        autoplay: false,
+        arrows: true,
+        prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+      });
+
+      // Tampilkan modal
+      document.getElementById('galleryModal').classList.add('active');
+    }
+
+    // Fungsi untuk menyembunyikan modal
+    function hideModal(type) {
+      if (type === 'gallery') {
+        if ($('#galleryCarousel').hasClass('slick-initialized')) {
+          $('#galleryCarousel').slick('unslick');
+        }
+        document.getElementById('galleryModal').classList.remove('active');
+      }
+    }
+
+    // Inisialisasi tombol gallery
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hubungkan tombol gallery dengan fungsi
+      document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
+          showGalleryModal(type);
+        });
+      });
     });
-  });
-}
-
-// Show gallery modal
-function showGalleryModal(type, images) {
-  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${type.charAt(0).toUpperCase() + type.slice(1)}`;
-  const galleryCarousel = document.getElementById('galleryCarousel');
-  galleryCarousel.innerHTML = '';
-  
-  // Add slides
-  images.forEach(img => {
-    const slide = document.createElement('div');
-    slide.className = 'gallery-slide';
-    slide.innerHTML = `<img src="${img}" alt="Galeri ${type}" loading="lazy">`;
-    galleryCarousel.appendChild(slide);
-  });
-  
-  // Initialize Slick carousel
-  $('#galleryCarousel').slick({
-    dots: true,
-    arrows: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    adaptiveHeight: false,
-    autoplay: false,
-    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
-    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>'
-  });
-  
-  document.getElementById('galleryModal').classList.add('active');
-}
 
 
 // Modal functions
