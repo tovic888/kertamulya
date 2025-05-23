@@ -2721,16 +2721,15 @@ button, input, textarea, select {
 
 <!-- Gallery Modal -->
 <div class="modal" id="galleryModal">
-  <div class="modal-content" style="max-width: 800px; height: 80vh;">
+  <div class="modal-content" style="max-width: 90%; max-height: 90vh;">
     <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
-    <div class="modal-body" style="height: 100%; padding: 0;">
-      <h3 class="modal-title" id="galleryTitle" style="padding: 1.5rem 1.5rem 0;">Galeri Foto</h3>
-      <div class="gallery-carousel" id="galleryCarousel" style="height: calc(100% - 60px);">
-        <!-- Slides will be inserted here by JS -->
-      </div>
+    <div class="modal-body" style="padding: 0; height: 100%;">
+      <h3 class="modal-title" id="galleryTitle" style="padding: 1rem; text-align: center; margin: 0;">Galeri Foto</h3>
+      <div class="gallery-carousel" id="galleryCarousel" style="height: calc(100% - 60px);"></div>
     </div>
   </div>
 </div>
+
 
  <!-- Video Modal -->
 <div class="video-modal" id="videoModal">
@@ -2944,24 +2943,8 @@ Terima kasih.`;
 
 // Gallery modal initialization
 function initGalleryModal() {
-  // Set up gallery buttons
-  document.querySelectorAll('[onclick^="showModal(\'gallery\'"]').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
-      showGalleryModal(type);
-    });
-  });
-}
-
-// Show gallery modal
-function showGalleryModal(subtype) {
-  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${subtype.charAt(0).toUpperCase() + subtype.slice(1)}`;
-  const galleryCarousel = document.getElementById('galleryCarousel');
-  galleryCarousel.innerHTML = '';
-  
   // Image sets for each type
-  const images = {
+  const imageSets = {
     standard: [
       'https://i.imgur.com/JKpZ6YT.jpg',
       'https://i.imgur.com/NXt5lhy.jpg',
@@ -2973,47 +2956,52 @@ function showGalleryModal(subtype) {
       'https://i.imgur.com/UmdNjnI.jpg'
     ],
     premium: [
-      'https://i.imgur.com/SG7lFvg.jpg',
-      'https://i.imgur.com/LJpsD3m.jpg',
-      'https://i.imgur.com/UmdNjnI.jpg'
+      'https://i.imgur.com/xFgp9FL.jpg',
+      'https://i.imgur.com/rzlJAkz.jpg',
+      'https://i.imgur.com/kYxjjEX.jpg'
     ]
   };
-  
-  // Destroy existing slick instance if any
-  if ($('#galleryCarousel').hasClass('slick-initialized')) {
-    $('#galleryCarousel').slick('unslick');
-  }
+
+  // Set up gallery buttons
+  document.querySelectorAll('[onclick^="showModal(\'gallery\'"]').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
+      showGalleryModal(type, imageSets[type]);
+    });
+  });
+}
+
+// Show gallery modal
+function showGalleryModal(type, images) {
+  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+  const galleryCarousel = document.getElementById('galleryCarousel');
+  galleryCarousel.innerHTML = '';
   
   // Add slides
-  images[subtype].forEach(img => {
+  images.forEach(img => {
     const slide = document.createElement('div');
-    slide.style.height = '100%';
-    slide.innerHTML = `
-      <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
-        <img src="${img}" alt="Galeri ${subtype}" 
-             style="max-width: 100%; max-height: 100%; object-fit: contain;"
-             loading="lazy">
-      </div>`;
+    slide.className = 'gallery-slide';
+    slide.innerHTML = `<img src="${img}" alt="Galeri ${type}" loading="lazy">`;
     galleryCarousel.appendChild(slide);
   });
   
-  // Initialize Slick carousel with proper settings
+  // Initialize Slick carousel
   $('#galleryCarousel').slick({
     dots: true,
     arrows: true,
     infinite: true,
     speed: 300,
     slidesToShow: 1,
-    slidesToScroll: 1,
     adaptiveHeight: false,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    nextArrow: '<button type="button" class="slick-next slick-arrow"><i class="fas fa-chevron-right"></i></button>',
-    prevArrow: '<button type="button" class="slick-prev slick-arrow"><i class="fas fa-chevron-left"></i></button>'
+    autoplay: false,
+    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
+    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>'
   });
   
   document.getElementById('galleryModal').classList.add('active');
 }
+
 
 // Modal functions
 function showModal(type, subtype = null, houseType = null) {
