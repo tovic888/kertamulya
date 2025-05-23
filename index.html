@@ -2858,7 +2858,7 @@ button, input, textarea, select {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
-// Initialize on page load
+// ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all components
   updateCountdown();
@@ -2871,6 +2871,9 @@ document.addEventListener('DOMContentLoaded', function() {
   setupBookingForm();
   initGalleryModal();
   animateProgressBars();
+  
+  // Initialize tooltips
+  initTooltips();
 });
 
 // ========== COUNTDOWN TIMER ==========
@@ -2906,87 +2909,12 @@ function updateCountdown() {
   }
 }
 
-// ========== TYPE SELECTOR ==========
-function setupTypeSelector() {
-  const typeBtns = document.querySelectorAll('.type-btn');
-  const typeCards = document.querySelectorAll('.type-card');
-  
-  typeBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const type = this.dataset.type;
-      
-      typeBtns.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      
-      typeCards.forEach(card => {
-        card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
-      });
-    });
-  });
-}
-
-// ========== NOTIFICATIONS ==========
-function showRandomNotification() {
-  const notifications = [
-    "Pak Budi baru saja booking unit Tipe Suite!",
-    "Bu Ani membeli Tipe Standard",
-    "12 unit terjual hari ini!",
-    "Promo motor gratis hanya sampai 3 hari lagi",
-    "Kuota tersisa hanya 24 unit"
-  ];
-  
-  const notification = document.getElementById('notification');
-  const notificationText = document.getElementById('notificationText');
-  
-  notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
-  notification.style.display = 'flex';
-  
-  setTimeout(() => {
-    notification.style.opacity = '1';
-  }, 10);
-  
-  setTimeout(() => {
-    notification.style.opacity = '0';
-    setTimeout(() => {
-      notification.style.display = 'none';
-    }, 300);
-  }, 5000);
-}
-
-// ========== SOLD COUNT ==========
-function animateSoldCount() {
-  const soldCount = document.querySelector('.sold-count');
-  let count = 0;
-  const target = 12;
-  const interval = setInterval(() => {
-    count++;
-    soldCount.textContent = count;
-    if(count >= target) clearInterval(interval);
-  }, 150);
-}
-
-// ========== FAQ ACCORDION ==========
-function setupFAQAccordion() {
-  const faqItems = document.querySelectorAll('.faq-item');
-  
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    
-    question.addEventListener('click', () => {
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item) otherItem.classList.remove('active');
-      });
-      item.classList.toggle('active');
-    });
-  });
-}
-
 // ========== BOOKING FORM ==========
 function setupBookingForm() {
   const bookingForm = document.getElementById('bookingForm');
   
   if (bookingForm) {
-    bookingForm.addEventListener('submit', function(e) {
+    bookingForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
       // Get form values
@@ -2996,7 +2924,13 @@ function setupBookingForm() {
       
       // Validate form
       if (!name || !phone || !type) {
-        alert('Mohon lengkapi semua data terlebih dahulu');
+        showAlert('Mohon lengkapi semua data terlebih dahulu', 'error');
+        return;
+      }
+      
+      // Validate phone number format
+      if (!/^628[0-9]{8,11}$/.test(phone)) {
+        showAlert('Format nomor WhatsApp harus diawali 628 dan 10-13 digit', 'error');
         return;
       }
       
@@ -3008,34 +2942,91 @@ function setupBookingForm() {
       
       // Create confirmation message
       const confirmationMessage = `
-        Booking fee ${bookingFee} untuk tipe ${type}. 
-        Dapatkan motor listrik gratis setelah 6x angsuran! 
-        TIDAK DIUNDI! Segera amankan unit Anda sekarang.
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+            <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
+          </div>
+          <h3 style="margin-bottom: 0.5rem; color: var(--dark);">Booking Berhasil!</h3>
+          <p style="color: var(--text-light);">Tim kami akan segera menghubungi Anda</p>
+        </div>
+        <div style="background: rgba(46, 204, 113, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span style="font-weight: 600;">Nama:</span>
+            <span>${name}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span style="font-weight: 600;">Nomor:</span>
+            <span>${phone}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="font-weight: 600;">Tipe:</span>
+            <span>${type}</span>
+          </div>
+        </div>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 1.5rem;">
+          Booking fee ${bookingFee} untuk tipe ${type}. 
+          Dapatkan motor listrik gratis setelah 6x angsuran!
+        </p>
       `;
       
-      // Show confirmation modal and redirect after 3 seconds
-      showConfirmationModal(confirmationMessage, name, phone, type);
+      try {
+        // Submit to Google Sheets
+        const response = await submitToGoogleSheets(name, phone, type);
+        
+        if (response.status === "success") {
+          // Show beautiful confirmation modal
+          showConfirmationModal(confirmationMessage, name, phone, type);
+        } else {
+          showAlert('Gagal menyimpan data: ' + response.message, 'error');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Terjadi kesalahan saat menyimpan data', 'error');
+      }
     });
   }
 }
 
-// ========== CONFIRMATION MODAL ==========
-function showConfirmationModal(message, name, phone, type) {
+// ========== SUBMIT TO GOOGLE SHEETS ==========
+async function submitToGoogleSheets(name, phone, type) {
+  try {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbzeZY_DQWzkioGHZfrsSSCMpvaJ3DJkpOyqaTPbI0Dj-fmSZINSMUpNipGDTIDe32fi9w/exec', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+        phone: phone,
+        type: type
+      })
+    });
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Error submitting to Google Sheets:', error);
+    return { status: "error", message: error.message };
+  }
+}
+
+// ========== BEAUTIFUL CONFIRMATION MODAL ==========
+function showConfirmationModal(content, name, phone, type) {
   // Create modal HTML
   const modalHTML = `
     <div class="modal active" id="waConfirmationModal" style="display: flex; align-items: center; justify-content: center; z-index: 1001;">
-      <div class="modal-content" style="max-width: 400px; text-align: center; padding: 2rem; background: white; border-radius: 10px;">
-        <div style="margin-bottom: 1.5rem;">
-          <i class="fab fa-whatsapp" style="font-size: 3rem; color: #25D366;"></i>
-        </div>
-        <h3 style="margin-bottom: 1rem; color: var(--dark);">Konfirmasi Booking</h3>
-        <p id="confirmationMessage" style="margin-bottom: 1.5rem; color: var(--text);">${message}</p>
+      <div class="modal-content" style="max-width: 400px; text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+        ${content}
         <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
-          <div class="countdown-circle" style="width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--primary); display: flex; align-items: center; justify-content: center;">
-            <span id="countdownNumber" style="font-weight: bold; color: var(--primary);">3</span>
+          <div class="countdown-circle" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--primary); display: flex; align-items: center; justify-content: center; animation: pulse 1.5s infinite;">
+            <span id="countdownNumber" style="font-weight: bold; color: var(--primary); font-size: 1.5rem;">5</span>
           </div>
         </div>
-        <p style="font-size: 0.9rem; color: var(--text-light);">Mengarahkan ke WhatsApp...</p>
+        <div style="display: flex; gap: 1rem;">
+          <button id="cancelButton" style="flex: 1; padding: 0.75rem; background: #f5f5f5; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer;">Tutup</button>
+          <button id="openWhatsAppButton" style="flex: 1; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer;">
+            <i class="fab fa-whatsapp"></i> Buka WhatsApp
+          </button>
+        </div>
       </div>
     </div>
   `;
@@ -3043,8 +3034,14 @@ function showConfirmationModal(message, name, phone, type) {
   // Add modal to body
   document.body.insertAdjacentHTML('beforeend', modalHTML);
   
+  // Add event listeners
+  document.getElementById('cancelButton').addEventListener('click', hideConfirmationModal);
+  document.getElementById('openWhatsAppButton').addEventListener('click', () => {
+    redirectToWhatsApp(name, phone, type);
+  });
+  
   // Start countdown
-  let seconds = 3;
+  let seconds = 5;
   const countdownElement = document.getElementById('countdownNumber');
   const countdownInterval = setInterval(() => {
     seconds--;
@@ -3057,12 +3054,17 @@ function showConfirmationModal(message, name, phone, type) {
   }, 1000);
 }
 
+function hideConfirmationModal() {
+  const modal = document.getElementById('waConfirmationModal');
+  if (modal) {
+    modal.remove();
+  }
+}
+
+// ========== REDIRECT TO WHATSAPP ==========
 function redirectToWhatsApp(name, phone, type) {
-  // Submit data to Google Sheets first
-  submitToGoogleSheets(name, phone, type);
-  
   // Create WhatsApp message
-  const whatsappMessage = `Halo, saya ${name} ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
+  const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
   const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
   
   // Hide confirmation modal
@@ -3075,164 +3077,100 @@ function redirectToWhatsApp(name, phone, type) {
   window.open(whatsappUrl, '_blank');
 }
 
-// ========== GOOGLE SHEETS SUBMISSION ==========
-function submitToGoogleSheets(name, phone, type) {
-  const formData = {
-    nama: name,
-    nomor: phone,
-    tipe: type
-  };
+// ========== ALERT FUNCTION ==========
+function showAlert(message, type = 'success') {
+  const alertDiv = document.createElement('div');
+  alertDiv.className = `alert alert-${type}`;
+  alertDiv.style.position = 'fixed';
+  alertDiv.style.top = '20px';
+  alertDiv.style.right = '20px';
+  alertDiv.style.padding = '1rem 1.5rem';
+  alertDiv.style.backgroundColor = type === 'error' ? '#e74c3c' : '#2ecc71';
+  alertDiv.style.color = 'white';
+  alertDiv.style.borderRadius = '0.5rem';
+  alertDiv.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+  alertDiv.style.zIndex = '1000';
+  alertDiv.style.animation = 'fadeIn 0.3s ease-in-out';
+  alertDiv.textContent = message;
   
-  // Use fetch to submit to Google Apps Script
-  fetch('https://script.google.com/macros/s/AKfycbzeZY_DQWzkioGHZfrsSSCMpvaJ3DJkpOyqaTPbI0Dj-fmSZINSMUpNipGDTIDe32fi9w/exec', {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData)
-  }).catch(error => {
-    console.error('Error submitting to Google Sheets:', error);
-  });
+  document.body.appendChild(alertDiv);
+  
+  setTimeout(() => {
+    alertDiv.style.animation = 'fadeOut 0.3s ease-in-out';
+    setTimeout(() => {
+      alertDiv.remove();
+    }, 300);
+  }, 3000);
 }
 
-// ========== GALLERY MODAL ==========
-function initGalleryModal() {
-  // Image sets with direct image URLs
-  const galleryImages = {
-    standard: [
-      'https://i.imgur.com/kYxjjEX.jpg',
-      'https://i.imgur.com/JKpZ6YT.jpg',
-      'https://i.imgur.com/NXt5lhy.jpg'
-    ],
-    suite: [
-      'https://i.imgur.com/rzlJAkz.jpg',
-      'https://i.imgur.com/SG7lFvg.jpg',
-      'https://i.imgur.com/LJpsD3m.jpg'
-    ],
-    premium: [
-      'https://i.imgur.com/xFgp9FL.jpg',
-      'https://i.imgur.com/UmdNjnI.jpg',
-      'https://i.imgur.com/yCkpfGP.jpg'
-    ]
-  };
-
-  // Initialize gallery buttons
-  document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
-      showGalleryModal(type, galleryImages);
+// ========== TOOLTIPS ==========
+function initTooltips() {
+  // Add tooltips to elements with data-tooltip attribute
+  document.querySelectorAll('[data-tooltip]').forEach(element => {
+    const tooltipText = element.getAttribute('data-tooltip');
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = tooltipText;
+    
+    element.appendChild(tooltip);
+    
+    element.addEventListener('mouseenter', () => {
+      tooltip.style.opacity = '1';
+      tooltip.style.visibility = 'visible';
+    });
+    
+    element.addEventListener('mouseleave', () => {
+      tooltip.style.opacity = '0';
+      tooltip.style.visibility = 'hidden';
     });
   });
 }
 
-function showGalleryModal(type, images) {
-  const titleMap = {
-    standard: 'Standard 30/60',
-    suite: 'Suite 50/60',
-    premium: 'Premium 50/120'
-  };
+// Add CSS for tooltips
+const tooltipCSS = `
+  .tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    pointer-events: none;
+  }
   
-  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
-  const carousel = document.getElementById('galleryCarousel');
-  carousel.innerHTML = '';
-
-  // Add slides to carousel
-  images[type].forEach(img => {
-    const slide = document.createElement('div');
-    slide.className = 'gallery-slide';
-    slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
-    carousel.appendChild(slide);
-  });
-
-  // Initialize Slick Carousel
-  $(carousel).slick({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    adaptiveHeight: true,
-    autoplay: false,
-    arrows: true,
-    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-  });
-
-  // Show modal
-  document.getElementById('galleryModal').classList.add('active');
-}
-
-// ========== MODAL FUNCTIONS ==========
-function showModal(type, subtype = null, houseType = null) {
-  if (type === 'gallery' && subtype) {
-    showGalleryModal(subtype);
+  .tooltip:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.8) transparent transparent transparent;
   }
-  else if (type === 'booking') {
-    if (houseType) document.getElementById('type').value = houseType;
-    document.getElementById('bookingModal').classList.add('active');
-  }
-  else if (type === 'video' && subtype) {
-    const videoId = getVideoId(subtype);
-    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    document.getElementById('videoModal').classList.add('active');
-  }
-}
-
-function hideModal(type) {
-  if (type === 'gallery') {
-    const carousel = document.getElementById('galleryCarousel');
-    if ($(carousel).hasClass('slick-initialized')) {
-      $(carousel).slick('unslick');
-    }
-    document.getElementById('galleryModal').classList.remove('active');
-  } 
-  else if (type === 'booking') {
-    document.getElementById('bookingModal').classList.remove('active');
-  } 
-  else if (type === 'video') {
-    document.getElementById('videoFrame').src = '';
-    document.getElementById('videoModal').classList.remove('active');
-  }
-}
-
-function getVideoId(subtype) {
-  const videoIds = {
-    standard: '7Fl9zHdHb7s',
-    suite: 'ThOEc35ktFM',
-    premium: 'fhjtbdQ8epI',
-    testimonial1: 'LgHbkuOKsw0',
-    testimonial2: 'UF5V1-Vu6uI'
-  };
-  return videoIds[subtype] || '';
-}
-
-// ========== PROGRESS BARS ==========
-function animateProgressBars() {
-  const progressBars = document.querySelectorAll('.progress-fill');
   
-  progressBars.forEach(bar => {
-    const card = bar.closest('.type-card');
-    const stock = parseInt(card.dataset.stock);
-    const percentage = (stock / 10) * 100;
-    
-    bar.style.width = '0%';
-    setTimeout(() => {
-      bar.style.width = `${percentage}%`;
-    }, 300);
-  });
-}
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+  }
+`;
 
-// Initialize Intersection Observer for progress bars
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) animateProgressBars();
-  });
-}, {threshold: 0.1});
-
-document.querySelectorAll('.type-card').forEach(card => {
-  observer.observe(card);
-});
+const styleElement = document.createElement('style');
+styleElement.textContent = tooltipCSS;
+document.head.appendChild(styleElement);
 
   </script>
 </body>
