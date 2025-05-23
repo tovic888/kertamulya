@@ -3164,7 +3164,6 @@ function animateProgressBars() {
 }
 
 // ========== BOOKING FORM ==========
-// Replace the setupBookingForm function with this updated version
 function setupBookingForm() {
   const bookingForm = document.getElementById('bookingForm');
   
@@ -3190,8 +3189,8 @@ function setupBookingForm() {
       }
       
       try {
-        // Send data to Google Sheets first
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzeZY_DQWzkioGHZfrsSSCMpvaJ3DJkpOyqaTPbI0Dj-fmSZINSMUpNipGDTIDe32fi9w/exec', {
+        // Send data to Google Sheets
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzdX4aGutZq7I4W-JA3jLa4qlafdf7-yL84QHg6OnJL3gm9FoixsgBDx7cb_ogvdUkhnA/exec', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -3227,7 +3226,6 @@ function setupBookingForm() {
 }
 
 // ========== CONFIRMATION MODAL ==========
-// Replace the showConfirmationModal function with this updated version
 function showConfirmationModal(name, phone, type, whatsappUrl) {
   // Create modal
   const modal = document.createElement('div');
@@ -3235,7 +3233,7 @@ function showConfirmationModal(name, phone, type, whatsappUrl) {
   modal.id = 'confirmationModal';
   modal.style.zIndex = '1001';
   
-  // Modal content - simplified without buttons
+  // Modal content
   modal.innerHTML = `
     <div class="modal-content" style="max-width: 400px; text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
       <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
@@ -3268,21 +3266,10 @@ function showConfirmationModal(name, phone, type, whatsappUrl) {
     
     if (seconds <= 0) {
       clearInterval(countdownInterval);
-      window.location.href = whatsappUrl;
+      window.open(whatsappUrl, '_blank');
       modal.remove();
     }
   }, 1000);
-}
-  
-  // Add event listeners
-  document.getElementById('cancelButton').addEventListener('click', hideConfirmationModal);
-}
-
-function hideConfirmationModal() {
-  const modal = document.getElementById('confirmationModal');
-  if (modal) {
-    modal.remove();
-  }
 }
 
 // ========== ALERT FUNCTION ==========
@@ -3310,6 +3297,20 @@ function showAlert(message, type = 'success') {
     }, 300);
   }, 3000);
 }
+
+// Add CSS for animations
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
 
   </script>
 </body>
