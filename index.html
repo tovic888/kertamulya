@@ -1993,7 +1993,21 @@ button, input, textarea, select {
     font-size: 0.6rem;
   }
 }
-
+ /* Animation for the modal */
+  @keyframes pulse-success {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+  
+  .checkmark {
+    animation: checkmark-appear 0.5s 0.5s ease-out forwards;
+  }
+  
+  @keyframes checkmark-appear {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
   </style>
 </head>
 <body>
@@ -2811,29 +2825,108 @@ button, input, textarea, select {
     </div>
   </div>
 </div>
-
-  <!-- WhatsApp Confirmation Modal -->
-  <div class="modal" id="waModal">
-    <div class="modal-content">
-      <div class="modal-body" style="text-align: center;">
-        <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-          <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
+<!-- WhatsApp Confirmation Modal - Premium UX Design -->
+<div class="modal" id="waModal">
+  <div class="modal-content" style="max-width: 500px; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+    <!-- Modal Header -->
+    <div style="background: linear-gradient(135deg, #2ecc71, #27ae60); padding: 1.5rem; text-align: center; color: white;">
+      <h3 style="margin: 0; font-size: 1.5rem; font-weight: 700;">BOOKING BERHASIL!</h3>
+      <p style="margin: 0.5rem 0 0; opacity: 0.9; font-size: 0.9rem;">Terima kasih telah memilih Kertamulya Residence</p>
+    </div>
+    
+    <!-- Modal Body -->
+    <div class="modal-body" style="padding: 2rem;">
+      <!-- Animated Checkmark -->
+      <div style="width: 100px; height: 100px; margin: 0 auto 1.5rem; position: relative;">
+        <div style="width: 100%; height: 100%; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: pulse-success 2s infinite;">
+          <i class="fab fa-whatsapp" style="color: white; font-size: 3rem;"></i>
         </div>
-        <h3 class="modal-title">Formulir Terkirim!</h3>
-        <p class="modal-desc">Tim marketing kami akan segera menghubungi Anda melalui WhatsApp</p>
-        <p id="countdownText" style="margin: 1rem 0;">Mengarahkan ke WhatsApp dalam 5 detik...</p>
-        <a href="#" id="waLink" class="btn btn-accent" style="display: inline-flex;">
-          <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
-        </a>
+        <div class="checkmark" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; opacity: 0;">
+          <svg viewBox="0 0 52 52" style="width: 100%; height: 100%;">
+            <circle cx="26" cy="26" r="25" fill="none" stroke="#fff" stroke-width="3"></circle>
+            <path fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Promo Section -->
+      <div style="background: rgba(241, 196, 15, 0.1); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.5rem; border-left: 4px solid #f1c40f;">
+        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem;">
+          <div style="width: 40px; height: 40px; background: #f1c40f; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-motorcycle" style="color: white; font-size: 1.2rem;"></i>
+          </div>
+          <h4 style="margin: 0; font-size: 1.1rem; color: #333;">MOTOR LISTRIK GRATIS!</h4>
+        </div>
+        <p style="margin: 0; font-size: 0.9rem; color: #555; line-height: 1.5;">
+          Dapatkan motor listrik gratis <strong>setelah 6x angsuran tepat waktu</strong> tanpa undian dan tanpa syarat tersembunyi.
+        </p>
+      </div>
+      
+      <!-- Booking Info -->
+      <div style="background: rgba(46, 204, 113, 0.1); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.5rem; border-left: 4px solid #2ecc71;">
+        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem;">
+          <div style="width: 40px; height: 40px; background: #2ecc71; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-hand-holding-usd" style="color: white; font-size: 1.2rem;"></i>
+          </div>
+          <h4 style="margin: 0; font-size: 1.1rem; color: #333;">BOOKING FEE SPESIAL</h4>
+        </div>
+        <p id="bookingFeeText" style="margin: 0; font-size: 0.9rem; color: #555; line-height: 1.5;"></p>
+      </div>
+      
+      <!-- Countdown -->
+      <div style="background: rgba(231, 76, 60, 0.1); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; text-align: center; border: 1px dashed #e74c3c;">
+        <p style="margin: 0 0 0.5rem; font-size: 0.8rem; color: #e74c3c; font-weight: 600;">PROMO BERAKHIR DALAM:</p>
+        <div style="display: flex; justify-content: center; gap: 0.5rem;">
+          <div style="text-align: center;">
+            <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c;" id="countDays">03</div>
+            <div style="font-size: 0.7rem; color: #777;">HARI</div>
+          </div>
+          <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c; line-height: 2;">:</div>
+          <div style="text-align: center;">
+            <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c;" id="countHours">12</div>
+            <div style="font-size: 0.7rem; color: #777;">JAM</div>
+          </div>
+          <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c; line-height: 2;">:</div>
+          <div style="text-align: center;">
+            <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c;" id="countMins">45</div>
+            <div style="font-size: 0.7rem; color: #777;">MENIT</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Auto Redirect Info -->
+      <div style="background: #f8f9fa; border-radius: 8px; padding: 1rem; text-align: center;">
+        <p style="margin: 0; font-size: 0.9rem; color: #555;">
+          <i class="fas fa-info-circle" style="color: #3498db;"></i> 
+          Anda akan diarahkan ke WhatsApp dalam <span id="countdownSeconds" style="font-weight: 700;">5</span> detik...
+        </p>
       </div>
     </div>
   </div>
+</div>
+ 
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyB03FOq5QiqZNea4ZbKUNoV4c4WOyWf0UY",
+    authDomain: "kertamulyaresidence-d0353.firebaseapp.com",
+    projectId: "kertamulyaresidence-d0353",
+    storageBucket: "kertamulyaresidence-d0353.appspot.com",
+    messagingSenderId: "339688232872",
+    appId: "1:339688232872:web:07efff955249fddfd96f9d",
+    measurementId: "G-DZN9BPWRJE"
+  };
+  
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const database = getDatabase(app);
+
   // Initialize all components
   updateCountdown();
   setInterval(updateCountdown, 1000);
@@ -2842,7 +2935,7 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
   animateSoldCount();
   setupFAQAccordion();
-  setupBookingForm();
+  setupBookingForm(database); // Pass database reference
   initGalleryModal();
   animateProgressBars();
 });
@@ -2956,7 +3049,7 @@ function setupFAQAccordion() {
 }
 
 // ========== BOOKING FORM ==========
-function setupBookingForm() {
+function setupBookingForm(database) {
   const bookingForm = document.getElementById('bookingForm');
   
   if (bookingForm) {
@@ -2967,7 +3060,19 @@ function setupBookingForm() {
       const phone = document.getElementById('phone').value;
       const type = document.getElementById('type').value;
       
-      const message = `Assalamu'alaikum wr wb,
+      // Store data to Firebase
+      const bookingsRef = ref(database, 'bookings');
+      const newBookingRef = push(bookingsRef);
+      
+      set(newBookingRef, {
+        name: name,
+        phone: phone,
+        type: type,
+        timestamp: new Date().toISOString()
+      }).then(() => {
+        console.log("Data booking tersimpan di Firebase");
+        
+        const message = `Assalamu'alaikum wr wb,
 
 *Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
 
@@ -2976,17 +3081,85 @@ Mohon info lebih lanjut mengenai:
 - *Syarat KPR*
 
 Terima kasih.`;
-    
-      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-      window.open(waLink, '_blank');
+        
+        const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+        
+        // Show WhatsApp modal
+        showWhatsAppModal(name, phone, type, waLink);
+        
+      }).catch((error) => {
+        console.error("Error menyimpan data:", error);
+      });
+      
       hideModal('booking');
     });
   }
 }
 
+// ========== WHATSAPP MODAL ==========
+function showWhatsAppModal(name, phone, type, waLink) {
+  const modal = document.getElementById('waModal');
+  const countdownElement = document.getElementById('countdownSeconds');
+  const bookingFeeText = document.getElementById('bookingFeeText');
+  
+  // Set booking fee text based on type
+  let bookingFee = 'Rp 500.000';
+  if (type.includes('Suite') || type.includes('Premium')) {
+    bookingFee = 'Rp 2.000.000';
+  }
+  bookingFeeText.innerHTML = `Booking fee hanya <strong>${bookingFee}</strong> untuk tipe <strong>${type}</strong>. DP 0% hingga akhir promo!`;
+  
+  // Update countdown
+  updatePromoCountdown();
+  
+  // Show modal
+  modal.classList.add('active');
+  
+  // Start redirect countdown
+  let seconds = 5;
+  const countdownInterval = setInterval(() => {
+    seconds--;
+    countdownElement.textContent = seconds;
+    
+    if (seconds <= 0) {
+      clearInterval(countdownInterval);
+      redirectToWhatsApp(waLink);
+      hideModal('wa');
+    }
+  }, 1000);
+}
+
+// ========== AUTO REDIRECT TO WHATSAPP ==========
+function redirectToWhatsApp(url) {
+  // Try to open in new tab
+  const newWindow = window.open(url, '_blank');
+  
+  // If blocked, try to redirect in current tab
+  if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+    window.location.href = url;
+  }
+}
+
+// ========== PROMO COUNTDOWN ==========
+function updatePromoCountdown() {
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 3);
+  endDate.setHours(23, 59, 59, 0);
+
+  const now = new Date().getTime();
+  const distance = endDate - now;
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  
+  document.getElementById('countDays').textContent = days.toString().padStart(2, '0');
+  document.getElementById('countHours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('countMins').textContent = minutes.toString().padStart(2, '0');
+}
+
 // ========== GALLERY MODAL ==========
 function initGalleryModal() {
-  // Image sets with direct image URLs
   const galleryImages = {
     standard: [
       'https://i.imgur.com/kYxjjEX.jpg',
@@ -3005,7 +3178,6 @@ function initGalleryModal() {
     ]
   };
 
-  // Initialize gallery buttons
   document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -3026,7 +3198,6 @@ function showGalleryModal(type, images) {
   const carousel = document.getElementById('galleryCarousel');
   carousel.innerHTML = '';
 
-  // Add slides to carousel
   images[type].forEach(img => {
     const slide = document.createElement('div');
     slide.className = 'gallery-slide';
@@ -3034,7 +3205,6 @@ function showGalleryModal(type, images) {
     carousel.appendChild(slide);
   });
 
-  // Initialize Slick Carousel
   $(carousel).slick({
     dots: true,
     infinite: true,
@@ -3047,11 +3217,9 @@ function showGalleryModal(type, images) {
     nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
   });
 
-  // Show modal
   document.getElementById('galleryModal').classList.add('active');
 }
 
-// ========== MODAL FUNCTIONS ==========
 // ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
   if (type === 'gallery' && subtype) {
@@ -3083,6 +3251,9 @@ function hideModal(type) {
     document.getElementById('videoFrame').src = '';
     document.getElementById('videoModal').classList.remove('active');
   }
+  else if (type === 'wa') {
+    document.getElementById('waModal').classList.remove('active');
+  }
 }
 
 function getVideoId(subtype) {
@@ -3090,8 +3261,8 @@ function getVideoId(subtype) {
     standard: '7Fl9zHdHb7s',
     suite: 'ThOEc35ktFM',
     premium: 'fhjtbdQ8epI',
-    testimonial1: 'LgHbkuOKsw0',  // Video testimoni pertama
-    testimonial2: 'UF5V1-Vu6uI'   // Video testimoni kedua
+    testimonial1: 'LgHbkuOKsw0',
+    testimonial2: 'UF5V1-Vu6uI'
   };
   return videoIds[subtype] || '';
 }
