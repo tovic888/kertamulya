@@ -2792,33 +2792,21 @@ button, input, textarea, select {
   <script>
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize countdown timer
+  // Initialize all components
   updateCountdown();
   setInterval(updateCountdown, 1000);
-  
-  // Initialize type selector functionality
   setupTypeSelector();
-  
-  // Initialize random notifications
   setTimeout(showRandomNotification, 10000);
   setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
-  
-  // Initialize sold count animation
   animateSoldCount();
-  
-  // Initialize FAQ accordion
   setupFAQAccordion();
-  
-  // Initialize form submission
   setupBookingForm();
-  
-  // Initialize gallery modal
   initGalleryModal();
+  animateProgressBars();
 });
 
-// Countdown timer function
+// ========== COUNTDOWN TIMER ==========
 function updateCountdown() {
-  // Set end date (3 days from now)
   const endDate = new Date();
   endDate.setDate(endDate.getDate() + 3);
   endDate.setHours(23, 59, 59, 0);
@@ -2826,27 +2814,22 @@ function updateCountdown() {
   const now = new Date().getTime();
   const distance = endDate - now;
   
-  // Calculate time units
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
   
-  // Update display
   document.getElementById('days').textContent = days.toString().padStart(2, '0');
   document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
   document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
   document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
   
-  // Calculate progress percentage
   const totalDuration = 3 * 24 * 60 * 60 * 1000;
   const elapsed = totalDuration - distance;
   const progressPercent = (elapsed / totalDuration) * 100;
   
-  // Update progress bar
   document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
   
-  // Change color when less than 24 hours remaining
   if (distance < (24 * 60 * 60 * 1000)) {
     document.querySelectorAll('.countdown-number').forEach(el => {
       el.style.color = '#ff6b6b';
@@ -2855,7 +2838,7 @@ function updateCountdown() {
   }
 }
 
-// Type selector functionality
+// ========== TYPE SELECTOR ==========
 function setupTypeSelector() {
   const typeBtns = document.querySelectorAll('.type-btn');
   const typeCards = document.querySelectorAll('.type-card');
@@ -2864,23 +2847,17 @@ function setupTypeSelector() {
     btn.addEventListener('click', function() {
       const type = this.dataset.type;
       
-      // Update active button
       typeBtns.forEach(b => b.classList.remove('active'));
       this.classList.add('active');
       
-      // Filter cards
       typeCards.forEach(card => {
-        if (type === 'all' || card.dataset.type === type) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
       });
     });
   });
 }
 
-// Random notifications function
+// ========== NOTIFICATIONS ==========
 function showRandomNotification() {
   const notifications = [
     "Pak Budi baru saja booking unit Tipe Suite!",
@@ -2908,7 +2885,7 @@ function showRandomNotification() {
   }, 5000);
 }
 
-// Sold count animation
+// ========== SOLD COUNT ==========
 function animateSoldCount() {
   const soldCount = document.querySelector('.sold-count');
   let count = 0;
@@ -2920,7 +2897,7 @@ function animateSoldCount() {
   }, 150);
 }
 
-// FAQ accordion functionality
+// ========== FAQ ACCORDION ==========
 function setupFAQAccordion() {
   const faqItems = document.querySelectorAll('.faq-item');
   
@@ -2928,20 +2905,15 @@ function setupFAQAccordion() {
     const question = item.querySelector('.faq-question');
     
     question.addEventListener('click', () => {
-      // Close all other items
       faqItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
-        }
+        if (otherItem !== item) otherItem.classList.remove('active');
       });
-      
-      // Toggle current item
       item.classList.toggle('active');
     });
   });
 }
 
-// Booking form functionality
+// ========== BOOKING FORM ==========
 function setupBookingForm() {
   const bookingForm = document.getElementById('bookingForm');
   
@@ -2970,106 +2942,84 @@ Terima kasih.`;
   }
 }
 
-// Gallery modal initialization
+// ========== GALLERY MODAL ==========
 function initGalleryModal() {
-  // Image sets for each type
+  // Image sets with direct image URLs
   const galleryImages = {
-      standard: [
-        'https://i.imgur.com/JKpZ6YT.jpg',
-        'https://i.imgur.com/NXt5lhy.jpg',
-        'https://i.imgur.com/yCkpfGP.jpg'
-      ],
-      suite: [
-        'https://i.imgur.com/SG7lFvg.jpg',
-        'https://i.imgur.com/LJpsD3m.jpg',
-        'https://i.imgur.com/UmdNjnI.jpg'
-      ],
-      premium: [
-        'https://i.imgur.com/xFgp9FL.jpg',
-        'https://i.imgur.com/rzlJAkz.jpg',
-        'https://i.imgur.com/kYxjjEX.jpg'
-      ]
-    };
+    standard: [
+      'https://i.imgur.com/JKpZ6YT.jpg',
+      'https://i.imgur.com/NXt5lhy.jpg',
+      'https://i.imgur.com/yCkpfGP.jpg'
+    ],
+    suite: [
+      'https://i.imgur.com/SG7lFvg.jpg',
+      'https://i.imgur.com/LJpsD3m.jpg',
+      'https://i.imgur.com/UmdNjnI.jpg'
+    ],
+    premium: [
+      'https://i.imgur.com/xFgp9FL.jpg',
+      'https://i.imgur.com/rzlJAkz.jpg',
+      'https://i.imgur.com/kYxjjEX.jpg'
+    ]
+  };
 
-    // Fungsi untuk menampilkan gallery modal
-    function showGalleryModal(type) {
-      const titleMap = {
-        standard: 'Standard 30/60',
-        suite: 'Suite 50/60',
-        premium: 'Premium 50/120'
-      };
-      
-      document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
-      const carousel = document.getElementById('galleryCarousel');
-      carousel.innerHTML = '';
-
-      // Tambahkan gambar ke carousel
-      galleryImages[type].forEach(img => {
-        const slide = document.createElement('div');
-        slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
-        carousel.appendChild(slide);
-      });
-
-      // Inisialisasi Slick Carousel
-      $('#galleryCarousel').slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        adaptiveHeight: false,
-        autoplay: false,
-        arrows: true,
-        prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-        nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-      });
-
-      // Tampilkan modal
-      document.getElementById('galleryModal').classList.add('active');
-    }
-
-    // Fungsi untuk menyembunyikan modal
-    function hideModal(type) {
-      if (type === 'gallery') {
-        if ($('#galleryCarousel').hasClass('slick-initialized')) {
-          $('#galleryCarousel').slick('unslick');
-        }
-        document.getElementById('galleryModal').classList.remove('active');
-      }
-    }
-
-    // Inisialisasi tombol gallery
-    document.addEventListener('DOMContentLoaded', function() {
-      // Hubungkan tombol gallery dengan fungsi
-      document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
-          showGalleryModal(type);
-        });
-      });
+  // Initialize gallery buttons
+  document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
+      showGalleryModal(type, galleryImages);
     });
+  });
+}
 
+function showGalleryModal(type, images) {
+  const titleMap = {
+    standard: 'Standard 30/60',
+    suite: 'Suite 50/60',
+    premium: 'Premium 50/120'
+  };
+  
+  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
+  const carousel = document.getElementById('galleryCarousel');
+  carousel.innerHTML = '';
 
-// Modal functions
+  // Add slides to carousel
+  images[type].forEach(img => {
+    const slide = document.createElement('div');
+    slide.className = 'gallery-slide';
+    slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
+    carousel.appendChild(slide);
+  });
+
+  // Initialize Slick Carousel
+  $(carousel).slick({
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    adaptiveHeight: true,
+    autoplay: false,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+  });
+
+  // Show modal
+  document.getElementById('galleryModal').classList.add('active');
+}
+
+// ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
   if (type === 'gallery' && subtype) {
     showGalleryModal(subtype);
   }
   else if (type === 'booking') {
-    if (houseType) {
-      document.getElementById('type').value = houseType;
-    }
+    if (houseType) document.getElementById('type').value = houseType;
     document.getElementById('bookingModal').classList.add('active');
   }
   else if (type === 'video' && subtype) {
-    let videoId = '';
-    switch(subtype) {
-      case 'standard': videoId = '7Fl9zHdHb7s'; break;
-      case 'suite': videoId = 'ThOEc35ktFM'; break;
-      case 'premium': videoId = 'fhjtbdQ8epI'; break;
-      case 'testimonial1': videoId = 'LgHbkuOKsw0'; break;
-      case 'testimonial2': videoId = 'UF5V1-Vu6uI'; break;
-    }
+    const videoId = getVideoId(subtype);
     document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
     document.getElementById('videoModal').classList.add('active');
   }
@@ -3077,8 +3027,9 @@ function showModal(type, subtype = null, houseType = null) {
 
 function hideModal(type) {
   if (type === 'gallery') {
-    if ($('#galleryCarousel').hasClass('slick-initialized')) {
-      $('#galleryCarousel').slick('unslick');
+    const carousel = document.getElementById('galleryCarousel');
+    if ($(carousel).hasClass('slick-initialized')) {
+      $(carousel).slick('unslick');
     }
     document.getElementById('galleryModal').classList.remove('active');
   } 
@@ -3091,18 +3042,18 @@ function hideModal(type) {
   }
 }
 
-// Video modal functions
-function showVideoModal(videoId) {
-  document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-  document.getElementById('videoModal').classList.add('active');
+function getVideoId(subtype) {
+  const videoIds = {
+    standard: '7Fl9zHdHb7s',
+    suite: 'ThOEc35ktFM',
+    premium: 'fhjtbdQ8epI',
+    testimonial1: 'LgHbkuOKsw0',
+    testimonial2: 'UF5V1-Vu6uI'
+  };
+  return videoIds[subtype] || '';
 }
 
-function hideVideoModal() {
-  document.getElementById('videoFrame').src = '';
-  document.getElementById('videoModal').classList.remove('active');
-}
-
-// Animate progress bars on scroll
+// ========== PROGRESS BARS ==========
 function animateProgressBars() {
   const progressBars = document.querySelectorAll('.progress-fill');
   
@@ -3111,23 +3062,17 @@ function animateProgressBars() {
     const stock = parseInt(card.dataset.stock);
     const percentage = (stock / 10) * 100;
     
-    // Reset width for animation
     bar.style.width = '0%';
-    
-    // Animate after a small delay
     setTimeout(() => {
       bar.style.width = `${percentage}%`;
     }, 300);
   });
 }
 
-// Run on load and when cards come into view
-document.addEventListener('DOMContentLoaded', animateProgressBars);
+// Initialize Intersection Observer for progress bars
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateProgressBars();
-    }
+    if (entry.isIntersecting) animateProgressBars();
   });
 }, {threshold: 0.1});
 
