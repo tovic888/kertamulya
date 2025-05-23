@@ -3094,20 +3094,35 @@ button, input, textarea, select {
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
-
-  <script>
+<script>
 // ========== MAIN APPLICATION ==========
 class KertamulyaApp {
   constructor() {
+    this.initFirebase();
     this.initModules();
-    this.setupEventListeners();
+    this.setupGlobalEventListeners();
     this.initCountdown();
     this.initNotifications();
     this.initSoldCountAnimation();
+  }
+
+  initFirebase() {
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyB03FOq5QiqZNea4ZbKUNoV4c4WOyWf0UY",
+      authDomain: "kertamulyaresidence-d0353.firebaseapp.com",
+      projectId: "kertamulyaresidence-d0353",
+      storageBucket: "kertamulyaresidence-d0353.appspot.com",
+      messagingSenderId: "339688232872",
+      appId: "1:339688232872:web:07efff955249fddfd96f9d",
+      measurementId: "G-DZN9BPWRJE"
+    };
+    
+    // Initialize Firebase only once
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    this.db = firebase.firestore();
   }
 
   initModules() {
@@ -3115,13 +3130,35 @@ class KertamulyaApp {
     this.galleryModal = new GalleryModal(this.modalManager);
     this.videoModal = new VideoModal(this.modalManager);
     this.whatsappModal = new WhatsAppModal(this.modalManager);
-    this.formHandler = new FormHandler(this.modalManager, this.whatsappModal);
+    this.formHandler = new FormHandler(this.modalManager, this.whatsappModal, this.db);
     this.faqAccordion = new FAQAccordion();
     this.typeSelector = new TypeSelector();
   }
 
-  setupEventListeners() {
-    // Global event listeners can be added here
+  setupGlobalEventListeners() {
+    // Event delegation for dynamically loaded elements
+    document.addEventListener('click', (e) => {
+      // Handle gallery buttons
+      if (e.target.closest('[data-action="gallery"]')) {
+        const card = e.target.closest('.type-card');
+        const type = card ? card.dataset.type : 'standard';
+        this.galleryModal.show(type);
+      }
+      
+      // Handle video buttons
+      if (e.target.closest('[data-action="video"]')) {
+        const card = e.target.closest('.type-card');
+        const type = card ? card.dataset.type : 'standard';
+        this.videoModal.show(type);
+      }
+      
+      // Handle booking buttons
+      if (e.target.closest('[data-action="booking"]')) {
+        const card = e.target.closest('.type-card');
+        const type = card ? card.querySelector('.type-card-title').textContent : '';
+        this.modalManager.showBookingModal(type);
+      }
+    });
   }
 
   initCountdown() {
@@ -3137,9 +3174,7 @@ class KertamulyaApp {
 
   initNotifications() {
     this.notificationManager = new NotificationManager();
-    // Show first notification after 10 seconds
     setTimeout(() => this.notificationManager.showRandom(), 10000);
-    // Then show periodically
     setInterval(() => this.notificationManager.showRandom(), (Math.floor(Math.random() * 3) + 2) * 60000);
   }
 
@@ -3158,30 +3193,35 @@ class ModalManager {
 
   setupEventListeners() {
     // Close modals when clicking outside content
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          this.hide();
-        }
-      });
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal')) {
+        this.hide();
+      }
     });
 
     // Close buttons
-    document.querySelectorAll('.modal-close, .video-modal-close').forEach(btn => {
-      btn.addEventListener('click', () => this.hide());
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal-close') || e.target.closest('.modal-close')) {
+        this.hide();
+      }
     });
   }
 
   show(modalElement) {
-    // Hide current modal if exists
     if (this.activeModal) {
       this.hide();
     }
-
-    // Show new modal
     this.activeModal = modalElement;
     modalElement.classList.add('active');
     document.body.style.overflow = 'hidden';
+  }
+
+  showBookingModal(type = '') {
+    const modal = document.getElementById('bookingModal');
+    if (type && document.getElementById('type')) {
+      document.getElementById('type').value = type;
+    }
+    this.show(modal);
   }
 
   hide() {
@@ -3209,7 +3249,7 @@ class GalleryModal {
 
   initGallery() {
     $(this.galleryElement).on('init', () => {
-      // Gallery initialized
+      console.log('Gallery initialized');
     });
   }
 
@@ -3250,7 +3290,7 @@ class GalleryModal {
     
     typeImages.forEach(img => {
       const div = document.createElement('div');
-      div.innerHTML = `<img src="${img}" alt="${type}" style="width:100%; max-height:70vh; object-fit:contain;">`;
+      div.innerHTML = `<img src="${img}" alt="${type}" loading="lazy" style="width:100%; max-height:70vh; object-fit:contain;">`;
       this.galleryElement.appendChild(div);
     });
     
@@ -3315,26 +3355,20 @@ class WhatsAppModal {
   }
 
   show(name, phone, type, whatsappUrl) {
-    // Set booking fee based on type
     const bookingFee = type.includes("Suite") || type.includes("Premium") 
       ? "Rp2.000.000" 
       : "Rp500.000";
     
-    // Update modal content
     this.nameElement.textContent = name;
     this.phoneElement.textContent = phone;
     this.typeElement.textContent = type;
     this.feeElement.textContent = bookingFee;
     
-    // Show modal
     this.modalManager.show(this.modalElement);
-    
-    // Start countdown
     this.startCountdown(whatsappUrl);
   }
 
   startCountdown(whatsappUrl) {
-    // Clear any existing countdown
     if (this.countdownInterval) {
       clearInterval(this.countdownInterval);
     }
@@ -3357,9 +3391,10 @@ class WhatsAppModal {
 
 // ========== FORM HANDLER ==========
 class FormHandler {
-  constructor(modalManager, whatsappModal) {
+  constructor(modalManager, whatsappModal, db) {
     this.modalManager = modalManager;
     this.whatsappModal = whatsappModal;
+    this.db = db;
     this.bookingForm = document.getElementById('bookingForm');
     this.setupForm();
   }
@@ -3374,20 +3409,16 @@ class FormHandler {
   }
 
   async handleFormSubmit() {
-    // Get form values
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const type = document.getElementById('type').value;
     
-    // Validate form
     if (!this.validateForm(name, phone, type)) return;
     
     try {
-      // Show loading state
       const submitBtn = this.bookingForm.querySelector('button[type="submit"]');
       this.setLoadingState(submitBtn, true);
       
-      // Prepare data
       const formData = {
         name,
         phone,
@@ -3396,20 +3427,14 @@ class FormHandler {
         source: 'Website Kertamulya'
       };
       
-      // Send data to Firebase/Google Sheets
-      const submissionSuccess = await this.sendFormData(formData);
+      // Save to Firebase
+      await this.db.collection("bookings").add(formData);
       
-      if (submissionSuccess) {
-        // Create WhatsApp message
-        const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
-        const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
-        
-        // Hide booking modal and show WhatsApp confirmation
-        this.modalManager.hide();
-        this.whatsappModal.show(name, phone, type, whatsappUrl);
-      } else {
-        this.showAlert('Gagal mengirim data, silakan coba lagi', 'error');
-      }
+      const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
+      const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
+      
+      this.modalManager.hide();
+      this.whatsappModal.show(name, phone, type, whatsappUrl);
       
     } catch (error) {
       console.error('Error:', error);
@@ -3432,36 +3457,6 @@ class FormHandler {
     }
     
     return true;
-  }
-
-  async sendFormData(formData) {
-    try {
-      // Initialize Firebase
-      const firebaseConfig = {
-        apiKey: "AIzaSyB03FOq5QiqZNea4ZbKUNoV4c4WOyWf0UY",
-        authDomain: "kertamulyaresidence-d0353.firebaseapp.com",
-        projectId: "kertamulyaresidence-d0353",
-        storageBucket: "kertamulyaresidence-d0353.appspot.com",
-        messagingSenderId: "339688232872",
-        appId: "1:339688232872:web:07efff955249fddfd96f9d",
-        measurementId: "G-DZN9BPWRJE"
-      };
-      
-      // Initialize Firebase if not already initialized
-      if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-      }
-      
-      const db = firebase.firestore();
-      
-      // Add a new document with a generated id
-      await db.collection("bookings").add(formData);
-      return true;
-      
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      return false;
-    }
   }
 
   setLoadingState(button, isLoading) {
@@ -3592,7 +3587,7 @@ class SoldCountAnimation {
 
   start() {
     this.updateCount();
-    this.interval = setInterval(() => this.updateCount(), 180000); // Update every 3 minutes
+    this.interval = setInterval(() => this.updateCount(), 180000);
   }
 
   stop() {
@@ -3603,9 +3598,8 @@ class SoldCountAnimation {
     this.count += Math.floor(Math.random() * 3);
     this.element.textContent = this.count;
     
-    // Trigger animation
     this.element.style.animation = 'none';
-    void this.element.offsetWidth; // Trigger reflow
+    void this.element.offsetWidth;
     this.element.style.animation = 'count-bounce 1s ease';
   }
 }
@@ -3622,10 +3616,8 @@ class FAQAccordion {
       const question = item.querySelector('.faq-question');
       
       question.addEventListener('click', () => {
-        // Toggle active class on clicked item
         item.classList.toggle('active');
         
-        // Close other items
         this.faqItems.forEach(otherItem => {
           if (otherItem !== item && otherItem.classList.contains('active')) {
             otherItem.classList.remove('active');
@@ -3647,21 +3639,13 @@ class TypeSelector {
   setupEventListeners() {
     this.typeBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Remove active class from all buttons
         this.typeBtns.forEach(b => b.classList.remove('active'));
-        
-        // Add active class to clicked button
         btn.classList.add('active');
         
         const type = btn.dataset.type;
         
-        // Show/hide cards based on type
         this.typeCards.forEach(card => {
-          if (type === 'all' || card.dataset.type === type) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
+          card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
         });
       });
     });
@@ -3670,28 +3654,31 @@ class TypeSelector {
 
 // ========== INITIALIZE APPLICATION ==========
 document.addEventListener('DOMContentLoaded', () => {
-  window.kertamulyaApp = new KertamulyaApp();
-  
-  // Make global functions available
-  window.showModal = (type, content) => {
-    const modalElement = document.getElementById(`${type}Modal`);
-    if (modalElement) {
+  // Make sure Firebase is loaded
+  if (typeof firebase !== 'undefined') {
+    window.kertamulyaApp = new KertamulyaApp();
+    
+    // Global functions for HTML onclick attributes
+    window.showModal = (type, content) => {
+      if (!window.kertamulyaApp) return;
+      
       if (type === 'gallery') {
-        window.kertamulyaApp.galleryModal.show(content);
+        window.kertamulyaApp.galleryModal.show(content || 'standard');
       } else if (type === 'video') {
-        window.kertamulyaApp.videoModal.show(content);
-      } else if (type === 'booking' && content) {
-        document.getElementById('type').value = content;
-        window.kertamulyaApp.modalManager.show(modalElement);
-      } else {
-        window.kertamulyaApp.modalManager.show(modalElement);
+        window.kertamulyaApp.videoModal.show(content || 'standard');
+      } else if (type === 'booking') {
+        window.kertamulyaApp.modalManager.showBookingModal(content);
       }
-    }
-  };
-  
-  window.hideModal = (type) => {
-    window.kertamulyaApp.modalManager.hide();
-  };
+    };
+    
+    window.hideModal = (type) => {
+      if (window.kertamulyaApp) {
+        window.kertamulyaApp.modalManager.hide();
+      }
+    };
+  } else {
+    console.error('Firebase not loaded');
+  }
 });
 
 // Add CSS for animations
@@ -3705,8 +3692,15 @@ style.textContent = `
     from { opacity: 1; transform: translateY(0); }
     to { opacity: 0; transform: translateY(-20px); }
   }
+  @keyframes count-bounce {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(0.95); }
+    75% { transform: scale(1.05); }
+  }
 `;
 document.head.appendChild(style);
 </script>
+ 
 </body>
 </html> 
