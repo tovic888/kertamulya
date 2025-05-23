@@ -2021,6 +2021,79 @@ button, input, textarea, select {
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
   }
+/* Tambahkan ke bagian CSS */
+#waModal .modal-content {
+  max-width: 500px;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+#waModal .modal-body {
+  padding: 2rem;
+  text-align: center;
+}
+
+#waModal .modal-title {
+  font-size: 1.5rem;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
+}
+
+#waModal .modal-desc {
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+#waModal .modal-desc ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+#waModal .modal-desc li {
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+#countdownText {
+  font-weight: 600;
+  color: var(--primary);
+  margin: 1.5rem 0;
+}
+
+.whatsapp-confirm-icon {
+  width: 80px;
+  height: 80px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 2.5rem;
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.countdown-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  animation: pulse 1.5s infinite;
+}
+
+.countdown-circle i {
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+  
+  
   </style>
 </head>
 <body>
@@ -3199,78 +3272,113 @@ function setupBookingForm() {
         // Show confirmation modal
         showConfirmationModal(name, phone, type, whatsappUrl);
         
-        // Kirim data ke Google Sheets (opsional)
-        try {
-          const scriptURL = 'https://script.google.com/macros/s/AKfycbzdX4aGutZq7I4W-JA3jLa4qlafdf7-yL84QHg6OnJL3gm9FoixsgBDx7cb_ogvdUkhnA/exec';
-          const formData = new FormData();
-          formData.append('name', name);
-          formData.append('phone', phone);
-          formData.append('type', type);
-          formData.append('timestamp', new Date().toISOString());
-          
-          const response = await fetch(scriptURL, {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors' // Mode no-cors untuk menghindari masalah CORS
-          });
-          
-          console.log('Data terkirim ke Google Sheets');
-        } catch (error) {
-          console.error('Error mengirim ke Google Sheets:', error);
-          // Tidak menampilkan error ke user karena pengiriman WA sudah berhasil
-        }
-        
-      } catch (error) {
-        showAlert('Terjadi kesalahan saat memproses permintaan Anda', 'error');
-        console.error('Error:', error);
-      }
+       // Ganti bagian pengiriman data ke Google Sheet dengan ini:
+async function sendToGoogleSheet(name, phone, type) {
+  try {
+    // URL Apps Script yang sudah di-deploy
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzdX4aGutZq7I4W-JA3jLa4qlafdf7-yL84QHg6OnJL3gm9FoixsgBDx7cb_ogvdUkhnA/exec';
+    
+    // Data yang akan dikirim
+    const data = {
+      name: name,
+      phone: phone,
+      type: type,
+      timestamp: new Date().toISOString(),
+      source: 'Kertamulya Website'
+    };
+    
+    // Menggunakan fetch dengan method POST
+    const response = await fetch(scriptURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+      mode: 'no-cors' // Penting untuk menghindari CORS issues
     });
+    
+    console.log('Data terkirim ke Google Sheets');
+    return true;
+  } catch (error) {
+    console.error('Error mengirim ke Google Sheets:', error);
+    return false;
   }
 }
 
-// ========== CONFIRMATION MODAL ==========
-function showConfirmationModal(name, phone, type, whatsappUrl) {
-  // Create modal
-  const modal = document.createElement('div');
-  modal.className = 'modal active';
-  modal.id = 'confirmationModal';
-  modal.style.zIndex = '1001';
+// Kemudian panggil fungsi ini dalam form submission:
+async function setupBookingForm() {
+  const bookingForm = document.getElementById('bookingForm');
   
-  // Modal content
-  modal.innerHTML = `
-    <div class="modal-content" style="max-width: 400px; text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
-      <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-        <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
-      </div>
-      <h3 style="margin-bottom: 0.5rem; color: var(--dark);">Formulir Terkirim!</h3>
-      <p style="color: var(--text-light); margin-bottom: 1.5rem;">Mengarahkan ke WhatsApp dalam <span id="countdownNumber">5</span> detik...</p>
+  bookingForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Validasi form...
+    
+    try {
+      // Kirim ke Google Sheet terlebih dahulu
+      const sheetSuccess = await sendToGoogleSheet(name, phone, type);
       
-      <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
-        <div class="countdown-circle" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--primary); display: flex; align-items: center; justify-content: center; animation: pulse 1.5s infinite;">
-          <i class="fas fa-spinner fa-spin" style="color: var(--primary); font-size: 1.5rem;"></i>
-        </div>
-      </div>
+      // Buat URL WhatsApp
+      const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
+      const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
       
-      <p style="text-align: center; color: var(--text-light); font-size: 0.9rem;">
-        Jika tidak otomatis terbuka, <a href="${whatsappUrl}" target="_blank" style="color: var(--primary);">klik di sini</a>
-      </p>
-    </div>
+      // Tampilkan modal konfirmasi
+      showConfirmationModal(name, phone, type, whatsappUrl);
+      
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+}
+
+// Ganti fungsi showConfirmationModal dengan ini:
+function showConfirmationModal(name, phone, type, whatsappUrl) {
+  // Hide modal booking jika masih terbuka
+  hideModal('booking');
+  
+  // Set booking fee berdasarkan tipe
+  let bookingFee = "Rp500.000";
+  if (type.includes("Suite")) bookingFee = "Rp2.000.000";
+  if (type.includes("Premium")) bookingFee = "Rp2.000.000";
+  
+  // Isi modal WA
+  const modal = document.getElementById('waModal');
+  const countdownText = document.getElementById('countdownText');
+  const waLink = document.getElementById('waLink');
+  
+  // Update konten modal
+  modal.querySelector('.modal-title').textContent = 'Formulir Terkirim!';
+  modal.querySelector('.modal-desc').innerHTML = `
+    <p>Anda akan mendapatkan:</p>
+    <ul style="text-align: left; margin: 1rem 0; padding-left: 1.5rem;">
+      <li>Booking unit ${type}</li>
+      <li>Booking fee hanya ${bookingFee}</li>
+      <li>Motor listrik gratis setelah 6x angsuran</li>
+      <li>DP 0% melalui bank syariah</li>
+    </ul>
+    <p>Tim marketing kami akan segera menghubungi Anda</p>
   `;
   
-  // Add modal to body
-  document.body.appendChild(modal);
+  waLink.href = whatsappUrl;
   
-  // Start countdown
+  // Tampilkan modal
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Countdown dan redirect
   let seconds = 5;
-  const countdownElement = document.getElementById('countdownNumber');
+  countdownText.textContent = `Mengarahkan ke WhatsApp dalam ${seconds} detik...`;
+  
   const countdownInterval = setInterval(() => {
     seconds--;
-    countdownElement.textContent = seconds;
+    countdownText.textContent = `Mengarahkan ke WhatsApp dalam ${seconds} detik...`;
     
     if (seconds <= 0) {
       clearInterval(countdownInterval);
+      // Buka WhatsApp di tab baru tanpa pop-up blocker
       window.open(whatsappUrl, '_blank');
-      modal.remove();
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
     }
   }, 1000);
 }
