@@ -45,6 +45,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  
   <!-- Schema Markup (Real Estate) -->
   <script type="application/ld+json">
   {
@@ -2775,13 +2780,15 @@ button, input, textarea, select {
   </div>
 
 <!-- Gallery Modal -->
- <div class="modal" id="galleryModal">
-    <div class="modal-content">
-      <span class="close" onclick="hideGallery()">&times;</span>
-      <h2 id="galleryTitle"></h2>
-      <div class="gallery-container" id="galleryContainer"></div>
+<div class="modal gallery-modal" id="galleryModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
+    <div class="modal-body">
+      <h3 class="modal-title" id="galleryTitle"></h3>
+      <div class="gallery-carousel" id="galleryCarousel"></div>
     </div>
   </div>
+</div>
 
 
  <!-- Video Modal -->
@@ -2986,6 +2993,7 @@ function initGalleryModal() {
       'https://i.imgur.com/yCkpfGP.jpg'
     ]
   };
+
   // Initialize gallery buttons
   document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
