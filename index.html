@@ -2963,48 +2963,73 @@ document.addEventListener('DOMContentLoaded', function() {
   setupBookingForm();
   initGalleryModal();
   animateProgressBars();
+  
+  // Initialize all modals
+  initModals();
 });
 
 // ========== MODAL FUNCTIONS ==========
-function showModal(type, content) {
+function initModals() {
+  // Close modals when clicking outside content
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        hideModal(this.id.replace('Modal', ''));
+      }
+    });
+  });
+  
+  // Close buttons
+  document.querySelectorAll('.modal-close, .video-modal-close').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const modalId = this.closest('.modal').id.replace('Modal', '');
+      hideModal(modalId);
+    });
+  });
+}
+
+function showModal(type, content = null) {
+  const modalId = type + 'Modal';
+  const modal = document.getElementById(modalId);
+  
+  if (!modal) return;
+  
+  // Handle specific modal types
   if (type === 'gallery') {
     showGalleryModal(content);
+    return;
   } else if (type === 'video') {
     showVideoModal(content);
-  } else if (type === 'booking') {
-    showBookingModal(content);
+    return;
+  } else if (type === 'booking' && content) {
+    document.getElementById('type').value = content;
   }
+  
+  // Show the modal
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 function hideModal(type) {
-  if (type === 'gallery') {
-    document.getElementById('galleryModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-  } else if (type === 'video') {
-    document.getElementById('videoModal').classList.remove('active');
+  const modalId = type + 'Modal';
+  const modal = document.getElementById(modalId);
+  
+  if (!modal) return;
+  
+  // Handle specific modal types
+  if (type === 'video') {
     document.getElementById('videoFrame').src = '';
-    document.body.style.overflow = 'auto';
-  } else if (type === 'booking') {
-    document.getElementById('bookingModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-  } else if (type === 'wa') {
-    document.getElementById('waModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
   }
+  
+  // Hide the modal
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
 }
 
 // ========== GALLERY MODAL ==========
 function initGalleryModal() {
-  // Initialize Slick slider for gallery
-  $('#galleryCarousel').slick({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    adaptiveHeight: true,
-    arrows: true,
-    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+  $('#galleryCarousel').on('init', function(event, slick) {
+    // Gallery initialized
   });
 }
 
@@ -3049,15 +3074,20 @@ function showGalleryModal(type) {
     galleryCarousel.appendChild(div);
   });
   
-  // Refresh slick slider
-  $('#galleryCarousel').slick('unslick');
+  // Initialize or refresh slick slider
+  if ($('#galleryCarousel').hasClass('slick-initialized')) {
+    $('#galleryCarousel').slick('unslick');
+  }
+  
   $('#galleryCarousel').slick({
     dots: true,
     infinite: true,
     speed: 300,
     slidesToShow: 1,
     adaptiveHeight: true,
-    arrows: true
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
   });
   
   // Show modal
@@ -3078,15 +3108,6 @@ function showVideoModal(type) {
   const videoUrl = videoMap[type] || videoMap['standard'];
   document.getElementById('videoFrame').src = videoUrl;
   document.getElementById('videoModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-// ========== BOOKING MODAL ==========
-function showBookingModal(type) {
-  if (type) {
-    document.getElementById('type').value = type;
-  }
-  document.getElementById('bookingModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
@@ -3234,20 +3255,27 @@ function animateProgressBars() {
 // ========== BOOKING FORM ==========
 async function sendToGoogleSheet(data) {
   try {
-    // Replace with your Google Apps Script URL
+    // Google Apps Script URL - replace with your actual URL
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzeZY_DQWzkioGHZfrsSSCMpvaJ3DJkpOyqaTPbI0Dj-fmSZINSMUpNipGDTIDe32fi9w/exec';
+    
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('phone', data.phone);
+    formData.append('type', data.type);
+    formData.append('timestamp', data.timestamp);
+    formData.append('source', data.source);
     
     const response = await fetch(scriptURL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-      mode: 'no-cors'
+      body: formData
     });
     
-    console.log('Success:', response);
-    return true;
+    if (response.ok) {
+      return true;
+    } else {
+      console.error('Error sending to Google Sheet:', await response.text());
+      return false;
+    }
   } catch (error) {
     console.error('Error:', error);
     return false;
@@ -3288,23 +3316,25 @@ function setupBookingForm() {
           source: 'Website Kertamulya'
         };
         
+        // Show loading state
+        const submitBtn = bookingForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+        submitBtn.disabled = true;
+        
         // Send data to Google Sheet
         const sheetSuccess = await sendToGoogleSheet(formData);
+        
+        // Restore button state
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
         
         if (!sheetSuccess) {
           console.log('Gagal mengirim ke Google Sheet, tetapi melanjutkan ke WhatsApp');
         }
         
         // Create WhatsApp message
-        // In the setupBookingForm function, replace the whatsappMessage creation with:
-const whatsappMessage = `Assalamu'alaikum wr wb,
-Saya *${name}* tertarik dengan *Kertamulya Residence* tipe *${type}.*
-
-Mohon info lebih lanjut mengenai:
-*- Proses pembelian*
-*- Syarat KPR*
-
-Terima kasih.`;
+        const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
         const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
         
         // Hide booking modal
@@ -3316,6 +3346,11 @@ Terima kasih.`;
       } catch (error) {
         console.error('Error:', error);
         showAlert('Terjadi kesalahan saat mengirim data', 'error');
+        
+        // Restore button state in case of error
+        const submitBtn = bookingForm.querySelector('button[type="submit"]');
+        submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Kirim via WhatsApp';
+        submitBtn.disabled = false;
       }
     });
   }
@@ -3324,6 +3359,7 @@ Terima kasih.`;
 function showWhatsAppModal(name, phone, type, whatsappUrl) {
   const modal = document.getElementById('waModal');
   const countdownText = document.getElementById('countdownText');
+  const waLink = document.getElementById('waLink');
   
   // Set booking fee based on type
   let bookingFee = "Rp500.000";
@@ -3332,10 +3368,20 @@ function showWhatsAppModal(name, phone, type, whatsappUrl) {
   }
   
   // Update modal content
-  document.getElementById('waName').textContent = name;
-  document.getElementById('waPhone').textContent = phone;
-  document.getElementById('waType').textContent = type;
-  document.getElementById('waFee').textContent = bookingFee;
+  modal.querySelector('.modal-title').textContent = 'Formulir Terkirim!';
+  modal.querySelector('.modal-desc').innerHTML = `
+    <p>Detail booking Anda:</p>
+    <ul style="text-align: left; margin: 1rem 0; padding-left: 1.5rem;">
+      <li>Nama: ${name}</li>
+      <li>No. HP: ${phone}</li>
+      <li>Tipe: ${type}</li>
+      <li>Booking Fee: ${bookingFee}</li>
+    </ul>
+    <p>Tim marketing kami akan segera menghubungi Anda melalui WhatsApp</p>
+  `;
+  
+  // Set WhatsApp link
+  waLink.href = whatsappUrl;
   
   // Show modal
   modal.classList.add('active');
@@ -3343,11 +3389,11 @@ function showWhatsAppModal(name, phone, type, whatsappUrl) {
   
   // Start countdown
   let seconds = 5;
-  countdownText.textContent = seconds;
+  countdownText.textContent = `Mengarahkan ke WhatsApp dalam ${seconds} detik...`;
   
   const countdownInterval = setInterval(() => {
     seconds--;
-    countdownText.textContent = seconds;
+    countdownText.textContent = `Mengarahkan ke WhatsApp dalam ${seconds} detik...`;
     
     if (seconds <= 0) {
       clearInterval(countdownInterval);
@@ -3358,7 +3404,6 @@ function showWhatsAppModal(name, phone, type, whatsappUrl) {
       document.body.style.overflow = 'auto';
     }
   }, 1000);
-}
   
   // Manual open button
   waLink.addEventListener('click', function(e) {
