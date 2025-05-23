@@ -1993,21 +1993,7 @@ button, input, textarea, select {
     font-size: 0.6rem;
   }
 }
- /* Animation for the modal */
-  @keyframes pulse-success {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-  }
-  
-  .checkmark {
-    animation: checkmark-appear 0.5s 0.5s ease-out forwards;
-  }
-  
-  @keyframes checkmark-appear {
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  }
+
   </style>
 </head>
 <body>
@@ -2825,94 +2811,28 @@ button, input, textarea, select {
     </div>
   </div>
 </div>
-<!-- WhatsApp Confirmation Modal - Premium UX Design -->
-<div class="modal" id="waModal">
-  <div class="modal-content" style="max-width: 500px; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
-    <!-- Modal Header -->
-    <div style="background: linear-gradient(135deg, #2ecc71, #27ae60); padding: 1.5rem; text-align: center; color: white;">
-      <h3 style="margin: 0; font-size: 1.5rem; font-weight: 700;">BOOKING BERHASIL!</h3>
-      <p style="margin: 0.5rem 0 0; opacity: 0.9; font-size: 0.9rem;">Terima kasih telah memilih Kertamulya Residence</p>
-    </div>
-    
-    <!-- Modal Body -->
-    <div class="modal-body" style="padding: 2rem;">
-      <!-- Animated Checkmark -->
-      <div style="width: 100px; height: 100px; margin: 0 auto 1.5rem; position: relative;">
-        <div style="width: 100%; height: 100%; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: pulse-success 2s infinite;">
-          <i class="fab fa-whatsapp" style="color: white; font-size: 3rem;"></i>
+
+  <!-- WhatsApp Confirmation Modal -->
+  <div class="modal" id="waModal">
+    <div class="modal-content">
+      <div class="modal-body" style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+          <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
         </div>
-        <div class="checkmark" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; opacity: 0;">
-          <svg viewBox="0 0 52 52" style="width: 100%; height: 100%;">
-            <circle cx="26" cy="26" r="25" fill="none" stroke="#fff" stroke-width="3"></circle>
-            <path fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" d="M14.1 27.2l7.1 7.2 16.7-16.8"></path>
-          </svg>
-        </div>
-      </div>
-      
-      <!-- Promo Section -->
-      <div style="background: rgba(241, 196, 15, 0.1); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.5rem; border-left: 4px solid #f1c40f;">
-        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem;">
-          <div style="width: 40px; height: 40px; background: #f1c40f; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-motorcycle" style="color: white; font-size: 1.2rem;"></i>
-          </div>
-          <h4 style="margin: 0; font-size: 1.1rem; color: #333;">MOTOR LISTRIK GRATIS!</h4>
-        </div>
-        <p style="margin: 0; font-size: 0.9rem; color: #555; line-height: 1.5;">
-          Dapatkan motor listrik gratis <strong>setelah 6x angsuran tepat waktu</strong> tanpa undian dan tanpa syarat tersembunyi.
-        </p>
-      </div>
-      
-      <!-- Booking Info -->
-      <div style="background: rgba(46, 204, 113, 0.1); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.5rem; border-left: 4px solid #2ecc71;">
-        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem;">
-          <div style="width: 40px; height: 40px; background: #2ecc71; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-hand-holding-usd" style="color: white; font-size: 1.2rem;"></i>
-          </div>
-          <h4 style="margin: 0; font-size: 1.1rem; color: #333;">BOOKING FEE SPESIAL</h4>
-        </div>
-        <p id="bookingFeeText" style="margin: 0; font-size: 0.9rem; color: #555; line-height: 1.5;"></p>
-      </div>
-      
-      <!-- Countdown -->
-      <div style="background: rgba(231, 76, 60, 0.1); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; text-align: center; border: 1px dashed #e74c3c;">
-        <p style="margin: 0 0 0.5rem; font-size: 0.8rem; color: #e74c3c; font-weight: 600;">PROMO BERAKHIR DALAM:</p>
-        <div style="display: flex; justify-content: center; gap: 0.5rem;">
-          <div style="text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c;" id="countDays">03</div>
-            <div style="font-size: 0.7rem; color: #777;">HARI</div>
-          </div>
-          <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c; line-height: 2;">:</div>
-          <div style="text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c;" id="countHours">12</div>
-            <div style="font-size: 0.7rem; color: #777;">JAM</div>
-          </div>
-          <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c; line-height: 2;">:</div>
-          <div style="text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 800; color: #e74c3c;" id="countMins">45</div>
-            <div style="font-size: 0.7rem; color: #777;">MENIT</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Auto Redirect Info -->
-      <div style="background: #f8f9fa; border-radius: 8px; padding: 1rem; text-align: center;">
-        <p style="margin: 0; font-size: 0.9rem; color: #555;">
-          <i class="fas fa-info-circle" style="color: #3498db;"></i> 
-          Anda akan diarahkan ke WhatsApp dalam <span id="countdownSeconds" style="font-weight: 700;">5</span> detik...
-        </p>
+        <h3 class="modal-title">Formulir Terkirim!</h3>
+        <p class="modal-desc">Tim marketing kami akan segera menghubungi Anda melalui WhatsApp</p>
+        <p id="countdownText" style="margin: 1rem 0;">Mengarahkan ke WhatsApp dalam 5 detik...</p>
+        <a href="#" id="waLink" class="btn btn-accent" style="display: inline-flex;">
+          <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
+        </a>
       </div>
     </div>
   </div>
-</div>
- 
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics-compat.js"></script>
 <script>
-// ========== INITIALIZATION ==========
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all components
   updateCountdown();
@@ -2946,29 +2866,17 @@ function updateCountdown() {
   document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
   document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
   
-  // Update promo countdown in WA modal if it exists
-  if (document.getElementById('countDays')) {
-    document.getElementById('countDays').textContent = days.toString().padStart(2, '0');
-    document.getElementById('countHours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('countMins').textContent = minutes.toString().padStart(2, '0');
-  }
-  
   const totalDuration = 3 * 24 * 60 * 60 * 1000;
   const elapsed = totalDuration - distance;
   const progressPercent = (elapsed / totalDuration) * 100;
   
-  const progressBar = document.querySelector('.progress-bar');
-  if (progressBar) {
-    progressBar.style.width = `${100 - progressPercent}%`;
-  }
+  document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
   
   if (distance < (24 * 60 * 60 * 1000)) {
     document.querySelectorAll('.countdown-number').forEach(el => {
       el.style.color = '#ff6b6b';
     });
-    if (progressBar) {
-      progressBar.style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
-    }
+    document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
   }
 }
 
@@ -3002,8 +2910,6 @@ function showRandomNotification() {
   ];
   
   const notification = document.getElementById('notification');
-  if (!notification) return;
-  
   const notificationText = document.getElementById('notificationText');
   
   notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
@@ -3024,8 +2930,6 @@ function showRandomNotification() {
 // ========== SOLD COUNT ==========
 function animateSoldCount() {
   const soldCount = document.querySelector('.sold-count');
-  if (!soldCount) return;
-  
   let count = 0;
   const target = 12;
   const interval = setInterval(() => {
@@ -3054,16 +2958,16 @@ function setupFAQAccordion() {
 // ========== BOOKING FORM ==========
 function setupBookingForm() {
   const bookingForm = document.getElementById('bookingForm');
-  if (!bookingForm) return;
   
-  bookingForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const type = document.getElementById('type').value;
-    
-    const message = `Assalamu'alaikum wr wb,
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const type = document.getElementById('type').value;
+      
+      const message = `Assalamu'alaikum wr wb,
 
 *Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
 
@@ -3073,69 +2977,16 @@ Mohon info lebih lanjut mengenai:
 
 Terima kasih.`;
     
-    const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-    
-    // Show WhatsApp modal
-    showWhatsAppModal(name, phone, type, waLink);
-    
-    hideModal('booking');
-  });
-}
-
-// ========== WHATSAPP MODAL ==========
-function showWhatsAppModal(name, phone, type, waLink) {
-  const modal = document.getElementById('waModal');
-  if (!modal) {
-    // Fallback - redirect directly if modal doesn't exist
-    window.open(waLink, '_blank');
-    return;
-  }
-  
-  const countdownElement = document.getElementById('countdownSeconds');
-  const bookingFeeText = document.getElementById('bookingFeeText');
-  
-  // Set booking fee text based on type
-  let bookingFee = 'Rp 500.000';
-  if (type.includes('Suite') || type.includes('Premium')) {
-    bookingFee = 'Rp 2.000.000';
-  }
-  bookingFeeText.innerHTML = `Booking fee hanya <strong>${bookingFee}</strong> untuk tipe <strong>${type}</strong>. DP 0% hingga akhir promo!`;
-  
-  // Update countdown
-  updateCountdown(); // Reuse the main countdown function
-  
-  // Show modal
-  modal.classList.add('active');
-  
-  // Start redirect countdown
-  let seconds = 5;
-  const countdownInterval = setInterval(() => {
-    seconds--;
-    if (countdownElement) {
-      countdownElement.textContent = seconds;
-    }
-    
-    if (seconds <= 0) {
-      clearInterval(countdownInterval);
-      redirectToWhatsApp(waLink);
-      hideModal('wa');
-    }
-  }, 1000);
-}
-
-// ========== AUTO REDIRECT TO WHATSAPP ==========
-function redirectToWhatsApp(url) {
-  // Try to open in new tab
-  const newWindow = window.open(url, '_blank');
-  
-  // If blocked, try to redirect in current tab
-  if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-    window.location.href = url;
+      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+      window.open(waLink, '_blank');
+      hideModal('booking');
+    });
   }
 }
 
 // ========== GALLERY MODAL ==========
 function initGalleryModal() {
+  // Image sets with direct image URLs
   const galleryImages = {
     standard: [
       'https://i.imgur.com/kYxjjEX.jpg',
@@ -3154,6 +3005,7 @@ function initGalleryModal() {
     ]
   };
 
+  // Initialize gallery buttons
   document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -3170,14 +3022,11 @@ function showGalleryModal(type, images) {
     premium: 'Premium 50/120'
   };
   
-  const galleryTitle = document.getElementById('galleryTitle');
+  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
   const carousel = document.getElementById('galleryCarousel');
-  
-  if (!galleryTitle || !carousel) return;
-  
-  galleryTitle.textContent = `Galeri Tipe ${titleMap[type]}`;
   carousel.innerHTML = '';
 
+  // Add slides to carousel
   images[type].forEach(img => {
     const slide = document.createElement('div');
     slide.className = 'gallery-slide';
@@ -3185,89 +3034,54 @@ function showGalleryModal(type, images) {
     carousel.appendChild(slide);
   });
 
-  // Initialize slick carousel
-  if (typeof $ !== 'undefined' && $.fn.slick) {
-    $(carousel).slick({
-      dots: true,
-      infinite: true,
-      speed: 300,
-      slidesToShow: 1,
-      adaptiveHeight: true,
-      autoplay: false,
-      arrows: true,
-      prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-      nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-    });
-  }
+  // Initialize Slick Carousel
+  $(carousel).slick({
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    adaptiveHeight: true,
+    autoplay: false,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+  });
 
+  // Show modal
   document.getElementById('galleryModal').classList.add('active');
 }
 
 // ========== MODAL FUNCTIONS ==========
+// ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
   if (type === 'gallery' && subtype) {
-    // Initialize gallery images if needed
-    const galleryImages = {
-      standard: [
-        'https://i.imgur.com/kYxjjEX.jpg',
-        'https://i.imgur.com/JKpZ6YT.jpg',
-        'https://i.imgur.com/NXt5lhy.jpg'
-      ],
-      suite: [
-        'https://i.imgur.com/rzlJAkz.jpg',
-        'https://i.imgur.com/SG7lFvg.jpg',
-        'https://i.imgur.com/LJpsD3m.jpg'
-      ],
-      premium: [
-        'https://i.imgur.com/xFgp9FL.jpg',
-        'https://i.imgur.com/UmdNjnI.jpg',
-        'https://i.imgur.com/yCkpfGP.jpg'
-      ]
-    };
-    showGalleryModal(subtype, galleryImages);
+    showGalleryModal(subtype);
   }
   else if (type === 'booking') {
-    const bookingModal = document.getElementById('bookingModal');
-    if (houseType && document.getElementById('type')) {
-      document.getElementById('type').value = houseType;
-    }
-    if (bookingModal) {
-      bookingModal.classList.add('active');
-    }
+    if (houseType) document.getElementById('type').value = houseType;
+    document.getElementById('bookingModal').classList.add('active');
   }
   else if (type === 'video' && subtype) {
-    const videoModal = document.getElementById('videoModal');
-    const videoFrame = document.getElementById('videoFrame');
-    if (videoModal && videoFrame) {
-      const videoId = getVideoId(subtype);
-      videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-      videoModal.classList.add('active');
-    }
+    const videoId = getVideoId(subtype);
+    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    document.getElementById('videoModal').classList.add('active');
   }
 }
 
 function hideModal(type) {
   if (type === 'gallery') {
     const carousel = document.getElementById('galleryCarousel');
-    if (carousel && typeof $ !== 'undefined' && $.fn.slick && $(carousel).hasClass('slick-initialized')) {
+    if ($(carousel).hasClass('slick-initialized')) {
       $(carousel).slick('unslick');
     }
-    const galleryModal = document.getElementById('galleryModal');
-    if (galleryModal) galleryModal.classList.remove('active');
+    document.getElementById('galleryModal').classList.remove('active');
   } 
   else if (type === 'booking') {
-    const bookingModal = document.getElementById('bookingModal');
-    if (bookingModal) bookingModal.classList.remove('active');
+    document.getElementById('bookingModal').classList.remove('active');
   } 
   else if (type === 'video') {
-    const videoFrame = document.getElementById('videoFrame');
-    const videoModal = document.getElementById('videoModal');
-    if (videoFrame) videoFrame.src = '';
-    if (videoModal) videoModal.classList.remove('active');
-  }
-  else if (type === 'wa') {
-    const waModal = document.getElementById('waModal');
-    if (waModal) waModal.classList.remove('active');
+    document.getElementById('videoFrame').src = '';
+    document.getElementById('videoModal').classList.remove('active');
   }
 }
 
@@ -3276,8 +3090,8 @@ function getVideoId(subtype) {
     standard: '7Fl9zHdHb7s',
     suite: 'ThOEc35ktFM',
     premium: 'fhjtbdQ8epI',
-    testimonial1: 'LgHbkuOKsw0',
-    testimonial2: 'UF5V1-Vu6uI'
+    testimonial1: 'LgHbkuOKsw0',  // Video testimoni pertama
+    testimonial2: 'UF5V1-Vu6uI'   // Video testimoni kedua
   };
   return videoIds[subtype] || '';
 }
@@ -3288,9 +3102,7 @@ function animateProgressBars() {
   
   progressBars.forEach(bar => {
     const card = bar.closest('.type-card');
-    if (!card) return;
-    
-    const stock = parseInt(card.dataset.stock) || 0;
+    const stock = parseInt(card.dataset.stock);
     const percentage = (stock / 10) * 100;
     
     bar.style.width = '0%';
@@ -3301,17 +3113,15 @@ function animateProgressBars() {
 }
 
 // Initialize Intersection Observer for progress bars
-if (typeof IntersectionObserver !== 'undefined') {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) animateProgressBars();
-    });
-  }, {threshold: 0.1});
-
-  document.querySelectorAll('.type-card').forEach(card => {
-    observer.observe(card);
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) animateProgressBars();
   });
-}
+}, {threshold: 0.1});
+
+document.querySelectorAll('.type-card').forEach(card => {
+  observer.observe(card);
+});
   </script>
 </body>
 </html> 
