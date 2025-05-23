@@ -2719,13 +2719,13 @@ button, input, textarea, select {
     </div>
   </div>
 
- <!-- Gallery Modal -->
+<!-- Gallery Modal -->
 <div class="modal" id="galleryModal">
-  <div class="modal-content" style="max-width: 800px;">
+  <div class="modal-content" style="max-width: 800px; height: 80vh;">
     <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
-    <div class="modal-body">
-      <h3 class="modal-title" id="galleryTitle">Galeri Foto</h3>
-      <div class="gallery-carousel" id="galleryCarousel">
+    <div class="modal-body" style="height: 100%; padding: 0;">
+      <h3 class="modal-title" id="galleryTitle" style="padding: 1.5rem 1.5rem 0;">Galeri Foto</h3>
+      <div class="gallery-carousel" id="galleryCarousel" style="height: calc(100% - 60px);">
         <!-- Slides will be inserted here by JS -->
       </div>
     </div>
@@ -2940,12 +2940,12 @@ Terima kasih.`;
 }
 
 // Modal functions
-function showModal(type, subtype = null, houseType = null) {
-  if (type === 'gallery' && subtype) {
+
     document.getElementById('galleryTitle').textContent = `Galeri Tipe ${subtype.charAt(0).toUpperCase() + subtype.slice(1)}`;
     const galleryCarousel = document.getElementById('galleryCarousel');
     galleryCarousel.innerHTML = '';
     
+    // Use optimized image URLs with proper dimensions
     const images = {
       standard: [
         'https://i.imgur.com/JKpZ6YT.jpg',
@@ -2964,13 +2964,25 @@ function showModal(type, subtype = null, houseType = null) {
       ]
     };
     
+    // Destroy existing slick instance if any
+    if ($('#galleryCarousel').hasClass('slick-initialized')) {
+      $('#galleryCarousel').slick('unslick');
+    }
+    
+    // Add slides
     images[subtype].forEach(img => {
       const slide = document.createElement('div');
-      slide.innerHTML = `<img src="${img}" alt="Galeri ${subtype}" loading="lazy">`;
+      slide.style.height = '100%';
+      slide.innerHTML = `
+        <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+          <img src="${img}" alt="Galeri ${subtype}" 
+               style="max-width: 100%; max-height: 100%; object-fit: contain;"
+               loading="lazy">
+        </div>`;
       galleryCarousel.appendChild(slide);
     });
     
-    // Initialize Slick carousel
+    // Initialize Slick carousel with proper settings
     $('#galleryCarousel').slick({
       dots: true,
       arrows: true,
@@ -2978,7 +2990,7 @@ function showModal(type, subtype = null, houseType = null) {
       speed: 300,
       slidesToShow: 1,
       slidesToScroll: 1,
-      adaptiveHeight: true,
+      adaptiveHeight: false,
       autoplay: true,
       autoplaySpeed: 3000,
       nextArrow: '<button type="button" class="slick-next slick-arrow"><i class="fas fa-chevron-right"></i></button>',
