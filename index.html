@@ -1993,14 +1993,20 @@ button, input, textarea, select {
     font-size: 0.6rem;
   }
 }
-/* WhatsApp Confirmation Modal */
+/* WhatsApp Confirmation Modal Styles */
 #waModal .modal-content {
   max-width: 500px;
-  border-radius: 1rem;
+  border-radius: 16px;
   overflow: hidden;
   background: linear-gradient(135deg, #f8f9fa, #e9ecef);
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   border: none;
+  transform: translateY(20px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#waModal.active .modal-content {
+  transform: translateY(0);
 }
 
 #waModal .modal-body {
@@ -2008,64 +2014,15 @@ button, input, textarea, select {
   text-align: center;
 }
 
-#waModal .modal-title {
-  font-size: 1.5rem;
-  color: var(--primary-dark);
-  margin-bottom: 1.5rem;
-  font-weight: 700;
+.wa-confirmation-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.wa-confirmation-icon {
   position: relative;
-  padding-bottom: 1rem;
-}
-
-#waModal .modal-title:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-}
-
-#waModal .modal-desc {
-  color: var(--text);
-  margin-bottom: 1.5rem;
-  text-align: left;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-#waModal .modal-desc ul {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-  list-style-type: none;
-}
-
-#waModal .modal-desc li {
-  margin-bottom: 0.75rem;
-  color: var(--text-light);
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-#waModal .modal-desc li:before {
-  content: '•';
-  color: var(--primary);
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-}
-
-#countdownText {
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 1.2rem;
-  display: inline-block;
-  min-width: 1.2rem;
-}
-
-.whatsapp-confirm-icon {
   width: 80px;
   height: 80px;
   background: #25D366;
@@ -2073,14 +2030,131 @@ button, input, textarea, select {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.5rem;
+  margin-bottom: 1.5rem;
   color: white;
   font-size: 2.5rem;
   box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
-  animation: pulse 1.5s infinite;
 }
 
-.countdown-circle {
+.wa-confirmation-check {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #25D366;
+  font-size: 0.9rem;
+  border: 2px solid #25D366;
+}
+
+.wa-confirmation-titles h3 {
+  font-size: 1.5rem;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.wa-confirmation-titles p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.wa-confirmation-details {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.wa-detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.wa-detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.wa-detail-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  color: var(--primary-dark);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.wa-detail-content {
+  flex-grow: 1;
+}
+
+.wa-detail-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 0.2rem;
+}
+
+.wa-detail-value {
+  display: block;
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.wa-promo-banner {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  color: var(--dark);
+  text-align: left;
+}
+
+.wa-promo-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.wa-promo-content h4 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+}
+
+.wa-promo-content p {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.wa-countdown-container {
+  margin-top: 1rem;
+}
+
+.wa-countdown-circle {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -2088,19 +2162,38 @@ button, input, textarea, select {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1.5rem auto 0;
+  margin: 0 auto;
+  position: relative;
+}
+
+.wa-countdown-circle:before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid rgba(46, 204, 113, 0.2);
+  border-radius: 50%;
   animation: pulse 1.5s infinite;
 }
 
-.countdown-circle i {
-  color: var(--primary);
+.wa-countdown-number {
   font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.wa-countdown-text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
 }
   
   
@@ -2691,8 +2784,6 @@ button, input, textarea, select {
     </div>
   </section>
 
-  
-
   <!-- CTA Section -->
   <section class="cta-section">
   <div class="container">
@@ -2921,506 +3012,687 @@ button, input, textarea, select {
   </div>
 </div>
 
-  <!-- WhatsApp Confirmation Modal -->
-  <!-- Replace the waModal content with this: -->
+ <!-- Wa Modal Konfirmasi -->
 <div class="modal" id="waModal">
   <div class="modal-content">
     <div class="modal-body">
-      <div class="whatsapp-confirm-icon">
-        <i class="fab fa-whatsapp"></i>
+      <div class="wa-confirmation-header">
+        <div class="wa-confirmation-icon">
+          <i class="fab fa-whatsapp"></i>
+          <div class="wa-confirmation-check">
+            <i class="fas fa-check"></i>
+          </div>
+        </div>
+        <div class="wa-confirmation-titles">
+          <h3 class="modal-title">Booking Terkonfirmasi!</h3>
+          <p class="modal-subtitle">Data Anda telah kami terima</p>
+        </div>
       </div>
-      <h3 class="modal-title">Formulir Terkirim!</h3>
-      <div class="modal-desc">
-        <p>Detail booking Anda:</p>
-        <ul>
-          <li>Nama: <span id="waName"></span></li>
-          <li>No. HP: <span id="waPhone"></span></li>
-          <li>Tipe: <span id="waType"></span></li>
-          <li>Booking Fee: <span id="waFee"></span></li>
-        </ul>
-        <p>Anda akan diarahkan ke WhatsApp dalam <span id="countdownText">5</span> detik...</p>
+      
+      <div class="wa-confirmation-details">
+        <div class="wa-detail-item">
+          <div class="wa-detail-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="wa-detail-content">
+            <span class="wa-detail-label">Nama Lengkap</span>
+            <span class="wa-detail-value" id="waName"></span>
+          </div>
+        </div>
+        
+        <div class="wa-detail-item">
+          <div class="wa-detail-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="wa-detail-content">
+            <span class="wa-detail-label">Nomor WhatsApp</span>
+            <span class="wa-detail-value" id="waPhone"></span>
+          </div>
+        </div>
+        
+        <div class="wa-detail-item">
+          <div class="wa-detail-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="wa-detail-content">
+            <span class="wa-detail-label">Tipe Unit</span>
+            <span class="wa-detail-value" id="waType"></span>
+          </div>
+        </div>
+        
+        <div class="wa-detail-item">
+          <div class="wa-detail-icon">
+            <i class="fas fa-money-bill-wave"></i>
+          </div>
+          <div class="wa-detail-content">
+            <span class="wa-detail-label">Booking Fee</span>
+            <span class="wa-detail-value" id="waFee"></span>
+          </div>
+        </div>
       </div>
-      <div class="countdown-circle">
-        <i class="fas fa-check"></i>
+      
+      <div class="wa-promo-banner">
+        <div class="wa-promo-icon">
+          <i class="fas fa-gift"></i>
+        </div>
+        <div class="wa-promo-content">
+          <h4>Motor Listrik Gratis!</h4>
+          <p>Dapatkan motor listrik gratis setelah 6x angsuran tepat waktu</p>
+        </div>
+      </div>
+      
+      <div class="wa-countdown-container">
+        <div class="wa-countdown-circle">
+          <div class="wa-countdown-number" id="waCountdown">5</div>
+        </div>
+        <p class="wa-countdown-text">Mengarahkan ke WhatsApp dalam...</p>
       </div>
     </div>
   </div>
 </div>
+  
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script>
-// ========== INITIALIZATION ==========
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize all components
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-  setupTypeSelector();
-  setTimeout(showRandomNotification, 10000);
-  setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
-  animateSoldCount();
-  setupFAQAccordion();
-  setupBookingForm();
-  initGalleryModal();
-  animateProgressBars();
-  
-  // Initialize all modals
-  initModals();
-});
 
-// ========== MODAL FUNCTIONS ==========
-function initModals() {
-  // Close modals when clicking outside content
-  document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', function(e) {
-      if (e.target === this) {
-        hideModal(this.id.replace('Modal', ''));
-      }
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+
+  <script>
+// ========== MAIN APPLICATION ==========
+class KertamulyaApp {
+  constructor() {
+    this.initModules();
+    this.setupEventListeners();
+    this.initCountdown();
+    this.initNotifications();
+    this.initSoldCountAnimation();
+  }
+
+  initModules() {
+    this.modalManager = new ModalManager();
+    this.galleryModal = new GalleryModal(this.modalManager);
+    this.videoModal = new VideoModal(this.modalManager);
+    this.whatsappModal = new WhatsAppModal(this.modalManager);
+    this.formHandler = new FormHandler(this.modalManager, this.whatsappModal);
+    this.faqAccordion = new FAQAccordion();
+    this.typeSelector = new TypeSelector();
+  }
+
+  setupEventListeners() {
+    // Global event listeners can be added here
+  }
+
+  initCountdown() {
+    this.countdown = new CountdownTimer({
+      daysElement: document.getElementById('days'),
+      hoursElement: document.getElementById('hours'),
+      minutesElement: document.getElementById('minutes'),
+      secondsElement: document.getElementById('seconds'),
+      progressBar: document.querySelector('.progress-bar')
     });
-  });
-  
-  // Close buttons
-  document.querySelectorAll('.modal-close, .video-modal-close').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const modalId = this.closest('.modal').id.replace('Modal', '');
-      hideModal(modalId);
-    });
-  });
+    this.countdown.start();
+  }
+
+  initNotifications() {
+    this.notificationManager = new NotificationManager();
+    // Show first notification after 10 seconds
+    setTimeout(() => this.notificationManager.showRandom(), 10000);
+    // Then show periodically
+    setInterval(() => this.notificationManager.showRandom(), (Math.floor(Math.random() * 3) + 2) * 60000);
+  }
+
+  initSoldCountAnimation() {
+    this.soldCount = new SoldCountAnimation('.sold-count');
+    this.soldCount.start();
+  }
 }
 
-function showModal(type, content = null) {
-  const modalId = type + 'Modal';
-  const modal = document.getElementById(modalId);
-  
-  if (!modal) return;
-  
-  // Handle specific modal types
-  if (type === 'gallery') {
-    showGalleryModal(content);
-    return;
-  } else if (type === 'video') {
-    showVideoModal(content);
-    return;
-  } else if (type === 'booking' && content) {
-    document.getElementById('type').value = content;
+// ========== MODAL MANAGEMENT ==========
+class ModalManager {
+  constructor() {
+    this.activeModal = null;
+    this.setupEventListeners();
   }
-  
-  // Show the modal
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
 
-function hideModal(type) {
-  const modalId = type + 'Modal';
-  const modal = document.getElementById(modalId);
-  
-  if (!modal) return;
-  
-  // Handle specific modal types
-  if (type === 'video') {
-    document.getElementById('videoFrame').src = '';
+  setupEventListeners() {
+    // Close modals when clicking outside content
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          this.hide();
+        }
+      });
+    });
+
+    // Close buttons
+    document.querySelectorAll('.modal-close, .video-modal-close').forEach(btn => {
+      btn.addEventListener('click', () => this.hide());
+    });
   }
-  
-  // Hide the modal
-  modal.classList.remove('active');
-  document.body.style.overflow = 'auto';
+
+  show(modalElement) {
+    // Hide current modal if exists
+    if (this.activeModal) {
+      this.hide();
+    }
+
+    // Show new modal
+    this.activeModal = modalElement;
+    modalElement.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  hide() {
+    if (this.activeModal) {
+      this.activeModal.classList.remove('active');
+      this.activeModal = null;
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  getModalById(id) {
+    return document.getElementById(id);
+  }
 }
 
 // ========== GALLERY MODAL ==========
-function initGalleryModal() {
-  $('#galleryCarousel').on('init', function(event, slick) {
-    // Gallery initialized
-  });
-}
-
-function showGalleryModal(type) {
-  // Set gallery title based on type
-  const titleMap = {
-    'standard': 'Galeri Tipe Standard 30/60',
-    'suite': 'Galeri Tipe Suite 50/60',
-    'premium': 'Galeri Tipe Premium 50/120'
-  };
-  
-  document.getElementById('galleryTitle').textContent = titleMap[type] || 'Galeri Rumah';
-  
-  // Set gallery images based on type
-  const galleryCarousel = document.getElementById('galleryCarousel');
-  galleryCarousel.innerHTML = '';
-  
-  // Sample images - replace with your actual images
-  const images = {
-    'standard': [
-      'https://i.imgur.com/kYxjjEX.jpg',
-      'https://i.imgur.com/QJfJq2l.jpeg',
-      'https://i.imgur.com/Fc4wxey.jpeg'
-    ],
-    'suite': [
-      'https://i.imgur.com/rzlJAkz.jpg',
-      'https://i.imgur.com/QwwyO9T.jpeg',
-      'https://i.imgur.com/fjZalPE.jpeg'
-    ],
-    'premium': [
-      'https://i.imgur.com/xFgp9FL.jpg',
-      'https://i.imgur.com/DLAHtSG.jpeg',
-      'https://i.imgur.com/THJSL1O.jpeg'
-    ]
-  };
-  
-  const typeImages = images[type] || images['standard'];
-  
-  typeImages.forEach(img => {
-    const div = document.createElement('div');
-    div.innerHTML = `<img src="${img}" alt="${type}" style="width:100%; max-height:70vh; object-fit:contain;">`;
-    galleryCarousel.appendChild(div);
-  });
-  
-  // Initialize or refresh slick slider
-  if ($('#galleryCarousel').hasClass('slick-initialized')) {
-    $('#galleryCarousel').slick('unslick');
+class GalleryModal {
+  constructor(modalManager) {
+    this.modalManager = modalManager;
+    this.modalElement = this.modalManager.getModalById('galleryModal');
+    this.galleryElement = document.getElementById('galleryCarousel');
+    this.titleElement = document.getElementById('galleryTitle');
+    this.initGallery();
   }
-  
-  $('#galleryCarousel').slick({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    adaptiveHeight: true,
-    arrows: true,
-    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-  });
-  
-  // Show modal
-  document.getElementById('galleryModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
+
+  initGallery() {
+    $(this.galleryElement).on('init', () => {
+      // Gallery initialized
+    });
+  }
+
+  show(type) {
+    const titleMap = {
+      'standard': 'Galeri Tipe Standard 30/60',
+      'suite': 'Galeri Tipe Suite 50/60',
+      'premium': 'Galeri Tipe Premium 50/120'
+    };
+    
+    this.titleElement.textContent = titleMap[type] || 'Galeri Rumah';
+    this.loadImages(type);
+    this.modalManager.show(this.modalElement);
+  }
+
+  loadImages(type) {
+    this.galleryElement.innerHTML = '';
+    
+    const images = {
+      'standard': [
+        'https://i.imgur.com/kYxjjEX.jpg',
+        'https://i.imgur.com/QJfJq2l.jpeg',
+        'https://i.imgur.com/Fc4wxey.jpeg'
+      ],
+      'suite': [
+        'https://i.imgur.com/rzlJAkz.jpg',
+        'https://i.imgur.com/QwwyO9T.jpeg',
+        'https://i.imgur.com/fjZalPE.jpeg'
+      ],
+      'premium': [
+        'https://i.imgur.com/xFgp9FL.jpg',
+        'https://i.imgur.com/DLAHtSG.jpeg',
+        'https://i.imgur.com/THJSL1O.jpeg'
+      ]
+    };
+    
+    const typeImages = images[type] || images['standard'];
+    
+    typeImages.forEach(img => {
+      const div = document.createElement('div');
+      div.innerHTML = `<img src="${img}" alt="${type}" style="width:100%; max-height:70vh; object-fit:contain;">`;
+      this.galleryElement.appendChild(div);
+    });
+    
+    this.initializeSlider();
+  }
+
+  initializeSlider() {
+    if ($(this.galleryElement).hasClass('slick-initialized')) {
+      $(this.galleryElement).slick('unslick');
+    }
+    
+    $(this.galleryElement).slick({
+      dots: true,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 1,
+      adaptiveHeight: true,
+      arrows: true,
+      prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+      nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+    });
+  }
 }
 
 // ========== VIDEO MODAL ==========
-function showVideoModal(type) {
-  const videoMap = {
-    'standard': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
-    'suite': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
-    'premium': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
-    'testimonial1': 'https://www.youtube.com/embed/LgHbkuOKsw0',
-    'testimonial2': 'https://www.youtube.com/embed/UF5V1-Vu6uI'
-  };
-  
-  const videoUrl = videoMap[type] || videoMap['standard'];
-  document.getElementById('videoFrame').src = videoUrl;
-  document.getElementById('videoModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+class VideoModal {
+  constructor(modalManager) {
+    this.modalManager = modalManager;
+    this.modalElement = this.modalManager.getModalById('videoModal');
+    this.videoFrame = document.getElementById('videoFrame');
+  }
 
-// ========== COUNTDOWN TIMER ==========
-function updateCountdown() {
-  const endDate = new Date();
-  endDate.setDate(endDate.getDate() + 3);
-  endDate.setHours(23, 59, 59, 0);
+  show(type) {
+    const videoMap = {
+      'standard': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
+      'suite': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
+      'premium': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
+      'testimonial1': 'https://www.youtube.com/embed/LgHbkuOKsw0',
+      'testimonial2': 'https://www.youtube.com/embed/UF5V1-Vu6uI'
+    };
+    
+    this.videoFrame.src = videoMap[type] || videoMap['standard'];
+    this.modalManager.show(this.modalElement);
+  }
 
-  const now = new Date().getTime();
-  const distance = endDate - now;
-  
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-  document.getElementById('days').textContent = days.toString().padStart(2, '0');
-  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-  
-  const totalDuration = 3 * 24 * 60 * 60 * 1000;
-  const elapsed = totalDuration - distance;
-  const progressPercent = (elapsed / totalDuration) * 100;
-  
-  document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
-  
-  if (distance < (24 * 60 * 60 * 1000)) {
-    document.querySelectorAll('.countdown-number').forEach(el => {
-      el.style.color = '#ff6b6b';
-    });
-    document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
+  cleanup() {
+    this.videoFrame.src = '';
   }
 }
 
-// ========== TYPE SELECTOR ==========
-function setupTypeSelector() {
-  const typeBtns = document.querySelectorAll('.type-btn');
-  const typeCards = document.querySelectorAll('.type-card');
-  
-  typeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Remove active class from all buttons
-      typeBtns.forEach(b => b.classList.remove('active'));
+// ========== WHATSAPP CONFIRMATION MODAL ==========
+class WhatsAppModal {
+  constructor(modalManager) {
+    this.modalManager = modalManager;
+    this.modalElement = this.modalManager.getModalById('waModal');
+    this.countdownElement = document.getElementById('waCountdown');
+    this.nameElement = document.getElementById('waName');
+    this.phoneElement = document.getElementById('waPhone');
+    this.typeElement = document.getElementById('waType');
+    this.feeElement = document.getElementById('waFee');
+    this.countdownInterval = null;
+  }
+
+  show(name, phone, type, whatsappUrl) {
+    // Set booking fee based on type
+    const bookingFee = type.includes("Suite") || type.includes("Premium") 
+      ? "Rp2.000.000" 
+      : "Rp500.000";
+    
+    // Update modal content
+    this.nameElement.textContent = name;
+    this.phoneElement.textContent = phone;
+    this.typeElement.textContent = type;
+    this.feeElement.textContent = bookingFee;
+    
+    // Show modal
+    this.modalManager.show(this.modalElement);
+    
+    // Start countdown
+    this.startCountdown(whatsappUrl);
+  }
+
+  startCountdown(whatsappUrl) {
+    // Clear any existing countdown
+    if (this.countdownInterval) {
+      clearInterval(this.countdownInterval);
+    }
+    
+    let seconds = 5;
+    this.countdownElement.textContent = seconds;
+    
+    this.countdownInterval = setInterval(() => {
+      seconds--;
+      this.countdownElement.textContent = seconds;
       
-      // Add active class to clicked button
-      btn.classList.add('active');
-      
-      const type = btn.dataset.type;
-      
-      // Show/hide cards based on type
-      typeCards.forEach(card => {
-        if (type === 'all' || card.dataset.type === type) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-}
-
-// ========== NOTIFICATION ==========
-function showRandomNotification() {
-  const notifications = [
-    "Pak Budi baru saja booking unit Tipe Suite!",
-    "Bu Siti berhasil mendapatkan KPR BJB Syariah untuk Tipe Standard",
-    "Unit Premium 50/120 tersisa 5 unit terakhir!",
-    "Promo DP 0% + motor gratis hanya sampai besok!",
-    "3 unit Standard terjual dalam 1 jam terakhir!"
-  ];
-  
-  const randomNotification = notifications[Math.floor(Math.random() * notifications.length)];
-  const notification = document.getElementById('notification');
-  const notificationText = document.getElementById('notificationText');
-  
-  notificationText.textContent = randomNotification;
-  notification.style.display = 'flex';
-  
-  setTimeout(() => {
-    notification.style.display = 'none';
-  }, 5000);
-}
-
-// ========== SOLD COUNT ANIMATION ==========
-function animateSoldCount() {
-  const soldCount = document.querySelector('.sold-count');
-  let count = 12;
-  
-  setInterval(() => {
-    count += Math.floor(Math.random() * 3);
-    soldCount.textContent = count;
-    
-    // Trigger animation
-    soldCount.style.animation = 'none';
-    void soldCount.offsetWidth; // Trigger reflow
-    soldCount.style.animation = 'count-bounce 1s ease';
-  }, 180000); // Update every 3 minutes
-}
-
-// ========== FAQ ACCORDION ==========
-function setupFAQAccordion() {
-  const faqItems = document.querySelectorAll('.faq-item');
-  
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    
-    question.addEventListener('click', () => {
-      // Toggle active class on clicked item
-      item.classList.toggle('active');
-      
-      // Close other items
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item && otherItem.classList.contains('active')) {
-          otherItem.classList.remove('active');
-        }
-      });
-    });
-  });
-}
-
-// ========== PROGRESS BARS ==========
-function animateProgressBars() {
-  const progressBars = document.querySelectorAll('.progress-fill');
-  
-  progressBars.forEach(bar => {
-    const parent = bar.closest('[data-stock]');
-    if (!parent) return;
-    
-    const stock = parseInt(parent.getAttribute('data-stock'));
-    let width;
-    
-    // Determine width based on stock level
-    if (stock === 1) width = '10%';
-    else if (stock === 2) width = '30%';
-    else if (stock === 3) width = '50%';
-    else if (stock === 4) width = '70%';
-    else width = '90%';
-    
-    bar.style.width = width;
-  });
-}
-
-// ========== BOOKING FORM ==========
-async function sendToGoogleSheet(data) {
-  try {
-    // Google Apps Script URL - replace with your actual URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzBxEkIeKSdwpxT3ZoQQP2obSxURy2goGkOqBjXujRXoESugnJYk0I82uHi509Dpr3cIg/exec';
-    
-    const response = await fetch(scriptURL, {
-      method: 'POST',
-      mode: 'no-cors', // Important for Google Apps Script
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams(data).toString()
-    });
-    
-    // Since we're using no-cors mode, we can't read the response
-    // But we assume it's successful if we get here
-    return true;
-    
-  } catch (error) {
-    console.error('Error:', error);
-    return false;
+      if (seconds <= 0) {
+        clearInterval(this.countdownInterval);
+        window.open(whatsappUrl, '_blank');
+        this.modalManager.hide();
+      }
+    }, 1000);
   }
 }
 
-function setupBookingForm() {
-  const bookingForm = document.getElementById('bookingForm');
-  
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
+// ========== FORM HANDLER ==========
+class FormHandler {
+  constructor(modalManager, whatsappModal) {
+    this.modalManager = modalManager;
+    this.whatsappModal = whatsappModal;
+    this.bookingForm = document.getElementById('bookingForm');
+    this.setupForm();
+  }
+
+  setupForm() {
+    if (this.bookingForm) {
+      this.bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await this.handleFormSubmit();
+      });
+    }
+  }
+
+  async handleFormSubmit() {
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const type = document.getElementById('type').value;
+    
+    // Validate form
+    if (!this.validateForm(name, phone, type)) return;
+    
+    try {
+      // Show loading state
+      const submitBtn = this.bookingForm.querySelector('button[type="submit"]');
+      this.setLoadingState(submitBtn, true);
       
-      // Get form values
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const type = document.getElementById('type').value;
+      // Prepare data
+      const formData = {
+        name,
+        phone,
+        type,
+        timestamp: new Date().toISOString(),
+        source: 'Website Kertamulya'
+      };
       
-      // Validate form
-      if (!name || !phone || !type) {
-        showAlert('Mohon lengkapi semua data terlebih dahulu', 'error');
-        return;
-      }
+      // Send data to Firebase/Google Sheets
+      const submissionSuccess = await this.sendFormData(formData);
       
-      // Validate phone number format
-      if (!/^628[0-9]{8,11}$/.test(phone)) {
-        showAlert('Format nomor WhatsApp harus diawali 628 dan 10-13 digit', 'error');
-        return;
-      }
-      
-      try {
-        // Prepare data for Google Sheet
-        const formData = {
-          name: name,
-          phone: phone,
-          type: type,
-          timestamp: new Date().toISOString(),
-          source: 'Website Kertamulya'
-        };
-        
-        console.log('Form data to send:', formData);
-        
-        // Show loading state
-        const submitBtn = bookingForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
-        submitBtn.disabled = true;
-        
-        // Send data to Google Sheet
-        const sheetSuccess = await sendToGoogleSheet(formData);
-        console.log('Sheet submission success:', sheetSuccess);
-        
-        // Restore button state
-        submitBtn.innerHTML = originalBtnText;
-        submitBtn.disabled = false;
-        
+      if (submissionSuccess) {
         // Create WhatsApp message
         const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
         const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
         
-        // Hide booking modal
-        hideModal('booking');
-        
-        // Show WhatsApp confirmation modal
-        showWhatsAppModal(name, phone, type, whatsappUrl);
-        
-      } catch (error) {
-        console.error('Error:', error);
-        showAlert('Terjadi kesalahan saat mengirim data', 'error');
-        
-        // Restore button state in case of error
-        const submitBtn = bookingForm.querySelector('button[type="submit"]');
-        submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Kirim via WhatsApp';
-        submitBtn.disabled = false;
+        // Hide booking modal and show WhatsApp confirmation
+        this.modalManager.hide();
+        this.whatsappModal.show(name, phone, type, whatsappUrl);
+      } else {
+        this.showAlert('Gagal mengirim data, silakan coba lagi', 'error');
       }
+      
+    } catch (error) {
+      console.error('Error:', error);
+      this.showAlert('Terjadi kesalahan saat mengirim data', 'error');
+    } finally {
+      const submitBtn = this.bookingForm.querySelector('button[type="submit"]');
+      this.setLoadingState(submitBtn, false);
+    }
+  }
+
+  validateForm(name, phone, type) {
+    if (!name || !phone || !type) {
+      this.showAlert('Mohon lengkapi semua data terlebih dahulu', 'error');
+      return false;
+    }
+    
+    if (!/^628[0-9]{8,11}$/.test(phone)) {
+      this.showAlert('Format nomor WhatsApp harus diawali 628 dan 10-13 digit', 'error');
+      return false;
+    }
+    
+    return true;
+  }
+
+  async sendFormData(formData) {
+    try {
+      // Initialize Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyB03FOq5QiqZNea4ZbKUNoV4c4WOyWf0UY",
+        authDomain: "kertamulyaresidence-d0353.firebaseapp.com",
+        projectId: "kertamulyaresidence-d0353",
+        storageBucket: "kertamulyaresidence-d0353.appspot.com",
+        messagingSenderId: "339688232872",
+        appId: "1:339688232872:web:07efff955249fddfd96f9d",
+        measurementId: "G-DZN9BPWRJE"
+      };
+      
+      // Initialize Firebase if not already initialized
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+      
+      const db = firebase.firestore();
+      
+      // Add a new document with a generated id
+      await db.collection("bookings").add(formData);
+      return true;
+      
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      return false;
+    }
+  }
+
+  setLoadingState(button, isLoading) {
+    if (isLoading) {
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+      button.disabled = true;
+    } else {
+      button.innerHTML = '<i class="fab fa-whatsapp"></i> Kirim via WhatsApp';
+      button.disabled = false;
+    }
+  }
+
+  showAlert(message, type = 'success') {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type}`;
+    alertDiv.style.position = 'fixed';
+    alertDiv.style.top = '20px';
+    alertDiv.style.right = '20px';
+    alertDiv.style.padding = '1rem 1.5rem';
+    alertDiv.style.backgroundColor = type === 'error' ? '#e74c3c' : '#2ecc71';
+    alertDiv.style.color = 'white';
+    alertDiv.style.borderRadius = '0.5rem';
+    alertDiv.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+    alertDiv.style.zIndex = '1000';
+    alertDiv.style.animation = 'fadeIn 0.3s ease-in-out';
+    alertDiv.textContent = message;
+    
+    document.body.appendChild(alertDiv);
+    
+    setTimeout(() => {
+      alertDiv.style.animation = 'fadeOut 0.3s ease-in-out';
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 300);
+    }, 3000);
+  }
+}
+
+// ========== COUNTDOWN TIMER ==========
+class CountdownTimer {
+  constructor({ daysElement, hoursElement, minutesElement, secondsElement, progressBar }) {
+    this.daysElement = daysElement;
+    this.hoursElement = hoursElement;
+    this.minutesElement = minutesElement;
+    this.secondsElement = secondsElement;
+    this.progressBar = progressBar;
+    this.endDate = this.calculateEndDate();
+    this.interval = null;
+  }
+
+  calculateEndDate() {
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 3);
+    endDate.setHours(23, 59, 59, 0);
+    return endDate;
+  }
+
+  start() {
+    this.update();
+    this.interval = setInterval(() => this.update(), 1000);
+  }
+
+  stop() {
+    clearInterval(this.interval);
+  }
+
+  update() {
+    const now = new Date().getTime();
+    const distance = this.endDate - now;
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    this.daysElement.textContent = days.toString().padStart(2, '0');
+    this.hoursElement.textContent = hours.toString().padStart(2, '0');
+    this.minutesElement.textContent = minutes.toString().padStart(2, '0');
+    this.secondsElement.textContent = seconds.toString().padStart(2, '0');
+    
+    const totalDuration = 3 * 24 * 60 * 60 * 1000;
+    const elapsed = totalDuration - distance;
+    const progressPercent = (elapsed / totalDuration) * 100;
+    
+    this.progressBar.style.width = `${100 - progressPercent}%`;
+    
+    if (distance < (24 * 60 * 60 * 1000)) {
+      document.querySelectorAll('.countdown-number').forEach(el => {
+        el.style.color = '#ff6b6b';
+      });
+      this.progressBar.style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
+    }
+  }
+}
+
+// ========== NOTIFICATION MANAGER ==========
+class NotificationManager {
+  constructor() {
+    this.notificationElement = document.getElementById('notification');
+    this.notificationText = document.getElementById('notificationText');
+    this.notifications = [
+      "Pak Budi baru saja booking unit Tipe Suite!",
+      "Bu Siti berhasil mendapatkan KPR BJB Syariah untuk Tipe Standard",
+      "Unit Premium 50/120 tersisa 5 unit terakhir!",
+      "Promo DP 0% + motor gratis hanya sampai besok!",
+      "3 unit Standard terjual dalam 1 jam terakhir!"
+    ];
+  }
+
+  showRandom() {
+    const randomNotification = this.notifications[Math.floor(Math.random() * this.notifications.length)];
+    this.notificationText.textContent = randomNotification;
+    this.notificationElement.style.display = 'flex';
+    
+    setTimeout(() => {
+      this.notificationElement.style.display = 'none';
+    }, 5000);
+  }
+}
+
+// ========== SOLD COUNT ANIMATION ==========
+class SoldCountAnimation {
+  constructor(selector) {
+    this.element = document.querySelector(selector);
+    this.count = 12;
+    this.interval = null;
+  }
+
+  start() {
+    this.updateCount();
+    this.interval = setInterval(() => this.updateCount(), 180000); // Update every 3 minutes
+  }
+
+  stop() {
+    clearInterval(this.interval);
+  }
+
+  updateCount() {
+    this.count += Math.floor(Math.random() * 3);
+    this.element.textContent = this.count;
+    
+    // Trigger animation
+    this.element.style.animation = 'none';
+    void this.element.offsetWidth; // Trigger reflow
+    this.element.style.animation = 'count-bounce 1s ease';
+  }
+}
+
+// ========== FAQ ACCORDION ==========
+class FAQAccordion {
+  constructor() {
+    this.faqItems = document.querySelectorAll('.faq-item');
+    this.setupAccordion();
+  }
+
+  setupAccordion() {
+    this.faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        // Toggle active class on clicked item
+        item.classList.toggle('active');
+        
+        // Close other items
+        this.faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+      });
     });
   }
 }
 
-function showWhatsAppModal(name, phone, type, whatsappUrl) {
-  const modal = document.getElementById('waModal');
-  const countdownText = document.getElementById('countdownText');
-  
-  // Set booking fee based on type
-  let bookingFee = "Rp500.000";
-  if (type.includes("Suite") || type.includes("Premium")) {
-    bookingFee = "Rp2.000.000";
+// ========== TYPE SELECTOR ==========
+class TypeSelector {
+  constructor() {
+    this.typeBtns = document.querySelectorAll('.type-btn');
+    this.typeCards = document.querySelectorAll('.type-card');
+    this.setupEventListeners();
   }
-  
-  // Update modal content
-  modal.querySelector('.modal-title').textContent = 'Formulir Terkirim!';
-  modal.querySelector('.modal-desc').innerHTML = `
-    <p>Detail booking Anda:</p>
-    <ul style="text-align: left; margin: 1rem 0; padding-left: 1.5rem;">
-      <li>Nama: ${name}</li>
-      <li>No. HP: ${phone}</li>
-      <li>Tipe: ${type}</li>
-      <li>Booking Fee: ${bookingFee}</li>
-    </ul>
-    <p>Anda akan diarahkan ke WhatsApp dalam <span id="countdownText">5</span> detik...</p>
-  `;
-  
-  // Show modal
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  
-  // Start countdown
-  let seconds = 5;
-  countdownText.textContent = seconds;
-  
-  const countdownInterval = setInterval(() => {
-    seconds--;
-    countdownText.textContent = seconds;
-    
-    if (seconds <= 0) {
-      clearInterval(countdownInterval);
-      // Open WhatsApp in new tab
-      window.open(whatsappUrl, '_blank');
-      // Hide modal
-      modal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-  }, 1000);
+
+  setupEventListeners() {
+    this.typeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        this.typeBtns.forEach(b => b.classList.remove('active'));
+        
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        const type = btn.dataset.type;
+        
+        // Show/hide cards based on type
+        this.typeCards.forEach(card => {
+          if (type === 'all' || card.dataset.type === type) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
 }
 
-// ========== ALERT FUNCTION ==========
-function showAlert(message, type = 'success') {
-  const alertDiv = document.createElement('div');
-  alertDiv.className = `alert alert-${type}`;
-  alertDiv.style.position = 'fixed';
-  alertDiv.style.top = '20px';
-  alertDiv.style.right = '20px';
-  alertDiv.style.padding = '1rem 1.5rem';
-  alertDiv.style.backgroundColor = type === 'error' ? '#e74c3c' : '#2ecc71';
-  alertDiv.style.color = 'white';
-  alertDiv.style.borderRadius = '0.5rem';
-  alertDiv.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-  alertDiv.style.zIndex = '1000';
-  alertDiv.style.animation = 'fadeIn 0.3s ease-in-out';
-  alertDiv.textContent = message;
+// ========== INITIALIZE APPLICATION ==========
+document.addEventListener('DOMContentLoaded', () => {
+  window.kertamulyaApp = new KertamulyaApp();
   
-  document.body.appendChild(alertDiv);
+  // Make global functions available
+  window.showModal = (type, content) => {
+    const modalElement = document.getElementById(`${type}Modal`);
+    if (modalElement) {
+      if (type === 'gallery') {
+        window.kertamulyaApp.galleryModal.show(content);
+      } else if (type === 'video') {
+        window.kertamulyaApp.videoModal.show(content);
+      } else if (type === 'booking' && content) {
+        document.getElementById('type').value = content;
+        window.kertamulyaApp.modalManager.show(modalElement);
+      } else {
+        window.kertamulyaApp.modalManager.show(modalElement);
+      }
+    }
+  };
   
-  setTimeout(() => {
-    alertDiv.style.animation = 'fadeOut 0.3s ease-in-out';
-    setTimeout(() => {
-      alertDiv.remove();
-    }, 300);
-  }, 3000);
-}
+  window.hideModal = (type) => {
+    window.kertamulyaApp.modalManager.hide();
+  };
+});
 
 // Add CSS for animations
 const style = document.createElement('style');
@@ -3435,7 +3707,6 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
-
-  </script>
+</script>
 </body>
 </html> 
