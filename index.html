@@ -2774,7 +2774,6 @@ button, input, textarea, select {
     </div>
   </footer>
 
-  <!-- Modals -->
   <!-- Booking Modal -->
   <div class="modal" id="bookingModal">
     <div class="modal-content">
@@ -3001,15 +3000,20 @@ function setupBookingForm() {
         return;
       }
       
-      // Create confirmation message based on house type
-      let confirmationMessage = "";
-      if (type.includes('Standard')) {
-        confirmationMessage = "Booking fee cukup Rp. 500.000. Segera amankan unitmu sekarang juga!";
-      } else {
-        confirmationMessage = "Booking fee Rp. 2.000.000. Dapatkan motor listrik gratis setelah 6x angsuran! Tidak diundi! Booking sekarang sebelum kehabisan.";
+      // Determine booking fee based on type
+      let bookingFee = "Rp500.000";
+      if (type.includes("Suite") || type.includes("Premium")) {
+        bookingFee = "Rp2.000.000";
       }
       
-      // Show confirmation modal
+      // Create confirmation message
+      const confirmationMessage = `
+        Booking fee ${bookingFee} untuk tipe ${type}. 
+        Dapatkan motor listrik gratis setelah 6x angsuran! 
+        TIDAK DIUNDI! Segera amankan unit Anda sekarang.
+      `;
+      
+      // Show confirmation modal and redirect after 3 seconds
       showConfirmationModal(confirmationMessage, name, phone, type);
     });
   }
@@ -3028,12 +3032,10 @@ function showConfirmationModal(message, name, phone, type) {
         <p id="confirmationMessage" style="margin-bottom: 1.5rem; color: var(--text);">${message}</p>
         <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
           <div class="countdown-circle" style="width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--primary); display: flex; align-items: center; justify-content: center;">
-            <span id="countdownNumber" style="font-weight: bold; color: var(--primary);">5</span>
+            <span id="countdownNumber" style="font-weight: bold; color: var(--primary);">3</span>
           </div>
         </div>
-        <button class="btn btn-accent" onclick="redirectToWhatsAppNow('${name}', '${phone}', '${type}')" style="margin-top: 1rem;">
-          <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
-        </button>
+        <p style="font-size: 0.9rem; color: var(--text-light);">Mengarahkan ke WhatsApp...</p>
       </div>
     </div>
   `;
@@ -3042,7 +3044,7 @@ function showConfirmationModal(message, name, phone, type) {
   document.body.insertAdjacentHTML('beforeend', modalHTML);
   
   // Start countdown
-  let seconds = 5;
+  let seconds = 3;
   const countdownElement = document.getElementById('countdownNumber');
   const countdownInterval = setInterval(() => {
     seconds--;
@@ -3055,20 +3057,12 @@ function showConfirmationModal(message, name, phone, type) {
   }, 1000);
 }
 
-function hideConfirmationModal() {
-  const modal = document.getElementById('waConfirmationModal');
-  if (modal) {
-    modal.remove();
-  }
-}
-
-// ========== WHATSAPP REDIRECT ==========
 function redirectToWhatsApp(name, phone, type) {
   // Submit data to Google Sheets first
   submitToGoogleSheets(name, phone, type);
   
   // Create WhatsApp message
-  const whatsappMessage = `Halo saya ${name} ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
+  const whatsappMessage = `Halo, saya ${name} ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
   const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
   
   // Hide confirmation modal
@@ -3081,11 +3075,6 @@ function redirectToWhatsApp(name, phone, type) {
   window.open(whatsappUrl, '_blank');
 }
 
-function redirectToWhatsAppNow(name, phone, type) {
-  // Immediately redirect without waiting for countdown
-  redirectToWhatsApp(name, phone, type);
-}
-
 // ========== GOOGLE SHEETS SUBMISSION ==========
 function submitToGoogleSheets(name, phone, type) {
   const formData = {
@@ -3095,7 +3084,7 @@ function submitToGoogleSheets(name, phone, type) {
   };
   
   // Use fetch to submit to Google Apps Script
-  fetch('https://script.google.com/macros/s/AKfycbyqUdScjjL2Gonn2r3VPZaufyC6Fgtl68HMKQVQqt01GNLn9h0_I0auCyuWe0PnKMc_/exec', {
+  fetch('https://script.google.com/macros/s/AKfycbzeZY_DQWzkioGHZfrsSSCMpvaJ3DJkpOyqaTPbI0Dj-fmSZINSMUpNipGDTIDe32fi9w/exec', {
     method: 'POST',
     mode: 'no-cors',
     headers: {
