@@ -1993,208 +1993,7 @@ button, input, textarea, select {
     font-size: 0.6rem;
   }
 }
-/* WhatsApp Confirmation Modal Styles */
-#waModal .modal-content {
-  max-width: 500px;
-  border-radius: 16px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  border: none;
-  transform: translateY(20px);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
 
-#waModal.active .modal-content {
-  transform: translateY(0);
-}
-
-#waModal .modal-body {
-  padding: 2.5rem;
-  text-align: center;
-}
-
-.wa-confirmation-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.wa-confirmation-icon {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  color: white;
-  font-size: 2.5rem;
-  box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
-}
-
-.wa-confirmation-check {
-  position: absolute;
-  bottom: -5px;
-  right: -5px;
-  width: 30px;
-  height: 30px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #25D366;
-  font-size: 0.9rem;
-  border: 2px solid #25D366;
-}
-
-.wa-confirmation-titles h3 {
-  font-size: 1.5rem;
-  color: var(--primary-dark);
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-
-.wa-confirmation-titles p {
-  color: var(--text-light);
-  font-size: 0.95rem;
-}
-
-.wa-confirmation-details {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--shadow-sm);
-}
-
-.wa-detail-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  text-align: left;
-}
-
-.wa-detail-item:last-child {
-  margin-bottom: 0;
-}
-
-.wa-detail-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--primary-light);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
-  color: var(--primary-dark);
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.wa-detail-content {
-  flex-grow: 1;
-}
-
-.wa-detail-label {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--text-light);
-  margin-bottom: 0.2rem;
-}
-
-.wa-detail-value {
-  display: block;
-  font-weight: 600;
-  color: var(--dark);
-  font-size: 0.95rem;
-}
-
-.wa-promo-banner {
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-  border-radius: 12px;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  color: var(--dark);
-  text-align: left;
-}
-
-.wa-promo-icon {
-  width: 40px;
-  height: 40px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.wa-promo-content h4 {
-  font-size: 1rem;
-  margin-bottom: 0.2rem;
-  font-weight: 700;
-}
-
-.wa-promo-content p {
-  font-size: 0.85rem;
-  opacity: 0.9;
-}
-
-.wa-countdown-container {
-  margin-top: 1rem;
-}
-
-.wa-countdown-circle {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 3px solid var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  position: relative;
-}
-
-.wa-countdown-circle:before {
-  content: '';
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  border: 3px solid rgba(46, 204, 113, 0.2);
-  border-radius: 50%;
-  animation: pulse 1.5s infinite;
-}
-
-.wa-countdown-number {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.wa-countdown-text {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-top: 0.5rem;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.1); opacity: 0.7; }
-  100% { transform: scale(1); opacity: 1; }
-}
   
   
   </style>
@@ -3012,80 +2811,46 @@ button, input, textarea, select {
   </div>
 </div>
 
- <!-- Wa Modal Konfirmasi -->
+<!-- WhatsApp Confirmation Modal -->
 <div class="modal" id="waModal">
   <div class="modal-content">
+    <div class="promo-badge">PROMO TERBATAS!</div>
     <div class="modal-body">
-      <div class="wa-confirmation-header">
-        <div class="wa-confirmation-icon">
-          <i class="fab fa-whatsapp"></i>
-          <div class="wa-confirmation-check">
-            <i class="fas fa-check"></i>
-          </div>
+      <div class="whatsapp-confirm-icon">
+        <i class="fab fa-whatsapp"></i>
+      </div>
+      <h3 class="modal-title">Booking Terkonfirmasi!</h3>
+      
+      <div class="booking-details">
+        <div class="booking-detail-item">
+          <span class="booking-detail-label">Nama:</span>
+          <span class="booking-detail-value" id="waName"></span>
         </div>
-        <div class="wa-confirmation-titles">
-          <h3 class="modal-title">Booking Terkonfirmasi!</h3>
-          <p class="modal-subtitle">Data Anda telah kami terima</p>
+        <div class="booking-detail-item">
+          <span class="booking-detail-label">No. HP:</span>
+          <span class="booking-detail-value" id="waPhone"></span>
+        </div>
+        <div class="booking-detail-item">
+          <span class="booking-detail-label">Tipe Unit:</span>
+          <span class="booking-detail-value" id="waType"></span>
+        </div>
+        <div class="booking-detail-item">
+          <span class="booking-detail-label">Booking Fee:</span>
+          <span class="booking-detail-value" id="waFee"></span>
         </div>
       </div>
       
-      <div class="wa-confirmation-details">
-        <div class="wa-detail-item">
-          <div class="wa-detail-icon">
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="wa-detail-content">
-            <span class="wa-detail-label">Nama Lengkap</span>
-            <span class="wa-detail-value" id="waName"></span>
-          </div>
-        </div>
-        
-        <div class="wa-detail-item">
-          <div class="wa-detail-icon">
-            <i class="fas fa-phone"></i>
-          </div>
-          <div class="wa-detail-content">
-            <span class="wa-detail-label">Nomor WhatsApp</span>
-            <span class="wa-detail-value" id="waPhone"></span>
-          </div>
-        </div>
-        
-        <div class="wa-detail-item">
-          <div class="wa-detail-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <div class="wa-detail-content">
-            <span class="wa-detail-label">Tipe Unit</span>
-            <span class="wa-detail-value" id="waType"></span>
-          </div>
-        </div>
-        
-        <div class="wa-detail-item">
-          <div class="wa-detail-icon">
-            <i class="fas fa-money-bill-wave"></i>
-          </div>
-          <div class="wa-detail-content">
-            <span class="wa-detail-label">Booking Fee</span>
-            <span class="wa-detail-value" id="waFee"></span>
-          </div>
-        </div>
+      <div class="motor-promo">
+        <i class="fas fa-motorcycle"></i>
+        DAPATKAN MOTOR LISTRIK GRATIS SETELAH 6x ANGSURAN TEPAT WAKTU!
       </div>
       
-      <div class="wa-promo-banner">
-        <div class="wa-promo-icon">
-          <i class="fas fa-gift"></i>
-        </div>
-        <div class="wa-promo-content">
-          <h4>Motor Listrik Gratis!</h4>
-          <p>Dapatkan motor listrik gratis setelah 6x angsuran tepat waktu</p>
-        </div>
-      </div>
+      <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+        Anda akan diarahkan ke WhatsApp dalam <span id="countdownText" style="color: var(--primary-dark); font-weight: 700;">5</span> detik...
+      </p>
       
-      <div class="wa-countdown-container">
-        <div class="wa-countdown-circle">
-          <div class="wa-countdown-number" id="waCountdown">5</div>
-        </div>
-        <p class="wa-countdown-text">Mengarahkan ke WhatsApp dalam...</p>
+      <div class="countdown-circle">
+        <i class="fas fa-check"></i>
       </div>
     </div>
   </div>
@@ -3095,178 +2860,102 @@ button, input, textarea, select {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
-// ========== MAIN APPLICATION ==========
+// ========== MAIN APPLICATION CLASS ==========
 class KertamulyaApp {
   constructor() {
-    this.initFirebase();
-    this.initModules();
-    this.setupGlobalEventListeners();
-    this.initCountdown();
-    this.initNotifications();
-    this.initSoldCountAnimation();
+    this.init();
   }
 
-  initFirebase() {
-    // Initialize Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyB03FOq5QiqZNea4ZbKUNoV4c4WOyWf0UY",
-      authDomain: "kertamulyaresidence-d0353.firebaseapp.com",
-      projectId: "kertamulyaresidence-d0353",
-      storageBucket: "kertamulyaresidence-d0353.appspot.com",
-      messagingSenderId: "339688232872",
-      appId: "1:339688232872:web:07efff955249fddfd96f9d",
-      measurementId: "G-DZN9BPWRJE"
-    };
+  // Initialize all components
+  init() {
+    this.setupModals();
+    this.setupCountdown();
+    this.setupTypeSelector();
+    this.setupNotifications();
+    this.setupSoldCountAnimation();
+    this.setupFAQAccordion();
+    this.setupBookingForm();
+    this.setupProgressBars();
     
-    // Initialize Firebase only once
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-    this.db = firebase.firestore();
+    // Initial animations
+    this.animateProgressBars();
   }
 
-  initModules() {
-    this.modalManager = new ModalManager();
-    this.galleryModal = new GalleryModal(this.modalManager);
-    this.videoModal = new VideoModal(this.modalManager);
-    this.whatsappModal = new WhatsAppModal(this.modalManager);
-    this.formHandler = new FormHandler(this.modalManager, this.whatsappModal, this.db);
-    this.faqAccordion = new FAQAccordion();
-    this.typeSelector = new TypeSelector();
-  }
-
-  setupGlobalEventListeners() {
-    // Event delegation for dynamically loaded elements
-    document.addEventListener('click', (e) => {
-      // Handle gallery buttons
-      if (e.target.closest('[data-action="gallery"]')) {
-        const card = e.target.closest('.type-card');
-        const type = card ? card.dataset.type : 'standard';
-        this.galleryModal.show(type);
-      }
-      
-      // Handle video buttons
-      if (e.target.closest('[data-action="video"]')) {
-        const card = e.target.closest('.type-card');
-        const type = card ? card.dataset.type : 'standard';
-        this.videoModal.show(type);
-      }
-      
-      // Handle booking buttons
-      if (e.target.closest('[data-action="booking"]')) {
-        const card = e.target.closest('.type-card');
-        const type = card ? card.querySelector('.type-card-title').textContent : '';
-        this.modalManager.showBookingModal(type);
-      }
-    });
-  }
-
-  initCountdown() {
-    this.countdown = new CountdownTimer({
-      daysElement: document.getElementById('days'),
-      hoursElement: document.getElementById('hours'),
-      minutesElement: document.getElementById('minutes'),
-      secondsElement: document.getElementById('seconds'),
-      progressBar: document.querySelector('.progress-bar')
-    });
-    this.countdown.start();
-  }
-
-  initNotifications() {
-    this.notificationManager = new NotificationManager();
-    setTimeout(() => this.notificationManager.showRandom(), 10000);
-    setInterval(() => this.notificationManager.showRandom(), (Math.floor(Math.random() * 3) + 2) * 60000);
-  }
-
-  initSoldCountAnimation() {
-    this.soldCount = new SoldCountAnimation('.sold-count');
-    this.soldCount.start();
-  }
-}
-
-// ========== MODAL MANAGEMENT ==========
-class ModalManager {
-  constructor() {
-    this.activeModal = null;
-    this.setupEventListeners();
-  }
-
-  setupEventListeners() {
+  // ========== MODAL MANAGEMENT ==========
+  setupModals() {
     // Close modals when clicking outside content
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('modal')) {
-        this.hide();
-      }
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          this.hideModal(modal.id.replace('Modal', ''));
+        }
+      });
     });
 
     // Close buttons
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('modal-close') || e.target.closest('.modal-close')) {
-        this.hide();
-      }
+    document.querySelectorAll('.modal-close, .video-modal-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modalId = btn.closest('.modal').id.replace('Modal', '');
+        this.hideModal(modalId);
+      });
     });
+
+    // Initialize gallery modal
+    this.initGalleryModal();
   }
 
-  show(modalElement) {
-    if (this.activeModal) {
-      this.hide();
+  showModal(type, content = null) {
+    const modalId = `${type}Modal`;
+    const modal = document.getElementById(modalId);
+    
+    if (!modal) return;
+
+    if (type === 'gallery') {
+      this.showGalleryModal(content);
+      return;
+    } else if (type === 'video') {
+      this.showVideoModal(content);
+      return;
+    } else if (type === 'booking' && content) {
+      document.getElementById('type').value = content;
     }
-    this.activeModal = modalElement;
-    modalElement.classList.add('active');
+
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
-  showBookingModal(type = '') {
-    const modal = document.getElementById('bookingModal');
-    if (type && document.getElementById('type')) {
-      document.getElementById('type').value = type;
+  hideModal(type) {
+    const modalId = `${type}Modal`;
+    const modal = document.getElementById(modalId);
+    
+    if (!modal) return;
+
+    if (type === 'video') {
+      document.getElementById('videoFrame').src = '';
     }
-    this.show(modal);
+
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
   }
 
-  hide() {
-    if (this.activeModal) {
-      this.activeModal.classList.remove('active');
-      this.activeModal = null;
-      document.body.style.overflow = 'auto';
-    }
-  }
-
-  getModalById(id) {
-    return document.getElementById(id);
-  }
-}
-
-// ========== GALLERY MODAL ==========
-class GalleryModal {
-  constructor(modalManager) {
-    this.modalManager = modalManager;
-    this.modalElement = this.modalManager.getModalById('galleryModal');
-    this.galleryElement = document.getElementById('galleryCarousel');
-    this.titleElement = document.getElementById('galleryTitle');
-    this.initGallery();
-  }
-
-  initGallery() {
-    $(this.galleryElement).on('init', () => {
-      console.log('Gallery initialized');
+  // ========== GALLERY MODAL ==========
+  initGalleryModal() {
+    $('#galleryCarousel').on('init', () => {
+      // Gallery initialized
     });
   }
 
-  show(type) {
+  showGalleryModal(type) {
     const titleMap = {
       'standard': 'Galeri Tipe Standard 30/60',
       'suite': 'Galeri Tipe Suite 50/60',
       'premium': 'Galeri Tipe Premium 50/120'
     };
     
-    this.titleElement.textContent = titleMap[type] || 'Galeri Rumah';
-    this.loadImages(type);
-    this.modalManager.show(this.modalElement);
-  }
-
-  loadImages(type) {
-    this.galleryElement.innerHTML = '';
+    document.getElementById('galleryTitle').textContent = titleMap[type] || 'Galeri Rumah';
+    
+    const galleryCarousel = document.getElementById('galleryCarousel');
+    galleryCarousel.innerHTML = '';
     
     const images = {
       'standard': [
@@ -3290,19 +2979,15 @@ class GalleryModal {
     
     typeImages.forEach(img => {
       const div = document.createElement('div');
-      div.innerHTML = `<img src="${img}" alt="${type}" loading="lazy" style="width:100%; max-height:70vh; object-fit:contain;">`;
-      this.galleryElement.appendChild(div);
+      div.innerHTML = `<img src="${img}" alt="${type}" style="width:100%; max-height:70vh; object-fit:contain;">`;
+      galleryCarousel.appendChild(div);
     });
     
-    this.initializeSlider();
-  }
-
-  initializeSlider() {
-    if ($(this.galleryElement).hasClass('slick-initialized')) {
-      $(this.galleryElement).slick('unslick');
+    if ($('#galleryCarousel').hasClass('slick-initialized')) {
+      $('#galleryCarousel').slick('unslick');
     }
     
-    $(this.galleryElement).slick({
+    $('#galleryCarousel').slick({
       dots: true,
       infinite: true,
       speed: 300,
@@ -3312,18 +2997,12 @@ class GalleryModal {
       prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
       nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
     });
-  }
-}
-
-// ========== VIDEO MODAL ==========
-class VideoModal {
-  constructor(modalManager) {
-    this.modalManager = modalManager;
-    this.modalElement = this.modalManager.getModalById('videoModal');
-    this.videoFrame = document.getElementById('videoFrame');
+    
+    this.showModal('gallery');
   }
 
-  show(type) {
+  // ========== VIDEO MODAL ==========
+  showVideoModal(type) {
     const videoMap = {
       'standard': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
       'suite': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
@@ -3332,143 +3011,251 @@ class VideoModal {
       'testimonial2': 'https://www.youtube.com/embed/UF5V1-Vu6uI'
     };
     
-    this.videoFrame.src = videoMap[type] || videoMap['standard'];
-    this.modalManager.show(this.modalElement);
+    document.getElementById('videoFrame').src = videoMap[type] || videoMap['standard'];
+    this.showModal('video');
   }
 
-  cleanup() {
-    this.videoFrame.src = '';
-  }
-}
-
-// ========== WHATSAPP CONFIRMATION MODAL ==========
-class WhatsAppModal {
-  constructor(modalManager) {
-    this.modalManager = modalManager;
-    this.modalElement = this.modalManager.getModalById('waModal');
-    this.countdownElement = document.getElementById('waCountdown');
-    this.nameElement = document.getElementById('waName');
-    this.phoneElement = document.getElementById('waPhone');
-    this.typeElement = document.getElementById('waType');
-    this.feeElement = document.getElementById('waFee');
-    this.countdownInterval = null;
+  // ========== COUNTDOWN TIMER ==========
+  setupCountdown() {
+    this.updateCountdown();
+    setInterval(() => this.updateCountdown(), 1000);
   }
 
-  show(name, phone, type, whatsappUrl) {
-    const bookingFee = type.includes("Suite") || type.includes("Premium") 
-      ? "Rp2.000.000" 
-      : "Rp500.000";
+  updateCountdown() {
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 3);
+    endDate.setHours(23, 59, 59, 0);
+
+    const now = new Date().getTime();
+    const distance = endDate - now;
     
-    this.nameElement.textContent = name;
-    this.phoneElement.textContent = phone;
-    this.typeElement.textContent = type;
-    this.feeElement.textContent = bookingFee;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-    this.modalManager.show(this.modalElement);
-    this.startCountdown(whatsappUrl);
-  }
-
-  startCountdown(whatsappUrl) {
-    if (this.countdownInterval) {
-      clearInterval(this.countdownInterval);
+    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    
+    const totalDuration = 3 * 24 * 60 * 60 * 1000;
+    const elapsed = totalDuration - distance;
+    const progressPercent = (elapsed / totalDuration) * 100;
+    
+    document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
+    
+    if (distance < (24 * 60 * 60 * 1000)) {
+      document.querySelectorAll('.countdown-number').forEach(el => {
+        el.style.color = '#ff6b6b';
+      });
+      document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
     }
+  }
+
+  // ========== TYPE SELECTOR ==========
+  setupTypeSelector() {
+    const typeBtns = document.querySelectorAll('.type-btn');
+    const typeCards = document.querySelectorAll('.type-card');
     
-    let seconds = 5;
-    this.countdownElement.textContent = seconds;
+    typeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const type = btn.dataset.type;
+        
+        typeCards.forEach(card => {
+          card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
+        });
+      });
+    });
+  }
+
+  // ========== NOTIFICATIONS ==========
+  setupNotifications() {
+    setTimeout(() => this.showRandomNotification(), 10000);
+    setInterval(() => this.showRandomNotification(), (Math.floor(Math.random() * 3) + 2) * 60000);
+  }
+
+  showRandomNotification() {
+    const notifications = [
+      "Pak Budi baru saja booking unit Tipe Suite!",
+      "Bu Siti berhasil mendapatkan KPR BJB Syariah untuk Tipe Standard",
+      "Unit Premium 50/120 tersisa 5 unit terakhir!",
+      "Promo DP 0% + motor gratis hanya sampai besok!",
+      "3 unit Standard terjual dalam 1 jam terakhir!"
+    ];
     
-    this.countdownInterval = setInterval(() => {
-      seconds--;
-      this.countdownElement.textContent = seconds;
+    const randomNotification = notifications[Math.floor(Math.random() * notifications.length)];
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notificationText');
+    
+    notificationText.textContent = randomNotification;
+    notification.style.display = 'flex';
+    
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 5000);
+  }
+
+  // ========== SOLD COUNT ANIMATION ==========
+  setupSoldCountAnimation() {
+    const soldCount = document.querySelector('.sold-count');
+    let count = 12;
+    
+    setInterval(() => {
+      count += Math.floor(Math.random() * 3);
+      soldCount.textContent = count;
       
-      if (seconds <= 0) {
-        clearInterval(this.countdownInterval);
-        window.open(whatsappUrl, '_blank');
-        this.modalManager.hide();
-      }
-    }, 1000);
-  }
-}
-
-// ========== FORM HANDLER ==========
-class FormHandler {
-  constructor(modalManager, whatsappModal, db) {
-    this.modalManager = modalManager;
-    this.whatsappModal = whatsappModal;
-    this.db = db;
-    this.bookingForm = document.getElementById('bookingForm');
-    this.setupForm();
+      soldCount.style.animation = 'none';
+      void soldCount.offsetWidth;
+      soldCount.style.animation = 'count-bounce 1s ease';
+    }, 180000);
   }
 
-  setupForm() {
-    if (this.bookingForm) {
-      this.bookingForm.addEventListener('submit', async (e) => {
+  // ========== FAQ ACCORDION ==========
+  setupFAQAccordion() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        item.classList.toggle('active');
+        
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+      });
+    });
+  }
+
+  // ========== BOOKING FORM ==========
+  setupBookingForm() {
+    const bookingForm = document.getElementById('bookingForm');
+    
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        await this.handleFormSubmit();
+        
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const type = document.getElementById('type').value;
+        
+        if (!name || !phone || !type) {
+          this.showAlert('Mohon lengkapi semua data terlebih dahulu', 'error');
+          return;
+        }
+        
+        if (!/^628[0-9]{8,11}$/.test(phone)) {
+          this.showAlert('Format nomor WhatsApp harus diawali 628 dan 10-13 digit', 'error');
+          return;
+        }
+        
+        try {
+          const formData = {
+            name: name,
+            phone: phone,
+            type: type,
+            timestamp: new Date().toISOString(),
+            source: 'Website Kertamulya'
+          };
+          
+          const submitBtn = bookingForm.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+          submitBtn.disabled = true;
+          
+          // Send to Firebase (you'll need to implement this)
+          // const sheetSuccess = await this.sendToFirebase(formData);
+          
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+          
+          const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
+          const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
+          
+          this.hideModal('booking');
+          this.showWhatsAppModal(name, phone, type, whatsappUrl);
+          
+        } catch (error) {
+          console.error('Error:', error);
+          this.showAlert('Terjadi kesalahan saat mengirim data', 'error');
+          
+          const submitBtn = bookingForm.querySelector('button[type="submit"]');
+          submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Kirim via WhatsApp';
+          submitBtn.disabled = false;
+        }
       });
     }
   }
 
-  async handleFormSubmit() {
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const type = document.getElementById('type').value;
+  showWhatsAppModal(name, phone, type, whatsappUrl) {
+    const modal = document.getElementById('waModal');
+    const countdownText = document.getElementById('countdownText');
     
-    if (!this.validateForm(name, phone, type)) return;
-    
-    try {
-      const submitBtn = this.bookingForm.querySelector('button[type="submit"]');
-      this.setLoadingState(submitBtn, true);
-      
-      const formData = {
-        name,
-        phone,
-        type,
-        timestamp: new Date().toISOString(),
-        source: 'Website Kertamulya'
-      };
-      
-      // Save to Firebase
-      await this.db.collection("bookings").add(formData);
-      
-      const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
-      const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
-      
-      this.modalManager.hide();
-      this.whatsappModal.show(name, phone, type, whatsappUrl);
-      
-    } catch (error) {
-      console.error('Error:', error);
-      this.showAlert('Terjadi kesalahan saat mengirim data', 'error');
-    } finally {
-      const submitBtn = this.bookingForm.querySelector('button[type="submit"]');
-      this.setLoadingState(submitBtn, false);
+    // Set booking fee based on type
+    let bookingFee = "Rp500.000";
+    if (type.includes("Suite") || type.includes("Premium")) {
+      bookingFee = "Rp2.000.000";
     }
+    
+    // Update modal content
+    document.getElementById('waName').textContent = name;
+    document.getElementById('waPhone').textContent = phone;
+    document.getElementById('waType').textContent = type;
+    document.getElementById('waFee').textContent = bookingFee;
+    
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Start countdown
+    let seconds = 5;
+    countdownText.textContent = seconds;
+    
+    const countdownInterval = setInterval(() => {
+      seconds--;
+      countdownText.textContent = seconds;
+      
+      if (seconds <= 0) {
+        clearInterval(countdownInterval);
+        window.open(whatsappUrl, '_blank');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }, 1000);
   }
 
-  validateForm(name, phone, type) {
-    if (!name || !phone || !type) {
-      this.showAlert('Mohon lengkapi semua data terlebih dahulu', 'error');
-      return false;
-    }
-    
-    if (!/^628[0-9]{8,11}$/.test(phone)) {
-      this.showAlert('Format nomor WhatsApp harus diawali 628 dan 10-13 digit', 'error');
-      return false;
-    }
-    
-    return true;
+  // ========== PROGRESS BARS ==========
+  setupProgressBars() {
+    this.animateProgressBars();
   }
 
-  setLoadingState(button, isLoading) {
-    if (isLoading) {
-      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
-      button.disabled = true;
-    } else {
-      button.innerHTML = '<i class="fab fa-whatsapp"></i> Kirim via WhatsApp';
-      button.disabled = false;
-    }
+  animateProgressBars() {
+    const progressBars = document.querySelectorAll('.progress-fill');
+    
+    progressBars.forEach(bar => {
+      const parent = bar.closest('[data-stock]');
+      if (!parent) return;
+      
+      const stock = parseInt(parent.getAttribute('data-stock'));
+      let width;
+      
+      if (stock === 1) width = '10%';
+      else if (stock === 2) width = '30%';
+      else if (stock === 3) width = '50%';
+      else if (stock === 4) width = '70%';
+      else width = '90%';
+      
+      bar.style.width = width;
+    });
   }
 
+  // ========== ALERT FUNCTION ==========
   showAlert(message, type = 'success') {
     const alertDiv = document.createElement('div');
     alertDiv.className = `alert alert-${type}`;
@@ -3495,211 +3282,27 @@ class FormHandler {
   }
 }
 
-// ========== COUNTDOWN TIMER ==========
-class CountdownTimer {
-  constructor({ daysElement, hoursElement, minutesElement, secondsElement, progressBar }) {
-    this.daysElement = daysElement;
-    this.hoursElement = hoursElement;
-    this.minutesElement = minutesElement;
-    this.secondsElement = secondsElement;
-    this.progressBar = progressBar;
-    this.endDate = this.calculateEndDate();
-    this.interval = null;
-  }
-
-  calculateEndDate() {
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 3);
-    endDate.setHours(23, 59, 59, 0);
-    return endDate;
-  }
-
-  start() {
-    this.update();
-    this.interval = setInterval(() => this.update(), 1000);
-  }
-
-  stop() {
-    clearInterval(this.interval);
-  }
-
-  update() {
-    const now = new Date().getTime();
-    const distance = this.endDate - now;
-    
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    this.daysElement.textContent = days.toString().padStart(2, '0');
-    this.hoursElement.textContent = hours.toString().padStart(2, '0');
-    this.minutesElement.textContent = minutes.toString().padStart(2, '0');
-    this.secondsElement.textContent = seconds.toString().padStart(2, '0');
-    
-    const totalDuration = 3 * 24 * 60 * 60 * 1000;
-    const elapsed = totalDuration - distance;
-    const progressPercent = (elapsed / totalDuration) * 100;
-    
-    this.progressBar.style.width = `${100 - progressPercent}%`;
-    
-    if (distance < (24 * 60 * 60 * 1000)) {
-      document.querySelectorAll('.countdown-number').forEach(el => {
-        el.style.color = '#ff6b6b';
-      });
-      this.progressBar.style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
-    }
-  }
-}
-
-// ========== NOTIFICATION MANAGER ==========
-class NotificationManager {
-  constructor() {
-    this.notificationElement = document.getElementById('notification');
-    this.notificationText = document.getElementById('notificationText');
-    this.notifications = [
-      "Pak Budi baru saja booking unit Tipe Suite!",
-      "Bu Siti berhasil mendapatkan KPR BJB Syariah untuk Tipe Standard",
-      "Unit Premium 50/120 tersisa 5 unit terakhir!",
-      "Promo DP 0% + motor gratis hanya sampai besok!",
-      "3 unit Standard terjual dalam 1 jam terakhir!"
-    ];
-  }
-
-  showRandom() {
-    const randomNotification = this.notifications[Math.floor(Math.random() * this.notifications.length)];
-    this.notificationText.textContent = randomNotification;
-    this.notificationElement.style.display = 'flex';
-    
-    setTimeout(() => {
-      this.notificationElement.style.display = 'none';
-    }, 5000);
-  }
-}
-
-// ========== SOLD COUNT ANIMATION ==========
-class SoldCountAnimation {
-  constructor(selector) {
-    this.element = document.querySelector(selector);
-    this.count = 12;
-    this.interval = null;
-  }
-
-  start() {
-    this.updateCount();
-    this.interval = setInterval(() => this.updateCount(), 180000);
-  }
-
-  stop() {
-    clearInterval(this.interval);
-  }
-
-  updateCount() {
-    this.count += Math.floor(Math.random() * 3);
-    this.element.textContent = this.count;
-    
-    this.element.style.animation = 'none';
-    void this.element.offsetWidth;
-    this.element.style.animation = 'count-bounce 1s ease';
-  }
-}
-
-// ========== FAQ ACCORDION ==========
-class FAQAccordion {
-  constructor() {
-    this.faqItems = document.querySelectorAll('.faq-item');
-    this.setupAccordion();
-  }
-
-  setupAccordion() {
-    this.faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      
-      question.addEventListener('click', () => {
-        item.classList.toggle('active');
-        
-        this.faqItems.forEach(otherItem => {
-          if (otherItem !== item && otherItem.classList.contains('active')) {
-            otherItem.classList.remove('active');
-          }
-        });
-      });
-    });
-  }
-}
-
-// ========== TYPE SELECTOR ==========
-class TypeSelector {
-  constructor() {
-    this.typeBtns = document.querySelectorAll('.type-btn');
-    this.typeCards = document.querySelectorAll('.type-card');
-    this.setupEventListeners();
-  }
-
-  setupEventListeners() {
-    this.typeBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        this.typeBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const type = btn.dataset.type;
-        
-        this.typeCards.forEach(card => {
-          card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
-        });
-      });
-    });
-  }
-}
-
-// ========== INITIALIZE APPLICATION ==========
+// Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Make sure Firebase is loaded
-  if (typeof firebase !== 'undefined') {
-    window.kertamulyaApp = new KertamulyaApp();
-    
-    // Global functions for HTML onclick attributes
-    window.showModal = (type, content) => {
-      if (!window.kertamulyaApp) return;
-      
-      if (type === 'gallery') {
-        window.kertamulyaApp.galleryModal.show(content || 'standard');
-      } else if (type === 'video') {
-        window.kertamulyaApp.videoModal.show(content || 'standard');
-      } else if (type === 'booking') {
-        window.kertamulyaApp.modalManager.showBookingModal(content);
-      }
-    };
-    
-    window.hideModal = (type) => {
-      if (window.kertamulyaApp) {
-        window.kertamulyaApp.modalManager.hide();
-      }
-    };
-  } else {
-    console.error('Firebase not loaded');
-  }
+  const app = new KertamulyaApp();
 });
 
-// Add CSS for animations
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeOut {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(-20px); }
-  }
-  @keyframes count-bounce {
-    0%, 100% { transform: scale(1); }
-    25% { transform: scale(1.1); }
-    50% { transform: scale(0.95); }
-    75% { transform: scale(1.05); }
-  }
-`;
-document.head.appendChild(style);
+// Add CSS for animations if not already present
+if (!document.getElementById('animation-styles')) {
+  const style = document.createElement('style');
+  style.id = 'animation-styles';
+  style.textContent = `
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-20px); }
+    }
+  `;
+  document.head.appendChild(style);
+}
 </script>
  
 </body>
