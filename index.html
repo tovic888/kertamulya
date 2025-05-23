@@ -2860,30 +2860,42 @@ button, input, textarea, select {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
-// ========== MAIN APPLICATION CLASS ==========
+/**
+ * Kertamulya Residence - Main Application
+ * A complete rewrite of all JavaScript functionality
+ */
+
 class KertamulyaApp {
   constructor() {
-    this.init();
+    // Initialize when DOM is ready
+    if (document.readyState !== 'loading') {
+      this.init();
+    } else {
+      document.addEventListener('DOMContentLoaded', () => this.init());
+    }
   }
 
-  // Initialize all components
   init() {
-    this.setupModals();
-    this.setupCountdown();
-    this.setupTypeSelector();
-    this.setupNotifications();
-    this.setupSoldCountAnimation();
-    this.setupFAQAccordion();
-    this.setupBookingForm();
-    this.setupProgressBars();
+    // Initialize all components
+    this.initModals();
+    this.initCountdown();
+    this.initTypeSelector();
+    this.initNotifications();
+    this.initSoldCount();
+    this.initFAQ();
+    this.initBookingForm();
+    this.initProgressBars();
+    this.initVideoElements();
     
-    // Initial animations
-    this.animateProgressBars();
+    // Make app globally available
+    window.app = this;
   }
 
-  // ========== MODAL MANAGEMENT ==========
-  setupModals() {
-    // Close modals when clicking outside content
+  // ======================
+  // MODAL MANAGEMENT
+  // ======================
+  initModals() {
+    // Close modals when clicking outside
     document.querySelectorAll('.modal').forEach(modal => {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -2893,130 +2905,138 @@ class KertamulyaApp {
     });
 
     // Close buttons
-    document.querySelectorAll('.modal-close, .video-modal-close').forEach(btn => {
+    document.querySelectorAll('[data-modal-close]').forEach(btn => {
       btn.addEventListener('click', () => {
         const modalId = btn.closest('.modal').id.replace('Modal', '');
         this.hideModal(modalId);
       });
     });
-
-    // Initialize gallery modal
-    this.initGalleryModal();
   }
 
-  showModal(type, content = null) {
-    const modalId = `${type}Modal`;
-    const modal = document.getElementById(modalId);
-    
+  showModal(type, data = null) {
+    const modal = document.getElementById(`${type}Modal`);
     if (!modal) return;
 
-    if (type === 'gallery') {
-      this.showGalleryModal(content);
-      return;
-    } else if (type === 'video') {
-      this.showVideoModal(content);
-      return;
-    } else if (type === 'booking' && content) {
-      document.getElementById('type').value = content;
+    // Handle specific modal types
+    switch (type) {
+      case 'gallery':
+        this.showGalleryModal(data);
+        return;
+      case 'video':
+        this.showVideoModal(data);
+        return;
+      case 'booking':
+        if (data) document.getElementById('type').value = data;
+        break;
     }
 
+    // Show the modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   hideModal(type) {
-    const modalId = `${type}Modal`;
-    const modal = document.getElementById(modalId);
-    
+    const modal = document.getElementById(`${type}Modal`);
     if (!modal) return;
 
+    // Handle specific modal types
     if (type === 'video') {
-      document.getElementById('videoFrame').src = '';
+      const iframe = modal.querySelector('iframe');
+      if (iframe) iframe.src = '';
     }
 
+    // Hide the modal
     modal.classList.remove('active');
     document.body.style.overflow = 'auto';
   }
 
-  // ========== GALLERY MODAL ==========
-  initGalleryModal() {
-    $('#galleryCarousel').on('init', () => {
-      // Gallery initialized
-    });
-  }
-
+  // Gallery Modal
   showGalleryModal(type) {
-    const titleMap = {
-      'standard': 'Galeri Tipe Standard 30/60',
-      'suite': 'Galeri Tipe Suite 50/60',
-      'premium': 'Galeri Tipe Premium 50/120'
+    const galleryData = {
+      'standard': {
+        title: 'Tipe Standard 30/60',
+        images: [
+          'https://i.imgur.com/kYxjjEX.jpg',
+          'https://i.imgur.com/QJfJq2l.jpeg',
+          'https://i.imgur.com/Fc4wxey.jpeg'
+        ]
+      },
+      'suite': {
+        title: 'Tipe Suite 50/60',
+        images: [
+          'https://i.imgur.com/rzlJAkz.jpg',
+          'https://i.imgur.com/QwwyO9T.jpeg',
+          'https://i.imgur.com/fjZalPE.jpeg'
+        ]
+      },
+      'premium': {
+        title: 'Tipe Premium 50/120',
+        images: [
+          'https://i.imgur.com/xFgp9FL.jpg',
+          'https://i.imgur.com/DLAHtSG.jpeg',
+          'https://i.imgur.com/THJSL1O.jpeg'
+        ]
+      }
     };
+
+    const gallery = galleryData[type] || galleryData.standard;
+    const carousel = document.getElementById('galleryCarousel');
     
-    document.getElementById('galleryTitle').textContent = titleMap[type] || 'Galeri Rumah';
+    // Set title
+    document.getElementById('galleryTitle').textContent = `Galeri ${gallery.title}`;
     
-    const galleryCarousel = document.getElementById('galleryCarousel');
-    galleryCarousel.innerHTML = '';
-    
-    const images = {
-      'standard': [
-        'https://i.imgur.com/kYxjjEX.jpg',
-        'https://i.imgur.com/QJfJq2l.jpeg',
-        'https://i.imgur.com/Fc4wxey.jpeg'
-      ],
-      'suite': [
-        'https://i.imgur.com/rzlJAkz.jpg',
-        'https://i.imgur.com/QwwyO9T.jpeg',
-        'https://i.imgur.com/fjZalPE.jpeg'
-      ],
-      'premium': [
-        'https://i.imgur.com/xFgp9FL.jpg',
-        'https://i.imgur.com/DLAHtSG.jpeg',
-        'https://i.imgur.com/THJSL1O.jpeg'
-      ]
-    };
-    
-    const typeImages = images[type] || images['standard'];
-    
-    typeImages.forEach(img => {
-      const div = document.createElement('div');
-      div.innerHTML = `<img src="${img}" alt="${type}" style="width:100%; max-height:70vh; object-fit:contain;">`;
-      galleryCarousel.appendChild(div);
+    // Clear and rebuild carousel
+    carousel.innerHTML = '';
+    gallery.images.forEach(img => {
+      const slide = document.createElement('div');
+      slide.innerHTML = `<img src="${img}" alt="${gallery.title}" loading="lazy">`;
+      carousel.appendChild(slide);
     });
-    
-    if ($('#galleryCarousel').hasClass('slick-initialized')) {
-      $('#galleryCarousel').slick('unslick');
+
+    // Initialize/reinitialize Slick
+    if (window.jQuery && window.jQuery.fn.slick) {
+      if ($('#galleryCarousel').hasClass('slick-initialized')) {
+        $('#galleryCarousel').slick('unslick');
+      }
+      
+      $('#galleryCarousel').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+      });
     }
-    
-    $('#galleryCarousel').slick({
-      dots: true,
-      infinite: true,
-      speed: 300,
-      slidesToShow: 1,
-      adaptiveHeight: true,
-      arrows: true,
-      prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-      nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-    });
-    
+
     this.showModal('gallery');
   }
 
-  // ========== VIDEO MODAL ==========
+  // Video Modal
   showVideoModal(type) {
     const videoMap = {
-      'standard': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
-      'suite': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
-      'premium': 'https://www.youtube.com/embed/2vYd5Fd_-Q8',
-      'testimonial1': 'https://www.youtube.com/embed/LgHbkuOKsw0',
-      'testimonial2': 'https://www.youtube.com/embed/UF5V1-Vu6uI'
+      'standard': '2vYd5Fd_-Q8',
+      'suite': '2vYd5Fd_-Q8',
+      'premium': '2vYd5Fd_-Q8',
+      'testimonial1': 'LgHbkuOKsw0',
+      'testimonial2': 'UF5V1-Vu6uI'
     };
+
+    const videoId = videoMap[type] || videoMap.standard;
+    const iframe = document.getElementById('videoFrame');
     
-    document.getElementById('videoFrame').src = videoMap[type] || videoMap['standard'];
-    this.showModal('video');
+    if (iframe) {
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      this.showModal('video');
+    }
   }
 
-  // ========== COUNTDOWN TIMER ==========
-  setupCountdown() {
+  // ======================
+  // COUNTDOWN TIMER
+  // ======================
+  initCountdown() {
     this.updateCountdown();
     setInterval(() => this.updateCountdown(), 1000);
   }
@@ -3026,24 +3046,23 @@ class KertamulyaApp {
     endDate.setDate(endDate.getDate() + 3);
     endDate.setHours(23, 59, 59, 0);
 
-    const now = new Date().getTime();
+    const now = new Date();
     const distance = endDate - now;
     
+    if (distance <= 0) return;
+
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-    document.getElementById('days').textContent = days.toString().padStart(2, '0');
-    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    this.setElementText('days', days.toString().padStart(2, '0'));
+    this.setElementText('hours', hours.toString().padStart(2, '0'));
+    this.setElementText('minutes', minutes.toString().padStart(2, '0'));
+    this.setElementText('seconds', seconds.toString().padStart(2, '0'));
     
-    const totalDuration = 3 * 24 * 60 * 60 * 1000;
-    const elapsed = totalDuration - distance;
-    const progressPercent = (elapsed / totalDuration) * 100;
-    
-    document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
+    const progress = 100 - (distance / (3 * 24 * 60 * 60 * 1000)) * 100;
+    document.querySelector('.progress-bar').style.width = `${progress}%`;
     
     if (distance < (24 * 60 * 60 * 1000)) {
       document.querySelectorAll('.countdown-number').forEach(el => {
@@ -3053,8 +3072,10 @@ class KertamulyaApp {
     }
   }
 
-  // ========== TYPE SELECTOR ==========
-  setupTypeSelector() {
+  // ======================
+  // TYPE SELECTOR
+  // ======================
+  initTypeSelector() {
     const typeBtns = document.querySelectorAll('.type-btn');
     const typeCards = document.querySelectorAll('.type-card');
     
@@ -3064,7 +3085,6 @@ class KertamulyaApp {
         btn.classList.add('active');
         
         const type = btn.dataset.type;
-        
         typeCards.forEach(card => {
           card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
         });
@@ -3072,14 +3092,16 @@ class KertamulyaApp {
     });
   }
 
-  // ========== NOTIFICATIONS ==========
-  setupNotifications() {
+  // ======================
+  // NOTIFICATIONS
+  // ======================
+  initNotifications() {
     setTimeout(() => this.showRandomNotification(), 10000);
-    setInterval(() => this.showRandomNotification(), (Math.floor(Math.random() * 3) + 2) * 60000);
+    setInterval(() => this.showRandomNotification(), (Math.random() * 3 + 2) * 60000);
   }
 
   showRandomNotification() {
-    const notifications = [
+    const messages = [
       "Pak Budi baru saja booking unit Tipe Suite!",
       "Bu Siti berhasil mendapatkan KPR BJB Syariah untuk Tipe Standard",
       "Unit Premium 50/120 tersisa 5 unit terakhir!",
@@ -3087,11 +3109,11 @@ class KertamulyaApp {
       "3 unit Standard terjual dalam 1 jam terakhir!"
     ];
     
-    const randomNotification = notifications[Math.floor(Math.random() * notifications.length)];
     const notification = document.getElementById('notification');
-    const notificationText = document.getElementById('notificationText');
+    if (!notification) return;
     
-    notificationText.textContent = randomNotification;
+    notification.querySelector('#notificationText').textContent = 
+      messages[Math.floor(Math.random() * messages.length)];
     notification.style.display = 'flex';
     
     setTimeout(() => {
@@ -3099,146 +3121,141 @@ class KertamulyaApp {
     }, 5000);
   }
 
-  // ========== SOLD COUNT ANIMATION ==========
-  setupSoldCountAnimation() {
+  // ======================
+  // SOLD COUNT ANIMATION
+  // ======================
+  initSoldCount() {
     const soldCount = document.querySelector('.sold-count');
-    let count = 12;
+    if (!soldCount) return;
+    
+    let count = parseInt(soldCount.textContent) || 12;
     
     setInterval(() => {
-      count += Math.floor(Math.random() * 3);
+      count += Math.floor(Math.random() * 3) + 1;
       soldCount.textContent = count;
       
+      // Trigger animation
       soldCount.style.animation = 'none';
       void soldCount.offsetWidth;
       soldCount.style.animation = 'count-bounce 1s ease';
     }, 180000);
   }
 
-  // ========== FAQ ACCORDION ==========
-  setupFAQAccordion() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      
+  // ======================
+  // FAQ ACCORDION
+  // ======================
+  initFAQ() {
+    document.querySelectorAll('.faq-question').forEach(question => {
       question.addEventListener('click', () => {
-        item.classList.toggle('active');
+        const item = question.closest('.faq-item');
+        const isActive = item.classList.contains('active');
         
-        faqItems.forEach(otherItem => {
-          if (otherItem !== item && otherItem.classList.contains('active')) {
-            otherItem.classList.remove('active');
-          }
+        // Close all items first
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('active');
         });
+        
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+        }
       });
     });
   }
 
-  // ========== BOOKING FORM ==========
-  setupBookingForm() {
-    const bookingForm = document.getElementById('bookingForm');
+  // ======================
+  // BOOKING FORM
+  // ======================
+  initBookingForm() {
+    const form = document.getElementById('bookingForm');
+    if (!form) return;
     
-    if (bookingForm) {
-      bookingForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const name = this.getValue('name');
+      const phone = this.getValue('phone');
+      const type = this.getValue('type');
+      
+      if (!name || !phone || !type) {
+        this.showAlert('Mohon lengkapi semua data terlebih dahulu', 'error');
+        return;
+      }
+      
+      if (!/^628[0-9]{8,11}$/.test(phone)) {
+        this.showAlert('Format nomor WhatsApp harus diawali 628 dan 10-13 digit', 'error');
+        return;
+      }
+      
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      try {
+        // Show loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+        submitBtn.disabled = true;
         
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const type = document.getElementById('type').value;
+        // Prepare data
+        const formData = {
+          name,
+          phone,
+          type,
+          timestamp: new Date().toISOString(),
+          source: 'Website Kertamulya'
+        };
         
-        if (!name || !phone || !type) {
-          this.showAlert('Mohon lengkapi semua data terlebih dahulu', 'error');
-          return;
-        }
+        // Here you would normally send to Firebase/backend
+        // await this.sendToBackend(formData);
         
-        if (!/^628[0-9]{8,11}$/.test(phone)) {
-          this.showAlert('Format nomor WhatsApp harus diawali 628 dan 10-13 digit', 'error');
-          return;
-        }
+        // Create WhatsApp message
+        const message = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
+        const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
         
-        try {
-          const formData = {
-            name: name,
-            phone: phone,
-            type: type,
-            timestamp: new Date().toISOString(),
-            source: 'Website Kertamulya'
-          };
-          
-          const submitBtn = bookingForm.querySelector('button[type="submit"]');
-          const originalBtnText = submitBtn.innerHTML;
-          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
-          submitBtn.disabled = true;
-          
-          // Send to Firebase (you'll need to implement this)
-          // const sheetSuccess = await this.sendToFirebase(formData);
-          
-          submitBtn.innerHTML = originalBtnText;
-          submitBtn.disabled = false;
-          
-          const whatsappMessage = `Halo, saya ${name} (${phone}) ingin booking rumah tipe ${type}. Mohon info selengkapnya.`;
-          const whatsappUrl = `https://wa.me/628977771080?text=${encodeURIComponent(whatsappMessage)}`;
-          
-          this.hideModal('booking');
-          this.showWhatsAppModal(name, phone, type, whatsappUrl);
-          
-        } catch (error) {
-          console.error('Error:', error);
-          this.showAlert('Terjadi kesalahan saat mengirim data', 'error');
-          
-          const submitBtn = bookingForm.querySelector('button[type="submit"]');
-          submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Kirim via WhatsApp';
-          submitBtn.disabled = false;
-        }
-      });
-    }
+        // Show confirmation
+        this.showWhatsAppConfirmation(name, phone, type, whatsappUrl);
+        
+      } catch (error) {
+        console.error('Error:', error);
+        this.showAlert('Terjadi kesalahan saat mengirim data', 'error');
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
   }
 
-  showWhatsAppModal(name, phone, type, whatsappUrl) {
-    const modal = document.getElementById('waModal');
-    const countdownText = document.getElementById('countdownText');
-    
-    // Set booking fee based on type
-    let bookingFee = "Rp500.000";
-    if (type.includes("Suite") || type.includes("Premium")) {
-      bookingFee = "Rp2.000.000";
-    }
+  showWhatsAppConfirmation(name, phone, type, url) {
+    const bookingFee = type.includes('Standard') ? 'Rp500.000' : 'Rp2.000.000';
     
     // Update modal content
-    document.getElementById('waName').textContent = name;
-    document.getElementById('waPhone').textContent = phone;
-    document.getElementById('waType').textContent = type;
-    document.getElementById('waFee').textContent = bookingFee;
+    this.setElementText('waName', name);
+    this.setElementText('waPhone', phone);
+    this.setElementText('waType', type);
+    this.setElementText('waFee', bookingFee);
     
     // Show modal
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    this.showModal('wa');
     
     // Start countdown
     let seconds = 5;
-    countdownText.textContent = seconds;
-    
+    const countdownEl = document.getElementById('countdownText');
     const countdownInterval = setInterval(() => {
       seconds--;
-      countdownText.textContent = seconds;
+      countdownEl.textContent = seconds;
       
       if (seconds <= 0) {
         clearInterval(countdownInterval);
-        window.open(whatsappUrl, '_blank');
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        window.open(url, '_blank');
+        this.hideModal('wa');
       }
     }, 1000);
   }
 
-  // ========== PROGRESS BARS ==========
-  setupProgressBars() {
-    this.animateProgressBars();
-  }
-
-  animateProgressBars() {
-    const progressBars = document.querySelectorAll('.progress-fill');
-    
-    progressBars.forEach(bar => {
+  // ======================
+  // PROGRESS BARS
+  // ======================
+  initProgressBars() {
+    document.querySelectorAll('.progress-fill').forEach(bar => {
       const parent = bar.closest('[data-stock]');
       if (!parent) return;
       
@@ -3255,54 +3272,46 @@ class KertamulyaApp {
     });
   }
 
-  // ========== ALERT FUNCTION ==========
+  // ======================
+  // VIDEO ELEMENTS
+  // ======================
+  initVideoElements() {
+    // Add click handlers to video thumbnails
+    document.querySelectorAll('[data-video-type]').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        this.showVideoModal(thumb.getAttribute('data-video-type'));
+      });
+    });
+  }
+
+  // ======================
+  // HELPER FUNCTIONS
+  // ======================
+  getValue(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  setElementText(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+
   showAlert(message, type = 'success') {
-    const alertDiv = document.createElement('div');
-    alertDiv.className = `alert alert-${type}`;
-    alertDiv.style.position = 'fixed';
-    alertDiv.style.top = '20px';
-    alertDiv.style.right = '20px';
-    alertDiv.style.padding = '1rem 1.5rem';
-    alertDiv.style.backgroundColor = type === 'error' ? '#e74c3c' : '#2ecc71';
-    alertDiv.style.color = 'white';
-    alertDiv.style.borderRadius = '0.5rem';
-    alertDiv.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-    alertDiv.style.zIndex = '1000';
-    alertDiv.style.animation = 'fadeIn 0.3s ease-in-out';
-    alertDiv.textContent = message;
-    
-    document.body.appendChild(alertDiv);
+    const alert = document.createElement('div');
+    alert.className = `alert alert-${type}`;
+    alert.innerHTML = message;
+    document.body.appendChild(alert);
     
     setTimeout(() => {
-      alertDiv.style.animation = 'fadeOut 0.3s ease-in-out';
-      setTimeout(() => {
-        alertDiv.remove();
-      }, 300);
+      alert.classList.add('fade-out');
+      setTimeout(() => alert.remove(), 300);
     }, 3000);
   }
 }
 
-// Initialize the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  const app = new KertamulyaApp();
-});
-
-// Add CSS for animations if not already present
-if (!document.getElementById('animation-styles')) {
-  const style = document.createElement('style');
-  style.id = 'animation-styles';
-  style.textContent = `
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(-20px); }
-    }
-  `;
-  document.head.appendChild(style);
-}
+// Initialize the application
+new KertamulyaApp();
 </script>
  
 </body>
