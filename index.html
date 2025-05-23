@@ -1627,14 +1627,16 @@ button, input, textarea, select {
 }
 
 /* Gallery Modal */
+.gallery-slide img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
 .gallery-modal .modal-content {
-      max-width: 90%;
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-      box-shadow: none;
-    }
+  max-width: 90%;
+  max-height: 90vh;
+}
 
     .gallery-modal .modal-body {
       flex-grow: 1;
@@ -2945,22 +2947,21 @@ function initGalleryModal() {
   // Image sets with direct image URLs
   const galleryImages = {
     standard: [
+      'https://i.imgur.com/kYxjjEX.jpg',
       'https://i.imgur.com/JKpZ6YT.jpg',
-      'https://i.imgur.com/NXt5lhy.jpg',
-      'https://i.imgur.com/yCkpfGP.jpg'
+      'https://i.imgur.com/NXt5lhy.jpg'
     ],
     suite: [
+      'https://i.imgur.com/rzlJAkz.jpg',
       'https://i.imgur.com/SG7lFvg.jpg',
-      'https://i.imgur.com/LJpsD3m.jpg',
-      'https://i.imgur.com/UmdNjnI.jpg'
+      'https://i.imgur.com/LJpsD3m.jpg'
     ],
     premium: [
       'https://i.imgur.com/xFgp9FL.jpg',
-      'https://i.imgur.com/rzlJAkz.jpg',
-      'https://i.imgur.com/kYxjjEX.jpg'
+      'https://i.imgur.com/UmdNjnI.jpg',
+      'https://i.imgur.com/yCkpfGP.jpg'
     ]
   };
-
   // Initialize gallery buttons
   document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
