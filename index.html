@@ -1631,7 +1631,7 @@ button, input, textarea, select {
   border: none;
 }
 
-/* Gallery Modal */
+/* ===== GALLERY MODAL STYLES ===== */
 .gallery-modal .modal-content {
   max-width: 90vw;
   max-height: 90vh;
@@ -1652,13 +1652,41 @@ button, input, textarea, select {
   backdrop-filter: blur(10px);
 }
 
+.gallery-modal .modal-title {
+  color: white;
+  padding: 15px;
+  margin: 0;
+  text-align: center;
+  font-size: 1.2rem;
+  background: rgba(0,0,0,0.6);
+}
+
+.gallery-modal .modal-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--danger);
+  color: white;
+  z-index: 1100;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .gallery-carousel {
   flex-grow: 1;
   position: relative;
   height: 70vh;
 }
 
-.slick-list, .slick-track {
+.slick-list, 
+.slick-track {
   height: 100%;
 }
 
@@ -1685,7 +1713,8 @@ button, input, textarea, select {
 }
 
 /* Navigation arrows */
-.slick-prev, .slick-next {
+.slick-prev, 
+.slick-next {
   width: 50px;
   height: 50px;
   z-index: 1000;
@@ -1697,7 +1726,8 @@ button, input, textarea, select {
   justify-content: center;
 }
 
-.slick-prev:hover, .slick-next:hover {
+.slick-prev:hover, 
+.slick-next:hover {
   background: var(--primary) !important;
   transform: scale(1.1);
 }
@@ -1726,34 +1756,6 @@ button, input, textarea, select {
   opacity: 1;
 }
 
-/* Modal title and close */
-.gallery-modal .modal-title {
-  color: white;
-  padding: 15px;
-  margin: 0;
-  text-align: center;
-  font-size: 1.2rem;
-  background: rgba(0,0,0,0.6);
-}
-
-.gallery-modal .modal-close {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  background: var(--danger);
-  color: white;
-  z-index: 1100;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .gallery-carousel {
@@ -1764,7 +1766,8 @@ button, input, textarea, select {
     padding: 10px;
   }
   
-  .slick-prev, .slick-next {
+  .slick-prev, 
+  .slick-next {
     width: 40px;
     height: 40px;
   }
@@ -1775,6 +1778,14 @@ button, input, textarea, select {
   
   .slick-next {
     right: 5px;
+  }
+  
+  .gallery-modal .modal-close {
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
   }
 }
 
