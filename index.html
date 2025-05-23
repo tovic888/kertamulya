@@ -2749,13 +2749,11 @@ button, input, textarea, select {
   </div>
 
 <!-- Gallery Modal -->
-  <div class="modal gallery-modal" id="galleryModal">
+ <div class="modal" id="galleryModal">
     <div class="modal-content">
-      <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
-      <div class="modal-body">
-        <h3 class="modal-title" id="galleryTitle">Galeri Foto</h3>
-        <div class="gallery-carousel" id="galleryCarousel"></div>
-      </div>
+      <span class="close" onclick="hideGallery()">&times;</span>
+      <h2 id="galleryTitle"></h2>
+      <div class="gallery-container" id="galleryContainer"></div>
     </div>
   </div>
 
@@ -2789,7 +2787,7 @@ button, input, textarea, select {
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-  <script>
+<script>
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all components
