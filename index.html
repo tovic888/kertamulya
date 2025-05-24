@@ -2025,7 +2025,7 @@ button, input, textarea, select {
     <i class="fab fa-whatsapp"></i>
   </a>
 
- <!-- House Types -->
+<!-- House Types Section -->
 <section class="house-types section" id="house-types">
   <div class="container">
     <div class="section-title">
@@ -2056,7 +2056,7 @@ button, input, textarea, select {
           </div>
           
           <div class="type-card-image">
-            <img src="https://imgur.com/kYxjjEX.jpg" alt="Tipe Standard 30/60" loading="lazy">
+            <img src="img/tipe-rumah/standart/standar-utama.webp" alt="Tipe Standard 30/60" loading="lazy">
           </div>
           <div class="type-card-actions">
             <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'standard')">
@@ -2112,7 +2112,7 @@ button, input, textarea, select {
           </div>
           
           <div class="type-card-image">
-            <img src="https://imgur.com/rzlJAkz.jpg" alt="Tipe Suite 50/60" loading="lazy">
+            <img src="img/tipe-rumah/suite/suite-utama.webp" alt="Tipe Suite 50/60" loading="lazy">
           </div>
           <div class="type-card-actions">
             <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'suite')">
@@ -2168,7 +2168,7 @@ button, input, textarea, select {
           </div>
           
           <div class="type-card-image">
-            <img src="https://imgur.com/xFgp9FL.jpg" alt="Tipe Premium 50/120" loading="lazy">
+            <img src="img/tipe-rumah/premium/premium-utama.webp" alt="Tipe Premium 50/120" loading="lazy">
           </div>
           <div class="type-card-actions">
             <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'premium')">
@@ -2997,22 +2997,41 @@ Terima kasih.`;
 
 // ========== GALLERY MODAL ==========
 function initGalleryModal() {
-  // Image sets with direct image URLs
+  // Image sets with local image paths
   const galleryImages = {
     standard: [
-      'https://i.imgur.com/kYxjjEX.jpg',
-      'https://i.imgur.com/JKpZ6YT.jpg',
-      'https://i.imgur.com/NXt5lhy.jpg'
+      'img/tipe-rumah/standart/standar-utama.webp',
+      'img/tipe-rumah/standart/standar1.webp',
+      'img/tipe-rumah/standart/standar2.webp',
+      'img/tipe-rumah/standart/standar3.webp',
+      'img/tipe-rumah/standart/standar4.webp',
+      'img/tipe-rumah/standart/standar5.webp',
+      'img/tipe-rumah/standart/standar6.webp',
+      'img/tipe-rumah/standart/standar7.webp',
+      'img/tipe-rumah/standart/denah-standar.webp',
+      'img/tipe-rumah/standart/spek-standar.webp'
     ],
     suite: [
-      'https://i.imgur.com/rzlJAkz.jpg',
-      'https://i.imgur.com/SG7lFvg.jpg',
-      'https://i.imgur.com/LJpsD3m.jpg'
+      'img/tipe-rumah/suite/suite-utama.webp',
+      'img/tipe-rumah/suite/suite1.webp',
+      'img/tipe-rumah/suite/suite2.webp',
+      'img/tipe-rumah/suite/suite3.webp',
+      'img/tipe-rumah/suite/suite4.webp',
+      'img/tipe-rumah/suite/suite5.webp',
+      'img/tipe-rumah/suite/denah-suite1.webp',
+      'img/tipe-rumah/suite/denah-suite2.webp',
+      'img/tipe-rumah/suite/spek-suite.webp'
     ],
     premium: [
-      'https://i.imgur.com/xFgp9FL.jpg',
-      'https://i.imgur.com/UmdNjnI.jpg',
-      'https://i.imgur.com/yCkpfGP.jpg'
+      'img/tipe-rumah/premium/premium-utama.webp',
+      'img/tipe-rumah/premium/premium1.webp',
+      'img/tipe-rumah/premium/premium2.webp',
+      'img/tipe-rumah/premium/premium3.webp',
+      'img/tipe-rumah/premium/premium4.webp',
+      'img/tipe-rumah/premium/premium5.webp',
+      'img/tipe-rumah/premium/denah-premium1.webp',
+      'img/tipe-rumah/premium/denah-premium2.webp',
+      'img/tipe-rumah/premium/spek-premium.webp'
     ]
   };
 
@@ -3062,7 +3081,7 @@ function showGalleryModal(type, images) {
   document.getElementById('galleryModal').classList.add('active');
 }
 
-// ========== MODAL FUNCTIONS ==========
+
 // ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
   if (type === 'gallery' && subtype) {
