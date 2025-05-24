@@ -774,7 +774,7 @@ button, input, textarea, select {
 
 .location-access {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* Ubah dari auto-fit ke 3 kolom tetap */
   gap: 1.5rem;
 }
 
@@ -878,7 +878,20 @@ button, input, textarea, select {
     padding: 0.8rem;
   }
 }
-/* ===== TESTIMONI ===== */
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .location-access {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+  }
+}
+
+@media (max-width: 576px) {
+  .location-access {
+    grid-template-columns: 1fr; /* 1 kolom di mobile */
+  }
+}
+
+    /* ===== TESTIMONI ===== */
 .testimonials {
   background: linear-gradient(135deg, #111, #222);
   color: var(--light);
