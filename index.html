@@ -3080,4 +3080,268 @@ function initGalleryModal() {
       'img/tipe-rumah/premium/premium4.webp',
       'img/tipe-rumah/premium/premium5.webp',
       'img/tipe-rumah/premium/denah-premium1.webp',
-      'img/tipe-rumah/premium
+          'img/tipe-rumah/premium/denah-premium2.webp',
+      'img/tipe-rumah/premium/spek-premium.webp'
+    ]
+  };
+
+  // Initialize Slick carousel when modal is shown
+  window.showModal = function(type, houseType) {
+    if (type === 'gallery') {
+      const modal = document.getElementById('galleryModal');
+      const carousel = document.getElementById('galleryCarousel');
+      const title = document.getElementById('galleryTitle');
+      
+      // Set title based on house type
+      title.textContent = `Galeri Tipe ${houseType.charAt(0).toUpperCase() + houseType.slice(1)}`;
+      
+      // Clear previous images
+      carousel.innerHTML = '';
+      
+      // Add new images
+      galleryImages[houseType].forEach(imgSrc => {
+        const imgDiv = document.createElement('div');
+        imgDiv.innerHTML = `<img src="${imgSrc}" alt="Galeri Rumah" loading="lazy">`;
+        carousel.appendChild(imgDiv);
+      });
+      
+      // Show modal
+      modal.classList.add('active');
+      
+      // Initialize Slick after a small delay to allow DOM update
+      setTimeout(() => {
+        $(carousel).slick({
+          dots: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          adaptiveHeight: true,
+          arrows: true,
+          prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+          nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+        });
+      }, 100);
+    } else if (type === 'video') {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoFrame');
+      
+      // Set video based on house type
+      let videoId = '';
+      if (houseType === 'standard') videoId = 'LgHbkuOKsw0';
+      if (houseType === 'suite') videoId = 'UF5V1-Vu6uI';
+      if (houseType === 'premium') videoId = '2vYd5Fd_-Q8';
+      if (houseType === 'testimonial1') videoId = 'LgHbkuOKsw0';
+      if (houseType === 'testimonial2') videoId = 'UF5V1-Vu6uI';
+      
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      modal.classList.add('active');
+    }
+  };
+
+  window.hideModal = function(type) {
+    if (type === 'gallery') {
+      const modal = document.getElementById('galleryModal');
+      const carousel = document.getElementById('galleryCarousel');
+      
+      // Destroy Slick before hiding
+      if ($(carousel).hasClass('slick-initialized')) {
+        $(carousel).slick('unslick');
+      }
+      
+      modal.classList.remove('active');
+    } else if (type === 'video') {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoFrame');
+      
+      iframe.src = '';
+      modal.classList.remove('active');
+    }
+  };
+}
+
+// ========== ANIMATE PROGRESS BARS ==========
+function animateProgressBars() {
+  const progressBars = document.querySelectorAll('.progress-fill');
+  
+  progressBars.forEach(bar => {
+    const width = bar.style.width;
+    bar.style.width = '0%';
+    
+    setTimeout(() => {
+      bar.style.transition = 'width 1.5s ease-out';
+      bar.style.width = width;
+    }, 300);
+  });
+}
+
+// ========== SMOOTH SCROLL ==========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// ========== FIREWORKS ANIMATION ==========
+function createFireworks() {
+  const colors = ['#f1c40f', '#e74c3c', '#2ecc71', '#3498db', '#9b59b6'];
+  const container = document.querySelector('.hero');
+  
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('firework-particle');
+    
+    // Random position in the container
+    const x = Math.random() * container.offsetWidth;
+    const y = Math.random() * container.offsetHeight;
+    
+    // Random color
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    // Random movement direction
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 50 + Math.random() * 100;
+    const xEnd = x + Math.cos(angle) * distance;
+    const yEnd = y + Math.sin(angle) * distance;
+    
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    particle.style.backgroundColor = color;
+    particle.style.setProperty('--random-x', `${xEnd - x}px`);
+    particle.style.setProperty('--random-y', `${yEnd - y}px`);
+    
+    container.appendChild(particle);
+    
+    // Remove particle after animation
+    setTimeout(() => {
+      particle.remove();
+    }, 1000);
+  }
+}
+
+// Trigger fireworks on CTA click
+document.querySelectorAll('.btn-primary').forEach(btn => {
+  btn.addEventListener('click', createFireworks);
+});
+
+// ========== FORM VALIDATION ==========
+function validateBookingForm() {
+  const form = document.getElementById('bookingForm');
+  if (!form) return;
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = form.querySelector('input[name="name"]').value;
+    const phone = form.querySelector('input[name="phone"]').value;
+    const email = form.querySelector('input[name="email"]').value;
+    const houseType = form.querySelector('select[name="houseType"]').value;
+    
+    if (!name || !phone || !email || !houseType) {
+      alert('Harap lengkapi semua field yang wajib diisi!');
+      return;
+    }
+    
+    // If validation passes, submit form
+    this.submit();
+  });
+}
+
+// Initialize form validation
+validateBookingForm();
+
+// ========== STOCK INDICATOR UPDATES ==========
+function updateStockIndicators() {
+  const indicators = document.querySelectorAll('.stock-indicator');
+  
+  indicators.forEach(indicator => {
+    const card = indicator.closest('.type-card');
+    const stock = parseInt(card.dataset.stock);
+    const progressFill = indicator.querySelector('.progress-fill');
+    const stockText = indicator.querySelector('.stock-text');
+    
+    // Update progress bar width based on stock level
+    let width;
+    let text;
+    
+    if (stock === 1) {
+      width = '10%';
+      text = 'Hampir Habis!';
+    } else if (stock === 2 || stock === 3 || stock === 4) {
+      width = '30%';
+      text = 'Tersisa Sedikit';
+    } else if (stock >= 5) {
+      width = '50%';
+      text = 'Tersedia';
+    } else {
+      width = '0%';
+      text = 'Sold Out';
+    }
+    
+    progressFill.style.width = width;
+    stockText.textContent = text;
+  });
+}
+
+// Initialize stock indicators
+updateStockIndicators();
+
+// ========== BOOKING BUTTONS ==========
+function setupBookingButtons() {
+  document.querySelectorAll('[href="#unitBooking"]').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('unitBooking').scrollIntoView({
+        behavior: 'smooth'
+      });
+      
+      // Create fireworks effect
+      createFireworks();
+    });
+  });
+}
+
+// Initialize booking buttons
+setupBookingButtons();
+
+// ========== PSYCHOLOGICAL COPY ==========
+function showPsychologicalCopy() {
+  const copies = [
+    "Rp100.000 bukan harga rumah, tapi harga kesempatan untuk mengamankan unit sebelum orang lain.",
+    "Rumah bisa Anda pikirkan besok. Tapi unit yang Anda suka bisa dibooking orang lain hari ini.",
+    "Kami hanya memproses user yang sudah booking. Tanpa booking, kami tidak bisa tahan unit."
+  ];
+  
+  // Rotate through copies every 15 seconds
+  let currentIndex = 0;
+  const copyElement = document.querySelector('.psychological-copy p');
+  
+  if (copyElement) {
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % copies.length;
+      copyElement.textContent = copies[currentIndex];
+    }, 15000);
+  }
+}
+
+// Initialize psychological copy rotation
+showPsychologicalCopy();
+</script>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>
+     
+
