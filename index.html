@@ -1396,30 +1396,6 @@ button, input, textarea, select {
   opacity: 1;
   color: var(--primary);
 }
-/* ===== KOMPONEN TAMBAHAN ===== */
-/* WhatsApp Float */
-.whatsapp-float {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 60px;
-  background: #25D366;
-  color: var(--light);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.75rem;
-  box-shadow: var(--shadow-lg);
-  z-index: 99;
-  transition: var(--transition);
-  animation: float 3s ease-in-out infinite;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
-}
 
 /* Notification */
 .notification {
@@ -1862,15 +1838,7 @@ button, input, textarea, select {
     font-size: 0.75rem;
   }
   
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-    bottom: 1.5rem;
-    right: 1.5rem;
-  }
-  
-  .gallery-carousel img {
+   .gallery-carousel img {
     max-height: 50vh;
   }
   
@@ -2192,11 +2160,7 @@ button, input, textarea, select {
     <span id="notificationText">Pak Budi baru saja booking unit Tipe Suite!</span>
   </div>
 
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/628977771080?text=Saya%20tertarik%20dengan%20Kertamulya%20Residence" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
+  
 <!-- House Types Section -->
 <section class="house-types section" id="house-types">
   <div class="container">
@@ -2762,44 +2726,21 @@ button, input, textarea, select {
     </div>
   </section>
 
-  
-
-  <!-- CTA Section -->
-  <section class="cta-section">
+    <!-- Update CTA section -->
+<section class="cta-section">
   <div class="container">
-    <h2 class="cta-title">Siap Memiliki Rumah Islami Impian?</h2>
-    <p class="cta-desc">Booking sekarang dengan DP 0% dan dapatkan motor listrik gratis setelah 6x angsuran</p>
+    <h2 class="cta-title">AMANKAN STOK UNIT SEKARANG!</h2>
+    <p class="cta-desc">Hanya Rp100.000 untuk mengunci unit pilihan Anda. Waktu tersisa:</p>
     
     <div class="countdown-container">
-      <div class="countdown">
-        <div class="countdown-item">
-          <div class="countdown-number" id="days">00</div>
-          <div class="countdown-label">Hari</div>
-        </div>
-        <div class="countdown-separator">:</div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="hours">00</div>
-          <div class="countdown-label">Jam</div>
-        </div>
-        <div class="countdown-separator">:</div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="minutes">00</div>
-          <div class="countdown-label">Menit</div>
-        </div>
-        <div class="countdown-separator">:</div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="seconds">00</div>
-          <div class="countdown-label">Detik</div>
-        </div>
-      </div>
-      <div class="countdown-progress">
-        <div class="progress-bar"></div>
-      </div>
+      <!-- Countdown elements same as before -->
     </div>
     
-    <button class="btn btn-accent btn-lg pulse-animation" onclick="showModal('booking')">
-      <i class="fab fa-whatsapp"></i> Booking Sekarang
+    <button class="btn btn-accent btn-lg pulse-animation" onclick="document.getElementById('unitBooking').scrollIntoView({behavior: 'smooth'})">
+      <i class="fas fa-lock"></i> AMANKAN STOK SEKARANG
     </button>
+    
+    <p class="small-text">*Stok terbatas, hanya 5 unit tersisa per tipe</p>
   </div>
 </section>
 
@@ -2814,6 +2755,35 @@ button, input, textarea, select {
       
       <div class="faq-container">
         <div class="faq-item active">
+<div class="faq-item">
+  <div class="faq-question">
+    <span>Apakah Rp100.000 bisa dikembalikan?</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="faq-answer">
+    <p>Ya! Uang Rp100.000 akan kami kembalikan 100% jika setelah survei lokasi Anda memutuskan tidak melanjutkan pembelian.</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-question">
+    <span>Berapa lama unit akan diamankan?</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="faq-answer">
+    <p>Unit akan kami amankan selama 7 hari setelah pembayaran. Jika dalam 7 hari Anda tidak melakukan survei, uang akan hangus.</p>
+  </div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-question">
+    <span>Bagaimana jika unit sudah habis?</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="faq-answer">
+    <p>Kami akan mengembalikan uang Anda 200% sebagai kompensasi jika unit yang Anda amankan ternyata sudah terjual.</p>
+  </div>
+</div>
           <div class="faq-question">
             <span>Benarkah hanya dengan booking fee 500rb sudah bisa dapat rumah?</span>
             <i class="fas fa-chevron-down"></i>
@@ -3059,7 +3029,7 @@ button, input, textarea, select {
   </div>
 
 <!-- Gallery Modal -->
-<div class="modal gallery-modal" id="galleryModal">
+<<div class="modal" id="galleryModal">
   <div class="modal-content">
     <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
     <div class="modal-body">
@@ -3069,8 +3039,6 @@ button, input, textarea, select {
   </div>
 </div>
 
-
-<!-- Video Modal -->
 <div class="video-modal" id="videoModal">
   <div class="video-modal-content">
     <button class="video-modal-close" onclick="hideModal('video')">&times;</button>
@@ -3080,22 +3048,7 @@ button, input, textarea, select {
   </div>
 </div>
 
-  <!-- WhatsApp Confirmation Modal -->
-  <div class="modal" id="waModal">
-    <div class="modal-content">
-      <div class="modal-body" style="text-align: center;">
-        <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-          <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
-        </div>
-        <h3 class="modal-title">Formulir Terkirim!</h3>
-        <p class="modal-desc">Tim marketing kami akan segera menghubungi Anda melalui WhatsApp</p>
-        <p id="countdownText" style="margin: 1rem 0;">Mengarahkan ke WhatsApp dalam 5 detik...</p>
-        <a href="#" id="waLink" class="btn btn-accent" style="display: inline-flex;">
-          <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
-        </a>
-      </div>
-    </div>
-  </div>
+
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
