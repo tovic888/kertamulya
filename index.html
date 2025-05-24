@@ -1976,8 +1976,6 @@ button, input, textarea, select {
   background: linear-gradient(90deg, #f39c12, #e67e22);
 }
 
-
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .stock-indicator {
@@ -1988,6 +1986,85 @@ button, input, textarea, select {
   }
 }
 
+/* New Booking Section Styles */
+.booking-section {
+  background-color: #f9f9f9;
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.booking-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.booking-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+}
+
+.booking-description {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.booking-cta {
+  margin-top: 2rem;
+}
+
+.booking-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.booking-feature {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.booking-feature i {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.booking-feature h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.booking-feature p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* Psychological Copy Styles */
+.psychological-copy {
+  background: var(--primary-light);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin: 2rem 0;
+  text-align: center;
+  border-left: 4px solid var(--primary);
+}
+
+.psychological-copy p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 0;
+}
   </style>
 </head>
 <body>
@@ -1998,7 +2075,11 @@ button, input, textarea, select {
       <img src="img/branding/logo-kertamulya.png" alt="Kertamulya Residence" class="hero-logo" loading="lazy">
       
       <h1>Perumahan Islami Terbaik di Kuningan</h1>
-      <p>DP 0% + Motor Listrik Gratis | Cicilan Mulai Rp1 Juta-an/Bulan</p>
+      <p>DP 0% + Motor Listrik Gratis | Booking Fee Rp100.000 untuk Amankan Unit</p>
+      
+      <div class="psychological-copy">
+        <p>Rp100.000 bukan harga rumah, tapi harga kesempatan untuk mengamankan unit sebelum orang lain.</p>
+      </div>
       
       <div class="sold-today">
         <div class="sold-count">12</div>
@@ -2006,8 +2087,8 @@ button, input, textarea, select {
       </div>
       
       <div class="cta-buttons">
-        <a href="#house-types" class="btn btn-outline">
-          <i class="fas fa-home"></i> Lihat Tipe Rumah
+        <a href="#unitBooking" class="btn btn-primary">
+          <i class="fas fa-home"></i> Booking Sekarang
         </a>
       </div>
     </div>
@@ -2090,9 +2171,9 @@ button, input, textarea, select {
               <i class="fas fa-car"></i> Carport & Taman
             </div>
           </div>
-          <button class="btn btn-primary btn-block" onclick="showModal('booking', 'Standard 30/60')">
-            <i class="fab fa-whatsapp"></i> Booking Sekarang
-          </button>
+          <a href="#unitBooking" class="btn btn-primary btn-block">
+            <i class="fas fa-lock"></i> Booking Sekarang
+          </a>
         </div>
       </div>
       
@@ -2146,9 +2227,9 @@ button, input, textarea, select {
               <i class="fas fa-couch"></i> Ruang Tamu & Keluarga
             </div>
           </div>
-          <button class="btn btn-primary btn-block" onclick="showModal('booking', 'Suite 50/60')">
-            <i class="fab fa-whatsapp"></i> Booking Sekarang
-          </button>
+          <a href="#unitBooking" class="btn btn-primary btn-block">
+            <i class="fas fa-lock"></i> Booking Sekarang
+          </a>
         </div>
       </div>
       
@@ -2202,15 +2283,14 @@ button, input, textarea, select {
               <i class="fas fa-umbrella-beach"></i> Gazebo & Taman Pribadi
             </div>
           </div>
-          <button class="btn btn-primary btn-block" onclick="showModal('booking', 'Premium 50/120')">
-            <i class="fab fa-whatsapp"></i> Booking Sekarang
-          </button>
+          <a href="#unitBooking" class="btn btn-primary btn-block">
+            <i class="fas fa-lock"></i> Booking Sekarang
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- Why Choose Us Section -->
 <section class="why-choose" id="why-choose">
@@ -2278,880 +2358,18 @@ button, input, textarea, select {
   </div>
 </section>
 
+<!-- Psychological Copy Section -->
+<section class="section">
+  <div class="container">
+    <div class="psychological-copy">
+      <p>Rumah bisa Anda pikirkan besok. Tapi unit yang Anda suka bisa dibooking orang lain hari ini.</p>
+    </div>
+  </div>
+</section>
 
 <!-- Facilities Section -->
 <section class="facilities-section" id="facilities">
   <div class="container">
     <div class="section-title">
       <h2>Fasilitas Unggulan</h2>
-      <p>Nikmati berbagai fasilitas premium untuk kenyamanan keluarga Anda</p>
-    </div>
-    
-    <div class="facilities-grid">
-      <!-- Facility 1 -->
-      <div class="facility-card">
-        <div class="facility-image">
-          <img src="img/fasilitas/masjid.webp" alt="Masjid Al Fawwaz" loading="lazy">
-        </div>
-        <div class="facility-content">
-          <h3 class="facility-title">Masjid Al Fawwaz</h3>
-          <p class="facility-desc">Masjid megah kapasitas 400 jamaah dengan fasilitas wudhu yang nyaman dan tempat parkir luas.</p>
-        </div>
-      </div>
-      
-      <!-- Facility 2 -->
-      <div class="facility-card">
-        <div class="facility-image">
-          <img src="img/fasilitas/tahfidz.webp" alt="Saung Tahfidz" loading="lazy">
-        </div>
-        <div class="facility-content">
-          <h3 class="facility-title">Saung Tahfidz</h3>
-          <p class="facility-desc">Tempat menghafal Al-Qur'an dengan metode modern dan guru bersanad untuk anak-anak dan dewasa.</p>
-        </div>
-      </div>
-      
-      <!-- Facility 3 -->
-      <div class="facility-card">
-        <div class="facility-image">
-          <img src="img/fasilitas/olahraga.webp" alt="Sunnah Sport" loading="lazy">
-        </div>
-        <div class="facility-content">
-          <h3 class="facility-title">Sunnah Sport</h3>
-          <p class="facility-desc">Fasilitas olahraga sunnah seperti panahan, berkuda, dan jogging track yang aman dan nyaman.</p>
-        </div>
-      </div>
-      
-      <!-- Facility 4 -->
-      <div class="facility-card">
-        <div class="facility-image">
-          <img src="img/fasilitas/community.webp" alt="Community Center" loading="lazy">
-        </div>
-        <div class="facility-content">
-          <h3 class="facility-title">Community Center</h3>
-          <p class="facility-desc">Tempat berkumpul keluarga dengan cafe sehat dan ruang serbaguna untuk acara komunitas.</p>
-        </div>
-      </div>
-      
-      <!-- Facility 5 -->
-      <div class="facility-card">
-        <div class="facility-image">
-          <img src="img/fasilitas/greenhouse.webp" alt="Green House" loading="lazy">
-        </div>
-        <div class="facility-content">
-          <h3 class="facility-title">Green House</h3>
-          <p class="facility-desc">Area hijau dengan tanaman produktif untuk ketahanan pangan keluarga dan edukasi anak-anak.</p>
-        </div>
-      </div>
-      
-      <!-- Facility 6 -->
-      <div class="facility-card">
-        <div class="facility-image">
-          <img src="https://i.imgur.com/THJSL1O.jpeg" alt="Playground" loading="lazy">
-        </div>
-        <div class="facility-content">
-          <h3 class="facility-title">Playground Islami</h3>
-          <p class="facility-desc">Area bermain anak yang aman dengan permainan edukatif bernuansa islami.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Location Section -->
-<section class="location-section" id="location">
-  <div class="container">
-    <div class="section-title">
-      <h2>Lokasi Strategis</h2>
-      <p>Pusat kota Kuningan dengan akses mudah ke berbagai fasilitas</p>
-    </div>
-    
-    <div class="location-container">
-      <div class="location-map-container">
-        <div class="location-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence%2C%20Jl.%20Kertayasa%2C%20Blok%20Congkleng%2C%20Kertayasa%2C%20Kec.%20Sindangagung%2C%20Kabupaten%20Kuningan%2C%20Jawa%20Barat%2045573!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
-          <a href="https://maps.app.goo.gl/mdAmsNKHCpSuX7mo9" class="btn btn-accent btn-map-directions" target="_blank">
-            <i class="fas fa-directions"></i> Petunjuk Arah
-          </a>
-        </div>
-        <div class="location-address">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Kertamulya Residence, Jl. Kertayasa, Blok Congkleng, Kertayasa, Kec. Sindangagung, Kab. Kuningan, Jawa Barat</span>
-        </div>
-      </div>
-      
-      <div class="location-access">
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-road"></i>
-          </div>
-          <h4 class="access-title">Jalan Nasional</h4>
-          <p class="access-info">5 menit ke Jalan Nasional Kuningan-Cirebon</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 5 menit
-          </div>
-        </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-hospital-alt"></i>
-          </div>
-          <h4 class="access-title">RS Kuningan Medical Center</h4>
-          <p class="access-info">5 menit ke rumah sakit modern di Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 5 menit
-          </div>
-        </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-bus"></i>
-          </div>
-          <h4 class="access-title">Terminal Kuningan</h4>
-          <p class="access-info">6 menit ke terminal utama Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 6 menit
-          </div>
-        </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-university"></i>
-          </div>
-          <h4 class="access-title">Universitas Kuningan</h4>
-          <p class="access-info">12 menit ke kampus utama Universitas Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 12 menit
-          </div>
-        </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-shopping-basket"></i>
-          </div>
-          <h4 class="access-title">Esbe Mart</h4>
-          <p class="access-info">15 menit ke pusat perbelanjaan terbesar di Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 15 menit
-          </div>
-        </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-landmark"></i>
-          </div>
-          <h4 class="access-title">Kantor Bupati</h4>
-          <p class="access-info">16 menit ke pusat pemerintahan Kabupaten Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 16 menit
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Testimonials -->
-<section class="testimonials section" id="testimonials">
-  <div class="container">
-    <div class="section-title">
-      <h2>Apa Kata Mereka?</h2>
-      <p>Testimoni jujur dari penghuni Kertamulya Residence</p>
-    </div>
-    
-    <div class="testimonial-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-        <img src="img/testimoni/testimoni-1.webp" alt="Pak Encep" class="testimonial-avatar" loading="lazy">  
-          <div>
-            <h4 class="testimonial-name">Pak Encep</h4>
-            <div class="testimonial-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <p class="testimonial-text">
-          "Alhamdulillah setelah 5 tahun sewa rumah, akhirnya bisa punya rumah sendiri via KPR BJB Syariah. Proses mudah dan lingkungannya sangat islami."
-        </p>
-        <div class="testimonial-footer">
-          <span>Tipe Standard 30/60</span>
-          <span>Jan 2025</span>
-        </div>
-      </div>
-      
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <img src="img/testimoni/testimoni-2.webp" alt="Pak Erfan" class="testimonial-avatar" loading="lazy">
-
-          <div>
-            <h4 class="testimonial-name">Pak Erfan</h4>
-            <div class="testimonial-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-          </div>
-        </div>
-        <p class="testimonial-text">
-          "Motor listrik benar-benar diberikan setelah 6x angsuran. Sekarang anak-anak bisa belajar mengaji di masjid komplek dengan nyaman."
-        </p>
-        <div class="testimonial-footer">
-          <span>Tipe Suite 50/60</span>
-          <span>Mar 2025</span>
-        </div>
-      </div>
-      
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <img src="img/testimoni/testimoni-3.webp" alt="Bu Sofyan" class="testimonial-avatar" loading="lazy">
-          <div>
-            <h4 class="testimonial-name">Bu Sofyan</h4>
-            <div class="testimonial-rating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <p class="testimonial-text">
-          "Sebagai single parent, saya sangat terbantu dengan cicilan Rp1,2jt/bulan. Fasilitas tahfidz membuat anak saya senang belajar Quran."
-        </p>
-        <div class="testimonial-footer">
-          <span>Tipe Premium 50/120</span>
-          <span>Feb 2025</span>
-        </div>
-      </div>
-    </div>
-
-   <!-- In the Testimonials section, replace the video testimonial part with: -->
-<div class="video-section-container" style="margin-top: 40px;">
-  <div class="video-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-    <!-- Video 1 -->
-    <div class="video-item">
-      <div class="video-wrapper" onclick="showModal('video', 'testimonial1')" style="cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 1rem; overflow: hidden; border: 1px solid rgba(241, 196, 15, 0.3);">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-          <img src="https://img.youtube.com/vi/LgHbkuOKsw0/maxresdefault.jpg" 
-               alt="Testimoni Video 1" 
-               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
-            <div style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-              <i class="fas fa-play" style="color: #f1c40f; font-size: 24px;"></i>
-            </div>
-          </div>
-        </div>
-        <div style="padding: 15px; text-align: center; font-weight: 600; color: var(--light);">
-          GAK USAH RAGU UNTUK BELI DISINI!!
-        </div>
-      </div>
-    </div>
-    
-    <!-- Video 2 -->
-    <div class="video-item">
-      <div class="video-wrapper" onclick="showModal('video', 'testimonial2')" style="cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 1rem; overflow: hidden; border: 1px solid rgba(241, 196, 15, 0.3);">
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-          <img src="https://img.youtube.com/vi/UF5V1-Vu6uI/maxresdefault.jpg" 
-               alt="Testimoni Video 2" 
-               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
-            <div style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-              <i class="fas fa-play" style="color: #f1c40f; font-size: 24px;"></i>
-            </div>
-          </div>
-        </div>
-        <div style="padding: 15px; text-align: center; font-weight: 600; color: var(--light);">
-          BENTUK RUMAHNYA TIDAK MONOTON 😍
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  </div>
-</section>
-
-  <!-- Video Section -->
-  <section class="video-section section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Video Kertamulya Residence</h2>
-        <p>Lihat langsung keindahan dan fasilitas perumahan kami</p>
-      </div>
-      
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/2vYd5Fd_-Q8?si=-_V7M7Yw_a_Aa090" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-  </section>
-
-  
-
-  <!-- CTA Section -->
-  <section class="cta-section">
-  <div class="container">
-    <h2 class="cta-title">Siap Memiliki Rumah Islami Impian?</h2>
-    <p class="cta-desc">Booking sekarang dengan DP 0% dan dapatkan motor listrik gratis setelah 6x angsuran</p>
-    
-    <div class="countdown-container">
-      <div class="countdown">
-        <div class="countdown-item">
-          <div class="countdown-number" id="days">00</div>
-          <div class="countdown-label">Hari</div>
-        </div>
-        <div class="countdown-separator">:</div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="hours">00</div>
-          <div class="countdown-label">Jam</div>
-        </div>
-        <div class="countdown-separator">:</div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="minutes">00</div>
-          <div class="countdown-label">Menit</div>
-        </div>
-        <div class="countdown-separator">:</div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="seconds">00</div>
-          <div class="countdown-label">Detik</div>
-        </div>
-      </div>
-      <div class="countdown-progress">
-        <div class="progress-bar"></div>
-      </div>
-    </div>
-    
-    <button class="btn btn-accent btn-lg pulse-animation" onclick="showModal('booking')">
-      <i class="fab fa-whatsapp"></i> Booking Sekarang
-    </button>
-  </div>
-</section>
-
-
-  <!-- FAQ -->
-<section class="section" id="faq">
-    <div class="container">
-      <div class="section-title">
-        <h2>Pertanyaan yang Sering Diajukan</h2>
-        <p>Temukan jawaban untuk pertanyaan Anda</p>
-      </div>
-      
-      <div class="faq-container">
-        <div class="faq-item active">
-          <div class="faq-question">
-            <span>Benarkah hanya dengan booking fee 500rb sudah bisa dapat rumah?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Benar! Booking fee 500rb untuk mengamankan unit yang Anda inginkan. Setelah itu, tim kami akan membantu proses pengajuan KPR ke bank syariah mitra kami tanpa biaya tambahan.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Berapa lama proses dari booking sampai rumah bisa ditempati?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Proses biasanya memakan waktu 14-30 hari kerja setelah dokumen lengkap, tergantung bank yang dipilih. BTN Syariah biasanya paling cepat (14-21 hari), sedangkan BJB Syariah sekitar 21-30 hari.</p>
-                      </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Apakah ada jaminan motor listrik benar-benar diberikan?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Ya, kami memberikan jaminan tertulis dalam akad bahwa motor listrik akan diberikan setelah 6x angsuran tepat waktu. Sudah ada 37 penghuni yang menerimanya sesuai janji.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Bagaimana jika KPR saya tidak disetujui bank?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Kami menyediakan opsi pembelian cash bertahap langsung ke developer dengan skema yang fleksibel. Booking fee 500rb bisa dialihkan ke skema ini jika KPR tidak disetujui.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Apa perbedaan tipe Standard dan Suite?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Tipe Suite memiliki material lebih premium (keramik granit, rangka baja tebal), desain lebih modern, dan fasilitas tambahan seperti shower. Tipe Standard tetap berkualitas dengan harga lebih terjangkau.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-about">
-          <img src="img/branding/logo-kertamulya-footer.png" alt="Kertamulya Residence" class="footer-logo" loading="lazy">
-
-          <p class="footer-about">Perumahan Islami pertama di Kuningan dengan konsep Green Living. Memberikan solusi kepemilikan rumah mudah melalui kerjasama dengan bank syariah terkemuka.</p>
-          <div class="footer-social">
-            <a href="https://www.instagram.com/kertamulyaresidence/" target="_blank" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://facebook.com/kertamulyaresidence" target="_blank" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.youtube.com/@bimulialand759" target="_blank" aria-label="YouTube">
-              <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://www.tiktok.com/@bimulia_land" target="_blank" aria-label="TikTok">
-              <i class="fab fa-tiktok"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div class="footer-links">
-  <h3 class="footer-heading">Link Cepat</h3>
-  <ul>
-    <li><a href="#house-types"><i class="fas fa-chevron-right"></i> Tipe Rumah</a></li>
-    <li><a href="#why-choose"><i class="fas fa-chevron-right"></i> Keunggulan</a></li>
-    <li><a href="#facilities"><i class="fas fa-chevron-right"></i> Fasilitas</a></li>
-    <li><a href="#location"><i class="fas fa-chevron-right"></i> Lokasi</a></li>
-    <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimoni</a></li>
-    <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
-  </ul>
-</div>
-        
-        <div class="footer-contact">
-          <h3 class="footer-heading">Kontak Kami</h3>
-          <p><i class="fas fa-map-marker-alt"></i> Jl. Kertayasa, Blok Congkleng, Kuningan</p>
-          <p><i class="fas fa-phone"></i> +62 897-7771-080</p>
-          <p><i class="fas fa-envelope"></i> info@kertamulyaresidence.com</p>
-          <p><i class="fas fa-clock"></i> Buka Setiap Hari 08.00 - 17.00 WIB</p>
-          
-          <h3 class="footer-heading" style="margin-top: 1.5rem;">Bank Partner</h3>
-          <div class="bank-partners">
-           <img src="img/bank/bjb.png" alt="BJB Syariah" class="bank-logo" loading="lazy">
-<img src="img/bank/btn.png" alt="BTN Syariah" class="bank-logo" loading="lazy">
-<img src="img/bank/bsi.png" alt="BSI" class="bank-logo" loading="lazy">
-          </div>
-        </div>
-      </div>
-      
-      <div class="copyright">
-        &copy; 2025 PT. Rumah Mulia Indonesia. All Rights Reserved.
-      </div>
-      
-      <div class="legal-links">
-        <a href="Kebijakan Privasi.html">Kebijakan Privasi</a>
-    <a href="Syarat & Ketentuan.html">Syarat & Ketentuan</a>
-    <a href="Disclaimer.html">Disclaimer</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Modals -->
-  <!-- Booking Modal -->
-  <div class="modal" id="bookingModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="hideModal('booking')">&times;</button>
-      <div class="modal-body">
-        <h3 class="modal-title">Form Booking Unit</h3>
-        <p class="modal-desc">Isi data dibawah ini untuk mendapatkan informasi lebih lanjut</p>
-        
-        <form id="bookingForm">
-          <div class="form-group">
-  <label for="name" class="important">Nama Lengkap</label>
-  <input type="text" id="name" required placeholder="Nama Anda">
-</div>
-
-<div class="form-group">
-  <label for="phone" class="important">Nomor WhatsApp</label>
-  <input type="tel" id="phone" required placeholder="6281234567890" pattern="^628[0-9]{8,11}$">
-</div>
-
-<div class="form-group">
-  <label for="type" class="important">Tipe Rumah</label>
-  <select id="type" required>
-    <option value="" disabled selected>Pilih Tipe Rumah</option>
-    <option value="Standard 30/60">Standard 30/60 - Rp168 Juta</option>
-    <option value="Suite 50/60">Suite 50/60 - Rp277 Juta</option>
-    <option value="Premium 50/120">Premium 50/120 - Rp408 Juta</option>
-  </select>
-</div>
-
-          
-          <button type="submit" class="form-submit">
-            <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
-          </button>
-          
-          <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: var(--text-light);">
-            <i class="fas fa-lock"></i> Data Anda 100% aman
-          </p>
-        </form>
-      </div>
-    </div>
-  </div>
-
-<!-- Gallery Modal -->
-<div class="modal gallery-modal" id="galleryModal">
-  <div class="modal-content">
-    <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
-    <div class="modal-body">
-      <h3 class="modal-title" id="galleryTitle"></h3>
-      <div class="gallery-carousel" id="galleryCarousel"></div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Video Modal -->
-<div class="video-modal" id="videoModal">
-  <div class="video-modal-content">
-    <button class="video-modal-close" onclick="hideModal('video')">&times;</button>
-    <div class="video-iframe">
-      <iframe id="videoFrame" allowfullscreen></iframe>
-    </div>
-  </div>
-</div>
-
-  <!-- WhatsApp Confirmation Modal -->
-  <div class="modal" id="waModal">
-    <div class="modal-content">
-      <div class="modal-body" style="text-align: center;">
-        <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-          <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
-        </div>
-        <h3 class="modal-title">Formulir Terkirim!</h3>
-        <p class="modal-desc">Tim marketing kami akan segera menghubungi Anda melalui WhatsApp</p>
-        <p id="countdownText" style="margin: 1rem 0;">Mengarahkan ke WhatsApp dalam 5 detik...</p>
-        <a href="#" id="waLink" class="btn btn-accent" style="display: inline-flex;">
-          <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
-        </a>
-      </div>
-    </div>
-  </div>
-<!-- Slick JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script>
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize all components
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-  setupTypeSelector();
-  setTimeout(showRandomNotification, 10000);
-  setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
-  animateSoldCount();
-  setupFAQAccordion();
-  setupBookingForm();
-  initGalleryModal();
-  animateProgressBars();
-});
-
-// ========== COUNTDOWN TIMER ==========
-function updateCountdown() {
-  const endDate = new Date();
-  endDate.setDate(endDate.getDate() + 3);
-  endDate.setHours(23, 59, 59, 0);
-
-  const now = new Date().getTime();
-  const distance = endDate - now;
-  
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-  document.getElementById('days').textContent = days.toString().padStart(2, '0');
-  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-  
-  const totalDuration = 3 * 24 * 60 * 60 * 1000;
-  const elapsed = totalDuration - distance;
-  const progressPercent = (elapsed / totalDuration) * 100;
-  
-  document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
-  
-  if (distance < (24 * 60 * 60 * 1000)) {
-    document.querySelectorAll('.countdown-number').forEach(el => {
-      el.style.color = '#ff6b6b';
-    });
-    document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
-  }
-}
-
-// ========== TYPE SELECTOR ==========
-function setupTypeSelector() {
-  const typeBtns = document.querySelectorAll('.type-btn');
-  const typeCards = document.querySelectorAll('.type-card');
-  
-  typeBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const type = this.dataset.type;
-      
-      typeBtns.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      
-      typeCards.forEach(card => {
-        card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
-      });
-    });
-  });
-}
-
-// ========== NOTIFICATIONS ==========
-function showRandomNotification() {
-  const notifications = [
-    "Pak Budi baru saja booking unit Tipe Suite!",
-    "Bu Ani membeli Tipe Standard",
-    "12 unit terjual hari ini!",
-    "Promo motor gratis hanya sampai 3 hari lagi",
-    "Kuota tersisa hanya 24 unit"
-  ];
-  
-  const notification = document.getElementById('notification');
-  const notificationText = document.getElementById('notificationText');
-  
-  notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
-  notification.style.display = 'flex';
-  
-  setTimeout(() => {
-    notification.style.opacity = '1';
-  }, 10);
-  
-  setTimeout(() => {
-    notification.style.opacity = '0';
-    setTimeout(() => {
-      notification.style.display = 'none';
-    }, 300);
-  }, 5000);
-}
-
-// ========== SOLD COUNT ==========
-function animateSoldCount() {
-  const soldCount = document.querySelector('.sold-count');
-  let count = 0;
-  const target = 12;
-  const interval = setInterval(() => {
-    count++;
-    soldCount.textContent = count;
-    if(count >= target) clearInterval(interval);
-  }, 150);
-}
-
-// ========== FAQ ACCORDION ==========
-function setupFAQAccordion() {
-  const faqItems = document.querySelectorAll('.faq-item');
-  
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    
-    question.addEventListener('click', () => {
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item) otherItem.classList.remove('active');
-      });
-      item.classList.toggle('active');
-    });
-  });
-}
-
-// ========== BOOKING FORM ==========
-function setupBookingForm() {
-  const bookingForm = document.getElementById('bookingForm');
-  
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const type = document.getElementById('type').value;
-      
-      const message = `Assalamu'alaikum wr wb,
-
-*Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
-
-Mohon info lebih lanjut mengenai:
-- *Proses pembelian*
-- *Syarat KPR*
-
-Terima kasih.`;
-    
-      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-      window.open(waLink, '_blank');
-      hideModal('booking');
-    });
-  }
-}
-
-// ========== GALLERY MODAL ==========
-function initGalleryModal() {
-  // Image sets with local image paths
-  const galleryImages = {
-    standard: [
-      'img/tipe-rumah/standart/standar-utama.webp',
-      'img/tipe-rumah/standart/standar1.webp',
-      'img/tipe-rumah/standart/standar2.webp',
-      'img/tipe-rumah/standart/standar3.webp',
-      'img/tipe-rumah/standart/standar4.webp',
-      'img/tipe-rumah/standart/standar5.webp',
-      'img/tipe-rumah/standart/standar6.webp',
-      'img/tipe-rumah/standart/standar7.webp',
-      'img/tipe-rumah/standart/denah-standar.webp',
-      'img/tipe-rumah/standart/spek-standar.webp'
-    ],
-    suite: [
-      'img/tipe-rumah/suite/suite-utama.webp',
-      'img/tipe-rumah/suite/suite1.webp',
-      'img/tipe-rumah/suite/suite2.webp',
-      'img/tipe-rumah/suite/suite3.webp',
-      'img/tipe-rumah/suite/suite4.webp',
-      'img/tipe-rumah/suite/suite5.webp',
-      'img/tipe-rumah/suite/denah-suite1.webp',
-      'img/tipe-rumah/suite/denah-suite2.webp',
-      'img/tipe-rumah/suite/spek-suite.webp'
-    ],
-    premium: [
-      'img/tipe-rumah/premium/premium-utama.webp',
-      'img/tipe-rumah/premium/premium1.webp',
-      'img/tipe-rumah/premium/premium2.webp',
-      'img/tipe-rumah/premium/premium3.webp',
-      'img/tipe-rumah/premium/premium4.webp',
-      'img/tipe-rumah/premium/premium5.webp',
-      'img/tipe-rumah/premium/denah-premium1.webp',
-      'img/tipe-rumah/premium/denah-premium2.webp',
-      'img/tipe-rumah/premium/spek-premium.webp'
-    ]
-  };
-
-  // Initialize gallery buttons
-  document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
-      showGalleryModal(type, galleryImages);
-    });
-  });
-}
-
-function showGalleryModal(type, images) {
-  const titleMap = {
-    standard: 'Standard 30/60',
-    suite: 'Suite 50/60',
-    premium: 'Premium 50/120'
-  };
-  
-  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
-  const carousel = document.getElementById('galleryCarousel');
-  carousel.innerHTML = '';
-
-  // Add slides to carousel
-  images[type].forEach(img => {
-    const slide = document.createElement('div');
-    slide.className = 'gallery-slide';
-    slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
-    carousel.appendChild(slide);
-  });
-
-  // Initialize Slick Carousel
-  $(carousel).slick({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    adaptiveHeight: true,
-    autoplay: false,
-    arrows: true,
-    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-  });
-
-  // Show modal
-  document.getElementById('galleryModal').classList.add('active');
-}
-
-
-// ========== MODAL FUNCTIONS ==========
-function showModal(type, subtype = null, houseType = null) {
-  if (type === 'gallery' && subtype) {
-    showGalleryModal(subtype);
-  }
-  else if (type === 'booking') {
-    if (houseType) document.getElementById('type').value = houseType;
-    document.getElementById('bookingModal').classList.add('active');
-  }
-  else if (type === 'video' && subtype) {
-    const videoId = getVideoId(subtype);
-    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    document.getElementById('videoModal').classList.add('active');
-  }
-}
-
-function hideModal(type) {
-  if (type === 'gallery') {
-    const carousel = document.getElementById('galleryCarousel');
-    if ($(carousel).hasClass('slick-initialized')) {
-      $(carousel).slick('unslick');
-    }
-    document.getElementById('galleryModal').classList.remove('active');
-  } 
-  else if (type === 'booking') {
-    document.getElementById('bookingModal').classList.remove('active');
-  } 
-  else if (type === 'video') {
-    document.getElementById('videoFrame').src = '';
-    document.getElementById('videoModal').classList.remove('active');
-  }
-}
-
-function getVideoId(subtype) {
-  const videoIds = {
-    standard: '_blGnqdIRD8',
-    suite: 'tCg9iyw0jy4',
-    premium: '7Fl9zHdHb7s',
-    testimonial1: 'LgHbkuOKsw0',  // Video testimoni pertama
-    testimonial2: 'UF5V1-Vu6uI'   // Video testimoni kedua
-  };
-  return videoIds[subtype] || '';
-}
-
-// ========== PROGRESS BARS ==========
-function animateProgressBars() {
-  const progressBars = document.querySelectorAll('.progress-fill');
-  
-  progressBars.forEach(bar => {
-    const card = bar.closest('.type-card');
-    const stock = parseInt(card.dataset.stock);
-    const percentage = (stock / 10) * 100;
-    
-    bar.style.width = '0%';
-    setTimeout(() => {
-      bar.style.width = `${percentage}%`;
-    }, 300);
-  });
-}
-
-// Initialize Intersection Observer for progress bars
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) animateProgressBars();
-  });
-}, {threshold: 0.1});
-
-document.querySelectorAll('.type-card').forEach(card => {
-  observer.observe(card);
-});
-  </script>
-</body>
-</html> 
+      <p>Nikmati berbagai fasilitas premium untuk kenyamanan keluarga Anda</
