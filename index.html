@@ -3111,13 +3111,10 @@ document.addEventListener('DOMContentLoaded', function() {
   updateCountdown();
   setInterval(updateCountdown, 1000);
   setupTypeSelector();
-  setTimeout(showRandomNotification, 10000);
-  setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
   animateSoldCount();
   setupFAQAccordion();
-  setupBookingForm();
-  initGalleryModal();
   animateProgressBars();
+  setupCTAScroll();
 });
 
 // ========== COUNTDOWN TIMER ==========
@@ -3172,34 +3169,6 @@ function setupTypeSelector() {
   });
 }
 
-// ========== NOTIFICATIONS ==========
-function showRandomNotification() {
-  const notifications = [
-    "Pak Budi baru saja booking unit Tipe Suite!",
-    "Bu Ani membeli Tipe Standard",
-    "12 unit terjual hari ini!",
-    "Promo motor gratis hanya sampai 3 hari lagi",
-    "Kuota tersisa hanya 24 unit"
-  ];
-  
-  const notification = document.getElementById('notification');
-  const notificationText = document.getElementById('notificationText');
-  
-  notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
-  notification.style.display = 'flex';
-  
-  setTimeout(() => {
-    notification.style.opacity = '1';
-  }, 10);
-  
-  setTimeout(() => {
-    notification.style.opacity = '0';
-    setTimeout(() => {
-      notification.style.display = 'none';
-    }, 300);
-  }, 5000);
-}
-
 // ========== SOLD COUNT ==========
 function animateSoldCount() {
   const soldCount = document.querySelector('.sold-count');
@@ -3228,164 +3197,18 @@ function setupFAQAccordion() {
   });
 }
 
-// ========== BOOKING FORM ==========
-function setupBookingForm() {
-  const bookingForm = document.getElementById('bookingForm');
+// ========== CTA SCROLL ==========
+function setupCTAScroll() {
+  // Update all CTA buttons to scroll to unitBooking section
+  document.querySelectorAll('.btn-primary[onclick*="showModal"]').forEach(btn => {
+    btn.setAttribute('onclick', "document.getElementById('unitBooking').scrollIntoView({behavior: 'smooth'})");
+  });
   
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const type = document.getElementById('type').value;
-      
-      const message = `Assalamu'alaikum wr wb,
-
-*Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
-
-Mohon info lebih lanjut mengenai:
-- *Proses pembelian*
-- *Syarat KPR*
-
-Terima kasih.`;
-    
-      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-      window.open(waLink, '_blank');
-      hideModal('booking');
-    });
+  // Also update the main CTA button
+  const mainCTA = document.querySelector('.cta-section .btn-accent');
+  if (mainCTA) {
+    mainCTA.setAttribute('onclick', "document.getElementById('unitBooking').scrollIntoView({behavior: 'smooth'})");
   }
-}
-
-// ========== GALLERY MODAL ==========
-function initGalleryModal() {
-  // Image sets with local image paths
-  const galleryImages = {
-    standard: [
-      'img/tipe-rumah/standart/standar-utama.webp',
-      'img/tipe-rumah/standart/standar1.webp',
-      'img/tipe-rumah/standart/standar2.webp',
-      'img/tipe-rumah/standart/standar3.webp',
-      'img/tipe-rumah/standart/standar4.webp',
-      'img/tipe-rumah/standart/standar5.webp',
-      'img/tipe-rumah/standart/standar6.webp',
-      'img/tipe-rumah/standart/standar7.webp',
-      'img/tipe-rumah/standart/denah-standar.webp',
-      'img/tipe-rumah/standart/spek-standar.webp'
-    ],
-    suite: [
-      'img/tipe-rumah/suite/suite-utama.webp',
-      'img/tipe-rumah/suite/suite1.webp',
-      'img/tipe-rumah/suite/suite2.webp',
-      'img/tipe-rumah/suite/suite3.webp',
-      'img/tipe-rumah/suite/suite4.webp',
-      'img/tipe-rumah/suite/suite5.webp',
-      'img/tipe-rumah/suite/denah-suite1.webp',
-      'img/tipe-rumah/suite/denah-suite2.webp',
-      'img/tipe-rumah/suite/spek-suite.webp'
-    ],
-    premium: [
-      'img/tipe-rumah/premium/premium-utama.webp',
-      'img/tipe-rumah/premium/premium1.webp',
-      'img/tipe-rumah/premium/premium2.webp',
-      'img/tipe-rumah/premium/premium3.webp',
-      'img/tipe-rumah/premium/premium4.webp',
-      'img/tipe-rumah/premium/premium5.webp',
-      'img/tipe-rumah/premium/denah-premium1.webp',
-      'img/tipe-rumah/premium/denah-premium2.webp',
-      'img/tipe-rumah/premium/spek-premium.webp'
-    ]
-  };
-
-  // Initialize gallery buttons
-  document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
-      showGalleryModal(type, galleryImages);
-    });
-  });
-}
-
-function showGalleryModal(type, images) {
-  const titleMap = {
-    standard: 'Standard 30/60',
-    suite: 'Suite 50/60',
-    premium: 'Premium 50/120'
-  };
-  
-  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
-  const carousel = document.getElementById('galleryCarousel');
-  carousel.innerHTML = '';
-
-  // Add slides to carousel
-  images[type].forEach(img => {
-    const slide = document.createElement('div');
-    slide.className = 'gallery-slide';
-    slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
-    carousel.appendChild(slide);
-  });
-
-  // Initialize Slick Carousel
-  $(carousel).slick({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    adaptiveHeight: true,
-    autoplay: false,
-    arrows: true,
-    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-  });
-
-  // Show modal
-  document.getElementById('galleryModal').classList.add('active');
-}
-
-
-// ========== MODAL FUNCTIONS ==========
-function showModal(type, subtype = null, houseType = null) {
-  if (type === 'gallery' && subtype) {
-    showGalleryModal(subtype);
-  }
-  else if (type === 'booking') {
-    if (houseType) document.getElementById('type').value = houseType;
-    document.getElementById('bookingModal').classList.add('active');
-  }
-  else if (type === 'video' && subtype) {
-    const videoId = getVideoId(subtype);
-    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    document.getElementById('videoModal').classList.add('active');
-  }
-}
-
-function hideModal(type) {
-  if (type === 'gallery') {
-    const carousel = document.getElementById('galleryCarousel');
-    if ($(carousel).hasClass('slick-initialized')) {
-      $(carousel).slick('unslick');
-    }
-    document.getElementById('galleryModal').classList.remove('active');
-  } 
-  else if (type === 'booking') {
-    document.getElementById('bookingModal').classList.remove('active');
-  } 
-  else if (type === 'video') {
-    document.getElementById('videoFrame').src = '';
-    document.getElementById('videoModal').classList.remove('active');
-  }
-}
-
-function getVideoId(subtype) {
-  const videoIds = {
-    standard: '_blGnqdIRD8',
-    suite: 'tCg9iyw0jy4',
-    premium: '7Fl9zHdHb7s',
-    testimonial1: 'LgHbkuOKsw0',  // Video testimoni pertama
-    testimonial2: 'UF5V1-Vu6uI'   // Video testimoni kedua
-  };
-  return videoIds[subtype] || '';
 }
 
 // ========== PROGRESS BARS ==========
