@@ -3061,36 +3061,218 @@ document.addEventListener('DOMContentLoaded', function() {
   setupTypeSelector();
   animateSoldCount();
   setupFAQAccordion();
+  setupBookingForm();
+  initGalleryModal();
   animateProgressBars();
-  setupCTAScroll();
-  initGalleryModal(); // Tetap pertahankan inisialisasi galeri
+  setupVideoModal();
+  setupNotification();
 });
 
-/* ========== FUNGSI YANG TETAP DIJAGA ========== */
+// ========== COUNTDOWN TIMER ==========
+function updateCountdown() {
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 3);
+  endDate.setHours(23, 59, 59, 0);
 
-// Fungsi untuk galeri (tetap dipertahankan)
+  const now = new Date().getTime();
+  const distance = endDate - now;
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  document.getElementById('days').textContent = days.toString().padStart(2, '0');
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  
+  const totalDuration = 3 * 24 * 60 * 60 * 1000;
+  const elapsed = totalDuration - distance;
+  const progressPercent = (elapsed / totalDuration) * 100;
+  
+  document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
+  
+  if (distance < (24 * 60 * 60 * 1000)) {
+    document.querySelectorAll('.countdown-number').forEach(el => {
+      el.style.color = '#ff6b6b';
+    });
+    document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
+  }
+}
+
+// ========== TYPE SELECTOR ==========
+function setupTypeSelector() {
+  const typeBtns = document.querySelectorAll('.type-btn');
+  const typeCards = document.querySelectorAll('.type-card');
+  
+  typeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const type = this.dataset.type;
+      
+      typeBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      typeCards.forEach(card => {
+        card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
+      });
+    });
+  });
+}
+
+// ========== NOTIFICATION ==========
+function setupNotification() {
+  const notifications = [
+    "Pak Budi baru saja booking unit Tipe Suite!",
+    "Bu Ani membeli Tipe Standard",
+    "12 unit terjual hari ini!",
+    "Promo motor gratis hanya sampai 3 hari lagi",
+    "Kuota tersisa hanya 24 unit"
+  ];
+  
+  const notification = document.getElementById('notification');
+  const notificationText = document.getElementById('notificationText');
+  
+  function showRandomNotification() {
+    notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
+    notification.style.display = 'flex';
+    
+    setTimeout(() => {
+      notification.style.opacity = '1';
+    }, 10);
+    
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 300);
+    }, 5000);
+  }
+  
+  // Show first notification after 10 seconds
+  setTimeout(showRandomNotification, 10000);
+  
+  // Show random notifications every 2-5 minutes
+  setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
+}
+
+// ========== SOLD COUNT ==========
+function animateSoldCount() {
+  const soldCount = document.querySelector('.sold-count');
+  let count = 0;
+  const target = 12;
+  const interval = setInterval(() => {
+    count++;
+    soldCount.textContent = count;
+    if(count >= target) clearInterval(interval);
+  }, 150);
+}
+
+// ========== FAQ ACCORDION ==========
+function setupFAQAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+      // Close all other items
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+          otherItem.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
+        }
+      });
+      
+      // Toggle current item
+      const isActive = item.classList.contains('active');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-question i');
+      
+      if (isActive) {
+        item.classList.remove('active');
+        answer.style.maxHeight = '0';
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+}
+
+// ========== BOOKING FORM ==========
+function setupBookingForm() {
+  const bookingForm = document.getElementById('bookingForm');
+  
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const type = document.getElementById('type').value;
+      
+      const message = `Assalamu'alaikum wr wb,
+
+*Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
+
+Mohon info lebih lanjut mengenai:
+- *Proses pembelian*
+- *Syarat KPR*
+
+Terima kasih.`;
+    
+      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+      window.open(waLink, '_blank');
+      hideModal('booking');
+    });
+  }
+}
+
+// ========== GALLERY MODAL ==========
 function initGalleryModal() {
+  // Image sets with local image paths
   const galleryImages = {
     standard: [
       'img/tipe-rumah/standart/standar-utama.webp',
       'img/tipe-rumah/standart/standar1.webp',
       'img/tipe-rumah/standart/standar2.webp',
       'img/tipe-rumah/standart/standar3.webp',
-      // ... tambahkan gambar lainnya
+      'img/tipe-rumah/standart/standar4.webp',
+      'img/tipe-rumah/standart/standar5.webp',
+      'img/tipe-rumah/standart/standar6.webp',
+      'img/tipe-rumah/standart/standar7.webp',
+      'img/tipe-rumah/standart/denah-standar.webp',
+      'img/tipe-rumah/standart/spek-standar.webp'
     ],
     suite: [
       'img/tipe-rumah/suite/suite-utama.webp',
       'img/tipe-rumah/suite/suite1.webp',
-      // ... tambahkan gambar lainnya
+      'img/tipe-rumah/suite/suite2.webp',
+      'img/tipe-rumah/suite/suite3.webp',
+      'img/tipe-rumah/suite/suite4.webp',
+      'img/tipe-rumah/suite/suite5.webp',
+      'img/tipe-rumah/suite/denah-suite1.webp',
+      'img/tipe-rumah/suite/denah-suite2.webp',
+      'img/tipe-rumah/suite/spek-suite.webp'
     ],
     premium: [
       'img/tipe-rumah/premium/premium-utama.webp',
       'img/tipe-rumah/premium/premium1.webp',
-      // ... tambahkan gambar lainnya
+      'img/tipe-rumah/premium/premium2.webp',
+      'img/tipe-rumah/premium/premium3.webp',
+      'img/tipe-rumah/premium/premium4.webp',
+      'img/tipe-rumah/premium/premium5.webp',
+      'img/tipe-rumah/premium/denah-premium1.webp',
+      'img/tipe-rumah/premium/denah-premium2.webp',
+      'img/tipe-rumah/premium/spek-premium.webp'
     ]
   };
 
-  // Event listener untuk tombol galeri
+  // Initialize gallery buttons
   document.querySelectorAll('[onclick*="gallery"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -3100,61 +3282,118 @@ function initGalleryModal() {
   });
 }
 
-// Fungsi untuk menampilkan galeri modal
 function showGalleryModal(type, images) {
   const titleMap = {
     standard: 'Standard 30/60',
-    suite: 'Suite 50/60', 
+    suite: 'Suite 50/60',
     premium: 'Premium 50/120'
   };
   
-  // Inisialisasi carousel
-  $('#galleryCarousel').slick({
+  document.getElementById('galleryTitle').textContent = `Galeri Tipe ${titleMap[type]}`;
+  const carousel = document.getElementById('galleryCarousel');
+  carousel.innerHTML = '';
+
+  // Add slides to carousel
+  images[type].forEach(img => {
+    const slide = document.createElement('div');
+    slide.className = 'gallery-slide';
+    slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
+    carousel.appendChild(slide);
+  });
+
+  // Initialize Slick Carousel
+  $(carousel).slick({
     dots: true,
     infinite: true,
     speed: 300,
     slidesToShow: 1,
-    adaptiveHeight: true
+    adaptiveHeight: true,
+    autoplay: false,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
   });
-  
-  // Tampilkan modal
-  $('#galleryModal').fadeIn();
+
+  // Show modal
+  document.getElementById('galleryModal').classList.add('active');
 }
 
-// Fungsi untuk video (tetap dipertahankan)
-function showVideoModal(videoId) {
-  $('#videoFrame').attr('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
-  $('#videoModal').fadeIn();
+// ========== VIDEO MODAL ==========
+function setupVideoModal() {
+  const videoIds = {
+    standard: '_blGnqdIRD8',
+    suite: 'tCg9iyw0jy4',
+    premium: '7Fl9zHdHb7s',
+    testimonial1: 'LgHbkuOKsw0',
+    testimonial2: 'UF5V1-Vu6uI'
+  };
+
+  // Initialize video buttons
+  document.querySelectorAll('[onclick*="video"]').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const type = this.getAttribute('onclick').match(/video', '([^']+)'/)[1];
+      const videoId = videoIds[type];
+      
+      if (videoId) {
+        document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        document.getElementById('videoModal').classList.add('active');
+      }
+    });
+  });
 }
 
-// Fungsi untuk menutup modal
+// ========== MODAL FUNCTIONS ==========
+function showModal(type, subtype = null, houseType = null) {
+  if (type === 'booking') {
+    if (houseType) document.getElementById('type').value = houseType;
+    document.getElementById('bookingModal').classList.add('active');
+  }
+}
+
 function hideModal(type) {
   if (type === 'gallery') {
-    $('#galleryCarousel').slick('unslick');
-    $('#galleryModal').fadeOut();
-  } else if (type === 'video') {
-    $('#videoFrame').attr('src', '');
-    $('#videoModal').fadeOut();
+    const carousel = document.getElementById('galleryCarousel');
+    if ($(carousel).hasClass('slick-initialized')) {
+      $(carousel).slick('unslick');
+    }
+    document.getElementById('galleryModal').classList.remove('active');
+  } 
+  else if (type === 'booking') {
+    document.getElementById('bookingModal').classList.remove('active');
+  } 
+  else if (type === 'video') {
+    document.getElementById('videoFrame').src = '';
+    document.getElementById('videoModal').classList.remove('active');
   }
 }
 
-/* ========== FUNGSI LAIN YANG TETAP SAMA ========== */
-// [Countdown timer, type selector, sold count, FAQ accordion, dll]
-// ... (sama seperti sebelumnya)
-
-// Update CTA Scroll untuk tombol booking saja
-function setupCTAScroll() {
-  // Hanya update tombol booking, biarkan tombol galeri/video tetap berfungsi
-  document.querySelectorAll('.btn-block[onclick*="booking"]').forEach(btn => {
-    btn.setAttribute('onclick', "document.getElementById('unitBooking').scrollIntoView({behavior: 'smooth'})");
-  });
+// ========== PROGRESS BARS ==========
+function animateProgressBars() {
+  const progressBars = document.querySelectorAll('.progress-fill');
   
-  // Update main CTA button
-  const mainCTA = document.querySelector('.cta-section .btn-accent');
-  if (mainCTA) {
-    mainCTA.setAttribute('onclick', "document.getElementById('unitBooking').scrollIntoView({behavior: 'smooth'})");
-  }
+  progressBars.forEach(bar => {
+    const card = bar.closest('.type-card');
+    const stock = parseInt(card.dataset.stock);
+    const percentage = (stock / 10) * 100;
+    
+    bar.style.width = '0%';
+    setTimeout(() => {
+      bar.style.width = `${percentage}%`;
+    }, 300);
+  });
 }
-  </script>
+
+// Initialize Intersection Observer for progress bars
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) animateProgressBars();
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.type-card').forEach(card => {
+  observer.observe(card);
+});
+</script>
 </body>
 </html> 
