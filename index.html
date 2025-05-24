@@ -1221,25 +1221,85 @@ button, input, textarea, select {
     box-shadow: var(--shadow-md);
   }
 
-  .faq-answer {
-    padding: 0 1.5rem;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease, padding 0.5s ease;
-    background: rgba(46,204,113,0.05);
-    border-radius: 0 0 0.75rem 0.75rem;
-  }
+ /* ===== FAQ IMPROVEMENTS ===== */
+.faq-answer {
+  padding: 1.5rem;
+  background: rgba(46,204,113,0.05);
+  border-radius: 0 0 0.75rem 0.75rem;
+  border: 1px solid rgba(46,204,113,0.2);
+  border-top: none;
+}
 
-  .faq-item.active .faq-answer {
-    padding: 1.5rem;
-    max-height: 1000px;
-    border: 1px solid rgba(46,204,113,0.2);
-    border-top: none;
-  }
+.faq-answer p, 
+.faq-answer ul, 
+.faq-answer ol {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
 
-  .faq-item.active .faq-question {
-    border-radius: 0.75rem 0.75rem 0 0;
-  }
+.faq-answer ul, 
+.faq-answer ol {
+  padding-left: 1.5rem;
+}
+
+.faq-answer li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.faq-answer li:before {
+  content: '•';
+  color: var(--primary);
+  font-weight: bold;
+  position: absolute;
+  left: -1rem;
+}
+
+.faq-answer strong {
+  color: var(--primary-dark);
+}
+
+.process-timeline {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.process-timeline:before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.process-step {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  width: 30%;
+}
+
+.process-step .step-number {
+  width: 30px;
+  height: 30px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.5rem;
+  font-weight: bold;
+}
+
+.process-step .step-label {
+  font-size: 0.85rem;
+  color: var(--text);
+}
 
 /* ===== FOOTER ===== */
 .footer {
@@ -2050,82 +2110,139 @@ button, input, textarea, select {
   color: var(--text-light);
 }
 
-/* Updated Psychological Copy Styles */
- .psychological-section {
-  padding: 3rem 0;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+/* ===== PSYCHOLOGICAL COPY ===== */
+.psychological-copy {
+  background: linear-gradient(135deg, var(--primary-light), rgba(241, 196, 15, 0.1));
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin: 2rem 0;
+  text-align: center;
+  border-left: 4px solid var(--accent);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
 }
 
-.psych-cards {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
+.psychological-copy:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(46,204,113,0.1), rgba(241,196,15,0.1));
+  z-index: 0;
 }
 
-.psych-card {
+.psychological-copy p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+  animation: textGlow 2s infinite alternate;
+}
+
+.psychological-copy.accent {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.15), rgba(241, 196, 15, 0.05));
+  border-left-color: var(--accent-dark);
+}
+
+@keyframes textGlow {
+  0% { color: var(--primary-dark); }
+  100% { color: var(--accent-dark); }
+}
+
+.copy-highlight {
+  color: var(--danger);
+  font-weight: 800;
+  text-decoration: underline;
+}
+  
+/* ===== BOOKING TIERS ===== */
+.booking-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.booking-tier {
   background: white;
   border-radius: 1rem;
   padding: 2rem;
-  width: 300px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(46,204,113,0.2);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-tier:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.tier-header {
   text-align: center;
-  transition: transform 0.3s ease;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed rgba(46,204,113,0.3);
 }
 
-.psych-card:hover {
-  transform: translateY(-10px);
-}
-
-.psych-icon {
-  font-size: 2.5rem;
-  color: #2ecc71;
-  margin-bottom: 1rem;
-}
-
-.psych-price {
+.tier-title {
   font-size: 1.5rem;
-  font-weight: bold;
-  color: #2ecc71;
-  margin: 1rem 0;
-}
-
-.psych-prices {
-  display: flex;
-  justify-content: space-around;
-  margin: 1rem 0;
-}
-
-.price-label {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.psych-features {
-  list-style: none;
-  text-align: left;
-  padding: 0 1rem;
-}
-
-.psych-features li {
+  color: var(--dark);
   margin-bottom: 0.5rem;
-  font-size: 0.9rem;
 }
 
-.psych-features i {
-  color: #2ecc71;
-  margin-right: 0.5rem;
+.tier-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .psych-cards {
-    flex-direction: column;
-    align-items: center;
-  }
+.tier-features {
+  list-style: none;
+  margin-bottom: 2rem;
 }
-  
-  
+
+.tier-features li {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.tier-features i {
+  color: var(--primary);
+  margin-top: 0.2rem;
+}
+
+.tier-features .fa-times-circle {
+  color: var(--text-light);
+}
+
+.tier-recommended {
+  border: 2px solid var(--accent);
+  position: relative;
+}
+
+.tier-recommended:after {
+  content: 'REKOMENDASI';
+  position: absolute;
+  top: 15px;
+  right: -30px;
+  background: var(--accent);
+  color: var(--dark);
+  font-weight: 800;
+  padding: 0.25rem 2rem;
+  transform: rotate(45deg);
+  font-size: 0.75rem;
+}  
   </style>
 </head>
 <body>
@@ -2139,8 +2256,9 @@ button, input, textarea, select {
       <p>DP 0% + Motor Listrik Gratis | Booking Fee Rp100.000 untuk Amankan Unit</p>
       
       <div class="psychological-copy">
-        <p>Rp100.000 bukan harga rumah, tapi harga kesempatan untuk mengamankan unit sebelum orang lain.</p>
-      </div>
+  <p>Booking fee <span class="copy-highlight">Rp100.000</span> untuk mengamankan stok unit, berlaku <span class="copy-highlight">7 hari</span> untuk survei lokasi!</p>
+</div>
+
       
       <div class="sold-today">
         <div class="sold-count">12</div>
@@ -2419,14 +2537,11 @@ button, input, textarea, select {
   </div>
 </section>
 
-<!-- Psychological Copy Section -->
-<section class="section">
-  <div class="container">
-    <div class="psychological-copy">
-      <p>Rumah bisa Anda pikirkan besok. Tapi unit yang Anda suka bisa dibooking orang lain hari ini.</p>
-    </div>
-  </div>
-</section>
+<!-- Di tengah konten -->
+<div class="psychological-copy accent">
+  <p>Unit STANDARD hanya bisa dipilih setelah booking fee <span class="copy-highlight">Rp500.000</span> (Rp100.000 awal + Rp400.000 saat survei)</p>
+</div>
+
 
 <!-- Facilities Section -->
 <section class="facilities-section" id="facilities">
@@ -2985,7 +3100,64 @@ button, input, textarea, select {
     </div>
   </div>
 </section>
-
+<div class="psychological-copy">
+  <p>SUITE/PREMIUM booking fee <span class="copy-highlight">Rp2 juta</span> (Rp100.000 awal + Rp1,9 juta saat survei)</p>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Sistem Booking Unit</h2>
+      <p>Pilih metode booking sesuai kebutuhan Anda</p>
+    </div>
+    
+    <div class="booking-tiers">
+      <!-- Standard Tier -->
+      <div class="booking-tier">
+        <div class="tier-header">
+          <h3 class="tier-title">AMAN STOK</h3>
+          <div class="tier-price">Rp100rb</div>
+        </div>
+        <ul class="tier-features">
+          <li><i class="fas fa-check-circle"></i> <span>Amankan stok unit (semua tipe)</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>Berlaku 7 hari untuk survei</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>Uang kembali 100% jika tidak cocok</span></li>
+          <li><i class="fas fa-times-circle"></i> <span style="text-decoration: line-through;">Pemilihan unit spesifik</span></li>
+        </ul>
+        <a href="#unitBooking" class="btn btn-outline btn-block">Booking Aman Stok</a>
+      </div>
+      
+      <!-- Suite Tier -->
+      <div class="booking-tier tier-recommended">
+        <div class="tier-header">
+          <h3 class="tier-title">PILIH UNIT</h3>
+          <div class="tier-price">Rp500rb</div>
+        </div>
+        <ul class="tier-features">
+          <li><i class="fas fa-check-circle"></i> <span>Pilih unit STANDARD spesifik</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>Berlaku 14 hari untuk survei</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>Proses KPR lebih cepat</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>Potongan Rp500rb dari DP akhir</span></li>
+        </ul>
+        <a href="#unitBooking" class="btn btn-primary btn-block">Booking STANDARD</a>
+      </div>
+      
+      <!-- Premium Tier -->
+      <div class="booking-tier">
+        <div class="tier-header">
+          <h3 class="tier-title">PREMIUM</h3>
+          <div class="tier-price">Rp2jt</div>
+        </div>
+        <ul class="tier-features">
+          <li><i class="fas fa-check-circle"></i> <span>Pilih unit SUITE/PREMIUM spesifik</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>Berlaku 21 hari untuk survei</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>Proses KPR prioritas</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>Potongan Rp5jt dari DP akhir</span></li>
+        </ul>
+        <a href="#unitBooking" class="btn btn-outline btn-block">Booking PREMIUM</a>
+      </div>
+    </div>
+  </div>
+</section>
   <!-- CTA Section -->
   <section class="cta-section">
   <div class="container">
@@ -3541,29 +3713,30 @@ function setupBookingButtons() {
 // Initialize booking buttons
 setupBookingButtons();
 
-// ========== PSYCHOLOGICAL COPY ==========
-function showPsychologicalCopy() {
+function rotatePsychologicalCopy() {
   const copies = [
-    "Rp100.000 bukan harga rumah, tapi harga kesempatan untuk mengamankan unit sebelum orang lain.",
-    "Rumah bisa Anda pikirkan besok. Tapi unit yang Anda suka bisa dibooking orang lain hari ini.",
-    "Kami hanya memproses user yang sudah booking. Tanpa booking, kami tidak bisa tahan unit."
+    "Booking fee Rp100.000 untuk mengamankan stok unit, berlaku 7 hari untuk survei lokasi!",
+    "Unit STANDARD hanya bisa dipilih setelah booking fee Rp500.000 (Rp100.000 awal + Rp400.000 saat survei)",
+    "SUITE/PREMIUM booking fee Rp2 juta (Rp100.000 awal + Rp1,9 juta saat survei)",
+    "Tanpa booking, kami tidak bisa tahan unit untuk Anda"
   ];
   
-  // Rotate through copies every 15 seconds
-  let currentIndex = 0;
-  const copyElement = document.querySelector('.psychological-copy p');
-  
+  const copyElement = document.querySelector('.psychological-copy:not(.accent) p');
   if (copyElement) {
+    let currentIndex = 0;
     setInterval(() => {
       currentIndex = (currentIndex + 1) % copies.length;
-      copyElement.textContent = copies[currentIndex];
-    }, 15000);
+      copyElement.innerHTML = copies[currentIndex]
+        .replace(/Rp100\.000/g, '<span class="copy-highlight">Rp100.000</span>')
+        .replace(/Rp500\.000/g, '<span class="copy-highlight">Rp500.000</span>')
+        .replace(/Rp2 juta/g, '<span class="copy-highlight">Rp2 juta</span>')
+        .replace(/7 hari/g, '<span class="copy-highlight">7 hari</span>');
+    }, 10000);
   }
 }
 
-// Initialize psychological copy rotation
-showPsychologicalCopy();
-</script>
+// Panggil fungsi saat load
+document.addEventListener('DOMContentLoaded', rotatePsychologicalCopy);
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
