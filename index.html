@@ -605,14 +605,15 @@ button, input, textarea, select {
     opacity: 0;
   }
 }
-/* ===== WHY CHOOSE US ===== */
+/* ===== WHY CHOOSE US SECTION ===== */
 .why-choose {
   background: linear-gradient(135deg, var(--primary-light), #e8f8ef);
+  padding: 5rem 0;
 }
 
 .reasons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
@@ -655,21 +656,15 @@ button, input, textarea, select {
   color: var(--text-light);
   font-size: 0.9375rem;
 }
-.reason-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+
+/* ===== FACILITIES SECTION ===== */
+.facilities-section {
+  padding: 5rem 0;
 }
 
-.reason-card {
-  width: calc(33.333% - 1.5rem);
-}
-
-
-/* ===== FASILITAS ===== */
 .facilities-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
@@ -687,7 +682,7 @@ button, input, textarea, select {
 }
 
 .facility-image {
-  height: 180px;
+  height: 200px;
   overflow: hidden;
 }
 
@@ -717,21 +712,11 @@ button, input, textarea, select {
   color: var(--text-light);
   font-size: 0.9375rem;
 }
-.facility-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-}
 
-.facility-card {
-  width: calc(33.333% - 1.5rem);
-}
-
-
-/* ===== LOKASI ===== */
-.location {
+/* ===== LOCATION SECTION ===== */
+.location-section {
   background: var(--gray);
-  position: relative;
+  padding: 5rem 0;
 }
 
 .location-container {
@@ -750,7 +735,6 @@ button, input, textarea, select {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 3px solid var(--light);
-  position: relative;
 }
 
 .location-map iframe {
@@ -801,25 +785,12 @@ button, input, textarea, select {
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   border-left: 4px solid var(--primary);
-  position: relative;
-  overflow: hidden;
 }
 
 .access-item:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
   border-left-color: var(--accent);
-}
-
-.access-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(46, 204, 113, 0.05), rgba(241, 196, 15, 0.05));
-  z-index: 0;
 }
 
 .access-icon {
@@ -834,8 +805,6 @@ button, input, textarea, select {
   color: var(--primary-dark);
   font-size: 1.25rem;
   box-shadow: 0 4px 8px rgba(46, 204, 113, 0.2);
-  position: relative;
-  z-index: 1;
 }
 
 .access-title {
@@ -843,8 +812,6 @@ button, input, textarea, select {
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--dark);
-  position: relative;
-  z-index: 1;
 }
 
 .access-info {
@@ -852,8 +819,6 @@ button, input, textarea, select {
   color: var(--text-light);
   margin-bottom: 0.75rem;
   line-height: 1.4;
-  position: relative;
-  z-index: 1;
 }
 
 .access-time {
@@ -863,22 +828,13 @@ button, input, textarea, select {
   align-items: center;
   gap: 0.25rem;
   font-weight: 600;
-  position: relative;
-  z-index: 1;
 }
 
 .access-time i {
   color: var(--accent);
 }
 
-/* Animations */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 992px) {
   .location-map {
     height: 400px;
@@ -920,39 +876,6 @@ button, input, textarea, select {
   .location-address {
     font-size: 0.85rem;
     padding: 0.8rem;
-  }
-}
-.location-access {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.access-item {
-  width: calc(33.333% - 1rem);
-  margin-bottom: 1.5rem;
-}
-
-/* Responsive Styles */
-@media (max-width: 992px) {
-  .reason-card,
-  .facility-card,
-  .access-item {
-    width: calc(50% - 1rem);
-  }
-}
-
-@media (max-width: 768px) {
-  .reason-card,
-  .facility-card,
-  .access-item {
-    width: 100%;
-  }
-  
-  .reason-row,
-  .facility-row {
-    flex-direction: column;
-    margin-bottom: 0;
   }
 }
 /* ===== TESTIMONI ===== */
@@ -2272,8 +2195,8 @@ button, input, textarea, select {
 </section>
 
 
- <!-- Why Choose Us -->
-<section class="why-choose section">
+<!-- Why Choose Us Section -->
+<section class="why-choose" id="why-choose">
   <div class="container">
     <div class="section-title">
       <h2>Mengapa Memilih Kertamulya Residence?</h2>
@@ -2281,65 +2204,66 @@ button, input, textarea, select {
     </div>
     
     <div class="reasons-grid">
-      <!-- Baris Pertama - 3 Card -->
-      <div class="reason-row">
-        <div class="reason-card">
-          <div class="reason-icon">
-            <i class="fas fa-mosque"></i>
-          </div>
-          <h3 class="reason-title">Konsep Islami</h3>
-          <p class="reason-desc">Lingkungan yang mendukung nilai-nilai islami dengan fasilitas ibadah lengkap dan komunitas muslim yang solid.</p>
+      <!-- Reason 1 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-mosque"></i>
         </div>
-        
-        <div class="reason-card">
-          <div class="reason-icon">
-            <i class="fas fa-leaf"></i>
-          </div>
-          <h3 class="reason-title">Green Living</h3>
-          <p class="reason-desc">Konsep hunian ramah lingkungan dengan taman produktif dan sirkulasi udara alami untuk kenyamanan maksimal.</p>
-        </div>
-        
-        <div class="reason-card">
-          <div class="reason-icon">
-            <i class="fas fa-hand-holding-usd"></i>
-          </div>
-          <h3 class="reason-title">Pembiayaan Mudah</h3>
-          <p class="reason-desc">Kerjasama dengan bank syariah terkemuka untuk proses KPR mudah, cepat, dan sesuai syariat.</p>
-        </div>
+        <h3 class="reason-title">Konsep Islami</h3>
+        <p class="reason-desc">Lingkungan yang mendukung nilai-nilai islami dengan fasilitas ibadah lengkap dan komunitas muslim yang solid.</p>
       </div>
       
-      <!-- Baris Kedua - 3 Card -->
-      <div class="reason-row">
-        <div class="reason-card">
-          <div class="reason-icon">
-            <i class="fas fa-award"></i>
-          </div>
-          <h3 class="reason-title">Kualitas Premium</h3>
-          <p class="reason-desc">Material bangunan berkualitas tinggi dengan standar konstruksi terbaik untuk rumah yang kokoh dan nyaman.</p>
+      <!-- Reason 2 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-leaf"></i>
         </div>
-        
-        <div class="reason-card">
-          <div class="reason-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <h3 class="reason-title">Lokasi Strategis</h3>
-          <p class="reason-desc">Akses mudah ke pusat kota, fasilitas umum, dan pusat perbelanjaan hanya dalam hitungan menit.</p>
+        <h3 class="reason-title">Green Living</h3>
+        <p class="reason-desc">Konsep hunian ramah lingkungan dengan taman produktif dan sirkulasi udara alami untuk kenyamanan maksimal.</p>
+      </div>
+      
+      <!-- Reason 3 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-hand-holding-usd"></i>
         </div>
-        
-        <div class="reason-card">
-          <div class="reason-icon">
-            <i class="fas fa-gift"></i>
-          </div>
-          <h3 class="reason-title">Bonus Menarik</h3>
-          <p class="reason-desc">Dapatkan motor listrik gratis setelah 6x angsuran tepat waktu sebagai bentuk apresiasi kami.</p>
+        <h3 class="reason-title">Pembiayaan Mudah</h3>
+        <p class="reason-desc">Kerjasama dengan bank syariah terkemuka untuk proses KPR mudah, cepat, dan sesuai syariat.</p>
+      </div>
+      
+      <!-- Reason 4 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-award"></i>
         </div>
+        <h3 class="reason-title">Kualitas Premium</h3>
+        <p class="reason-desc">Material bangunan berkualitas tinggi dengan standar konstruksi terbaik untuk rumah yang kokoh dan nyaman.</p>
+      </div>
+      
+      <!-- Reason 5 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <h3 class="reason-title">Lokasi Strategis</h3>
+        <p class="reason-desc">Akses mudah ke pusat kota, fasilitas umum, dan pusat perbelanjaan hanya dalam hitungan menit.</p>
+      </div>
+      
+      <!-- Reason 6 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-gift"></i>
+        </div>
+        <h3 class="reason-title">Bonus Menarik</h3>
+        <p class="reason-desc">Dapatkan motor listrik gratis setelah 6x angsuran tepat waktu sebagai bentuk apresiasi kami.</p>
       </div>
     </div>
   </div>
 </section>
 
- <!-- Facilities -->
-<section class="section">
+
+<!-- Facilities Section -->
+<section class="facilities-section" id="facilities">
   <div class="container">
     <div class="section-title">
       <h2>Fasilitas Unggulan</h2>
@@ -2347,69 +2271,69 @@ button, input, textarea, select {
     </div>
     
     <div class="facilities-grid">
-      <!-- Baris Pertama - 3 Card -->
-      <div class="facility-row">
-        <div class="facility-card">
-          <div class="facility-image">
-            <img src="img/fasilitas/masjid.webp" alt="Masjid Al Fawwaz" loading="lazy">
-          </div>
-          <div class="facility-content">
-            <h3 class="facility-title">Masjid Al Fawwaz</h3>
-            <p class="facility-desc">Masjid megah kapasitas 400 jamaah dengan fasilitas wudhu yang nyaman dan tempat parkir luas.</p>
-          </div>
+      <!-- Facility 1 -->
+      <div class="facility-card">
+        <div class="facility-image">
+          <img src="img/fasilitas/masjid.webp" alt="Masjid Al Fawwaz" loading="lazy">
         </div>
-        
-        <div class="facility-card">
-          <div class="facility-image">
-           <img src="img/fasilitas/tahfidz.webp" alt="Saung Tahfidz" loading="lazy">
-          </div>
-          <div class="facility-content">
-            <h3 class="facility-title">Saung Tahfidz</h3>
-            <p class="facility-desc">Tempat menghafal Al-Qur'an dengan metode modern dan guru bersanad untuk anak-anak dan dewasa.</p>
-          </div>
-        </div>
-        
-        <div class="facility-card">
-          <div class="facility-image">
-           <img src="img/fasilitas/olahraga.webp" alt="Sunnah Sport" loading="lazy">
-          </div>
-          <div class="facility-content">
-            <h3 class="facility-title">Sunnah Sport</h3>
-            <p class="facility-desc">Fasilitas olahraga sunnah seperti panahan, berkuda, dan jogging track yang aman dan nyaman.</p>
-          </div>
+        <div class="facility-content">
+          <h3 class="facility-title">Masjid Al Fawwaz</h3>
+          <p class="facility-desc">Masjid megah kapasitas 400 jamaah dengan fasilitas wudhu yang nyaman dan tempat parkir luas.</p>
         </div>
       </div>
       
-      <!-- Baris Kedua - 3 Card -->
-      <div class="facility-row">
-        <div class="facility-card">
-          <div class="facility-image">
-            <img src="img/fasilitas/community.webp" alt="Community Center" loading="lazy">
-          </div>
-          <div class="facility-content">
-            <h3 class="facility-title">Community Center</h3>
-            <p class="facility-desc">Tempat berkumpul keluarga dengan cafe sehat dan ruang serbaguna untuk acara komunitas.</p>
-          </div>
+      <!-- Facility 2 -->
+      <div class="facility-card">
+        <div class="facility-image">
+          <img src="img/fasilitas/tahfidz.webp" alt="Saung Tahfidz" loading="lazy">
         </div>
-        
-        <div class="facility-card">
-          <div class="facility-image">
-            <img src="img/fasilitas/greenhouse.webp" alt="Green House" loading="lazy">
-          </div>
-          <div class="facility-content">
-            <h3 class="facility-title">Green House</h3>
-            <p class="facility-desc">Area hijau dengan tanaman produktif untuk ketahanan pangan keluarga dan edukasi anak-anak.</p>
-          </div>
+        <div class="facility-content">
+          <h3 class="facility-title">Saung Tahfidz</h3>
+          <p class="facility-desc">Tempat menghafal Al-Qur'an dengan metode modern dan guru bersanad untuk anak-anak dan dewasa.</p>
         </div>
-        
-        <div class="facility-card">
-          <div class="facility-image">
-            <img src="https://i.imgur.com/THJSL1O.jpeg" alt="Playground" loading="lazy">
-          </div>
-          <div class="facility-content">
-            <h3 class="facility-title">Playground Islami</h3>
-            <p class="facility-desc">Area bermain anak yang aman dengan permainan edukatif bernuansa islami.</p>
-          </div>
+      </div>
+      
+      <!-- Facility 3 -->
+      <div class="facility-card">
+        <div class="facility-image">
+          <img src="img/fasilitas/olahraga.webp" alt="Sunnah Sport" loading="lazy">
+        </div>
+        <div class="facility-content">
+          <h3 class="facility-title">Sunnah Sport</h3>
+          <p class="facility-desc">Fasilitas olahraga sunnah seperti panahan, berkuda, dan jogging track yang aman dan nyaman.</p>
+        </div>
+      </div>
+      
+      <!-- Facility 4 -->
+      <div class="facility-card">
+        <div class="facility-image">
+          <img src="img/fasilitas/community.webp" alt="Community Center" loading="lazy">
+        </div>
+        <div class="facility-content">
+          <h3 class="facility-title">Community Center</h3>
+          <p class="facility-desc">Tempat berkumpul keluarga dengan cafe sehat dan ruang serbaguna untuk acara komunitas.</p>
+        </div>
+      </div>
+      
+      <!-- Facility 5 -->
+      <div class="facility-card">
+        <div class="facility-image">
+          <img src="img/fasilitas/greenhouse.webp" alt="Green House" loading="lazy">
+        </div>
+        <div class="facility-content">
+          <h3 class="facility-title">Green House</h3>
+          <p class="facility-desc">Area hijau dengan tanaman produktif untuk ketahanan pangan keluarga dan edukasi anak-anak.</p>
+        </div>
+      </div>
+      
+      <!-- Facility 6 -->
+      <div class="facility-card">
+        <div class="facility-image">
+          <img src="https://i.imgur.com/THJSL1O.jpeg" alt="Playground" loading="lazy">
+        </div>
+        <div class="facility-content">
+          <h3 class="facility-title">Playground Islami</h3>
+          <p class="facility-desc">Area bermain anak yang aman dengan permainan edukatif bernuansa islami.</p>
         </div>
       </div>
     </div>
@@ -2417,7 +2341,7 @@ button, input, textarea, select {
 </section>
 
 <!-- Location Section -->
-<section class="location section" id="location">
+<section class="location-section" id="location">
   <div class="container">
     <div class="section-title">
       <h2>Lokasi Strategis</h2>
@@ -2508,6 +2432,7 @@ button, input, textarea, select {
     </div>
   </div>
 </section>
+
 
 <!-- Testimonials -->
 <section class="testimonials section">
