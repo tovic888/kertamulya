@@ -3066,6 +3066,7 @@ document.addEventListener('DOMContentLoaded', function() {
   animateProgressBars();
   setupVideoModal();
   setupNotification();
+  setupTestimonialVideos();
 });
 
 // ========== COUNTDOWN TIMER ==========
@@ -3343,11 +3344,49 @@ function setupVideoModal() {
   });
 }
 
+// ========== TESTIMONIAL VIDEOS ==========
+function setupTestimonialVideos() {
+  const videoIds = {
+    testimonial1: 'LgHbkuOKsw0',
+    testimonial2: 'UF5V1-Vu6uI'
+  };
+
+  // Initialize testimonial video buttons
+  document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+    wrapper.addEventListener('click', function() {
+      const type = this.getAttribute('onclick').match(/video', '([^']+)'/)[1];
+      const videoId = videoIds[type];
+      
+      if (videoId) {
+        document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        document.getElementById('videoModal').classList.add('active');
+      }
+    });
+  });
+}
+
 // ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
   if (type === 'booking') {
     if (houseType) document.getElementById('type').value = houseType;
     document.getElementById('bookingModal').classList.add('active');
+  } else if (type === 'gallery') {
+    initGalleryModal();
+    showGalleryModal(subtype);
+  } else if (type === 'video') {
+    setupVideoModal();
+    const videoIds = {
+      standard: '_blGnqdIRD8',
+      suite: 'tCg9iyw0jy4',
+      premium: '7Fl9zHdHb7s',
+      testimonial1: 'LgHbkuOKsw0',
+      testimonial2: 'UF5V1-Vu6uI'
+    };
+    const videoId = videoIds[subtype];
+    if (videoId) {
+      document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      document.getElementById('videoModal').classList.add('active');
+    }
   }
 }
 
