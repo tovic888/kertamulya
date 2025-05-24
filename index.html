@@ -655,6 +655,17 @@ button, input, textarea, select {
   color: var(--text-light);
   font-size: 0.9375rem;
 }
+.reason-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.reason-card {
+  width: calc(33.333% - 1.5rem);
+}
+
+
 /* ===== FASILITAS ===== */
 .facilities-grid {
   display: grid;
@@ -706,6 +717,17 @@ button, input, textarea, select {
   color: var(--text-light);
   font-size: 0.9375rem;
 }
+.facility-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.facility-card {
+  width: calc(33.333% - 1.5rem);
+}
+
+
 /* ===== LOKASI ===== */
 .location {
   background: var(--gray);
@@ -900,7 +922,39 @@ button, input, textarea, select {
     padding: 0.8rem;
   }
 }
+.location-access {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
+.access-item {
+  width: calc(33.333% - 1rem);
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .reason-card,
+  .facility-card,
+  .access-item {
+    width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .reason-card,
+  .facility-card,
+  .access-item {
+    width: 100%;
+  }
+  
+  .reason-row,
+  .facility-row {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+}
 /* ===== TESTIMONI ===== */
 .testimonials {
   background: linear-gradient(135deg, #111, #222);
@@ -2218,15 +2272,17 @@ button, input, textarea, select {
 </section>
 
 
-  <!-- Why Choose Us -->
-  <section class="why-choose section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Mengapa Memilih Kertamulya Residence?</h2>
-        <p>Keunggulan yang membuat kami berbeda dari perumahan lainnya</p>
-      </div>
-      
-      <div class="reasons-grid">
+ <!-- Why Choose Us -->
+<section class="why-choose section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Mengapa Memilih Kertamulya Residence?</h2>
+      <p>Keunggulan yang membuat kami berbeda dari perumahan lainnya</p>
+    </div>
+    
+    <div class="reasons-grid">
+      <!-- Baris Pertama - 3 Card -->
+      <div class="reason-row">
         <div class="reason-card">
           <div class="reason-icon">
             <i class="fas fa-mosque"></i>
@@ -2250,7 +2306,10 @@ button, input, textarea, select {
           <h3 class="reason-title">Pembiayaan Mudah</h3>
           <p class="reason-desc">Kerjasama dengan bank syariah terkemuka untuk proses KPR mudah, cepat, dan sesuai syariat.</p>
         </div>
-        
+      </div>
+      
+      <!-- Baris Kedua - 3 Card -->
+      <div class="reason-row">
         <div class="reason-card">
           <div class="reason-icon">
             <i class="fas fa-award"></i>
@@ -2276,17 +2335,20 @@ button, input, textarea, select {
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Facilities -->
-  <section class="section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Fasilitas Unggulan</h2>
-        <p>Nikmati berbagai fasilitas premium untuk kenyamanan keluarga Anda</p>
-      </div>
-      
-      <div class="facilities-grid">
+ <!-- Facilities -->
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Fasilitas Unggulan</h2>
+      <p>Nikmati berbagai fasilitas premium untuk kenyamanan keluarga Anda</p>
+    </div>
+    
+    <div class="facilities-grid">
+      <!-- Baris Pertama - 3 Card -->
+      <div class="facility-row">
         <div class="facility-card">
           <div class="facility-image">
             <img src="img/fasilitas/masjid.webp" alt="Masjid Al Fawwaz" loading="lazy">
@@ -2310,14 +2372,16 @@ button, input, textarea, select {
         <div class="facility-card">
           <div class="facility-image">
            <img src="img/fasilitas/olahraga.webp" alt="Sunnah Sport" loading="lazy">
-
           </div>
           <div class="facility-content">
             <h3 class="facility-title">Sunnah Sport</h3>
             <p class="facility-desc">Fasilitas olahraga sunnah seperti panahan, berkuda, dan jogging track yang aman dan nyaman.</p>
           </div>
         </div>
-        
+      </div>
+      
+      <!-- Baris Kedua - 3 Card -->
+      <div class="facility-row">
         <div class="facility-card">
           <div class="facility-image">
             <img src="img/fasilitas/community.webp" alt="Community Center" loading="lazy">
@@ -2349,7 +2413,8 @@ button, input, textarea, select {
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 <!-- Location Section -->
 <section class="location section" id="location">
