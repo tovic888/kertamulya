@@ -2996,52 +2996,42 @@ Terima kasih.`;
 
 // ========== GALLERY MODAL ==========
 function initGalleryModal() {
-  // Image sets with direct image URLs
-  const galleryImages = {
-    standard: [
-      'tipe-rumah/standart/standar1.webp',
-      'tipe-rumah/standart/standar2.webp',
-      'tipe-rumah/standart/standar3.webp',
-      'tipe-rumah/standart/standar4.webp',
-      'tipe-rumah/standart/standar5.webp',
-      'tipe-rumah/standart/standar6.webp',
-      'tipe-rumah/standart/standar7.webp',
-      'tipe-rumah/standart/denah-standar.webp',
-      'tipe-rumah/standart/spek-standar.webp'
-    ],
-    suite: [
-      'tipe-rumah/suite/suite1.webp',
-      'tipe-rumah/suite/suite2.webp',
-      'tipe-rumah/suite/suite3.webp',
-      'tipe-rumah/suite/suite4.webp',
-      'tipe-rumah/suite/suite5.webp',
-      'tipe-rumah/suite/denah-suite1.webp',
-      'tipe-rumah/suite/denah-suite2.webp',
-      'tipe-rumah/suite/spek-suite.webp'
-    ],
-    premium: [
-      'tipe-rumah/premium/premium1.webp',
-      'tipe-rumah/premium/premium2.webp',
-      'tipe-rumah/premium/premium3.webp',
-      'tipe-rumah/premium/premium4.webp',
-      'tipe-rumah/premium/premium5.webp',
-      'tipe-rumah/premium/denah-premium1.webp',
-      'tipe-rumah/premium/denah-premium2.webp',
-      'tipe-rumah/premium/spek-premium.webp'
-    ]
-  };
+  // Gallery images data
+const galleryImages = {
+  standard: [
+    {src: 'img/tipe-rumah/standart/standar1.webp', alt: 'Tipe Standard 30/60 - Tampak Depan'},
+    {src: 'img/tipe-rumah/standart/standar2.webp', alt: 'Tipe Standard 30/60 - Ruang Tamu'},
+    {src: 'img/tipe-rumah/standart/standar3.webp', alt: 'Tipe Standard 30/60 - Kamar Tidur'},
+    {src: 'img/tipe-rumah/standart/standar4.webp', alt: 'Tipe Standard 30/60 - Kamar Mandi'},
+    {src: 'img/tipe-rumah/standart/denah-standar.webp', alt: 'Tipe Standard 30/60 - Denah'}
+  ],
+  suite: [
+    {src: 'img/tipe-rumah/suite/suite1.webp', alt: 'Tipe Suite 50/60 - Tampak Depan'},
+    {src: 'img/tipe-rumah/suite/suite2.webp', alt: 'Tipe Suite 50/60 - Ruang Keluarga'},
+    {src: 'img/tipe-rumah/suite/suite3.webp', alt: 'Tipe Suite 50/60 - Dapur'},
+    {src: 'img/tipe-rumah/suite/denah-suite1.webp', alt: 'Tipe Suite 50/60 - Denah Lantai 1'},
+    {src: 'img/tipe-rumah/suite/denah-suite2.webp', alt: 'Tipe Suite 50/60 - Denah Lantai 2'}
+  ],
+  premium: [
+    {src: 'img/tipe-rumah/premium/premium1.webp', alt: 'Tipe Premium 50/120 - Tampak Depan'},
+    {src: 'img/tipe-rumah/premium/premium2.webp', alt: 'Tipe Premium 50/120 - Ruang Tamu'},
+    {src: 'img/tipe-rumah/premium/premium3.webp', alt: 'Tipe Premium 50/120 - Kamar Utama'},
+    {src: 'img/tipe-rumah/premium/premium4.webp', alt: 'Tipe Premium 50/120 - Gazebo'},
+    {src: 'img/tipe-rumah/premium/denah-premium1.webp', alt: 'Tipe Premium 50/120 - Denah Lantai 1'},
+    {src: 'img/tipe-rumah/premium/denah-premium2.webp', alt: 'Tipe Premium 50/120 - Denah Lantai 2'}
+  ]
+};
 
-  // Initialize gallery buttons
-  document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
-      showGalleryModal(type, galleryImages);
-    });
+// Initialize gallery buttons
+document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
+    showGalleryModal(type);
   });
-}
+});
 
-function showGalleryModal(type, images) {
+function showGalleryModal(type) {
   const titleMap = {
     standard: 'Standard 30/60',
     suite: 'Suite 50/60',
@@ -3053,14 +3043,21 @@ function showGalleryModal(type, images) {
   carousel.innerHTML = '';
 
   // Add slides to carousel
-  images[type].forEach(img => {
+  galleryImages[type].forEach(img => {
     const slide = document.createElement('div');
     slide.className = 'gallery-slide';
-    slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
+    slide.innerHTML = `
+      <img src="${img.src}" alt="${img.alt}" loading="lazy">
+      <div class="image-caption">${img.alt}</div>
+    `;
     carousel.appendChild(slide);
   });
 
-  // Initialize Slick Carousel
+  // Initialize or re-initialize Slick Carousel
+  if ($(carousel).hasClass('slick-initialized')) {
+    $(carousel).slick('unslick');
+  }
+  
   $(carousel).slick({
     dots: true,
     infinite: true,
@@ -3069,15 +3066,23 @@ function showGalleryModal(type, images) {
     adaptiveHeight: true,
     autoplay: false,
     arrows: true,
-    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+    prevArrow: '<button type="button" class="slick-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>'
   });
 
   // Show modal
   document.getElementById('galleryModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
-// ========== MODAL FUNCTIONS ==========
+function hideGalleryModal() {
+  const carousel = document.getElementById('galleryCarousel');
+  if ($(carousel).hasClass('slick-initialized')) {
+    $(carousel).slick('unslick');
+  }
+  document.getElementById('galleryModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
 // ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
   if (type === 'gallery' && subtype) {
