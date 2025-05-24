@@ -613,8 +613,9 @@ button, input, textarea, select {
 
 .reasons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .reason-card {
@@ -656,7 +657,17 @@ button, input, textarea, select {
   color: var(--text-light);
   font-size: 0.9375rem;
 }
+@media (max-width: 992px) {
+  .reasons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
+@media (max-width: 576px) {
+  .reasons-grid {
+    grid-template-columns: 1fr;
+  }
+}
 /* ===== FACILITIES SECTION ===== */
 .facilities-section {
   padding: 5rem 0;
@@ -2340,94 +2351,69 @@ button, input, textarea, select {
   </div>
 </section>
 
-<!-- Location Section -->
-<section class="location-section" id="location">
+<!-- Why Choose Us Section -->
+<section class="why-choose" id="why-choose">
   <div class="container">
     <div class="section-title">
-      <h2>Lokasi Strategis</h2>
-      <p>Pusat kota Kuningan dengan akses mudah ke berbagai fasilitas</p>
+      <h2>Mengapa Memilih Kertamulya Residence?</h2>
+      <p>Keunggulan yang membuat kami berbeda dari perumahan lainnya</p>
     </div>
     
-    <div class="location-container">
-      <div class="location-map-container">
-        <div class="location-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence%2C%20Jl.%20Kertayasa%2C%20Blok%20Congkleng%2C%20Kertayasa%2C%20Kec.%20Sindangagung%2C%20Kabupaten%20Kuningan%2C%20Jawa%20Barat%2045573!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
-          <a href="https://maps.app.goo.gl/mdAmsNKHCpSuX7mo9" class="btn btn-accent btn-map-directions" target="_blank">
-            <i class="fas fa-directions"></i> Petunjuk Arah
-          </a>
+    <div class="reasons-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <!-- Reason 1 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-mosque"></i>
         </div>
-        <div class="location-address">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Kertamulya Residence, Jl. Kertayasa, Blok Congkleng, Kertayasa, Kec. Sindangagung, Kab. Kuningan, Jawa Barat</span>
-        </div>
+        <h3 class="reason-title">Konsep Islami</h3>
+        <p class="reason-desc">Lingkungan yang mendukung nilai-nilai islami dengan fasilitas ibadah lengkap dan komunitas muslim yang solid.</p>
       </div>
       
-      <div class="location-access">
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-road"></i>
-          </div>
-          <h4 class="access-title">Jalan Nasional</h4>
-          <p class="access-info">5 menit ke Jalan Nasional Kuningan-Cirebon</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 5 menit
-          </div>
+      <!-- Reason 2 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-leaf"></i>
         </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-hospital-alt"></i>
-          </div>
-          <h4 class="access-title">RS Kuningan Medical Center</h4>
-          <p class="access-info">5 menit ke rumah sakit modern di Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 5 menit
-          </div>
+        <h3 class="reason-title">Green Living</h3>
+        <p class="reason-desc">Konsep hunian ramah lingkungan dengan taman produktif dan sirkulasi udara alami untuk kenyamanan maksimal.</p>
+      </div>
+      
+      <!-- Reason 3 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-hand-holding-usd"></i>
         </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-bus"></i>
-          </div>
-          <h4 class="access-title">Terminal Kuningan</h4>
-          <p class="access-info">6 menit ke terminal utama Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 6 menit
-          </div>
+        <h3 class="reason-title">Pembiayaan Mudah</h3>
+        <p class="reason-desc">Kerjasama dengan bank syariah terkemuka untuk proses KPR mudah, cepat, dan sesuai syariat.</p>
+      </div>
+    </div>
+    
+    <div class="reasons-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 2rem;">
+      <!-- Reason 4 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-award"></i>
         </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-university"></i>
-          </div>
-          <h4 class="access-title">Universitas Kuningan</h4>
-          <p class="access-info">12 menit ke kampus utama Universitas Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 12 menit
-          </div>
+        <h3 class="reason-title">Kualitas Premium</h3>
+        <p class="reason-desc">Material bangunan berkualitas tinggi dengan standar konstruksi terbaik untuk rumah yang kokoh dan nyaman.</p>
+      </div>
+      
+      <!-- Reason 5 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-map-marker-alt"></i>
         </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-shopping-basket"></i>
-          </div>
-          <h4 class="access-title">Esbe Mart</h4>
-          <p class="access-info">15 menit ke pusat perbelanjaan terbesar di Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 15 menit
-          </div>
+        <h3 class="reason-title">Lokasi Strategis</h3>
+        <p class="reason-desc">Akses mudah ke pusat kota, fasilitas umum, dan pusat perbelanjaan hanya dalam hitungan menit.</p>
+      </div>
+      
+      <!-- Reason 6 -->
+      <div class="reason-card">
+        <div class="reason-icon">
+          <i class="fas fa-gift"></i>
         </div>
-        
-        <div class="access-item">
-          <div class="access-icon">
-            <i class="fas fa-landmark"></i>
-          </div>
-          <h4 class="access-title">Kantor Bupati</h4>
-          <p class="access-info">16 menit ke pusat pemerintahan Kabupaten Kuningan</p>
-          <div class="access-time">
-            <i class="fas fa-clock"></i> 16 menit
-          </div>
-        </div>
+        <h3 class="reason-title">Bonus Menarik</h3>
+        <p class="reason-desc">Dapatkan motor listrik gratis setelah 6x angsuran tepat waktu sebagai bentuk apresiasi kami.</p>
       </div>
     </div>
   </div>
