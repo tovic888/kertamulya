@@ -3053,7 +3053,6 @@ button, input, textarea, select {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all components
   updateCountdown();
@@ -3061,12 +3060,22 @@ document.addEventListener('DOMContentLoaded', function() {
   setupTypeSelector();
   animateSoldCount();
   setupFAQAccordion();
-  setupBookingForm();
-  initGalleryModal();
+  setupGalleryModal();
   animateProgressBars();
   setupVideoModal();
   setupNotification();
   setupTestimonialVideos();
+  
+  // Close modals when clicking outside
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal')) {
+      hideModal('gallery');
+      hideModal('booking');
+    }
+    if (e.target.classList.contains('video-modal')) {
+      hideModal('video');
+    }
+  });
 });
 
 // ========== COUNTDOWN TIMER ==========
@@ -3177,7 +3186,12 @@ function setupFAQAccordion() {
     const question = item.querySelector('.faq-question');
     
     question.addEventListener('click', () => {
-      // Close all other items
+      // Toggle current item
+      const isActive = item.classList.contains('active');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-question i');
+      
+      // Close all other items first
       faqItems.forEach(otherItem => {
         if (otherItem !== item) {
           otherItem.classList.remove('active');
@@ -3186,11 +3200,7 @@ function setupFAQAccordion() {
         }
       });
       
-      // Toggle current item
-      const isActive = item.classList.contains('active');
-      const answer = item.querySelector('.faq-answer');
-      const icon = item.querySelector('.faq-question i');
-      
+      // Then toggle current item
       if (isActive) {
         item.classList.remove('active');
         answer.style.maxHeight = '0';
@@ -3204,37 +3214,8 @@ function setupFAQAccordion() {
   });
 }
 
-// ========== BOOKING FORM ==========
-function setupBookingForm() {
-  const bookingForm = document.getElementById('bookingForm');
-  
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const type = document.getElementById('type').value;
-      
-      const message = `Assalamu'alaikum wr wb,
-
-*Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
-
-Mohon info lebih lanjut mengenai:
-- *Proses pembelian*
-- *Syarat KPR*
-
-Terima kasih.`;
-    
-      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
-      window.open(waLink, '_blank');
-      hideModal('booking');
-    });
-  }
-}
-
 // ========== GALLERY MODAL ==========
-function initGalleryModal() {
+function setupGalleryModal() {
   // Image sets with local image paths
   const galleryImages = {
     standard: [
@@ -3317,6 +3298,7 @@ function showGalleryModal(type, images) {
 
   // Show modal
   document.getElementById('galleryModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 // ========== VIDEO MODAL ==========
@@ -3339,6 +3321,7 @@ function setupVideoModal() {
       if (videoId) {
         document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
         document.getElementById('videoModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
       }
     });
   });
@@ -3354,12 +3337,15 @@ function setupTestimonialVideos() {
   // Initialize testimonial video buttons
   document.querySelectorAll('.video-wrapper').forEach(wrapper => {
     wrapper.addEventListener('click', function() {
-      const type = this.getAttribute('onclick').match(/video', '([^']+)'/)[1];
+      const type = this.getAttribute('onclick')?.match(/video', '([^']+)'/)?.[1];
+      if (!type) return;
+      
       const videoId = videoIds[type];
       
       if (videoId) {
         document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
         document.getElementById('videoModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
       }
     });
   });
@@ -3367,11 +3353,8 @@ function setupTestimonialVideos() {
 
 // ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
-  if (type === 'booking') {
-    if (houseType) document.getElementById('type').value = houseType;
-    document.getElementById('bookingModal').classList.add('active');
-  } else if (type === 'gallery') {
-    initGalleryModal();
+  if (type === 'gallery') {
+    setupGalleryModal();
     showGalleryModal(subtype);
   } else if (type === 'video') {
     setupVideoModal();
@@ -3386,6 +3369,7 @@ function showModal(type, subtype = null, houseType = null) {
     if (videoId) {
       document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
       document.getElementById('videoModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
   }
 }
@@ -3398,13 +3382,11 @@ function hideModal(type) {
     }
     document.getElementById('galleryModal').classList.remove('active');
   } 
-  else if (type === 'booking') {
-    document.getElementById('bookingModal').classList.remove('active');
-  } 
   else if (type === 'video') {
     document.getElementById('videoFrame').src = '';
     document.getElementById('videoModal').classList.remove('active');
   }
+  document.body.style.overflow = 'auto';
 }
 
 // ========== PROGRESS BARS ==========
@@ -3416,6 +3398,16 @@ function animateProgressBars() {
     const stock = parseInt(card.dataset.stock);
     const percentage = (stock / 10) * 100;
     
+    // Set color based on stock level
+    if (stock <= 1) {
+      bar.style.background = 'linear-gradient(90deg, #e74c3c, #c0392b)';
+    } else if (stock <= 3) {
+      bar.style.background = 'linear-gradient(90deg, #f39c12, #e67e22)';
+    } else {
+      bar.style.background = 'linear-gradient(90deg, var(--primary), var(--primary-dark))';
+    }
+    
+    // Animate width
     bar.style.width = '0%';
     setTimeout(() => {
       bar.style.width = `${percentage}%`;
@@ -3432,7 +3424,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.type-card').forEach(card => {
   observer.observe(card);
-});
+}); 
 </script>
 </body>
 </html> 
