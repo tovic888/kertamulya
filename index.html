@@ -2177,7 +2177,11 @@ button, input, textarea, select {
   50% { opacity: 0.7; }
   100% { opacity: 1; }
 }
-
+/* Hapus navigasi untuk testimonial */
+.testimonials .slick-prev,
+.testimonials .slick-next {
+  display: none !important;
+}
   </style>
 </head>
 <body>
@@ -3490,6 +3494,17 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.type-card').forEach(card => {
   observer.observe(card);
+});
+// Initialize Slick Carousel untuk testimonial tanpa arrows
+$('.testimonial-grid').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 1,
+  adaptiveHeight: true,
+  arrows: false, // Ini yang diubah dari true ke false
+  autoplay: true,
+  autoplaySpeed: 5000
 });
 </script>
 </body>
