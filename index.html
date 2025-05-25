@@ -3520,20 +3520,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.type-card').forEach(card => {
   observer.observe(card);
 });
- AOS.init({
-    duration: 800,
-    once: true
-  });
- const swiper = new Swiper('.swiper-container', {
-    slidesPerView: 1.2,
-    spaceBetween: 16,
-    grabCursor: true,
-    breakpoints: {
-      576: { slidesPerView: 2 },
-      768: { slidesPerView: 3 },
-      992: { slidesPerView: 3 },
-    }
-  });
 </script>
 </body>
 </html> 
