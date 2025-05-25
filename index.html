@@ -3490,6 +3490,46 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.type-card').forEach(card => {
   observer.observe(card);
 });
+
+// Fungsi untuk mengatur type selector
+function setupTypeSelector() {
+  const typeBtns = document.querySelectorAll('.type-btn');
+  const typeCards = document.querySelectorAll('.type-card');
+  
+  typeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Hapus class active dari semua tombol
+      typeBtns.forEach(b => b.classList.remove('active'));
+      
+      // Tambah class active ke tombol yang diklik
+      this.classList.add('active');
+      
+      const selectedType = this.dataset.type;
+      
+      // Tampilkan/sembunyikan card berdasarkan tipe yang dipilih
+      typeCards.forEach(card => {
+        if (selectedType === 'all' || card.dataset.type === selectedType) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+// Panggil fungsi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+  setupTypeSelector();
+  
+  // Juga panggil saat konten selesai dimuat (untuk memastikan)
+  if (document.readyState === 'complete') {
+    setupTypeSelector();
+  }
+});
+
+// Fallback jika DOMContentLoaded tidak terpicu
+window.addEventListener('load', setupTypeSelector);
 </script>
 </body>
 </html> 
