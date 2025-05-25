@@ -1083,6 +1083,36 @@ body {
   max-width: 100%;
   padding: 0 15px;
 }
+.bank-detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+.bank-detail-item i {
+  width: 24px;
+  color: var(--primary);
+  margin-right: 10px;
+}
+
+.bank-label {
+  font-weight: 600;
+  min-width: 120px;
+  color: var(--text);
+}
+
+.bank-value {
+  color: var(--dark);
+}
+
+.highlight {
+  font-weight: 700;
+  color: var(--danger);
+  background: rgba(231, 76, 60, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
   </style>
 </head>
 <body>
@@ -1139,11 +1169,22 @@ body {
   <h4>Transfer ke Rekening BSI</h4>
   
   <div class="bank-details">
-    <p><i class="fas fa-university"></i> <strong>Bank BSI</strong></p>
-    <p><i class="fas fa-credit-card"></i> <strong>664 5566 446</strong></p>
-    <p><i class="fas fa-user-tie"></i> <strong>PT. Rumah Mulia Indonesia</strong></p>
-    <p><i class="fas fa-money-bill-wave"></i> <strong class="unique-amount" id="uniqueAmount">Rp 100.<span id="randomDigits">000</span></strong></p>
+  <div class="bank-detail-item">
+    <i class="fas fa-university"></i>
+    <span class="bank-label">Bank</span>
+    <span class="bank-value">BSI (Bank Syariah Indonesia)</span>
   </div>
+  <div class="bank-detail-item">
+    <i class="fas fa-credit-card"></i>
+    <span class="bank-label">Nomor Rekening</span>
+    <span class="bank-value highlight">664 5566 446</span>
+  </div>
+  <div class="bank-detail-item">
+    <i class="fas fa-user-tie"></i>
+    <span class="bank-label">Atas Nama</span>
+    <span class="bank-value">PT. Rumah Mulia Indonesia</span>
+  </div>
+</div>
   
   <div class="payment-instructions">
     <h5><i class="fas fa-info-circle"></i> Cara Pembayaran:</h5>
@@ -1218,11 +1259,11 @@ body {
             
             <!-- Email -->
             <div class="form-group">
-              <label for="email">Email (Opsional)</label>
-              <i class="fas fa-envelope form-icon"></i>
-              <input type="email" id="email" class="form-control" placeholder="Contoh: nama@email.com">
-              <div class="error-message" id="emailError">Format email tidak valid</div>
-            </div>
+  <label for="email" class="required">Email</label>
+  <i class="fas fa-envelope form-icon"></i>
+  <input type="email" id="email" class="form-control" placeholder="Contoh: nama@email.com" required>
+  <div class="error-message" id="emailError">Email wajib diisi</div>
+</div>
             
             <!-- Alamat Domisili -->
             <div class="form-group">
@@ -1432,24 +1473,25 @@ body {
     }
 
     // Countdown Timer (1 day)
-    function updateCountdown() {
-      const endDate = new Date();
-      endDate.setDate(endDate.getDate() + 1); // 1 day from now
-      endDate.setHours(23, 59, 59, 0);
+function updateCountdown() {
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 1); // Changed from 3 to 1 day
+  endDate.setHours(23, 59, 59, 0);
 
-      const now = new Date().getTime();
-      const distance = endDate - now;
-      
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-      // Update display
-      document.getElementById('days').textContent = days.toString().padStart(2, '0');
-      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  const now = new Date().getTime();
+  const distance = endDate - now;
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  // Update display
+  document.getElementById('days').textContent = days.toString().padStart(2, '0');
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+}
       
       // Change color when less than 24 hours
       if (distance < (24 * 60 * 60 * 1000)) {
