@@ -1397,30 +1397,6 @@ button, input, textarea, select {
   color: var(--primary);
 }
 /* ===== KOMPONEN TAMBAHAN ===== */
-/* WhatsApp Float */
-.whatsapp-float {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 60px;
-  background: #25D366;
-  color: var(--light);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.75rem;
-  box-shadow: var(--shadow-lg);
-  z-index: 99;
-  transition: var(--transition);
-  animation: float 3s ease-in-out infinite;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
-}
-
 /* Notification */
 .notification {
   position: fixed;
@@ -1862,15 +1838,7 @@ button, input, textarea, select {
     font-size: 0.75rem;
   }
   
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-    bottom: 1.5rem;
-    right: 1.5rem;
-  }
-  
-  .gallery-carousel img {
+   .gallery-carousel img {
     max-height: 50vh;
   }
   
@@ -2194,10 +2162,7 @@ button, input, textarea, select {
     <span id="notificationText">Pak Budi baru saja booking unit Tipe Suite!</span>
   </div>
 
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/628977771080?text=Saya%20tertarik%20dengan%20Kertamulya%20Residence" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+  
 
 <!-- House Types Section -->
 <section class="house-types section" id="house-types">
@@ -2265,7 +2230,7 @@ button, input, textarea, select {
             </div>
           </div>
           <button class="btn btn-primary btn-block" onclick="showModal('booking', 'Standard 30/60')">
-            <i class="fab fa-whatsapp"></i> Booking Sekarang
+            <i class="fab fa-whatsapp"></i> Amankan Stok
           </button>
         </div>
       </div>
@@ -2321,7 +2286,7 @@ button, input, textarea, select {
             </div>
           </div>
           <button class="btn btn-primary btn-block" onclick="showModal('booking', 'Suite 50/60')">
-            <i class="fab fa-whatsapp"></i> Booking Sekarang
+            <i class="fab fa-whatsapp"></i> Amankan Stok
           </button>
         </div>
       </div>
@@ -2377,7 +2342,7 @@ button, input, textarea, select {
             </div>
           </div>
           <button class="btn btn-primary btn-block" onclick="showModal('booking', 'Premium 50/120')">
-            <i class="fab fa-whatsapp"></i> Booking Sekarang
+            <i class="fab fa-whatsapp"></i> Amankan Stok
           </button>
         </div>
       </div>
@@ -2770,7 +2735,7 @@ button, input, textarea, select {
   <section class="cta-section">
   <div class="container">
     <h2 class="cta-title">Siap Memiliki Rumah Islami Impian?</h2>
-    <p class="cta-desc">Booking sekarang dengan DP 0% dan dapatkan motor listrik gratis setelah 6x angsuran</p>
+    <p class="cta-desc">Amankan Stok dengan DP 0% dan dapatkan motor listrik gratis setelah 6x angsuran</p>
     
     <div class="countdown-container">
       <div class="countdown">
@@ -2800,7 +2765,7 @@ button, input, textarea, select {
     </div>
     
     <button class="btn btn-accent btn-lg pulse-animation" onclick="showModal('booking')">
-      <i class="fab fa-whatsapp"></i> Booking Sekarang
+      <i class="fab fa-whatsapp"></i> Amankan Stok
     </button>
   </div>
 </section>
@@ -3083,22 +3048,7 @@ button, input, textarea, select {
   </div>
 </div>
 
-  <!-- WhatsApp Confirmation Modal -->
-  <div class="modal" id="waModal">
-    <div class="modal-content">
-      <div class="modal-body" style="text-align: center;">
-        <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-          <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
-        </div>
-        <h3 class="modal-title">Formulir Terkirim!</h3>
-        <p class="modal-desc">Tim marketing kami akan segera menghubungi Anda melalui WhatsApp</p>
-        <p id="countdownText" style="margin: 1rem 0;">Mengarahkan ke WhatsApp dalam 5 detik...</p>
-        <a href="#" id="waLink" class="btn btn-accent" style="display: inline-flex;">
-          <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
-        </a>
-      </div>
-    </div>
-  </div>
+  
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
