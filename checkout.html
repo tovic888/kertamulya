@@ -943,10 +943,33 @@
       window.open(`https://wa.me/628977771080?text=${encodedMessage}`, '_blank');
     });
     
-    // File upload preview
+   // File upload preview
     document.getElementById('paymentProof').addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (file) {
         const fileSize = file.size / 1024 / 1024; // in MB
         if (fileSize > 2) {
+          alert('Ukuran file terlalu besar. Maksimal 2MB.');
+          e.target.value = '';
+          return;
+        }
+        
+        const fileUpload = e.target.closest('.file-upload');
+        fileUpload.querySelector('i').className = 'fas fa-check-circle';
+        fileUpload.querySelector('i').style.color = '#2ecc71';
+        fileUpload.querySelector('p').textContent = file.name;
+      }
+    });
+    
+    // Pulse animation for button
+    const submitButton = document.querySelector('.pulse-animation');
+    setInterval(() => {
+      submitButton.style.transform = 'scale(1.02)';
+      setTimeout(() => {
+        submitButton.style.transform = 'scale(1)';
+      }, 500);
+    }, 2000);
+  </script>
+</body>
+</html>
          
