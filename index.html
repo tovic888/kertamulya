@@ -721,6 +721,7 @@ button, input, textarea, select {
 .location-section {
   background: var(--gray);
   padding: 5rem 0;
+  position: relative;
 }
 
 .location-container {
@@ -729,27 +730,31 @@ button, input, textarea, select {
   gap: 2rem;
 }
 
-
+/* Map Container Styles */
+.location-map-container {
   position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
 }
 
 .location-map {
   height: 450px;
+  width: 100%;
+  position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
   border: 3px solid var(--light);
-  position: relative; /* Tambahkan ini */
 }
-
 
 .location-map iframe {
   width: 100%;
   height: 100%;
   border: none;
+  display: block;
 }
 
-
+/* Directions Button Styles */
 .btn-map-directions {
   position: absolute;
   bottom: 20px;
@@ -757,10 +762,26 @@ button, input, textarea, select {
   z-index: 10;
   padding: 0.75rem 1.5rem;
   font-size: 0.9rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+  border: none;
+  border-radius: 50px;
   box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: var(--transition);
   animation: pulse 2s infinite;
 }
 
+.btn-map-directions:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(241, 196, 15, 0.6);
+}
+
+/* Address Styles */
 .location-address {
   background: var(--primary-dark);
   color: white;
@@ -777,12 +798,15 @@ button, input, textarea, select {
 .location-address i {
   color: var(--accent);
   font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
+/* Access Items Styles */
 .location-access {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Ubah dari auto-fit ke 3 kolom tetap */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .access-item {
@@ -841,10 +865,14 @@ button, input, textarea, select {
   color: var(--accent);
 }
 
-/* Responsive */
+/* Responsive Styles */
 @media (max-width: 992px) {
   .location-map {
     height: 400px;
+  }
+  
+  .location-access {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -862,11 +890,22 @@ button, input, textarea, select {
     height: 45px;
     font-size: 1.1rem;
   }
+  
+  .btn-map-directions {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+    bottom: 15px;
+    right: 15px;
+  }
 }
 
 @media (max-width: 576px) {
   .location-map {
     height: 300px;
+  }
+  
+  .location-access {
+    grid-template-columns: 1fr;
   }
   
   .btn-map-directions {
@@ -875,38 +914,28 @@ button, input, textarea, select {
     bottom: 10px;
     right: 10px;
   }
-}
-  
-  .location-access {
-    grid-template-columns: 1fr;
-  }
-  
- .btn-map-directions {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
-    bottom: 15px;
-    right: 15px;
-  }
-}
   
   .location-address {
     font-size: 0.85rem;
     padding: 0.8rem;
   }
 }
-/* Responsive adjustments */
-@media (max-width: 992px) {
-  .location-access {
-    grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+
+/* Pulse Animation for Button */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 15px rgba(241, 196, 15, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(241, 196, 15, 0);
   }
 }
-
-@media (max-width: 576px) {
-  .location-access {
-    grid-template-columns: 1fr; /* 1 kolom di mobile */
-  }
-}
-
     /* ===== TESTIMONI ===== */
 .testimonials {
   background: linear-gradient(135deg, #111, #222);
