@@ -1,47 +1,271 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konfirmasi Pembayaran - Kertamulya Residence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; }
-    .email-container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { text-align: center; padding: 20px 0; }
-    .logo { max-width: 150px; }
-    .content { background: #f9f9f9; padding: 30px; border-radius: 10px; }
-    .footer { text-align: center; padding: 20px; font-size: 12px; color: #777; }
+    :root {
+      --primary: #2ecc71;
+      --primary-dark: #27ae60;
+      --accent: #f1c40f;
+      --danger: #e74c3c;
+      --dark: #111;
+      --light: #fff;
+      --gray: #f5f5f5;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--light);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .email-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+    }
+    
+    .logo {
+      max-width: 180px;
+      height: auto;
+    }
+    
+    .email-content {
+      padding: 30px;
+    }
+    
+    .email-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    
+    .transaction-details {
+      background: var(--gray);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+    }
+    
+    .detail-item {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    
+    .detail-label {
+      font-weight: 600;
+      min-width: 150px;
+      color: var(--text-light);
+    }
+    
+    .amount-highlight {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--danger);
+      text-align: center;
+      margin: 25px 0;
+      padding: 15px;
+      background: rgba(231, 76, 60, 0.1);
+      border-radius: 8px;
+    }
+    
     .button {
-      display: inline-block; padding: 12px 24px; background: #2ecc71; 
-      color: white; text-decoration: none; border-radius: 50px; margin: 15px 0;
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      margin: 20px 0;
+      text-align: center;
+    }
+    
+    .steps {
+      margin: 25px 0;
+      padding-left: 20px;
+    }
+    
+    .steps li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    .steps li:before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    
+    .email-footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--dark);
+      color: white;
+      font-size: 12px;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 15px 0;
+    }
+    
+    .social-links a {
+      color: white;
+      font-size: 18px;
+    }
+    
+    /* Admin specific styles */
+    .admin-alert {
+      background: rgba(231, 76, 60, 0.1);
+      border-left: 4px solid var(--danger);
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .admin-button {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
     }
   </style>
 </head>
 <body>
+  <!-- USER EMAIL TEMPLATE -->
   <div class="email-container">
-    <div class="header">
-      <img src="img/branding/logo-kertamulya.png" alt="Logo" class="logo">
+    <div class="email-header">
+      <img src="https://kertamulyaresidence.com/img/branding/logo-kertamulya-white.png" alt="Kertamulya Residence" class="logo">
+      <h1 style="margin: 15px 0 0; font-size: 22px;">Pembayaran Diterima!</h1>
     </div>
     
-    <div class="content">
-      <h2>Pembayaran Diterima!</h2>
-      <p>Halo <strong>{{name}}</strong>,</p>
-      <p>Terima kasih telah melakukan pembayaran sebesar:</p>
-      <h3 style="color: #e74c3c; font-size: 24px;">{{amount}}</h3>
-      <p>Untuk mengamankan stok unit di Kertamulya Residence.</p>
+    <div class="email-content">
+      <h2 class="email-title">Terima kasih {{name}}!</h2>
+      <p>Kami telah menerima pembayaran Anda untuk mengamankan stok unit di Kertamulya Residence.</p>
       
-      <p>Berikut detail transaksi Anda:</p>
-      <ul>
-        <li>Tanggal: {{date}}</li>
-        <li>No. Referensi: #{{refNumber}}</li>
-        <li>Status: Menunggu Verifikasi</li>
-      </ul>
+      <div class="amount-highlight">
+        {{amount}}
+      </div>
       
-      <p>Tim kami akan menghubungi Anda dalam 1x24 jam untuk konfirmasi lebih lanjut.</p>
+      <div class="transaction-details">
+        <div class="detail-item">
+          <span class="detail-label">Tanggal Transaksi:</span>
+          <span>{{date}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">No. Referensi:</span>
+          <span>#{{refNumber}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Status:</span>
+          <span style="color: var(--primary); font-weight: 600;">Menunggu Verifikasi</span>
+        </div>
+      </div>
       
-      <a href="https://wa.me/628977771080" class="button">Hubungi Kami via WhatsApp</a>
+      <h3 style="font-size: 18px; margin-bottom: 10px;">Apa Selanjutnya?</h3>
+      <ol class="steps">
+        <li>Tim kami akan memverifikasi pembayaran Anda dalam 1x24 jam</li>
+        <li>Anda akan menerima konfirmasi via WhatsApp</li>
+        <li>Jadwalkan survei lokasi dalam 7 hari ke depan</li>
+      </ol>
+      
+      <div style="text-align: center;">
+        <a href="https://wa.me/628977771080" class="button">Hubungi Marketing Kami</a>
+      </div>
+      
+      <p style="font-size: 14px; color: #666; margin-top: 30px;">
+        <strong>Perhatian:</strong> Jika Anda tidak menerima konfirmasi dalam 24 jam, silakan hubungi kami segera.
+      </p>
     </div>
     
-    <div class="footer">
+    <div class="email-footer">
+      <div class="social-links">
+        <a href="https://instagram.com/kertamulyaresidence"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/kertamulyaresidence"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://youtube.com/kertamulyaresidence"><i class="fab fa-youtube"></i></a>
+      </div>
       <p>© 2025 Kertamulya Residence. All rights reserved.</p>
-      <p>Jl. Kertayasa, Kuningan, Jawa Barat</p>
+      <p>Jl. Kertayasa, Kuningan, Jawa Barat 45551</p>
+    </div>
+  </div>
+  
+  <!-- ADMIN EMAIL TEMPLATE -->
+  <div class="email-container" style="margin-top: 40px;">
+    <div class="email-header" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+      <h1 style="margin: 0; font-size: 22px;">PEMBAYARAN BARU!</h1>
+      <p style="margin: 5px 0 0; opacity: 0.9;">Segera verifikasi pembayaran ini</p>
+    </div>
+    
+    <div class="email-content">
+      <div class="admin-alert">
+        <h3 style="margin: 0 0 10px; color: var(--danger);"><i class="fas fa-exclamation-circle"></i> Tindakan Diperlukan</h3>
+        <p style="margin: 0;">Pembayaran baru membutuhkan verifikasi Anda.</p>
+      </div>
+      
+      <h2 class="email-title">Detail Pembayaran</h2>
+      
+      <div class="transaction-details">
+        <div class="detail-item">
+          <span class="detail-label">Nama Lengkap:</span>
+          <span>{{name}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Nominal:</span>
+          <span style="font-weight: 600; color: var(--danger);">{{amount}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">WhatsApp:</span>
+          <span>{{whatsapp}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Email:</span>
+          <span>{{email}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Tipe Unit:</span>
+          <span>{{unitType}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Tanggal:</span>
+          <span>{{date}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Referensi:</span>
+          <span>#{{refNumber}}</span>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="https://wa.me/{{whatsapp}}" class="button admin-button">Hubungi Pembeli</a>
+        <a href="{{adminLink}}" class="button" style="margin-left: 15px;">Lihat di Dashboard</a>
+      </div>
+    </div>
+    
+    <div class="email-footer">
+      <p>Pesan ini dikirim ke {{adminEmails}}</p>
+      <p>© 2025 Kertamulya Residence Admin System</p>
     </div>
   </div>
 </body>
