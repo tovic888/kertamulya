@@ -2179,10 +2179,20 @@ button, input, textarea, select {
   ⚠️ Stok Rumah Subsidi Tinggal 30 Unit. Amankan Sekarang.!</div>
 
  <!-- Hero Section -->
-<section class="hero">
+
+ <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <img src="img/branding/logo-kertamulya.png" alt="Kertamulya Residence" class="hero-logo" loading="lazy">
+      <!-- Preload hero image dan gunakan format WebP -->
+      <link rel="preload" href="img/hero/hero-background-mobile.webp" as="image" media="(max-width: 768px)">
+      <link rel="preload" href="img/hero/hero-background.webp" as="image" media="(min-width: 769px)">
+      
+      <!-- Logo dengan dimensi eksplisit dan format WebP -->
+      <img src="img/branding/logo-kertamulya.webp" 
+           alt="Kertamulya Residence" 
+           class="hero-logo" 
+           loading="eager" 
+           width="200" height="80">
       
       <h1>Hunian Islami Tenang & Strategis di Kuningan</h1>
       <p>Tanpa DP. Cicilan Mulai 1 Jutaan. Bonus Motor Listrik.</p>
