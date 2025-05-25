@@ -896,4 +896,67 @@
       let formattedWhatsapp = whatsapp;
       if (whatsapp.startsWith('0')) {
         formattedWhatsapp = '62' + whatsapp.substring(1);
-      } else if (whatsapp.st
+      } else if (whatsapp.startsWith('+62')) {
+        formattedWhatsapp = whatsapp.substring(1);
+      }
+      
+      // Create WhatsApp message
+      let message = `Halo Kertamulya Residence, saya ingin konfirmasi pembayaran amankan stok dengan detail berikut:\n\n`;
+      message += `Nama: ${fullName}\n`;
+      message += `WhatsApp: ${whatsapp}\n`;
+      if (email) message += `Email: ${email}\n`;
+      message += `Alamat: ${address}\n`;
+      message += `Tipe Rumah: ${document.getElementById('houseType').options[document.getElementById('houseType').selectedIndex].text}\n\n`;
+      message += `Saya sudah transfer biaya amankan stok Rp100.000. Mohon konfirmasi lebih lanjut.`;
+      
+      // Encode message for URL
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Open WhatsApp
+      window.open(`https://wa.me/628977771080?text=${encodedMessage}`, '_blank');
+    });
+    
+    // File upload preview
+    document.getElementById('paymentProof').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const fileSize = file.size / 1024 / 1024; // in MB
+        if (fileSize > 2) {
+          alert('Ukuran file terlalu besar. Maksimal 2MB.');
+          e.target.value = '';
+          return;
+        }
+        
+        const fileUpload = e.target.closest('.file-upload');
+        fileUpload.querySelector('i').className = 'fas fa-check-circle';
+        fileUpload.querySelector('i').style.color = '#2ecc71';
+        fileUpload.querySelector('p').textContent = file.name;
+      }
+    });
+    
+    // Pulse animation for button
+    const submitButton = document.querySelector('.pulse-animation');
+    setInterval(() => {
+      submitButton.style.transform = 'scale(1.02)';
+      setTimeout(() => {
+        submitButton.style.transform = 'scale(1)';
+      }, 500);
+    }, 2000);
+    
+    // Countdown timer
+    function updateCountdown() {
+      const now = new Date();
+      const hours = 23 - now.getHours();
+      const minutes = 59 - now.getMinutes();
+      const seconds = 59 - now.getSeconds();
+      
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
