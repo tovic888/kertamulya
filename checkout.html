@@ -797,6 +797,109 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         right: 1.5rem;
       }
     }
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 992px) {
+  .checkout-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .payment-first {
+    position: static;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+  
+  .countdown-item {
+    min-width: 60px;
+    padding: 0.6rem;
+  }
+  
+  .countdown-number {
+    font-size: 1.3rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout-form,
+  .payment-first {
+    padding: 1.5rem;
+  }
+  
+  .form-control {
+    padding-left: 2.5rem;
+  }
+  
+  .form-icon {
+    left: 0.8rem;
+  }
+  
+  .urgency-box {
+    padding: 1rem;
+  }
+  
+  .benefit-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title h2 {
+    font-size: 1.5rem;
+  }
+  
+  .section-title p {
+    font-size: 0.95rem;
+  }
+  
+  .countdown-item {
+    min-width: 50px;
+    padding: 0.5rem;
+  }
+  
+  .countdown-number {
+    font-size: 1.1rem;
+  }
+  
+  .countdown-separator {
+    font-size: 1rem;
+    top: 3px;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .legal-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .whatsapp-button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+  
+  .whatsapp-tooltip {
+    width: 200px;
+    right: -70px;
+  }
+}
   </style>
 </head>
 <body>
@@ -1063,150 +1166,190 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 </div>
+<script>
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // WhatsApp tooltip functionality
+  setupWhatsAppTooltip();
+  
+  // Initialize countdown timer (1 day)
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  
+  // Form submission handling
+  setupBookingForm();
+  
+  // File upload preview
+  setupFileUpload();
+  
+  // Pulse animation for submit button
+  setupPulseAnimation();
+});
 
-  <script>
-    // Tampilkan tooltip saat pertama kali
+// WhatsApp Tooltip Functions
+function setupWhatsAppTooltip() {
+  // Show tooltip on page load
   setTimeout(() => {
-    document.querySelector('.whatsapp-tooltip').style.opacity = '1';
-    document.querySelector('.whatsapp-tooltip').style.visibility = 'visible';
-    document.querySelector('.whatsapp-tooltip').style.transform = 'translateY(0)';
-    
-    // Sembunyikan setelah 5 detik
-    setTimeout(() => {
-      document.querySelector('.whatsapp-tooltip').style.opacity = '0';
-      document.querySelector('.whatsapp-tooltip').style.visibility = 'hidden';
-      document.querySelector('.whatsapp-tooltip').style.transform = 'translateY(10px)';
-    }, 5000);
+    const tooltip = document.querySelector('.whatsapp-tooltip');
+    if (tooltip) {
+      tooltip.style.opacity = '1';
+      tooltip.style.visibility = 'visible';
+      tooltip.style.transform = 'translateY(0)';
+      
+      // Hide after 5 seconds
+      setTimeout(() => {
+        tooltip.style.opacity = '0';
+        tooltip.style.visibility = 'hidden';
+        tooltip.style.transform = 'translateY(10px)';
+      }, 5000);
+    }
   }, 3000);
   
   // Close button
-  document.querySelector('.close-tooltip').addEventListener('click', function(e) {
-    e.stopPropagation();
-    document.querySelector('.whatsapp-tooltip').style.opacity = '0';
-    document.querySelector('.whatsapp-tooltip').style.visibility = 'hidden';
-    document.querySelector('.whatsapp-tooltip').style.transform = 'translateY(10px)';
-  });
-    // Countdown Timer
-    function updateCountdown() {
-      const endDate = new Date();
-      endDate.setDate(endDate.getDate() + 3); // 3 days from now
-      endDate.setHours(23, 59, 59, 0);
+  const closeBtn = document.querySelector('.close-tooltip');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const tooltip = document.querySelector('.whatsapp-tooltip');
+      tooltip.style.opacity = '0';
+      tooltip.style.visibility = 'hidden';
+      tooltip.style.transform = 'translateY(10px)';
+    });
+  }
+}
 
-      const now = new Date().getTime();
-      const distance = endDate - now;
-      
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-      document.getElementById('days').textContent = days.toString().padStart(2, '0');
-      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-      
-      // Change color when less than 24 hours
-      if (distance < (24 * 60 * 60 * 1000)) {
-        document.querySelectorAll('.countdown-number').forEach(el => {
-          el.style.color = '#f1c40f';
-        });
-      }
+// Countdown Timer (1 day)
+function updateCountdown() {
+  const endDate = new Date();
+  endDate.setDate(endDate.getDate() + 1); // 1 day from now
+  endDate.setHours(23, 59, 59, 0);
+
+  const now = new Date().getTime();
+  const distance = endDate - now;
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  // Update display
+  document.getElementById('days').textContent = days.toString().padStart(2, '0');
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  
+  // Change color when less than 24 hours
+  if (distance < (24 * 60 * 60 * 1000)) {
+    document.querySelectorAll('.countdown-number').forEach(el => {
+      el.style.color = '#f1c40f';
+    });
+  }
+}
+
+// Booking Form Submission
+function setupBookingForm() {
+  const bookingForm = document.getElementById('bookingForm');
+  if (!bookingForm) return;
+
+  bookingForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const fullName = document.getElementById('fullName').value;
+    const whatsapp = document.getElementById('whatsapp').value;
+    const email = document.getElementById('email').value;
+    const address = document.getElementById('address').value;
+    const houseType = document.getElementById('houseType');
+    const houseTypeText = houseType.options[houseType.selectedIndex].text;
+    const paymentProof = document.getElementById('paymentProof').files[0];
+    
+    // Validate form
+    if (!fullName || !whatsapp || !address || !houseType.value || !paymentProof) {
+      alert('Harap lengkapi semua field yang wajib diisi!');
+      return;
     }
-
-    // Initialize countdown
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // Form Submission with File Upload - FIXED VERSION
-    document.getElementById('bookingForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Get form values
-      const fullName = document.getElementById('fullName').value;
-      const whatsapp = document.getElementById('whatsapp').value;
-      const email = document.getElementById('email').value;
-      const address = document.getElementById('address').value;
-      const houseType = document.getElementById('houseType');
-      const houseTypeText = houseType.options[houseType.selectedIndex].text;
-      const paymentProof = document.getElementById('paymentProof').files[0];
-      
-      // Validate form
-      if (!fullName || !whatsapp || !address || !houseType.value || !paymentProof) {
-        alert('Harap lengkapi semua field yang wajib diisi!');
-        return;
-      }
-      
-      // Validate WhatsApp number
-      const whatsappRegex = /^(\+62|62|0)[1-9][0-9]{7,11}$/;
-      if (!whatsappRegex.test(whatsapp)) {
-        alert('Nomor WhatsApp tidak valid. Harap masukkan nomor Indonesia yang benar.');
-        return;
-      }
-      
-      // Format WhatsApp number
-      let formattedWhatsapp = whatsapp;
-      if (whatsapp.startsWith('0')) {
-        formattedWhatsapp = '62' + whatsapp.substring(1);
-      } else if (whatsapp.startsWith('+62')) {
-        formattedWhatsapp = whatsapp.substring(1);
-      }
-      
-      // Create WhatsApp message
-      let message = `Assalamu'alaikum Kertamulya Residence,\n\n`;
-      message += `*Saya ingin mengkonfirmasi pembayaran amankan stok unit dengan detail berikut:*\n\n`;
-      message += `📌 *Nama Lengkap*: ${fullName}\n`;
-      message += `📱 *Nomor WhatsApp*: ${whatsapp}\n`;
-      if (email) message += `📧 *Email*: ${email}\n`;
-      message += `🏠 *Alamat Domisili*: ${address}\n`;
-      message += `🏡 *Tipe Rumah*: ${houseTypeText}\n\n`;
-      message += `💳 *Saya sudah transfer Rp 100.000 ke rekening BSI 664 5566 446 a.n PT. Rumah Mulia Indonesia*\n\n`;
-      message += `Mohon konfirmasi penerimaan pembayaran dan penguncian stok unit. Terima kasih.\n\n`;
-      message += `Wassalamu'alaikum wr. wb.`;
-      
-      // Encode message for URL
-      const encodedMessage = encodeURIComponent(message);
-      
-      // Open WhatsApp
-      const waUrl = `https://wa.me/628977771080?text=${encodedMessage}`;
-      
-      // If there's a payment proof, show alert instruction
-      if (paymentProof) {
-        if (confirm('Setelah WhatsApp terbuka, silakan kirim bukti transfer dengan mengklik tombol attachment (+) dan pilih gambar. Klik OK untuk membuka WhatsApp.')) {
-          window.open(waUrl, '_blank');
-        }
-      } else {
+    
+    // Validate WhatsApp number
+    const whatsappRegex = /^(\+62|62|0)[1-9][0-9]{7,11}$/;
+    if (!whatsappRegex.test(whatsapp)) {
+      alert('Nomor WhatsApp tidak valid. Harap masukkan nomor Indonesia yang benar.');
+      return;
+    }
+    
+    // Format WhatsApp number
+    let formattedWhatsapp = whatsapp;
+    if (whatsapp.startsWith('0')) {
+      formattedWhatsapp = '62' + whatsapp.substring(1);
+    } else if (whatsapp.startsWith('+62')) {
+      formattedWhatsapp = whatsapp.substring(1);
+    }
+    
+    // Create WhatsApp message
+    let message = `Assalamu'alaikum Kertamulya Residence,\n\n`;
+    message += `*Saya ingin mengkonfirmasi pembayaran amankan stok unit dengan detail berikut:*\n\n`;
+    message += `📌 *Nama Lengkap*: ${fullName}\n`;
+    message += `📱 *Nomor WhatsApp*: ${whatsapp}\n`;
+    if (email) message += `📧 *Email*: ${email}\n`;
+    message += `🏠 *Alamat Domisili*: ${address}\n`;
+    message += `🏡 *Tipe Rumah*: ${houseTypeText}\n\n`;
+    message += `💳 *Saya sudah transfer Rp 100.000 ke rekening BSI 664 5566 446 a.n PT. Rumah Mulia Indonesia*\n\n`;
+    message += `Mohon konfirmasi penerimaan pembayaran dan penguncian stok unit. Terima kasih.\n\n`;
+    message += `Wassalamu'alaikum wr. wb.`;
+    
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Open WhatsApp
+    const waUrl = `https://wa.me/628977771080?text=${encodedMessage}`;
+    
+    // If there's a payment proof, show alert instruction
+    if (paymentProof) {
+      if (confirm('Setelah WhatsApp terbuka, silakan kirim bukti transfer dengan mengklik tombol attachment (+) dan pilih gambar. Klik OK untuk membuka WhatsApp.')) {
         window.open(waUrl, '_blank');
       }
-    });
-    
-    // File upload preview
-    document.getElementById('paymentProof').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const fileSize = file.size / 1024 / 1024; // in MB
-        if (fileSize > 2) {
-          alert('Ukuran file terlalu besar. Maksimal 2MB.');
-          e.target.value = '';
-          return;
-        }
-        
-        const fileUpload = e.target.closest('.file-upload');
+    } else {
+      window.open(waUrl, '_blank');
+    }
+  });
+}
+
+// File Upload Preview
+function setupFileUpload() {
+  const fileInput = document.getElementById('paymentProof');
+  if (!fileInput) return;
+
+  fileInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const fileSize = file.size / 1024 / 1024; // in MB
+      if (fileSize > 2) {
+        alert('Ukuran file terlalu besar. Maksimal 2MB.');
+        e.target.value = '';
+        return;
+      }
+      
+      const fileUpload = e.target.closest('.file-upload');
+      if (fileUpload) {
         fileUpload.querySelector('i').className = 'fas fa-check-circle';
         fileUpload.querySelector('i').style.color = '#2ecc71';
         fileUpload.querySelector('p').textContent = file.name;
       }
-    });
-    
-    // Pulse animation for button
-    const submitButton = document.querySelector('.pulse-animation');
-    if (submitButton) {
-      setInterval(() => {
-        submitButton.style.transform = 'scale(1.02)';
-        setTimeout(() => {
-          submitButton.style.transform = 'scale(1)';
-        }, 500);
-      }, 2000);
     }
-  </script>
+  });
+}
+
+// Pulse Animation for Submit Button
+function setupPulseAnimation() {
+  const submitButton = document.querySelector('.pulse-animation');
+  if (!submitButton) return;
+
+  setInterval(() => {
+    submitButton.style.transform = 'scale(1.02)';
+    setTimeout(() => {
+      submitButton.style.transform = 'scale(1)';
+    }, 500);
+  }, 2000);
+}
+</script>
 </body>
 </html>
