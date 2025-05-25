@@ -729,7 +729,7 @@ button, input, textarea, select {
   gap: 2rem;
 }
 
-.location-map-container {
+
   position: relative;
 }
 
@@ -739,13 +739,16 @@ button, input, textarea, select {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 3px solid var(--light);
+  position: relative; /* Tambahkan ini */
 }
+
 
 .location-map iframe {
   width: 100%;
   height: 100%;
   border: none;
 }
+
 
 .btn-map-directions {
   position: absolute;
@@ -866,16 +869,25 @@ button, input, textarea, select {
     height: 300px;
   }
   
+  .btn-map-directions {
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+  
   .location-access {
     grid-template-columns: 1fr;
   }
   
-  .btn-map-directions {
+ .btn-map-directions {
     padding: 0.6rem 1.2rem;
     font-size: 0.8rem;
     bottom: 15px;
     right: 15px;
   }
+}
   
   .location-address {
     font-size: 0.85rem;
@@ -2517,17 +2529,17 @@ button, input, textarea, select {
     
     <div class="location-container">
       <div class="location-map-container">
-        <div class="location-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence%2C%20Jl.%20Kertayasa%2C%20Blok%20Congkleng%2C%20Kertayasa%2C%20Kec.%20Sindangagung%2C%20Kabupaten%20Kuningan%2C%20Jawa%20Barat%2045573!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
-          <a href="https://maps.app.goo.gl/mdAmsNKHCpSuX7mo9" class="btn btn-accent btn-map-directions" target="_blank">
-            <i class="fas fa-directions"></i> Petunjuk Arah
-          </a>
-        </div>
-        <div class="location-address">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Kertamulya Residence, Jl. Kertayasa, Blok Congkleng, Kertayasa, Kec. Sindangagung, Kab. Kuningan, Jawa Barat</span>
-        </div>
-      </div>
+  <div class="location-map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence%2C%20Jl.%20Kertayasa%2C%20Blok%20Congkleng%2C%20Kertayasa%2C%20Kec.%20Sindangagung%2C%20Kabupaten%20Kuningan%2C%20Jawa%20Barat%2045573!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+    <a href="https://maps.app.goo.gl/mdAmsNKHCpSuX7mo9" class="btn btn-accent btn-map-directions" target="_blank">
+      <i class="fas fa-directions"></i> Petunjuk Arah
+    </a>
+  </div>
+  <div class="location-address">
+    <i class="fas fa-map-marker-alt"></i>
+    <span>Kertamulya Residence, Jl. Kertayasa, Blok Congkleng, Kertayasa, Kec. Sindangagung, Kab. Kuningan, Jawa Barat</span>
+  </div>
+</div>
       
       <div class="location-access">
         <div class="access-item">
