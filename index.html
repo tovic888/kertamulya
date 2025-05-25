@@ -3009,8 +3009,6 @@ button, input, textarea, select {
     </div>
   </div>
 </div>
-
-  
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
@@ -3118,7 +3116,7 @@ function showRandomNotification() {
   }, 5000);
 }
 
-// ========== SOLD COUNT ==========
+// ========== SOLD COUNT ANIMATION ==========
 function animateSoldCount() {
   const soldCount = document.querySelector('.sold-count');
   if (!soldCount) return;
@@ -3279,7 +3277,43 @@ function getVideoId(type) {
 // ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
   if (type === 'gallery' && subtype) {
-    showGalleryModal(subtype);
+    const galleryImages = {
+      standard: [
+        'img/tipe-rumah/standart/standar-utama.webp',
+        'img/tipe-rumah/standart/standar1.webp',
+        'img/tipe-rumah/standart/standar2.webp',
+        'img/tipe-rumah/standart/standar3.webp',
+        'img/tipe-rumah/standart/standar4.webp',
+        'img/tipe-rumah/standart/standar5.webp',
+        'img/tipe-rumah/standart/standar6.webp',
+        'img/tipe-rumah/standart/standar7.webp',
+        'img/tipe-rumah/standart/denah-standar.webp',
+        'img/tipe-rumah/standart/spek-standar.webp'
+      ],
+      suite: [
+        'img/tipe-rumah/suite/suite-utama.webp',
+        'img/tipe-rumah/suite/suite1.webp',
+        'img/tipe-rumah/suite/suite2.webp',
+        'img/tipe-rumah/suite/suite3.webp',
+        'img/tipe-rumah/suite/suite4.webp',
+        'img/tipe-rumah/suite/suite5.webp',
+        'img/tipe-rumah/suite/denah-suite1.webp',
+        'img/tipe-rumah/suite/denah-suite2.webp',
+        'img/tipe-rumah/suite/spek-suite.webp'
+      ],
+      premium: [
+        'img/tipe-rumah/premium/premium-utama.webp',
+        'img/tipe-rumah/premium/premium1.webp',
+        'img/tipe-rumah/premium/premium2.webp',
+        'img/tipe-rumah/premium/premium3.webp',
+        'img/tipe-rumah/premium/premium4.webp',
+        'img/tipe-rumah/premium/premium5.webp',
+        'img/tipe-rumah/premium/denah-premium1.webp',
+        'img/tipe-rumah/premium/denah-premium2.webp',
+        'img/tipe-rumah/premium/spek-premium.webp'
+      ]
+    };
+    showGalleryModal(subtype, galleryImages);
   }
   else if (type === 'booking') {
     if (houseType) document.getElementById('type').value = houseType;
