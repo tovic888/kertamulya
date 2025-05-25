@@ -3015,7 +3015,7 @@ button, input, textarea, select {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
-// Initialize on page load
+// ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all components
   updateCountdown();
@@ -3025,9 +3025,17 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
   animateSoldCount();
   setupFAQAccordion();
-  setupBookingForm();
   initGalleryModal();
   animateProgressBars();
+  
+  // Initialize video modal buttons
+  document.querySelectorAll('[onclick*="showModal(\'video\'"]').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const type = this.getAttribute('onclick').match(/showModal\('video', '([^']+)'/)[1];
+      showVideoModal(type);
+    });
+  });
 });
 
 // ========== COUNTDOWN TIMER ==========
@@ -3113,13 +3121,20 @@ function showRandomNotification() {
 // ========== SOLD COUNT ==========
 function animateSoldCount() {
   const soldCount = document.querySelector('.sold-count');
+  if (!soldCount) return;
+  
   let count = 0;
   const target = 12;
+  const increment = target / 20;
+  
   const interval = setInterval(() => {
-    count++;
-    soldCount.textContent = count;
-    if(count >= target) clearInterval(interval);
-  }, 150);
+    count += increment;
+    if (count >= target) {
+      count = target;
+      clearInterval(interval);
+    }
+    soldCount.textContent = Math.floor(count);
+  }, 50);
 }
 
 // ========== FAQ ACCORDION ==========
@@ -3130,10 +3145,29 @@ function setupFAQAccordion() {
     const question = item.querySelector('.faq-question');
     
     question.addEventListener('click', () => {
+      // Close all other items
       faqItems.forEach(otherItem => {
-        if (otherItem !== item) otherItem.classList.remove('active');
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+          otherItem.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
+        }
       });
+      
+      // Toggle current item
+      const isActive = item.classList.contains('active');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-question i');
+      
       item.classList.toggle('active');
+      
+      if (isActive) {
+        answer.style.maxHeight = '0';
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+      }
     });
   });
 }
@@ -3224,6 +3258,23 @@ function showGalleryModal(type, images) {
   document.getElementById('galleryModal').classList.add('active');
 }
 
+// ========== VIDEO MODAL ==========
+function showVideoModal(type) {
+  const videoId = getVideoId(type);
+  document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  document.getElementById('videoModal').classList.add('active');
+}
+
+function getVideoId(type) {
+  const videoIds = {
+    standard: '_blGnqdIRD8',
+    suite: 'tCg9iyw0jy4',
+    premium: '7Fl9zHdHb7s',
+    testimonial1: 'LgHbkuOKsw0',
+    testimonial2: 'UF5V1-Vu6uI'
+  };
+  return videoIds[type] || '';
+}
 
 // ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
@@ -3235,9 +3286,7 @@ function showModal(type, subtype = null, houseType = null) {
     document.getElementById('bookingModal').classList.add('active');
   }
   else if (type === 'video' && subtype) {
-    const videoId = getVideoId(subtype);
-    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    document.getElementById('videoModal').classList.add('active');
+    showVideoModal(subtype);
   }
 }
 
@@ -3256,17 +3305,6 @@ function hideModal(type) {
     document.getElementById('videoFrame').src = '';
     document.getElementById('videoModal').classList.remove('active');
   }
-}
-
-function getVideoId(subtype) {
-  const videoIds = {
-    standard: '_blGnqdIRD8',
-    suite: 'tCg9iyw0jy4',
-    premium: '7Fl9zHdHb7s',
-    testimonial1: 'LgHbkuOKsw0',  // Video testimoni pertama
-    testimonial2: 'UF5V1-Vu6uI'   // Video testimoni kedua
-  };
-  return videoIds[subtype] || '';
 }
 
 // ========== PROGRESS BARS ==========
@@ -3295,6 +3333,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.type-card').forEach(card => {
   observer.observe(card);
 });
-  </script>
+</script>
 </body>
 </html> 
