@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="format-detection" content="telephone=no">
-  <title>Form Booking Unit — Pegang Sekarang, Survei Belakangan | Kertamulya Residence</title>
-  <meta name="description" content="Booking fee Rp100.000 untuk mengamankan unit pilihan Anda di Kertamulya Residence. Uang kembali 100% jika tidak cocok setelah survei.">
+  <title>Amankan Stok Unit Sekarang | Kertamulya Residence</title>
+  <meta name="description" content="Amankan unit pilihan Anda di Kertamulya Residence dengan biaya Rp100.000. Uang kembali 100% jika tidak cocok setelah survei.">
 
   <!-- Canonical & Alternate -->
   <link rel="canonical" href="https://kertamulyaresidence.com/checkout.html">
@@ -243,9 +243,10 @@
       background: var(--light);
       border-radius: 1rem;
       padding: 2.5rem;
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(46, 204, 113, 0.2);
     }
 
     .checkout-form::before {
@@ -397,6 +398,7 @@
       align-self: start;
       position: sticky;
       top: 1rem;
+      border: 1px solid rgba(46, 204, 113, 0.2);
     }
 
     .sidebar-title {
@@ -424,6 +426,16 @@
       align-items: flex-start;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      background: rgba(255,255,255,0.7);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .benefit-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
     }
 
     .benefit-icon {
@@ -500,18 +512,67 @@
 
     /* Urgency Banner */
     .urgency-banner {
-      background: #e74c3c;
+      background: linear-gradient(90deg, #e74c3c, #c0392b);
       color: white;
-      padding: 10px 0;
+      padding: 12px 0;
       text-align: center;
       font-weight: bold;
-      animation: blink 1s infinite;
+      font-size: 1.1rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0.7; }
-      100% { opacity: 1; }
+    .urgency-banner:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.1) 0%,
+        rgba(255,255,255,0.3) 50%,
+        rgba(255,255,255,0.1) 100%
+      );
+      transform: translateX(-100%);
+      animation: shine 2s infinite;
+    }
+
+    @keyframes shine {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* Countdown Timer */
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .countdown-item {
+      background: var(--dark);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      min-width: 60px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .countdown-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      opacity: 0.8;
     }
 
     /* Responsive */
@@ -564,26 +625,49 @@
         left: 0.8rem;
         font-size: 1rem;
       }
+      
+      .countdown-item {
+        min-width: 50px;
+        padding: 0.5rem;
+      }
+      
+      .countdown-value {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Urgency Banner -->
   <div class="urgency-banner">
-    ⚠️ Stok Rumah Subsidi Tinggal 30 Unit. Amankan Sekarang.!
+    ⚠️ STOK TERBATAS! Hanya tersisa 30 unit. Amankan sekarang sebelum kehabisan!
   </div>
 
   <!-- Main Content -->
   <main class="section">
     <div class="container">
       <div class="section-title">
-        <h2>Form Booking Unit</h2>
-        <p>Pegang Sekarang, Survei Belakangan</p>
+        <h2>Amankan Stok Unit Sekarang</h2>
+        <p>Hanya dengan Rp100.000, Anda bisa mengamankan unit pilihan sebelum orang lain</p>
       </div>
       
-      <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-        Booking fee Rp100.000 ini bukan DP, bukan cicilan — hanya tanda jadi untuk mengamankan unit yang Anda incar. 
-        Booking berlaku selama 7 hari. Wajib melakukan survei dalam periode tersebut. Jika tidak cocok, uang Anda kembali 100%.
+      <div class="countdown-timer">
+        <div class="countdown-item">
+          <div class="countdown-value" id="hours">12</div>
+          <div class="countdown-label">Jam</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="minutes">45</div>
+          <div class="countdown-label">Menit</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="seconds">30</div>
+          <div class="countdown-label">Detik</div>
+        </div>
+      </div>
+      
+      <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; background: rgba(46, 204, 113, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid var(--primary);">
+        <strong>Catatan Penting:</strong> Biaya Rp100.000 ini <strong>bukan DP</strong> dan <strong>bukan cicilan</strong>, melainkan biaya untuk mengamankan stok unit yang tersedia. Anda memiliki waktu 7 hari untuk melakukan survei lokasi. Jika tidak cocok, uang Anda kembali 100%.
       </p>
       
       <div class="checkout-container">
@@ -591,7 +675,7 @@
         <div class="checkout-form">
           <div class="form-header">
             <h3>Data Pemesan</h3>
-            <p>Isi data dengan benar untuk proses booking yang lancar</p>
+            <p>Isi data dengan benar untuk proses yang lancar</p>
           </div>
           
           <form id="bookingForm">
@@ -649,29 +733,39 @@
             <div class="form-check">
               <input type="checkbox" id="agreement" required>
               <label for="agreement">
-                Saya menyetujui bahwa booking berlaku 7 hari dan wajib survei sebelum lanjut akad. 
-                <a href="#" onclick="event.preventDefault(); alert('Syarat dan ketentuan booking akan ditampilkan di sini');">Baca syarat & ketentuan</a>
+                Saya menyetujui bahwa pembayaran ini untuk mengamankan stok unit dan wajib survei dalam 7 hari. 
+                <a href="#" onclick="event.preventDefault(); alert('Syarat dan ketentuan akan ditampilkan di sini');">Baca syarat & ketentuan</a>
               </label>
             </div>
             
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary btn-lg form-submit pulse-animation">
-              <i class="fab fa-whatsapp"></i> Saya Sudah Transfer - Konfirmasi via WhatsApp
+              <i class="fab fa-whatsapp"></i> Saya Sudah Transfer - Konfirmasi Sekarang
             </button>
           </form>
         </div>
         
         <!-- Checkout Sidebar -->
         <div class="checkout-sidebar">
-          <h3 class="sidebar-title">Keuntungan Booking Online</h3>
+          <h3 class="sidebar-title">Keuntungan Mengamankan Stok</h3>
           
           <div class="benefit-item">
             <div class="benefit-icon">
               <i class="fas fa-lock"></i>
             </div>
             <div class="benefit-content">
-              <h4>Uang Anda Aman 100%</h4>
-              <p>Garansi uang kembali jika tidak cocok setelah survei lokasi</p>
+              <h4>Jaminan Unit Tersedia</h4>
+              <p>Unit yang Anda minati tidak akan dijual ke orang lain selama 7 hari</p>
+            </div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Uang Kembali 100%</h4>
+              <p>Jika setelah survei Anda tidak cocok, uang amankan stok dikembalikan penuh</p>
             </div>
           </div>
           
@@ -681,109 +775,96 @@
             </div>
             <div class="benefit-content">
               <h4>Waktu Survei Fleksibel</h4>
-              <p>Jadwalkan survei kapan saja dalam 7 hari setelah booking</p>
+              <p>Anda bisa jadwalkan survei kapan saja dalam 7 hari</p>
             </div>
           </div>
           
           <div class="benefit-item">
             <div class="benefit-icon">
-              <i class="fas fa-headset"></i>
+              <i class="fas fa-percentage"></i>
             </div>
             <div class="benefit-content">
-              <h4>Prioritas Pelayanan</h4>
-              <p>Kami hanya memproses user yang sudah booking</p>
-            </div>
-          </div>
-          
-          <div class="benefit-item">
-            <div class="benefit-icon">
-              <i class="fas fa-gift"></i>
-            </div>
-            <div class="benefit-content">
-              <h4>Bonus Tetap Berlaku</h4>
-              <p>Promo motor listrik tetap bisa Anda dapatkan</p>
+              <h4>Potongan DP</h4>
+              <p>Biaya amankan stok akan dipotong dari total DP jika Anda melanjutkan pembelian</p>
             </div>
           </div>
           
           <!-- Payment Info -->
           <div class="payment-info">
-            <h4>Transfer Booking Fee</h4>
+            <h4>Transfer Biaya Amankan Stok</h4>
             
             <div class="bank-details">
               <p><i class="fas fa-university"></i> <strong>Bank BCA</strong></p>
-              <p><i class="fas fa-credit-card"></i> 1234567890</p>
-              <p><i class="fas fa-user-tie"></i> PT Kertamulya Berkah</p>
+              <p><i class="fas fa-credit-card"></i> 664 5566 446</p>
+              <p><i class="fas fa-user-tie"></i> PT. Rumah Mulia Indonesia</p>
               <p><i class="fas fa-money-bill-wave"></i> Rp100.000</p>
             </div>
             
             <p class="payment-note">
-              Booking fee akan dipotong dari total DP jika Anda melanjutkan pembelian
+              Setelah transfer, konfirmasi via WhatsApp dengan mengklik tombol di form
             </p>
           </div>
         </div>
       </div>
       
       <!-- Urgency Note -->
-      <div style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid var(--danger); padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 3rem; text-align: center;">
-        <p style="color: var(--danger); font-weight: 600; margin-bottom: 0;">
-          <i class="fas fa-exclamation-triangle"></i> Booking ini hanya berlaku selama 7 hari sejak tanggal transfer. 
-          Jika tidak dilakukan survei dalam waktu tersebut, maka booking fee dianggap batal.
+      <div style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid var(--danger); padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 3rem;">
+        <p style="color: var(--danger); font-weight: 600; margin-bottom: 0; text-align: center;">
+          <i class="fas fa-exclamation-triangle"></i> PERHATIAN: Hanya dengan mengamankan stok, Anda mendapatkan hak prioritas untuk unit pilihan. Tanpa biaya ini, unit bisa terjual ke pembeli lain kapan saja.
         </p>
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer style="background: #f8f9fa; padding: 3rem 0; margin-top: 3rem;">
     <div class="container">
-      <div class="footer-grid">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
         <div class="footer-about">
-          <img src="img/branding/logo-kertamulya-footer.png" alt="Kertamulya Residence" class="footer-logo" loading="lazy">
-
-          <p class="footer-about">Perumahan Islami pertama di Kuningan dengan konsep Green Living. Memberikan solusi kepemilikan rumah mudah melalui kerjasama dengan bank syariah terkemuka.</p>
-          <div class="footer-social">
-            <a href="https://www.instagram.com/kertamulyaresidence/" target="_blank" aria-label="Instagram">
+          <img src="img/branding/logo-kertamulya-footer.png" alt="Kertamulya Residence" style="max-width: 180px; margin-bottom: 1rem;">
+          <p style="margin-bottom: 1rem;">Perumahan Islami pertama di Kuningan dengan konsep Green Living. Memberikan solusi kepemilikan rumah mudah melalui kerjasama dengan bank syariah terkemuka.</p>
+          <div style="display: flex; gap: 1rem;">
+            <a href="https://www.instagram.com/kertamulyaresidence/" target="_blank" style="width: 36px; height: 36px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://facebook.com/kertamulyaresidence" target="_blank" aria-label="Facebook">
+            <a href="https://facebook.com/kertamulyaresidence" target="_blank" style="width: 36px; height: 36px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.youtube.com/@bimulialand759" target="_blank" aria-label="YouTube">
+            <a href="https://www.youtube.com/@bimulialand759" target="_blank" style="width: 36px; height: 36px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
               <i class="fab fa-youtube"></i>
             </a>
-            <a href="https://www.tiktok.com/@bimulia_land" target="_blank" aria-label="TikTok">
+            <a href="https://www.tiktok.com/@bimulia_land" target="_blank" style="width: 36px; height: 36px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
               <i class="fab fa-tiktok"></i>
             </a>
           </div>
         </div>
         
         <div class="footer-links">
-          <h3 class="footer-heading">Link Cepat</h3>
-          <ul>
-            <li><a href="index.html#house-types"><i class="fas fa-chevron-right"></i> Tipe Rumah</a></li>
-            <li><a href="index.html#why-choose"><i class="fas fa-chevron-right"></i> Keunggulan</a></li>
-            <li><a href="index.html#facilities"><i class="fas fa-chevron-right"></i> Fasilitas</a></li>
-            <li><a href="index.html#location"><i class="fas fa-chevron-right"></i> Lokasi</a></li>
+          <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--dark);">Link Cepat</h3>
+          <ul style="list-style: none;">
+            <li style="margin-bottom: 0.5rem;"><a href="index.html#house-types" style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-chevron-right" style="color: var(--primary); font-size: 0.8rem;"></i> Tipe Rumah</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="index.html#why-choose" style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-chevron-right" style="color: var(--primary); font-size: 0.8rem;"></i> Keunggulan</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="index.html#facilities" style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-chevron-right" style="color: var(--primary); font-size: 0.8rem;"></i> Fasilitas</a></li>
+            <li style="margin-bottom: 0.5rem;"><a href="index.html#location" style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-chevron-right" style="color: var(--primary); font-size: 0.8rem;"></i> Lokasi</a></li>
           </ul>
         </div>
         
         <div class="footer-contact">
-          <h3 class="footer-heading">Kontak Kami</h3>
-          <p><i class="fas fa-map-marker-alt"></i> Jl. Kertayasa, Blok Congkleng, Kuningan</p>
-          <p><i class="fas fa-phone"></i> +62 897-7771-080</p>
-          <p><i class="fas fa-envelope"></i> info@kertamulyaresidence.com</p>
-          <p><i class="fas fa-clock"></i> Buka Setiap Hari 08.00 - 17.00 WIB</p>
+          <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--dark);">Kontak Kami</h3>
+          <p style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;"><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-top: 0.2rem;"></i> Jl. Kertayasa, Blok Congkleng, Kuningan</p>
+          <p style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-phone" style="color: var(--primary);"></i> +62 897-7771-080</p>
+          <p style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-envelope" style="color: var(--primary);"></i> info@kertamulyaresidence.com</p>
+          <p style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-clock" style="color: var(--primary);"></i> Buka Setiap Hari 08.00 - 17.00 WIB</p>
         </div>
       </div>
       
-      <div class="copyright">
-        &copy; 2025 PT. Rumah Mulia Indonesia. All Rights Reserved.
-      </div>
-      
-      <div class="legal-links">
-        <a href="Kebijakan Privasi.html">Kebijakan Privasi</a>
-        <a href="Syarat & Ketentuan.html">Syarat & Ketentuan</a>
-        <a href="Disclaimer.html">Disclaimer</a>
+      <div style="border-top: 1px solid #ddd; padding-top: 1.5rem; text-align: center;">
+        <p style="margin-bottom: 1rem;">&copy; 2025 PT. Rumah Mulia Indonesia. All Rights Reserved.</p>
+        <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+          <a href="Kebijakan Privasi.html" style="font-size: 0.9rem;">Kebijakan Privasi</a>
+          <a href="Syarat & Ketentuan.html" style="font-size: 0.9rem;">Syarat & Ketentuan</a>
+          <a href="Disclaimer.html" style="font-size: 0.9rem;">Disclaimer</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -815,52 +896,4 @@
       let formattedWhatsapp = whatsapp;
       if (whatsapp.startsWith('0')) {
         formattedWhatsapp = '62' + whatsapp.substring(1);
-      } else if (whatsapp.startsWith('+62')) {
-        formattedWhatsapp = whatsapp.substring(1);
-      }
-      
-      // Create WhatsApp message
-      let message = `Halo Kertamulya Residence, saya ingin konfirmasi booking unit dengan detail berikut:\n\n`;
-      message += `Nama: ${fullName}\n`;
-      message += `WhatsApp: ${whatsapp}\n`;
-      if (email) message += `Email: ${email}\n`;
-      message += `Alamat: ${address}\n`;
-      message += `Tipe Rumah: ${document.getElementById('houseType').options[document.getElementById('houseType').selectedIndex].text}\n\n`;
-      message += `Saya sudah transfer booking fee Rp100.000. Mohon konfirmasi lebih lanjut.`;
-      
-      // Encode message for URL
-      const encodedMessage = encodeURIComponent(message);
-      
-      // Open WhatsApp
-      window.open(`https://wa.me/628977771080?text=${encodedMessage}`, '_blank');
-    });
-    
-    // File upload preview
-    document.getElementById('paymentProof').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const fileSize = file.size / 1024 / 1024; // in MB
-        if (fileSize > 2) {
-          alert('Ukuran file terlalu besar. Maksimal 2MB.');
-          e.target.value = '';
-          return;
-        }
-        
-        const fileUpload = e.target.closest('.file-upload');
-        fileUpload.querySelector('i').className = 'fas fa-check-circle';
-        fileUpload.querySelector('i').style.color = '#2ecc71';
-        fileUpload.querySelector('p').textContent = file.name;
-      }
-    });
-    
-    // Pulse animation for button
-    const submitButton = document.querySelector('.pulse-animation');
-    setInterval(() => {
-      submitButton.style.transform = 'scale(1.02)';
-      setTimeout(() => {
-        submitButton.style.transform = 'scale(1)';
-      }, 500);
-    }, 2000);
-  </script>
-</body>
-</html>
+      } else if (whatsapp.st
