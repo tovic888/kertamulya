@@ -612,4 +612,255 @@
             <!-- Email -->
             <div class="form-group">
               <label for="email">Email (Opsional)</label>
-              <i class="fas fa
+              <i class="fas fa-envelope form-icon"></i>
+              <input type="email" id="email" class="form-control" placeholder="Contoh: nama@email.com">
+            </div>
+            
+            <!-- Alamat Domisili -->
+            <div class="form-group">
+              <label for="address" class="required">Alamat Domisili</label>
+              <i class="fas fa-map-marker-alt form-icon"></i>
+              <textarea id="address" class="form-control" rows="3" placeholder="Alamat lengkap tempat tinggal saat ini" required></textarea>
+            </div>
+            
+            <!-- Tipe Rumah -->
+            <div class="form-group">
+              <label for="houseType" class="required">Pilih Tipe Rumah</label>
+              <i class="fas fa-home form-icon"></i>
+              <select id="houseType" class="form-control" required>
+                <option value="" disabled selected>Pilih tipe rumah</option>
+                <option value="standard">Standard 30/60 - Rp168 Juta</option>
+                <option value="suite">Suite 50/60 - Rp277 Juta</option>
+                <option value="premium">Premium 50/120 - Rp408 Juta</option>
+              </select>
+            </div>
+            
+            <!-- Upload Bukti Transfer -->
+            <div class="form-group">
+              <label for="paymentProof">Upload Bukti Transfer (Opsional)</label>
+              <div class="file-upload" onclick="document.getElementById('paymentProof').click()">
+                <i class="fas fa-file-upload"></i>
+                <p>Klik untuk upload bukti transfer<br>Format: JPG/PNG (maks. 2MB)</p>
+                <input type="file" id="paymentProof" accept="image/jpeg,image/png">
+              </div>
+            </div>
+            
+            <!-- Checkbox Persetujuan -->
+            <div class="form-check">
+              <input type="checkbox" id="agreement" required>
+              <label for="agreement">
+                Saya menyetujui bahwa booking berlaku 7 hari dan wajib survei sebelum lanjut akad. 
+                <a href="#" onclick="event.preventDefault(); alert('Syarat dan ketentuan booking akan ditampilkan di sini');">Baca syarat & ketentuan</a>
+              </label>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-lg form-submit pulse-animation">
+              <i class="fab fa-whatsapp"></i> Saya Sudah Transfer - Konfirmasi via WhatsApp
+            </button>
+          </form>
+        </div>
+        
+        <!-- Checkout Sidebar -->
+        <div class="checkout-sidebar">
+          <h3 class="sidebar-title">Keuntungan Booking Online</h3>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Uang Anda Aman 100%</h4>
+              <p>Garansi uang kembali jika tidak cocok setelah survei lokasi</p>
+            </div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Waktu Survei Fleksibel</h4>
+              <p>Jadwalkan survei kapan saja dalam 7 hari setelah booking</p>
+            </div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Prioritas Pelayanan</h4>
+              <p>Kami hanya memproses user yang sudah booking</p>
+            </div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="fas fa-gift"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Bonus Tetap Berlaku</h4>
+              <p>Promo motor listrik tetap bisa Anda dapatkan</p>
+            </div>
+          </div>
+          
+          <!-- Payment Info -->
+          <div class="payment-info">
+            <h4>Transfer Booking Fee</h4>
+            
+            <div class="bank-details">
+              <p><i class="fas fa-university"></i> <strong>Bank BCA</strong></p>
+              <p><i class="fas fa-credit-card"></i> 1234567890</p>
+              <p><i class="fas fa-user-tie"></i> PT Kertamulya Berkah</p>
+              <p><i class="fas fa-money-bill-wave"></i> Rp100.000</p>
+            </div>
+            
+            <p class="payment-note">
+              Booking fee akan dipotong dari total DP jika Anda melanjutkan pembelian
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Urgency Note -->
+      <div style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid var(--danger); padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 3rem; text-align: center;">
+        <p style="color: var(--danger); font-weight: 600; margin-bottom: 0;">
+          <i class="fas fa-exclamation-triangle"></i> Booking ini hanya berlaku selama 7 hari sejak tanggal transfer. 
+          Jika tidak dilakukan survei dalam waktu tersebut, maka booking fee dianggap batal.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <img src="img/branding/logo-kertamulya-footer.png" alt="Kertamulya Residence" class="footer-logo" loading="lazy">
+
+          <p class="footer-about">Perumahan Islami pertama di Kuningan dengan konsep Green Living. Memberikan solusi kepemilikan rumah mudah melalui kerjasama dengan bank syariah terkemuka.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/kertamulyaresidence/" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://facebook.com/kertamulyaresidence" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.youtube.com/@bimulialand759" target="_blank" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.tiktok.com/@bimulia_land" target="_blank" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h3 class="footer-heading">Link Cepat</h3>
+          <ul>
+            <li><a href="index.html#house-types"><i class="fas fa-chevron-right"></i> Tipe Rumah</a></li>
+            <li><a href="index.html#why-choose"><i class="fas fa-chevron-right"></i> Keunggulan</a></li>
+            <li><a href="index.html#facilities"><i class="fas fa-chevron-right"></i> Fasilitas</a></li>
+            <li><a href="index.html#location"><i class="fas fa-chevron-right"></i> Lokasi</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h3 class="footer-heading">Kontak Kami</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Jl. Kertayasa, Blok Congkleng, Kuningan</p>
+          <p><i class="fas fa-phone"></i> +62 897-7771-080</p>
+          <p><i class="fas fa-envelope"></i> info@kertamulyaresidence.com</p>
+          <p><i class="fas fa-clock"></i> Buka Setiap Hari 08.00 - 17.00 WIB</p>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2025 PT. Rumah Mulia Indonesia. All Rights Reserved.
+      </div>
+      
+      <div class="legal-links">
+        <a href="Kebijakan Privasi.html">Kebijakan Privasi</a>
+        <a href="Syarat & Ketentuan.html">Syarat & Ketentuan</a>
+        <a href="Disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/628977771080" class="whatsapp-button" style="position: fixed; bottom: 2rem; right: 2rem; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 99; transition: all 0.3s ease;">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    // Form Submission
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const fullName = document.getElementById('fullName').value;
+      const whatsapp = document.getElementById('whatsapp').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const houseType = document.getElementById('houseType').value;
+      
+      // Validate WhatsApp number
+      if (!/^(\+62|62|0)[1-9][0-9]{7,11}$/.test(whatsapp)) {
+        alert('Nomor WhatsApp tidak valid. Harap masukkan nomor Indonesia yang benar.');
+        return;
+      }
+      
+      // Format WhatsApp number
+      let formattedWhatsapp = whatsapp;
+      if (whatsapp.startsWith('0')) {
+        formattedWhatsapp = '62' + whatsapp.substring(1);
+      } else if (whatsapp.startsWith('+62')) {
+        formattedWhatsapp = whatsapp.substring(1);
+      }
+      
+      // Create WhatsApp message
+      let message = `Halo Kertamulya Residence, saya ingin konfirmasi booking unit dengan detail berikut:\n\n`;
+      message += `Nama: ${fullName}\n`;
+      message += `WhatsApp: ${whatsapp}\n`;
+      if (email) message += `Email: ${email}\n`;
+      message += `Alamat: ${address}\n`;
+      message += `Tipe Rumah: ${document.getElementById('houseType').options[document.getElementById('houseType').selectedIndex].text}\n\n`;
+      message += `Saya sudah transfer booking fee Rp100.000. Mohon konfirmasi lebih lanjut.`;
+      
+      // Encode message for URL
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Open WhatsApp
+      window.open(`https://wa.me/628977771080?text=${encodedMessage}`, '_blank');
+    });
+    
+    // File upload preview
+    document.getElementById('paymentProof').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const fileSize = file.size / 1024 / 1024; // in MB
+        if (fileSize > 2) {
+          alert('Ukuran file terlalu besar. Maksimal 2MB.');
+          e.target.value = '';
+          return;
+        }
+        
+        const fileUpload = e.target.closest('.file-upload');
+        fileUpload.querySelector('i').className = 'fas fa-check-circle';
+        fileUpload.querySelector('i').style.color = '#2ecc71';
+        fileUpload.querySelector('p').textContent = file.name;
+      }
+    });
+    
+    // Pulse animation for button
+    const submitButton = document.querySelector('.pulse-animation');
+    setInterval(() => {
+      submitButton.style.transform = 'scale(1.02)';
+      setTimeout(() => {
+        submitButton.style.transform = 'scale(1)';
+      }, 500);
+    }, 2000);
+  </script>
+</body>
+</html>
