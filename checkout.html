@@ -54,6 +54,7 @@
     html {
       font-size: 16px;
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -62,6 +63,8 @@
       color: var(--text);
       background-color: var(--light);
       overflow-x: hidden;
+      width: 100%;
+      position: relative;
     }
 
     img {
@@ -240,7 +243,7 @@
     .bank-details {
       background: rgba(46, 204, 113, 0.1);
       border-radius: 0.5rem;
-      padding: 1rem;
+      padding: 1.5rem;
       margin-bottom: 1rem;
       border-left: 3px solid var(--primary);
     }
@@ -784,6 +787,90 @@
       color: var(--primary);
     }
 
+    /* ===== IMPROVED BANK DETAILS ===== */
+    .bank-detail-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+    }
+
+    .bank-detail-item i {
+      width: 24px;
+      color: var(--primary);
+      margin-right: 10px;
+      text-align: center;
+    }
+
+    .bank-label {
+      font-weight: 600;
+      min-width: 120px;
+      color: var(--text);
+    }
+
+    .bank-value {
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .highlight {
+      font-weight: 700;
+      color: var(--danger);
+      background: rgba(231, 76, 60, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* ===== PAYMENT INSTRUCTIONS ===== */
+    .payment-instructions {
+      background: var(--primary-light);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--primary);
+    }
+
+    .payment-steps {
+      list-style: none;
+      counter-reset: step-counter;
+    }
+
+    .payment-steps li {
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 2.5rem;
+      counter-increment: step-counter;
+    }
+
+    .payment-steps li:before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: var(--primary);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    /* ===== UNIQUE AMOUNT STYLING ===== */
+    .unique-amount {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--danger);
+      background: rgba(231, 76, 60, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      display: inline-block;
+      margin: 0.5rem 0;
+    }
+
     /* ===== RESPONSIVE ADJUSTMENTS ===== */
     @media (max-width: 1200px) {
       .container {
@@ -856,6 +943,14 @@
         width: 200px;
         right: -70px;
       }
+
+      .bank-detail-item {
+        flex-wrap: wrap;
+      }
+
+      .bank-label {
+        min-width: 100px;
+      }
     }
 
     @media (max-width: 576px) {
@@ -920,6 +1015,16 @@
       .file-upload p {
         font-size: 0.8rem;
       }
+
+      .bank-detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+
+      .bank-label {
+        min-width: auto;
+      }
     }
 
     @media (max-width: 400px) {
@@ -952,168 +1057,67 @@
       }
     }
 
-/* ===== LAYOUT FIXES ===== */
-body {
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-}
+    /* ===== WHATSAPP TOOLTIP REDESIGN ===== */
+    .whatsapp-tooltip {
+      width: 280px;
+      right: -30px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border: none;
+    }
 
-.container {
-  max-width: 100%;
-  padding: 0 15px;
-}
+    .tooltip-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
 
-/* ===== WHATSAPP TOOLTIP REDESIGN ===== */
-.whatsapp-tooltip {
-  width: 280px;
-  right: -30px;
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  color: white;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  border: none;
-}
+    .tooltip-header i {
+      font-size: 1.8rem;
+      color: white;
+    }
 
-.tooltip-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
+    .tooltip-header h4 {
+      margin: 0;
+      color: white;
+      font-size: 1.1rem;
+    }
 
-.tooltip-header i {
-  font-size: 1.8rem;
-  color: white;
-}
+    .tooltip-content p {
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
 
-.tooltip-header h4 {
-  margin: 0;
-  color: white;
-  font-size: 1.1rem;
-}
+    .close-tooltip {
+      color: white;
+      opacity: 0.8;
+    }
 
-.tooltip-content p {
-  margin: 0;
-  color: rgba(255,255,255,0.9);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
+    /* ===== PULSE ANIMATION ===== */
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
 
-.close-tooltip {
-  color: white;
-  opacity: 0.8;
-}
-
-/* ===== UNIQUE AMOUNT STYLING ===== */
-.unique-amount {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--danger);
-  background: rgba(231, 76, 60, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  display: inline-block;
-  margin: 0.5rem 0;
-}
-
-/* ===== PAYMENT INSTRUCTIONS ===== */
-.payment-instructions {
-  background: var(--primary-light);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  border-left: 4px solid var(--primary);
-}
-
-.payment-steps {
-  list-style: none;
-  counter-reset: step-counter;
-}
-
-.payment-steps li {
-  margin-bottom: 1rem;
-  position: relative;
-  padding-left: 2.5rem;
-  counter-increment: step-counter;
-}
-
-.payment-steps li:before {
-  content: counter(step-counter);
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: var(--primary);
-  color: white;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
-/* ===== RESPONSIVE FIXES ===== */
-@media (max-width: 576px) {
-  .whatsapp-tooltip {
-    width: 250px;
-    right: -20px;
-    bottom: 70px;
-  }
-  
-  .unique-amount {
-    font-size: 1.5rem;
-  }
-  
-  .payment-steps li {
-    padding-left: 2rem;
-  }
-}
-
-body {
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-}
-
-.container {
-  max-width: 100%;
-  padding: 0 15px;
-}
-.bank-detail-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.8rem;
-  font-size: 1rem;
-}
-
-.bank-detail-item i {
-  width: 24px;
-  color: var(--primary);
-  margin-right: 10px;
-}
-
-.bank-label {
-  font-weight: 600;
-  min-width: 120px;
-  color: var(--text);
-}
-
-.bank-value {
-  color: var(--dark);
-}
-
-.highlight {
-  font-weight: 700;
-  color: var(--danger);
-  background: rgba(231, 76, 60, 0.1);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-}
-  </style>
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+      }
+      70% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 10px rgba(46, 204, 113, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+      }
+    }
 </head>
 <body>
   <!-- Urgency Banner -->
