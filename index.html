@@ -1396,6 +1396,30 @@ button, input, textarea, select {
   opacity: 1;
   color: var(--primary);
 }
+/* ===== KOMPONEN TAMBAHAN ===== */
+/* WhatsApp Float */
+.whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  color: var(--light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 99;
+  transition: var(--transition);
+  animation: float 3s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
 
 /* Notification */
 .notification {
@@ -1838,7 +1862,15 @@ button, input, textarea, select {
     font-size: 0.75rem;
   }
   
-   .gallery-carousel img {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  
+  .gallery-carousel img {
     max-height: 50vh;
   }
   
@@ -2128,6 +2160,8 @@ button, input, textarea, select {
     font-size: 1.1rem;
   }
 }
+ 
+
   </style>
 </head>
 <body>
@@ -2160,7 +2194,11 @@ button, input, textarea, select {
     <span id="notificationText">Pak Budi baru saja booking unit Tipe Suite!</span>
   </div>
 
-  
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/628977771080?text=Saya%20tertarik%20dengan%20Kertamulya%20Residence" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
 <!-- House Types Section -->
 <section class="house-types section" id="house-types">
   <div class="container">
@@ -2726,21 +2764,44 @@ button, input, textarea, select {
     </div>
   </section>
 
-    <!-- Update CTA section -->
-<section class="cta-section">
+  
+
+  <!-- CTA Section -->
+  <section class="cta-section">
   <div class="container">
-    <h2 class="cta-title">AMANKAN STOK UNIT SEKARANG!</h2>
-    <p class="cta-desc">Hanya Rp100.000 untuk mengunci unit pilihan Anda. Waktu tersisa:</p>
+    <h2 class="cta-title">Siap Memiliki Rumah Islami Impian?</h2>
+    <p class="cta-desc">Booking sekarang dengan DP 0% dan dapatkan motor listrik gratis setelah 6x angsuran</p>
     
     <div class="countdown-container">
-      <!-- Countdown elements same as before -->
+      <div class="countdown">
+        <div class="countdown-item">
+          <div class="countdown-number" id="days">00</div>
+          <div class="countdown-label">Hari</div>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="hours">00</div>
+          <div class="countdown-label">Jam</div>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="minutes">00</div>
+          <div class="countdown-label">Menit</div>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="seconds">00</div>
+          <div class="countdown-label">Detik</div>
+        </div>
+      </div>
+      <div class="countdown-progress">
+        <div class="progress-bar"></div>
+      </div>
     </div>
     
-    <button class="btn btn-accent btn-lg pulse-animation" onclick="document.getElementById('unitBooking').scrollIntoView({behavior: 'smooth'})">
-      <i class="fas fa-lock"></i> AMANKAN STOK SEKARANG
+    <button class="btn btn-accent btn-lg pulse-animation" onclick="showModal('booking')">
+      <i class="fab fa-whatsapp"></i> Booking Sekarang
     </button>
-    
-    <p class="small-text">*Stok terbatas, hanya 5 unit tersisa per tipe</p>
   </div>
 </section>
 
@@ -2755,41 +2816,12 @@ button, input, textarea, select {
       
       <div class="faq-container">
         <div class="faq-item active">
-<div class="faq-item">
-  <div class="faq-question">
-    <span>Apakah Rp100.000 bisa dikembalikan?</span>
-    <i class="fas fa-chevron-down"></i>
-  </div>
-  <div class="faq-answer">
-    <p>Ya! Uang Rp100.000 akan kami kembalikan 100% jika setelah survei lokasi Anda memutuskan tidak melanjutkan pembelian.</p>
-  </div>
-</div>
-
-<div class="faq-item">
-  <div class="faq-question">
-    <span>Berapa lama unit akan diamankan?</span>
-    <i class="fas fa-chevron-down"></i>
-  </div>
-  <div class="faq-answer">
-    <p>Unit akan kami amankan selama 7 hari setelah pembayaran. Jika dalam 7 hari Anda tidak melakukan survei, uang akan hangus.</p>
-  </div>
-</div>
-
-<div class="faq-item">
-  <div class="faq-question">
-    <span>Bagaimana jika unit sudah habis?</span>
-    <i class="fas fa-chevron-down"></i>
-  </div>
-  <div class="faq-answer">
-    <p>Kami akan mengembalikan uang Anda 200% sebagai kompensasi jika unit yang Anda amankan ternyata sudah terjual.</p>
-  </div>
-</div>
           <div class="faq-question">
             <span>Benarkah hanya dengan booking fee 500rb sudah bisa dapat rumah?</span>
             <i class="fas fa-chevron-down"></i>
           </div>
           <div class="faq-answer">
-            <p>Benar! Booking fee 500rb untuk mengamankan unit yang Anda inginkan. Setelah itu, tim kami akan membantu proses pengajuan KPR ke bank syariah mitra kami.</p>
+            <p>Benar! Booking fee 500rb untuk mengamankan unit yang Anda inginkan. Setelah itu, tim kami akan membantu proses pengajuan KPR ke bank syariah mitra kami tanpa biaya tambahan.</p>
           </div>
         </div>
         
@@ -2799,7 +2831,7 @@ button, input, textarea, select {
             <i class="fas fa-chevron-down"></i>
           </div>
           <div class="faq-answer">
-            <p>Proses biasanya memakan waktu 14-60 hari kerja setelah dokumen lengkap, tergantung bank yang dipilih. BTN Syariah biasanya paling cepat (14-30 hari), sedangkan BJB Syariah sekitar 21-60 hari.</p>
+            <p>Proses biasanya memakan waktu 14-30 hari kerja setelah dokumen lengkap, tergantung bank yang dipilih. BTN Syariah biasanya paling cepat (14-21 hari), sedangkan BJB Syariah sekitar 21-30 hari.</p>
                       </div>
         </div>
         
@@ -2890,7 +2922,7 @@ button, input, textarea, select {
           <i class="fas fa-lock"></i> Amankan Sekarang
         </a>
         
-        <p class="small-text">Hanya 75 unit tersisa semua tipe ini!</p>
+        <p class="small-text"> Sisa Ready Stok 30 unit Rumah Standar!</p>
       </div>
       
       <!-- Right Column - Visual Card -->
@@ -2986,7 +3018,8 @@ button, input, textarea, select {
     </div>
   </footer>
 
-   <!-- Booking Modal -->
+  <!-- Modals -->
+  <!-- Booking Modal -->
   <div class="modal" id="bookingModal">
     <div class="modal-content">
       <button class="modal-close" onclick="hideModal('booking')">&times;</button>
@@ -3029,7 +3062,7 @@ button, input, textarea, select {
   </div>
 
 <!-- Gallery Modal -->
-<<div class="modal" id="galleryModal">
+<div class="modal gallery-modal" id="galleryModal">
   <div class="modal-content">
     <button class="modal-close" onclick="hideModal('gallery')">&times;</button>
     <div class="modal-body">
@@ -3039,6 +3072,8 @@ button, input, textarea, select {
   </div>
 </div>
 
+
+<!-- Video Modal -->
 <div class="video-modal" id="videoModal">
   <div class="video-modal-content">
     <button class="video-modal-close" onclick="hideModal('video')">&times;</button>
@@ -3048,34 +3083,39 @@ button, input, textarea, select {
   </div>
 </div>
 
-
+  <!-- WhatsApp Confirmation Modal -->
+  <div class="modal" id="waModal">
+    <div class="modal-content">
+      <div class="modal-body" style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+          <i class="fab fa-whatsapp" style="color: white; font-size: 2.5rem;"></i>
+        </div>
+        <h3 class="modal-title">Formulir Terkirim!</h3>
+        <p class="modal-desc">Tim marketing kami akan segera menghubungi Anda melalui WhatsApp</p>
+        <p id="countdownText" style="margin: 1rem 0;">Mengarahkan ke WhatsApp dalam 5 detik...</p>
+        <a href="#" id="waLink" class="btn btn-accent" style="display: inline-flex;">
+          <i class="fab fa-whatsapp"></i> Buka WhatsApp Sekarang
+        </a>
+      </div>
+    </div>
+  </div>
 <!-- Slick JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all components
   updateCountdown();
   setInterval(updateCountdown, 1000);
   setupTypeSelector();
+  setTimeout(showRandomNotification, 10000);
+  setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
   animateSoldCount();
   setupFAQAccordion();
-  setupGalleryModal();
+  setupBookingForm();
+  initGalleryModal();
   animateProgressBars();
-  setupVideoModal();
-  setupNotification();
-  setupTestimonialVideos();
-  
-  // Close modals when clicking outside
-  document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('modal')) {
-      hideModal('gallery');
-      hideModal('booking');
-    }
-    if (e.target.classList.contains('video-modal')) {
-      hideModal('video');
-    }
-  });
 });
 
 // ========== COUNTDOWN TIMER ==========
@@ -3130,8 +3170,8 @@ function setupTypeSelector() {
   });
 }
 
-// ========== NOTIFICATION ==========
-function setupNotification() {
+// ========== NOTIFICATIONS ==========
+function showRandomNotification() {
   const notifications = [
     "Pak Budi baru saja booking unit Tipe Suite!",
     "Bu Ani membeli Tipe Standard",
@@ -3143,27 +3183,19 @@ function setupNotification() {
   const notification = document.getElementById('notification');
   const notificationText = document.getElementById('notificationText');
   
-  function showRandomNotification() {
-    notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
-    notification.style.display = 'flex';
-    
-    setTimeout(() => {
-      notification.style.opacity = '1';
-    }, 10);
-    
-    setTimeout(() => {
-      notification.style.opacity = '0';
-      setTimeout(() => {
-        notification.style.display = 'none';
-      }, 300);
-    }, 5000);
-  }
+  notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
+  notification.style.display = 'flex';
   
-  // Show first notification after 10 seconds
-  setTimeout(showRandomNotification, 10000);
+  setTimeout(() => {
+    notification.style.opacity = '1';
+  }, 10);
   
-  // Show random notifications every 2-5 minutes
-  setInterval(showRandomNotification, (Math.floor(Math.random() * 3) + 2) * 60000);
+  setTimeout(() => {
+    notification.style.opacity = '0';
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 300);
+  }, 5000);
 }
 
 // ========== SOLD COUNT ==========
@@ -3186,36 +3218,45 @@ function setupFAQAccordion() {
     const question = item.querySelector('.faq-question');
     
     question.addEventListener('click', () => {
-      // Toggle current item
-      const isActive = item.classList.contains('active');
-      const answer = item.querySelector('.faq-answer');
-      const icon = item.querySelector('.faq-question i');
-      
-      // Close all other items first
       faqItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
-          otherItem.querySelector('.faq-answer').style.maxHeight = '0';
-          otherItem.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
-        }
+        if (otherItem !== item) otherItem.classList.remove('active');
       });
-      
-      // Then toggle current item
-      if (isActive) {
-        item.classList.remove('active');
-        answer.style.maxHeight = '0';
-        icon.style.transform = 'rotate(0deg)';
-      } else {
-        item.classList.add('active');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        icon.style.transform = 'rotate(180deg)';
-      }
+      item.classList.toggle('active');
     });
   });
 }
 
+// ========== BOOKING FORM ==========
+function setupBookingForm() {
+  const bookingForm = document.getElementById('bookingForm');
+  
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const type = document.getElementById('type').value;
+      
+      const message = `Assalamu'alaikum wr wb,
+
+*Saya ${name}* tertarik dengan *Kertamulya Residence* tipe *${type}*.
+
+Mohon info lebih lanjut mengenai:
+- *Proses pembelian*
+- *Syarat KPR*
+
+Terima kasih.`;
+    
+      const waLink = `https://wa.me/628977771080?text=${encodeURIComponent(message)}`;
+      window.open(waLink, '_blank');
+      hideModal('booking');
+    });
+  }
+}
+
 // ========== GALLERY MODAL ==========
-function setupGalleryModal() {
+function initGalleryModal() {
   // Image sets with local image paths
   const galleryImages = {
     standard: [
@@ -3255,10 +3296,10 @@ function setupGalleryModal() {
   };
 
   // Initialize gallery buttons
-  document.querySelectorAll('[onclick*="gallery"]').forEach(btn => {
+  document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      const type = this.getAttribute('onclick').match(/gallery', '([^']+)'/)[1];
+      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
       showGalleryModal(type, galleryImages);
     });
   });
@@ -3298,79 +3339,22 @@ function showGalleryModal(type, images) {
 
   // Show modal
   document.getElementById('galleryModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
 }
 
-// ========== VIDEO MODAL ==========
-function setupVideoModal() {
-  const videoIds = {
-    standard: '_blGnqdIRD8',
-    suite: 'tCg9iyw0jy4',
-    premium: '7Fl9zHdHb7s',
-    testimonial1: 'LgHbkuOKsw0',
-    testimonial2: 'UF5V1-Vu6uI'
-  };
-
-  // Initialize video buttons
-  document.querySelectorAll('[onclick*="video"]').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const type = this.getAttribute('onclick').match(/video', '([^']+)'/)[1];
-      const videoId = videoIds[type];
-      
-      if (videoId) {
-        document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-        document.getElementById('videoModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  });
-}
-
-// ========== TESTIMONIAL VIDEOS ==========
-function setupTestimonialVideos() {
-  const videoIds = {
-    testimonial1: 'LgHbkuOKsw0',
-    testimonial2: 'UF5V1-Vu6uI'
-  };
-
-  // Initialize testimonial video buttons
-  document.querySelectorAll('.video-wrapper').forEach(wrapper => {
-    wrapper.addEventListener('click', function() {
-      const type = this.getAttribute('onclick')?.match(/video', '([^']+)'/)?.[1];
-      if (!type) return;
-      
-      const videoId = videoIds[type];
-      
-      if (videoId) {
-        document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-        document.getElementById('videoModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  });
-}
 
 // ========== MODAL FUNCTIONS ==========
 function showModal(type, subtype = null, houseType = null) {
-  if (type === 'gallery') {
-    setupGalleryModal();
+  if (type === 'gallery' && subtype) {
     showGalleryModal(subtype);
-  } else if (type === 'video') {
-    setupVideoModal();
-    const videoIds = {
-      standard: '_blGnqdIRD8',
-      suite: 'tCg9iyw0jy4',
-      premium: '7Fl9zHdHb7s',
-      testimonial1: 'LgHbkuOKsw0',
-      testimonial2: 'UF5V1-Vu6uI'
-    };
-    const videoId = videoIds[subtype];
-    if (videoId) {
-      document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-      document.getElementById('videoModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+  }
+  else if (type === 'booking') {
+    if (houseType) document.getElementById('type').value = houseType;
+    document.getElementById('bookingModal').classList.add('active');
+  }
+  else if (type === 'video' && subtype) {
+    const videoId = getVideoId(subtype);
+    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    document.getElementById('videoModal').classList.add('active');
   }
 }
 
@@ -3382,11 +3366,24 @@ function hideModal(type) {
     }
     document.getElementById('galleryModal').classList.remove('active');
   } 
+  else if (type === 'booking') {
+    document.getElementById('bookingModal').classList.remove('active');
+  } 
   else if (type === 'video') {
     document.getElementById('videoFrame').src = '';
     document.getElementById('videoModal').classList.remove('active');
   }
-  document.body.style.overflow = 'auto';
+}
+
+function getVideoId(subtype) {
+  const videoIds = {
+    standard: '_blGnqdIRD8',
+    suite: 'tCg9iyw0jy4',
+    premium: '7Fl9zHdHb7s',
+    testimonial1: 'LgHbkuOKsw0',  // Video testimoni pertama
+    testimonial2: 'UF5V1-Vu6uI'   // Video testimoni kedua
+  };
+  return videoIds[subtype] || '';
 }
 
 // ========== PROGRESS BARS ==========
@@ -3398,16 +3395,6 @@ function animateProgressBars() {
     const stock = parseInt(card.dataset.stock);
     const percentage = (stock / 10) * 100;
     
-    // Set color based on stock level
-    if (stock <= 1) {
-      bar.style.background = 'linear-gradient(90deg, #e74c3c, #c0392b)';
-    } else if (stock <= 3) {
-      bar.style.background = 'linear-gradient(90deg, #f39c12, #e67e22)';
-    } else {
-      bar.style.background = 'linear-gradient(90deg, var(--primary), var(--primary-dark))';
-    }
-    
-    // Animate width
     bar.style.width = '0%';
     setTimeout(() => {
       bar.style.width = `${percentage}%`;
@@ -3424,7 +3411,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.type-card').forEach(card => {
   observer.observe(card);
-}); 
-</script>
+});
+  </script>
 </body>
 </html> 
