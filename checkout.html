@@ -25,6 +25,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_FACEBOOK_PIXEL_ID');
+  fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none" 
+       src="https://www.facebook.com/tr?id=YOUR_FACEBOOK_PIXEL_ID&ev=PageView&noscript=1"/>
+</noscript>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXX');</script>
   <style>
     /* ===== VARIABEL GLOBAL & RESET ===== */
     :root {
@@ -527,29 +551,87 @@
       100% { opacity: 1; }
     }
 
-    /* WhatsApp Button */
-    .whatsapp-button {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: #25D366;
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-      z-index: 99;
-      transition: var(--transition);
-    }
-
-    .whatsapp-button:hover {
-      transform: scale(1.1);
-    }
-
+     /* WhatsApp Floating Button */
+  .whatsapp-floating {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+  }
+  
+  .whatsapp-button {
+    background: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .whatsapp-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .whatsapp-tooltip {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 250px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(10px);
+  }
+  
+  .whatsapp-floating:hover .whatsapp-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .tooltip-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .tooltip-header i {
+    font-size: 1.5rem;
+    color: #25D366;
+  }
+  
+  .tooltip-header h4 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .tooltip-content p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .close-tooltip {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #999;
+  }
    /* ===== FOOTER ===== */
 .footer {
   background: var(--dark);
@@ -923,15 +1005,15 @@
           </div>
         </div>
         
-        <div class="footer-links">
-  <h3 class="footer-heading">Link Cepat</h3>
+      <div class="footer-links">
+  <h3 class="footer-heading">Navigasi</h3>
   <ul>
-    <li><a href="#house-types"><i class="fas fa-chevron-right"></i> Tipe Rumah</a></li>
-    <li><a href="#why-choose"><i class="fas fa-chevron-right"></i> Keunggulan</a></li>
-    <li><a href="#facilities"><i class="fas fa-chevron-right"></i> Fasilitas</a></li>
-    <li><a href="#location"><i class="fas fa-chevron-right"></i> Lokasi</a></li>
-    <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimoni</a></li>
-    <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+    <li><a href="tipe-rumah.html"><i class="fas fa-chevron-right"></i> Tipe Rumah</a></li>
+    <li><a href="fasilitas.html"><i class="fas fa-chevron-right"></i> Fasilitas</a></li>
+    <li><a href="lokasi.html"><i class="fas fa-chevron-right"></i> Lokasi</a></li>
+    <li><a href="testimoni.html"><i class="fas fa-chevron-right"></i> Testimoni</a></li>
+    <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
   </ul>
 </div>
         
@@ -963,12 +1045,47 @@
     </div>
   </footer>
 
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/628977771080?text=Assalamu'alaikum%20Kertamulya%20Residence,%20saya%20ingin%20bertanya%20tentang%20cara%20mengamankan%20stok%20unit.%20Mohon%20informasinya." class="whatsapp-button">
+ <!-- WhatsApp Button dengan Tooltip -->
+<div class="whatsapp-floating">
+  <a href="https://wa.me/628977771080?text=Halo%20Kertamulya%20Residence,%20saya%20ingin%20konsultasi%20tentang%20perumahan%20ini.%20Mohon%20informasi%20lebih%20lanjut." 
+     class="whatsapp-button"
+     aria-label="Konsultasi via WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
+  <div class="whatsapp-tooltip">
+    <div class="tooltip-content">
+      <button class="close-tooltip">&times;</button>
+      <div class="tooltip-header">
+        <i class="fas fa-hand-paper"></i>
+        <h4>Butuh Konsultasi?</h4>
+      </div>
+      <p>Tim kami siap membantu Anda memahami lebih lanjut tentang Kertamulya Residence</p>
+    </div>
+  </div>
+</div>
 
   <script>
+    // Tampilkan tooltip saat pertama kali
+  setTimeout(() => {
+    document.querySelector('.whatsapp-tooltip').style.opacity = '1';
+    document.querySelector('.whatsapp-tooltip').style.visibility = 'visible';
+    document.querySelector('.whatsapp-tooltip').style.transform = 'translateY(0)';
+    
+    // Sembunyikan setelah 5 detik
+    setTimeout(() => {
+      document.querySelector('.whatsapp-tooltip').style.opacity = '0';
+      document.querySelector('.whatsapp-tooltip').style.visibility = 'hidden';
+      document.querySelector('.whatsapp-tooltip').style.transform = 'translateY(10px)';
+    }, 5000);
+  }, 3000);
+  
+  // Close button
+  document.querySelector('.close-tooltip').addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.querySelector('.whatsapp-tooltip').style.opacity = '0';
+    document.querySelector('.whatsapp-tooltip').style.visibility = 'hidden';
+    document.querySelector('.whatsapp-tooltip').style.transform = 'translateY(10px)';
+  });
     // Countdown Timer
     function updateCountdown() {
       const endDate = new Date();
