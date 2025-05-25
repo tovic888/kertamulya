@@ -1000,7 +1000,7 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Form Submission with File Upload
+    // Form Submission with File Upload - FIXED VERSION
     document.getElementById('bookingForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
@@ -1009,11 +1009,19 @@
       const whatsapp = document.getElementById('whatsapp').value;
       const email = document.getElementById('email').value;
       const address = document.getElementById('address').value;
-      const houseType = document.getElementById('houseType').value;
+      const houseType = document.getElementById('houseType');
+      const houseTypeText = houseType.options[houseType.selectedIndex].text;
       const paymentProof = document.getElementById('paymentProof').files[0];
       
+      // Validate form
+      if (!fullName || !whatsapp || !address || !houseType.value || !paymentProof) {
+        alert('Harap lengkapi semua field yang wajib diisi!');
+        return;
+      }
+      
       // Validate WhatsApp number
-      if (!/^(\+62|62|0)[1-9][0-9]{7,11}$/.test(whatsapp)) {
+      const whatsappRegex = /^(\+62|62|0)[1-9][0-9]{7,11}$/;
+      if (!whatsappRegex.test(whatsapp)) {
         alert('Nomor WhatsApp tidak valid. Harap masukkan nomor Indonesia yang benar.');
         return;
       }
@@ -1033,22 +1041,25 @@
       message += `📱 *Nomor WhatsApp*: ${whatsapp}\n`;
       if (email) message += `📧 *Email*: ${email}\n`;
       message += `🏠 *Alamat Domisili*: ${address}\n`;
-      message += `🏡 *Tipe Rumah*: ${document.getElementById('houseType').options[document.getElementById('houseType').selectedIndex].text}\n\n`;
-      message += `💳 *Saya sudah transfer Rp 100.000 ke rekening BCA 664 5566 446 a.n PT. Rumah Mulia Indonesia*\n\n`;
+      message += `🏡 *Tipe Rumah*: ${houseTypeText}\n\n`;
+      message += `💳 *Saya sudah transfer Rp 100.000 ke rekening BSI 664 5566 446 a.n PT. Rumah Mulia Indonesia*\n\n`;
       message += `Mohon konfirmasi penerimaan pembayaran dan penguncian stok unit. Terima kasih.\n\n`;
       message += `Wassalamu'alaikum wr. wb.`;
       
       // Encode message for URL
       const encodedMessage = encodeURIComponent(message);
       
-      // If there's a payment proof, we can't send it directly via URL
-      // So we'll open WhatsApp first then instruct user to send the image
-      if (paymentProof) {
-        alert('Setelah WhatsApp terbuka, silakan kirim bukti transfer dengan mengklik tombol attachment (+) dan pilih gambar.');
-      }
-      
       // Open WhatsApp
-      window.open(`https://wa.me/628977771080?text=${encodedMessage}`, '_blank');
+      const waUrl = `https://wa.me/628977771080?text=${encodedMessage}`;
+      
+      // If there's a payment proof, show alert instruction
+      if (paymentProof) {
+        if (confirm('Setelah WhatsApp terbuka, silakan kirim bukti transfer dengan mengklik tombol attachment (+) dan pilih gambar. Klik OK untuk membuka WhatsApp.')) {
+          window.open(waUrl, '_blank');
+        }
+      } else {
+        window.open(waUrl, '_blank');
+      }
     });
     
     // File upload preview
@@ -1071,12 +1082,14 @@
     
     // Pulse animation for button
     const submitButton = document.querySelector('.pulse-animation');
-    setInterval(() => {
-      submitButton.style.transform = 'scale(1.02)';
-      setTimeout(() => {
-        submitButton.style.transform = 'scale(1)';
-      }, 500);
-    }, 2000);
+    if (submitButton) {
+      setInterval(() => {
+        submitButton.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          submitButton.style.transform = 'scale(1)';
+        }, 500);
+      }, 2000);
+    }
   </script>
 </body>
 </html>
