@@ -1118,6 +1118,202 @@
         box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
       }
     }
+
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #2ecc71;
+      text-align: center;
+    }
+
+    .modal-body {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .modal-body h4 {
+      margin: 1.5rem 0 0.5rem;
+      color: #333;
+    }
+
+    .modal-body ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-body li {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 576px) {
+      .modal-content {
+        padding: 1.5rem;
+        width: 95%;
+      }
+      
+      .modal-title {
+        font-size: 1.3rem;
+      }
+    }
+/* Mobile Layout Fixes */
+@media (max-width: 768px) {
+  /* Perbaikan padding container */
+  .container {
+    padding: 0 1rem;
+  }
+  
+  /* Perbaikan form spacing */
+  .checkout-form {
+    padding: 1.5rem;
+    margin: 0 -1rem;
+    border-radius: 0;
+  }
+  
+  /* Perbaikan input fields */
+  .form-control {
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+  }
+  
+  .form-icon {
+    left: 0.8rem;
+    top: 2.5rem;
+  }
+  
+  /* Perbaikan bank details */
+  .bank-detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  
+  .bank-label {
+    min-width: auto;
+    font-size: 0.9rem;
+  }
+  
+  /* Perbaikan tombol */
+  .btn-lg {
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Perbaikan footer */
+  .footer {
+    padding: 2rem 0;
+  }
+  
+  .footer-grid {
+    gap: 2rem;
+  }
+  
+  /* Perbaikan countdown */
+  .countdown-item {
+    min-width: 50px;
+    padding: 0.5rem;
+  }
+  
+  .countdown-number {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Perbaikan lebih spesifik untuk mobile kecil */
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .section-title h2 {
+    font-size: 1.5rem;
+  }
+  
+  .payment-first, 
+  .checkout-form {
+    padding: 1.25rem;
+  }
+  
+  /* Perbaikan layout grid */
+  .checkout-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* Perbaikan tampilan urgency box */
+  .urgency-box {
+    padding: 1rem;
+  }
+  
+  .benefit-item {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  /* Perbaikan floating button */
+  .whatsapp-button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .whatsapp-tooltip {
+    width: 250px;
+    right: -30px;
+    bottom: 60px;
+  }
+}
   </style>
 </head>
 <body>
@@ -1318,7 +1514,7 @@
               <input type="checkbox" id="agreement" required>
               <label for="agreement">
                 Saya menyetujui bahwa pembayaran Rp 100.000 adalah untuk mengamankan stok unit selama 7 hari dan wajib survei sebelum lanjut ke proses berikutnya. 
-                <a href="#" onclick="event.preventDefault(); alert('Syarat dan ketentuan akan ditampilkan di sini');">Baca syarat & ketentuan</a>
+                <a href="#" onclick="event.preventDefault(); openTermsModal();">Baca syarat & ketentuan</a>
               </label>
               <div class="error-message" id="agreementError">Anda harus menyetujui syarat dan ketentuan</div>
             </div>
@@ -1418,6 +1614,35 @@
           <h4>Butuh Konsultasi?</h4>
         </div>
         <p>Tim kami siap membantu Anda memahami lebih lanjut tentang Kertamulya Residence</p>
+      </div>
+    </div>
+  </div>
+<!-- Modal Syarat & Ketentuan -->
+  <div class="modal-overlay" id="termsModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+      <h3 class="modal-title">Syarat & Ketentuan</h3>
+      <div class="modal-body">
+        <h4>Pembayaran Awal</h4>
+        <ul>
+          <li>Pembayaran Rp 100.000 bersifat mengamankan stok unit selama 7 hari</li>
+          <li>Uang dapat dikembalikan 100% jika tidak cocok setelah survei</li>
+          <li>Pembayaran tidak dapat dikembalikan jika tidak melakukan survei dalam 7 hari</li>
+        </ul>
+
+        <h4>Proses Selanjutnya</h4>
+        <ul>
+          <li>Wajib melakukan survei lokasi dalam 7 hari setelah pembayaran</li>
+          <li>Setelah survei, Anda akan mendapatkan penawaran lengkap</li>
+          <li>Proses pembelian dapat dilanjutkan atau dibatalkan setelah survei</li>
+        </ul>
+
+        <h4>Kebijakan Stok</h4>
+        <ul>
+          <li>Unit yang dipesan hanya dijamin tersedia selama 7 hari</li>
+          <li>Jika tidak ada konfirmasi lanjutan, stok akan dilepas ke calon pembeli lain</li>
+          <li>Harga dapat berubah jika melewati masa penahanan stok</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -1714,6 +1939,31 @@
       transactions.push(transaction);
       localStorage.setItem('transactions', JSON.stringify(transactions));
     }
+     // Modal Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('termsModal');
+      const closeBtn = document.getElementById('closeModal');
+      
+      // Function to open modal
+      window.openTermsModal = function() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+      
+      // Close modal
+      closeBtn.addEventListener('click', function() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+      
+      // Close when clicking outside
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
   </script>
 </body>
 </html>
