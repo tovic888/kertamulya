@@ -3,895 +3,1471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontrak Kerja Marketing Executive – Kertamulya Residence</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Form Laporan Inhouse Marketing Kertamulya Residence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3b82f6;
-            --primary-light: #60a5fa;
-            --primary-dark: #2563eb;
-            --secondary: #f59e0b;
-            --secondary-light: #fbbf24;
-            --secondary-dark: #d97706;
-            --accent: #10b981;
-            --text-primary: #f3f4f6;
-            --text-secondary: #d1d5db;
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --primary-light: #d5f8e5;
+            --accent: #f1c40f;
+            --accent-dark: #f39c12;
+            --danger: #e74c3c;
+            --dark: #111;
+            --light: #fff;
+            --gray: #f5f5f5;
+            --text: #333;
+            --text-light: #666;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
-            color: var(--text-primary);
-            background-color: #111827;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--gray);
+            padding: 0;
+            margin: 0;
         }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.95) 0%, rgba(59, 130, 246, 0.95) 100%);
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        
-        .section {
-            scroll-margin-top: 100px;
-        }
-        
-        .card {
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border-radius: 16px;
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
             overflow: hidden;
-            background: #1f2937;
-            border: 1px solid #374151;
-            color: #f3f4f6;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .title-underline {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .title-underline:after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 12px;
-            background-color: rgba(245, 158, 11, 0.3);
-            z-index: -1;
-            border-radius: 4px;
-            transform: skewX(-15deg);
-        }
-        
-        .team-card {
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
-            background: #1f2937;
-            border: 1px solid #374151;
-        }
-        
-        .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-        }
-        
-        .flip-card {
-            perspective: 1200px;
-            min-height: 300px;
-        }
-        
-        .flip-card-inner {
-            transition: transform 0.7s;
-            transform-style: preserve-3d;
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-        
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            border-radius: 16px;
-        }
-        
-        .flip-card-back {
-            transform: rotateY(180deg);
-        }
-        
-        .funnel-step {
-            position: relative;
-            transition: all 0.4s ease;
-            background: #1f2937;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid #374151;
-        }
-        
-        .funnel-step:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-        }
-        
-        .funnel-step:not(:last-child):after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 3px;
-            background: var(--secondary);
-            opacity: 0.3;
-            border-radius: 3px;
-        }
-        
-        .progress-bar {
-            transition: width 1.5s ease-in-out;
-            background: linear-gradient(to right, var(--secondary), var(--secondary-light));
-        }
-        
-        .glow-effect {
-            animation: glow 2s infinite alternate;
-        }
-        
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
-            }
-            to {
-                box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
-            }
-        }
-        
-        .pulse-effect {
-            animation: pulse 2.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
-            }
-            70% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 15px rgba(245, 158, 11, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
-            }
-        }
-        
-        .bounce-effect {
-            animation: bounce 3s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-        
-        .organigram-box {
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            border: 1px solid #374151;
-        }
-        
-        .organigram-box:hover {
-            transform: scale(1.05);
-            z-index: 10;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-        }
-        
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-        
-        .timeline:before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 20px;
-        }
-        
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid var(--accent);
-        }
-        
-        .hover-scale {
-            transition: transform 0.3s ease;
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.05);
         }
 
-        /* New Modern UX Elements */
-        .nav-item {
-            position: relative;
-            padding: 8px 0;
-        }
-
-        .nav-item:after {
+        .header::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--secondary);
-            transition: width 0.3s ease;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+            z-index: 0;
         }
 
-        .nav-item:hover:after {
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            max-width: 180px;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            margin: 2rem auto;
+            width: 95%;
+            max-width: 900px;
+        }
+
+        .form-title {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent);
+            display: block;
+            text-align: center;
             width: 100%;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .form-container {
+                width: 85%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .form-container {
+                width: 70%;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .form-group label.required:after {
+            content: ' *';
+            color: var(--danger);
+        }
+
+        .form-group .hint {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+            outline: none;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px 12px;
+            padding-right: 2.5rem;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .signature-container {
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--gray);
+        }
+
+        .signature-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .signature-pad {
+            width: 100%;
+            height: 150px;
+            background: white;
+            border: 1px dashed #ccc;
+            border-radius: 0.25rem;
+            cursor: crosshair;
+            touch-action: none;
+            transition: var(--transition);
+        }
+
+        .signature-pad.locked {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .signature-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            text-align: center;
+            gap: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
-            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            box-shadow: var(--shadow-lg);
         }
 
-        .btn-secondary {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+        .btn-outline {
+            background: transparent;
             color: var(--primary);
-            transition: all 0.3s ease;
-            border: none;
+            border: 2px solid var(--primary);
         }
 
-        .btn-secondary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--light);
         }
 
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
-            margin-bottom: 20px;
-            color: var(--primary);
-            font-size: 24px;
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
         }
 
-        .data-card {
-            background: #1f2937;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--secondary);
-            border: 1px solid #374151;
-        }
-
-        .data-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .data-card .value {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .data-card .label {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        .tab-content {
+        .image-preview {
+            margin-top: 1rem;
             display: none;
         }
 
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
+        .image-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .nav-tabs {
+        .submit-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
             display: flex;
-            border-bottom: 1px solid #374151;
-            margin-bottom: 20px;
-        }
-
-        .nav-tab {
-            padding: 12px 20px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            color: #d1d5db;
-        }
-
-        .nav-tab:hover {
-            color: var(--primary);
-        }
-
-        .nav-tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--secondary);
-        }
-
-        .accordion-item {
-            margin-bottom: 10px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border: 1px solid #374151;
-        }
-
-        .accordion-header {
-            padding: 16px 20px;
-            background: #1f2937;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .accordion-header:hover {
-            background: #1a202c;
-        }
-
-        .accordion-content {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            background: #1f2937;
-        }
-
-        .accordion-item.active .accordion-content {
-            padding: 20px;
-            max-height: 500px;
-        }
-
-        .accordion-item.active .accordion-header {
-            background: var(--primary);
-            color: white;
-        }
-
-        .accordion-icon {
-            transition: transform 0.3s ease;
-        }
-
-        .accordion-item.active .accordion-icon {
-            transform: rotate(180deg);
-        }
-
-        /* Modern Glass Effect */
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-
-        /* Avatar Styles */
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            font-size: 40px;
-            margin: 0 auto;
         }
 
-        .avatar-sm {
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-        }
-
-        .avatar-xs {
-            width: 40px;
-            height: 40px;
-            font-size: 18px;
-        }
-
-        /* Map Styles */
-        .map-container {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-            border-radius: 12px;
-            height: 400px;
+        .submit-btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            min-width: 250px;
             position: relative;
-            overflow: hidden;
         }
 
-        .map-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .submit-btn .spinner {
+            display: none;
+            animation: spin 1s linear infinite;
         }
 
-        /* New Section Styles */
-        .strategy-card {
-            border-left: 4px solid var(--secondary);
-            transition: all 0.3s ease;
+        .submit-btn.loading .spinner {
+            display: inline-block;
         }
 
-        .strategy-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .submit-btn.loading .btn-text {
+            display: none;
         }
 
-        /* Google Form Embed */
-        .form-container {
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .footer p:first-child {
+            font-weight: 500;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tooltip */
+        .tooltip {
             position: relative;
-            padding-bottom: 75%;
-            height: 0;
-            overflow: hidden;
+            display: inline-block;
+            margin-left: 0.25rem;
+            color: var(--primary);
+            cursor: help;
         }
 
-        .form-container iframe {
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
             position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark) transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: none;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
         }
 
+        .modal-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .modal-message {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        /* Credit Analysis */
+        .analysis-section {
+            background: var(--primary-light);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .analysis-title {
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .analysis-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .analysis-item {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .analysis-item-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .rating-options {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .rating-option {
+            flex: 1;
+            text-align: center;
+        }
+
+        .rating-option input {
+            display: none;
+        }
+
+        .rating-option label {
+            display: block;
+            padding: 0.5rem;
+            background: var(--gray);
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .rating-option input:checked + label {
+            background: var(--primary);
+            color: white;
+        }
+
+        .result-box {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--primary);
+        }
+
+        .result-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-approval {
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .approved {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .rejected {
+            background: #fdecea;
+            color: var(--danger);
+        }
+
+        .consideration {
+            background: #fff8e6;
+            color: var(--accent-dark);
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .section {
-                scroll-margin-top: 80px;
+            .header h1 {
+                font-size: 1.5rem;
             }
             
-            .mobile-stack {
-                flex-direction: column;
+            .header p {
+                font-size: 1rem;
             }
             
-            .mobile-padding {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
+            .form-container {
+                padding: 1.5rem;
             }
             
-            .mobile-text-center {
-                text-align: center;
+            .form-title {
+                font-size: 1.25rem;
             }
-            
-            .funnel-step:not(:last-child):after {
-                display: none;
-            }
+        }
 
-            .nav-tabs {
-                overflow-x: auto;
-                white-space: nowrap;
-                padding-bottom: 10px;
+        @media (max-width: 576px) {
+            .header {
+                padding: 1.5rem 0;
             }
-
-            .nav-tab {
-                padding: 10px 15px;
+            
+            .header h1 {
+                font-size: 1.25rem;
             }
-
-            .avatar {
-                width: 80px;
-                height: 80px;
-                font-size: 32px;
+            
+            .form-container {
+                padding: 1rem;
+                margin: 1rem auto;
+            }
+            
+            .submit-btn {
+                width: 100%;
             }
         }
     </style>
 </head>
-<body class="bg-gray-900">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-gray-800 shadow-md z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <img src="https://i.imgur.com/yy0vB2n.png" alt="RMI Logo" class="h-14">
-                <div class="text-lg font-bold text-white">Kertamulya Residence</div>
-            </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#team" class="nav-item text-white hover:text-secondary transition font-semibold">
-                    Struktur Tim
-                </a>
-                <a href="#schedule" class="nav-item text-white hover:text-secondary transition font-semibold">
-                    Jadwal Kerja
-                </a>
-                <a href="#commission" class="nav-item text-white hover:text-secondary transition font-semibold">
-                    Sistem Komisi
-                </a>
-                <a href="#kpi" class="nav-item text-white hover:text-secondary transition font-semibold">
-                    KPI Marketing
-                </a>
-                <a href="#strategies" class="nav-item text-white hover:text-secondary transition font-semibold">
-                    Strategi Pemasaran
-                </a>
-            </div>
-            <button class="md:hidden focus:outline-none" id="mobile-menu-button">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+<body>
+    <div class="header">
+        <div class="container header-content">
+            <img src="https://i.imgur.com/t1AiOHg.png" alt="Kertamulya Residence" class="logo">
+            <h1>Laporan Inhouse Marketing Kertamulya Residence</h1>
+            <p>Analisis kelayakan kredit dan kelengkapan dokumen untuk pengajuan KPR</p>
         </div>
-        <!-- Mobile menu -->
-        <div class="md:hidden hidden bg-gray-800 w-full px-6 py-4 shadow-xl" id="mobile-menu">
-            <div class="flex flex-col space-y-4">
-                <a href="#team" class="text-white hover:text-secondary transition font-semibold py-3 border-b border-gray-700 flex items-center">
-                    <i class="fas fa-users mr-3 text-secondary w-5"></i> Struktur Tim
-                </a>
-                <a href="#schedule" class="text-white hover:text-secondary transition font-semibold py-3 border-b border-gray-700 flex items-center">
-                    <i class="fas fa-calendar-alt mr-3 text-secondary w-5"></i> Jadwal Kerja
-                </a>
-                <a href="#commission" class="text-white hover:text-secondary transition font-semibold py-3 border-b border-gray-700 flex items-center">
-                    <i class="fas fa-money-bill-wave mr-3 text-secondary w-5"></i> Sistem Komisi
-                </a>
-                <a href="#kpi" class="text-white hover:text-secondary transition font-semibold py-3 border-b border-gray-700 flex items-center">
-                    <i class="fas fa-chart-line mr-3 text-secondary w-5"></i> KPI Marketing
-                </a>
-                <a href="#strategies" class="text-white hover:text-secondary transition font-semibold py-3 flex items-center">
-                    <i class="fas fa-bullseye mr-3 text-secondary w-5"></i> Strategi Pemasaran
-                </a>
-            </div>
-        </div>
-    </nav>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient flex items-center justify-center text-center text-white pt-24 min-h-screen">
-        <div class="container mx-auto px-6 animate__animated animate__fadeInDown">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Kontrak Kerja<br><span class="gradient-text">Marketing Executive</span></h1>
-            <h2 class="text-3xl md:text-4xl font-semibold mb-8">Kertamulya Residence</h2>
-            <p class="text-xl md:text-2xl opacity-90 mb-10 max-w-3xl mx-auto leading-relaxed">Presentasi Sistem Kerja, Komisi & KPI Tim Marketing</p>
-            <a href="#team" class="btn-primary px-10 py-4 rounded-full font-semibold transition duration-300 inline-flex items-center text-lg">
-                Mulai Presentasi <i class="fas fa-chevron-down ml-3 text-lg"></i>
-            </a>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="form-title">Form Laporan Inhouse Marketing</h2>
             
-            <div class="mt-12 flex justify-center space-x-4">
-                <a href="#commission" class="btn-secondary px-6 py-3 rounded-full font-medium transition duration-300 inline-flex items-center">
-                    <i class="fas fa-money-bill-wave mr-2"></i> Lihat Komisi
-                </a>
-                <a href="#kpi" class="glass-effect hover:bg-opacity-30 text-white px-6 py-3 rounded-full font-medium transition duration-300 inline-flex items-center">
-                    <i class="fas fa-chart-line mr-2"></i> Sistem KPI
-                </a>
-            </div>
-        </div>
-        
-        <div class="absolute bottom-10 left-0 right-0 flex justify-center animate__animated animate__fadeInUp animate__delay-1s">
-            <a href="#team" class="text-white hover:text-secondary transition">
-                <i class="fas fa-chevron-down text-2xl animate-bounce"></i>
-            </a>
-        </div>
-    </section>
+            <form id="inhouseForm" action="https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec" method="POST" enctype="multipart/form-data">
 
-    <!-- Quick Stats Section -->
-    <section class="bg-gray-800 py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="data-card">
-                    <div class="value">4 Orang</div>
-                    <div class="label">Anggota Tim</div>
-                    <div class="mt-4 text-right">
-                        <i class="fas fa-users text-3xl text-accent opacity-30"></i>
-                    </div>
-                </div>
-                <div class="data-card">
-                    <div class="value">3 Bulan</div>
-                    <div class="label">Periode Kontrak Awal</div>
-                    <div class="mt-4 text-right">
-                        <i class="fas fa-calendar-alt text-3xl text-accent opacity-30"></i>
-                    </div>
-                </div>
-                <div class="data-card">
-                    <div class="value">1%</div>
-                    <div class="label">Komisi Tim per Unit</div>
-                    <div class="mt-4 text-right">
-                        <i class="fas fa-money-bill-wave text-3xl text-accent opacity-30"></i>
-                    </div>
-                </div>
-                <div class="data-card">
-                    <div class="value">30 Unit</div>
-                    <div class="label">Target Tiap Bulan</div>
-                    <div class="mt-4 text-right">
-                        <i class="fas fa-bullseye text-3xl text-accent opacity-30"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="form-grid">
+                    <!-- Kolom 1 -->
+                    <div>
+                        <!-- Nama Customer -->
+                        <div class="form-group">
+                            <label for="customerName" class="required">Nama Customer</label>
+                            <input type="text" id="customerName" name="customerName" class="form-control" required>
+                        </div>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 py-20 mobile-padding">
-        <!-- Section 1: Team Structure -->
-        <section id="team" class="section mb-24">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-white mb-6 title-underline">Struktur Tim & Kontrak</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">Tim Marketing Executive untuk proyek Kertamulya Residence dengan sistem remunerasi berbasis kinerja dan kerja tim yang solid.</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12 mb-16">
-                <div>
-                    <div class="card p-8 mb-8">
-                        <h3 class="text-2xl font-semibold text-white mb-6 flex items-center">
-                            <i class="fas fa-users mr-3 text-secondary"></i> Informasi Tim
-                        </h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="feature-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-lg text-white mb-2">Komposisi Tim</h4>
-                                    <p class="text-gray-300">4 anggota (3 Laki-laki & 1 Perempuan) dengan pembagian tugas yang jelas dan sistem kerja berbasis tim.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="feature-icon">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-lg text-white mb-2">Periode Kontrak</h4>
-                                    <p class="text-gray-300">3 bulan awal dengan evaluasi kinerja untuk kemungkinan perpanjangan 1 tahun berikutnya.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="feature-icon">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-lg text-white mb-2">Sistem Kerja</h4>
-                                    <p class="text-gray-300">Teamwork solid dengan weekly meeting evaluasi progres dan pembagian tugas yang transparan.</p>
-                                </div>
-                            </div>
+                        <!-- Nomor HP -->
+                        <div class="form-group">
+                            <label for="customerPhone" class="required">Nomor HP Customer</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" class="form-control" pattern="[0-9]{10,13}" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="customerEmail">Email Customer</label>
+                            <input type="email" id="customerEmail" name="customerEmail" class="form-control">
+                        </div>
+
+                        <!-- Pekerjaan -->
+                        <div class="form-group">
+                            <label for="customerJob" class="required">Pekerjaan/Usaha Customer</label>
+                            <select id="customerJob" name="customerJob" class="form-control" required>
+                                <option value="" selected disabled>Pilih Pekerjaan</option>
+                                <option value="PNS">PNS</option>
+                                <option value="TNI/Polri">TNI/Polri</option>
+                                <option value="BUMN">BUMN</option>
+                                <option value="Swasta">Swasta</option>
+                                <option value="Wiraswasta">Wiraswasta</option>
+                                <option value="Profesional">Profesional</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <!-- Penghasilan -->
+                        <div class="form-group">
+                            <label for="customerIncome" class="required">Penghasilan Bulanan (Rp)</label>
+                            <input type="number" id="customerIncome" name="customerIncome" class="form-control" required>
+                        </div>
+
+                        <!-- Beban Cicilan -->
+                        <div class="form-group">
+                            <label for="customerDebt">Beban Cicilan Bulanan (Rp)</label>
+                            <input type="number" id="customerDebt" name="customerDebt" class="form-control" value="0">
+                            <div class="hint">Total cicilan bulanan yang sedang berjalan (jika ada)</div>
                         </div>
                     </div>
+
+                    <!-- Kolom 2 -->
+                    <div>
+                        <!-- Alamat -->
+                        <div class="form-group">
+                            <label for="customerAddress" class="required">Alamat Customer</label>
+                            <textarea id="customerAddress" name="customerAddress" class="form-control" required></textarea>
+                        </div>
+
+                        <!-- Kota/Kabupaten -->
+                        <div class="form-group">
+                            <label for="customerCity" class="required">Kota/Kabupaten</label>
+                            <input type="text" id="customerCity" name="customerCity" class="form-control" required>
+                        </div>
+
+                        <!-- Sumber Informasi -->
+                        <div class="form-group">
+                            <label for="infoSource" class="required">Mengetahui dari</label>
+                            <select id="infoSource" name="infoSource" class="form-control" required>
+                                <option value="" selected disabled>Pilih Sumber</option>
+                                <option value="Iklan">Iklan</option>
+                                <option value="CFD">CFD</option>
+                                <option value="Brosur">Brosur</option>
+                                <option value="Teman/Sodara">Teman/Sodara</option>
+                                <option value="WhatsApp Broadcast">WhatsApp Broadcast</option>
+                                <option value="Media Sosial">Media Sosial</option>
+                                <option value="Website">Website</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <!-- Tipe Rumah -->
+                        <div class="form-group">
+                            <label for="houseType" class="required">Tipe Rumah</label>
+                            <select id="houseType" name="houseType" class="form-control" required>
+                                <option value="" selected disabled>Pilih Tipe Rumah</option>
+                                <option value="Standar - Subsidi 166jt">Standar - Subsidi 166jt</option>
+                                <option value="Standar - Komersil 168jt">Standar - Komersil 168jt</option>
+                                <option value="Suite - 277jt">Suite - 277jt</option>
+                                <option value="Premium - 408jt">Premium - 408jt</option>
+                            </select>
+                        </div>
+
+                        <!-- Metode Pembayaran -->
+                        <div class="form-group">
+                            <label for="paymentMethod" class="required">Metode Pembayaran</label>
+                            <select id="paymentMethod" name="paymentMethod" class="form-control" required>
+                                <option value="" selected disabled>Pilih Metode</option>
+                                <option value="Cash Bertahap 6 Bulan">Cash Bertahap 6 Bulan</option>
+                                <option value="Cash Keras">Cash Keras</option>
+                                <option value="KPR Subsidi">KPR Subsidi</option>
+                                <option value="KPR Komersial">KPR Komersial</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analisis Kelayakan Kredit -->
+                <div class="analysis-section">
+                    <h3 class="analysis-title"><i class="fas fa-chart-line"></i> Analisis Kelayakan Kredit</h3>
                     
-                    <div class="card p-8">
-                        <h3 class="text-2xl font-semibold text-white mb-6 flex items-center">
-                            <i class="fas fa-graduation-cap mr-3 text-secondary"></i> Pengembangan Tim
-                        </h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="bg-secondary bg-opacity-20 text-secondary rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="fas fa-check"></i>
+                    <div class="form-group">
+                        <label for="kprAmount" class="required">Jumlah Pinjaman KPR (Rp)</label>
+                        <input type="number" id="kprAmount" name="kprAmount" class="form-control" required>
+                        <div class="hint">Jumlah yang akan diajukan untuk KPR</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tenor" class="required">Tenor (Tahun)</label>
+                        <select id="tenor" name="tenor" class="form-control" required>
+                            <option value="5">5 Tahun</option>
+                            <option value="10">10 Tahun</option>
+                            <option value="15">15 Tahun</option>
+                            <option value="20">20 Tahun</option>
+                        </select>
+                    </div>
+
+                    <!-- DTI Calculation -->
+                    <div class="result-box">
+                        <div class="result-title">Rasio Utang terhadap Pendapatan (DTI)</div>
+                        <div id="dtiResult">-</div>
+                        <div id="dtiMessage" class="hint">DTI ideal tidak melebihi 30-40% dari penghasilan</div>
+                    </div>
+
+                    <!-- 5C Analysis -->
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <div class="analysis-item-title">1. Character (Karakter)</div>
+                            <div class="hint">Kepribadian, integritas, dan reputasi pemohon</div>
+                            <div class="rating-options">
+                                <div class="rating-option">
+                                    <input type="radio" id="character1" name="character" value="1">
+                                    <label for="character1">Buruk</label>
                                 </div>
-                                <div>
-                                    <p class="text-gray-300">Wajib mengikuti training online/offline untuk pengembangan skill marketing dan penjualan.</p>
+                                <div class="rating-option">
+                                    <input type="radio" id="character2" name="character" value="2">
+                                    <label for="character2">Cukup</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="character3" name="character" value="3" checked>
+                                    <label for="character3">Baik</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="character4" name="character" value="4">
+                                    <label for="character4">Sangat Baik</label>
                                 </div>
                             </div>
-                            <div class="flex items-start">
-                                <div class="bg-secondary bg-opacity-20 text-secondary rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="fas fa-check"></i>
+                        </div>
+
+                        <div class="analysis-item">
+                            <div class="analysis-item-title">2. Capacity (Kapasitas)</div>
+                            <div class="hint">Kemampuan membayar cicilan berdasarkan penghasilan</div>
+                            <div class="rating-options">
+                                <div class="rating-option">
+                                    <input type="radio" id="capacity1" name="capacity" value="1">
+                                    <label for="capacity1">Buruk</label>
                                 </div>
-                                <div>
-                                    <p class="text-gray-300">Sesi mentoring rutin dengan Manager Marketing untuk peningkatan performa.</p>
+                                <div class="rating-option">
+                                    <input type="radio" id="capacity2" name="capacity" value="2">
+                                    <label for="capacity2">Cukup</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="capacity3" name="capacity" value="3" checked>
+                                    <label for="capacity3">Baik</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="capacity4" name="capacity" value="4">
+                                    <label for="capacity4">Sangat Baik</label>
                                 </div>
                             </div>
-                            <div class="flex items-start">
-                                <div class="bg-secondary bg-opacity-20 text-secondary rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="fas fa-check"></i>
+                        </div>
+
+                        <div class="analysis-item">
+                            <div class="analysis-item-title">3. Capital (Modal)</div>
+                            <div class="hint">Kekayaan bersih dan uang muka yang dimiliki</div>
+                            <div class="rating-options">
+                                <div class="rating-option">
+                                    <input type="radio" id="capital1" name="capital" value="1">
+                                    <label for="capital1">Buruk</label>
                                 </div>
-                                <div>
-                                    <p class="text-gray-300">Akses ke materi pembelajaran dan best practices perusahaan.</p>
+                                <div class="rating-option">
+                                    <input type="radio" id="capital2" name="capital" value="2">
+                                    <label for="capital2">Cukup</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="capital3" name="capital" value="3" checked>
+                                    <label for="capital3">Baik</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="capital4" name="capital" value="4">
+                                    <label for="capital4">Sangat Baik</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="analysis-item">
+                            <div class="analysis-item-title">4. Collateral (Agunan)</div>
+                            <div class="hint">Nilai agunan tambahan (jika ada)</div>
+                            <div class="rating-options">
+                                <div class="rating-option">
+                                    <input type="radio" id="collateral1" name="collateral" value="1">
+                                    <label for="collateral1">Buruk</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="collateral2" name="collateral" value="2">
+                                    <label for="collateral2">Cukup</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="collateral3" name="collateral" value="3" checked>
+                                    <label for="collateral3">Baik</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="collateral4" name="collateral" value="4">
+                                    <label for="collateral4">Sangat Baik</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="analysis-item">
+                            <div class="analysis-item-title">5. Condition (Kondisi)</div>
+                            <div class="hint">Kondisi ekonomi dan prospek pekerjaan</div>
+                            <div class="rating-options">
+                                <div class="rating-option">
+                                    <input type="radio" id="condition1" name="condition" value="1">
+                                    <label for="condition1">Buruk</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="condition2" name="condition" value="2">
+                                    <label for="condition2">Cukup</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="condition3" name="condition" value="3" checked>
+                                    <label for="condition3">Baik</label>
+                                </div>
+                                <div class="rating-option">
+                                    <input type="radio" id="condition4" name="condition" value="4">
+                                    <label for="condition4">Sangat Baik</label>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Approval Result -->
+                    <div class="result-box">
+                        <div class="result-title">Hasil Analisis Kelayakan</div>
+                        <div id="approvalResult" class="result-approval">-</div>
+                        <div id="approvalNotes" class="hint"></div>
+                    </div>
                 </div>
-                
-                <div>
-                    <div class="card p-8 h-full">
-                        <h3 class="text-2xl font-semibold text-white mb-8 flex items-center">
-                            <i class="fas fa-sitemap mr-3 text-secondary"></i> Struktur Holding Perusahaan
-                        </h3>
-                        
-                        <div class="flex flex-col items-center">
-                            <!-- Level 1: Bimulialand -->
-                            <div class="organigram-box bg-primary text-white p-8 shadow-lg w-full max-w-md text-center mb-10 hover-scale">
-                                <div class="flex justify-center mb-4">
-                                    <div class="avatar">
-                                        <i class="fas fa-building"></i>
-                                    </div>
-                                </div>
-                                <div class="font-bold text-2xl mb-2">Bimulialand</div>
-                                <div class="text-lg opacity-90 mb-4">CEO: Eka Ahmad Fauzi</div>
+
+                <!-- Dokumen yang Dibawa -->
+                <div class="form-group">
+                    <label>Dokumen yang Dibawa Customer</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="docKtp" name="docKtp" value="KTP">
+                            <label for="docKtp">KTP</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="docKk" name="docKk" value="Kartu Keluarga">
+                            <label for="docKk">Kartu Keluarga</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="docNpwp" name="docNpwp" value="NPWP">
+                            <label for="docNpwp">NPWP</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="docSalary" name="docSalary" value="Slip Gaji">
+                            <label for="docSalary">Slip Gaji</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="docBank" name="docBank" value="Rekening Koran">
+                            <label for="docBank">Rekening Koran</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="docMarriage" name="docMarriage" value="Surat Nikah">
+                            <label for="docMarriage">Surat Nikah</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="docBusiness" name="docBusiness" value="Surat Usaha">
+                            <label for="docBusiness">Surat Usaha</label>
+                        </div>
+                    </div>
+                    <div class="hint">Centang dokumen yang sudah dibawa oleh customer</div>
+                </div>
+
+                <!-- Persyaratan KPR -->
+                <div class="form-group">
+                    <label>Persyaratan KPR yang Perlu Disiapkan</label>
+                    <div class="result-box">
+                        <div class="result-title">📌 Persyaratan KPR:</div>
+                        <div id="kprRequirements">
+                            <p>🔹 Berlaku untuk: Pemohon Berpenghasilan Tetap & Tidak Tetap</p>
+                            <p>1. Surat permohonan KPR</p>
+                            <p>2. FC KTP pemohon & suami/istri (4 rangkap)</p>
+                            <p>3. FC Kartu Keluarga (4 lembar)</p>
+                            <p>4. FC Surat Nikah/Cerai (4 rangkap)</p>
+                            <p>5. Foto 3x4 pemohon & suami/istri (masing-masing 4 buah)</p>
+                            <p>6. FC NPWP pribadi (4 lembar)</p>
+                            <p>7. FC Buku Tabungan / Rekening Koran 3 bulan terakhir (4 rangkap)</p>
+                            <p>8. Surat keterangan belum memiliki rumah dari kelurahan (asli)</p>
+                            <p>9. Surat keterangan belum menikah dari kelurahan (bagi yang lajang)</p>
+                            
+                            <div id="fixedIncomeReq" style="display:none;">
+                                <p><strong>Tambahan untuk Penghasilan Tetap:</strong></p>
+                                <p>- Surat keterangan aktif bekerja (asli)</p>
+                                <p>- FC Kartu Pegawai / Jamsostek (4 lembar)</p>
+                                <p>- FC SK Pegawai Tetap (4 lembar)</p>
+                                <p>- FC Slip Gaji 3 bulan terakhir (4 lembar, asli)</p>
                             </div>
                             
-                            <!-- Arrow -->
-                            <div class="flex justify-center mb-10">
-                                <div class="w-1 h-16 bg-gradient-to-b from-primary to-accent"></div>
-                            </div>
-                            
-                            <!-- Level 2: PT Rumah Mulia Indonesia -->
-                            <div class="organigram-box bg-primary-light text-white p-8 shadow-lg w-full max-w-md text-center mb-10 hover-scale">
-                                <div class="flex justify-center mb-4">
-                                    <div class="avatar">
-                                        <i class="fas fa-home"></i>
-                                    </div>
-                                </div>
-                                <div class="font-bold text-2xl mb-2">PT Rumah Mulia Indonesia</div>
-                                <div class="text-lg opacity-90 mb-4">RD Manager: Rohmatullah</div>
-                            </div>
-                            
-                            <!-- Arrow -->
-                            <div class="flex justify-center mb-10">
-                                <div class="w-1 h-16 bg-gradient-to-b from-primary-light to-accent"></div>
-                            </div>
-                            
-                            <!-- Level 3: MEA -->
-                            <div class="organigram-box bg-accent text-white p-8 shadow-lg w-full max-w-md text-center hover-scale">
-                                <div class="flex justify-center mb-4">
-                                    <div class="avatar">
-                                        <i class="fas fa-user-tie"></i>
-                                    </div>
-                                </div>
-                                <div class="font-bold text-2xl mb-2">MEA</div>
-                                <div class="text-lg opacity-90 mb-4">Manager Marketing: Taufik Mansur Marie</div>
+                            <div id="nonFixedIncomeReq" style="display:none;">
+                                <p><strong>Tambahan untuk Penghasilan Tidak Tetap (Wiraswasta):</strong></p>
+                                <p>- Surat keterangan usaha</p>
+                                <p>- Foto tempat usaha</p>
+                                <p>- Denah lokasi usaha</p>
+                                <p>- Pembukuan usaha 3 bulan terakhir</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Upload Foto -->
+                <div class="form-group">
+                    <label for="customerPhoto" class="required">Upload Foto Customer</label>
+                    <input type="file" id="customerPhoto" name="customerPhoto" accept="image/*" class="form-control" required>
+                    <div class="hint">Foto customer saat berkunjung ke marketing gallery</div>
+                    <div class="image-preview" id="customerPhotoPreview">
+                        <img id="customerPhotoPreviewImg" src="#" alt="Preview Foto Customer">
+                    </div>
+                </div>
+
+                <!-- Tanda Tangan Marketing -->
+                <div class="form-group">
+                    <div class="signature-container">
+                        <div class="signature-title">Tanda Tangan Marketing</div>
+                        <canvas id="marketingSignature" class="signature-pad"></canvas>
+                        <div class="signature-actions">
+                            <button type="button" class="btn btn-outline btn-sm" id="clearMarketingSig">
+                                <i class="fas fa-eraser"></i> Hapus
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" id="saveMarketingSig">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
+                        <input type="hidden" id="marketingSignatureData" name="marketingSignatureData">
+                    </div>
+                </div>
+
+                <!-- Nama Marketing -->
+                <div class="form-group">
+                    <label for="marketingName" class="required">Nama Marketing</label>
+                    <select id="marketingName" name="marketingName" class="form-control" required>
+                        <option value="" selected disabled>Pilih Marketing</option>
+                        <option value="Syifa">Syifa</option>
+                        <option value="Rahma">Rahma</option>
+                        <option value="Riza">Riza</option>
+                        <option value="Aditya">Aditya</option>
+                    </select>
+                </div>
+
+                <!-- Catatan Tambahan -->
+                <div class="form-group">
+                    <label for="additionalNotes">Catatan Tambahan</label>
+                    <textarea id="additionalNotes" name="additionalNotes" class="form-control"></textarea>
+                    <div class="hint">Informasi tambahan yang perlu dicatat</div>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="submit-section">
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <span class="btn-text">Kirim Laporan Inhouse</span>
+                        <i class="fas fa-spinner spinner"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Rezeki datang lewat usaha terbaik, bukan lewat diam.</p>
+        <p>Taufik Marie - Manager MEA</p>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
             </div>
+            <h3 class="modal-title">Berhasil!</h3>
+            <p class="modal-message">Laporan inhouse marketing berhasil dikirim</p>
+            <button class="btn btn-primary" onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        // Image preview for file uploads
+        document.getElementById('customerPhoto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('customerPhotoPreviewImg').src = event.target.result;
+                    document.getElementById('customerPhotoPreview').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Signature Pad
+        const marketingCanvas = document.getElementById('marketingSignature');
+        const marketingCtx = marketingCanvas.getContext('2d');
+
+        // Set canvas size to match display size
+        function resizeCanvas() {
+            const style = getComputedStyle(marketingCanvas);
+            marketingCanvas.width = parseInt(style.width);
+            marketingCanvas.height = parseInt(style.height);
             
-            <!-- Team Members -->
-            <div class="text-center mb-12">
-                <h3 class="text-3xl font-semibold text-white mb-4">Anggota Tim Marketing</h3>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto">Tim profesional yang akan bekerja sama mencapai target penjualan.</p>
-            </div>
+            // Reset canvas background
+            marketingCtx.fillStyle = 'white';
+            marketingCtx.fillRect(0, 0, marketingCanvas.width, marketingCanvas.height);
             
-            <!-- Manager -->
-            <div class="flex justify-center mb-8">
-                <div class="team-card w-full max-w-2xl">
-                    <div class="h-72 bg-gradient-to-r from-primary to-primary-light flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-                        <div class="relative z-10 text-center p-4">
-                            <div class="avatar mb-4">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                            <h3 class="font-bold text-white text-3xl mb-1">Taufik Mansur Marie</h3>
-                            <p class="text-white opacity-90 text-xl">Manager MEA</p>
-                            <div class="mt-4">
-                                <span class="inline-block bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold">Atasan Langsung</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            // Reset drawing style
+            marketingCtx.strokeStyle = '#333';
+            marketingCtx.lineWidth = 2;
+            marketingCtx.lineCap = 'round';
+            marketingCtx.lineJoin = 'round';
+        }
+
+        // Initialize on load and resize
+        window.addEventListener('load', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas);
+
+        // Initialize signature pad
+        function initSignaturePad(canvas, ctx) {
+            let isLocked = false;
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
             
-            <!-- Marketing Team -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                <!-- Team Card 1 -->
-                <div class="team-card">
-                    <div class="h-64 bg-gradient-to-r from-primary to-primary-light flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-                        <div class="relative z-10 text-center p-4">
-                            <div class="avatar mb-4">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h3 class="font-bold text-white text-2xl mb-1">MEA Pria</h3>
-                            <p class="text-white opacity-90">Marketing Executive</p>
-                            <div class="mt-3">
-                                <span class="inline-block bg-white text-primary px-3 py-1 rounded-full text-xs font-semibold">Inhouse Sabtu</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Team Card 2 -->
-                <div class="team-card">
-                    <div class="h-64 bg-gradient-to-r from-primary to-primary-light flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-                        <div class="relative z-10 text-center p-4">
-                            <div class="avatar mb-4">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h3 class="font-bold text-white text-2xl mb-1">Syifa</h3>
-                            <p class="text-white opacity-90">Marketing Executive</p>
-                            <div class="mt-3">
-                                <span class="inline-block bg-white text-primary px-3 py-1 rounded-full text-xs font-semibold">Inhouse Rabu & Minggu</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Team Card 3 -->
-                <div class="team-card">
-                    <div class="h-64 bg-gradient-to-r from-primary to-primary-light flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-                        <div class="relative z-10 text-center p-4">
-                            <div class="avatar mb-4">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h3 class="font-bold text-white text-2xl mb-1">Rahma</h3>
-                            <p class="text-white opacity-90">Marketing Executive</p>
-                            <div class="mt-3">
-                                <span class="inline-block bg-white text-primary px-3 py-1 rounded-full text-xs font-semibold">Inhouse Jumat</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Team Card 4 -->
-                <div class="team-card">
-                    <div class="h-64 bg-gradient-to-r from-primary to-primary-light flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-                        <div class="relative z-10 text-center p-4">
-                            <div class="avatar mb-4">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h3 class="font-bold text-white text-2xl mb-1">Riza</h3>
-                            <p class="text-white opacity-90">Marketing Executive</p>
-                            <div class="mt-3">
-                                <span class="inline-block bg-white text-primary px-3 py-1 rounded-full text-xs font-semibold">Inhouse Kamis</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('touchstart', startDrawing);
             
-            <!-- Team Accordion -->
-            <div class="card p-8">
-                <h3 class="text-2xl font-semibold text-white mb-8 flex items-center">
-                    <i class="fas fa-info-circle mr-3 text-secondary"></i> Informasi Detail Tim
-                </h3>
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('touchmove', draw);
+            
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('touchend', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+            
+            function startDrawing(e) {
+                if (isLocked) {
+                    alert('Tanda tangan sudah terkunci. Klik "Hapus" untuk mengubah.');
+                    return;
+                }
+                isDrawing = true;
+                const pos = getPosition(e);
+                lastX = pos.x;
+                lastY = pos.y;
+                e.preventDefault();
+            }
+            
+            function draw(e) {
+                if (!isDrawing || isLocked) return;
                 
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Tanggung Jawab Utama</span>
-                        <i
+                const pos = getPosition(e);
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+                
+                lastX = pos.x;
+                lastY = pos.y;
+                e.preventDefault();
+            }
+            
+            function stopDrawing() {
+                isDrawing = false;
+            }
+            
+            function getPosition(e) {
+                const rect = canvas.getBoundingClientRect();
+                let x, y;
+                
+                if (e.type.includes('touch')) {
+                    x = e.touches[0].clientX - rect.left;
+                    y = e.touches[0].clientY - rect.top;
+                } else {
+                    x = e.clientX - rect.left;
+                    y = e.clientY - rect.top;
+                }
+                
+                // Scale coordinates to match canvas size
+                x = x * (canvas.width / rect.width);
+                y = y * (canvas.height / rect.height);
+                
+                return { x, y };
+            }
+            
+            return {
+                clear: function() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.strokeStyle = '#333';
+                    ctx.lineWidth = 2;
+                    isLocked = false;
+                    canvas.classList.remove('locked');
+                },
+                save: function() {
+                    if (ctx.getImageData(0, 0, canvas.width, canvas.height).data.some(channel => channel !== 255)) {
+                        isLocked = true;
+                        canvas.classList.add('locked');
+                        return canvas.toDataURL();
+                    }
+                    return null;
+                },
+                isLocked: function() {
+                    return isLocked;
+                }
+            };
+        }
+
+        const marketingSigPad = initSignaturePad(marketingCanvas, marketingCtx);
+
+        // Clear button
+        document.getElementById('clearMarketingSig').addEventListener('click', function() {
+            marketingSigPad.clear();
+            document.getElementById('marketingSignatureData').value = '';
+        });
+
+        // Save button
+        document.getElementById('saveMarketingSig').addEventListener('click', function() {
+            const signatureData = marketingSigPad.save();
+            if (signatureData) {
+                document.getElementById('marketingSignatureData').value = signatureData;
+                alert('Tanda tangan marketing telah tersimpan dan terkunci');
+            } else {
+                alert('Harap buat tanda tangan terlebih dahulu');
+            }
+        });
+
+        // Show/hide KPR requirements based on job type
+        document.getElementById('customerJob').addEventListener('change', function() {
+            const jobType = this.value;
+            const fixedIncomeReq = document.getElementById('fixedIncomeReq');
+            const nonFixedIncomeReq = document.getElementById('nonFixedIncomeReq');
+            
+            if (jobType === 'Wiraswasta') {
+                fixedIncomeReq.style.display = 'none';
+                nonFixedIncomeReq.style.display = 'block';
+            } else if (['PNS', 'TNI/Polri', 'BUMN', 'Swasta', 'Profesional'].includes(jobType)) {
+                fixedIncomeReq.style.display = 'block';
+                nonFixedIncomeReq.style.display = 'none';
+            } else {
+                fixedIncomeReq.style.display = 'none';
+                nonFixedIncomeReq.style.display = 'none';
+            }
+        });
+
+        // DTI Calculation
+        function calculateDTI() {
+            const income = parseFloat(document.getElementById('customerIncome').value) || 0;
+            const debt = parseFloat(document.getElementById('customerDebt').value) || 0;
+            const kprAmount = parseFloat(document.getElementById('kprAmount').value) || 0;
+            const tenor = parseInt(document.getElementById('tenor').value) || 10;
+            
+            if (income <= 0 || kprAmount <= 0) return;
+            
+            // Simple interest calculation (for demo purposes)
+            const interestRate = 0.1; // 10% per year
+            const monthlyInterest = interestRate / 12;
+            const totalMonths = tenor * 12;
+            
+            // Monthly payment calculation
+            const monthlyPayment = (kprAmount * monthlyInterest * Math.pow(1 + monthlyInterest, totalMonths)) / 
+                                 (Math.pow(1 + monthlyInterest, totalMonths) - 1);
+            
+            // Total debt payment
+            const totalDebtPayment = monthlyPayment + debt;
+            
+            // DTI ratio
+            const dtiRatio = (totalDebtPayment / income) * 100;
+            
+            // Display results
+            document.getElementById('dtiResult').innerHTML = `
+                <p>Penghasilan: Rp${income.toLocaleString('id-ID')}/bulan</p>
+                <p>Cicilan KPR: Rp${monthlyPayment.toFixed(0).toLocaleString('id-ID')}/bulan</p>
+                <p>Total Cicilan: Rp${totalDebtPayment.toFixed(0).toLocaleString('id-ID')}/bulan</p>
+                <p><strong>DTI: ${dtiRatio.toFixed(1)}%</strong></p>
+            `;
+            
+            // DTI message
+            let dtiMessage = '';
+            if (dtiRatio > 40) {
+                dtiMessage = '⚠️ DTI terlalu tinggi (di atas 40%). Risiko tinggi untuk disetujui bank.';
+            } else if (dtiRatio > 30) {
+                dtiMessage = '⚠️ DTI mendekati batas aman (30-40%). Perlu pertimbangan lebih lanjut.';
+            } else {
+                dtiMessage = '✅ DTI dalam batas aman (di bawah 30%). Memenuhi syarat bank.';
+            }
+            document.getElementById('dtiMessage').textContent = dtiMessage;
+            
+            // Update approval result
+            updateApprovalResult(dtiRatio);
+        }
+
+        // Update approval result based on analysis
+        function updateApprovalResult(dtiRatio) {
+            const approvalResult = document.getElementById('approvalResult');
+            const approvalNotes = document.getElementById('approvalNotes');
+            
+            // Get 5C ratings
+            const character = parseInt(document.querySelector('input[name="character"]:checked')?.value || 3);
+            const capacity = parseInt(document.querySelector('input[name="capacity"]:checked')?.value || 3);
+            const capital = parseInt(document.querySelector('input[name="capital"]:checked')?.value || 3);
+            const collateral = parseInt(document.querySelector('input[name="collateral"]:checked')?.value || 3);
+            const condition = parseInt(document.querySelector('input[name="condition"]:checked')?.value || 3);
+            
+            // Calculate average score
+            const avgScore = (character + capacity + capital + collateral + condition) / 5;
+            
+            // Determine approval status
+            let status, notes, statusClass;
+            
+            if (dtiRatio > 40 || avgScore < 2) {
+                status = "TIDAK DISETUJUI";
+                notes = "DTI terlalu tinggi atau penilaian 5C buruk. Tidak memenuhi syarat bank.";
+                statusClass = "rejected";
+            } else if ((dtiRatio > 30 && dtiRatio <= 40) || (avgScore >= 2 && avgScore < 3)) {
+                status = "PERLU PERTIMBANGAN";
+                notes = "Perlu dokumen tambahan atau negosiasi dengan bank. Persetujuan mungkin dengan syarat tertentu.";
+                statusClass = "consideration";
+            } else {
+                status = "DISETUJUI";
+                notes = "Memenuhi semua persyaratan dan memiliki DTI serta penilaian 5C yang baik.";
+                statusClass = "approved";
+            }
+            
+            approvalResult.textContent = status;
+            approvalResult.className = `result-approval ${statusClass}`;
+            approvalNotes.textContent = notes;
+        }
+
+        // Event listeners for calculation
+        document.getElementById('customerIncome').addEventListener('input', calculateDTI);
+        document.getElementById('customerDebt').addEventListener('input', calculateDTI);
+        document.getElementById('kprAmount').addEventListener('input', calculateDTI);
+        document.getElementById('tenor').addEventListener('change', calculateDTI);
+        
+        // Event listeners for 5C ratings
+        document.querySelectorAll('input[name="character"], input[name="capacity"], input[name="capital"], input[name="collateral"], input[name="condition"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const dtiRatio = parseFloat(document.getElementById('dtiMessage').textContent.split('DTI: ')[1]?.split('%')[0]) || 0;
+                updateApprovalResult(dtiRatio);
+            });
+        });
+
+        // Form validation
+        function validateForm() {
+            const requiredFields = document.querySelectorAll('[required]');
+            for (let field of requiredFields) {
+                if (!field.value.trim()) {
+                    const fieldName = field.labels ? field.labels[0].textContent : field.previousElementSibling.textContent;
+                    alert(`Harap isi field ${fieldName}`);
+                    field.focus();
+                    return false;
+                }
+            }
+            
+            if (!document.getElementById('marketingSignatureData').value) {
+                alert('Harap simpan tanda tangan marketing terlebih dahulu');
+                return false;
+            }
+            
+            // Validate phone number format
+            const phone = document.getElementById('customerPhone').value;
+            if (!/^[0-9]{10,13}$/.test(phone)) {
+                alert('Nomor HP harus terdiri dari 10-13 digit angka');
+                document.getElementById('customerPhone').focus();
+                return false;
+            }
+            
+            // Validate email format if provided
+            const email = document.getElementById('customerEmail').value;
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Format email tidak valid');
+                document.getElementById('customerEmail').focus();
+                return false;
+            }
+            
+            return true;
+        }
+
+        // WhatsApp notification
+        function sendWhatsAppNotification() {
+            const marketingName = document.getElementById('marketingName').value;
+            const customerName = document.getElementById('customerName').value;
+            const houseType = document.getElementById('houseType').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const approvalResult = document.getElementById('approvalResult').textContent;
+            
+            // Replace with your actual WhatsApp webhook URL
+            const webhookUrl = 'https://webhook-placeholder.com/wa';
+            
+            const message = `📌 Laporan Inhouse Baru:
+Marketing: ${marketingName}
+Customer: ${customerName}
+Tipe Rumah: ${houseType}
+Metode Pembayaran: ${paymentMethod}
+Hasil Analisis: ${approvalResult}`;
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                body: JSON.stringify({ message }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).catch(error => {
+                console.error('Error sending WhatsApp notification:', error);
+            });
+        }
+
+        // Close modal function
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('inhouseForm').reset();
+            marketingSigPad.clear();
+            document.getElementById('customerPhotoPreview').style.display = 'none';
+            document.getElementById('marketingSignatureData').value = '';
+            document.getElementById('dtiResult').textContent = '-';
+            document.getElementById('approvalResult').textContent = '-';
+            document.getElementById('approvalResult').className = 'result-approval';
+            document.getElementById('approvalNotes').textContent = '';
+            document.getElementById('fixedIncomeReq').style.display = 'none';
+            document.getElementById('nonFixedIncomeReq').style.display = 'none';
+        }
+
+        // Form submission
+        document.getElementById('inhouseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.classList.add('loading');
+            
+            // Prepare form data
+            const formData = {
+                customerName: document.getElementById('customerName').value,
+                customerPhone: document.getElementById('customerPhone').value,
+                customerEmail: document.getElementById('customerEmail').value,
+                customerJob: document.getElementById('customerJob').value,
+                customerIncome: document.getElementById('customerIncome').value,
+                customerDebt: document.getElementById('customerDebt').value,
+                customerAddress: document.getElementById('customerAddress').value,
+                customerCity: document.getElementById('customerCity').value,
+                infoSource: document.getElementById('infoSource').value,
+                houseType: document.getElementById('houseType').value,
+                paymentMethod: document.getElementById('paymentMethod').value,
+                kprAmount: document.getElementById('kprAmount').value,
+                tenor: document.getElementById('tenor').value,
+                marketingName: document.getElementById('marketingName').value,
+                additionalNotes: document.getElementById('additionalNotes').value,
+                marketingSignatureData: document.getElementById('marketingSignatureData').value,
+                docKtp: document.getElementById('docKtp').checked,
+                docKk: document.getElementById('docKk').checked,
+                docNpwp: document.getElementById('docNpwp').checked,
+                docSalary: document.getElementById('docSalary').checked,
+                docBank: document.getElementById('docBank').checked,
+                docMarriage: document.getElementById('docMarriage').checked,
+                docBusiness: document.getElementById('docBusiness').checked,
+                character: document.querySelector('input[name="character"]:checked').value,
+                capacity: document.querySelector('input[name="capacity"]:checked').value,
+                capital: document.querySelector('input[name="capital"]:checked').value,
+                collateral: document.querySelector('input[name="collateral"]:checked').value,
+                condition: document.querySelector('input[name="condition"]:checked').value,
+                dtiRatio: document.getElementById('dtiResult').textContent.includes('DTI:') ? 
+                          parseFloat(document.getElementById('dtiResult').textContent.split('DTI: ')[1].split('%')[0]) : 0,
+                approvalResult: document.getElementById('approvalResult').textContent
+            };
+
+            // Handle file upload
+            const customerPhotoFile = document.getElementById('customerPhoto').files[0];
+            
+            if (customerPhotoFile) {
+                readFileAsBase64(customerPhotoFile).then(base64 => {
+                    formData.customerPhoto = base64;
+                    submitFormData(formData);
+                });
+            } else {
+                submitFormData(formData);
+            }
+        });
+
+        function submitFormData(formData) {
+            fetch("https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(formData),
+                mode: "no-cors" // Important for GAS web apps
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('successModal').style.display = 'flex';
+                    sendWhatsAppNotification();
+                } else {
+                    throw new Error(data.error || 'Gagal mengirim formulir');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan: ' + error.message);
+            })
+            .finally(() => {
+                document.querySelector('.submit-btn').classList.remove('loading');
+            });
+        }
+
+        // Helper function to read file as base64
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+    </script>
+</body>
+</html>
