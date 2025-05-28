@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran Marketing Freelance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --primary-light: #d5f8e5;
+            --accent: #f1c40f;
+            --accent-dark: #f39c12;
+            --danger: #e74c3c;
+            --dark: #111;
+            --light: #fff;
+            --gray: #f5f5f5;
+            --text: #333;
+            --text-light: #666;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--gray);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            max-width: 180px;
+            margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            margin: 2rem auto;
+            width: 95%;
+            max-width: 900px;
+        }
+
+        .form-title {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent);
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .form-container {
+                width: 85%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .form-container {
+                width: 70%;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .form-group label.required:after {
+            content: ' *';
+            color: var(--danger);
+        }
+
+        .form-group .hint {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+            outline: none;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px 12px;
+            padding-right: 2.5rem;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .signature-container {
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--gray);
+        }
+
+        .signature-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .signature-pad {
+            width: 100%;
+            height: 150px;
+            background: white;
+            border: 1px dashed #ccc;
+            border-radius: 0.25rem;
+            cursor: crosshair;
+            touch-action: none;
+            transition: var(--transition);
+        }
+
+        .signature-pad.locked {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .signature-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            text-align: center;
+            gap: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        .image-preview {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: center;
+        }
+
+        .submit-btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .submit-btn .spinner {
+            display: none;
+            animation: spin 1s linear infinite;
+        }
+
+        .submit-btn.loading .spinner {
+            display: inline-block;
+        }
+
+        .submit-btn.loading .btn-text {
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .footer p:first-child {
+            font-weight: 500;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 0.25rem;
+            color: var(--primary);
+            cursor: help;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark) transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .modal-message {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header {
+                padding: 1.5rem 0;
+            }
+            
+            .header h1 {
+                font-size: 1.25rem;
+            }
+            
+            .form-container {
+                padding: 1rem;
+                margin: 1rem auto;
+            }
+            
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container header-content">
+            <img src="https://i.imgur.com/t1AiOHg.png" alt="Kertamulya Residence" class="logo">
+            <h1>Rekrut Marketing Freelance</h1>
+            <p>Tingkatkan jaringan pemasaran Anda dengan bergabung sebagai Marketing Freelance kami</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <h2 class="form-title">Form Pendaftaran Marketing Freelance</h2>
+            
+            <form id="freelanceForm" action="https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec" method="POST" enctype="multipart/form-data">
+
+                <div class="form-grid">
+                    <!-- Kolom 1 -->
+                    <div>
+                        <!-- Nama Marketing Freelance -->
+                        <div class="form-group">
+                            <label for="freelanceName" class="required">Nama Lengkap</label>
+                            <input type="text" id="freelanceName" name="freelanceName" class="form-control" required>
+                            <div class="hint">Nama lengkap sesuai KTP</div>
+                        </div>
+
+                        <!-- Nomor HP -->
+                        <div class="form-group">
+                            <label for="freelancePhone" class="required">Nomor HP/WhatsApp</label>
+                            <input type="tel" id="freelancePhone" name="freelancePhone" class="form-control" pattern="[0-9]{10,13}" required>
+                            <div class="hint">Contoh: 081234567890 (min 10 digit)</div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="freelanceEmail" class="required">Email</label>
+                            <input type="email" id="freelanceEmail" name="freelanceEmail" class="form-control" required>
+                            <div class="hint">Contoh: nama@gmail.com</div>
+                        </div>
+
+                        <!-- Kota/Kabupaten -->
+                        <div class="form-group">
+                            <label for="freelanceCity" class="required">Kota/Kabupaten</label>
+                            <input type="text" id="freelanceCity" name="freelanceCity" class="form-control" required>
+                            <div class="hint">Tempat tinggal saat ini</div>
+                        </div>
+
+                        <!-- Pekerjaan -->
+                        <div class="form-group">
+                            <label for="freelanceJob" class="required">Pekerjaan Utama</label>
+                            <input type="text" id="freelanceJob" name="freelanceJob" class="form-control" required>
+                            <div class="hint">Contoh: Mahasiswa, Karyawan, Wirausaha, dll.</div>
+                        </div>
+
+                        <!-- Upload Foto KTP -->
+                        <div class="form-group">
+                            <label for="ktpPhoto" class="required">Upload Foto KTP</label>
+                            <input type="file" id="ktpPhoto" name="ktpPhoto" accept="image/*" class="form-control" required>
+                            <div class="hint">Foto KTP yang jelas dan terbaca</div>
+                            <div class="image-preview" id="ktpPhotoPreview">
+                                <img id="ktpPhotoPreviewImg" src="#" alt="Preview Foto KTP">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom 2 -->
+                    <div>
+                        <!-- Info Bank -->
+                        <div class="form-group">
+                            <label class="required">Informasi Bank</label>
+                            <div class="form-grid" style="gap: 1rem;">
+                                <div class="form-group">
+                                    <label for="bankName" class="required">Nama Bank</label>
+                                    <select id="bankName" name="bankName" class="form-control" required>
+                                        <option value="" selected disabled>Pilih Bank</option>
+                                        <option value="BCA">BCA</option>
+                                        <option value="Mandiri">Mandiri</option>
+                                        <option value="BNI">BNI</option>
+                                        <option value="BRI">BRI</option>
+                                        <option value="BSI">BSI</option>
+                                        <option value="CIMB Niaga">CIMB Niaga</option>
+                                        <option value="Danamon">Danamon</option>
+                                        <option value="Permata">Permata</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="accountNumber" class="required">Nomor Rekening</label>
+                                    <input type="text" id="accountNumber" name="accountNumber" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="accountName" class="required">Nama Pemilik Rekening</label>
+                                    <input type="text" id="accountName" name="accountName" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="hint">Digunakan untuk pembayaran komisi</div>
+                        </div>
+
+                        <!-- Upload Selfie Berdua -->
+                        <div class="form-group">
+                            <label for="selfiePhoto" class="required">Upload Selfie Berdua dengan Marketing Executive</label>
+                            <input type="file" id="selfiePhoto" name="selfiePhoto" accept="image/*" class="form-control" required>
+                            <div class="hint">Foto selfie bersama marketing executive MEA</div>
+                            <div class="image-preview" id="selfiePhotoPreview">
+                                <img id="selfiePhotoPreviewImg" src="#" alt="Preview Selfie">
+                            </div>
+                        </div>
+
+                        <!-- Marketing Executive -->
+                        <div class="form-group">
+                            <label for="executiveName" class="required">Nama Marketing Executive</label>
+                            <select id="executiveName" name="executiveName" class="form-control" required>
+                                <option value="" selected disabled>Pilih Marketing Executive</option>
+                                <option value="Syifa">Syifa</option>
+                                <option value="Rahma">Rahma</option>
+                                <option value="Riza">Riza</option>
+                                <option value="Aditya">Aditya</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Edukasi -->
+                <div class="form-group">
+                    <label>Informasi Edukasi</label>
+                    <div style="background: var(--gray); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <p style="margin-bottom: 0.5rem;"><strong>Alamat Website:</strong> <a href="https://kertamulyaresidence.com" target="_blank">kertamulyaresidence.com</a></p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Job Desk Marketing Freelance:</strong></p>
+                        <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
+                            <li>Mencari calon customer untuk produk perumahan Kertamulya Residence</li>
+                            <li>Memberikan informasi dasar tentang produk</li>
+                            <li>Mereferensikan calon customer ke Marketing Executive MEA</li>
+                        </ul>
+                        <p><strong>Komisi:</strong> Rp 2.500.000 per closing/unit yang berhasil direferensikan</p>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" value="Ya" required>
+                        <label for="agreeTerms" class="required">Saya telah memahami job desk dan komisi yang diberikan</label>
+                    </div>
+                </div>
+
+                <!-- Tanda Tangan -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <div class="signature-container">
+                            <div class="signature-title">Tanda Tangan Marketing Freelance <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Tanda tangan sebagai bukti persetujuan</span></span></div>
+                            <canvas id="freelanceSignature" class="signature-pad"></canvas>
+                            <div class="signature-actions">
+                                <button type="button" class="btn btn-outline btn-sm" id="clearFreelanceSig">
+                                    <i class="fas fa-eraser"></i> Hapus
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm" id="saveFreelanceSig">
+                                    <i class="fas fa-save"></i> Simpan
+                                </button>
+                            </div>
+                            <input type="hidden" id="freelanceSignatureData" name="freelanceSignatureData">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="signature-container">
+                            <div class="signature-title">Tanda Tangan Marketing Executive</div>
+                            <canvas id="executiveSignature" class="signature-pad"></canvas>
+                            <div class="signature-actions">
+                                <button type="button" class="btn btn-outline btn-sm" id="clearExecutiveSig">
+                                    <i class="fas fa-eraser"></i> Hapus
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm" id="saveExecutiveSig">
+                                    <i class="fas fa-save"></i> Simpan
+                                </button>
+                            </div>
+                            <input type="hidden" id="executiveSignatureData" name="executiveSignatureData">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="submit-section">
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <span class="btn-text">Daftar Sebagai Marketing Freelance</span>
+                        <i class="fas fa-spinner spinner"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Raih penghasilan tambahan dengan menjadi bagian dari jaringan pemasaran kami</p>
+        <p>Taufik Marie - Manager MEA</p>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="modal-title">Pendaftaran Berhasil!</h3>
+            <p class="modal-message">Terima kasih telah mendaftar sebagai Marketing Freelance kami. Tim kami akan segera menghubungi Anda.</p>
+            <button class="btn btn-primary" onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        // Image preview for file uploads
+        document.getElementById('ktpPhoto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('ktpPhotoPreviewImg').src = event.target.result;
+                    document.getElementById('ktpPhotoPreview').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('selfiePhoto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('selfiePhotoPreviewImg').src = event.target.result;
+                    document.getElementById('selfiePhotoPreview').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Signature Pads
+        const freelanceCanvas = document.getElementById('freelanceSignature');
+        const executiveCanvas = document.getElementById('executiveSignature');
+        const freelanceCtx = freelanceCanvas.getContext('2d');
+        const executiveCtx = executiveCanvas.getContext('2d');
+
+        // Set canvas size to match display size
+        function resizeCanvas() {
+            const style = getComputedStyle(freelanceCanvas);
+            freelanceCanvas.width = parseInt(style.width);
+            freelanceCanvas.height = parseInt(style.height);
+            
+            const style2 = getComputedStyle(executiveCanvas);
+            executiveCanvas.width = parseInt(style2.width);
+            executiveCanvas.height = parseInt(style2.height);
+            
+            // Reset canvas background
+            freelanceCtx.fillStyle = 'white';
+            freelanceCtx.fillRect(0, 0, freelanceCanvas.width, freelanceCanvas.height);
+            executiveCtx.fillStyle = 'white';
+            executiveCtx.fillRect(0, 0, executiveCanvas.width, executiveCanvas.height);
+            
+            // Reset drawing style
+            freelanceCtx.strokeStyle = '#333';
+            freelanceCtx.lineWidth = 2;
+            freelanceCtx.lineCap = 'round';
+            freelanceCtx.lineJoin = 'round';
+            
+            executiveCtx.strokeStyle = '#333';
+            executiveCtx.lineWidth = 2;
+            executiveCtx.lineCap = 'round';
+            executiveCtx.lineJoin = 'round';
+        }
+
+        // Initialize on load and resize
+        window.addEventListener('load', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas);
+
+        // Initialize signature pads
+        function initSignaturePad(canvas, ctx) {
+            let isLocked = false;
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+            
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('touchstart', startDrawing);
+            
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('touchmove', draw);
+            
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('touchend', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+            
+            function startDrawing(e) {
+                if (isLocked) {
+                    alert('Tanda tangan sudah terkunci. Klik "Hapus" untuk mengubah.');
+                    return;
+                }
+                isDrawing = true;
+                const pos = getPosition(e);
+                lastX = pos.x;
+                lastY = pos.y;
+                e.preventDefault();
+            }
+            
+            function draw(e) {
+                if (!isDrawing || isLocked) return;
+                
+                const pos = getPosition(e);
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+                
+                lastX = pos.x;
+                lastY = pos.y;
+                e.preventDefault();
+            }
+            
+            function stopDrawing() {
+                isDrawing = false;
+            }
+            
+            function getPosition(e) {
+                const rect = canvas.getBoundingClientRect();
+                let x, y;
+                
+                if (e.type.includes('touch')) {
+                    x = e.touches[0].clientX - rect.left;
+                    y = e.touches[0].clientY - rect.top;
+                } else {
+                    x = e.clientX - rect.left;
+                    y = e.clientY - rect.top;
+                }
+                
+                // Scale coordinates to match canvas size
+                x = x * (canvas.width / rect.width);
+                y = y * (canvas.height / rect.height);
+                
+                return { x, y };
+            }
+            
+            return {
+                clear: function() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.strokeStyle = '#333';
+                    ctx.lineWidth = 2;
+                    isLocked = false;
+                    canvas.classList.remove('locked');
+                },
+                save: function() {
+                    if (ctx.getImageData(0, 0, canvas.width, canvas.height).data.some(channel => channel !== 255)) {
+                        isLocked = true;
+                        canvas.classList.add('locked');
+                        return canvas.toDataURL();
+                    }
+                    return null;
+                },
+                isLocked: function() {
+                    return isLocked;
+                }
+            };
+        }
+
+        const freelanceSigPad = initSignaturePad(freelanceCanvas, freelanceCtx);
+        const executiveSigPad = initSignaturePad(executiveCanvas, executiveCtx);
+
+        // Clear buttons
+        document.getElementById('clearFreelanceSig').addEventListener('click', function() {
+            freelanceSigPad.clear();
+            document.getElementById('freelanceSignatureData').value = '';
+        });
+
+        document.getElementById('clearExecutiveSig').addEventListener('click', function() {
+            executiveSigPad.clear();
+            document.getElementById('executiveSignatureData').value = '';
+        });
+
+        // Save buttons
+        document.getElementById('saveFreelanceSig').addEventListener('click', function() {
+            const signatureData = freelanceSigPad.save();
+            if (signatureData) {
+                document.getElementById('freelanceSignatureData').value = signatureData;
+                alert('Tanda tangan marketing freelance telah tersimpan dan terkunci');
+            } else {
+                alert('Harap buat tanda tangan terlebih dahulu');
+            }
+        });
+
+        document.getElementById('saveExecutiveSig').addEventListener('click', function() {
+            const signatureData = executiveSigPad.save();
+            if (signatureData) {
+                document.getElementById('executiveSignatureData').value = signatureData;
+                alert('Tanda tangan marketing executive telah tersimpan dan terkunci');
+            } else {
+                alert('Harap buat tanda tangan terlebih dahulu');
+            }
+        });
+
+        // Form validation
+        function validateForm() {
+            const requiredFields = document.querySelectorAll('[required]');
+            for (let field of requiredFields) {
+                if (!field.value.trim()) {
+                    const fieldName = field.labels ? field.labels[0].textContent : field.previousElementSibling.textContent;
+                    alert(`Harap isi field ${fieldName}`);
+                    field.focus();
+                    return false;
+                }
+            }
+            
+            if (!document.getElementById('freelanceSignatureData').value) {
+                alert('Harap simpan tanda tangan marketing freelance terlebih dahulu');
+                return false;
+            }
+            
+            if (!document.getElementById('executiveSignatureData').value) {
+                alert('Harap simpan tanda tangan marketing executive terlebih dahulu');
+                return false;
+            }
+            
+            // Validate phone number format
+            const phone = document.getElementById('freelancePhone').value;
+            if (!/^[0-9]{10,13}$/.test(phone)) {
+                alert('Nomor HP harus terdiri dari 10-13 digit angka');
+                document.getElementById('freelancePhone').focus();
+                return false;
+            }
+            
+            // Validate email format
+            const email = document.getElementById('freelanceEmail').value;
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Format email tidak valid');
+                document.getElementById('freelanceEmail').focus();
+                return false;
+            }
+            
+            // Validate agreement checkbox
+            if (!document.getElementById('agreeTerms').checked) {
+                alert('Anda harus menyetujui syarat dan ketentuan');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // WhatsApp notification
+        function sendWhatsAppNotification() {
+            const executiveName = document.getElementById('executiveName').value;
+            const freelanceName = document.getElementById('freelanceName').value;
+            const freelancePhone = document.getElementById('freelancePhone').value;
+            const freelanceCity = document.getElementById('freelanceCity').value;
+            
+            // Replace with your actual WhatsApp webhook URL
+            const webhookUrl = 'https://webhook-placeholder.com/wa';
+            
+            const message = `📋 Pendaftaran Marketing Freelance Baru:
+Executive: ${executiveName}
+Nama: ${freelanceName}
+No. HP: ${freelancePhone}
+Kota: ${freelanceCity}`;
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                body: JSON.stringify({ message }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).catch(error => {
+                console.error('Error sending WhatsApp notification:', error);
+            });
+        }
+
+        // Close modal function
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('freelanceForm').reset();
+            freelanceSigPad.clear();
+            executiveSigPad.clear();
+            document.getElementById('ktpPhotoPreview').style.display = 'none';
+            document.getElementById('selfiePhotoPreview').style.display = 'none';
+            document.getElementById('freelanceSignatureData').value = '';
+            document.getElementById('executiveSignatureData').value = '';
+        }
+
+        // Form submission
+        document.getElementById('freelanceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.classList.add('loading');
+            
+            // Prepare form data
+            const formData = {
+                freelanceName: document.getElementById('freelanceName').value,
+                freelancePhone: document.getElementById('freelancePhone').value,
+                freelanceEmail: document.getElementById('freelanceEmail').value,
+                freelanceCity: document.getElementById('freelanceCity').value,
+                freelanceJob: document.getElementById('freelanceJob').value,
+                executiveName: document.getElementById('executiveName').value,
+                bankName: document.getElementById('bankName').value,
+                accountNumber: document.getElementById('accountNumber').value,
+                accountName: document.getElementById('accountName').value,
+                agreeTerms: document.getElementById('agreeTerms').checked,
+                freelanceSignatureData: document.getElementById('freelanceSignatureData').value,
+                executiveSignatureData: document.getElementById('executiveSignatureData').value
+            };
+
+            // Handle file uploads
+            const ktpPhotoFile = document.getElementById('ktpPhoto').files[0];
+            const selfiePhotoFile = document.getElementById('selfiePhoto').files[0];
+            
+            const promises = [];
+            
+            if (ktpPhotoFile) {
+                promises.push(readFileAsBase64(ktpPhotoFile).then(base64 => {
+                    formData.ktpPhoto = base64;
+                }));
+            }
+            
+            if (selfiePhotoFile) {
+                promises.push(readFileAsBase64(selfiePhotoFile).then(base64 => {
+                    formData.selfiePhoto = base64;
+                }));
+            }
+
+            // Wait for all files to be processed
+            Promise.all(promises).then(() => {
+                fetch("https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec", {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(formData),
+                    mode: "no-cors" // Important for GAS web apps
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('successModal').style.display = 'flex';
+                        sendWhatsAppNotification();
+                    } else {
+                        throw new Error(data.error || 'Gagal mengirim formulir');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan: ' + error.message);
+                })
+                .finally(() => {
+                    submitBtn.classList.remove('loading');
+                });
+            });
+        });
+
+        // Helper function to read file as base64
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+    </script>
+</body>
+</html>
