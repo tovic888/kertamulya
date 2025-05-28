@@ -508,8 +508,7 @@
         <div class="form-container">
             <h2 class="form-title">Form Laporan Canvasing</h2>
             
-          <form id="canvasingForm" action="https://script.google.com/macros/s/AKfycbwbuRDw9dw8e2-ZcmM-h85msj6Gt5OR5HAW63jitkoqwgn12W3xGjrdU0gKHETC5az7/exec
-" method="POST" enctype="multipart/form-data">
+          <form id="canvasingForm" action="https://script.google.com/macros/s/AKfycbwbuRDw9dw8e2-ZcmM-h85msj6Gt5OR5HAW63jitkoqwgn12W3xGjrdU0gKHETC5az7/exec" method="POST" enctype="multipart/form-data">
 
                 <div class="form-grid">
                     <!-- Kolom 1 -->
@@ -1039,52 +1038,51 @@ document.getElementById('canvasingForm').addEventListener('submit', function(e) 
     
     // Convert FormData to JSON
     const jsonData = {};
-    formData.forEach((value, key) => {
-        // Handle file uploads separately
+    const promises = [];
+    
+    // Process file uploads first
+    Array.from(formData.entries()).forEach(([key, value]) => {
         if (value instanceof File) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                jsonData[key] = event.target.result;
-                // After all files are processed, send the data
-                if (Object.keys(jsonData).length === Array.from(formData.keys()).length) {
-                    sendData(jsonData, submitBtn);
-                }
-            };
-            reader.readAsDataURL(value);
+            const promise = new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    jsonData[key] = event.target.result;
+                    resolve();
+                };
+                reader.readAsDataURL(value);
+            });
+            promises.push(promise);
         } else {
             jsonData[key] = value;
-            // If there are no files, send immediately
-            if (!Array.from(formData.values()).some(v => v instanceof File)) {
-                sendData(jsonData, submitBtn);
-            }
         }
+    });
+    
+    // Wait for all files to be processed
+    Promise.all(promises).then(() => {
+        fetch('https://script.google.com/macros/s/AKfycbwbuRDw9dw8e2-ZcmM-h85msj6Gt5OR5HAW63jitkoqwgn12W3xGjrdU0gKHETC5az7/exec', {
+            method: 'POST',
+            body: JSON.stringify(jsonData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('successModal').style.display = 'flex';
+                sendWhatsAppNotification();
+            } else {
+                throw new Error(data.error || 'Gagal mengirim formulir');
+            }
+        })
+        .catch(error => {
+            alert('Terjadi kesalahan: ' + error.message);
+        })
+        .finally(() => {
+            submitBtn.classList.remove('loading');
+        });
     });
 });
-
-function sendData(data, submitBtn) {
-    fetch('URL_APPS_SCRIPT_ANDA', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            document.getElementById('successModal').style.display = 'flex';
-            sendWhatsAppNotification();
-        } else {
-            throw new Error(data.error || 'Gagal mengirim formulir');
-        }
-    })
-    .catch(error => {
-        alert('Terjadi kesalahan: ' + error.message);
-    })
-    .finally(() => {
-        submitBtn.classList.remove('loading');
-    });
-}
     </script>
 </body>
 </html>
