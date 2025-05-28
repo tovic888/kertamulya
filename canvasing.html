@@ -508,7 +508,8 @@
         <div class="form-container">
             <h2 class="form-title">Form Laporan Canvasing</h2>
             
-            <form id="canvasingForm" action="PASTE_WEBHOOK_URL_DISINI" method="POST" enctype="multipart/form-data">
+          <form id="canvasingForm" action="https://script.google.com/macros/s/AKfycbwbuRDw9dw8e2-ZcmM-h85msj6Gt5OR5HAW63jitkoqwgn12W3xGjrdU0gKHETC5az7/exec
+" method="POST" enctype="multipart/form-data">
 
                 <div class="form-grid">
                     <!-- Kolom 1 -->
@@ -952,15 +953,7 @@
             const submitBtn = document.querySelector('.submit-btn');
             submitBtn.classList.add('loading');
             
-            // Kirim ke Formspree
-            fetch('https://formspree.io/f/movdgwqj', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
+                       .then(response => {
                 if (response.ok) {
                     document.getElementById('successModal').style.display = 'flex';
                     // Kirim notifikasi WhatsApp
@@ -1034,6 +1027,64 @@
             document.getElementById('latitude').value = '';
             document.getElementById('longitude').value = '';
         }
+
+document.getElementById('canvasingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (!validateForm()) return;
+    
+    const formData = new FormData(this);
+    const submitBtn = document.querySelector('.submit-btn');
+    submitBtn.classList.add('loading');
+    
+    // Convert FormData to JSON
+    const jsonData = {};
+    formData.forEach((value, key) => {
+        // Handle file uploads separately
+        if (value instanceof File) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                jsonData[key] = event.target.result;
+                // After all files are processed, send the data
+                if (Object.keys(jsonData).length === Array.from(formData.keys()).length) {
+                    sendData(jsonData, submitBtn);
+                }
+            };
+            reader.readAsDataURL(value);
+        } else {
+            jsonData[key] = value;
+            // If there are no files, send immediately
+            if (!Array.from(formData.values()).some(v => v instanceof File)) {
+                sendData(jsonData, submitBtn);
+            }
+        }
+    });
+});
+
+function sendData(data, submitBtn) {
+    fetch('URL_APPS_SCRIPT_ANDA', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('successModal').style.display = 'flex';
+            sendWhatsAppNotification();
+        } else {
+            throw new Error(data.error || 'Gagal mengirim formulir');
+        }
+    })
+    .catch(error => {
+        alert('Terjadi kesalahan: ' + error.message);
+    })
+    .finally(() => {
+        submitBtn.classList.remove('loading');
+    });
+}
     </script>
 </body>
 </html>
