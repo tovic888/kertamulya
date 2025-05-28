@@ -1068,42 +1068,59 @@ document.getElementById('canvasingForm').addEventListener('submit', function(e) 
     
     if (!validateForm()) return;
     
-    const formData = new FormData(this);
     const submitBtn = document.querySelector('.submit-btn');
     submitBtn.classList.add('loading');
     
-    // Convert FormData to JSON and handle file uploads
-    const jsonData = {};
+    // Prepare form data
+    const formData = {
+        customerName: document.getElementById('customerName').value,
+        customerPhone: document.getElementById('customerPhone').value,
+        customerEmail: document.getElementById('customerEmail').value,
+        customerJob: document.getElementById('customerJob').value,
+        kecamatan: document.getElementById('kecamatan').value,
+        locationUrl: document.getElementById('locationUrl').value,
+        houseType: document.getElementById('houseType').value,
+        interestReason: document.getElementById('interestReason').value,
+        explanation: document.getElementById('explanation').value,
+        marketingName: document.getElementById('marketingName').value,
+        additionalNotes: document.getElementById('additionalNotes').value,
+        latitude: document.getElementById('latitude').value,
+        longitude: document.getElementById('longitude').value,
+        customerSignatureData: document.getElementById('customerSignatureData').value,
+        marketingSignatureData: document.getElementById('marketingSignatureData').value,
+        materialBrochure: document.getElementById('materialBrochure').checked,
+        materialPricelist: document.getElementById('materialPricelist').checked,
+        materialVideo: document.getElementById('materialVideo').checked,
+        materialLink: document.getElementById('materialLink').checked
+    };
+
+    // Handle file uploads
+    const locationPhotoFile = document.getElementById('locationPhoto').files[0];
+    const selfiePhotoFile = document.getElementById('selfiePhoto').files[0];
+    
     const promises = [];
     
-    Array.from(formData.entries()).forEach(([key, value]) => {
-        if (value instanceof File) {
-            const promise = new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    jsonData[key] = event.target.result.split(',')[1]; // Get only the base64 data
-                    resolve();
-                };
-                reader.onerror = function() {
-                    jsonData[key] = ''; // Empty if error
-                    resolve();
-                };
-                reader.readAsDataURL(value);
-            });
-            promises.push(promise);
-        } else {
-            jsonData[key] = value;
-        }
-    });
+    if (locationPhotoFile) {
+        promises.push(readFileAsBase64(locationPhotoFile).then(base64 => {
+            formData.locationPhoto = base64;
+        }));
+    }
     
+    if (selfiePhotoFile) {
+        promises.push(readFileAsBase64(selfiePhotoFile).then(base64 => {
+            formData.selfiePhoto = base64;
+        }));
+    }
+
     // Wait for all files to be processed
     Promise.all(promises).then(() => {
         fetch('https://script.google.com/macros/s/AKfycbwbuRDw9dw8e2-ZcmM-h85msj6Gt5OR5HAW63jitkoqwgn12W3xGjrdU0gKHETC5az7/exec', {
             method: 'POST',
-            body: JSON.stringify(jsonData),
+            body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            redirect: 'follow' // Important for GAS web apps
         })
         .then(response => {
             if (!response.ok) {
@@ -1128,6 +1145,16 @@ document.getElementById('canvasingForm').addEventListener('submit', function(e) 
         });
     });
 });
+
+// Helper function to read file as base64
+function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
+    });
+}
     </script>
 </body>
 </html>
