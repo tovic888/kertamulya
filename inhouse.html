@@ -967,4 +967,239 @@
             document.getElementById('installmentResult').innerHTML = `
                 <p>Tipe Rumah: ${houseType}</p>
                 <p>Tenor: ${tenor} Tahun</p>
-                <p><strong>Angsuran
+                <p><strong>Angsuran Bulanan: Rp${installment.toLocaleString('id-ID')}</strong></p>
+            `;
+            
+            // Trigger DTI calculation if income is already filled
+            if (document.getElementById('customerIncome').value) {
+                calculateDTI();
+            }
+        }
+
+        // DTI Calculation
+        function calculateDTI() {
+            const income = parseFloat(document.getElementById('customerIncome').value) || 0;
+            const debt = parseFloat(document.getElementById('customerDebt').value) || 0;
+            const installmentText = document.getElementById('installmentResult').textContent;
+            
+            if (!installmentText.includes('Angsuran Bulanan:')) return;
+            
+            // Extract installment amount from text
+            const installment = parseFloat(installmentText.split('Rp')[1].replace(/\./g, '')) || 0;
+            
+            if (income <= 0 || installment <= 0) return;
+            
+            // Total debt payment
+            const totalDebtPayment = installment + debt;
+            
+            // DTI ratio
+            const dtiRatio = (totalDebtPayment / income) * 100;
+            
+            // Display results
+            document.getElementById('dtiResult').innerHTML = `
+                <p>Penghasilan: Rp${income.toLocaleString('id-ID')}/bulan</p>
+                <p>Cicilan KPR: Rp${installment.toLocaleString('id-ID')}/bulan</p>
+                <p>Beban Cicilan Lain: Rp${debt.toLocaleString('id-ID')}/bulan</p>
+                <p>Total Beban: Rp${totalDebtPayment.toLocaleString('id-ID')}/bulan</p>
+                <p><strong>DTI: ${dtiRatio.toFixed(1)}%</strong></p>
+            `;
+            
+            // Update approval result
+            updateApprovalResult(dtiRatio);
+        }
+
+        // Update approval result based on DTI
+        function updateApprovalResult(dtiRatio) {
+            const approvalResult = document.getElementById('approvalResult');
+            const approvalNotes = document.getElementById('approvalNotes');
+            
+            // Determine approval status
+            let status, notes, statusClass;
+            
+            if (dtiRatio > 40) {
+                status = "TIDAK DISETUJUI";
+                notes = "DTI melebihi 40%. Risiko tinggi untuk disetujui bank.";
+                statusClass = "rejected";
+            } else if (dtiRatio > 30) {
+                status = "PERLU PERTIMBANGAN";
+                notes = "DTI mendekati batas aman (30-40%). Perlu dokumen tambahan atau negosiasi dengan bank.";
+                statusClass = "consideration";
+            } else {
+                status = "DISETUJUI";
+                notes = "DTI dalam batas aman (di bawah 30%). Memenuhi syarat bank.";
+                statusClass = "approved";
+            }
+            
+            approvalResult.textContent = status;
+            approvalResult.className = `result-approval ${statusClass}`;
+            approvalNotes.textContent = notes;
+        }
+
+        // Event listeners for calculation
+        document.getElementById('customerIncome').addEventListener('input', calculateDTI);
+        document.getElementById('customerDebt').addEventListener('input', calculateDTI);
+        
+        // Set today's date as default
+        document.getElementById('visitDate').valueAsDate = new Date();
+
+        // Form validation
+        function validateForm() {
+            const requiredFields = document.querySelectorAll('[required]');
+            for (let field of requiredFields) {
+                if (!field.value.trim()) {
+                    const fieldName = field.labels ? field.labels[0].textContent : field.previousElementSibling.textContent;
+                    alert(`Harap isi field ${fieldName}`);
+                    field.focus();
+                    return false;
+                }
+            }
+            
+            // Validate phone number format
+            const phone = document.getElementById('customerPhone').value;
+            if (!/^[0-9]{10,13}$/.test(phone)) {
+                alert('Nomor HP harus terdiri dari 10-13 digit angka');
+                document.getElementById('customerPhone').focus();
+                return false;
+            }
+            
+            // Validate email format if provided
+            const email = document.getElementById('customerEmail').value;
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Format email tidak valid');
+                document.getElementById('customerEmail').focus();
+                return false;
+            }
+            
+            // Validate KPR section if visible
+            const kprSection = document.getElementById('kprSection');
+            if (kprSection.style.display === 'block') {
+                const age = parseInt(document.getElementById('customerAge').value);
+                if (age < 20 || age > 65) {
+                    alert('Usia untuk KPR harus antara 20-65 tahun');
+                    document.getElementById('customerAge').focus();
+                    return false;
+                }
+                
+                if (!document.getElementById('tenor').value) {
+                    alert('Harap pilih tenor KPR');
+                    document.getElementById('tenor').focus();
+                    return false;
+                }
+            }
+            
+            if (!document.getElementById('marketingSignatureData').value) {
+                alert('Harap simpan tanda tangan marketing terlebih dahulu');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Close modal function
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('inhouseForm').reset();
+            marketingSigPad.clear();
+            document.getElementById('customerPhotoPreview').style.display = 'none';
+            document.getElementById('marketingSignatureData').value = '';
+            document.getElementById('kprSection').style.display = 'none';
+            document.getElementById('dtiResult').textContent = '-';
+            document.getElementById('approvalResult').textContent = '-';
+            document.getElementById('approvalResult').className = 'result-approval';
+            document.getElementById('approvalNotes').textContent = '';
+            document.getElementById('installmentResult').textContent = '-';
+            document.getElementById('visitDate').valueAsDate = new Date();
+        }
+
+        // Form submission
+        document.getElementById('inhouseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.classList.add('loading');
+            
+            // Prepare form data
+            const formData = {
+                customerName: document.getElementById('customerName').value,
+                customerPhone: document.getElementById('customerPhone').value,
+                customerEmail: document.getElementById('customerEmail').value,
+                customerAddress: document.getElementById('customerAddress').value,
+                customerDistrict: document.getElementById('customerDistrict').value,
+                customerCity: document.getElementById('customerCity').value,
+                houseType: document.getElementById('houseType').value,
+                paymentMethod: document.getElementById('paymentMethod').value,
+                visitDate: document.getElementById('visitDate').value,
+                marketingName: document.getElementById('marketingName').value,
+                additionalNotes: document.getElementById('additionalNotes').value,
+                marketingSignatureData: document.getElementById('marketingSignatureData').value,
+                customerAge: document.getElementById('customerAge').value || '',
+                customerJob: document.getElementById('customerJob').value || '',
+                jobDetail: document.getElementById('jobDetail').value || '',
+                customerIncome: document.getElementById('customerIncome').value || 0,
+                tenor: document.getElementById('tenor').value || '',
+                customerDebt: document.getElementById('customerDebt').value || 0,
+                creditStatus: document.querySelector('input[name="creditStatus"]:checked')?.value || '',
+                dtiRatio: document.getElementById('dtiResult').textContent.includes('DTI:') ? 
+                          parseFloat(document.getElementById('dtiResult').textContent.split('DTI: ')[1].split('%')[0]) : 0,
+                approvalResult: document.getElementById('approvalResult').textContent
+            };
+
+            // Handle file upload
+            const customerPhotoFile = document.getElementById('customerPhoto').files[0];
+            
+            if (customerPhotoFile) {
+                readFileAsBase64(customerPhotoFile).then(base64 => {
+                    formData.customerPhoto = base64;
+                    submitFormData(formData);
+                });
+            } else {
+                submitFormData(formData);
+            }
+        });
+
+        function submitFormData(formData) {
+            fetch("https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(formData),
+                mode: "no-cors" // Important for GAS web apps
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('successModal').style.display = 'flex';
+                } else {
+                    throw new Error(data.error || 'Gagal mengirim formulir');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan: ' + error.message);
+            })
+            .finally(() => {
+                document.querySelector('.submit-btn').classList.remove('loading');
+            });
+        }
+
+        // Helper function to read file as base64
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+    </script>
+</body>
+</html>
