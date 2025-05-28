@@ -98,6 +98,7 @@
             box-shadow: var(--shadow-lg);
             padding: 2rem;
             margin: 2rem auto;
+            width: 95%;
             max-width: 900px;
         }
 
@@ -108,7 +109,9 @@
             margin-bottom: 1.5rem;
             padding-bottom: 0.75rem;
             border-bottom: 3px solid var(--accent);
-            display: inline-block;
+            display: block;
+            text-align: center;
+            width: 100%;
         }
 
         .form-grid {
@@ -120,6 +123,16 @@
         @media (min-width: 768px) {
             .form-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+            
+            .form-container {
+                width: 85%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .form-container {
+                width: 70%;
             }
         }
 
@@ -216,6 +229,12 @@
             border-radius: 0.25rem;
             cursor: crosshair;
             touch-action: none;
+            transition: var(--transition);
+        }
+
+        .signature-pad.locked {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
 
         .signature-actions {
@@ -268,44 +287,6 @@
             font-size: 0.875rem;
         }
 
-        .file-upload {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-
-        .file-upload input {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-
-        .file-upload-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem;
-            border: 2px dashed #ddd;
-            border-radius: 0.5rem;
-            background: var(--gray);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .file-upload-label:hover {
-            border-color: var(--primary);
-            background: var(--primary-light);
-        }
-
-        .file-upload-label i {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
         .image-preview {
             margin-top: 1rem;
             display: none;
@@ -323,6 +304,8 @@
             margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid #eee;
+            display: flex;
+            justify-content: center;
         }
 
         .submit-btn {
@@ -510,73 +493,6 @@
                 width: 100%;
             }
         }
-
-        /* Custom select styling */
-        .custom-select {
-            position: relative;
-        }
-
-        .custom-select select {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            padding-right: 2.5rem;
-        }
-
-        .custom-select::after {
-            content: "▼";
-            font-size: 0.8rem;
-            color: var(--text);
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-
-        /* Desa/Kecamatan dropdown styling */
-        .location-selects {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .location-selects .form-group {
-            flex: 1;
-        }
-
-        /* Camera options */
-        .camera-options {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .camera-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.5rem;
-            background: var(--gray);
-            border: 1px solid #ddd;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .camera-btn:hover {
-            background: #e9e9e9;
-        }
-
-        .camera-btn.active {
-            background: var(--primary-light);
-            border-color: var(--primary);
-        }
-
-        .camera-btn i {
-            font-size: 1rem;
-        }
     </style>
 </head>
 <body>
@@ -626,60 +542,54 @@
 
                         <!-- Lokasi -->
                         <div class="form-group">
-                            <label class="required">Lokasi</label>
-                            <div class="location-selects">
-                                <div class="form-group">
-                                    <select id="kecamatan" name="kecamatan" class="form-control" required>
-                                        <option value="" selected disabled>Pilih Kecamatan</option>
-                                        <option value="Ciawigebang">Ciawigebang</option>
-                                        <option value="Cibeureum">Cibeureum</option>
-                                        <option value="Cibingbin">Cibingbin</option>
-                                        <option value="Cidahu">Cidahu</option>
-                                        <option value="Cigandamekar">Cigandamekar</option>
-                                        <option value="Cigugur">Cigugur</option>
-                                        <option value="Cilebak">Cilebak</option>
-                                        <option value="Cilimus">Cilimus</option>
-                                        <option value="Cimahi">Cimahi</option>
-                                        <option value="Ciniru">Ciniru</option>
-                                        <option value="Cipicung">Cipicung</option>
-                                        <option value="Ciwaru">Ciwaru</option>
-                                        <option value="Darma">Darma</option>
-                                        <option value="Garawangi">Garawangi</option>
-                                        <option value="Hantara">Hantara</option>
-                                        <option value="Jalaksana">Jalaksana</option>
-                                        <option value="Japara">Japara</option>
-                                        <option value="Kadugede">Kadugede</option>
-                                        <option value="Kalimanggis">Kalimanggis</option>
-                                        <option value="Karangkancana">Karangkancana</option>
-                                        <option value="Kramatmulya">Kramatmulya</option>
-                                        <option value="Kuningan">Kuningan (Kota)</option>
-                                        <option value="Lebakwangi">Lebakwangi</option>
-                                        <option value="Luragung">Luragung</option>
-                                        <option value="Maleber">Maleber</option>
-                                        <option value="Mandirancan">Mandirancan</option>
-                                        <option value="Nusaherang">Nusaherang</option>
-                                        <option value="Pancalang">Pancalang</option>
-                                        <option value="Pasawahan">Pasawahan</option>
-                                        <option value="Selajambe">Selajambe</option>
-                                        <option value="Sindangagung">Sindangagung</option>
-                                        <option value="Subang">Subang</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select id="desa" name="desa" class="form-control" required disabled>
-                                        <option value="" selected disabled>Pilih Desa</option>
-                                        <!-- Desa akan diisi via JavaScript -->
-                                    </desa>
-                                </div>
-                            </div>
-                            <div class="hint">Pilih kecamatan terlebih dahulu</div>
+                            <label for="kecamatan" class="required">Kecamatan</label>
+                            <select id="kecamatan" name="kecamatan" class="form-control" required>
+                                <option value="" selected disabled>Pilih Kecamatan</option>
+                                <option value="Ciawigebang">Ciawigebang</option>
+                                <option value="Cibeureum">Cibeureum</option>
+                                <option value="Cibingbin">Cibingbin</option>
+                                <option value="Cidahu">Cidahu</option>
+                                <option value="Cigandamekar">Cigandamekar</option>
+                                <option value="Cigugur">Cigugur</option>
+                                <option value="Cilebak">Cilebak</option>
+                                <option value="Cilimus">Cilimus</option>
+                                <option value="Cimahi">Cimahi</option>
+                                <option value="Ciniru">Ciniru</option>
+                                <option value="Cipicung">Cipicung</option>
+                                <option value="Ciwaru">Ciwaru</option>
+                                <option value="Darma">Darma</option>
+                                <option value="Garawangi">Garawangi</option>
+                                <option value="Hantara">Hantara</option>
+                                <option value="Jalaksana">Jalaksana</option>
+                                <option value="Japara">Japara</option>
+                                <option value="Kadugede">Kadugede</option>
+                                <option value="Kalimanggis">Kalimanggis</option>
+                                <option value="Karangkancana">Karangkancana</option>
+                                <option value="Kramatmulya">Kramatmulya</option>
+                                <option value="Kuningan">Kuningan (Kota)</option>
+                                <option value="Lebakwangi">Lebakwangi</option>
+                                <option value="Luragung">Luragung</option>
+                                <option value="Maleber">Maleber</option>
+                                <option value="Mandirancan">Mandirancan</option>
+                                <option value="Nusaherang">Nusaherang</option>
+                                <option value="Pancalang">Pancalang</option>
+                                <option value="Pasawahan">Pasawahan</option>
+                                <option value="Selajambe">Selajambe</option>
+                                <option value="Sindangagung">Sindangagung</option>
+                                <option value="Subang">Subang</option>
+                            </select>
                         </div>
 
                         <!-- Share Lokasi -->
                         <div class="form-group">
                             <label for="locationUrl">Share Lokasi Google Maps</label>
-                            <input type="url" id="locationUrl" name="locationUrl" class="form-control" placeholder="https://maps.app.goo.gl/...">
-                            <div class="hint">Dapatkan dari Google Maps (Share > Copy link)</div>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <input type="url" id="locationUrl" name="locationUrl" class="form-control" placeholder="https://maps.app.goo.gl/..." style="flex: 1;">
+                                <button type="button" id="getLocationBtn" class="btn btn-outline" style="white-space: nowrap;">
+                                    <i class="fas fa-map-marker-alt"></i> Dapatkan Lokasi
+                                </button>
+                            </div>
+                            <div class="hint">Klik tombol untuk mendapatkan lokasi saat ini atau masukkan link Google Maps</div>
                         </div>
 
                         <!-- Tipe Rumah -->
@@ -737,21 +647,8 @@
                         <!-- Upload Foto Lokasi -->
                         <div class="form-group">
                             <label for="locationPhoto" class="required">Upload Foto Lokasi</label>
-                            <div class="file-upload">
-                                <input type="file" id="locationPhoto" name="locationPhoto" accept="image/*" capture="environment" required>
-                                <label for="locationPhoto" class="file-upload-label">
-                                    <i class="fas fa-camera"></i>
-                                    <span>Pilih File atau Ambil Foto</span>
-                                </label>
-                            </div>
-                            <div class="camera-options">
-                                <label class="camera-btn" onclick="document.getElementById('locationPhoto').setAttribute('capture', 'environment')">
-                                    <i class="fas fa-camera"></i> Kamera Belakang
-                                </label>
-                                <label class="camera-btn" onclick="document.getElementById('locationPhoto').setAttribute('capture', 'user')">
-                                    <i class="fas fa-user"></i> Kamera Depan
-                                </label>
-                            </div>
+                            <input type="file" id="locationPhoto" name="locationPhoto" accept="image/*" class="form-control" required>
+                            <div class="hint">Pilih foto dari galeri atau ambil foto baru</div>
                             <div class="image-preview" id="locationPhotoPreview">
                                 <img id="locationPhotoPreviewImg" src="#" alt="Preview Foto Lokasi">
                             </div>
@@ -760,13 +657,8 @@
                         <!-- Upload Selfie -->
                         <div class="form-group">
                             <label for="selfiePhoto" class="required">Upload Selfie Berdua</label>
-                            <div class="file-upload">
-                                <input type="file" id="selfiePhoto" name="selfiePhoto" accept="image/*" capture="user" required>
-                                <label for="selfiePhoto" class="file-upload-label">
-                                    <i class="fas fa-user-friends"></i>
-                                    <span>Pilih File atau Ambil Foto</span>
-                                </label>
-                            </div>
+                            <input type="file" id="selfiePhoto" name="selfiePhoto" accept="image/*" class="form-control" required>
+                            <div class="hint">Pilih foto dari galeri atau ambil foto baru</div>
                             <div class="image-preview" id="selfiePhotoPreview">
                                 <img id="selfiePhotoPreviewImg" src="#" alt="Preview Selfie">
                             </div>
@@ -828,6 +720,10 @@
                     <div class="hint">Informasi tambahan yang perlu dicatat</div>
                 </div>
 
+                <!-- Hidden fields for geolocation -->
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude">
+
                 <!-- Submit Section -->
                 <div class="submit-section">
                     <button type="submit" class="btn btn-primary submit-btn">
@@ -858,67 +754,6 @@
     </div>
 
     <script>
-        // Desa berdasarkan Kecamatan
-        const desaByKecamatan = {
-            "Ciawigebang": ["Ciawigebang", "Ciawilor", "Cigarukgak", "Cihaur", "Cihirup", "Cijagamulya", "Cikubangmulya", "Ciomas", "Ciputat", "Dukuhdalem", "Geresik", "Karangmanggu", "Kertawinangun", "Kubangdeleg", "Lebaksiuh", "Mekarjaya", "Sukadana", "Sukaraja"],
-            "Cibeureum": ["Cibeureum", "Cimara", "Kawungsari", "Randobawa", "Randobawagirang", "Sindangjawa", "Sukamulya", "Wanakaya"],
-            "Cibingbin": ["Bantarpanjang", "Ciangir", "Cibingbin", "Cipondoh", "Cisaat", "Citenjo", "Dukuhbadag", "Sindangjaya", "Sukaharja", "Sukamaju"],
-            "Cidahu": ["Cidahu", "Cieurih", "Cihideunggirang", "Cihideunghilir", "Cikeusik", "Chandiwulan", "Kertawinangun", "Legokherang", "Leuwikujang", "Nanggerang", "Pajambon", "Parung", "Sangkanurip", "Sidamulya"],
-            "Cigandamekar": ["Cigandamekar", "Cipancur", "Heuleut", "Jatimulya", "Kertamukti", "Mekarjaya", "Pamulihan", "Pasirmuncang", "Sindangasih", "Sukamulya"],
-            "Cigugur": ["Babakanmulya", "Cigadung", "Cigugur", "Cisantana", "Kutakembaran", "Puncak", "Winduherang"],
-            "Cilebak": ["Cilebak", "Cihideunghilir", "Cipasung", "Gunungmanik", "Jambugeulis", "Karangmangu", "Margamulya", "Mekarjaya", "Neglasari", "Pamijahan", "Sangkanmulya"],
-            "Cilimus": ["Bojong", "Cibeureum", "Cigowang", "Cilimus", "Cipari", "Gunungsari", "Jalupangmulya", "Karangmangu", "Kramatmulya", "Lebakherang", "Mekarmulya", "Pakembangan", "Sangkanmulya", "Sindangbarang"],
-            "Cimahi": ["Cikeusal", "Cimahi", "Cisantana", "Gunungsirah", "Kananga", "Margamukti", "Mekarjaya", "Sangkanmulya", "Sindangjaya", "Sukamulya"],
-            "Ciniru": ["Bantar", "Ciniru", "Cipedak", "Dukuhlor", "Gegempalan", "Kertajaya", "Kertamukti", "Lebakwangi", "Mekarjaya", "Padabeunghar", "Sindangjaya", "Sukajaya", "Tajur"],
-            "Cipicung": ["Babakanmulya", "Cipicung", "Citikur", "Gunungmanik", "Jatimulya", "Kertamukti", "Margamulya", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Ciwaru": ["Ciwaru", "Dukuhdalem", "Jatijaya", "Kertajaya", "Kertamukti", "Lebakherang", "Margamulya", "Mekarjaya", "Sindangjaya", "Sukajaya"],
-            "Darma": ["Bakom", "Cikupa", "Darma", "Gunungmanik", "Jagara", "Karanganyar", "Karangmangu", "Kertamukti", "Legokherang", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Garawangi": ["Cikananga", "Cikeusik", "Garawangi", "Gewok", "Kadatuan", "Karayunan", "Kutakembaran", "Lebakherang", "Margamulya", "Mekarmulya", "Pakembangan", "Purwasari", "Sukaratu", "Tundagan", "Wanakerta"],
-            "Hantara": ["Bantaragung", "Bojong", "Cikondang", "Hantara", "Kertamukti", "Kertapura", "Kertawinangun", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Jalaksana": ["Babakanmulya", "Cinagara", "Jalaksana", "Jalatrang", "Kertajaya", "Kertamukti", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Japara": ["Japara", "Kertamukti", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Kadugede": ["Babakanmulya", "Cilebak", "Cilimus", "Cipondoh", "Kadugede", "Kertamukti", "Margamulya", "Mekarmulya", "Sindangjaya", "Sukamulya"],
-            "Kalimanggis": ["Babakanmulya", "Cikupa", "Kalimanggis", "Kertamukti", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Karangkancana": ["Babakanmulya", "Ciharashas", "Cikubangsari", "Jabranti", "Karangkancana", "Kertamukti", "Margamulya", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Kramatmulya": ["Babakanmulya", "Cikupa", "Kramatmulya", "Kertamukti", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Kuningan": ["Astanajapura", "Cibinuang", "Cigintung", "Cijoho", "Ciporang", "Kuningan", "Kutamandarakan", "Purwawinangun", "Winduhaji"],
-            "Lebakwangi": ["Babakanmulya", "Cikupa", "Kertamukti", "Lebakwangi", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Luragung": ["Babakanmulya", "Cikupa", "Kertamukti", "Luragung", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Maleber": ["Babakanmulya", "Cikupa", "Kertamukti", "Maleber", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Mandirancan": ["Babakanmulya", "Cikupa", "Kertamukti", "Mandirancan", "Mekarjaya", "Sindangjaya", "Sukamulya"],
-            "Nusaherang": ["Babakanmulya", "Cikupa", "Kertamukti", "Mekarjaya", "Nusaherang", "Sindangjaya", "Sukamulya"],
-            "Pancalang": ["Babakanmulya", "Cikupa", "Kertamukti", "Mekarjaya", "Pancalang", "Sindangjaya", "Sukamulya"],
-            "Pasawahan": ["Babakanmulya", "Cikupa", "Kertamukti", "Mekarjaya", "Pasawahan", "Sindangjaya", "Sukamulya"],
-            "Selajambe": ["Babakanmulya", "Cikupa", "Kertamukti", "Mekarjaya", "Selajambe", "Sindangjaya", "Sukamulya"],
-            "Sindangagung": ["Babakanmulya", "Cikupa", "Kertamukti", "Mekarjaya", "Sindangagung", "Sindangjaya", "Sukamulya"],
-            "Subang": ["Babakanmulya", "Cikupa", "Kertamukti", "Mekarjaya", "Sindangjaya", "Subang", "Sukamulya"]
-        };
-
-        // Initialize kecamatan dropdown
-        document.getElementById('kecamatan').addEventListener('change', function() {
-            const kecamatan = this.value;
-            const desaDropdown = document.getElementById('desa');
-            
-            // Clear existing options
-            desaDropdown.innerHTML = '<option value="" selected disabled>Pilih Desa</option>';
-            
-            if (kecamatan && desaByKecamatan[kecamatan]) {
-                // Enable dropdown
-                desaDropdown.disabled = false;
-                
-                // Add desa options
-                desaByKecamatan[kecamatan].forEach(desa => {
-                    const option = document.createElement('option');
-                    option.value = desa;
-                    option.textContent = desa;
-                    desaDropdown.appendChild(option);
-                });
-            } else {
-                // Disable dropdown if no kecamatan selected
-                desaDropdown.disabled = true;
-            }
-        });
-
         // Image preview for file uploads
         document.getElementById('locationPhoto').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -962,167 +797,5 @@
         marketingCtx.strokeStyle = '#333';
         marketingCtx.lineWidth = 2;
         
-        // Drawing variables
-        let isDrawing = false;
-        let lastX = 0;
-        let lastY = 0;
-        
         // Initialize signature pads
-        function initSignaturePad(canvas, ctx) {
-            canvas.addEventListener('mousedown', startDrawing);
-            canvas.addEventListener('touchstart', startDrawing);
-            
-            canvas.addEventListener('mousemove', draw);
-            canvas.addEventListener('touchmove', draw);
-            
-            canvas.addEventListener('mouseup', stopDrawing);
-            canvas.addEventListener('touchend', stopDrawing);
-            canvas.addEventListener('mouseout', stopDrawing);
-            
-            function startDrawing(e) {
-                isDrawing = true;
-                const pos = getPosition(e);
-                lastX = pos.x;
-                lastY = pos.y;
-                e.preventDefault();
-            }
-            
-            function draw(e) {
-                if (!isDrawing) return;
-                
-                const pos = getPosition(e);
-                ctx.beginPath();
-                ctx.moveTo(lastX, lastY);
-                ctx.lineTo(pos.x, pos.y);
-                ctx.stroke();
-                
-                lastX = pos.x;
-                lastY = pos.y;
-                e.preventDefault();
-            }
-            
-            function stopDrawing() {
-                isDrawing = false;
-            }
-            
-            function getPosition(e) {
-                const rect = canvas.getBoundingClientRect();
-                let x, y;
-                
-                if (e.type.includes('touch')) {
-                    x = e.touches[0].clientX - rect.left;
-                    y = e.touches[0].clientY - rect.top;
-                } else {
-                    x = e.clientX - rect.left;
-                    y = e.clientY - rect.top;
-                }
-                
-                return { x, y };
-            }
-            
-            return {
-                clear: function() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = 'white';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.strokeStyle = '#333';
-                    ctx.lineWidth = 2;
-                },
-                save: function() {
-                    return canvas.toDataURL();
-                }
-            };
-        }
-        
-        const customerSigPad = initSignaturePad(customerCanvas, customerCtx);
-        const marketingSigPad = initSignaturePad(marketingCanvas, marketingCtx);
-        
-        // Clear buttons
-        document.getElementById('clearCustomerSig').addEventListener('click', function() {
-            customerSigPad.clear();
-            document.getElementById('customerSignatureData').value = '';
-        });
-        
-        document.getElementById('clearMarketingSig').addEventListener('click', function() {
-            marketingSigPad.clear();
-            document.getElementById('marketingSignatureData').value = '';
-        });
-        
-        // Save buttons
-        document.getElementById('saveCustomerSig').addEventListener('click', function() {
-            document.getElementById('customerSignatureData').value = customerSigPad.save();
-            alert('Tanda tangan customer berhasil disimpan');
-        });
-        
-        document.getElementById('saveMarketingSig').addEventListener('click', function() {
-            document.getElementById('marketingSignatureData').value = marketingSigPad.save();
-            alert('Tanda tangan marketing berhasil disimpan');
-        });
-        
-        // Form submission
-        document.getElementById('canvasingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate required fields
-            if (!document.getElementById('customerSignatureData').value) {
-                alert('Harap simpan tanda tangan customer terlebih dahulu');
-                return;
-            }
-            
-            if (!document.getElementById('marketingSignatureData').value) {
-                alert('Harap simpan tanda tangan marketing terlebih dahulu');
-                return;
-            }
-            
-            // Show loading spinner
-            const submitBtn = document.querySelector('.submit-btn');
-            submitBtn.classList.add('loading');
-            
-            // Simulate form submission (in real app, this would be actual form submission)
-            setTimeout(() => {
-                // Hide loading spinner
-                submitBtn.classList.remove('loading');
-                
-                // Show success modal
-                document.getElementById('successModal').style.display = 'flex';
-                
-                // Trigger WhatsApp webhook (placeholder)
-                const marketingName = document.getElementById('marketingName').value;
-                const customerName = document.getElementById('customerName').value;
-                const houseType = document.getElementById('houseType').value;
-                
-                fetch('https://webhook-placeholder.com/wa', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        message: `📍 Laporan Canvasing: ${marketingName} - ${customerName} - ${houseType}`
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).catch(error => {
-                    console.error('Error sending WhatsApp notification:', error);
-                });
-                
-                // Reset form
-                // this.reset();
-                // customerSigPad.clear();
-                // marketingSigPad.clear();
-                // document.getElementById('locationPhotoPreview').style.display = 'none';
-                // document.getElementById('selfiePhotoPreview').style.display = 'none';
-            }, 1500);
-        });
-        
-        // Close modal function
-        function closeModal() {
-            document.getElementById('successModal').style.display = 'none';
-        }
-        
-        // Initialize tooltips
-        document.querySelectorAll('.tooltip').forEach(tooltip => {
-            tooltip.addEventListener('click', function(e) {
-                e.preventDefault();
-            });
-        });
-    </script>
-</body>
-</html>
+        function initSignaturePad(canvas,
