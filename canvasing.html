@@ -395,4 +395,249 @@
                         <i class="fas fa-user-friends"></i> Pilih Selfie Berdua
                     </label>
                 </div>
-                <div class
+                <div class="preview-container" id="selfiePreview"></div>
+            </div>
+
+            <div class="form-group">
+                <div class="signature-container">
+                    <label class="signature-label">Tanda Tangan Customer</label>
+                    <canvas id="customerSignature" class="signature-pad"></canvas>
+                    <button type="button" class="signature-clear" onclick="clearSignature('customerSignature')">
+                        <i class="fas fa-eraser"></i> Hapus
+                    </button>
+                    <input type="hidden" id="customerSignatureData" name="customerSignature">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="signature-container">
+                    <label class="signature-label">Tanda Tangan Marketing</label>
+                    <canvas id="marketingSignature" class="signature-pad"></canvas>
+                    <button type="button" class="signature-clear" onclick="clearSignature('marketingSignature')">
+                        <i class="fas fa-eraser"></i> Hapus
+                    </button>
+                    <input type="hidden" id="marketingSignatureData" name="marketingSignature">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="marketingName" class="required">Nama Marketing</label>
+                <select id="marketingName" name="marketingName" class="form-control" required>
+                    <option value="" disabled selected>Pilih Marketing</option>
+                    <option value="Syifa">Syifa</option>
+                    <option value="Rahma">Rahma</option>
+                    <option value="Riza">Riza</option>
+                    <option value="Aditya">Aditya</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Catatan Tambahan</label>
+                <textarea id="notes" name="notes" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span id="submitText">Kirim Laporan Canvasing</span>
+                <div class="loading" id="loadingSpinner"></div>
+            </button>
+        </form>
+
+        <div class="footer">
+            <p>Rezeki datang lewat usaha terbaik, bukan lewat diam.</p>
+            <p>Taufik Marie - Manager MEA</p>
+        </div>
+    </div>
+
+    <div class="alert" id="successAlert">
+        <i class="fas fa-check-circle"></i> Terima kasih, laporan kunjungan berhasil dikirim
+    </div>
+
+    <script>
+        // Initialize signature pads
+        const customerCanvas = document.getElementById('customerSignature');
+        const marketingCanvas = document.getElementById('marketingSignature');
+        let customerCtx = customerCanvas.getContext('2d');
+        let marketingCtx = marketingCanvas.getContext('2d');
+        let isDrawing = false;
+
+        // Set canvas size
+        function resizeCanvas() {
+            const style = getComputedStyle(customerCanvas);
+            customerCanvas.width = parseInt(style.width);
+            customerCanvas.height = parseInt(style.height);
+            
+            marketingCanvas.width = parseInt(style.width);
+            marketingCanvas.height = parseInt(style.height);
+            
+            // Redraw signatures if they exist
+            redrawSignature(customerCanvas, customerCtx);
+            redrawSignature(marketingCanvas, marketingCtx);
+        }
+
+        // Redraw signature from data URL
+        function redrawSignature(canvas, ctx) {
+            const dataUrl = canvas.dataset.signature;
+            if (dataUrl) {
+                const img = new Image();
+                img.src = dataUrl;
+                img.onload = function() {
+                    ctx.drawImage(img, 0, 0);
+                };
+            }
+        }
+
+        // Initialize canvas on load
+        window.addEventListener('load', function() {
+            resizeCanvas();
+            
+            // Set up event listeners for both canvases
+            setupSignaturePad(customerCanvas, customerCtx, 'customerSignatureData');
+            setupSignaturePad(marketingCanvas, marketingCtx, 'marketingSignatureData');
+        });
+
+        // Set up signature pad functionality
+        function setupSignaturePad(canvas, ctx, hiddenInputId) {
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('touchstart', startDrawing);
+            
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('touchmove', draw);
+            
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('touchend', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+            
+            function startDrawing(e) {
+                isDrawing = true;
+                draw(e);
+                e.preventDefault();
+            }
+            
+            function draw(e) {
+                if (!isDrawing) return;
+                
+                const rect = canvas.getBoundingClientRect();
+                let x, y;
+                
+                if (e.type.includes('touch')) {
+                    x = e.touches[0].clientX - rect.left;
+                    y = e.touches[0].clientY - rect.top;
+                } else {
+                    x = e.clientX - rect.left;
+                    y = e.clientY - rect.top;
+                }
+                
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                
+                // Update hidden input with data URL
+                document.getElementById(hiddenInputId).value = canvas.toDataURL();
+                canvas.dataset.signature = canvas.toDataURL();
+            }
+            
+            function stopDrawing() {
+                isDrawing = false;
+                ctx.beginPath();
+            }
+        }
+
+        // Clear signature
+        function clearSignature(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Clear hidden input
+            document.getElementById(canvasId + 'Data').value = '';
+            canvas.dataset.signature = '';
+        }
+
+        // Preview image after file selection
+        function previewImage(input, previewId) {
+            const previewContainer = document.getElementById(previewId);
+            previewContainer.innerHTML = '';
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'preview-image';
+                    previewContainer.appendChild(img);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Form submission
+        document.getElementById('canvasingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            // Show loading state
+            submitText.textContent = 'Mengirim...';
+            loadingSpinner.style.display = 'block';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (in a real scenario, this would be an AJAX call)
+            setTimeout(function() {
+                // Show success alert
+                const alert = document.getElementById('successAlert');
+                alert.style.display = 'flex';
+                
+                // Hide after 3 seconds
+                setTimeout(function() {
+                    alert.style.display = 'none';
+                }, 3000);
+                
+                // Reset form and button state
+                submitText.textContent = 'Kirim Laporan Canvasing';
+                loadingSpinner.style.display = 'none';
+                submitBtn.disabled = false;
+                
+                // Trigger WhatsApp webhook (placeholder)
+                triggerWhatsAppWebhook();
+                
+                // In a real implementation, you would submit the form here
+                // e.target.submit();
+            }, 1500);
+        });
+
+        // WhatsApp webhook placeholder
+        function triggerWhatsAppWebhook() {
+            const marketingName = document.getElementById('marketingName').value;
+            const customerName = document.getElementById('customerName').value;
+            const houseType = document.getElementById('houseType').value;
+            
+            // This is a placeholder - replace with actual webhook integration
+            fetch('https://webhook-placeholder.com/wa', {
+                method: 'POST',
+                body: JSON.stringify({
+                    message: `📍 Laporan Canvasing: ${marketingName} - ${customerName} - ${houseType}`
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).catch(error => {
+                console.error('Error sending WhatsApp notification:', error);
+            });
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            resizeCanvas();
+        });
+    </script>
+</body>
+</html>
