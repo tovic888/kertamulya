@@ -1114,13 +1114,15 @@ document.getElementById('canvasingForm').addEventListener('submit', function(e) 
 
     // Wait for all files to be processed
     Promise.all(promises).then(() => {
-    fetch("https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(formData)
-})
-
-
+        fetch("https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData),
+            mode: "no-cors" // Important for GAS web apps
+        })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -1149,7 +1151,7 @@ document.getElementById('canvasingForm').addEventListener('submit', function(e) 
 function readFileAsBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onload = () => resolve(reader.result);
         reader.onerror = error => reject(error);
         reader.readAsDataURL(file);
     });
