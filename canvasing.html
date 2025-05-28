@@ -508,7 +508,7 @@
         <div class="form-container">
             <h2 class="form-title">Form Laporan Canvasing</h2>
             
-          <form id="canvasingForm" action="https://script.google.com/macros/s/AKfycbwbuRDw9dw8e2-ZcmM-h85msj6Gt5OR5HAW63jitkoqwgn12W3xGjrdU0gKHETC5az7/exec" method="POST" enctype="multipart/form-data">
+          <form id="canvasingForm" action="https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec" method="POST" enctype="multipart/form-data">
 
                 <div class="form-grid">
                     <!-- Kolom 1 -->
@@ -1114,15 +1114,14 @@ document.getElementById('canvasingForm').addEventListener('submit', function(e) 
 
     // Wait for all files to be processed
     Promise.all(promises).then(() => {
-        fetch('https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec', {
+        fetch("https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(formData)
+})
 
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow' // Important for GAS web apps
-        })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
