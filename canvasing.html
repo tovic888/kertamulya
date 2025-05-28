@@ -1114,7 +1114,8 @@ document.getElementById('canvasingForm').addEventListener('submit', function(e) 
 
     // Wait for all files to be processed
     Promise.all(promises).then(() => {
-        fetch('https://script.google.com/macros/s/AKfycbwbuRDw9dw8e2-ZcmM-h85msj6Gt5OR5HAW63jitkoqwgn12W3xGjrdU0gKHETC5az7/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec', {
+
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
