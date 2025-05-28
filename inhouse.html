@@ -430,6 +430,59 @@
                 width: 100%;
             }
         }
+/* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+            margin: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p:first-child {
+            font-weight: 500;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -674,10 +727,13 @@
         </div>
     </div>
 
-    <div class="footer">
-        <p>Rezeki datang lewat usaha terbaik, bukan lewat diam.</p>
-        <p>Taufik Marie - Manager MEA</p>
+        <div class="container">
+        <div class="footer">
+            <p>Rezeki datang lewat usaha terbaik, bukan lewat diam.</p>
+            <p>Taufik Marie - Manager MEA</p>
+        </div>
     </div>
+
 
     <!-- Success Modal -->
     <div class="modal" id="successModal">
@@ -694,512 +750,535 @@
 
     <script>
         // Data angsuran berdasarkan tipe rumah dan tenor
-        const installmentData = {
-            "Standar - Subsidi 166jt": {
-                "5": 2982000,
-                "10": 1675835,
-                "15": 1249454,
-                "20": 1043000
+    const installmentData = {
+        "Standar - Subsidi 166jt": {
+            "5": 2982000,
+            "10": 1675835,
+            "15": 1249454,
+            "20": 1043000
+        },
+        "Standar - Komersil 168jt": {
+            "5": 3616968,
+            "10": 1233234,
+            "15": 1789000,
+            "20": 1644000
+        },
+        "Standar - Komersil Mezzanine 208jt": {
+            "5": 4396596,
+            "10": 2714602,
+            "15": 2173526,
+            "20": 1997513
+        },
+        "Suite - 277jt": {
+            "5": 4396596,
+            "10": 3726900,
+            "15": 2984051,
+            "20": 2742402
+        },
+        "Premium - 408jt": {
+            "5": 8953640,
+            "10": 5528270,
+            "15": 4426371,
+            "20": 4067923
+        }
+    };
+
+    // Format input nominal dengan titik
+    function formatNumberInput(input) {
+        input.addEventListener('input', function(e) {
+            let value = this.value.replace(/[^0-9]/g, '');
+            if (value.length > 3) {
+                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+            this.value = value;
+        });
+    }
+
+    // Fungsi untuk mengubah format angka dengan titik ke angka biasa
+    function parseFormattedNumber(formattedNumber) {
+        return parseFloat(formattedNumber.replace(/\./g, '')) || 0;
+    }
+
+    // Image preview for file uploads
+    document.getElementById('customerPhoto').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('customerPhotoPreviewImg').src = event.target.result;
+                document.getElementById('customerPhotoPreview').style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Signature Pad
+    const marketingCanvas = document.getElementById('marketingSignature');
+    const marketingCtx = marketingCanvas.getContext('2d');
+
+    // Set canvas size to match display size
+    function resizeCanvas() {
+        const style = getComputedStyle(marketingCanvas);
+        marketingCanvas.width = parseInt(style.width);
+        marketingCanvas.height = parseInt(style.height);
+        
+        // Reset canvas background
+        marketingCtx.fillStyle = 'white';
+        marketingCtx.fillRect(0, 0, marketingCanvas.width, marketingCanvas.height);
+        
+        // Reset drawing style
+        marketingCtx.strokeStyle = '#333';
+        marketingCtx.lineWidth = 2;
+        marketingCtx.lineCap = 'round';
+        marketingCtx.lineJoin = 'round';
+    }
+
+    // Initialize signature pad
+    function initSignaturePad(canvas, ctx) {
+        let isLocked = false;
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('touchstart', startDrawing);
+        
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('touchmove', draw);
+        
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('touchend', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        function startDrawing(e) {
+            if (isLocked) {
+                alert('Tanda tangan sudah terkunci. Klik "Hapus" untuk mengubah.');
+                return;
+            }
+            isDrawing = true;
+            const pos = getPosition(e);
+            lastX = pos.x;
+            lastY = pos.y;
+            e.preventDefault();
+        }
+        
+        function draw(e) {
+            if (!isDrawing || isLocked) return;
+            
+            const pos = getPosition(e);
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            
+            lastX = pos.x;
+            lastY = pos.y;
+            e.preventDefault();
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+        }
+        
+        function getPosition(e) {
+            const rect = canvas.getBoundingClientRect();
+            let x, y;
+            
+            if (e.type.includes('touch')) {
+                x = e.touches[0].clientX - rect.left;
+                y = e.touches[0].clientY - rect.top;
+            } else {
+                x = e.clientX - rect.left;
+                y = e.clientY - rect.top;
+            }
+            
+            // Scale coordinates to match canvas size
+            x = x * (canvas.width / rect.width);
+            y = y * (canvas.height / rect.height);
+            
+            return { x, y };
+        }
+        
+        return {
+            clear: function() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+                isLocked = false;
+                canvas.classList.remove('locked');
             },
-            "Standar - Komersil 168jt": {
-                "5": 3616968,
-                "10": 1233234,
-                "15": 1789000,
-                "20": 1644000
+            save: function() {
+                if (ctx.getImageData(0, 0, canvas.width, canvas.height).data.some(channel => channel !== 255)) {
+                    isLocked = true;
+                    canvas.classList.add('locked');
+                    return canvas.toDataURL();
+                }
+                return null;
             },
-            "Standar - Komersil Mezzanine 208jt": {
-                "5": 4396596,
-                "10": 2714602,
-                "15": 2173526,
-                "20": 1997513
-            },
-            "Suite - 277jt": {
-                "5": 4396596,
-                "10": 3726900,
-                "15": 2984051,
-                "20": 2742402
-            },
-            "Premium - 408jt": {
-                "5": 8953640,
-                "10": 5528270,
-                "15": 4426371,
-                "20": 4067923
+            isLocked: function() {
+                return isLocked;
             }
         };
+    }
 
-        // Image preview for file uploads
-        document.getElementById('customerPhoto').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    document.getElementById('customerPhotoPreviewImg').src = event.target.result;
-                    document.getElementById('customerPhotoPreview').style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        });
+    const marketingSigPad = initSignaturePad(marketingCanvas, marketingCtx);
 
-        // Signature Pad
-        const marketingCanvas = document.getElementById('marketingSignature');
-        const marketingCtx = marketingCanvas.getContext('2d');
+    // Clear button
+    document.getElementById('clearMarketingSig').addEventListener('click', function() {
+        marketingSigPad.clear();
+        document.getElementById('marketingSignatureData').value = '';
+    });
 
-        // Set canvas size to match display size
-        function resizeCanvas() {
-            const style = getComputedStyle(marketingCanvas);
-            marketingCanvas.width = parseInt(style.width);
-            marketingCanvas.height = parseInt(style.height);
-            
-            // Reset canvas background
-            marketingCtx.fillStyle = 'white';
-            marketingCtx.fillRect(0, 0, marketingCanvas.width, marketingCanvas.height);
-            
-            // Reset drawing style
-            marketingCtx.strokeStyle = '#333';
-            marketingCtx.lineWidth = 2;
-            marketingCtx.lineCap = 'round';
-            marketingCtx.lineJoin = 'round';
+    // Save button
+    document.getElementById('saveMarketingSig').addEventListener('click', function() {
+        const signatureData = marketingSigPad.save();
+        if (signatureData) {
+            document.getElementById('marketingSignatureData').value = signatureData;
+            alert('Tanda tangan marketing telah tersimpan dan terkunci');
+        } else {
+            alert('Harap buat tanda tangan terlebih dahulu');
         }
+    });
 
-        // Initialize on load and resize
-        window.addEventListener('load', resizeCanvas);
-        window.addEventListener('resize', resizeCanvas);
-
-        // Initialize signature pad
-        function initSignaturePad(canvas, ctx) {
-            let isLocked = false;
-            let isDrawing = false;
-            let lastX = 0;
-            let lastY = 0;
+    // Show/hide KPR section based on payment method
+    document.getElementById('paymentMethod').addEventListener('change', function() {
+        const paymentMethod = this.value;
+        const kprSection = document.getElementById('kprSection');
+        
+        if (paymentMethod === 'KPR Subsidi' || paymentMethod === 'KPR Komersial') {
+            kprSection.style.display = 'block';
             
-            canvas.addEventListener('mousedown', startDrawing);
-            canvas.addEventListener('touchstart', startDrawing);
-            
-            canvas.addEventListener('mousemove', draw);
-            canvas.addEventListener('touchmove', draw);
-            
-            canvas.addEventListener('mouseup', stopDrawing);
-            canvas.addEventListener('touchend', stopDrawing);
-            canvas.addEventListener('mouseout', stopDrawing);
-            
-            function startDrawing(e) {
-                if (isLocked) {
-                    alert('Tanda tangan sudah terkunci. Klik "Hapus" untuk mengubah.');
+            // Validasi tipe rumah untuk KPR Subsidi
+            if (paymentMethod === 'KPR Subsidi') {
+                const houseType = document.getElementById('houseType').value;
+                if (houseType !== 'Standar - Subsidi 166jt') {
+                    alert('KPR Subsidi hanya tersedia untuk Tipe Standar Subsidi');
+                    document.getElementById('houseType').focus();
+                    this.value = '';
+                    kprSection.style.display = 'none';
                     return;
                 }
-                isDrawing = true;
-                const pos = getPosition(e);
-                lastX = pos.x;
-                lastY = pos.y;
-                e.preventDefault();
             }
             
-            function draw(e) {
-                if (!isDrawing || isLocked) return;
-                
-                const pos = getPosition(e);
-                ctx.beginPath();
-                ctx.moveTo(lastX, lastY);
-                ctx.lineTo(pos.x, pos.y);
-                ctx.stroke();
-                
-                lastX = pos.x;
-                lastY = pos.y;
-                e.preventDefault();
-            }
-            
-            function stopDrawing() {
-                isDrawing = false;
-            }
-            
-            function getPosition(e) {
-                const rect = canvas.getBoundingClientRect();
-                let x, y;
-                
-                if (e.type.includes('touch')) {
-                    x = e.touches[0].clientX - rect.left;
-                    y = e.touches[0].clientY - rect.top;
-                } else {
-                    x = e.clientX - rect.left;
-                    y = e.clientY - rect.top;
+            // Validasi tipe rumah untuk KPR Komersial
+            if (paymentMethod === 'KPR Komersial') {
+                const houseType = document.getElementById('houseType').value;
+                if (houseType === 'Standar - Subsidi 166jt') {
+                    alert('KPR Komersial tidak tersedia untuk Tipe Standar Subsidi');
+                    document.getElementById('houseType').focus();
+                    this.value = '';
+                    kprSection.style.display = 'none';
+                    return;
                 }
-                
-                // Scale coordinates to match canvas size
-                x = x * (canvas.width / rect.width);
-                y = y * (canvas.height / rect.height);
-                
-                return { x, y };
             }
             
-            return {
-                clear: function() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = 'white';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.strokeStyle = '#333';
-                    ctx.lineWidth = 2;
-                    isLocked = false;
-                    canvas.classList.remove('locked');
-                },
-                save: function() {
-                    if (ctx.getImageData(0, 0, canvas.width, canvas.height).data.some(channel => channel !== 255)) {
-                        isLocked = true;
-                        canvas.classList.add('locked');
-                        return canvas.toDataURL();
-                    }
-                    return null;
-                },
-                isLocked: function() {
-                    return isLocked;
-                }
-            };
-        }
-
-        const marketingSigPad = initSignaturePad(marketingCanvas, marketingCtx);
-
-        // Clear button
-        document.getElementById('clearMarketingSig').addEventListener('click', function() {
-            marketingSigPad.clear();
-            document.getElementById('marketingSignatureData').value = '';
-        });
-
-        // Save button
-        document.getElementById('saveMarketingSig').addEventListener('click', function() {
-            const signatureData = marketingSigPad.save();
-            if (signatureData) {
-                document.getElementById('marketingSignatureData').value = signatureData;
-                alert('Tanda tangan marketing telah tersimpan dan terkunci');
-            } else {
-                alert('Harap buat tanda tangan terlebih dahulu');
-            }
-        });
-
-        // Show/hide KPR section based on payment method
-        document.getElementById('paymentMethod').addEventListener('change', function() {
-            const paymentMethod = this.value;
-            const kprSection = document.getElementById('kprSection');
-            
-            if (paymentMethod === 'KPR Subsidi' || paymentMethod === 'KPR Komersial') {
-                kprSection.style.display = 'block';
-                
-                // Validasi tipe rumah untuk KPR Subsidi
-                if (paymentMethod === 'KPR Subsidi') {
-                    const houseType = document.getElementById('houseType').value;
-                    if (houseType !== 'Standar - Subsidi 166jt') {
-                        alert('KPR Subsidi hanya tersedia untuk Tipe Standar Subsidi');
-                        document.getElementById('houseType').focus();
-                        this.value = '';
-                        kprSection.style.display = 'none';
-                        return;
-                    }
-                }
-                
-                // Validasi tipe rumah untuk KPR Komersial
-                if (paymentMethod === 'KPR Komersial') {
-                    const houseType = document.getElementById('houseType').value;
-                    if (houseType === 'Standar - Subsidi 166jt') {
-                        alert('KPR Komersial tidak tersedia untuk Tipe Standar Subsidi');
-                        document.getElementById('houseType').focus();
-                        this.value = '';
-                        kprSection.style.display = 'none';
-                        return;
-                    }
-                }
-                
-                // Reset dan hitung ulang
-                document.getElementById('customerAge').value = '';
-                document.getElementById('tenor').innerHTML = '<option value="" selected disabled>Pilih Tenor</option>';
-                document.getElementById('installmentResult').textContent = '-';
-                document.getElementById('dtiResult').textContent = '-';
-                document.getElementById('approvalResult').textContent = '-';
-                document.getElementById('approvalNotes').textContent = '';
-            } else {
-                kprSection.style.display = 'none';
-            }
-        });
-
-        // Update tenor options based on age
-        document.getElementById('customerAge').addEventListener('input', function() {
-            const age = parseInt(this.value) || 0;
-            const tenorSelect = document.getElementById('tenor');
-            
-            if (age < 20 || age > 65) {
-                tenorSelect.innerHTML = '<option value="" selected disabled>Usia tidak memenuhi syarat</option>';
-                return;
-            }
-            
-            // Calculate maximum tenor based on age (max age at end of loan is 65)
-            const maxTenor = 65 - age;
-            let tenorOptions = [];
-            
-            if (maxTenor >= 20) tenorOptions.push(20);
-            if (maxTenor >= 15) tenorOptions.push(15);
-            if (maxTenor >= 10) tenorOptions.push(10);
-            if (maxTenor >= 5) tenorOptions.push(5);
-            
-            if (tenorOptions.length === 0) {
-                tenorSelect.innerHTML = '<option value="" selected disabled>Usia tidak memenuhi syarat tenor</option>';
-                return;
-            }
-            
-            // Populate tenor options
-            tenorSelect.innerHTML = '<option value="" selected disabled>Pilih Tenor</option>';
-            tenorOptions.forEach(tenor => {
-                tenorSelect.innerHTML += `<option value="${tenor}">${tenor} Tahun</option>`;
-            });
-            
-            // Reset installment calculation
+            // Reset dan hitung ulang
+            document.getElementById('customerAge').value = '';
+            document.getElementById('tenor').innerHTML = '<option value="" selected disabled>Pilih Tenor</option>';
             document.getElementById('installmentResult').textContent = '-';
-        });
-
-        // Calculate installment when house type or tenor changes
-        document.getElementById('houseType').addEventListener('change', calculateInstallment);
-        document.getElementById('tenor').addEventListener('change', calculateInstallment);
-        
-        function calculateInstallment() {
-            const houseType = document.getElementById('houseType').value;
-            const tenor = document.getElementById('tenor').value;
-            
-            if (!houseType || !tenor) return;
-            
-            const installment = installmentData[houseType][tenor];
-            
-            document.getElementById('installmentResult').innerHTML = `
-                <p>Tipe Rumah: ${houseType}</p>
-                <p>Tenor: ${tenor} Tahun</p>
-                <p><strong>Angsuran Bulanan: Rp${installment.toLocaleString('id-ID')}</strong></p>
-            `;
-            
-            // Trigger DTI calculation if income is already filled
-            if (document.getElementById('customerIncome').value) {
-                calculateDTI();
-            }
-        }
-
-        // DTI Calculation
-        function calculateDTI() {
-            const income = parseFloat(document.getElementById('customerIncome').value) || 0;
-            const debt = parseFloat(document.getElementById('customerDebt').value) || 0;
-            const installmentText = document.getElementById('installmentResult').textContent;
-            
-            if (!installmentText.includes('Angsuran Bulanan:')) return;
-            
-            // Extract installment amount from text
-            const installment = parseFloat(installmentText.split('Rp')[1].replace(/\./g, '')) || 0;
-            
-            if (income <= 0 || installment <= 0) return;
-            
-            // Total debt payment
-            const totalDebtPayment = installment + debt;
-            
-            // DTI ratio
-            const dtiRatio = (totalDebtPayment / income) * 100;
-            
-            // Display results
-            document.getElementById('dtiResult').innerHTML = `
-                <p>Penghasilan: Rp${income.toLocaleString('id-ID')}/bulan</p>
-                <p>Cicilan KPR: Rp${installment.toLocaleString('id-ID')}/bulan</p>
-                <p>Beban Cicilan Lain: Rp${debt.toLocaleString('id-ID')}/bulan</p>
-                <p>Total Beban: Rp${totalDebtPayment.toLocaleString('id-ID')}/bulan</p>
-                <p><strong>DTI: ${dtiRatio.toFixed(1)}%</strong></p>
-            `;
-            
-            // Update approval result
-            updateApprovalResult(dtiRatio);
-        }
-
-        // Update approval result based on DTI
-        function updateApprovalResult(dtiRatio) {
-            const approvalResult = document.getElementById('approvalResult');
-            const approvalNotes = document.getElementById('approvalNotes');
-            
-            // Determine approval status
-            let status, notes, statusClass;
-            
-            if (dtiRatio > 40) {
-                status = "TIDAK DISETUJUI";
-                notes = "DTI melebihi 40%. Risiko tinggi untuk disetujui bank.";
-                statusClass = "rejected";
-            } else if (dtiRatio > 30) {
-                status = "PERLU PERTIMBANGAN";
-                notes = "DTI mendekati batas aman (30-40%). Perlu dokumen tambahan atau negosiasi dengan bank.";
-                statusClass = "consideration";
-            } else {
-                status = "DISETUJUI";
-                notes = "DTI dalam batas aman (di bawah 30%). Memenuhi syarat bank.";
-                statusClass = "approved";
-            }
-            
-            approvalResult.textContent = status;
-            approvalResult.className = `result-approval ${statusClass}`;
-            approvalNotes.textContent = notes;
-        }
-
-        // Event listeners for calculation
-        document.getElementById('customerIncome').addEventListener('input', calculateDTI);
-        document.getElementById('customerDebt').addEventListener('input', calculateDTI);
-        
-        // Set today's date as default
-        document.getElementById('visitDate').valueAsDate = new Date();
-
-        // Form validation
-        function validateForm() {
-            const requiredFields = document.querySelectorAll('[required]');
-            for (let field of requiredFields) {
-                if (!field.value.trim()) {
-                    const fieldName = field.labels ? field.labels[0].textContent : field.previousElementSibling.textContent;
-                    alert(`Harap isi field ${fieldName}`);
-                    field.focus();
-                    return false;
-                }
-            }
-            
-            // Validate phone number format
-            const phone = document.getElementById('customerPhone').value;
-            if (!/^[0-9]{10,13}$/.test(phone)) {
-                alert('Nomor HP harus terdiri dari 10-13 digit angka');
-                document.getElementById('customerPhone').focus();
-                return false;
-            }
-            
-            // Validate email format if provided
-            const email = document.getElementById('customerEmail').value;
-            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                alert('Format email tidak valid');
-                document.getElementById('customerEmail').focus();
-                return false;
-            }
-            
-            // Validate KPR section if visible
-            const kprSection = document.getElementById('kprSection');
-            if (kprSection.style.display === 'block') {
-                const age = parseInt(document.getElementById('customerAge').value);
-                if (age < 20 || age > 65) {
-                    alert('Usia untuk KPR harus antara 20-65 tahun');
-                    document.getElementById('customerAge').focus();
-                    return false;
-                }
-                
-                if (!document.getElementById('tenor').value) {
-                    alert('Harap pilih tenor KPR');
-                    document.getElementById('tenor').focus();
-                    return false;
-                }
-            }
-            
-            if (!document.getElementById('marketingSignatureData').value) {
-                alert('Harap simpan tanda tangan marketing terlebih dahulu');
-                return false;
-            }
-            
-            return true;
-        }
-
-        // Close modal function
-        function closeModal() {
-            document.getElementById('successModal').style.display = 'none';
-            document.getElementById('inhouseForm').reset();
-            marketingSigPad.clear();
-            document.getElementById('customerPhotoPreview').style.display = 'none';
-            document.getElementById('marketingSignatureData').value = '';
-            document.getElementById('kprSection').style.display = 'none';
             document.getElementById('dtiResult').textContent = '-';
             document.getElementById('approvalResult').textContent = '-';
-            document.getElementById('approvalResult').className = 'result-approval';
             document.getElementById('approvalNotes').textContent = '';
-            document.getElementById('installmentResult').textContent = '-';
-            document.getElementById('visitDate').valueAsDate = new Date();
+        } else {
+            kprSection.style.display = 'none';
         }
+    });
 
-        // Form submission
-        document.getElementById('inhouseForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (!validateForm()) return;
-            
-            const submitBtn = document.querySelector('.submit-btn');
-            submitBtn.classList.add('loading');
-            
-            // Prepare form data
-            const formData = {
-                customerName: document.getElementById('customerName').value,
-                customerPhone: document.getElementById('customerPhone').value,
-                customerEmail: document.getElementById('customerEmail').value,
-                customerAddress: document.getElementById('customerAddress').value,
-                customerDistrict: document.getElementById('customerDistrict').value,
-                customerCity: document.getElementById('customerCity').value,
-                houseType: document.getElementById('houseType').value,
-                paymentMethod: document.getElementById('paymentMethod').value,
-                visitDate: document.getElementById('visitDate').value,
-                marketingName: document.getElementById('marketingName').value,
-                additionalNotes: document.getElementById('additionalNotes').value,
-                marketingSignatureData: document.getElementById('marketingSignatureData').value,
-                customerAge: document.getElementById('customerAge').value || '',
-                customerJob: document.getElementById('customerJob').value || '',
-                jobDetail: document.getElementById('jobDetail').value || '',
-                customerIncome: document.getElementById('customerIncome').value || 0,
-                tenor: document.getElementById('tenor').value || '',
-                customerDebt: document.getElementById('customerDebt').value || 0,
-                creditStatus: document.querySelector('input[name="creditStatus"]:checked')?.value || '',
-                dtiRatio: document.getElementById('dtiResult').textContent.includes('DTI:') ? 
-                          parseFloat(document.getElementById('dtiResult').textContent.split('DTI: ')[1].split('%')[0]) : 0,
-                approvalResult: document.getElementById('approvalResult').textContent
-            };
-
-            // Handle file upload
-            const customerPhotoFile = document.getElementById('customerPhoto').files[0];
-            
-            if (customerPhotoFile) {
-                readFileAsBase64(customerPhotoFile).then(base64 => {
-                    formData.customerPhoto = base64;
-                    submitFormData(formData);
-                });
-            } else {
-                submitFormData(formData);
-            }
+    // Update tenor options based on age
+    document.getElementById('customerAge').addEventListener('input', function() {
+        const age = parseInt(this.value) || 0;
+        const tenorSelect = document.getElementById('tenor');
+        
+        if (age < 20 || age > 65) {
+            tenorSelect.innerHTML = '<option value="" selected disabled>Usia tidak memenuhi syarat</option>';
+            return;
+        }
+        
+        // Calculate maximum tenor based on age (max age at end of loan is 65)
+        const maxTenor = 65 - age;
+        let tenorOptions = [];
+        
+        if (maxTenor >= 20) tenorOptions.push(20);
+        if (maxTenor >= 15) tenorOptions.push(15);
+        if (maxTenor >= 10) tenorOptions.push(10);
+        if (maxTenor >= 5) tenorOptions.push(5);
+        
+        if (tenorOptions.length === 0) {
+            tenorSelect.innerHTML = '<option value="" selected disabled>Usia tidak memenuhi syarat tenor</option>';
+            return;
+        }
+        
+        // Populate tenor options
+        tenorSelect.innerHTML = '<option value="" selected disabled>Pilih Tenor</option>';
+        tenorOptions.forEach(tenor => {
+            tenorSelect.innerHTML += `<option value="${tenor}">${tenor} Tahun</option>`;
         });
+        
+        // Reset installment calculation
+        document.getElementById('installmentResult').textContent = '-';
+    });
 
-        function submitFormData(formData) {
-            fetch("https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec", {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(formData),
-                mode: "no-cors" // Important for GAS web apps
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('successModal').style.display = 'flex';
-                } else {
-                    throw new Error(data.error || 'Gagal mengirim formulir');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan: ' + error.message);
-            })
-            .finally(() => {
-                document.querySelector('.submit-btn').classList.remove('loading');
-            });
+    // Calculate installment when house type or tenor changes
+    document.getElementById('houseType').addEventListener('change', calculateInstallment);
+    document.getElementById('tenor').addEventListener('change', calculateInstallment);
+    
+    function calculateInstallment() {
+        const houseType = document.getElementById('houseType').value;
+        const tenor = document.getElementById('tenor').value;
+        
+        if (!houseType || !tenor) return;
+        
+        const installment = installmentData[houseType][tenor];
+        
+        document.getElementById('installmentResult').innerHTML = `
+            <p>Tipe Rumah: ${houseType}</p>
+            <p>Tenor: ${tenor} Tahun</p>
+            <p><strong>Angsuran Bulanan: Rp${installment.toLocaleString('id-ID')}</strong></p>
+        `;
+        
+        // Trigger DTI calculation if income is already filled
+        if (document.getElementById('customerIncome').value) {
+            calculateDTI();
         }
+    }
 
-        // Helper function to read file as base64
-        function readFileAsBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-                reader.readAsDataURL(file);
-            });
+    // DTI Calculation
+    function calculateDTI() {
+        const income = parseFormattedNumber(document.getElementById('customerIncome').value);
+        const debt = parseFormattedNumber(document.getElementById('customerDebt').value);
+        const installmentText = document.getElementById('installmentResult').textContent;
+        
+        if (!installmentText.includes('Angsuran Bulanan:')) return;
+        
+        // Extract installment amount from text
+        const installment = parseFloat(installmentText.split('Rp')[1].replace(/\./g, '')) || 0;
+        
+        if (income <= 0 || installment <= 0) return;
+        
+        // Total debt payment
+        const totalDebtPayment = installment + debt;
+        
+        // DTI ratio
+        const dtiRatio = (totalDebtPayment / income) * 100;
+        
+        // Display results
+        document.getElementById('dtiResult').innerHTML = `
+            <p>Penghasilan: Rp${income.toLocaleString('id-ID')}/bulan</p>
+            <p>Cicilan KPR: Rp${installment.toLocaleString('id-ID')}/bulan</p>
+            <p>Beban Cicilan Lain: Rp${debt.toLocaleString('id-ID')}/bulan</p>
+            <p>Total Beban: Rp${totalDebtPayment.toLocaleString('id-ID')}/bulan</p>
+            <p><strong>DTI: ${dtiRatio.toFixed(1)}%</strong></p>
+        `;
+        
+        // Update approval result
+        updateApprovalResult(dtiRatio);
+    }
+
+    // Update approval result based on DTI
+    function updateApprovalResult(dtiRatio) {
+        const approvalResult = document.getElementById('approvalResult');
+        const approvalNotes = document.getElementById('approvalNotes');
+        
+        // Determine approval status
+        let status, notes, statusClass;
+        
+        if (dtiRatio > 40) {
+            status = "TIDAK DISETUJUI";
+            notes = "DTI melebihi 40%. Risiko tinggi untuk disetujui bank.";
+            statusClass = "rejected";
+        } else if (dtiRatio > 30) {
+            status = "PERLU PERTIMBANGAN";
+            notes = "DTI mendekati batas aman (30-40%). Perlu dokumen tambahan atau negosiasi dengan bank.";
+            statusClass = "consideration";
+        } else {
+            status = "DISETUJUI";
+            notes = "DTI dalam batas aman (di bawah 30%). Memenuhi syarat bank.";
+            statusClass = "approved";
         }
+        
+        approvalResult.textContent = status;
+        approvalResult.className = `result-approval ${statusClass}`;
+        approvalNotes.textContent = notes;
+    }
+
+    // Event listeners for calculation
+    document.getElementById('customerIncome').addEventListener('input', calculateDTI);
+    document.getElementById('customerDebt').addEventListener('input', calculateDTI);
+    
+    // Terapkan format ke input penghasilan dan beban cicilan
+    formatNumberInput(document.getElementById('customerIncome'));
+    formatNumberInput(document.getElementById('customerDebt'));
+
+    // Set today's date as default
+    document.getElementById('visitDate').valueAsDate = new Date();
+
+    // Form validation
+    function validateForm() {
+        const requiredFields = document.querySelectorAll('[required]');
+        for (let field of requiredFields) {
+            if (!field.value.trim()) {
+                const fieldName = field.labels ? field.labels[0].textContent : field.previousElementSibling.textContent;
+                alert(`Harap isi field ${fieldName}`);
+                field.focus();
+                return false;
+            }
+        }
+        
+        // Validate phone number format
+        const phone = document.getElementById('customerPhone').value;
+        if (!/^[0-9]{10,13}$/.test(phone)) {
+            alert('Nomor HP harus terdiri dari 10-13 digit angka');
+            document.getElementById('customerPhone').focus();
+            return false;
+        }
+        
+        // Validate email format if provided
+        const email = document.getElementById('customerEmail').value;
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Format email tidak valid');
+            document.getElementById('customerEmail').focus();
+            return false;
+        }
+        
+        // Validate KPR section if visible
+        const kprSection = document.getElementById('kprSection');
+        if (kprSection.style.display === 'block') {
+            const age = parseInt(document.getElementById('customerAge').value);
+            if (age < 20 || age > 65) {
+                alert('Usia untuk KPR harus antara 20-65 tahun');
+                document.getElementById('customerAge').focus();
+                return false;
+            }
+            
+            if (!document.getElementById('tenor').value) {
+                alert('Harap pilih tenor KPR');
+                document.getElementById('tenor').focus();
+                return false;
+            }
+        }
+        
+        if (!document.getElementById('marketingSignatureData').value) {
+            alert('Harap simpan tanda tangan marketing terlebih dahulu');
+            return false;
+        }
+        
+        return true;
+    }
+
+    // Close modal function
+    function closeModal() {
+        document.getElementById('successModal').style.display = 'none';
+        document.getElementById('inhouseForm').reset();
+        marketingSigPad.clear();
+        document.getElementById('customerPhotoPreview').style.display = 'none';
+        document.getElementById('marketingSignatureData').value = '';
+        document.getElementById('kprSection').style.display = 'none';
+        document.getElementById('dtiResult').textContent = '-';
+        document.getElementById('approvalResult').textContent = '-';
+        document.getElementById('approvalResult').className = 'result-approval';
+        document.getElementById('approvalNotes').textContent = '';
+        document.getElementById('installmentResult').textContent = '-';
+        document.getElementById('visitDate').valueAsDate = new Date();
+    }
+
+    // Form submission
+    document.getElementById('inhouseForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validateForm()) return;
+        
+        const submitBtn = document.querySelector('.submit-btn');
+        submitBtn.classList.add('loading');
+        
+        // Prepare form data
+        const formData = {
+            customerName: document.getElementById('customerName').value,
+            customerPhone: document.getElementById('customerPhone').value,
+            customerEmail: document.getElementById('customerEmail').value,
+            customerAddress: document.getElementById('customerAddress').value,
+            customerDistrict: document.getElementById('customerDistrict').value,
+            customerCity: document.getElementById('customerCity').value,
+            houseType: document.getElementById('houseType').value,
+            paymentMethod: document.getElementById('paymentMethod').value,
+            visitDate: document.getElementById('visitDate').value,
+            marketingName: document.getElementById('marketingName').value,
+            additionalNotes: document.getElementById('additionalNotes').value,
+            marketingSignatureData: document.getElementById('marketingSignatureData').value,
+            customerAge: document.getElementById('customerAge').value || '',
+            customerJob: document.getElementById('customerJob').value || '',
+            jobDetail: document.getElementById('jobDetail').value || '',
+            customerIncome: parseFormattedNumber(document.getElementById('customerIncome').value) || 0,
+            tenor: document.getElementById('tenor').value || '',
+            customerDebt: parseFormattedNumber(document.getElementById('customerDebt').value) || 0,
+            creditStatus: document.querySelector('input[name="creditStatus"]:checked')?.value || '',
+            dtiRatio: document.getElementById('dtiResult').textContent.includes('DTI:') ? 
+                      parseFloat(document.getElementById('dtiResult').textContent.split('DTI: ')[1].split('%')[0]) : 0,
+            approvalResult: document.getElementById('approvalResult').textContent
+        };
+
+        // Handle file upload
+        const customerPhotoFile = document.getElementById('customerPhoto').files[0];
+        
+        if (customerPhotoFile) {
+            readFileAsBase64(customerPhotoFile).then(base64 => {
+                formData.customerPhoto = base64;
+                submitFormData(formData);
+            });
+        } else {
+            submitFormData(formData);
+        }
+    });
+
+    function submitFormData(formData) {
+        fetch("https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData),
+            mode: "no-cors" // Important for GAS web apps
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                document.getElementById('successModal').style.display = 'flex';
+            } else {
+                throw new Error(data.error || 'Gagal mengirim formulir');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan: ' + error.message);
+        })
+        .finally(() => {
+            document.querySelector('.submit-btn').classList.remove('loading');
+        });
+    }
+
+    // Helper function to read file as base64
+    function readFileAsBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // Initialize on load and resize
+    window.addEventListener('load', function() {
+        resizeCanvas();
+        document.getElementById('visitDate').valueAsDate = new Date();
+    });
+    window.addEventListener('resize', resizeCanvas);
     </script>
 </body>
 </html>
