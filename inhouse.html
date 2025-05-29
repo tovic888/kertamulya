@@ -1337,6 +1337,7 @@ function calculateDTI() {
     const creditStatus = document.querySelector('input[name="creditStatus"]:checked')?.value;
     const lateFrequency = document.getElementById('lateFrequency').value;
     
+    // Validasi khusus KPR Subsidi
     if (paymentMethod === 'KPR Subsidi') {
         if (income < 3000000 || income > 12000000) {
             document.getElementById('approvalResult').textContent = "TIDAK DISETUJUI";
@@ -1351,10 +1352,15 @@ function calculateDTI() {
     const installment = parseFloat(installmentText.split('Rp')[1].replace(/\./g, '')) || 0;
     if (income <= 0 || installment <= 0) return;
     
-    let totalDebtPayment = installment + debt;
-    let dtiRatio = (totalDebtPayment / income) * 100;
+    // Perhitungan DTI yang benar
+    let availableIncome = income - debt;
+    if (availableIncome <= 0) availableIncome = income; // Jaga-jaga jika cicilan > penghasilan
+    
+    let totalDebtPayment = installment;
+    let dtiRatio = (totalDebtPayment / availableIncome) * 100;
     let adjustmentFactor = 1;
     
+    // Adjust DTI untuk riwayat kredit buruk
     if (creditStatus === 'Pernah Terlambat') {
         if (lateFrequency === '1 kali') {
             adjustmentFactor = 1.05;
@@ -1370,33 +1376,45 @@ function calculateDTI() {
     
     document.getElementById('dtiResult').innerHTML = `
         <p>Penghasilan: Rp${income.toLocaleString('id-ID')}/bulan</p>
+        ${debt > 0 ? `<p>Dikurangi cicilan lain: Rp${debt.toLocaleString('id-ID')}/bulan</p>` : ''}
+        <p>Penghasilan tersedia: Rp${availableIncome.toLocaleString('id-ID')}/bulan</p>
         <p>Cicilan KPR: Rp${installment.toLocaleString('id-ID')}/bulan</p>
-        <p>Beban Cicilan Lain: Rp${debt.toLocaleString('id-ID')}/bulan</p>
-        <p>Total Beban: Rp${totalDebtPayment.toLocaleString('id-ID')}/bulan</p>
         <p><strong>DTI: ${dtiRatio.toFixed(1)}%</strong></p>
         ${creditStatus === 'Pernah Terlambat' ? `<p class="hint">* DTI disesuaikan dengan faktor risiko kredit (${adjustmentFactor}x)</p>` : ''}
     `;
     
-    updateDPInfo(dtiRatio);
-    updateApprovalResult(dtiRatio, creditStatus, lateFrequency);
+    updateDPInfo(dtiRatio, paymentMethod);
+    updateApprovalResult(dtiRatio, creditStatus, lateFrequency, paymentMethod);
 }
 
-function updateDPInfo(dtiRatio) {
+function updateDPInfo(dtiRatio, paymentMethod) {
     const dpInfo = document.getElementById('dpInfo');
     const dpInfoText = document.getElementById('dpInfoText');
     
     dpInfo.style.display = 'block';
     
-    if (dtiRatio <= 30) {
-        dpInfoText.innerHTML = '<p>Kemungkinan besar bisa mendapatkan DP 0% (sesuai kebijakan bank)</p>';
-    } else if (dtiRatio <= 40) {
-        dpInfoText.innerHTML = '<p>Mungkin perlu DP kecil (10-20%) tergantung kebijakan bank</p>';
+    if (paymentMethod === 'KPR Subsidi') {
+        if (dtiRatio <= 30) {
+            dpInfoText.innerHTML = '<p>Kemungkinan besar bisa mendapatkan DP 0% (sesuai kebijakan bank)</p>';
+        } else if (dtiRatio <= 40) {
+            dpInfoText.innerHTML = '<p>Mungkin perlu DP kecil (5-10%) tergantung kebijakan bank</p>';
+        } else if (dtiRatio <= 50) {
+            dpInfoText.innerHTML = '<p>Kemungkinan perlu DP signifikan (10-20%) karena DTI mendekati batas maksimal</p>';
+        } else {
+            dpInfoText.innerHTML = '<p>Perlu DP besar (>20%) atau pertimbangan khusus dari bank</p>';
+        }
     } else {
-        dpInfoText.innerHTML = '<p>Kemungkinan perlu DP signifikan (>20%) karena penghasilan belum mencukupi syarat kredit bank</p>';
+        if (dtiRatio <= 30) {
+            dpInfoText.innerHTML = '<p>Kemungkinan besar bisa mendapatkan DP minimum sesuai kebijakan bank</p>';
+        } else if (dtiRatio <= 40) {
+            dpInfoText.innerHTML = '<p>Mungkin perlu DP lebih tinggi (20-30%) tergantung kebijakan bank</p>';
+        } else {
+            dpInfoText.innerHTML = '<p>Kemungkinan perlu DP signifikan (>30%) karena penghasilan belum mencukupi syarat kredit bank</p>';
+        }
     }
 }
 
-function updateApprovalResult(dtiRatio, creditStatus, lateFrequency) {
+function updateApprovalResult(dtiRatio, creditStatus, lateFrequency, paymentMethod) {
     const approvalResult = document.getElementById('approvalResult');
     const approvalNotes = document.getElementById('approvalNotes');
     
@@ -1407,18 +1425,36 @@ function updateApprovalResult(dtiRatio, creditStatus, lateFrequency) {
         baseDTI = dtiRatio * 1.2;
     }
     
-    if (baseDTI > 40) {
-        status = "TIDAK DISETUJUI";
-        notes = "DTI melebihi 40%. Risiko tinggi untuk disetujui bank.";
-        statusClass = "rejected";
-    } else if (baseDTI > 30) {
-        status = "PERLU PERTIMBANGAN";
-        notes = "DTI mendekati batas aman (30-40%). Perlu dokumen tambahan atau negosiasi dengan bank.";
-        statusClass = "consideration";
+    if (paymentMethod === 'KPR Subsidi') {
+        // Aturan khusus KPR Subsidi
+        if (baseDTI > 50) {
+            status = "TIDAK DISETUJUI";
+            notes = "DTI melebihi 50%. Tidak memenuhi syarat KPR Subsidi.";
+            statusClass = "rejected";
+        } else if (baseDTI > 40) {
+            status = "DISETUJUI DENGAN CATATAN";
+            notes = "DTI mendekati batas maksimal (40-50%). Bank mungkin meminta DP lebih tinggi atau dokumen tambahan.";
+            statusClass = "consideration";
+        } else {
+            status = "DISETUJUI";
+            notes = "DTI dalam batas aman. Memenuhi syarat KPR Subsidi.";
+            statusClass = "approved";
+        }
     } else {
-        status = "DISETUJUI";
-        notes = "DTI dalam batas aman (di bawah 30%). Memenuhi syarat bank.";
-        statusClass = "approved";
+        // Aturan untuk KPR Komersial
+        if (baseDTI > 50) {
+            status = "TIDAK DISETUJUI";
+            notes = "DTI melebihi 50%. Risiko tinggi untuk disetujui bank.";
+            statusClass = "rejected";
+        } else if (baseDTI > 40) {
+            status = "PERLU PERTIMBANGAN";
+            notes = "DTI mendekati batas aman (40-50%). Perlu dokumen tambahan atau negosiasi dengan bank.";
+            statusClass = "consideration";
+        } else {
+            status = "DISETUJUI";
+            notes = "DTI dalam batas aman (di bawah 40%). Memenuhi syarat bank.";
+            statusClass = "approved";
+        }
     }
     
     if (creditStatus === 'Pernah Terlambat') {
