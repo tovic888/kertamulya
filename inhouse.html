@@ -966,7 +966,7 @@
     </div>
 
     <script>
-   // Data angsuran berdasarkan tipe rumah dan tenor
+    // Data angsuran berdasarkan tipe rumah dan tenor
 const installmentData = {
     "Standar - Subsidi 166jt": {
         "5": 2982000,
@@ -1342,15 +1342,15 @@ function calculateInstallment() {
     const installment = installmentData[houseType][tenor];
     
     document.getElementById('installmentResult').innerHTML = `
-        <p>Tipe Rumah: <strong>${houseType}</strong></p>
-        <p>Tenor: <strong>${tenor} Tahun</strong></p>
-        <p class="installment-result-value">Angsuran Bulanan: Rp${installment.toLocaleString('id-ID')}</p>
+        <p>Tipe Rumah: ${houseType}</p>
+        <p>Tenor: ${tenor} Tahun</p>
+        <p><strong>Angsuran Bulanan: Rp${installment.toLocaleString('id-ID')}</strong></p>
     `;
     
     if (document.getElementById('customerIncome').value) {
         calculateDTI();
     }
-}}
+}
 
 // DTI Calculation
 function calculateDTI() {
