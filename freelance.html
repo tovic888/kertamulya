@@ -582,7 +582,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="accountNumber" class="required">Nomor Rekening</label>
-                                    <input type="text" id="accountNumber" name="accountNumber" class="form-control" required>
+                                    <input type="text" id="accountNumber" name="accountNumber" class="form-control" pattern="[0-9]+" required>
+                                    <div class="hint">Hanya angka tanpa karakter khusus</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="accountName" class="required">Nama Pemilik Rekening</label>
@@ -620,12 +621,13 @@
                 <div class="form-group">
                     <label>Informasi Edukasi</label>
                     <div style="background: var(--gray); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin-bottom: 0.5rem;"><strong>Alamat Website:</strong> <a href="https://kertamulyaresidence.com" target="_blank">kertamulyaresidence.com</a></p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Alamat Website:</strong> <a href="https://bimulialand.com/kertamulya" target="_blank">https://bimulialand.com/kertamulya</a></p>
                         <p style="margin-bottom: 0.5rem;"><strong>Job Desk Marketing Freelance:</strong></p>
                         <ul style="margin-left: 1.5rem; margin-bottom: 0.5rem;">
                             <li>Mencari calon customer untuk produk perumahan Kertamulya Residence</li>
                             <li>Memberikan informasi dasar tentang produk</li>
                             <li>Mereferensikan calon customer ke Marketing Executive MEA</li>
+                            <li>Harap koordinasi dengan Marketing Executive untuk informasi lebih lanjut</li>
                         </ul>
                         <p><strong>Komisi:</strong> Rp 2.500.000 per closing/unit yang berhasil direferensikan</p>
                     </div>
@@ -900,16 +902,6 @@
                 }
             }
             
-            if (!document.getElementById('freelanceSignatureData').value) {
-                alert('Harap simpan tanda tangan marketing freelance terlebih dahulu');
-                return false;
-            }
-            
-            if (!document.getElementById('executiveSignatureData').value) {
-                alert('Harap simpan tanda tangan marketing executive terlebih dahulu');
-                return false;
-            }
-            
             // Validate phone number format
             const phone = document.getElementById('freelancePhone').value;
             if (!/^[0-9]{10,13}$/.test(phone)) {
@@ -923,6 +915,24 @@
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 alert('Format email tidak valid');
                 document.getElementById('freelanceEmail').focus();
+                return false;
+            }
+            
+            // Validate account number (numbers only)
+            const accountNumber = document.getElementById('accountNumber').value;
+            if (!/^[0-9]+$/.test(accountNumber)) {
+                alert('Nomor rekening harus berupa angka saja');
+                document.getElementById('accountNumber').focus();
+                return false;
+            }
+            
+            if (!document.getElementById('freelanceSignatureData').value) {
+                alert('Harap simpan tanda tangan marketing freelance terlebih dahulu');
+                return false;
+            }
+            
+            if (!document.getElementById('executiveSignatureData').value) {
+                alert('Harap simpan tanda tangan marketing executive terlebih dahulu');
                 return false;
             }
             
