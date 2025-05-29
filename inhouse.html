@@ -615,7 +615,7 @@
             border-left: 4px solid var(--accent);
             font-size: 0.9rem;
         }
-        /* Style untuk result-box khusus angsuran */
+/* Style untuk result-box khusus angsuran */
 .installment-result-box {
     background: white;
     border-radius: 0.5rem;
@@ -623,19 +623,19 @@
     margin-top: 1rem;
     box-shadow: var(--shadow-sm);
     border-left: 4px solid var(--accent-dark);
-    background-color: var(--warna);
+    background-color: var(--primary-light);
 }
 
 .installment-result-title {
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: var(--text);
+    color: var(--accent-dark);
     font-size: 1.1rem;
 }
 
 .installment-result-value {
     font-weight: 700;
-    color: var(--text);
+    color: var(--primary-dark);
     font-size: 1.2rem;
 }
     </style>
@@ -806,13 +806,12 @@
                         </div>
                     </div>
 
-                   <!-- Ganti div dengan class result-box yang lama -->
+        <!-- Ganti div dengan class result-box yang lama -->
 <div class="installment-result-box">
     <div class="installment-result-title">Perhitungan Angsuran KPR</div>
     <div id="installmentResult">-</div>
     <div class="hint">Biaya administrasi bank: Rp2.500.000 - Rp4.000.000 (untuk asuransi dan Hold angsuran Antara 1X atau 2X di akhir)</div>
 </div>
-
                     <!-- Beban Cicilan -->
                     <div class="form-group">
                         <label for="customerDebt">Total Beban Cicilan Bulanan (Rp)</label>
@@ -1344,9 +1343,9 @@ function calculateInstallment() {
     const installment = installmentData[houseType][tenor];
     
     document.getElementById('installmentResult').innerHTML = `
-        <p>Tipe Rumah: ${houseType}</p>
-        <p>Tenor: ${tenor} Tahun</p>
-        <p><strong>Angsuran Bulanan: Rp${installment.toLocaleString('id-ID')}</strong></p>
+        <p>Tipe Rumah: <strong>${houseType}</strong></p>
+        <p>Tenor: <strong>${tenor} Tahun</strong></p>
+        <p class="installment-result-value">Angsuran Bulanan: Rp${installment.toLocaleString('id-ID')}</p>
     `;
     
     if (document.getElementById('customerIncome').value) {
