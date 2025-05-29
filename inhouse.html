@@ -796,31 +796,31 @@
         </div>
 
         <!-- Feature Disclosure Checklist -->
-        <div class="feature-checklist" id="featureChecklist" style="display: none;">
-            <h4>✔ Checklist Penjelasan Fitur:</h4>
-            <div id="standardChecklist" style="display: none;">
-                <div class="feature-item">
-                    <input type="checkbox" id="standardInfo1" name="standardInfo1">
-                    <label for="standardInfo1">Sudah menjelaskan bahwa unit subsidi standar sudah termasuk plafon dan lampu</label>
-                </div>
-            </div>
-            <div id="mezzanineChecklist" style="display: none;">
-                <div class="feature-item">
-                    <input type="checkbox" id="mezzanineInfo1" name="mezzanineInfo1">
-                    <label for="mezzanineInfo1">Sudah menjelaskan bahwa sekat pintu kaca aluminium tidak termasuk</label>
-                </div>
-                <div class="feature-item">
-                    <input type="checkbox" id="mezzanineInfo2" name="mezzanineInfo2">
-                    <label for="mezzanineInfo2">Sudah menjelaskan bahwa dapur dan taman tidak termasuk</label>
-                </div>
-            </div>
-            <div id="suiteChecklist" style="display: none;">
-                <div class="feature-item">
-                    <input type="checkbox" id="suiteInfo1" name="suiteInfo1">
-                    <label for="suiteInfo1">Sudah menjelaskan bahwa canopy tidak termasuk</label>
-                </div>
-            </div>
+<div class="feature-checklist" id="featureChecklist" style="display: none;">
+    <h4>✔ Checklist Penjelasan Fitur:</h4>
+    <div id="standardChecklist" style="display: none;">
+        <div class="feature-item">
+            <input type="checkbox" id="standardInfo1" name="standardInfo1">
+            <label for="standardInfo1">Sudah menjelaskan bahwa unit standar sudah termasuk plafon dan lampu</label>
         </div>
+    </div>
+    <div id="mezzanineChecklist" style="display: none;">
+        <div class="feature-item">
+            <input type="checkbox" id="mezzanineInfo1" name="mezzanineInfo1">
+            <label for="mezzanineInfo1">Sudah menjelaskan bahwa sekat pintu kaca aluminium tidak termasuk</label>
+        </div>
+        <div class="feature-item">
+            <input type="checkbox" id="mezzanineInfo2" name="mezzanineInfo2">
+            <label for="mezzanineInfo2">Sudah menjelaskan bahwa dapur dan taman tidak termasuk</label>
+        </div>
+    </div>
+    <div id="suiteChecklist" style="display: none;">
+        <div class="feature-item">
+            <input type="checkbox" id="suiteInfo1" name="suiteInfo1">
+            <label for="suiteInfo1">Sudah menjelaskan bahwa canopy tidak termasuk</label>
+        </div>
+    </div>
+</div>
 
                     <!-- Document Requirements -->
                     <div class="document-requirements" id="documentRequirements">
@@ -1327,33 +1327,33 @@
         }
     }
 
-    // Update feature checklist based on house type
-    function updateFeatureChecklist() {
-        const houseType = document.getElementById('houseType').value;
-        const featureChecklist = document.getElementById('featureChecklist');
-        const standardChecklist = document.getElementById('standardChecklist');
-        const mezzanineChecklist = document.getElementById('mezzanineChecklist');
-        const suiteChecklist = document.getElementById('suiteChecklist');
-        
-        // Hide all first
-        standardChecklist.style.display = 'none';
-        mezzanineChecklist.style.display = 'none';
-        suiteChecklist.style.display = 'none';
-        
-        if (houseType.includes('Standar - Subsidi') || houseType.includes('Standar - Komersil')) {
-            featureChecklist.style.display = 'block';
-            if (houseType.includes('Mezzanine')) {
-                mezzanineChecklist.style.display = 'block';
-            } else {
-                standardChecklist.style.display = 'block';
-            }
-        } else if (houseType.includes('Suite')) {
-            featureChecklist.style.display = 'block';
-            suiteChecklist.style.display = 'block';
+   // Update feature checklist based on house type
+function updateFeatureChecklist() {
+    const houseType = document.getElementById('houseType').value;
+    const featureChecklist = document.getElementById('featureChecklist');
+    const standardChecklist = document.getElementById('standardChecklist');
+    const mezzanineChecklist = document.getElementById('mezzanineChecklist');
+    const suiteChecklist = document.getElementById('suiteChecklist');
+    
+    // Hide all first
+    standardChecklist.style.display = 'none';
+    mezzanineChecklist.style.display = 'none';
+    suiteChecklist.style.display = 'none';
+    
+    if (houseType.includes('Standar - Subsidi') || houseType.includes('Standar - Komersil')) {
+        featureChecklist.style.display = 'block';
+        if (houseType.includes('Mezzanine')) {
+            mezzanineChecklist.style.display = 'block';
         } else {
-            featureChecklist.style.display = 'none';
+            standardChecklist.style.display = 'block';
         }
+    } else if (houseType.includes('Suite')) {
+        featureChecklist.style.display = 'block';
+        suiteChecklist.style.display = 'block';
+    } else {
+        featureChecklist.style.display = 'none';
     }
+}
 
     // DTI Calculation
     function calculateDTI() {
