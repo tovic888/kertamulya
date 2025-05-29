@@ -942,51 +942,51 @@
     </div>
 
     <script>
-        // Data angsuran berdasarkan tipe rumah dan tenor
-        const installmentData = {
-            "Standar - Subsidi 166jt": {
-                "5": 2982000,
-                "10": 1675835,
-                "15": 1249454,
-                "20": 1043000
-            },
-            "Standar - Komersil 168jt": {
-                "5": 3616968,
-                "10": 1233234,
-                "15": 1789000,
-                "20": 1644000
-            },
-            "Standar - Komersil Mezzanine 208jt": {
-                "5": 4396596,
-                "10": 2714602,
-                "15": 2173526,
-                "20": 1997513
-            },
-            "Suite - 277jt": {
-                "5": 4396596,
-                "10": 3726900,
-                "15": 2984051,
-                "20": 2742402
-            },
-            "Premium - 408jt": {
-                "5": 8953640,
-                "10": 5528270,
-                "15": 4426371,
-                "20": 4067923
-            }
-        };
+      // Data angsuran berdasarkan tipe rumah dan tenor
+const installmentData = {
+    "Standar - Subsidi 166jt": {
+        "5": 2982000,
+        "10": 1675835,
+        "15": 1249454,
+        "20": 1043000
+    },
+    "Standar - Komersil 168jt": {
+        "5": 3616968,
+        "10": 1233234,
+        "15": 1789000,
+        "20": 1644000
+    },
+    "Standar - Komersil Mezzanine 208jt": {
+        "5": 4396596,
+        "10": 2714602,
+        "15": 2173526,
+        "20": 1997513
+    },
+    "Suite - 277jt": {
+        "5": 4396596,
+        "10": 3726900,
+        "15": 2984051,
+        "20": 2742402
+    },
+    "Premium - 408jt": {
+        "5": 8953640,
+        "10": 5528270,
+        "15": 4426371,
+        "20": 4067923
+    }
+};
 
-        // Format input nominal dengan titik dan numeric keyboard
-        function formatNumberInput(input) {
-            input.addEventListener('input', function(e) {
-                let value = this.value.replace(/[^0-9]/g, '');
-                if (value.length > 3) {
-                    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                }
-                this.value = value;
-            });
-            input.setAttribute('inputmode', 'numeric');
+// Format input nominal dengan titik dan numeric keyboard
+function formatNumberInput(input) {
+    input.addEventListener('input', function(e) {
+        let value = this.value.replace(/[^0-9]/g, '');
+        if (value.length > 3) {
+            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
+        this.value = value;
+    });
+    input.setAttribute('inputmode', 'numeric');
+}
 
 // Fungsi untuk mengubah format angka dengan titik ke angka biasa
 function parseFormattedNumber(formattedNumber) {
@@ -1144,7 +1144,7 @@ document.getElementById('paymentMethod').addEventListener('change', function() {
                 document.getElementById('documentRequirements').style.display = 'none';
                 return;
             }
-            document.getElementById('incomeHint').textContent = 'Minimal Rp3.000.000 - Maksimal Rp12.000.000';
+            document.getElementById('incomeHint').textContent = 'Minimal Rp2.500.000 - Maksimal Rp12.000.000';
         } else {
             const houseType = document.getElementById('houseType').value;
             if (houseType === 'Standar - Subsidi 166jt') {
@@ -1327,6 +1327,7 @@ function calculateInstallment() {
         calculateDTI();
     }
 }
+
 // DTI Calculation
 function calculateDTI() {
     const income = parseFormattedNumber(document.getElementById('customerIncome').value);
@@ -1338,10 +1339,10 @@ function calculateDTI() {
     
     // Validasi khusus KPR Subsidi
     if (paymentMethod === 'KPR Subsidi') {
-        if (income < 3000000 || income > 12000000) {
+        if (income < 2500000 || income > 12000000) {
             document.getElementById('approvalResult').textContent = "TIDAK DISETUJUI";
             document.getElementById('approvalResult').className = "result-approval rejected";
-            document.getElementById('approvalNotes').textContent = "Penghasilan tidak memenuhi syarat KPR Subsidi (Rp3.000.000 - Rp12.000.000)";
+            document.getElementById('approvalNotes').textContent = "Penghasilan tidak memenuhi syarat KPR Subsidi (Rp2.500.000 - Rp12.000.000)";
             return;
         }
     }
@@ -1462,7 +1463,6 @@ function updateApprovalResult(dtiRatio, creditStatus, lateFrequency, paymentMeth
     approvalNotes.textContent = notes;
 }
 
-
 // Income info modal
 let incomeInfoShown = false;
 document.getElementById('customerIncome').addEventListener('focus', function() {
@@ -1528,8 +1528,8 @@ function validateForm() {
         const paymentMethod = document.getElementById('paymentMethod').value;
         const income = parseFormattedNumber(document.getElementById('customerIncome').value);
         
-        if (paymentMethod === 'KPR Subsidi' && (income < 3000000 || income > 12000000)) {
-            alert('Untuk KPR Subsidi, penghasilan harus antara Rp3.000.000 - Rp12.000.000');
+        if (paymentMethod === 'KPR Subsidi' && (income < 2500000 || income > 12000000)) {
+            alert('Untuk KPR Subsidi, penghasilan harus antara Rp2.500.000 - Rp12.000.000');
             document.getElementById('customerIncome').focus();
             return false;
         }
