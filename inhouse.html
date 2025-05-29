@@ -784,7 +784,7 @@
                     <div class="result-box">
                         <div class="result-title">Perhitungan Angsuran KPR</div>
                         <div id="installmentResult">-</div>
-                        <div class="hint">Biaya administrasi bank: Rp2.500.000 - Rp4.000.000 (untuk asuransi dan penahanan angsuran)</div>
+                        <div class="hint">Biaya administrasi bank: Rp2.500.000 - Rp4.000.000 (untuk asuransi dan Hold angsuran Antara 1X atau 2X di akhir)</div>
                     </div>
 
                     <!-- Beban Cicilan -->
@@ -1327,7 +1327,6 @@ function calculateInstallment() {
         calculateDTI();
     }
 }
-
 // DTI Calculation
 function calculateDTI() {
     const income = parseFormattedNumber(document.getElementById('customerIncome').value);
@@ -1353,11 +1352,8 @@ function calculateDTI() {
     if (income <= 0 || installment <= 0) return;
     
     // Perhitungan DTI yang benar
-    let availableIncome = income - debt;
-    if (availableIncome <= 0) availableIncome = income; // Jaga-jaga jika cicilan > penghasilan
-    
-    let totalDebtPayment = installment;
-    let dtiRatio = (totalDebtPayment / availableIncome) * 100;
+    let totalDebtPayment = installment + debt;
+    let dtiRatio = (totalDebtPayment / income) * 100;
     let adjustmentFactor = 1;
     
     // Adjust DTI untuk riwayat kredit buruk
@@ -1376,9 +1372,9 @@ function calculateDTI() {
     
     document.getElementById('dtiResult').innerHTML = `
         <p>Penghasilan: Rp${income.toLocaleString('id-ID')}/bulan</p>
-        ${debt > 0 ? `<p>Dikurangi cicilan lain: Rp${debt.toLocaleString('id-ID')}/bulan</p>` : ''}
-        <p>Penghasilan tersedia: Rp${availableIncome.toLocaleString('id-ID')}/bulan</p>
         <p>Cicilan KPR: Rp${installment.toLocaleString('id-ID')}/bulan</p>
+        <p>Beban Cicilan Lain: Rp${debt.toLocaleString('id-ID')}/bulan</p>
+        <p>Total Beban: Rp${totalDebtPayment.toLocaleString('id-ID')}/bulan</p>
         <p><strong>DTI: ${dtiRatio.toFixed(1)}%</strong></p>
         ${creditStatus === 'Pernah Terlambat' ? `<p class="hint">* DTI disesuaikan dengan faktor risiko kredit (${adjustmentFactor}x)</p>` : ''}
     `;
@@ -1465,6 +1461,7 @@ function updateApprovalResult(dtiRatio, creditStatus, lateFrequency, paymentMeth
     approvalResult.className = `result-approval ${statusClass}`;
     approvalNotes.textContent = notes;
 }
+
 
 // Income info modal
 let incomeInfoShown = false;
