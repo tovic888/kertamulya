@@ -936,8 +936,8 @@
         </div>
     </div>
 
-    <script>
-         // Data angsuran berdasarkan tipe rumah dan tenor
+   <script>
+    // Data angsuran berdasarkan tipe rumah dan tenor
     const installmentData = {
         "Standar - Subsidi 166jt": {
             "5": 2982000,
@@ -1273,7 +1273,7 @@
         }
     });
 
-    // Simplified credit status options
+    // Credit status change handler
     document.querySelectorAll('input[name="creditStatus"]').forEach(radio => {
         radio.addEventListener('change', function() {
             const lateFrequencySelect = document.getElementById('lateFrequency');
@@ -1367,8 +1367,9 @@
         // Validate income for KPR Subsidi
         if (paymentMethod === 'KPR Subsidi') {
             if (income < 3000000 || income > 12000000) {
-                alert('Untuk KPR Subsidi, penghasilan harus antara Rp3.000.000 - Rp12.000.000');
-                document.getElementById('customerIncome').focus();
+                document.getElementById('approvalResult').textContent = "TIDAK DISETUJUI";
+                document.getElementById('approvalResult').className = "result-approval rejected";
+                document.getElementById('approvalNotes').textContent = "Penghasilan tidak memenuhi syarat KPR Subsidi (Rp3.000.000 - Rp12.000.000)";
                 return;
             }
         }
@@ -1445,7 +1446,7 @@
         
         // Adjust base DTI for credit history
         if (creditStatus === 'Pernah Terlambat') {
-            baseDTI = dtiRatio * 0.8; // Give some buffer for credit history
+            baseDTI = dtiRatio * 1.2; // Increase DTI for bad credit history
         }
         
         if (baseDTI > 40) {
@@ -1557,50 +1558,7 @@
             return false;
         }
         
-        // Validate feature checklists if visible
-        const featureChecklist = document.getElementById('featureChecklist');
-        if (featureChecklist.style.display === 'block') {
-            const houseType = document.getElementById('houseType').value;
-            let allChecked = true;
-            
-            if (houseType.includes('Mezzanine')) {
-                allChecked = document.getElementById('mezzanineInfo1').checked && 
-                             document.getElementById('mezzanineInfo2').checked;
-            } else if (houseType.includes('Suite')) {
-                allChecked = document.getElementById('suiteInfo1').checked;
-            } else if (houseType.includes('Standar - Subsidi') || houseType.includes('Standar - Komersil')) {
-                allChecked = document.getElementById('standardInfo1').checked;
-            }
-            
-            if (!allChecked) {
-                alert('Harap centang semua checklist penjelasan fitur untuk tipe rumah yang dipilih');
-                return false;
-            }
-        }
-        
         return true;
-    }
-
-    // Close modal function
-    function closeModal() {
-        document.getElementById('successModal').style.display = 'none';
-        document.getElementById('inhouseForm').reset();
-        marketingSigPad.clear();
-        document.getElementById('customerPhotoPreview').style.display = 'none';
-        document.getElementById('marketingSignatureData').value = '';
-        document.getElementById('kprSection').style.display = 'none';
-        document.getElementById('documentRequirements').style.display = 'none';
-        document.getElementById('dtiResult').textContent = '-';
-        document.getElementById('approvalResult').textContent = '-';
-        document.getElementById('approvalResult').className = 'result-approval';
-        document.getElementById('approvalNotes').textContent = '';
-        document.getElementById('installmentResult').textContent = '-';
-        document.getElementById('dpInfo').style.display = 'none';
-        document.getElementById('bankRecommendation').style.display = 'none';
-        document.getElementById('creditStatusGroup').style.display = 'none';
-        document.getElementById('visitDate').valueAsDate = new Date();
-        document.getElementById('featureChecklist').style.display = 'none';
-        incomeInfoShown = false;
     }
 
     // Form submission
@@ -1726,6 +1684,6 @@
         document.getElementById('visitDate').valueAsDate = new Date();
     });
     window.addEventListener('resize', resizeCanvas);
-    </script>
+</script>
 </body>
 </html>
