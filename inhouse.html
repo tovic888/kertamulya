@@ -654,7 +654,7 @@
         <div class="form-container">
             <h2 class="form-title">Form Laporan Inhouse Marketing</h2>
             
-            <form id="inhouseForm" action="https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec" method="POST" enctype="multipart/form-data">
+           <form id="inhouseForm" action="https://formcarry.com/s/s7UR4q73ZMl" method="POST" enctype="multipart/form-data">
 
                 <div class="form-grid">
                     <!-- Kolom 1 -->
@@ -1603,7 +1603,7 @@ document.getElementById('inhouseForm').addEventListener('submit', function(e) {
                   parseFloat(document.getElementById('dtiResult').textContent.split('DTI: ')[1].split('%')[0]) : 0,
         approvalResult: document.getElementById('approvalResult').textContent,
         bankRecommendation: document.getElementById('bankRecommendationText').textContent || '',
-        featureChecklist: getFeatureChecklistData()
+        featureChecklist: JSON.stringify(getFeatureChecklistData())
     };
 
     const customerPhotoFile = document.getElementById('customerPhoto').files[0];
@@ -1618,30 +1618,27 @@ document.getElementById('inhouseForm').addEventListener('submit', function(e) {
     }
 });
 
-function getFeatureChecklistData() {
-    const houseType = document.getElementById('houseType').value;
-    let checklistData = {
-        stockInfo: document.getElementById('stockInfo').checked
-    };
-    
-    if (houseType.includes('Standar - Subsidi') || houseType.includes('Standar - Komersil')) {
-        checklistData.standardInfo1 = document.getElementById('standardInfo1').checked;
-    } else if (houseType.includes('Suite') || houseType.includes('Premium')) {
-        checklistData.suitePremiumInfo1 = document.getElementById('suitePremiumInfo1').checked;
-    }
-    
-    return checklistData;
-}
-
 function submitFormData(formData) {
-    fetch("https://script.google.com/macros/s/AKfycbzqbPUqf4y8i7NjH_f-VzwVXfZf3m-x8x4XLAJObNf7-XmyEAQGVpUuX5J_LSg8pu-c/exec", {
+    // Convert formData object to FormData for file upload support
+    const formDataToSend = new FormData();
+    
+    // Append all form fields
+    for (const key in formData) {
+        if (key === 'customerPhoto' && formData[key]) {
+            // Convert base64 to blob for file upload
+            const blob = dataURLtoBlob(formData[key]);
+            formDataToSend.append(key, blob, 'customer_photo.jpg');
+        } else {
+            formDataToSend.append(key, formData[key]);
+        }
+    }
+
+    fetch("https://formcarry.com/s/s7UR4q73ZMl", {
         method: "POST",
-        headers: { 
-            "Content-Type": "application/json",
+        body: formDataToSend,
+        headers: {
             "Accept": "application/json"
-        },
-        body: JSON.stringify(formData),
-        mode: "no-cors"
+        }
     })
     .then(response => {
         if (!response.ok) {
@@ -1650,10 +1647,17 @@ function submitFormData(formData) {
         return response.json();
     })
     .then(data => {
-        if (data.success) {
-            document.getElementById('successModal').style.display = 'flex';
+        if (data.status === "success") {
+            alert('Formulir berhasil dikirim!');
+            // Optionally reset the form
+            document.getElementById('inhouseForm').reset();
+            // Reset signature pad
+            marketingSigPad.clear();
+            document.getElementById('marketingSignatureData').value = '';
+            // Hide photo preview
+            document.getElementById('customerPhotoPreview').style.display = 'none';
         } else {
-            throw new Error(data.error || 'Gagal mengirim formulir');
+            throw new Error(data.message || 'Gagal mengirim formulir');
         }
     })
     .catch(error => {
@@ -1665,23 +1669,20 @@ function submitFormData(formData) {
     });
 }
 
-function readFileAsBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-        reader.readAsDataURL(file);
-    });
+// Helper function to convert base64 to blob
+function dataURLtoBlob(dataurl) {
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    
+    return new Blob([u8arr], { type: mime });
 }
-
-// Initialize on load and resize
-window.addEventListener('load', function() {
-    resizeCanvas();
-    document.getElementById('visitDate').valueAsDate = new Date();
-    updateFeatureChecklist();
-});
-
-window.addEventListener('resize', resizeCanvas);
 </script>
 </body>
 </html>
