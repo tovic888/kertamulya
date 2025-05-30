@@ -640,23 +640,8 @@
             font-size: 1.2rem;
         }
 
-        /* Style for referral source */
-        .referral-source {
-            margin-top: 1rem;
-        }
-
-        .referral-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .referral-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    
+        
     </style>
 </head>
 <body>
@@ -743,32 +728,17 @@
                     </div>
                 </div>
 
-                <!-- Referral Source -->
-                <div class="form-group referral-source">
-                    <label for="referralSource" class="required">Mengetahui Kertamulya Residence dari:</label>
-                    <div class="referral-options">
-                        <div class="referral-option">
-                            <input type="radio" id="referralOnline" name="referralSource" value="Iklan Online" required>
-                            <label for="referralOnline">Iklan Online</label>
-                        </div>
-                        <div class="referral-option">
-                            <input type="radio" id="referralBrochure" name="referralSource" value="Brosur/Flyer">
-                            <label for="referralBrochure">Brosur/Flyer</label>
-                        </div>
-                        <div class="referral-option">
-                            <input type="radio" id="referralFriend" name="referralSource" value="Teman">
-                            <label for="referralFriend">Teman</label>
-                        </div>
-                        <div class="referral-option">
-                            <input type="radio" id="referralWhatsApp" name="referralSource" value="Broadcast WhatsApp">
-                            <label for="referralWhatsApp">Broadcast WhatsApp</label>
-                        </div>
-                        <div class="referral-option">
-                            <input type="radio" id="referralDirect" name="referralSource" value="Langsung Kunjungan">
-                            <label for="referralDirect">Langsung Kunjungan</label>
-                        </div>
-                    </div>
-                </div>
+              <div class="form-group">
+    <label for="referralSource" class="required">Mengetahui Kertamulya Residence dari:</label>
+    <select id="referralSource" name="referralSource" class="form-control" required>
+        <option value="" selected disabled>Pilih Sumber</option>
+        <option value="Iklan Online">Iklan Online</option>
+        <option value="Brosur/Flyer">Brosur/Flyer</option>
+        <option value="Teman">Teman</option>
+        <option value="Broadcast WhatsApp">Broadcast WhatsApp</option>
+        <option value="Langsung Kunjungan">Langsung Kunjungan</option>
+    </select>
+</div>
 
                 <!-- Feature Disclosure Checklist -->
                 <div class="feature-checklist" id="featureChecklist">
@@ -1594,11 +1564,12 @@ function validateForm() {
         return false;
     }
     
-    const referralSource = document.querySelector('input[name="referralSource"]:checked');
-    if (!referralSource) {
-        alert('Harap pilih sumber mengetahui Kertamulya Residence');
-        return false;
-    }
+    const referralSource = document.getElementById('referralSource').value;
+if (!referralSource) {
+    alert('Harap pilih sumber mengetahui Kertamulya Residence');
+    document.getElementById('referralSource').focus();
+    return false;
+}
     
     const kprSection = document.getElementById('kprSection');
     if (kprSection.style.display === 'block') {
@@ -1686,7 +1657,7 @@ function setupFormSubmission() {
                 customerCity: document.getElementById('customerCity').value,
                 houseType: document.getElementById('houseType').value,
                 paymentMethod: document.getElementById('paymentMethod').value,
-                referralSource: document.querySelector('input[name="referralSource"]:checked').value,
+                referralSource: document.getElementById('referralSource').value,
                 visitDate: document.getElementById('visitDate').value,
                 marketingName: document.getElementById('marketingName').value,
                 additionalNotes: document.getElementById('additionalNotes').value || '',
