@@ -554,7 +554,9 @@
             </div>
         </div>
     </main>
-
+<button id="google-login" class="btn btn-primary">
+    <i class="fab fa-google"></i> Login dengan Google
+</button>
     <footer class="footer">
         <div class="container">
             <p>© 2025 Kertamulya Residence - AI Caption Generator Properti</p>
@@ -1943,6 +1945,9 @@ function addBioPlatformButtons() {
 
 // Initialize the bio platform buttons
 addBioPlatformButtons();
+document.getElementById('google-login').addEventListener('click', () => {
+    gapi.auth2.getAuthInstance().signIn();
+});
     </script>
 </body>
 </html>
