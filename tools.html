@@ -1659,6 +1659,7 @@ Hubungi marketing:
         // Add 40 more variations...
     ],
     tiktok_bio: [
+};
         "Properti Syariah Kuningan 🏡 DP 0% & Bonus Motor ⚡ #rumahmurah",
         "KPR Syariah Kuningan 🕌 Cicilan 1 jutaan 🔗 Link di bio",
         "Rumah subsidi 168jt DP 0% 🏡 Bonus motor 🏍️ #kuningan",
@@ -1724,45 +1725,49 @@ function generateCaption() {
     let platformCaptions = captions[currentPlatform];
     let availableCaptions = [];
     
+    // Jika platform tidak ada dalam captions
+    if (!platformCaptions) {
+        captionText.textContent = "Platform tidak dikenali";
+        return;
+    }
+    
     if (currentProperty === 'all') {
-        // Combine all property type captions
-        for (const prop in platformCaptions) {
-            if (Array.isArray(platformCaptions[prop])) {
-                availableCaptions = availableCaptions.concat(platformCaptions[prop]);
+        // Gabungkan semua caption untuk property type 'all'
+        if (Array.isArray(platformCaptions)) {
+            availableCaptions = platformCaptions;
+        } else {
+            for (const prop in platformCaptions) {
+                if (Array.isArray(platformCaptions[prop])) {
+                    availableCaptions = availableCaptions.concat(platformCaptions[prop]);
+                }
             }
         }
     } else {
-        availableCaptions = platformCaptions[currentProperty] || platformCaptions.all || [];
+        availableCaptions = platformCaptions[currentProperty] || [];
     }
     
-    // Special handling for Instagram Bio and TikTok Bio
-    if (currentPlatform === 'instagram_bio') {
-        availableCaptions = captions.instagram_bio;
-    } else if (currentPlatform === 'tiktok_bio') {
-        availableCaptions = captions.tiktok_bio;
+    // Jika tidak ada caption yang tersedia
+    if (availableCaptions.length === 0) {
+        availableCaptions = ["Tidak ada caption yang tersedia untuk kombinasi ini"];
     }
     
-    // Randomly select a caption
-    if (availableCaptions.length > 0) {
-        const randomIndex = Math.floor(Math.random() * availableCaptions.length);
-        let newCaption = availableCaptions[randomIndex];
-        
-        // Special formatting for OLX (remove emoji and phone numbers)
-        if (currentPlatform === 'olx') {
-            newCaption = newCaption.replace(/[\u{1F600}-\u{1F6FF}]/gu, '');
-            newCaption = newCaption.replace(/(\d{3})\d{7}/g, '[nomor tersedia di website]');
-        }
-        
-        // Apply fade-in animation
-        captionText.classList.remove('fade-in');
-        void captionText.offsetWidth; // Trigger reflow
-        captionText.classList.add('fade-in');
-        
-        // Update caption text
-        captionText.textContent = newCaption;
-    } else {
-        captionText.textContent = "No captions available for this combination";
+    // Pilih caption secara acak
+    const randomIndex = Math.floor(Math.random() * availableCaptions.length);
+    let newCaption = availableCaptions[randomIndex];
+    
+    // Format khusus untuk OLX
+    if (currentPlatform === 'olx') {
+        newCaption = newCaption.replace(/[\u{1F600}-\u{1F6FF}]/gu, '');
+        newCaption = newCaption.replace(/(\d{3})\d{7}/g, '[nomor tersedia di website]');
     }
+    
+    // Animasi fade-in
+    captionText.classList.remove('fade-in');
+    void captionText.offsetWidth;
+    captionText.classList.add('fade-in');
+    
+    // Update teks caption
+    captionText.textContent = newCaption;
 }
 
 // Copy caption to clipboard
