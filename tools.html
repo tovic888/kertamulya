@@ -573,78 +573,79 @@
     </div>
 <script src="https://apis.google.com/js/api.js"></script>
     <script>
-        // Property database (unchanged from your original)
-const properties = {
-    subsidi: {
-        name: "Standar Subsidi 30/60",
-        price: "168.000.000",
-        originalPrice: "185.000.000",
-        land: "60m²",
-        building: "30m²",
-        rooms: "2 Kamar Tidur + 1 KM",
-        facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
-        sellingPoints: [
-            "Harga Terjangkau untuk Keluarga Muda",
-            "Bonus Motor Listrik setelah 6x Angsuran",
-            "Lingkungan Islami dan Asri",
-            "Dekat Pusat Kota tapi Tetap Nyaman"
-        ],
-        hashtags: ["#rumahsubsidi", "#kprsyariah", "#kuninganmurah", "#propertihalal"]
-    },
-    mezzanine: {
-        name: "Standar + Mezzanine",
-        price: "215.000.000",
-        originalPrice: "235.000.000",
-        land: "60m²",
-        building: "36m² (+6m² mezzanine)",
-        rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
-        facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
-        sellingPoints: [
-            "Ruang Tambahan untuk Kantor/Usaha",
-            "Desain Modern Minimalis",
-            "Bonus Smart TV 32 Inch",
-            "Lingkungan Strategis dekat Pasar"
-        ],
-        hashtags: ["#rumahminimalis", "#kantorrumahan", "#kuninganstrategis", "#investasiproperti"]
-    },
-    suite: {
-        name: "Suite 50/60",
-        price: "325.000.000",
-        originalPrice: "350.000.000",
-        land: "60m²",
-        building: "50m²",
-        rooms: "3 Kamar Tidur + 1 KM + Ruang Keluarga",
-        facilities: ["Masjid Al Fawwaz", "Club House", "Taman Bermain Premium", "Area Parkir Luas", "Security 24 Jam"],
-        sellingPoints: [
-            "Kelas Menengah dengan Fasilitas Premium",
-            "Bonus AC Split untuk Kamar Utama",
-            "Desain Interior Modern",
-            "Lokasi Paling Strategis di Komplek"
-        ],
-        hashtags: ["#rumahmewah", "#hunianpremium", "#kuninganeksklusif", "#propertibagus"]
-    },
-    premium: {
-        name: "Premium 50/120",
-        price: "475.000.000",
-        originalPrice: "520.000.000",
-        land: "120m²",
-        building: "50m²",
-        rooms: "3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur",
-        facilities: ["Masjid Al Fawwaz", "Club House Premium", "Taman Bermain VIP", "Area Parkir Pribadi", "Security 24 Jam", "Jalan Lebar 8m"],
-        sellingPoints: [
-            "Investasi Jangka Panjang Terbaik",
-            "Bonus Paket Furnish Minimalis",
-            "Lingkungan Eksklusif",
-            "Potensi Kenaikan Harga 15-20% per Tahun"
-        ],
-        hashtags: ["#rumaheksklusif", "#investasiproperti", "#kuninganpremium", "#propertibisnis"]
-    }
-};
-        // Advanced Caption database (300+ combinations)
-        const captions = {
-            facebook: {
-                all: [
-                    `🏡 PUNYA RUMAH DI KUNINGAN GA PAKAI RIBA? BISA BANGET!
+ // Property database
+    const properties = {
+        subsidi: {
+            name: "Standar Subsidi 30/60",
+            price: "168.000.000",
+            originalPrice: "185.000.000",
+            land: "60m²",
+            building: "30m²",
+            rooms: "2 Kamar Tidur + 1 KM",
+            facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
+            sellingPoints: [
+                "Harga Terjangkau untuk Keluarga Muda",
+                "Bonus Motor Listrik setelah 6x Angsuran",
+                "Lingkungan Islami dan Asri",
+                "Dekat Pusat Kota tapi Tetap Nyaman"
+            ],
+            hashtags: ["#rumahsubsidi", "#kprsyariah", "#kuninganmurah", "#propertihalal"]
+        },
+        mezzanine: {
+            name: "Standar + Mezzanine",
+            price: "215.000.000",
+            originalPrice: "235.000.000",
+            land: "60m²",
+            building: "36m² (+6m² mezzanine)",
+            rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
+            facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
+            sellingPoints: [
+                "Ruang Tambahan untuk Kantor/Usaha",
+                "Desain Modern Minimalis",
+                "Bonus Smart TV 32 Inch",
+                "Lingkungan Strategis dekat Pasar"
+            ],
+            hashtags: ["#rumahminimalis", "#kantorrumahan", "#kuninganstrategis", "#investasiproperti"]
+        },
+        suite: {
+            name: "Suite 50/60",
+            price: "325.000.000",
+            originalPrice: "350.000.000",
+            land: "60m²",
+            building: "50m²",
+            rooms: "3 Kamar Tidur + 1 KM + Ruang Keluarga",
+            facilities: ["Masjid Al Fawwaz", "Club House", "Taman Bermain Premium", "Area Parkir Luas", "Security 24 Jam"],
+            sellingPoints: [
+                "Kelas Menengah dengan Fasilitas Premium",
+                "Bonus AC Split untuk Kamar Utama",
+                "Desain Interior Modern",
+                "Lokasi Paling Strategis di Komplek"
+            ],
+            hashtags: ["#rumahmewah", "#hunianpremium", "#kuninganeksklusif", "#propertibagus"]
+        },
+        premium: {
+            name: "Premium 50/120",
+            price: "475.000.000",
+            originalPrice: "520.000.000",
+            land: "120m²",
+            building: "50m²",
+            rooms: "3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur",
+            facilities: ["Masjid Al Fawwaz", "Club House Premium", "Taman Bermain VIP", "Area Parkir Pribadi", "Security 24 Jam", "Jalan Lebar 8m"],
+            sellingPoints: [
+                "Investasi Jangka Panjang Terbaik",
+                "Bonus Paket Furnish Minimalis",
+                "Lingkungan Eksklusif",
+                "Potensi Kenaikan Harga 15-20% per Tahun"
+            ],
+            hashtags: ["#rumaheksklusif", "#investasiproperti", "#kuninganpremium", "#propertibisnis"]
+        }
+    };
+
+    // Advanced Caption database (300+ combinations)
+    const captions = {
+        facebook: {
+            all: [
+                `🏡 PUNYA RUMAH DI KUNINGAN GA PAKAI RIBA? BISA BANGET!
 
 DP 0% via Bank Syariah
 Cicilan mulai Rp1.050.000/bulan
@@ -661,7 +662,7 @@ Bonus Motor Listrik setelah 6x angsuran 🏍️⚡
 https://bimulialand.com/kertamulya.html
 WA: 08977771080 (Marketing)`,
 
-                    `🔥 NUNGGU APA LAGI? PROMO TERBESAR TAHUN INI!
+                `🔥 NUNGGU APA LAGI? PROMO TERBESAR TAHUN INI!
 
 Perumahan Islami Kertamulya Residence Kuningan hadir dengan konsep Green Living dan pembiayaan syariah 100% halal.
 
@@ -679,7 +680,7 @@ Perumahan Islami Kertamulya Residence Kuningan hadir dengan konsep Green Living 
 📞 Langsung hubungi:
 08977771080 (Marketing Resmi)`,
 
-                    `🚀 GAJI UMR BISA PUNYA RUMAH? DI KERTAMULYA BISA!
+                `🚀 GAJI UMR BISA PUNYA RUMAH? DI KERTAMULYA BISA!
 
 KPR Syariah dengan cicilan mulai Rp1.050.000/bulan (lebih murah dari kontrak kosan!) di Kertamulya Residence Kuningan.
 
@@ -694,9 +695,9 @@ KPR Syariah dengan cicilan mulai Rp1.050.000/bulan (lebih murah dari kontrak kos
 
 📲 Kunjungi website resmi:
 https://bimulialand.com/kertamulya.html`
-                ],
-                subsidi: [
-                    `🏡 RUMAH SUBSIDI TERBAIK DI KUNINGAN!
+            ],
+            subsidi: [
+                `🏡 RUMAH SUBSIDI TERBAIK DI KUNINGAN!
 
 Tipe Standar 30/60
 Harga Promo: Rp168.000.000 (dari Rp185.000.000)
@@ -713,9 +714,9 @@ Harga Promo: Rp168.000.000 (dari Rp185.000.000)
 
 📲 Info lebih lanjut:
 WA: 08977771080 (Marketing)`
-                ],
-                mezzanine: [
-                    `🔥 RUMAH MINIMALIS DENGAN RUANG TAMBAHAN!
+            ],
+            mezzanine: [
+                `🔥 RUMAH MINIMALIS DENGAN RUANG TAMBAHAN!
 
 Tipe Standar + Mezzanine 36m²
 Harga Promo: Rp215.000.000 (dari Rp235.000.000)
@@ -734,9 +735,9 @@ Harga Promo: Rp215.000.000 (dari Rp235.000.000)
 
 📞 Hubungi marketing:
 08977771080`
-                ],
-                suite: [
-                    `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM!
+            ],
+            suite: [
+                `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM!
 
 Tipe Suite 50/60
 Harga Promo: Rp325.000.000 (dari Rp350.000.000)
@@ -756,9 +757,9 @@ Fasilitas:
 
 📲 Info lebih lanjut:
 https://bimulialand.com/kertamulya.html`
-                ],
-                premium: [
-                    `🚀 INVESTASI PROPERTI TERBAIK DI KUNINGAN!
+            ],
+            premium: [
+                `🚀 INVESTASI PROPERTI TERBAIK DI KUNINGAN!
 
 Tipe Premium 50/120
 Harga Promo: Rp475.000.000 (dari Rp520.000.000)
@@ -778,11 +779,11 @@ Keunggulan:
 
 📞 Langsung hubungi:
 08977771080 (Marketing)`
-                ]
-            },
-            tiktok: {
-                all: [
-                    `Punya rumah sendiri dengan gaji UMR? Bisa banget! 😱
+            ]
+        },
+        tiktok: {
+            all: [
+                `Punya rumah sendiri dengan gaji UMR? Bisa banget! 😱
 
 DP 0% 
 Cicilan 1 jutaan
@@ -794,7 +795,7 @@ Bonus motor listrik 🏍️⚡
 
 #rumahmurah #kprsyariah #kuningan #fyp`,
 
-                    `Ga perlu nunggu kaya dulu buat punya rumah! 🏡
+                `Ga perlu nunggu kaya dulu buat punya rumah! 🏡
 
 Booking fee 500rb
 Langsung proses KPR Syariah
@@ -802,7 +803,7 @@ Bonus motor listrik lho 🏍️
 
 #propertimurah #dp0persen #kuningan #fypシ`,
 
-                    `Rumah subsidi di Kuningan cuma 168jt! 😳
+                `Rumah subsidi di Kuningan cuma 168jt! 😳
 
 2 kamar tidur
 1 kamar mandi
@@ -811,9 +812,9 @@ Carport + taman
 Bonus motor listrik setelah 6x bayar cicilan 🏍️
 
 #rumahsubsidi #kuningan #propertymurah #fyp`
-                ],
-                subsidi: [
-                    `Rumah subsidi 168jt di Kuningan bisa KPR Syariah! 😱
+            ],
+            subsidi: [
+                `Rumah subsidi 168jt di Kuningan bisa KPR Syariah! 😱
 
 DP 0%
 Cicilan 1 jutaan
@@ -821,7 +822,7 @@ Bonus motor listrik 🏍️
 
 #rumahmurah #kprsyariah #kuningan #fyp`,
 
-                    `Gaji UMR bisa punya rumah? Bisa! 🏡
+                `Gaji UMR bisa punya rumah? Bisa! 🏡
 
 KPR Syariah Kertamulya:
 - DP 0%
@@ -829,9 +830,9 @@ KPR Syariah Kertamulya:
 - Bonus motor listrik
 
 #rumahsubsidi #kuningan #fypシ`
-                ],
-                mezzanine: [
-                    `Rumah minimalis ada ruang tambahan buat usaha! 💡
+            ],
+            mezzanine: [
+                `Rumah minimalis ada ruang tambahan buat usaha! 💡
 
 Tipe mezzanine 36m²
 Harga 215jt
@@ -839,7 +840,7 @@ Bonus smart TV 📺
 
 #rumahminimalis #kuningan #fyp`,
 
-                    `Punya kantor kecil di rumah? Bisa banget! 🏡💼
+                `Punya kantor kecil di rumah? Bisa banget! 🏡💼
 
 Rumah tipe mezzanine Kertamulya:
 - Ruang tambahan 6m²
@@ -847,9 +848,9 @@ Rumah tipe mezzanine Kertamulya:
 - Bonus TV 32 inch
 
 #rumahkantor #kuningan #fypシ`
-                ],
-                suite: [
-                    `Hunian premium di Kuningan cuma 325jt! 😱
+            ],
+            suite: [
+                `Hunian premium di Kuningan cuma 325jt! 😱
 
 3 kamar tidur
 1 km + ruang keluarga
@@ -857,7 +858,7 @@ Bonus AC split ❄️
 
 #rumahpremium #kuningan #fyp`,
 
-                    `KPR Syariah untuk rumah 3 kamar? Bisa! 🏡
+                `KPR Syariah untuk rumah 3 kamar? Bisa! 🏡
 
 Tipe Suite 50/60:
 - Harga 325jt
@@ -865,9 +866,9 @@ Tipe Suite 50/60:
 - Fasilitas club house
 
 #rumah3kamar #kprsyariah #fypシ`
-                ],
-                premium: [
-                    `Investasi properti terbaik di Kuningan! 📈
+            ],
+            premium: [
+                `Investasi properti terbaik di Kuningan! 📈
 
 Tipe Premium 50/120:
 - Tanah 120m²
@@ -876,7 +877,7 @@ Tipe Premium 50/120:
 
 #investasiproperti #kuningan #fyp`,
 
-                    `Rumah eksklusif di Kuningan dengan potensi kenaikan harga 20% per tahun! 🚀
+                `Rumah eksklusif di Kuningan dengan potensi kenaikan harga 20% per tahun! 🚀
 
 Tipe Premium Kertamulya:
 - Harga 475jt
@@ -884,11 +885,11 @@ Tipe Premium Kertamulya:
 - Security 24 jam
 
 #rumaheksklusif #investasiproperti #fypシ`
-                ]
-            },
-            instagram: {
-                all: [
-                    `🌿 HUNIAN ISLAMI DI TENGAH KOTA 🏡
+            ]
+        },
+        instagram: {
+            all: [
+                `🌿 HUNIAN ISLAMI DI TENGAH KOTA 🏡
 
 Kertamulya Residence - Perumahan pertama di Kuningan dengan konsep Green Living & nilai-nilai Islami
 
@@ -909,7 +910,7 @@ Kertamulya Residence - Perumahan pertama di Kuningan dengan konsep Green Living 
 
 #RumahIslami #Kuningan #PropertySyariah #GreenLiving`,
 
-                    `🏡 PUNYA RUMAH TANPA RIBA? BISA!
+                `🏡 PUNYA RUMAH TANPA RIBA? BISA!
 
 KPR Syariah di Kertamulya Residence Kuningan:
 ✔️ Tanpa DP
@@ -930,7 +931,7 @@ KPR Syariah di Kertamulya Residence Kuningan:
 
 #KPRSyariah #RumahHalal #InvestasiProperti #KuninganHits`,
 
-                    `🔥 PROMO GILA! DP 0% + BONUS MOTOR 🏍️
+                `🔥 PROMO GILA! DP 0% + BONUS MOTOR 🏍️
 
 Kertamulya Residence - Hunian Islami di Kuningan
 
@@ -947,9 +948,9 @@ Kertamulya Residence - Hunian Islami di Kuningan
 08977771080 (Marketing)
 
 #RumahMurah #PropertyKuningan #InvestasiMasaDepan #DP0Persen`
-                ],
-                subsidi: [
-                    `🏡 SOLUSI RUMAH UNTUK KELUARGA MUDA
+            ],
+            subsidi: [
+                `🏡 SOLUSI RUMAH UNTUK KELUARGA MUDA
 
 Tipe Standar Subsidi 30/60
 Harga Promo: Rp168.000.000 (dari Rp185.000.000)
@@ -968,7 +969,7 @@ Harga Promo: Rp168.000.000 (dari Rp185.000.000)
 
 #RumahSubsidi #Kuningan #PropertyMurah`,
 
-                    `🚀 PUNYA RUMAH DENGAN GAJI UMR? BISA!
+                `🚀 PUNYA RUMAH DENGAN GAJI UMR? BISA!
 
 KPR Syariah untuk Tipe Standar Subsidi 30/60:
 ✔️ DP 0%
@@ -986,9 +987,9 @@ KPR Syariah untuk Tipe Standar Subsidi 30/60:
 @kertamulya_residence
 
 #RumahMurah #KPRSyariah #KuninganHits`
-                ],
-                mezzanine: [
-                    `💡 RUMAH MINIMALIS DENGAN RUANG USAHA
+            ],
+            mezzanine: [
+                `💡 RUMAH MINIMALIS DENGAN RUANG USAHA
 
 Tipe Standar + Mezzanine 36m²
 Harga Promo: Rp215.000.000
@@ -1010,7 +1011,7 @@ Harga Promo: Rp215.000.000
 
 #RumahMinimalis #Kuningan #HomeOffice`,
 
-                    `🏡 RUMAH DENGAN RUANG TAMBAHAN UNTUK BISNIS
+                `🏡 RUMAH DENGAN RUANG TAMBAHAN UNTUK BISNIS
 
 Tipe Mezzanine Kertamulya Residence:
 ✔️ Hanya Rp215jt
@@ -1028,9 +1029,9 @@ Tipe Mezzanine Kertamulya Residence:
 @kertamulya_residence
 
 #RumahUsaha #Kuningan #BisnisRumahan`
-                ],
-                suite: [
-                    `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM
+            ],
+            suite: [
+                `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM
 
 Tipe Suite 50/60
 Harga Promo: Rp325.000.000
@@ -1052,7 +1053,7 @@ Harga Promo: Rp325.000.000
 
 #RumahPremium #Kuningan #HunianEksklusif`,
 
-                    `🚀 NAIK KELAS KE RUMAH 3 KAMAR TIDUR
+                `🚀 NAIK KELAS KE RUMAH 3 KAMAR TIDUR
 
 Tipe Suite 50/60 Kertamulya Residence:
 ✔️ Harga Rp325jt
@@ -1067,9 +1068,9 @@ Tipe Suite 50/60 Kertamulya Residence:
 @kertamulya_residence
 
 #Rumah3Kamar #Kuningan #KeluargaMuda`
-                ],
-                premium: [
-                    `📈 INVESTASI PROPERTI TERBAIK DI KUNINGAN
+            ],
+            premium: [
+                `📈 INVESTASI PROPERTI TERBAIK DI KUNINGAN
 
 Tipe Premium 50/120
 Harga Promo: Rp475.000.000
@@ -1091,7 +1092,7 @@ Harga Promo: Rp475.000.000
 
 #InvestasiProperti #Kuningan #RumahEksklusif`,
 
-                    `🏡 HUNIAN EKSKLUSIF DI KUNINGAN
+                `🏡 HUNIAN EKSKLUSIF DI KUNINGAN
 
 Tipe Premium Kertamulya Residence:
 ✔️ Tanah 120m²
@@ -1111,11 +1112,11 @@ Tipe Premium Kertamulya Residence:
 @kertamulya_residence
 
 #RumahMewah #Kuningan #HunianEksklusif`
-                ]
-            },
-            olx: {
-                all: [
-                    `Dijual rumah syariah di Kuningan - Kertamulya Residence
+            ]
+        },
+        olx: {
+            all: [
+                `Dijual rumah syariah di Kuningan - Kertamulya Residence
 
 • Tipe: Standar Subsidi 30/60
 • Harga: Rp168.000.000 (promo dari Rp185jt)
@@ -1137,7 +1138,7 @@ Hubungi marketing resmi:
 📞 08977771080
 🌐 https://bimulialand.com/kertamulya.html`,
 
-                    `Rumah baru di Kuningan - Kertamulya Residence
+                `Rumah baru di Kuningan - Kertamulya Residence
 
 • Tipe: Suite 50/60
 • Harga: Rp325.000.000 (promo dari Rp350jt)
@@ -1157,9 +1158,9 @@ Unit terbatas!
 
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-                ],
-                subsidi: [
-                    `Dijual Rumah Subsidi di Kuningan - Kertamulya Residence
+            ],
+            subsidi: [
+                `Dijual Rumah Subsidi di Kuningan - Kertamulya Residence
 
 • Tipe: Standar 30/60
 • Harga: Rp168.000.000 (promo)
@@ -1181,7 +1182,7 @@ Hubungi marketing resmi:
 📞 08977771080
 🌐 https://bimulialand.com/kertamulya.html`,
 
-                    `Rumah Subsidi Terbaik di Kuningan
+                `Rumah Subsidi Terbaik di Kuningan
 
 • Tipe: Standar 30/60
 • Harga: Rp168jt (promo dari Rp185jt)
@@ -1203,9 +1204,9 @@ Keunggulan:
 Booking fee Rp500rb
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-                ],
-                mezzanine: [
-                    `Dijual Rumah Minimalis + Mezzanine di Kuningan
+            ],
+            mezzanine: [
+                `Dijual Rumah Minimalis + Mezzanine di Kuningan
 
 • Tipe: Standar + Mezzanine 36m²
 • Harga: Rp215.000.000
@@ -1227,7 +1228,7 @@ Hubungi marketing resmi:
 📞 08977771080
 🌐 https://bimulialand.com/kertamulya.html`,
 
-                    `Rumah dengan Ruang Tambahan untuk Usaha/Kantor
+                `Rumah dengan Ruang Tambahan untuk Usaha/Kantor
 
 • Tipe: Standar + Mezzanine
 • Harga: Rp215jt (promo)
@@ -1245,9 +1246,9 @@ Stok terbatas!
 
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-                ],
-                suite: [
-                    `Dijual Rumah Mewah di Kuningan - Kertamulya Residence
+            ],
+            suite: [
+                `Dijual Rumah Mewah di Kuningan - Kertamulya Residence
 
 • Tipe: Suite 50/60
 • Harga: Rp325.000.000
@@ -1271,7 +1272,7 @@ Unit terbatas!
 Hubungi marketing resmi:
 📞 08977771080`,
 
-                    `Rumah 3 Kamar Tidur di Kuningan - Kertamulya
+                `Rumah 3 Kamar Tidur di Kuningan - Kertamulya
 
 • Tipe: Suite 50/60
 • Harga: Rp325jt (promo dari Rp350jt)
@@ -1292,9 +1293,9 @@ Proses KPR mudah via:
 
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-                ],
-                premium: [
-                    `Dijual Rumah Eksklusif di Kuningan - Kertamulya Residence
+            ],
+            premium: [
+                `Dijual Rumah Eksklusif di Kuningan - Kertamulya Residence
 
 • Tipe: Premium 50/120
 • Harga: Rp475.000.000
@@ -1317,7 +1318,7 @@ Investasi terbaik dengan potensi kenaikan harga 20% per tahun!
 Hubungi marketing resmi:
 📞 08977771080`,
 
-                    `Rumah Eksklusif Tanah Luas di Kuningan
+                `Rumah Eksklusif Tanah Luas di Kuningan
 
 • Tipe: Premium 50/120
 • Harga: Rp475jt (promo dari Rp520jt)
@@ -1336,11 +1337,11 @@ Hanya tersisa 3 unit!
 
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-                ]
-            },
-            whatsapp: {
-                all: [
-                    `Assalamualaikum wr wb
+            ]
+        },
+        whatsapp: {
+            all: [
+                `Assalamualaikum wr wb
 
 Perkenalkan saya dari tim marketing Kertamulya Residence Kuningan.
 
@@ -1370,7 +1371,7 @@ Atau langsung hubungi:
 Terima kasih
 Wassalamualaikum wr wb`,
 
-                    `Halo!
+                `Halo!
 
 Ada promo spesial dari Kertamulya Residence Kuningan:
 
@@ -1394,7 +1395,7 @@ Info lengkap:
 Salam,
 Tim Marketing Kertamulya Residence`,
 
-                    `Hai!
+                `Hai!
 
 Mau punya rumah di Kuningan dengan cicilan lebih murah dari sewa kosan?
 
@@ -1417,9 +1418,9 @@ Info lebih lanjut:
 📞 08977771080 (Marketing)
 
 Terima kasih`
-                ],
-                subsidi: [
-                    `Assalamualaikum wr wb
+            ],
+            subsidi: [
+                `Assalamualaikum wr wb
 
 Saya dari tim marketing Kertamulya Residence Kuningan.
 
@@ -1446,7 +1447,7 @@ Untuk info lebih lanjut:
 
 Wassalamualaikum wr wb`,
 
-                    `Halo!
+                `Halo!
 
 Promo spesial Rumah Subsidi di Kuningan:
 
@@ -1468,9 +1469,9 @@ Stok tinggal 12 unit!
 
 Hubungi:
 📞 08977771080 (Marketing)`
-                ],
-                mezzanine: [
-                    `Assalamualaikum wr wb
+            ],
+            mezzanine: [
+                `Assalamualaikum wr wb
 
 Perkenalkan saya dari tim marketing Kertamulya Residence.
 
@@ -1500,7 +1501,7 @@ Info lebih lanjut:
 
 Wassalamualaikum wr wb`,
 
-                    `Hai!
+                `Hai!
 
 Ada promo rumah dengan ruang tambahan di Kertamulya Residence:
 
@@ -1517,9 +1518,9 @@ Unit terbatas!
 
 Hubungi marketing:
 📞 08977771080`
-                ],
-                suite: [
-                    `Assalamualaikum wr wb
+            ],
+            suite: [
+                `Assalamualaikum wr wb
 
 Saya dari tim marketing Kertamulya Residence.
 
@@ -1549,7 +1550,7 @@ Info lebih lanjut:
 
 Wassalamualaikum wr wb`,
 
-                    `Halo!
+                `Halo!
 
 Promo hunian premium di Kertamulya Residence:
 
@@ -1569,9 +1570,9 @@ Stok terbatas!
 
 Hubungi:
 📞 08977771080 (Marketing)`
-                ],
-                premium: [
-                    `Assalamualaikum wr wb
+            ],
+            premium: [
+                `Assalamualaikum wr wb
 
 Perkenalkan saya dari tim marketing Kertamulya Residence.
 
@@ -1604,7 +1605,7 @@ Info lebih lanjut:
 
 Wassalamualaikum wr wb`,
 
-                    `Hai!
+                `Hai!
 
 Promo terbatas rumah eksklusif di Kertamulya Residence:
 
