@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kertamulya AI - Generator Caption Properti Viral</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-   
-</script>
     <style>
         :root {
             --primary: #2563eb;
@@ -313,53 +311,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Animations */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header {
-                padding: 1.5rem 0;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            .platform-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
-            }
-
-            .generator-body {
-                padding: 1.5rem;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-        
         /* Asset Selector */
         .asset-selector {
             margin-bottom: 2rem;
@@ -378,6 +329,7 @@
             cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
+            position: relative;
         }
         
         .asset-item:hover {
@@ -422,68 +374,118 @@
             background: rgba(0,0,0,0.3);
         }
 
-.footer {
-    background: var(--dark);
-    color: var(--light);
-    padding: 2rem 0;
-    text-align: center;
-    margin-top: 3rem;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin: 1rem 0;
-    flex-wrap: wrap;
-}
-
-.footer a {
-    color: var(--primary-light);
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.footer a:hover {
-    color: var(--accent);
-}
-
-.copyright {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    margin-top: 1rem;
-}
-   .asset-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .asset-item {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-        }
-        .asset-item img, .asset-item video {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 5px;
-        }
         .download-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 15px;
-            background-color: #4285f4;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: rgba(0,0,0,0.7);
             color: white;
-            text-decoration: none;
+            border: none;
             border-radius: 4px;
-            font-size: 14px;
-        }
-        .download-btn:hover {
-            background-color: #3367d6;
+            padding: 3px 6px;
+            font-size: 12px;
+            cursor: pointer;
+            z-index: 2;
         }
 
+        .footer {
+            background: var(--dark);
+            color: var(--light);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary);
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 0;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .platform-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .generator-body {
+                padding: 1.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .asset-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
     </style>
 </head>
 <body>
@@ -527,18 +529,18 @@
             
             <!-- Asset Selector -->
             <div class="asset-selector">
-    <h3><i class="fas fa-images"></i> Pilih Asset Iklan</h3>
-    <p>Pilih gambar atau video dari Drive Asset untuk disertakan dalam caption</p>
-    <div class="asset-grid" id="assetGrid">
-        <!-- Assets will be loaded here -->
-    </div>
-    <div class="loading-assets" id="loadingAssets" style="display: none;">
-        <div class="loading-spinner"></div>
-    </div>
-    <button class="btn btn-outline" id="loadAssetsBtn">
-        <i class="fas fa-sync-alt"></i> Muat Asset dari Drive lokal
-    </button>
-   </div>
+                <h3><i class="fas fa-images"></i> Pilih Asset Iklan</h3>
+                <p>Pilih gambar atau video dari Drive Asset untuk disertakan dalam caption</p>
+                <div class="asset-grid" id="assetGrid">
+                    <!-- Assets will be loaded here -->
+                </div>
+                <div class="loading-assets" id="loadingAssets" style="display: none;">
+                    <div class="loading-spinner"></div>
+                </div>
+                <button class="btn btn-outline" id="loadAssetsBtn">
+                    <i class="fas fa-sync-alt"></i> Muat Asset dari Folder Lokal
+                </button>
+            </div>
 
             <div class="generator-container">
                 <div class="generator-header">
@@ -560,7 +562,7 @@
                         <button class="btn btn-accent" id="new-caption-btn">
                             <i class="fas fa-magic"></i> Generate Baru
                         </button>
-                       </div>
+                    </div>
                 </div>
             </div>
 
@@ -608,79 +610,79 @@
     </div>
 
     <script>
- // Property database
-    const properties = {
-        subsidi: {
-            name: "Standar Subsidi 30/60",
-            price: "168.000.000",
-            originalPrice: "185.000.000",
-            land: "60m²",
-            building: "30m²",
-            rooms: "2 Kamar Tidur + 1 KM",
-            facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
-            sellingPoints: [
-                "Harga Terjangkau untuk Keluarga Muda",
-                "Bonus Motor Listrik setelah 6x Angsuran",
-                "Lingkungan Islami dan Asri",
-                "Dekat Pusat Kota tapi Tetap Nyaman"
-            ],
-            hashtags: ["#rumahsubsidi", "#kprsyariah", "#kuninganmurah", "#propertihalal"]
-        },
-        mezzanine: {
-            name: "Standar + Mezzanine",
-            price: "215.000.000",
-            originalPrice: "235.000.000",
-            land: "60m²",
-            building: "36m² (+6m² mezzanine)",
-            rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
-            facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
-            sellingPoints: [
-                "Ruang Tambahan untuk Kantor/Usaha",
-                "Desain Modern Minimalis",
-                "Bonus Smart TV 32 Inch",
-                "Lingkungan Strategis dekat Pasar"
-            ],
-            hashtags: ["#rumahminimalis", "#kantorrumahan", "#kuninganstrategis", "#investasiproperti"]
-        },
-        suite: {
-            name: "Suite 50/60",
-            price: "325.000.000",
-            originalPrice: "350.000.000",
-            land: "60m²",
-            building: "50m²",
-            rooms: "3 Kamar Tidur + 1 KM + Ruang Keluarga",
-            facilities: ["Masjid Al Fawwaz", "Club House", "Taman Bermain Premium", "Area Parkir Luas", "Security 24 Jam"],
-            sellingPoints: [
-                "Kelas Menengah dengan Fasilitas Premium",
-                "Bonus AC Split untuk Kamar Utama",
-                "Desain Interior Modern",
-                "Lokasi Paling Strategis di Komplek"
-            ],
-            hashtags: ["#rumahmewah", "#hunianpremium", "#kuninganeksklusif", "#propertibagus"]
-        },
-        premium: {
-            name: "Premium 50/120",
-            price: "475.000.000",
-            originalPrice: "520.000.000",
-            land: "120m²",
-            building: "50m²",
-            rooms: "3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur",
-            facilities: ["Masjid Al Fawwaz", "Club House Premium", "Taman Bermain VIP", "Area Parkir Pribadi", "Security 24 Jam", "Jalan Lebar 8m"],
-            sellingPoints: [
-                "Investasi Jangka Panjang Terbaik",
-                "Bonus Paket Furnish Minimalis",
-                "Lingkungan Eksklusif",
-                "Potensi Kenaikan Harga 15-20% per Tahun"
-            ],
-            hashtags: ["#rumaheksklusif", "#investasiproperti", "#kuninganpremium", "#propertibisnis"]
-        }
-    };
+        // Property database
+        const properties = {
+            subsidi: {
+                name: "Standar Subsidi 30/60",
+                price: "168.000.000",
+                originalPrice: "185.000.000",
+                land: "60m²",
+                building: "30m²",
+                rooms: "2 Kamar Tidur + 1 KM",
+                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
+                sellingPoints: [
+                    "Harga Terjangkau untuk Keluarga Muda",
+                    "Bonus Motor Listrik setelah 6x Angsuran",
+                    "Lingkungan Islami dan Asri",
+                    "Dekat Pusat Kota tapi Tetap Nyaman"
+                ],
+                hashtags: ["#rumahsubsidi", "#kprsyariah", "#kuninganmurah", "#propertihalal"]
+            },
+            mezzanine: {
+                name: "Standar + Mezzanine",
+                price: "215.000.000",
+                originalPrice: "235.000.000",
+                land: "60m²",
+                building: "36m² (+6m² mezzanine)",
+                rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
+                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
+                sellingPoints: [
+                    "Ruang Tambahan untuk Kantor/Usaha",
+                    "Desain Modern Minimalis",
+                    "Bonus Smart TV 32 Inch",
+                    "Lingkungan Strategis dekat Pasar"
+                ],
+                hashtags: ["#rumahminimalis", "#kantorrumahan", "#kuninganstrategis", "#investasiproperti"]
+            },
+            suite: {
+                name: "Suite 50/60",
+                price: "325.000.000",
+                originalPrice: "350.000.000",
+                land: "60m²",
+                building: "50m²",
+                rooms: "3 Kamar Tidur + 1 KM + Ruang Keluarga",
+                facilities: ["Masjid Al Fawwaz", "Club House", "Taman Bermain Premium", "Area Parkir Luas", "Security 24 Jam"],
+                sellingPoints: [
+                    "Kelas Menengah dengan Fasilitas Premium",
+                    "Bonus AC Split untuk Kamar Utama",
+                    "Desain Interior Modern",
+                    "Lokasi Paling Strategis di Komplek"
+                ],
+                hashtags: ["#rumahmewah", "#hunianpremium", "#kuninganeksklusif", "#propertibagus"]
+            },
+            premium: {
+                name: "Premium 50/120",
+                price: "475.000.000",
+                originalPrice: "520.000.000",
+                land: "120m²",
+                building: "50m²",
+                rooms: "3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur",
+                facilities: ["Masjid Al Fawwaz", "Club House Premium", "Taman Bermain VIP", "Area Parkir Pribadi", "Security 24 Jam", "Jalan Lebar 8m"],
+                sellingPoints: [
+                    "Investasi Jangka Panjang Terbaik",
+                    "Bonus Paket Furnish Minimalis",
+                    "Lingkungan Eksklusif",
+                    "Potensi Kenaikan Harga 15-20% per Tahun"
+                ],
+                hashtags: ["#rumaheksklusif", "#investasiproperti", "#kuninganpremium", "#propertibisnis"]
+            }
+        };
 
-    // Advanced Caption database (300+ combinations)
-    const captions = {
-        facebook: {
-            all: [
-                `🏡 PUNYA RUMAH DI KUNINGAN GA PAKAI RIBA? BISA BANGET!
+        // Advanced Caption database (300+ combinations)
+        const captions = {
+            facebook: {
+                all: [
+                    `🏡 PUNYA RUMAH DI KUNINGAN GA PAKAI RIBA? BISA BANGET!
 
 DP 0% via Bank Syariah
 Cicilan mulai Rp1.050.000/bulan
@@ -697,7 +699,7 @@ Bonus Motor Listrik setelah 6x angsuran 🏍️⚡
 https://bimulialand.com/kertamulya.html
 WA: 08977771080 (Marketing)`,
 
-                `🔥 NUNGGU APA LAGI? PROMO TERBESAR TAHUN INI!
+                    `🔥 NUNGGU APA LAGI? PROMO TERBESAR TAHUN INI!
 
 Perumahan Islami Kertamulya Residence Kuningan hadir dengan konsep Green Living dan pembiayaan syariah 100% halal.
 
@@ -715,7 +717,7 @@ Perumahan Islami Kertamulya Residence Kuningan hadir dengan konsep Green Living 
 📞 Langsung hubungi:
 08977771080 (Marketing Resmi)`,
 
-                `🚀 GAJI UMR BISA PUNYA RUMAH? DI KERTAMULYA BISA!
+                    `🚀 GAJI UMR BISA PUNYA RUMAH? DI KERTAMULYA BISA!
 
 KPR Syariah dengan cicilan mulai Rp1.050.000/bulan (lebih murah dari kontrak kosan!) di Kertamulya Residence Kuningan.
 
@@ -730,9 +732,9 @@ KPR Syariah dengan cicilan mulai Rp1.050.000/bulan (lebih murah dari kontrak kos
 
 📲 Kunjungi website resmi:
 https://bimulialand.com/kertamulya.html`
-            ],
-            subsidi: [
-                `🏡 RUMAH SUBSIDI TERBAIK DI KUNINGAN!
+                ],
+                subsidi: [
+                    `🏡 RUMAH SUBSIDI TERBAIK DI KUNINGAN!
 
 Tipe Standar 30/60
 Harga Promo: Rp168.000.000 (dari Rp185.000.000)
@@ -749,9 +751,9 @@ Harga Promo: Rp168.000.000 (dari Rp185.000.000)
 
 📲 Info lebih lanjut:
 WA: 08977771080 (Marketing)`
-            ],
-            mezzanine: [
-                `🔥 RUMAH MINIMALIS DENGAN RUANG TAMBAHAN!
+                ],
+                mezzanine: [
+                    `🔥 RUMAH MINIMALIS DENGAN RUANG TAMBAHAN!
 
 Tipe Standar + Mezzanine 36m²
 Harga Promo: Rp215.000.000 (dari Rp235.000.000)
@@ -770,176 +772,9 @@ Harga Promo: Rp215.000.000 (dari Rp235.000.000)
 
 📞 Hubungi marketing:
 08977771080`
-            ],
-            suite: [
-                `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM!
-
-Tipe Suite 50/60<script>
-    // Property database
-    const properties = {
-        subsidi: {
-            name: "Standar Subsidi 30/60",
-            price: "168.000.000",
-            originalPrice: "185.000.000",
-            land: "60m²",
-            building: "30m²",
-            rooms: "2 Kamar Tidur + 1 KM",
-            facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
-            sellingPoints: [
-                "Harga Terjangkau untuk Keluarga Muda",
-                "Bonus Motor Listrik setelah 6x Angsuran",
-                "Lingkungan Islami dan Asri",
-                "Dekat Pusat Kota tapi Tetap Nyaman"
-            ],
-            hashtags: ["#rumahsubsidi", "#kprsyariah", "#kuninganmurah", "#propertihalal"]
-        },
-        mezzanine: {
-            name: "Standar + Mezzanine",
-            price: "215.000.000",
-            originalPrice: "235.000.000",
-            land: "60m²",
-            building: "36m² (+6m² mezzanine)",
-            rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
-            facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
-            sellingPoints: [
-                "Ruang Tambahan untuk Kantor/Usaha",
-                "Desain Modern Minimalis",
-                "Bonus Smart TV 32 Inch",
-                "Lingkungan Strategis dekat Pasar"
-            ],
-            hashtags: ["#rumahminimalis", "#kantorrumahan", "#kuninganstrategis", "#investasiproperti"]
-        },
-        suite: {
-            name: "Suite 50/60",
-            price: "325.000.000",
-            originalPrice: "350.000.000",
-            land: "60m²",
-            building: "50m²",
-            rooms: "3 Kamar Tidur + 1 KM + Ruang Keluarga",
-            facilities: ["Masjid Al Fawwaz", "Club House", "Taman Bermain Premium", "Area Parkir Luas", "Security 24 Jam"],
-            sellingPoints: [
-                "Kelas Menengah dengan Fasilitas Premium",
-                "Bonus AC Split untuk Kamar Utama",
-                "Desain Interior Modern",
-                "Lokasi Paling Strategis di Komplek"
-            ],
-            hashtags: ["#rumahmewah", "#hunianpremium", "#kuninganeksklusif", "#propertibagus"]
-        },
-        premium: {
-            name: "Premium 50/120",
-            price: "475.000.000",
-            originalPrice: "520.000.000",
-            land: "120m²",
-            building: "50m²",
-            rooms: "3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur",
-            facilities: ["Masjid Al Fawwaz", "Club House Premium", "Taman Bermain VIP", "Area Parkir Pribadi", "Security 24 Jam", "Jalan Lebar 8m"],
-            sellingPoints: [
-                "Investasi Jangka Panjang Terbaik",
-                "Bonus Paket Furnish Minimalis",
-                "Lingkungan Eksklusif",
-                "Potensi Kenaikan Harga 15-20% per Tahun"
-            ],
-            hashtags: ["#rumaheksklusif", "#investasiproperti", "#kuninganpremium", "#propertibisnis"]
-        }
-    };
-
-    // Advanced Caption database (300+ combinations)
-    const captions = {
-        facebook: {
-            all: [
-                `🏡 PUNYA RUMAH DI KUNINGAN GA PAKAI RIBA? BISA BANGET!
-
-DP 0% via Bank Syariah
-Cicilan mulai Rp1.050.000/bulan
-Bonus Motor Listrik setelah 6x angsuran 🏍️⚡
-
-📍 Lokasi strategis:
-- 5 menit ke Jalan Nasional
-- 15 menit ke Esbe Mart Kuningan
-- Lingkungan Islami dengan Masjid dalam komplek
-
-⏳ STOK TERBATAS! Booking fee hanya Rp500rb
-
-📲 Info lebih lanjut:
-https://bimulialand.com/kertamulya.html
-WA: 08977771080 (Marketing)`,
-
-                `🔥 NUNGGU APA LAGI? PROMO TERBESAR TAHUN INI!
-
-Perumahan Islami Kertamulya Residence Kuningan hadir dengan konsep Green Living dan pembiayaan syariah 100% halal.
-
-✅ Tanpa DP
-✅ Tanpa Bunga
-✅ Proses Cepat & Mudah
-✅ Bonus Motor Listrik
-
-🏡 Tersedia 4 tipe rumah:
-1. Standar Subsidi 30/60 - Rp168jt
-2. Standar + Mezzanine - Rp215jt
-3. Suite 50/60 - Rp325jt
-4. Premium 50/120 - Rp475jt
-
-📞 Langsung hubungi:
-08977771080 (Marketing Resmi)`,
-
-                `🚀 GAJI UMR BISA PUNYA RUMAH? DI KERTAMULYA BISA!
-
-KPR Syariah dengan cicilan mulai Rp1.050.000/bulan (lebih murah dari kontrak kosan!) di Kertamulya Residence Kuningan.
-
-✔️ Tanpa DP
-✔️ Tanpa Biaya Admin
-✔️ Bonus Motor Listrik senilai Rp12jt
-✔️ Lingkungan Islami dengan fasilitas lengkap
-
-📌 Lokasi premium 5 menit ke jalan nasional
-
-⏳ PROMO TERBATAS! Stok tinggal 30 unit
-
-📲 Kunjungi website resmi:
-https://bimulialand.com/kertamulya.html`
-            ],
-            subsidi: [
-                `🏡 RUMAH SUBSIDI TERBAIK DI KUNINGAN!
-
-Tipe Standar 30/60
-Harga Promo: Rp168.000.000 (dari Rp185.000.000)
-
-✔️ Luas Tanah: 60m²
-✔️ Luas Bangunan: 30m²
-✔️ 2 Kamar Tidur + 1 KM
-✔️ Bonus Motor Listrik setelah 6x angsuran
-
-📍 Lokasi strategis 5 menit ke jalan nasional
-🌿 Lingkungan Islami dengan Masjid dalam komplek
-
-⏳ Stok terbatas! Booking fee hanya Rp500rb
-
-📲 Info lebih lanjut:
-WA: 08977771080 (Marketing)`
-            ],
-            mezzanine: [
-                `🔥 RUMAH MINIMALIS DENGAN RUANG TAMBAHAN!
-
-Tipe Standar + Mezzanine 36m²
-Harga Promo: Rp215.000.000 (dari Rp235.000.000)
-
-✔️ Luas Tanah: 60m²
-✔️ Luas Bangunan: 36m² (+6m² mezzanine)
-✔️ 2 Kamar Tidur + 1 KM + Ruang Multifungsi
-✔️ Bonus Smart TV 32 Inch
-
-💡 Perfect untuk:
-- Kantor kecil
-- Tempat usaha
-- Ruang kerja dari rumah
-
-📌 Lokasi premium di Kertamulya Residence Kuningan
-
-📞 Hubungi marketing:
-08977771080`
-            ],
-            suite: [
-                `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM!
+                ],
+                suite: [
+                    `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM!
 
 Tipe Suite 50/60
 Harga Promo: Rp325.000.000 (dari Rp350.000.000)
@@ -959,9 +794,9 @@ Fasilitas:
 
 📲 Info lebih lanjut:
 https://bimulialand.com/kertamulya.html`
-            ],
-            premium: [
-                `🚀 INVESTASI PROPERTI TERBAIK DI KUNINGAN!
+                ],
+                premium: [
+                    `🚀 INVESTASI PROPERTI TERBAIK DI KUNINGAN!
 
 Tipe Premium 50/120
 Harga Promo: Rp475.000.000 (dari Rp520.000.000)
@@ -981,11 +816,11 @@ Keunggulan:
 
 📞 Langsung hubungi:
 08977771080 (Marketing)`
-            ]
-        },
-        tiktok: {
-            all: [
-                `Punya rumah sendiri dengan gaji UMR? Bisa banget! 😱
+                ]
+            },
+            tiktok: {
+                all: [
+                    `Punya rumah sendiri dengan gaji UMR? Bisa banget! 😱
 
 DP 0% 
 Cicilan 1 jutaan
@@ -997,7 +832,7 @@ Bonus motor listrik 🏍️⚡
 
 #rumahmurah #kprsyariah #kuningan #fyp`,
 
-                `Ga perlu nunggu kaya dulu buat punya rumah! 🏡
+                    `Ga perlu nunggu kaya dulu buat punya rumah! 🏡
 
 Booking fee 500rb
 Langsung proses KPR Syariah
@@ -1005,7 +840,7 @@ Bonus motor listrik lho 🏍️
 
 #propertimurah #dp0persen #kuningan #fypシ`,
 
-                `Rumah subsidi di Kuningan cuma 168jt! 😳
+                    `Rumah subsidi di Kuningan cuma 168jt! 😳
 
 2 kamar tidur
 1 kamar mandi
@@ -1014,9 +849,9 @@ Carport + taman
 Bonus motor listrik setelah 6x bayar cicilan 🏍️
 
 #rumahsubsidi #kuningan #propertymurah #fyp`
-            ],
-            subsidi: [
-                `Rumah subsidi 168jt di Kuningan bisa KPR Syariah! 😱
+                ],
+                subsidi: [
+                    `Rumah subsidi 168jt di Kuningan bisa KPR Syariah! 😱
 
 DP 0%
 Cicilan 1 jutaan
@@ -1024,7 +859,7 @@ Bonus motor listrik 🏍️
 
 #rumahmurah #kprsyariah #kuningan #fyp`,
 
-                `Gaji UMR bisa punya rumah? Bisa! 🏡
+                    `Gaji UMR bisa punya rumah? Bisa! 🏡
 
 KPR Syariah Kertamulya:
 - DP 0%
@@ -1032,9 +867,9 @@ KPR Syariah Kertamulya:
 - Bonus motor listrik
 
 #rumahsubsidi #kuningan #fypシ`
-            ],
-            mezzanine: [
-                `Rumah minimalis ada ruang tambahan buat usaha! 💡
+                ],
+                mezzanine: [
+                    `Rumah minimalis ada ruang tambahan buat usaha! 💡
 
 Tipe mezzanine 36m²
 Harga 215jt
@@ -1042,7 +877,7 @@ Bonus smart TV 📺
 
 #rumahminimalis #kuningan #fyp`,
 
-                `Punya kantor kecil di rumah? Bisa banget! 🏡💼
+                    `Punya kantor kecil di rumah? Bisa banget! 🏡💼
 
 Rumah tipe mezzanine Kertamulya:
 - Ruang tambahan 6m²
@@ -1050,9 +885,9 @@ Rumah tipe mezzanine Kertamulya:
 - Bonus TV 32 inch
 
 #rumahkantor #kuningan #fypシ`
-            ],
-            suite: [
-                `Hunian premium di Kuningan cuma 325jt! 😱
+                ],
+                suite: [
+                    `Hunian premium di Kuningan cuma 325jt! 😱
 
 3 kamar tidur
 1 km + ruang keluarga
@@ -1060,7 +895,7 @@ Bonus AC split ❄️
 
 #rumahpremium #kuningan #fyp`,
 
-                `KPR Syariah untuk rumah 3 kamar? Bisa! 🏡
+                    `KPR Syariah untuk rumah 3 kamar? Bisa! 🏡
 
 Tipe Suite 50/60:
 - Harga 325jt
@@ -1068,9 +903,9 @@ Tipe Suite 50/60:
 - Fasilitas club house
 
 #rumah3kamar #kprsyariah #fypシ`
-            ],
-            premium: [
-                `Investasi properti terbaik di Kuningan! 📈
+                ],
+                premium: [
+                    `Investasi properti terbaik di Kuningan! 📈
 
 Tipe Premium 50/120:
 - Tanah 120m²
@@ -1079,7 +914,7 @@ Tipe Premium 50/120:
 
 #investasiproperti #kuningan #fyp`,
 
-                `Rumah eksklusif di Kuningan dengan potensi kenaikan harga 20% per tahun! 🚀
+                    `Rumah eksklusif di Kuningan dengan potensi kenaikan harga 20% per tahun! 🚀
 
 Tipe Premium Kertamulya:
 - Harga 475jt
@@ -1087,11 +922,11 @@ Tipe Premium Kertamulya:
 - Security 24 jam
 
 #rumaheksklusif #investasiproperti #fypシ`
-            ]
-        },
-        instagram: {
-            all: [
-                `🌿 HUNIAN ISLAMI DI TENGAH KOTA 🏡
+                ]
+            },
+            instagram: {
+                all: [
+                    `🌿 HUNIAN ISLAMI DI TENGAH KOTA 🏡
 
 Kertamulya Residence - Perumahan pertama di Kuningan dengan konsep Green Living & nilai-nilai Islami
 
@@ -1112,7 +947,7 @@ Kertamulya Residence - Perumahan pertama di Kuningan dengan konsep Green Living 
 
 #RumahIslami #Kuningan #PropertySyariah #GreenLiving`,
 
-                `🏡 PUNYA RUMAH TANPA RIBA? BISA!
+                    `🏡 PUNYA RUMAH TANPA RIBA? BISA!
 
 KPR Syariah di Kertamulya Residence Kuningan:
 ✔️ Tanpa DP
@@ -1133,7 +968,7 @@ KPR Syariah di Kertamulya Residence Kuningan:
 
 #KPRSyariah #RumahHalal #InvestasiProperti #KuninganHits`,
 
-                `🔥 PROMO GILA! DP 0% + BONUS MOTOR 🏍️
+                    `🔥 PROMO GILA! DP 0% + BONUS MOTOR 🏍️
 
 Kertamulya Residence - Hunian Islami di Kuningan
 
@@ -1150,9 +985,9 @@ Kertamulya Residence - Hunian Islami di Kuningan
 08977771080 (Marketing)
 
 #RumahMurah #PropertyKuningan #InvestasiMasaDepan #DP0Persen`
-            ],
-            subsidi: [
-                `🏡 SOLUSI RUMAH UNTUK KELUARGA MUDA
+                ],
+                subsidi: [
+                    `🏡 SOLUSI RUMAH UNTUK KELUARGA MUDA
 
 Tipe Standar Subsidi 30/60
 Harga Promo: Rp168.000.000 (dari Rp185.000.000)
@@ -1171,7 +1006,7 @@ Harga Promo: Rp168.000.000 (dari Rp185.000.000)
 
 #RumahSubsidi #Kuningan #PropertyMurah`,
 
-                `🚀 PUNYA RUMAH DENGAN GAJI UMR? BISA!
+                    `🚀 PUNYA RUMAH DENGAN GAJI UMR? BISA!
 
 KPR Syariah untuk Tipe Standar Subsidi 30/60:
 ✔️ DP 0%
@@ -1180,8 +1015,8 @@ KPR Syariah untuk Tipe Standar Subsidi 30/60:
 
 🏡 Fasilitas:
 🕌 Masjid dalam komplek
-🌳 Taman bermain
-🅿️ Area parkir
+🌳 Taman bermain anak
+🅿️ Area parkir luas
 
 📌 Kuningan strategis 5 menit ke jalan nasional
 
@@ -1189,9 +1024,9 @@ KPR Syariah untuk Tipe Standar Subsidi 30/60:
 @kertamulya_residence
 
 #RumahMurah #KPRSyariah #KuninganHits`
-            ],
-            mezzanine: [
-                `💡 RUMAH MINIMALIS DENGAN RUANG USAHA
+                ],
+                mezzanine: [
+                    `💡 RUMAH MINIMALIS DENGAN RUANG USAHA
 
 Tipe Standar + Mezzanine 36m²
 Harga Promo: Rp215.000.000
@@ -1213,7 +1048,7 @@ Harga Promo: Rp215.000.000
 
 #RumahMinimalis #Kuningan #HomeOffice`,
 
-                `🏡 RUMAH DENGAN RUANG TAMBAHAN UNTUK BISNIS
+                    `🏡 RUMAH DENGAN RUANG TAMBAHAN UNTUK BISNIS
 
 Tipe Mezzanine Kertamulya Residence:
 ✔️ Hanya Rp215jt
@@ -1231,9 +1066,9 @@ Tipe Mezzanine Kertamulya Residence:
 @kertamulya_residence
 
 #RumahUsaha #Kuningan #BisnisRumahan`
-            ],
-            suite: [
-                `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM
+                ],
+                suite: [
+                    `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM
 
 Tipe Suite 50/60
 Harga Promo: Rp325.000.000
@@ -1255,7 +1090,7 @@ Harga Promo: Rp325.000.000
 
 #RumahPremium #Kuningan #HunianEksklusif`,
 
-                `🚀 NAIK KELAS KE RUMAH 3 KAMAR TIDUR
+                    `🚀 NAIK KELAS KE RUMAH 3 KAMAR TIDUR
 
 Tipe Suite 50/60 Kertamulya Residence:
 ✔️ Harga Rp325jt
@@ -1270,9 +1105,9 @@ Tipe Suite 50/60 Kertamulya Residence:
 @kertamulya_residence
 
 #Rumah3Kamar #Kuningan #KeluargaMuda`
-            ],
-            premium: [
-                `📈 INVESTASI PROPERTI TERBAIK DI KUNINGAN
+                ],
+                premium: [
+                    `📈 INVESTASI PROPERTI TERBAIK DI KUNINGAN
 
 Tipe Premium 50/120
 Harga Promo: Rp475.000.000
@@ -1294,7 +1129,7 @@ Harga Promo: Rp475.000.000
 
 #InvestasiProperti #Kuningan #RumahEksklusif`,
 
-                `🏡 HUNIAN EKSKLUSIF DI KUNINGAN
+                    `🏡 HUNIAN EKSKLUSIF DI KUNINGAN
 
 Tipe Premium Kertamulya Residence:
 ✔️ Tanah 120m²
@@ -1314,11 +1149,11 @@ Tipe Premium Kertamulya Residence:
 @kertamulya_residence
 
 #RumahMewah #Kuningan #HunianEksklusif`
-            ]
-        },
-        olx: {
-            all: [
-                `Dijual rumah syariah di Kuningan - Kertamulya Residence
+                ]
+            },
+            olx: {
+                all: [
+                    `Dijual rumah syariah di Kuningan - Kertamulya Residence
 
 • Tipe: Standar Subsidi 30/60
 • Harga: Rp168.000.000 (promo dari Rp185jt)
@@ -1340,7 +1175,7 @@ Hubungi marketing resmi:
 📞 08977771080
 🌐 https://bimulialand.com/kertamulya.html`,
 
-                `Rumah baru di Kuningan - Kertamulya Residence
+                    `Rumah baru di Kuningan - Kertamulya Residence
 
 • Tipe: Suite 50/60
 • Harga: Rp325.000.000 (promo dari Rp350jt)
@@ -1360,9 +1195,9 @@ Unit terbatas!
 
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-            ],
-            subsidi: [
-                `Dijual Rumah Subsidi di Kuningan - Kertamulya Residence
+                ],
+                subsidi: [
+                    `Dijual Rumah Subsidi di Kuningan - Kertamulya Residence
 
 • Tipe: Standar 30/60
 • Harga: Rp168.000.000 (promo)
@@ -1384,7 +1219,7 @@ Hubungi marketing resmi:
 📞 08977771080
 🌐 https://bimulialand.com/kertamulya.html`,
 
-                `Rumah Subsidi Terbaik di Kuningan
+                    `Rumah Subsidi Terbaik di Kuningan
 
 • Tipe: Standar 30/60
 • Harga: Rp168jt (promo dari Rp185jt)
@@ -1406,9 +1241,9 @@ Keunggulan:
 Booking fee Rp500rb
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-            ],
-            mezzanine: [
-                `Dijual Rumah Minimalis + Mezzanine di Kuningan
+                ],
+                mezzanine: [
+                    `Dijual Rumah Minimalis + Mezzanine di Kuningan
 
 • Tipe: Standar + Mezzanine 36m²
 • Harga: Rp215.000.000
@@ -1430,7 +1265,7 @@ Hubungi marketing resmi:
 📞 08977771080
 🌐 https://bimulialand.com/kertamulya.html`,
 
-                `Rumah dengan Ruang Tambahan untuk Usaha/Kantor
+                    `Rumah dengan Ruang Tambahan untuk Usaha/Kantor
 
 • Tipe: Standar + Mezzanine
 • Harga: Rp215jt (promo)
@@ -1448,9 +1283,9 @@ Stok terbatas!
 
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-            ],
-            suite: [
-                `Dijual Rumah Mewah di Kuningan - Kertamulya Residence
+                ],
+                suite: [
+                    `Dijual Rumah Mewah di Kuningan - Kertamulya Residence
 
 • Tipe: Suite 50/60
 • Harga: Rp325.000.000
@@ -1474,7 +1309,7 @@ Unit terbatas!
 Hubungi marketing resmi:
 📞 08977771080`,
 
-                `Rumah 3 Kamar Tidur di Kuningan - Kertamulya
+                    `Rumah 3 Kamar Tidur di Kuningan - Kertamulya
 
 • Tipe: Suite 50/60
 • Harga: Rp325jt (promo dari Rp350jt)
@@ -1495,9 +1330,9 @@ Proses KPR mudah via:
 
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-            ],
-            premium: [
-                `Dijual Rumah Eksklusif di Kuningan - Kertamulya Residence
+                ],
+                premium: [
+                    `Dijual Rumah Eksklusif di Kuningan - Kertamulya Residence
 
 • Tipe: Premium 50/120
 • Harga: Rp475.000.000
@@ -1520,7 +1355,7 @@ Investasi terbaik dengan potensi kenaikan harga 20% per tahun!
 Hubungi marketing resmi:
 📞 08977771080`,
 
-                `Rumah Eksklusif Tanah Luas di Kuningan
+                    `Rumah Eksklusif Tanah Luas di Kuningan
 
 • Tipe: Premium 50/120
 • Harga: Rp475jt (promo dari Rp520jt)
@@ -1539,11 +1374,11 @@ Hanya tersisa 3 unit!
 
 Hubungi:
 📞 08977771080 (Marketing Resmi)`
-            ]
-        },
-        whatsapp: {
-            all: [
-                `Assalamualaikum wr wb
+                ]
+            },
+            whatsapp: {
+                all: [
+                    `Assalamualaikum wr wb
 
 Perkenalkan saya dari tim marketing Kertamulya Residence Kuningan.
 
@@ -1573,7 +1408,7 @@ Atau langsung hubungi:
 Terima kasih
 Wassalamualaikum wr wb`,
 
-                `Halo!
+                    `Halo!
 
 Ada promo spesial dari Kertamulya Residence Kuningan:
 
@@ -1597,7 +1432,7 @@ Info lengkap:
 Salam,
 Tim Marketing Kertamulya Residence`,
 
-                `Hai!
+                    `Hai!
 
 Mau punya rumah di Kuningan dengan cicilan lebih murah dari sewa kosan?
 
@@ -1620,9 +1455,9 @@ Info lebih lanjut:
 📞 08977771080 (Marketing)
 
 Terima kasih`
-            ],
-            subsidi: [
-                `Assalamualaikum wr wb
+                ],
+                subsidi: [
+                    `Assalamualaikum wr wb
 
 Saya dari tim marketing Kertamulya Residence Kuningan.
 
@@ -1649,7 +1484,7 @@ Untuk info lebih lanjut:
 
 Wassalamualaikum wr wb`,
 
-                `Halo!
+                    `Halo!
 
 Promo spesial Rumah Subsidi di Kuningan:
 
@@ -1671,9 +1506,9 @@ Stok tinggal 12 unit!
 
 Hubungi:
 📞 08977771080 (Marketing)`
-            ],
-            mezzanine: [
-                `Assalamualaikum wr wb
+                ],
+                mezzanine: [
+                    `Assalamualaikum wr wb
 
 Perkenalkan saya dari tim marketing Kertamulya Residence.
 
@@ -1703,7 +1538,7 @@ Info lebih lanjut:
 
 Wassalamualaikum wr wb`,
 
-                `Hai!
+                    `Hai!
 
 Ada promo rumah dengan ruang tambahan di Kertamulya Residence:
 
@@ -1720,9 +1555,9 @@ Unit terbatas!
 
 Hubungi marketing:
 📞 08977771080`
-            ],
-            suite: [
-                `Assalamualaikum wr wb
+                ],
+                suite: [
+                    `Assalamualaikum wr wb
 
 Saya dari tim marketing Kertamulya Residence.
 
@@ -1752,7 +1587,7 @@ Info lebih lanjut:
 
 Wassalamualaikum wr wb`,
 
-                `Halo!
+                    `Halo!
 
 Promo hunian premium di Kertamulya Residence:
 
@@ -1772,9 +1607,9 @@ Stok terbatas!
 
 Hubungi:
 📞 08977771080 (Marketing)`
-            ],
-            premium: [
-                `Assalamualaikum wr wb
+                ],
+                premium: [
+                    `Assalamualaikum wr wb
 
 Perkenalkan saya dari tim marketing Kertamulya Residence.
 
@@ -1807,7 +1642,7 @@ Info lebih lanjut:
 
 Wassalamualaikum wr wb`,
 
-                `Hai!
+                    `Hai!
 
 Promo terbatas rumah eksklusif di Kertamulya Residence:
 
@@ -1827,200 +1662,266 @@ Hanya 3 unit tersisa!
 
 Hubungi marketing:
 📞 08977771080`
+                ]
+            },
+            status_text: [
+                `🏡 Punya rumah sendiri dengan gaji UMR? Bisa banget di Kertamulya Residence Kuningan! DP 0%, cicilan mulai 1 jutaan, bonus motor listrik. Info lengkap di website kami.`,
+                `🔥 Promo terbatas! Rumah subsidi di Kuningan hanya 168jt. DP 0%, bonus motor listrik. Segera hubungi marketing sebelum kehabisan!`,
+                `🚀 KPR Syariah tanpa riba di Kertamulya Residence. Cicilan mulai Rp1.050.000/bulan, lebih murah dari sewa kos! Info lengkap di bio.`,
+                `🌿 Hunian islami dengan lingkungan asri di Kuningan. Fasilitas lengkap: masjid, taman bermain, area parkir luas. Booking fee hanya 500rb!`,
+                `💰 Investasi properti terbaik di Kuningan dengan potensi kenaikan harga 20% per tahun. Tersedia 4 tipe rumah dari 168jt. Hubungi sekarang!`
+            ],
+            status_video: [
+                `Tonton video ini untuk melihat keindahan Kertamulya Residence Kuningan! Rumah subsidi 168jt, DP 0%, bonus motor listrik. Info lengkap di website kami.`,
+                `Video terbaru perkembangan pembangunan Kertamulya Residence! Promo spesial cicilan mulai 1 jutaan. Klik link di bio untuk info lebih lanjut.`,
+                `Lihat fasilitas lengkap Kertamulya Residence di video ini! Lingkungan islami dengan masjid dalam komplek. Booking fee hanya 500rb!`,
+                `Video testimoni penghuni Kertamulya Residence! Rumah nyaman dengan cicilan terjangkau. DP 0% via KPR Syariah. Hubungi marketing sekarang!`,
+                `Video virtual tour rumah tipe premium di Kertamulya Residence! Tanah luas 120m², bonus furnish senilai 25jt. Hanya 475jt!`
+            ],
+            instagram_bio: [
+                "🏡 Developer Properti Syariah Kuningan | DP 0% & Cicilan 1 Jutaan | Bonus Motor Listrik 🌿 #KertamulyaResidence 🔗 bimulialand.com/kertamulya",
+                "Properti Halal Kuningan 🕌 | KPR Syariah Tanpa Riba | Fasilitas Lengkap 🏡 Promo DP 0% & Bonus Motor ⚡ Kunjungi: bimulialand.com/kertamulya",
+                "Kertamulya Residence - Hunian Islami Kuningan 🏡 DP 0% | Cicilan Rp1.050.000/bln | Bonus Motor 🏍️ #RumahSyariah 🔗 Link di bio",
+                "Investasi Properti Terbaik di Kuningan 📈 Potensi Naik 20%/thn 🚀 Fasilitas Premium 🏊 #KertamulyaEksklusif 🌐 bimulialand.com/kertamulya",
+                "Rumah Subsidi Terbaik Kuningan 🏡 Harga 168jt | DP 0% | Bonus Motor Listrik ⚡ Lingkungan Islami 🕌 #RumahMurah 🔗 Info di bio",
+                "🏡 KPR Syariah Kuningan Tanpa Riba | Cicilan 1 Jutaan | Bonus Motor 🏍️ Fasilitas Lengkap 🌿 #PropertiHalal 🔗 bimulialand.com/kertamulya",
+                "Developer Properti Syariah Kuningan 🏡 DP 0% | Cicilan Ringan | Bonus Menarik 🎁 #KertamulyaResidence 🌐 Info lengkap di bio",
+                "Properti Islami Kuningan 🕌 KPR Syariah 100% Halal | DP 0% | Bonus Motor Listrik ⚡ #RumahTanpaRiba 🔗 bimulialand.com/kertamulya",
+                "🏡 Hunian Nyaman di Kuningan | Fasilitas Lengkap 🌿 DP 0% | Cicilan 1 Jutaan 💰 #KertamulyaHits 🔗 Link di bio",
+                "Investasi Properti Menguntungkan di Kuningan 📈 Potensi Naik 15-20%/thn 🚀 #KertamulyaPremium 🌐 bimulialand.com/kertamulya"
+            ],
+            tiktok_bio: [
+                "Properti Syariah Kuningan 🏡 DP 0% & Bonus Motor ⚡ #rumahmurah",
+                "KPR Syariah Kuningan 🕌 Cicilan 1 jutaan 🔗 Link di bio",
+                "Rumah subsidi 168jt DP 0% 🏡 Bonus motor 🏍️ #kuningan",
+                "Investasi properti untung 20%/thn 📈 #kertamulya",
+                "Properti halal Kuningan 🏡 Tanpa riba 🕌 #rumahsyariah",
+                "Rumah mewah Kuningan 475jt 🏡 Bonus furnish 🛋️ #premium",
+                "KPR Syariah mudah 🏡 DP 0% cicil 1jt-an #rumahmurah",
+                "Properti Kuningan terbaik 🏡 Fasilitas lengkap 🌿 #kertamulya",
+                "Rumah 3 kamar 325jt 🏡 Bonus AC ❄️ #huniannyaman",
+                "Perumahan islami Kuningan 🕌 Lingkungan asri 🌳 #kertamulya"
             ]
-        },
-        status_text: [
-            `🏡 Punya rumah sendiri dengan gaji UMR? Bisa banget di Kertamulya Residence Kuningan! DP 0%, cicilan mulai 1 jutaan, bonus motor listrik. Info lengkap di website kami.`,
-            `🔥 Promo terbatas! Rumah subsidi di Kuningan hanya 168jt. DP 0%, bonus motor listrik. Segera hubungi marketing sebelum kehabisan!`,
-            `🚀 KPR Syariah tanpa riba di Kertamulya Residence. Cicilan mulai Rp1.050.000/bulan, lebih murah dari sewa kos! Info lengkap di bio.`,
-            `🌿 Hunian islami dengan lingkungan asri di Kuningan. Fasilitas lengkap: masjid, taman bermain, area parkir luas. Booking fee hanya 500rb!`,
-            `💰 Investasi properti terbaik di Kuningan dengan potensi kenaikan harga 20% per tahun. Tersedia 4 tipe rumah dari 168jt. Hubungi sekarang!`
-        ],
-        status_video: [
-            `Tonton video ini untuk melihat keindahan Kertamulya Residence Kuningan! Rumah subsidi 168jt, DP 0%, bonus motor listrik. Info lengkap di website kami.`,
-            `Video terbaru perkembangan pembangunan Kertamulya Residence! Promo spesial cicilan mulai 1 jutaan. Klik link di bio untuk info lebih lanjut.`,
-            `Lihat fasilitas lengkap Kertamulya Residence di video ini! Lingkungan islami dengan masjid dalam komplek. Booking fee hanya 500rb!`,
-            `Video testimoni penghuni Kertamulya Residence! Rumah nyaman dengan cicilan terjangkau. DP 0% via KPR Syariah. Hubungi marketing sekarang!`,
-            `Video virtual tour rumah tipe premium di Kertamulya Residence! Tanah luas 120m², bonus furnish senilai 25jt. Hanya 475jt!`
-        ],
-        instagram_bio: [
-            "🏡 Developer Properti Syariah Kuningan | DP 0% & Cicilan 1 Jutaan | Bonus Motor Listrik 🌿 #KertamulyaResidence 🔗 bimulialand.com/kertamulya",
-            "Properti Halal Kuningan 🕌 | KPR Syariah Tanpa Riba | Fasilitas Lengkap 🏡 Promo DP 0% & Bonus Motor ⚡ Kunjungi: bimulialand.com/kertamulya",
-            "Kertamulya Residence - Hunian Islami Kuningan 🏡 DP 0% | Cicilan Rp1.050.000/bln | Bonus Motor 🏍️ #RumahSyariah 🔗 Link di bio",
-            "Investasi Properti Terbaik di Kuningan 📈 Potensi Naik 20%/thn 🚀 Fasilitas Premium 🏊 #KertamulyaEksklusif 🌐 bimulialand.com/kertamulya",
-            "Rumah Subsidi Terbaik Kuningan 🏡 Harga 168jt | DP 0% | Bonus Motor Listrik ⚡ Lingkungan Islami 🕌 #RumahMurah 🔗 Info di bio",
-            "🏡 KPR Syariah Kuningan Tanpa Riba | Cicilan 1 Jutaan | Bonus Motor 🏍️ Fasilitas Lengkap 🌿 #PropertiHalal 🔗 bimulialand.com/kertamulya",
-            "Developer Properti Syariah Kuningan 🏡 DP 0% | Cicilan Ringan | Bonus Menarik 🎁 #KertamulyaResidence 🌐 Info lengkap di bio",
-            "Properti Islami Kuningan 🕌 KPR Syariah 100% Halal | DP 0% | Bonus Motor Listrik ⚡ #RumahTanpaRiba 🔗 bimulialand.com/kertamulya",
-            "🏡 Hunian Nyaman di Kuningan | Fasilitas Lengkap 🌿 DP 0% | Cicilan 1 Jutaan 💰 #KertamulyaHits 🔗 Link di bio",
-            "Investasi Properti Menguntungkan di Kuningan 📈 Potensi Naik 15-20%/thn 🚀 #KertamulyaPremium 🌐 bimulialand.com/kertamulya"
-        ],
-        tiktok_bio: [
-            "Properti Syariah Kuningan 🏡 DP 0% & Bonus Motor ⚡ #rumahmurah",
-            "KPR Syariah Kuningan 🕌 Cicilan 1 jutaan 🔗 Link di bio",
-            "Rumah subsidi 168jt DP 0% 🏡 Bonus motor 🏍️ #kuningan",
-            "Investasi properti untung 20%/thn 📈 #kertamulya",
-            "Properti halal Kuningan 🏡 Tanpa riba 🕌 #rumahsyariah",
-            "Rumah mewah Kuningan 475jt 🏡 Bonus furnish 🛋️ #premium",
-            "KPR Syariah mudah 🏡 DP 0% cicil 1jt-an #rumahmurah",
-            "Properti Kuningan terbaik 🏡 Fasilitas lengkap 🌿 #kertamulya",
-            "Rumah 3 kamar 325jt 🏡 Bonus AC ❄️ #huniannyaman",
-            "Perumahan islami Kuningan 🕌 Lingkungan asri 🌳 #kertamulya"
-        ]
-    };
+        };
 
-    // DOM Elements
-    const captionText = document.getElementById('caption-text');
-    const copyBtn = document.getElementById('copy-btn');
-    const newCaptionBtn = document.getElementById('new-caption-btn');
-    const refreshBtn = document.getElementById('refresh-btn');
-    const notification = document.getElementById('notification');
-    const platformBtns = document.querySelectorAll('.platform-btn');
-    const propertyBtns = document.querySelectorAll('.property-btn');
-    const assetGrid = document.getElementById('assetGrid');
-    const loadAssetsBtn = document.getElementById('loadAssetsBtn');
-    const platformTitle = document.getElementById('platform-title');
+        // DOM Elements
+        const captionText = document.getElementById('caption-text');
+        const copyBtn = document.getElementById('copy-btn');
+        const newCaptionBtn = document.getElementById('new-caption-btn');
+        const refreshBtn = document.getElementById('refresh-btn');
+        const notification = document.getElementById('notification');
+        const platformBtns = document.querySelectorAll('.platform-btn');
+        const propertyBtns = document.querySelectorAll('.property-btn');
+        const assetGrid = document.getElementById('assetGrid');
+        const loadAssetsBtn = document.getElementById('loadAssetsBtn');
+        const platformTitle = document.getElementById('platform-title');
+        const loadingAssets = document.getElementById('loadingAssets');
 
-    // Current state
-    let currentPlatform = 'facebook';
-    let currentProperty = 'all';
+        // Current state
+        let currentPlatform = 'facebook';
+        let currentProperty = 'all';
+        let selectedAssets = [];
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-        generateCaption();
-        addBioPlatformButtons();
-    });
-
-    // Event Listeners
-    copyBtn.addEventListener('click', copyCaption);
-    newCaptionBtn.addEventListener('click', generateCaption);
-    refreshBtn.addEventListener('click', generateCaption);
-    loadAssetsBtn.addEventListener('click', loadSampleAssets);
-
-    // Platform selector
-    platformBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            platformBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentPlatform = btn.dataset.platform;
-            platformTitle.textContent = `${btn.textContent.trim()} Caption`;
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
             generateCaption();
+            addBioPlatformButtons();
         });
-    });
 
-    // Property selector
-    propertyBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            propertyBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentProperty = btn.dataset.type;
-            generateCaption();
+        // Event Listeners
+        copyBtn.addEventListener('click', copyCaption);
+        newCaptionBtn.addEventListener('click', generateCaption);
+        refreshBtn.addEventListener('click', generateCaption);
+        loadAssetsBtn.addEventListener('click', loadLocalAssets);
+
+        // Platform selector
+        platformBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                platformBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentPlatform = btn.dataset.platform;
+                platformTitle.textContent = `${btn.textContent.trim()} Caption`;
+                generateCaption();
+            });
         });
-    });
 
-    // Generate new caption with all new features
-    function generateCaption() {
-        let platformCaptions = captions[currentPlatform];
-        let availableCaptions = [];
-        
-        if (typeof platformCaptions === 'object' && !Array.isArray(platformCaptions)) {
-            if (currentProperty === 'all') {
-                // Combine all property type captions
-                for (const prop in platformCaptions) {
-                    if (Array.isArray(platformCaptions[prop])) {
-                        availableCaptions = availableCaptions.concat(platformCaptions[prop]);
+        // Property selector
+        propertyBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                propertyBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentProperty = btn.dataset.type;
+                generateCaption();
+            });
+        });
+
+        // Generate new caption with all new features
+        function generateCaption() {
+            let platformCaptions = captions[currentPlatform];
+            let availableCaptions = [];
+            
+            if (typeof platformCaptions === 'object' && !Array.isArray(platformCaptions)) {
+                if (currentProperty === 'all') {
+                    // Combine all property type captions
+                    for (const prop in platformCaptions) {
+                        if (Array.isArray(platformCaptions[prop])) {
+                            availableCaptions = availableCaptions.concat(platformCaptions[prop]);
+                        }
                     }
+                } else {
+                    availableCaptions = platformCaptions[currentProperty] || platformCaptions.all || [];
                 }
+            } else if (Array.isArray(platformCaptions)) {
+                availableCaptions = platformCaptions;
+            }
+            
+            // Randomly select a caption
+            if (availableCaptions.length > 0) {
+                const randomIndex = Math.floor(Math.random() * availableCaptions.length);
+                let newCaption = availableCaptions[randomIndex];
+                
+                // Special formatting for OLX (remove emoji and phone numbers)
+                if (currentPlatform === 'olx') {
+                    newCaption = newCaption.replace(/[\u{1F600}-\u{1F6FF}]/gu, '');
+                    newCaption = newCaption.replace(/(\d{3})\d{7}/g, '[nomor tersedia di website]');
+                }
+                
+                // Apply fade-in animation
+                captionText.classList.remove('fade-in');
+                void captionText.offsetWidth; // Trigger reflow
+                captionText.classList.add('fade-in');
+                
+                // Update caption text
+                captionText.textContent = newCaption;
             } else {
-                availableCaptions = platformCaptions[currentProperty] || platformCaptions.all || [];
+                captionText.textContent = "No captions available for this combination";
             }
-        } else if (Array.isArray(platformCaptions)) {
-            availableCaptions = platformCaptions;
         }
-        
-        // Randomly select a caption
-        if (availableCaptions.length > 0) {
-            const randomIndex = Math.floor(Math.random() * availableCaptions.length);
-            let newCaption = availableCaptions[randomIndex];
-            
-            // Special formatting for OLX (remove emoji and phone numbers)
-            if (currentPlatform === 'olx') {
-                newCaption = newCaption.replace(/[\u{1F600}-\u{1F6FF}]/gu, '');
-                newCaption = newCaption.replace(/(\d{3})\d{7}/g, '[nomor tersedia di website]');
-            }
-            
-            // Apply fade-in animation
-            captionText.classList.remove('fade-in');
-            void captionText.offsetWidth; // Trigger reflow
-            captionText.classList.add('fade-in');
-            
-            // Update caption text
-            captionText.textContent = newCaption;
-        } else {
-            captionText.textContent = "No captions available for this combination";
+
+        // Copy caption to clipboard
+        function copyCaption() {
+            const text = captionText.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('Caption berhasil disalin!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                showNotification('Gagal menyalin caption!');
+            });
         }
-    }
 
-    // Copy caption to clipboard
-    function copyCaption() {
-        const text = captionText.textContent;
-        navigator.clipboard.writeText(text).then(() => {
-            showNotification('Caption berhasil disalin!');
-        }).catch(err => {
-            console.error('Failed to copy text: ', err);
-            showNotification('Gagal menyalin caption!');
-        });
-    }
+        // Show notification
+        function showNotification(message) {
+            notification.querySelector('span').textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
 
-    // Show notification
-    function showNotification(message) {
-        notification.querySelector('span').textContent = message;
-        notification.classList.add('show');
-        
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 3000);
-    }
+        // Load local assets
+        function loadLocalAssets() {
+            // In a real implementation, you would use the File System Access API
+            // or have the files in a known directory structure
+            
+            // For demo purposes, we'll use sample assets
+            assetGrid.innerHTML = '';
+            loadingAssets.style.display = 'block';
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                // Sample assets - in a real app, these would be loaded from local files
+                const sampleAssets = [
+                    { type: 'image', name: 'sample1.jpg', url: 'https://via.placeholder.com/300x200?text=Sample+Image+1' },
+                    { type: 'image', name: 'sample2.jpg', url: 'https://via.placeholder.com/300x200?text=Sample+Image+2' },
+                    { type: 'video', name: 'sample1.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' },
+                    { type: 'image', name: 'sample3.jpg', url: 'https://via.placeholder.com/300x200?text=Sample+Image+3' },
+                    { type: 'video', name: 'sample2.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' },
+                    { type: 'image', name: 'sample4.jpg', url: 'https://via.placeholder.com/300x200?text=Sample+Image+4' }
+                ];
+                
+                sampleAssets.forEach(asset => {
+                    const assetItem = document.createElement('div');
+                    assetItem.className = `asset-item ${asset.type === 'video' ? 'asset-video' : ''}`;
+                    assetItem.dataset.url = asset.url;
+                    assetItem.dataset.name = asset.name;
+                    
+                    const thumbnail = document.createElement('img');
+                    thumbnail.className = 'asset-thumbnail';
+                    thumbnail.src = asset.type === 'video' ? 'https://via.placeholder.com/300x200?text=Video+Thumbnail' : asset.url;
+                    thumbnail.alt = asset.name;
+                    
+                    const downloadBtn = document.createElement('button');
+                    downloadBtn.className = 'download-btn';
+                    downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
+                    downloadBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        downloadAsset(asset.url, asset.name);
+                    });
+                    
+                    assetItem.appendChild(thumbnail);
+                    assetItem.appendChild(downloadBtn);
+                    
+                    assetItem.addEventListener('click', () => {
+                        assetItem.classList.toggle('selected');
+                        if (assetItem.classList.contains('selected')) {
+                            selectedAssets.push({url: asset.url, name: asset.name, type: asset.type});
+                        } else {
+                            selectedAssets = selectedAssets.filter(a => a.url !== asset.url);
+                        }
+                    });
+                    
+                    assetGrid.appendChild(assetItem);
+                });
+                
+                loadingAssets.style.display = 'none';
+            }, 1000);
+        }
 
-    // Enhanced asset loading with download functionality
-    function loadSampleAssets() {
-        assetGrid.innerHTML = '';
-        
-       
-    // Add new platform buttons for Instagram Bio and TikTok Bio
-    function addBioPlatformButtons() {
-        const platformSelector = document.querySelector('.platform-selector');
-        
-        const instagramBioBtn = document.createElement('button');
-        instagramBioBtn.className = 'platform-btn';
-        instagramBioBtn.dataset.platform = 'instagram_bio';
-        instagramBioBtn.innerHTML = '<i class="fab fa-instagram"></i> Instagram Bio';
-        
-        const tiktokBioBtn = document.createElement('button');
-        tiktokBioBtn.className = 'platform-btn';
-        tiktokBioBtn.dataset.platform = 'tiktok_bio';
-        tiktokBioBtn.innerHTML = '<i class="fab fa-tiktok"></i> TikTok Bio';
-        
-        platformSelector.appendChild(instagramBioBtn);
-        platformSelector.appendChild(tiktokBioBtn);
-        
-        // Add event listeners for new buttons
-        instagramBioBtn.addEventListener('click', () => {
-            document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
-            instagramBioBtn.classList.add('active');
-            currentPlatform = 'instagram_bio';
-            platformTitle.textContent = 'Instagram Bio Caption';
-            generateCaption();
-        });
-        
-        tiktokBioBtn.addEventListener('click', () => {
-            document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
-            tiktokBioBtn.classList.add('active');
-            currentPlatform = 'tiktok_bio';
-            platformTitle.textContent = 'TikTok Bio Caption';
-            generateCaption();
-        });
-    }
-</script>
+        // Download asset
+        function downloadAsset(url, filename) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Add new platform buttons for Instagram Bio and TikTok Bio
+        function addBioPlatformButtons() {
+            const platformSelector = document.querySelector('.platform-selector');
+            
+            const instagramBioBtn = document.createElement('button');
+            instagramBioBtn.className = 'platform-btn';
+            instagramBioBtn.dataset.platform = 'instagram_bio';
+            instagramBioBtn.innerHTML = '<i class="fab fa-instagram"></i> Instagram Bio';
+            
+            const tiktokBioBtn = document.createElement('button');
+            tiktokBioBtn.className = 'platform-btn';
+            tiktokBioBtn.dataset.platform = 'tiktok_bio';
+            tiktokBioBtn.innerHTML = '<i class="fab fa-tiktok"></i> TikTok Bio';
+            
+            platformSelector.appendChild(instagramBioBtn);
+            platformSelector.appendChild(tiktokBioBtn);
+            
+            // Add event listeners for new buttons
+            instagramBioBtn.addEventListener('click', () => {
+                document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+                instagramBioBtn.classList.add('active');
+                currentPlatform = 'instagram_bio';
+                platformTitle.textContent = 'Instagram Bio Caption';
+                generateCaption();
+            });
+            
+            tiktokBioBtn.addEventListener('click', () => {
+                document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+                tiktokBioBtn.classList.add('active');
+                currentPlatform = 'tiktok_bio';
+                platformTitle.textContent = 'TikTok Bio Caption';
+                generateCaption();
+            });
+        }
+    </script>
 </body>
 </html>
