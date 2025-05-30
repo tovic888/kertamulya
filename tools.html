@@ -420,6 +420,38 @@
             height: 100%;
             background: rgba(0,0,0,0.3);
         }
+
+.footer {
+    background: var(--dark);
+    color: var(--light);
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.footer a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer a:hover {
+    color: var(--accent);
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 1rem;
+}
     </style>
 </head>
 <body>
@@ -493,10 +525,7 @@
                         <button class="btn btn-accent" id="new-caption-btn">
                             <i class="fas fa-magic"></i> Generate Baru
                         </button>
-                        <button class="btn btn-outline" id="save-btn">
-                            <i class="fas fa-bookmark"></i> Simpan Favorite
-                        </button>
-                    </div>
+                       </div>
                 </div>
             </div>
 
