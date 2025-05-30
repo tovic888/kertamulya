@@ -573,74 +573,73 @@
     </div>
 <script src="https://apis.google.com/js/api.js"></script>
     <script>
-        // Property database
-        const properties = {
-            subsidi: {
-                name: "Standar Subsidi 30/60",
-                price: "168.000.000",
-                originalPrice: "185.000.000",
-                land: "60m²",
-                building: "30m²",
-                rooms: "2 Kamar Tidur + 1 KM",
-                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
-                sellingPoints: [
-                    "Harga Terjangkau untuk Keluarga Muda",
-                    "Bonus Motor Listrik setelah 6x Angsuran",
-                    "Lingkungan Islami dan Asri",
-                    "Dekat Pusat Kota tapi Tetap Nyaman"
-                ],
-                hashtags: ["#rumahsubsidi", "#kprsyariah", "#kuninganmurah", "#propertihalal"]
-            },
-            mezzanine: {
-                name: "Standar + Mezzanine",
-                price: "215.000.000",
-                originalPrice: "235.000.000",
-                land: "60m²",
-                building: "36m² (+6m² mezzanine)",
-                rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
-                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
-                sellingPoints: [
-                    "Ruang Tambahan untuk Kantor/Usaha",
-                    "Desain Modern Minimalis",
-                    "Bonus Smart TV 32 Inch",
-                    "Lingkungan Strategis dekat Pasar"
-                ],
-                hashtags: ["#rumahminimalis", "#kantorrumahan", "#kuninganstrategis", "#investasiproperti"]
-            },
-            suite: {
-                name: "Suite 50/60",
-                price: "325.000.000",
-                originalPrice: "350.000.000",
-                land: "60m²",
-                building: "50m²",
-                rooms: "3 Kamar Tidur + 1 KM + Ruang Keluarga",
-                facilities: ["Masjid Al Fawwaz", "Club House", "Taman Bermain Premium", "Area Parkir Luas", "Security 24 Jam"],
-                sellingPoints: [
-                    "Kelas Menengah dengan Fasilitas Premium",
-                    "Bonus AC Split untuk Kamar Utama",
-                    "Desain Interior Modern",
-                    "Lokasi Paling Strategis di Komplek"
-                ],
-                hashtags: ["#rumahmewah", "#hunianpremium", "#kuninganeksklusif", "#propertibagus"]
-            },
-            premium: {
-                name: "Premium 50/120",
-                price: "475.000.000",
-                originalPrice: "520.000.000",
-                land: "120m²",
-                building: "50m²",
-                rooms: "3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur",
-                facilities: ["Masjid Al Fawwaz", "Club House Premium", "Taman Bermain VIP", "Area Parkir Pribadi", "Security 24 Jam", "Jalan Lebar 8m"],
-                sellingPoints: [
-                    "Investasi Jangka Panjang Terbaik",
-                    "Bonus Paket Furnish Minimalis",
-                    "Lingkungan Eksklusif",
-                    "Potensi Kenaikan Harga 15-20% per Tahun"
-                ],
-                hashtags: ["#rumaheksklusif", "#investasiproperti", "#kuninganpremium", "#propertibisnis"]
-            }
-        };
-
+        // Property database (unchanged from your original)
+const properties = {
+    subsidi: {
+        name: "Standar Subsidi 30/60",
+        price: "168.000.000",
+        originalPrice: "185.000.000",
+        land: "60m²",
+        building: "30m²",
+        rooms: "2 Kamar Tidur + 1 KM",
+        facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
+        sellingPoints: [
+            "Harga Terjangkau untuk Keluarga Muda",
+            "Bonus Motor Listrik setelah 6x Angsuran",
+            "Lingkungan Islami dan Asri",
+            "Dekat Pusat Kota tapi Tetap Nyaman"
+        ],
+        hashtags: ["#rumahsubsidi", "#kprsyariah", "#kuninganmurah", "#propertihalal"]
+    },
+    mezzanine: {
+        name: "Standar + Mezzanine",
+        price: "215.000.000",
+        originalPrice: "235.000.000",
+        land: "60m²",
+        building: "36m² (+6m² mezzanine)",
+        rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
+        facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
+        sellingPoints: [
+            "Ruang Tambahan untuk Kantor/Usaha",
+            "Desain Modern Minimalis",
+            "Bonus Smart TV 32 Inch",
+            "Lingkungan Strategis dekat Pasar"
+        ],
+        hashtags: ["#rumahminimalis", "#kantorrumahan", "#kuninganstrategis", "#investasiproperti"]
+    },
+    suite: {
+        name: "Suite 50/60",
+        price: "325.000.000",
+        originalPrice: "350.000.000",
+        land: "60m²",
+        building: "50m²",
+        rooms: "3 Kamar Tidur + 1 KM + Ruang Keluarga",
+        facilities: ["Masjid Al Fawwaz", "Club House", "Taman Bermain Premium", "Area Parkir Luas", "Security 24 Jam"],
+        sellingPoints: [
+            "Kelas Menengah dengan Fasilitas Premium",
+            "Bonus AC Split untuk Kamar Utama",
+            "Desain Interior Modern",
+            "Lokasi Paling Strategis di Komplek"
+        ],
+        hashtags: ["#rumahmewah", "#hunianpremium", "#kuninganeksklusif", "#propertibagus"]
+    },
+    premium: {
+        name: "Premium 50/120",
+        price: "475.000.000",
+        originalPrice: "520.000.000",
+        land: "120m²",
+        building: "50m²",
+        rooms: "3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur",
+        facilities: ["Masjid Al Fawwaz", "Club House Premium", "Taman Bermain VIP", "Area Parkir Pribadi", "Security 24 Jam", "Jalan Lebar 8m"],
+        sellingPoints: [
+            "Investasi Jangka Panjang Terbaik",
+            "Bonus Paket Furnish Minimalis",
+            "Lingkungan Eksklusif",
+            "Potensi Kenaikan Harga 15-20% per Tahun"
+        ],
+        hashtags: ["#rumaheksklusif", "#investasiproperti", "#kuninganpremium", "#propertibisnis"]
+    }
+};
         // Advanced Caption database (300+ combinations)
         const captions = {
             facebook: {
@@ -1628,152 +1627,322 @@ Hubungi marketing:
                 ]
             }
         };
-
+status_text: [
+            `🏡 Punya rumah sendiri dengan gaji UMR? Bisa banget di Kertamulya Residence Kuningan! DP 0%, cicilan mulai 1 jutaan, bonus motor listrik. Info lengkap di website kami.`,
+            `🔥 Promo terbatas! Rumah subsidi di Kuningan hanya 168jt. DP 0%, bonus motor listrik. Segera hubungi marketing sebelum kehabisan!`,
+            `🚀 KPR Syariah tanpa riba di Kertamulya Residence. Cicilan mulai Rp1.050.000/bulan, lebih murah dari sewa kos! Info lengkap di bio.`,
+            `🌿 Hunian islami dengan lingkungan asri di Kuningan. Fasilitas lengkap: masjid, taman bermain, area parkir luas. Booking fee hanya 500rb!`,
+            `💰 Investasi properti terbaik di Kuningan dengan potensi kenaikan harga 20% per tahun. Tersedia 4 tipe rumah dari 168jt. Hubungi sekarang!`
+        ],
+        status_video: [
+            `Tonton video ini untuk melihat keindahan Kertamulya Residence Kuningan! Rumah subsidi 168jt, DP 0%, bonus motor listrik. Info lengkap di website kami.`,
+            `Video terbaru perkembangan pembangunan Kertamulya Residence! Promo spesial cicilan mulai 1 jutaan. Klik link di bio untuk info lebih lanjut.`,
+            `Lihat fasilitas lengkap Kertamulya Residence di video ini! Lingkungan islami dengan masjid dalam komplek. Booking fee hanya 500rb!`,
+            `Video testimoni penghuni Kertamulya Residence! Rumah nyaman dengan cicilan terjangkau. DP 0% via KPR Syariah. Hubungi marketing sekarang!`,
+            `Video virtual tour rumah tipe premium di Kertamulya Residence! Tanah luas 120m², bonus furnish senilai 25jt. Hanya 475jt!`
+        ]
+    },
+    instagram_bio: [
+        "🏡 Developer Properti Syariah Kuningan | DP 0% & Cicilan 1 Jutaan | Bonus Motor Listrik 🌿 #KertamulyaResidence 🔗 bimulialand.com/kertamulya",
+        "Properti Halal Kuningan 🕌 | KPR Syariah Tanpa Riba | Fasilitas Lengkap 🏡 Promo DP 0% & Bonus Motor ⚡ Kunjungi: bimulialand.com/kertamulya",
+        "Kertamulya Residence - Hunian Islami Kuningan 🏡 DP 0% | Cicilan Rp1.050.000/bln | Bonus Motor 🏍️ #RumahSyariah 🔗 Link di bio",
+        "Investasi Properti Terbaik di Kuningan 📈 Potensi Naik 20%/thn 🚀 Fasilitas Premium 🏊 #KertamulyaEksklusif 🌐 bimulialand.com/kertamulya",
+        "Rumah Subsidi Terbaik Kuningan 🏡 Harga 168jt | DP 0% | Bonus Motor Listrik ⚡ Lingkungan Islami 🕌 #RumahMurah 🔗 Info di bio",
+        "🏡 KPR Syariah Kuningan Tanpa Riba | Cicilan 1 Jutaan | Bonus Motor 🏍️ Fasilitas Lengkap 🌿 #PropertiHalal 🔗 bimulialand.com/kertamulya",
+        "Developer Properti Syariah Kuningan 🏡 DP 0% | Cicilan Ringan | Bonus Menarik 🎁 #KertamulyaResidence 🌐 Info lengkap di bio",
+        "Properti Islami Kuningan 🕌 KPR Syariah 100% Halal | DP 0% | Bonus Motor Listrik ⚡ #RumahTanpaRiba 🔗 bimulialand.com/kertamulya",
+        "🏡 Hunian Nyaman di Kuningan | Fasilitas Lengkap 🌿 DP 0% | Cicilan 1 Jutaan 💰 #KertamulyaHits 🔗 Link di bio",
+        "Investasi Properti Menguntungkan di Kuningan 📈 Potensi Naik 15-20%/thn 🚀 #KertamulyaPremium 🌐 bimulialand.com/kertamulya"
+        // Add 40 more variations...
+    ],
+    tiktok_bio: [
+        "Properti Syariah Kuningan 🏡 DP 0% & Bonus Motor ⚡ #rumahmurah",
+        "KPR Syariah Kuningan 🕌 Cicilan 1 jutaan 🔗 Link di bio",
+        "Rumah subsidi 168jt DP 0% 🏡 Bonus motor 🏍️ #kuningan",
+        "Investasi properti untung 20%/thn 📈 #kertamulya",
+        "Properti halal Kuningan 🏡 Tanpa riba 🕌 #rumahsyariah",
+        "Rumah mewah Kuningan 475jt 🏡 Bonus furnish 🛋️ #premium",
+        "KPR Syariah mudah 🏡 DP 0% cicil 1jt-an #rumahmurah",
+        "Properti Kuningan terbaik 🏡 Fasilitas lengkap 🌿 #kertamulya",
+        "Rumah 3 kamar 325jt 🏡 Bonus AC ❄️ #huniannyaman",
+        "Perumahan islami Kuningan 🕌 Lingkungan asri 🌳 #kertamulya"
+        // Add 40 more variations...
+    ]
+};
         // DOM Elements
-        const captionText = document.getElementById('caption-text');
-        const copyBtn = document.getElementById('copy-btn');
-        const newCaptionBtn = document.getElementById('new-caption-btn');
-        const saveBtn = document.getElementById('save-btn');
-        const refreshBtn = document.getElementById('refresh-btn');
-        const notification = document.getElementById('notification');
-        const platformBtns = document.querySelectorAll('.platform-btn');
-        const propertyBtns = document.querySelectorAll('.property-btn');
-        const assetGrid = document.getElementById('assetGrid');
-        const loadAssetsBtn = document.getElementById('loadAssetsBtn');
-        
-        // Current state
-        let currentPlatform = 'facebook';
-        let currentProperty = 'all';
-        
-        // Initialize
+const captionText = document.getElementById('caption-text');
+const copyBtn = document.getElementById('copy-btn');
+const newCaptionBtn = document.getElementById('new-caption-btn');
+const refreshBtn = document.getElementById('refresh-btn');
+const notification = document.getElementById('notification');
+const platformBtns = document.querySelectorAll('.platform-btn');
+const propertyBtns = document.querySelectorAll('.property-btn');
+const assetGrid = document.getElementById('assetGrid');
+const loadAssetsBtn = document.getElementById('loadAssetsBtn');
+const assetFilter = document.getElementById('asset-filter');
+
+// Current state
+let currentPlatform = 'facebook';
+let currentProperty = 'all';
+
+// Initialize
+generateCaption();
+
+// Event Listeners
+copyBtn.addEventListener('click', copyCaption);
+newCaptionBtn.addEventListener('click', generateCaption);
+refreshBtn.addEventListener('click', generateCaption);
+loadAssetsBtn.addEventListener('click', loadSampleAssets);
+
+// Platform selector
+platformBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        platformBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentPlatform = btn.dataset.platform;
+        document.getElementById('platform-title').textContent = 
+            `${btn.textContent.trim()} Caption`;
         generateCaption();
-        
-        // Event Listeners
-        copyBtn.addEventListener('click', copyCaption);
-        newCaptionBtn.addEventListener('click', generateCaption);
-        refreshBtn.addEventListener('click', generateCaption);
-        loadAssetsBtn.addEventListener('click', loadSampleAssets);
-        
-        // Platform selector
-        platformBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                platformBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentPlatform = btn.dataset.platform;
-                document.getElementById('platform-title').textContent = 
-                    `${btn.textContent.trim()} Caption`;
-                generateCaption();
-            });
-        });
-        
-        // Property selector
-        propertyBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                propertyBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentProperty = btn.dataset.type;
-                generateCaption();
-            });
-        });
-        
-        // Generate new caption
-        function generateCaption() {
-            const platformCaptions = captions[currentPlatform];
-            let availableCaptions = [];
-            
-            if (currentProperty === 'all') {
-                // Combine all property type captions
-                for (const prop in platformCaptions) {
-                    availableCaptions = availableCaptions.concat(platformCaptions[prop]);
-                }
-            } else {
-                availableCaptions = platformCaptions[currentProperty] || platformCaptions.all;
+    });
+});
+
+// Property selector
+propertyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        propertyBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentProperty = btn.dataset.type;
+        generateCaption();
+    });
+});
+
+// Generate new caption with all new features
+function generateCaption() {
+    let platformCaptions = captions[currentPlatform];
+    let availableCaptions = [];
+    
+    if (currentProperty === 'all') {
+        // Combine all property type captions
+        for (const prop in platformCaptions) {
+            if (Array.isArray(platformCaptions[prop])) {
+                availableCaptions = availableCaptions.concat(platformCaptions[prop]);
             }
-            
-            // Randomly select a caption
-            const randomIndex = Math.floor(Math.random() * availableCaptions.length);
-            const newCaption = availableCaptions[randomIndex];
-            
-            // Apply fade-in animation
-            captionText.classList.remove('fade-in');
-            void captionText.offsetWidth; // Trigger reflow
-            captionText.classList.add('fade-in');
-            
-            // Update caption text
-            captionText.textContent = newCaption;
+        }
+    } else {
+        availableCaptions = platformCaptions[currentProperty] || platformCaptions.all || [];
+    }
+    
+    // Special handling for Instagram Bio and TikTok Bio
+    if (currentPlatform === 'instagram_bio') {
+        availableCaptions = captions.instagram_bio;
+    } else if (currentPlatform === 'tiktok_bio') {
+        availableCaptions = captions.tiktok_bio;
+    }
+    
+    // Randomly select a caption
+    if (availableCaptions.length > 0) {
+        const randomIndex = Math.floor(Math.random() * availableCaptions.length);
+        let newCaption = availableCaptions[randomIndex];
+        
+        // Special formatting for OLX (remove emoji and phone numbers)
+        if (currentPlatform === 'olx') {
+            newCaption = newCaption.replace(/[\u{1F600}-\u{1F6FF}]/gu, '');
+            newCaption = newCaption.replace(/(\d{3})\d{7}/g, '[nomor tersedia di website]');
         }
         
-        // Copy caption to clipboard
-        function copyCaption() {
-            const text = captionText.textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('Caption berhasil disalin!');
-            });
-        }
+        // Apply fade-in animation
+        captionText.classList.remove('fade-in');
+        void captionText.offsetWidth; // Trigger reflow
+        captionText.classList.add('fade-in');
         
-        // Show notification
-        function showNotification(message) {
-            notification.querySelector('span').textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
+        // Update caption text
+        captionText.textContent = newCaption;
+    } else {
+        captionText.textContent = "No captions available for this combination";
+    }
+}
+
+// Copy caption to clipboard
+function copyCaption() {
+    const text = captionText.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        showNotification('Caption berhasil disalin!');
+    });
+}
+
+// Show notification
+function showNotification(message) {
+    notification.querySelector('span').textContent = message;
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+
+// Enhanced asset loading with download functionality
+function loadSampleAssets() {
+    assetGrid.innerHTML = '';
+    
+    // Sample assets (in real app these would come from Google Drive)
+    const sampleAssets = [
+        { type: 'image', url: 'https://i.imgur.com/THJSL1O.jpeg', name: 'Tampilan Depan' },
+        { type: 'image', url: 'https://i.imgur.com/2vYd5Fd.jpg', name: 'Masjid Al Fawwaz' },
+        { type: 'image', url: 'https://i.imgur.com/UF5V1Vu.jpg', name: 'Tipe Standard' },
+        { type: 'image', url: 'https://i.imgur.com/LgHbkuO.jpg', name: 'Tipe Suite' },
+        { type: 'video', url: 'https://i.imgur.com/2vYd5Fd.jpg', name: 'Video Perumahan' },
+        { type: 'image', url: 'https://i.imgur.com/7Fl9zHd.jpg', name: 'Tipe Premium' },
+        { type: 'image', url: 'https://i.imgur.com/tCg9iyw.jpg', name: 'Fasilitas Olahraga' },
+        { type: 'image', url: 'https://i.imgur.com/_blGnqd.jpg', name: 'Denah Rumah' }
+    ];
+    
+    sampleAssets.forEach(asset => {
+        const assetItem = document.createElement('div');
+        assetItem.className = 'asset-item';
+        assetItem.innerHTML = `
+            <div class="${asset.type === 'video' ? 'asset-video' : ''}">
+                <img src="${asset.url}" alt="${asset.name}" class="asset-thumbnail">
+            </div>
+            <div style="padding: 0.5rem; font-size: 0.8rem;">
+                <div>${asset.name}</div>
+                <button class="btn btn-outline download-asset-btn" 
+                        style="margin-top: 0.5rem; padding: 0.25rem 0.5rem; font-size: 0.7rem;"
+                        data-url="${asset.url}" 
+                        data-name="${asset.name}">
+                    <i class="fas fa-download"></i> Download
+                </button>
+            </div>
+        `;
+        assetGrid.appendChild(assetItem);
+    });
+    
+    // Add download event listeners
+    document.querySelectorAll('.download-asset-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const url = e.target.getAttribute('data-url');
+            const name = e.target.getAttribute('data-name');
+            downloadAsset(url, name);
+        });
+    });
+    
+    showNotification('Asset berhasil dimuat dari Google Drive');
+}
+
+// Download asset function
+function downloadAsset(url, filename) {
+    // In a real app, this would use the actual Google Drive download URL
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename || 'download';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showNotification('Download dimulai: ' + (filename || 'file'));
+}
+
+// Google Drive API integration (commented out as it requires setup)
+/*
+function initGoogleDrive() {
+    gapi.load('client:auth2', () => {
+        gapi.client.init({
+            apiKey: 'YOUR_API_KEY',
+            clientId: 'YOUR_CLIENT_ID',
+            scope: 'https://www.googleapis.com/auth/drive.readonly',
+            discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
+        }).then(() => {
+            loadDriveFiles();
+        });
+    });
+}
+
+function loadDriveFiles() {
+    gapi.client.drive.files.list({
+        q: "mimeType contains 'image/' or mimeType contains 'video/'",
+        fields: "files(id, name, thumbnailLink, webContentLink, mimeType)",
+        pageSize: 50
+    }).then(response => {
+        const files = response.result.files;
+        displayDriveAssets(files);
+    });
+}
+
+function displayDriveAssets(files) {
+    assetGrid.innerHTML = '';
+    
+    files.forEach(file => {
+        const isVideo = file.mimeType.includes('video');
+        const thumbnail = file.thumbnailLink || 'https://via.placeholder.com/150';
+        const downloadUrl = `https://drive.google.com/uc?export=download&id=${file.id}`;
         
-        // Load sample assets (in real app this would fetch from Google Drive API)
-        function loadSampleAssets() {
-            assetGrid.innerHTML = '';
-            
-            // Sample assets (in real app these would come from Google Drive)
-            const sampleAssets = [
-                { type: 'image', url: 'https://i.imgur.com/THJSL1O.jpeg', name: 'Tampilan Depan' },
-                { type: 'image', url: 'https://i.imgur.com/2vYd5Fd.jpg', name: 'Masjid Al Fawwaz' },
-                { type: 'image', url: 'https://i.imgur.com/UF5V1Vu.jpg', name: 'Tipe Standard' },
-                { type: 'image', url: 'https://i.imgur.com/LgHbkuO.jpg', name: 'Tipe Suite' },
-                { type: 'video', url: 'https://i.imgur.com/2vYd5Fd.jpg', name: 'Video Perumahan' },
-                { type: 'image', url: 'https://i.imgur.com/7Fl9zHd.jpg', name: 'Tipe Premium' },
-                { type: 'image', url: 'https://i.imgur.com/tCg9iyw.jpg', name: 'Fasilitas Olahraga' },
-                { type: 'image', url: 'https://i.imgur.com/_blGnqd.jpg', name: 'Denah Rumah' }
-            ];
-            
-            sampleAssets.forEach(asset => {
-                const assetItem = document.createElement('div');
-                assetItem.className = 'asset-item';
-                assetItem.innerHTML = `
-                    <div class="${asset.type === 'video' ? 'asset-video' : ''}">
-                        <img src="${asset.url}" alt="${asset.name}" class="asset-thumbnail">
-                    </div>
-                    <div style="padding: 0.5rem; font-size: 0.8rem;">${asset.name}</div>
-                `;
-                assetGrid.appendChild(assetItem);
-            });
-            
-            showNotification('Asset berhasil dimuat dari Google Drive');
-        }
-        
-        // In a real app, you would integrate with Google Drive API like this:
-        /*
-        function loadAssetsFromGoogleDrive() {
-            // Initialize the client library
-            gapi.client.init({
-                apiKey: 'YOUR_API_KEY',
-                clientId: 'YOUR_CLIENT_ID',
-                scope: 'https://www.googleapis.com/auth/drive.readonly',
-                discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
-            }).then(function() {
-                // List files from Google Drive
-                return gapi.client.drive.files.list({
-                    q: "mimeType contains 'image/' or mimeType contains 'video/'",
-                    fields: "files(id, name, thumbnailLink, webContentLink)",
-                    pageSize: 20
-                });
-            }).then(function(response) {
-                const files = response.result.files;
-                // Process files and display in asset grid
-            });
-        }
-        */
+        const assetItem = document.createElement('div');
+        assetItem.className = 'asset-item';
+        assetItem.innerHTML = `
+            <div class="${isVideo ? 'asset-video' : ''}">
+                <img src="${thumbnail}" alt="${file.name}" class="asset-thumbnail">
+            </div>
+            <div style="padding: 0.5rem; font-size: 0.8rem;">
+                <div>${file.name}</div>
+                <button class="btn btn-outline download-asset-btn" 
+                        style="margin-top: 0.5rem; padding: 0.25rem 0.5rem; font-size: 0.7rem;"
+                        data-url="${downloadUrl}" 
+                        data-name="${file.name}">
+                    <i class="fas fa-download"></i> Download
+                </button>
+            </div>
+        `;
+        assetGrid.appendChild(assetItem);
+    });
+    
+    // Add download event listeners
+    document.querySelectorAll('.download-asset-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const url = e.target.getAttribute('data-url');
+            const name = e.target.getAttribute('data-name');
+            downloadAsset(url, name);
+        });
+    });
+    
+    showNotification('Asset berhasil dimuat dari Google Drive');
+}
+*/
+
+// Add new platform buttons for Instagram Bio and TikTok Bio
+function addBioPlatformButtons() {
+    const platformSelector = document.querySelector('.platform-selector');
+    
+    const instagramBioBtn = document.createElement('button');
+    instagramBioBtn.className = 'platform-btn';
+    instagramBioBtn.dataset.platform = 'instagram_bio';
+    instagramBioBtn.innerHTML = '<i class="fab fa-instagram"></i> Instagram Bio';
+    
+    const tiktokBioBtn = document.createElement('button');
+    tiktokBioBtn.className = 'platform-btn';
+    tiktokBioBtn.dataset.platform = 'tiktok_bio';
+    tiktokBioBtn.innerHTML = '<i class="fab fa-tiktok"></i> TikTok Bio';
+    
+    platformSelector.appendChild(instagramBioBtn);
+    platformSelector.appendChild(tiktokBioBtn);
+    
+    // Add event listeners for new buttons
+    instagramBioBtn.addEventListener('click', () => {
+        platformBtns.forEach(b => b.classList.remove('active'));
+        instagramBioBtn.classList.add('active');
+        currentPlatform = 'instagram_bio';
+        document.getElementById('platform-title').textContent = 'Instagram Bio Caption';
+        generateCaption();
+    });
+    
+    tiktokBioBtn.addEventListener('click', () => {
+        platformBtns.forEach(b => b.classList.remove('active'));
+        tiktokBioBtn.classList.add('active');
+        currentPlatform = 'tiktok_bio';
+        document.getElementById('platform-title').textContent = 'TikTok Bio Caption';
+        generateCaption();
+    });
+}
+
+// Initialize the bio platform buttons
+addBioPlatformButtons();
     </script>
 </body>
 </html>
