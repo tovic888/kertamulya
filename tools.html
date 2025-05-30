@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Kertamulya AI Caption - Generator Viral Properti</title>
+    <title>Kertamulya AI - Generator Caption Properti Viral</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2ecc71;
-            --primary-dark: #27ae60;
-            --primary-light: #d5f8e5;
-            --accent: #f1c40f;
-            --accent-dark: #f39c12;
-            --danger: #e74c3c;
-            --dark: #111;
-            --light: #fff;
-            --gray: #f5f5f5;
-            --text: #333;
-            --text-light: #666;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --accent: #f59e0b;
+            --accent-dark: #d97706;
+            --danger: #ef4444;
+            --dark: #111827;
+            --light: #f9fafb;
+            --gray: #f3f4f6;
+            --text: #1f2937;
+            --text-light: #6b7280;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
@@ -75,6 +75,7 @@
         .logo {
             max-width: 180px;
             margin-bottom: 1rem;
+            filter: brightness(0) invert(1);
         }
 
         h1 {
@@ -357,6 +358,68 @@
                 width: 100%;
             }
         }
+        
+        /* Asset Selector */
+        .asset-selector {
+            margin-bottom: 2rem;
+        }
+        
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .asset-item {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .asset-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .asset-item.selected {
+            border-color: var(--primary);
+        }
+        
+        .asset-thumbnail {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+        
+        .asset-video {
+            position: relative;
+        }
+        
+        .asset-video::before {
+            content: '\f144';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            z-index: 1;
+        }
+        
+        .asset-video::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
@@ -364,8 +427,8 @@
         <div class="container">
             <div class="header-content">
                 <img src="https://i.imgur.com/oE8kXBw.png" alt="Kertamulya Residence Logo" class="logo">
-                <h1>🚀 AI Caption Generator Properti</h1>
-                <p class="subtitle">100+ Kombinasi Caption Viral untuk Konversi Tertinggi di Kertamulya Residence Kuningan</p>
+                <h1>AI Caption Generator Properti</h1>
+                <p class="subtitle">Tools canggih untuk tim marketing Kertamulya Residence Kuningan</p>
             </div>
         </div>
     </header>
@@ -375,660 +438,4 @@
             <div class="property-types">
                 <button class="property-btn active" data-type="all">Semua Tipe</button>
                 <button class="property-btn" data-type="subsidi">Standar Subsidi 30/60</button>
-                <button class="property-btn" data-type="mezzanine">Standar + Mezzanine</button>
-                <button class="property-btn" data-type="suite">Suite 50/60</button>
-                <button class="property-btn" data-type="premium">Premium 50/120</button>
-            </div>
-
-            <div class="platform-selector">
-                <button class="platform-btn active" data-platform="facebook">
-                    <i class="fab fa-facebook-f"></i> Facebook
-                </button>
-                <button class="platform-btn" data-platform="tiktok">
-                    <i class="fab fa-tiktok"></i> TikTok
-                </button>
-                <button class="platform-btn" data-platform="instagram">
-                    <i class="fab fa-instagram"></i> Instagram
-                </button>
-                <button class="platform-btn" data-platform="olx">
-                    <i class="fas fa-store"></i> OLX
-                </button>
-                <button class="platform-btn" data-platform="whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </button>
-            </div>
-
-            <div class="generator-container">
-                <div class="generator-header">
-                    <h3 class="generator-title" id="platform-title">Facebook Marketplace Caption</h3>
-                    <button class="refresh-btn" id="refresh-btn">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>
-                </div>
-                <div class="generator-body">
-                    <div class="caption-display">
-                        <div class="caption-text fade-in" id="caption-text">
-                            Loading caption...
-                        </div>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" id="copy-btn">
-                            <i class="fas fa-copy"></i> Salin Caption
-                        </button>
-                        <button class="btn btn-accent" id="new-caption-btn">
-                            <i class="fas fa-magic"></i> Generate Baru
-                        </button>
-                        <button class="btn btn-outline" id="save-btn">
-                            <i class="fas fa-bookmark"></i> Simpan Favorite
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="meta-tips">
-                <h3><i class="fas fa-lightbulb"></i> Tips Iklan Meta untuk Kertamulya Residence</h3>
-                <ul>
-                    <li><strong>Objective:</strong> Gunakan "Leads" atau "Pesan" dengan target usia 25-45 tahun</li>
-                    <li><strong>Segmentasi:</strong> Targetkan wilayah Kuningan, Cirebon, Majalengka + radius 50km</li>
-                    <li><strong>Placement:</strong> Prioritaskan Feed Mobile + Reels (80% budget), Story (20%)</li>
-                    <li><strong>Format Terbaik:</strong> Video testimoni (30-45 detik) atau carousel before-after</li>
-                    <li><strong>Waktu Terbaik:</strong> Jam 7-9 pagi dan 7-10 malam (engagement tertinggi)</li>
-                </ul>
-            </div>
-
-            <div class="meta-tips">
-                <h3><i class="fas fa-virus"></i> Strategi TikTok Viral</h3>
-                <ul>
-                    <li>Gunakan format "Day in Life" di lingkungan perumahan (tidak terlihat seperti iklan)</li>
-                    <li>Buat konten "Before-After" perkembangan pembangunan perumahan</li>
-                    <li>Duet dengan video pertanyaan "Bagaimana cara punya rumah dengan gaji UMR?"</li>
-                    <li>Gunakan hashtag: #rumahmurah #propertisubsidi #kuninganhits</li>
-                    <li>Posting 3x sehari (pagi, siang, malam) dengan durasi 21-34 detik</li>
-                </ul>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>© 2025 Kertamulya Residence - AI Caption Generator Properti</p>
-            <div class="footer-links">
-                <a href="https://bimulialand.com/kertamulya" target="_blank">Website Resmi</a>
-                <a href="tel:08977771080">Marketing: 08977771080</a>
-                <a href="#">Kebijakan Privasi</a>
-            </div>
-            <p class="copyright">🚀 Tools Exclusive Tim Marketing Kertamulya Residence</p>
-        </div>
-    </footer>
-
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i>
-        <span>Caption berhasil disalin!</span>
-    </div>
-
-    <script>
-        // Property database
-        const properties = {
-            subsidi: {
-                name: "Standar Subsidi 30/60",
-                price: "168.000.000",
-                originalPrice: "185.000.000",
-                land: "60m²",
-                building: "30m²",
-                rooms: "2 Kamar Tidur + 1 KM",
-                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
-                sellingPoints: [
-                    "Harga Terjangkau untuk Keluarga Muda",
-                    "Bonus Motor Listrik setelah 6x Angsuran",
-                    "Lingkungan Islami dan Asri",
-                    "Dekat Pusat Kota tapi Tetap Nyaman"
-                ]
-            },
-            mezzanine: {
-                name: "Standar + Mezzanine",
-                price: "215.000.000",
-                originalPrice: "235.000.000",
-                land: "60m²",
-                building: "36m² (+6m² mezzanine)",
-                rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
-                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
-                sellingPoints: [
-                    "Ruang Tambahan untuk Kantor/Usaha",
-                    "Desain Modern Minimalis",
-                    "Bonus Smart TV 32 Inch",
-                    "Lingkungan Strategis dekat Pasar"
-                ]
-            },
-            suite: {
-                name: "Suite 50/60",
-                price: "325.000.000",
-                originalPrice: "350.000.000",
-                land: "60m²",
-                building: "50m²",
-                rooms: "3 Kamar Tidur + 1 KM + Ruang Keluarga",
-                facilities: ["Masjid Al Fawwaz", "Club House", "Taman Bermain Premium", "Area Parkir Luas", "Security 24 Jam"],
-                sellingPoints: [
-                    "Kelas Menengah dengan Fasilitas Premium",
-                    "Bonus AC Split untuk Kamar Utama",
-                    "Desain Interior Modern",
-                    "Lokasi Paling Strategis di Komplek"
-                ]
-            },
-            premium: {
-                name: "Premium 50/120",
-                price: "475.000.000",
-                originalPrice: "520.000.000",
-                land: "120m²",
-                building: "50m²",
-                rooms: "3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur",
-                facilities: ["Masjid Al Fawwaz", "Club House Premium", "Taman Bermain VIP", "Area Parkir Pribadi", "Security 24 Jam", "Jalan Lebar 8m"],
-                sellingPoints: [
-                    "Investasi Jangka Panjang Terbaik",
-                    "Bonus Paket Furnish Minimalis",
-                    "Lingkungan Eksklusif",
-                    "Potensi Kenaikan Harga 15-20% per Tahun"
-                ]
-            }
-        };
-
-        // Caption database (100+ combinations)
-        const captions = {
-            facebook: {
-                all: [
-                    `🏡 PUNYA RUMAH DI KUNINGAN GA PAKAI RIBA? BISA BANGET!
-
-DP 0% via Bank Syariah
-Cicilan mulai Rp1.050.000/bulan
-Bonus Motor Listrik setelah 6x angsuran 🏍️⚡
-
-📍 Lokasi strategis:
-- 5 menit ke Jalan Nasional
-- 15 menit ke Esbe Mart Kuningan
-- Lingkungan Islami dengan Masjid dalam komplek
-
-⏳ STOK TERBATAS! Booking fee hanya Rp500rb
-
-📲 Info lebih lanjut:
-https://bimulialand.com/kertamulya
-WA: 08977771080 (Marketing)`,
-
-                    `🔥 NUNGGU APA LAGI? PROMO TERBESAR TAHUN INI!
-
-Perumahan Islami Kertamulya Residence Kuningan hadir dengan konsep Green Living dan pembiayaan syariah 100% halal.
-
-✅ Tanpa DP
-✅ Tanpa Bunga
-✅ Proses Cepat & Mudah
-✅ Bonus Motor Listrik
-
-🏡 Tersedia 4 tipe rumah:
-1. Standar Subsidi 30/60 - Rp168jt
-2. Standar + Mezzanine - Rp215jt
-3. Suite 50/60 - Rp325jt
-4. Premium 50/120 - Rp475jt
-
-📞 Langsung hubungi:
-08977771080 (Marketing Resmi)`,
-
-                    `🚀 GAJI UMR BISA PUNYA RUMAH? DI KERTAMULYA BISA!
-
-KPR Syariah dengan cicilan mulai Rp1.050.000/bulan (lebih murah dari kontrak kosan!) di Kertamulya Residence Kuningan.
-
-✔️ Tanpa DP
-✔️ Tanpa Biaya Admin
-✔️ Bonus Motor Listrik senilai Rp12jt
-✔️ Lingkungan Islami dengan fasilitas lengkap
-
-📌 Lokasi premium 5 menit ke jalan nasional
-
-⏳ PROMO TERBATAS! Stok tinggal 30 unit
-
-📲 Kunjungi website resmi:
-https://bimulialand.com/kertamulya`
-                ],
-                subsidi: [
-                    `🏡 RUMAH SUBSIDI TERBAIK DI KUNINGAN!
-
-Tipe Standar 30/60
-Harga Promo: Rp168.000.000 (dari Rp185.000.000)
-
-✔️ Luas Tanah: 60m²
-✔️ Luas Bangunan: 30m²
-✔️ 2 Kamar Tidur + 1 KM
-✔️ Bonus Motor Listrik setelah 6x angsuran
-
-📍 Lokasi strategis 5 menit ke jalan nasional
-🌿 Lingkungan Islami dengan Masjid dalam komplek
-
-⏳ Stok terbatas! Booking fee hanya Rp500rb
-
-📲 Info lebih lanjut:
-WA: 08977771080 (Marketing)`
-                ],
-                mezzanine: [
-                    `🔥 RUMAH MINIMALIS DENGAN RUANG TAMBAHAN!
-
-Tipe Standar + Mezzanine 36m²
-Harga Promo: Rp215.000.000 (dari Rp235.000.000)
-
-✔️ Luas Tanah: 60m²
-✔️ Luas Bangunan: 36m² (+6m² mezzanine)
-✔️ 2 Kamar Tidur + 1 KM + Ruang Multifungsi
-✔️ Bonus Smart TV 32 Inch
-
-💡 Perfect untuk:
-- Kantor kecil
-- Tempat usaha
-- Ruang kerja dari rumah
-
-📌 Lokasi premium di Kertamulya Residence Kuningan
-
-📞 Hubungi marketing:
-08977771080`
-                ],
-                suite: [
-                    `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM!
-
-Tipe Suite 50/60
-Harga Promo: Rp325.000.000 (dari Rp350.000.000)
-
-✔️ Luas Tanah: 60m²
-✔️ Luas Bangunan: 50m²
-✔️ 3 Kamar Tidur + 1 KM + Ruang Keluarga
-✔️ Bonus AC Split untuk kamar utama
-
-Fasilitas:
-🕌 Masjid Al Fawwaz
-🏊 Club House
-🅿️ Area Parkir Luas
-👮 Security 24 Jam
-
-📌 Lokasi paling strategis di komplek
-
-📲 Info lebih lanjut:
-https://bimulialand.com/kertamulya`
-                ],
-                premium: [
-                    `🚀 INVESTASI PROPERTI TERBAIK DI KUNINGAN!
-
-Tipe Premium 50/120
-Harga Promo: Rp475.000.000 (dari Rp520.000.000)
-
-✔️ Luas Tanah: 120m²
-✔️ Luas Bangunan: 50m²
-✔️ 3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur
-✔️ Bonus Paket Furnish Minimalis senilai Rp25jt
-
-Keunggulan:
-📈 Potensi kenaikan harga 15-20% per tahun
-🌳 Lingkungan eksklusif
-🛡️ Security 24 Jam
-🅿️ Parkir pribadi
-
-⏳ Unit terbatas! Hanya 5 unit tersisa
-
-📞 Langsung hubungi:
-08977771080 (Marketing)`
-                ]
-            },
-            tiktok: {
-                all: [
-                    `Punya rumah sendiri dengan gaji UMR? Bisa banget! 😱
-
-DP 0% 
-Cicilan 1 jutaan
-Bonus motor listrik 🏍️⚡
-
-📍 Kuningan strategis
-🌿 Lingkungan islami
-🕌 Masjid dalam komplek
-
-#rumahmurah #kprsyariah #kuningan #fyp`,
-
-                    `Ga perlu nunggu kaya dulu buat punya rumah! 🏡
-
-Booking fee 500rb
-Langsung proses KPR Syariah
-Bonus motor listrik lho 🏍️
-
-#propertimurah #dp0persen #kuningan #fypシ`,
-
-                    `Rumah subsidi di Kuningan cuma 168jt! 😳
-
-2 kamar tidur
-1 kamar mandi
-Carport + taman
-
-Bonus motor listrik setelah 6x bayar cicilan 🏍️
-
-#rumahsubsidi #kuningan #propertymurah #fyp`
-                ],
-                subsidi: [
-                    `Rumah subsidi 168jt di Kuningan bisa KPR Syariah! 😱
-
-DP 0%
-Cicilan 1 jutaan
-Bonus motor listrik 🏍️
-
-#rumahmurah #kprsyariah #kuningan #fyp`,
-
-                    `Gaji UMR bisa punya rumah? Bisa! 🏡
-
-KPR Syariah Kertamulya:
-- DP 0%
-- Cicilan 1 jutaan
-- Bonus motor listrik
-
-#rumahsubsidi #kuningan #fypシ`
-                ],
-                mezzanine: [
-                    `Rumah minimalis ada ruang tambahan buat usaha! 💡
-
-Tipe mezzanine 36m²
-Harga 215jt
-Bonus smart TV 📺
-
-#rumahminimalis #kuningan #fyp`,
-
-                    `Punya kantor kecil di rumah? Bisa banget! 🏡💼
-
-Rumah tipe mezzanine Kertamulya:
-- Ruang tambahan 6m²
-- Harga 215jt
-- Bonus TV 32 inch
-
-#rumahkantor #kuningan #fypシ`
-                ],
-                suite: [
-                    `Hunian premium di Kuningan cuma 325jt! 😱
-
-3 kamar tidur
-1 km + ruang keluarga
-Bonus AC split ❄️
-
-#rumahpremium #kuningan #fyp`,
-
-                    `KPR Syariah untuk rumah 3 kamar? Bisa! 🏡
-
-Tipe Suite 50/60:
-- Harga 325jt
-- Bonus AC
-- Fasilitas club house
-
-#rumah3kamar #kprsyariah #fypシ`
-                ],
-                premium: [
-                    `Investasi properti terbaik di Kuningan! 📈
-
-Tipe Premium 50/120:
-- Tanah 120m²
-- Bangunan 50m²
-- Bonus furnish senilai 25jt
-
-#investasiproperti #kuningan #fyp`,
-
-                    `Rumah eksklusif di Kuningan dengan potensi kenaikan harga 20% per tahun! 🚀
-
-Tipe Premium Kertamulya:
-- Harga 475jt
-- Bonus paket furnish
-- Security 24 jam
-
-#rumaheksklusif #investasiproperti #fypシ`
-                ]
-            },
-            instagram: {
-                all: [
-                    `🌿 HUNIAN ISLAMI DI TENGAH KOTA 🏡
-
-Kertamulya Residence - Perumahan pertama di Kuningan dengan konsep Green Living & nilai-nilai Islami
-
-✨ Keunggulan:
-✅ DP 0% via Bank Syariah
-✅ Cicilan mulai Rp1jt-an/bulan
-✅ Bonus Motor Listrik
-✅ Fasilitas lengkap (Masjid, Tahfidz, Sport Area)
-
-📌 Lokasi strategis:
-- 5' ke Jalan Nasional
-- 15' ke Esbe Mart Kuningan
-
-⏳ Stok terbatas! Booking fee hanya Rp500rb
-
-🔗 Link di bio untuk info lebih lanjut
-@kertamulya_residence
-
-#RumahIslami #Kuningan #PropertySyariah #GreenLiving`,
-
-                    `🏡 PUNYA RUMAH TANPA RIBA? BISA!
-
-KPR Syariah di Kertamulya Residence Kuningan:
-✔️ Tanpa DP
-✔️ Tanpa bunga bank
-✔️ Proses cepat & mudah
-
-💰 Cicilan mulai Rp1.050.000/bulan
-🎁 Bonus Motor Listrik senilai Rp12jt
-
-📍 Lokasi premium:
-- 5 menit ke jalan nasional
-- Dekat pusat kota tapi suasana asri
-
-📲 WA 08977771080 untuk info lebih lanjut
-
-🔗 Atau kunjungi link di bio
-@kertamulya_residence
-
-#KPRSyariah #RumahHalal #InvestasiProperti #KuninganHits`,
-
-                    `🔥 PROMO GILA! DP 0% + BONUS MOTOR 🏍️
-
-Kertamulya Residence - Hunian Islami di Kuningan
-
-🏡 Tersedia 4 tipe rumah:
-1. Standar Subsidi 30/60 - Rp168jt
-2. Standar + Mezzanine - Rp215jt
-3. Suite 50/60 - Rp325jt
-4. Premium 50/120 - Rp475jt
-
-⏳ Stok tinggal 30 unit! Jangan sampai kehabisan
-
-📲 Info lebih lanjut:
-@kertamulya_residence
-08977771080 (Marketing)
-
-#RumahMurah #PropertyKuningan #InvestasiMasaDepan #DP0Persen`
-                ],
-                subsidi: [
-                    `🏡 SOLUSI RUMAH UNTUK KELUARGA MUDA
-
-Tipe Standar Subsidi 30/60
-Harga Promo: Rp168.000.000 (dari Rp185.000.000)
-
-✔️ Luas Tanah: 60m²
-✔️ Luas Bangunan: 30m²
-✔️ 2 Kamar Tidur + 1 KM
-✔️ Bonus Motor Listrik setelah 6x angsuran
-
-📍 Lokasi strategis di Kertamulya Residence Kuningan
-
-⏳ Stok terbatas! Booking fee Rp500rb
-
-📲 WA: 08977771080
-🔗 Link di bio @kertamulya_residence
-
-#RumahSubsidi #Kuningan #PropertyMurah`,
-
-                    `🚀 PUNYA RUMAH DENGAN GAJI UMR? BISA!
-
-KPR Syariah untuk Tipe Standar Subsidi 30/60:
-✔️ DP 0%
-✔️ Cicilan mulai Rp1.050.000/bulan
-✔️ Bonus Motor Listrik senilai Rp12jt
-
-🏡 Fasilitas:
-🕌 Masjid dalam komplek
-🌳 Taman bermain
-🅿️ Area parkir
-
-📌 Kuningan strategis 5 menit ke jalan nasional
-
-📞 08977771080 (Marketing)
-@kertamulya_residence
-
-#RumahMurah #KPRSyariah #KuninganHits`
-                ],
-                mezzanine: [
-                    `💡 RUMAH MINIMALIS DENGAN RUANG USAHA
-
-Tipe Standar + Mezzanine 36m²
-Harga Promo: Rp215.000.000
-
-✔️ Luas Tanah: 60m²
-✔️ Luas Bangunan: 36m² (+6m² mezzanine)
-✔️ Bonus Smart TV 32 Inch
-
-🏆 Perfect untuk:
-- Kantor kecil
-- Tempat usaha
-- Ruang kerja dari rumah
-
-📍 Kertamulya Residence Kuningan
-
-📲 Info lebih lanjut:
-@kertamulya_residence
-08977771080
-
-#RumahMinimalis #Kuningan #HomeOffice`,
-
-                    `🏡 RUMAH DENGAN RUANG TAMBAHAN UNTUK BISNIS
-
-Tipe Mezzanine Kertamulya Residence:
-✔️ Hanya Rp215jt
-✔️ Bonus Smart TV
-✔️ Lokasi strategis dekat pasar
-
-💼 Cocok untuk:
-- Usaha kecil
-- Kantor cabang
-- Tempat les privat
-
-📌 Kuningan - 5 menit ke jalan nasional
-
-📞 08977771080 (Marketing)
-@kertamulya_residence
-
-#RumahUsaha #Kuningan #BisnisRumahan`
-                ],
-                suite: [
-                    `🏡 HUNIAN KELAS MENENGAH DENGAN FASILITAS PREMIUM
-
-Tipe Suite 50/60
-Harga Promo: Rp325.000.000
-
-✔️ 3 Kamar Tidur
-✔️ 1 KM + Ruang Keluarga
-✔️ Bonus AC Split
-
-🏆 Fasilitas:
-🕌 Masjid Al Fawwaz
-🏊 Club House
-🅿️ Area Parkir Luas
-👮 Security 24 Jam
-
-📍 Lokasi paling strategis di komplek
-
-📲 @kertamulya_residence
-📞 08977771080
-
-#RumahPremium #Kuningan #HunianEksklusif`,
-
-                    `🚀 NAIK KELAS KE RUMAH 3 KAMAR TIDUR
-
-Tipe Suite 50/60 Kertamulya Residence:
-✔️ Harga Rp325jt
-✔️ Bonus AC Split
-✔️ Fasilitas club house
-
-🏡 Perfect untuk keluarga kecil yang ingin ruang lebih
-
-📍 Kuningan - 5 menit ke jalan nasional
-
-📞 08977771080 (Marketing)
-@kertamulya_residence
-
-#Rumah3Kamar #Kuningan #KeluargaMuda`
-                ],
-                premium: [
-                    `📈 INVESTASI PROPERTI TERBAIK DI KUNINGAN
-
-Tipe Premium 50/120
-Harga Promo: Rp475.000.000
-
-✔️ Tanah 120m²
-✔️ Bangunan 50m²
-✔️ Bonus Paket Furnish Minimalis
-
-🏆 Keunggulan:
-📈 Potensi kenaikan 15-20%/tahun
-🌳 Lingkungan eksklusif
-🛡️ Security 24 Jam
-🅿️ Parkir pribadi
-
-⏳ Unit terbatas! Hanya 5 tersisa
-
-📲 @kertamulya_residence
-📞 08977771080
-
-#InvestasiProperti #Kuningan #RumahEksklusif`,
-
-                    `🏡 HUNIAN EKSKLUSIF DI KUNINGAN
-
-Tipe Premium Kertamulya Residence:
-✔️ Tanah 120m²
-✔️ Bangunan 50m²
-✔️ 3 Kamar Tidur + 2 KM
-✔️ Bonus Furnish Senilai Rp25jt
-
-💎 Fasilitas Premium:
-🏊 Club House VIP
-🌳 Taman Privat
-👮 Security 24/7
-🅿️ Parkir Pribadi
-
-📌 Lokasi terbaik di komplek
-
-📞 08977771080 (Marketing)
-@kertamulya_residence
-
-#RumahMewah #Kuningan #HunianEksklusif`
-                ]
-            },
-            olx: {
-                all: [
-                    `Dijual rumah syariah di Kuningan - Kertamulya Residence
-
-Tersedia 4 tipe:
-1. Standar Subsidi 30/60 - Rp168jt
-2. Standar + Mezzanine - Rp215jt
-3. Suite 50/60 - Rp325jt
-4. Premium 50/120 - Rp475jt
-
-Keunggulan:
-- DP 0% via Bank Syariah
-- Bonus Motor Listrik untuk tipe subsidi
-- Lingkungan Islami dengan masjid dalam komplek
-- Lokasi strategis 5 menit ke jalan nasional
-
-Fasilitas:
-- Masjid
-- Taman bermain
-- Area parkir
-- Security
-
-Booking fee hanya Rp500rb
-Stok terbatas!
-
-Hubungi marketing:
-08977771080
-https://bimulialand
+                <button class="property-btn"
