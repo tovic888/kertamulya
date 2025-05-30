@@ -438,4 +438,121 @@
             <div class="property-types">
                 <button class="property-btn active" data-type="all">Semua Tipe</button>
                 <button class="property-btn" data-type="subsidi">Standar Subsidi 30/60</button>
-                <button class="property-btn"
+                <button class="property-btn" data-type="mezzanine">Standar + Mezzanine</button>
+                <button class="property-btn" data-type="suite">Suite 50/60</button>
+                <button class="property-btn" data-type="premium">Premium 50/120</button>
+            </div>
+
+            <div class="platform-selector">
+                <button class="platform-btn active" data-platform="facebook">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+                <button class="platform-btn" data-platform="tiktok">
+                    <i class="fab fa-tiktok"></i> TikTok
+                </button>
+                <button class="platform-btn" data-platform="instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </button>
+                <button class="platform-btn" data-platform="olx">
+                    <i class="fas fa-store"></i> OLX
+                </button>
+                <button class="platform-btn" data-platform="whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+            </div>
+            
+            <!-- Asset Selector -->
+            <div class="asset-selector">
+                <h3><i class="fas fa-images"></i> Pilih Asset Iklan</h3>
+                <p>Pilih gambar atau video dari Google Drive untuk disertakan dalam caption</p>
+                <div class="asset-grid" id="assetGrid">
+                    <!-- Assets will be loaded here -->
+                </div>
+                <button class="btn btn-outline" id="loadAssetsBtn">
+                    <i class="fas fa-sync-alt"></i> Muat Asset dari Google Drive
+                </button>
+            </div>
+
+            <div class="generator-container">
+                <div class="generator-header">
+                    <h3 class="generator-title" id="platform-title">Facebook Marketplace Caption</h3>
+                    <button class="refresh-btn" id="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                <div class="generator-body">
+                    <div class="caption-display">
+                        <div class="caption-text fade-in" id="caption-text">
+                            Loading caption...
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="copy-btn">
+                            <i class="fas fa-copy"></i> Salin Caption
+                        </button>
+                        <button class="btn btn-accent" id="new-caption-btn">
+                            <i class="fas fa-magic"></i> Generate Baru
+                        </button>
+                        <button class="btn btn-outline" id="save-btn">
+                            <i class="fas fa-bookmark"></i> Simpan Favorite
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meta-tips">
+                <h3><i class="fas fa-bullseye"></i> Strategi Meta Ads untuk Kuningan</h3>
+                <ul>
+                    <li><strong>Objective:</strong> Gunakan "Leads" atau "Pesan" dengan target usia 25-45 tahun</li>
+                    <li><strong>Segmentasi:</strong> Targetkan wilayah Kuningan, Cirebon, Majalengka + radius 50km</li>
+                    <li><strong>Placement:</strong> Prioritaskan Feed Mobile + Reels (80% budget), Story (20%)</li>
+                    <li><strong>Format Terbaik:</strong> Video testimoni (30-45 detik) atau carousel before-after</li>
+                    <li><strong>Waktu Terbaik:</strong> Jam 7-9 pagi dan 7-10 malam (engagement tertinggi)</li>
+                    <li><strong>Copywriting:</strong> Gunakan 3 variasi judul berbeda untuk split testing</li>
+                </ul>
+            </div>
+
+            <div class="meta-tips">
+                <h3><i class="fas fa-virus"></i> Strategi TikTok Viral</h3>
+                <ul>
+                    <li>Gunakan format "Day in Life" di lingkungan perumahan (tidak terlihat seperti iklan)</li>
+                    <li>Buat konten "Before-After" perkembangan pembangunan perumahan</li>
+                    <li>Duet dengan video pertanyaan "Bagaimana cara punya rumah dengan gaji UMR?"</li>
+                    <li>Gunakan hashtag: #rumahmurah #propertisubsidi #kuninganhits</li>
+                    <li>Posting 3x sehari (pagi, siang, malam) dengan durasi 21-34 detik</li>
+                    <li>Gunakan sound trending lokal Kuningan untuk meningkatkan reach</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Kertamulya Residence - AI Caption Generator Properti</p>
+            <div class="footer-links">
+                <a href="https://bimulialand.com/kertamulya" target="_blank">Website Resmi</a>
+                <a href="tel:08977771080">Marketing: 08977771080</a>
+                <a href="#">Kebijakan Privasi</a>
+            </div>
+            <p class="copyright">🚀 Tools Exclusive Tim Marketing Kertamulya Residence</p>
+        </div>
+    </footer>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Caption berhasil disalin!</span>
+    </div>
+
+    <script>
+        // Property database
+        const properties = {
+            subsidi: {
+                name: "Standar Subsidi 30/60",
+                price: "168.000.000",
+                originalPrice: "185.000.000",
+                land: "60m²",
+                building: "30m²",
+                rooms: "2 Kamar Tidur + 1 KM",
+                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
+                sellingPoints: [
+                    "Harga Terjangkau untuk Keluarga M
