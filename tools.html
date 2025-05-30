@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kertamulya AI - Generator Caption Properti Viral</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">F
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://apis.google.com/js/api.js" onload="this.onload=function(){};initGoogleAPI()" 
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
     <style>
         :root {
             --primary: #2563eb;
@@ -1970,22 +1973,16 @@ function initGoogleAuth() {
             
             // Tambahkan event listener untuk tombol login
             document.getElementById('google-login').addEventListener('click', function() {
-                if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-                    // Jika sudah login, logout
-                    gapi.auth2.getAuthInstance().signOut();
-                    updateGoogleLoginUI();
-                } else {
-                    // Jika belum login, lakukan login
-                    gapi.auth2.getAuthInstance().signIn().then(function() {
-                        updateGoogleLoginUI();
-                        // Setelah login, muat file dari Google Drive
-                        loadDriveFiles();
-                    });
-                }
-            });
+    if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+        gapi.auth2.getAuthInstance().signOut();
+        updateGoogleLoginUI();
+    } else {
+        gapi.auth2.getAuthInstance().signIn().then(function() {
+            updateGoogleLoginUI();
+            loadDriveFiles();
         });
-    });
-}
+    }
+});
 
 // Fungsi untuk update UI login Google
 function updateGoogleLoginUI() {
