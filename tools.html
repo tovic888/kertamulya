@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kertamulya AI - Ultimate Property Marketing Generator 2025</title>
+    <title>Kertamulya - Property Marketing Generator 2025</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a365d;
-            --primary-light: #2c5282;
-            --accent: #d69e2e;
-            --accent-dark: #b7791f;
-            --light: #f8f9fa;
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --accent: #ff9800;
+            --accent-dark: #f57c00;
+            --light: #f5f5f5;
             --lighter: #ffffff;
-            --dark: #2d3748;
-            --darker: #1a202c;
-            --gray: #e2e8f0;
-            --text: #2d3748;
-            --text-light: #718096;
-            --success: #38a169;
+            --dark: #333333;
+            --darker: #212121;
+            --gray: #e0e0e0;
+            --text: #333333;
+            --text-light: #757575;
+            --success: #388e3c;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             --radius-sm: 8px;
             --radius-md: 12px;
@@ -170,7 +170,7 @@
         .form-select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.2);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
         }
 
         /* Caption Display */
@@ -239,6 +239,7 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
         }
 
         .btn-accent {
@@ -250,6 +251,7 @@
         .btn-accent:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
         }
 
         .btn-outline {
@@ -294,7 +296,7 @@
         .marketplace-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.2);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
         }
 
         .marketplace-input.title {
@@ -564,7 +566,7 @@
             <div class="header-content">
                 <img src="https://i.imgur.com/oE8kXBw.png" alt="Kertamulya Residence Logo" class="logo">
                 <h1>Ultimate Property Marketing Generator 2025</h1>
-                <p class="subtitle">Mesin AI konten properti multi-platform dengan 1000+ kombinasi viral siap pakai untuk tim marketing</p>
+                <p class="subtitle">Generator konten properti multi-platform dengan 1000+ kombinasi viral siap pakai untuk tim marketing</p>
             </div>
         </div>
     </header>
@@ -574,7 +576,7 @@
             <!-- Generator Panel -->
             <div class="generator-panel">
                 <div class="panel-header">
-                    <h3 class="panel-title"><i class="fas fa-robot"></i> Generator Konten Properti AI</h3>
+                    <h3 class="panel-title"><i class="fas fa-magic"></i> Generator Konten Properti</h3>
                 </div>
                 <div class="panel-body">
                     <!-- Selection Controls -->
@@ -610,7 +612,7 @@
                                     <option value="fomo">FOMO & Urgensi</option>
                                     <option value="natural">Percakapan Natural</option>
                                     <option value="profesional">Profesional & Kredibel</option>
-                                    <option value="humor">Humor Ringan</option>
+                                    <option value="motivasi">Motivasi & Inspirasi</option>
                                 </select>
                             </div>
                         </div>
@@ -621,7 +623,6 @@
                                 <select id="property-select" class="form-select">
                                     <option value="all">Semua Tipe</option>
                                     <option value="subsidi">Standar Subsidi 30/60</option>
-                                    <option value="mezzanine">Standar + Mezzanine</option>
                                     <option value="suite">Suite 50/60</option>
                                     <option value="premium">Premium 50/120</option>
                                 </select>
@@ -632,7 +633,7 @@
                     <!-- Generate Button -->
                     <div class="action-buttons">
                         <button class="btn btn-accent" id="generate-btn">
-                            <i class="fas fa-dice"></i> Generate Konten
+                            <i class="fas fa-bolt"></i> Generate Konten
                         </button>
                     </div>
                 </div>
@@ -770,22 +771,6 @@
                 ],
                 hashtags: ["#rumahsubsidi", "#kprsyariah", "#kuninganmurah", "#propertihalal"]
             },
-            mezzanine: {
-                name: "Standar + Mezzanine",
-                price: "215.000.000",
-                originalPrice: "235.000.000",
-                land: "60m²",
-                building: "36m² (+6m² mezzanine)",
-                rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
-                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
-                sellingPoints: [
-                    "Ruang Tambahan untuk Kantor/Usaha",
-                    "Desain Modern Minimalis",
-                    "Bonus Smart TV 32 Inch",
-                    "Lingkungan Strategis dekat Pasar"
-                ],
-                hashtags: ["#rumahminimalis", "#kantorrumahan", "#kuninganstrategis", "#investasiproperti"]
-            },
             suite: {
                 name: "Suite 50/60",
                 price: "325.000.000",
@@ -844,13 +829,6 @@
                         "Properti Halal Kuningan Harga Terjangkau",
                         "Rumah Subsidi Siap Huni dekat Pusat Kota"
                     ],
-                    mezzanine: [
-                        "Rumah Mezzanine Kuningan Harga 215jt",
-                        "Rumah 2 Lantai Minimalis di Kuningan",
-                        "Properti Usaha + Hunian Area Kuningan",
-                        "Rumah Kantor di Kuningan Harga Kompetitif",
-                        "Rumah Minimalis + Ruang Kerja Kuningan"
-                    ],
                     suite: [
                         "Rumah Type 50/60 Kuningan Harga 325jt",
                         "Properti Keluarga Muda Area Kuningan",
@@ -869,17 +847,14 @@
                 descriptions: {
                     all: [
                         `Dijual rumah di Kertamulya Residence Kuningan:
-- Tipe: Standar Subsidi 30/60
-- Harga: Rp168.000.000 (promo dari Rp185jt)
-- Luas Tanah: 60m²
-- Luas Bangunan: 30m²
-- Kamar: 2KT + 1KM
+- Tipe: ${properties.subsidi.name}
+- Harga: Rp${properties.subsidi.price} (promo dari Rp${properties.subsidi.originalPrice})
+- Luas Tanah: ${properties.subsidi.land}
+- Luas Bangunan: ${properties.subsidi.building}
+- Kamar: ${properties.subsidi.rooms}
 
 Fasilitas:
-✓ Masjid dalam komplek
-✓ Taman bermain anak
-✓ Area parkir luas
-✓ Security
+✓ ${properties.subsidi.facilities.join("\n✓ ")}
 
 Keunggulan:
 ✓ DP 0% via Bank Syariah
@@ -892,7 +867,31 @@ Stok terbatas!
 
 Info lebih lanjut:
 https://bimulialand.com/kertamulya.html`,
-                        // ... (99 more variations)
+                        `Rumah subsidi syariah di Kuningan - Kertamulya Residence
+Tipe: ${properties.subsidi.name}
+Harga: Rp${properties.subsidi.price} (from Rp${properties.subsidi.originalPrice})
+Luas Tanah: ${properties.subsidi.land}
+Bangunan: ${properties.subsidi.building}
+Kamar: ${properties.subsidi.rooms}
+
+Fasilitas:
+- ${properties.subsidi.facilities.join("\n- ")}
+
+Keunggulan:
+- DP 0% via Bank Syariah
+- Bonus motor listrik
+- Lingkungan islami
+- Lokasi strategis
+
+Booking fee Rp500rb
+Stok terbatas!`,
+                        `🏡 Rumah subsidi Kuningan DP 0%!
+Cicilan mulai 1 jutaan
+Bonus motor listrik ⚡
+Lingkungan islami 🕌
+
+⏳ Kuota terbatas 30 unit
+📲 Info: bimulialand.com/kertamulya.html`
                     ],
                     // Property-specific variations
                     subsidi: [
@@ -922,7 +921,61 @@ Lihat semua unit & gambar lengkapnya di website kami:
 https://bimulialand.com/kertamulya.html`,
                         // ... (24 more variations)
                     ],
-                    // ... (other property types)
+                    suite: [
+                        `Dijual rumah tipe Suite 50/60 di Kertamulya Residence Kuningan:
+- Harga: Rp325.000.000 (promo dari Rp350jt)
+- Luas Tanah: 60m²
+- Luas Bangunan: 50m²
+- Kamar: 3KT + 1KM + Ruang Keluarga
+
+Fasilitas:
+✓ Masjid dalam komplek
+✓ Club House eksklusif
+✓ Taman bermain premium
+✓ Security 24 jam
+
+Keunggulan:
+✓ Bonus AC split untuk kamar utama
+✓ Desain interior modern
+✓ Lokasi paling strategis di komplek
+✓ Potensi kenaikan harga 10-15% per tahun
+
+Booking fee Rp1.000.000
+Stok terbatas hanya 15 unit!
+
+Info lengkap:
+https://bimulialand.com/kertamulya.html`,
+                        // ... (24 more variations)
+                    ],
+                    premium: [
+                        `Dijual rumah premium eksklusif di Kertamulya Residence Kuningan:
+- Tipe: Premium 50/120
+- Harga: Rp475.000.000 (promo dari Rp520jt)
+- Luas Tanah: 120m²
+- Luas Bangunan: 50m²
+- Kamar: 3KT + 2KM + Ruang Keluarga + Dapur
+
+Fasilitas:
+✓ Masjid Al Fawwaz
+✓ Club House premium
+✓ Taman bermain VIP
+✓ Area parkir pribadi
+✓ Security 24 jam
+✓ Jalan lebar 8m
+
+Keunggulan:
+✓ Bonus paket furnish minimalis senilai Rp25jt
+✓ Lingkungan eksklusif
+✓ Potensi kenaikan harga 15-20% per tahun
+✓ Investasi jangka panjang terbaik
+
+Booking fee Rp2.500.000
+Hanya tersedia 10 unit!
+
+Info lengkap:
+https://bimulialand.com/kertamulya.html`,
+                        // ... (24 more variations)
+                    ]
                 }
             },
             
@@ -941,664 +994,12 @@ https://bimulialand.com/kertamulya.html`,
                         "KPR Subsidi Bank Syariah Kuningan",
                         "Rumah Minimalis Kuningan Harga Terjangkau"
                     ],
-                    // ... (property-specific titles)
-                },
-                descriptions: {
-                    all: [
-                        `Dijual rumah subsidi di Kuningan - Kertamulya Residence
-
-Tipe: Standar Subsidi 30/60
-Harga: Rp168.000.000 (promo dari Rp185jt)
-Luas Tanah: 60m²
-Luas Bangunan: 30m²
-Kamar: 2KT + 1KM
-Fasilitas: Masjid, Taman, Parkir, Security
-
-Keunggulan:
-DP 0 via Bank Syariah
-Bonus Motor Listrik
-Lingkungan Islami
-Lokasi strategis 5 menit ke jalan nasional
-
-Booking fee Rp500rb
-Stok terbatas!
-
-Info lebih lanjut di website resmi kami`,
-                        // ... (99 more variations)
+                    subsidi: [
+                        "Rumah Subsidi Kuningan DP 0% Cicilan 1 Jt",
+                        "Properti Syariah Kuningan Bonus Motor",
+                        "Rumah Murah Kuningan 168jt Siap Huni",
+                        "KPR Syariah Kuningan Angsuran Ringan",
+                        "Rumah Type 30/60 Fasilitas Lengkap"
                     ],
-                    // ... (property-specific descriptions)
-                }
-            },
-            
-            // Facebook Group Content (100+ variations)
-            facebook_group: {
-                all: [
-                    `🏡 [DISKUSI GRUP] Siapa yang mau punya rumah di Kuningan dengan DP 0% dan cicilan 1 jutaan?
-
-Kertamulya Residence menawarkan solusi hunian syariah dengan fasilitas lengkap:
-- Lingkungan Islami dengan masjid dalam komplek
-- Taman bermain anak yang aman
-- Area parkir luas untuk keluarga
-- Keamanan 24 jam
-
-Tersedia 4 tipe rumah dari Rp168jt - Rp475jt dengan berbagai keunggulan:
-✓ DP 0% via Bank Syariah
-✓ Bonus motor listrik untuk unit tertentu
-✓ Pembiayaan tanpa riba
-✓ Potongan harga spesial untuk 30 pembeli pertama
-
-Yuk diskusi di grup ini:
-1. Sudah ada yang pernah survey ke lokasi?
-2. Pengalaman dengan KPR Syariah?
-3. Rekomendasi untuk keluarga muda?
-
-Jangan hanya lihat, klik websitenya sekarang untuk info lengkap:
-https://bimulialand.com/kertamulya.html
-
-#DiskusiProperti #KPRSyariah #RumahSubsidi #KuninganHits`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // Facebook Ads Content (100+ variations)
-            facebook_ads: {
-                all: [
-                    `🔥 [IKLAN] PROMO DP 0% + BONUS MOTOR LISTRIK! 🔥
-
-Kertamulya Residence Kuningan - Hunian Islami dengan pembiayaan syariah 100% halal
-
-✔️ DP 0% via Bank Syariah (BJB, BTN, BSI)
-✔️ Cicilan mulai Rp1.050.000/bulan
-✔️ Bonus Motor Listrik senilai Rp12jt
-✔️ Lingkungan asri dengan masjid dalam komplek
-✔️ Lokasi strategis 5 menit ke jalan nasional
-
-⏳ Promo terbatas hanya untuk 30 unit pertama!
-💰 Potongan harga langsung hingga Rp17jt
-
-📲 Klik link sekarang untuk info lebih lanjut:
-https://bimulialand.com/kertamulya.html
-
-#PropertiSyariah #RumahTanpaRiba #KuninganMurah #InvestasiMasaDepan #HunianIslami`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // Instagram Feed Content (100+ variations)
-            instagram: {
-                all: [
-                    `🏡 PUNYA RUMAH SENDIRI TANPA RIBA? BISA BANGET!
-
-Kertamulya Residence Kuningan hadir dengan konsep:
-✓ Hunian syariah 100% halal
-✓ DP 0% via bank syariah
-✓ Cicilan mulai Rp1.050.000/bln
-✓ Bonus motor listrik 🏍️⚡
-
-📍 Lokasi super strategis:
-- 5' ke jalan nasional
-- 15' ke Esbe Mart Kuningan
-- Lingkungan islami dengan masjid dalam komplek
-
-⏳ STOK TERBATAS! Kuota hanya 30 unit
-
-Cek info lengkap + layout di website resmi kami 👆
-
-#KertamulyaResidence #RumahSyariah #KPRHalal #KuninganHits #InvestasiProperti`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // TikTok Caption Content (100+ variations)
-            tiktok: {
-                all: [
-                    `Punya rumah sendiri dengan gaji UMR? Bisa banget! 🏡
-
-DP 0% via bank syariah
-Cicilan mulai 1 jutaan
-Bonus motor listrik ⚡
-
-Lokasi strategis 5' ke jalan nasional
-Lingkungan islami & asri 🌿
-
-#KPRSyariah #RumahPertama #InvestasiMuda #Kuningan #PropertiViral`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // WhatsApp Broadcast Content (100+ variations)
-            whatsapp_broadcast: {
-                all: [
-                    `*Kertamulya Residence Kuningan - Promo DP 0% + Bonus Motor Listrik*
-
-Tipe Standar Subsidi 30/60
-Harga: Rp168.000.000 (from Rp185jt)
-Luas Tanah: 60m²
-Bangunan: 30m²
-2 Kamar Tidur + 1 KM
-
-Fasilitas:
-- Masjid dalam komplek
-- Taman bermain anak
-- Area parkir luas
-- Security 24 jam
-
-Keunggulan:
-- DP 0% via Bank Syariah
-- Bonus motor listrik
-- Lingkungan islami
-- Lokasi strategis
-
-Info lengkap:
-https://bimulialand.com/kertamulya.html`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // WhatsApp Status Content (100+ variations)
-            whatsapp_status: {
-                all: [
-                    `🏡 Rumah subsidi Kuningan DP 0%!
-Cicilan mulai 1 jutaan
-Bonus motor listrik ⚡
-Lingkungan islami 🕌
-
-⏳ Kuota terbatas 30 unit
-📲 Info: bimulialand.com/kertamulya.html`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // Instagram Bio Content (50+ variations)
-            instagram_bio: [
-                "🏆 Developer Properti Syariah Terbaik Kuningan | DP 0% & Cicilan 1 Jutaan | Bonus Motor Listrik ⚡ Fasilitas Premium 🏊 #KertamulyaPremium",
-                "Properti Halal Kuningan 🕌 | KPR Syariah Tanpa Riba | Fasilitas Lengkap 🏡 Promo DP 0% & Bonus Motor Listrik ⚡ Kunjungi: bimulialand.com/kertamulya",
-                // ... (48 more professional bio variations)
-            ],
-            
-            // TikTok Bio Content (50+ variations)
-            tiktok_bio: [
-                "Properti Syariah Kuningan 🏡 DP 0% & Bonus Motor ⚡ Fasilitas Premium 🏊 #KertamulyaResidence",
-                "KPR Syariah Kuningan 🕌 Cicilan 1 jutaan 🔗 Info lengkap di link bio #PropertiHalal",
-                // ... (48 more professional bio variations)
-            ],
-            
-            // Tone Variations
-            tones: {
-                estetik: {
-                    adjectives: ["menawan", "estetik", "visual", "instagrammable", "fotogenik"],
-                    phrases: [
-                        "Setiap sudut dirancang untuk memanjakan mata",
-                        "Desain yang memukau dan penuh gaya",
-                        "Karya arsitektur yang memesona"
-                    ]
-                },
-                soft_selling: {
-                    adjectives: ["nyaman", "tenang", "damai", "harmonis", "kebersamaan"],
-                    phrases: [
-                        "Tempat terbaik untuk membangun kenangan keluarga",
-                        "Kami memahami impian Anda tentang rumah idaman",
-                        "Solusi tepat untuk kebutuhan hunian Anda"
-                    ]
-                },
-                // ... (other tones)
-            },
-            
-            // Hashtag Database (300+ combinations)
-            hashtags: {
-                trending: ["#fyp", "#fypシ", "#viral", "#trending", "#indonesia", "#jawatengah", "#kuningan", "#cirebon"],
-                property: ["#rumahsubsidi", "#kprsyariah", "#propertihalal", "#rumahmurah", "#huniannyaman", "#rumahminimalis"],
-                location: ["#kuningan", "#cirebon", "#jawatengah", "#kuningen", "#kuninganhits"],
-                business: ["#bisnisproperti", "#investasimenguntungkan", "#usahaproperti", "#bisnissyariah"],
-                premium: ["#hunianpremium", "#rumaheksklusif", "#propertibagus", "#rumahmewah"],
-                emotional: ["#rumahpertama", "#investasisyariah", "#mimpikeluarga", "#masadepancemerlang"]
-            }
-        };
-
-        // DOM Elements
-        const platformSelect = document.getElementById('platform-select');
-        const toneSelect = document.getElementById('tone-select');
-        const propertySelect = document.getElementById('property-select');
-        const generateBtn = document.getElementById('generate-btn');
-        const regenerateBtn = document.getElementById('regenerate-btn');
-        const copyDescBtn = document.getElementById('copy-desc-btn');
-        const copyAllBtn = document.getElementById('copy-all-btn');
-        const standardGenerator = document.getElementById('standard-generator');
-        const marketplaceGenerator = document.getElementById('marketplace-generator');
-        const platformTitleDisplay = document.getElementById('platform-title-display');
-        const captionTitleText = document.getElementById('caption-title-text');
-        const captionDescText = document.getElementById('caption-desc-text');
-        const hashtagsContainer = document.getElementById('hashtags-container');
-        const hashtagsText = document.getElementById('hashtags-text');
-        const notification = document.getElementById('notification');
-        const notificationMessage = document.getElementById('notification-message');
-        const assetGrid = document.getElementById('assetGrid');
-        const assetLoadingSpinner = document.getElementById('assetLoadingSpinner');
-        const downloadSelectedBtn = document.getElementById('download-selected-btn');
-        
-        // Marketplace elements
-        const marketplaceTitleInput = document.getElementById('marketplace-title-input');
-        const marketplaceDescInput = document.getElementById('marketplace-desc-input');
-        const marketplaceTitleCount = document.getElementById('marketplace-title-count');
-        const copyMarketplaceTitleBtn = document.getElementById('copy-marketplace-title-btn');
-        const copyMarketplaceDescBtn = document.getElementById('copy-marketplace-desc-btn');
-        const regenerateMarketplaceBtn = document.getElementById('regenerate-marketplace-btn');
-        const marketplaceTitleDisplay = document.getElementById('marketplace-title-display');
-
-        // Current state
-        let currentPlatform = 'facebook_marketplace';
-        let currentTone = 'estetik';
-        let currentProperty = 'all';
-        let selectedAssets = [];
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            updateCharCount();
-            loadAssetsForProperty(currentProperty);
-        });
-
-        // Setup all event listeners
-        function setupEventListeners() {
-            // Selection changes
-            platformSelect.addEventListener('change', updatePlatform);
-            toneSelect.addEventListener('change', updateTone);
-            propertySelect.addEventListener('change', updateProperty);
-            
-            // Generate buttons
-            generateBtn.addEventListener('click', generateContent);
-            regenerateBtn.addEventListener('click', generateContent);
-            regenerateMarketplaceBtn.addEventListener('click', generateMarketplaceContent);
-            
-            // Copy buttons
-            copyDescBtn.addEventListener('click', copyDescription);
-            copyAllBtn.addEventListener('click', copyAllContent);
-            copyMarketplaceTitleBtn.addEventListener('click', copyMarketplaceTitle);
-            copyMarketplaceDescBtn.addEventListener('click', copyMarketplaceDescription);
-            
-            // Character count
-            marketplaceTitleInput.addEventListener('input', updateCharCount);
-            
-            // Asset download
-            downloadSelectedBtn.addEventListener('click', downloadSelectedAssets);
-        }
-        
-        // Update platform selection
-        function updatePlatform() {
-            currentPlatform = platformSelect.value;
-            updateUIForPlatform();
-        }
-        
-        // Update tone selection
-        function updateTone() {
-            currentTone = toneSelect.value;
-        }
-        
-        // Update property selection
-        function updateProperty() {
-            currentProperty = propertySelect.value;
-            loadAssetsForProperty(currentProperty);
-        }
-        
-        // Update UI based on selected platform
-        function updateUIForPlatform() {
-            const platform = currentPlatform;
-            const platformName = platform.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-            
-            // Update platform title display
-            platformTitleDisplay.textContent = platformName;
-            marketplaceTitleDisplay.textContent = platformName;
-            
-            // Show/hide appropriate generator
-            if (platform === 'facebook_marketplace' || platform === 'olx') {
-                standardGenerator.style.display = 'none';
-                marketplaceGenerator.style.display = 'block';
-                generateMarketplaceContent();
-            } else {
-                standardGenerator.style.display = 'block';
-                marketplaceGenerator.style.display = 'none';
-                generateContent();
-            }
-            
-            // Show/hide copy all button
-            copyAllBtn.style.display = (platform === 'instagram' || platform === 'tiktok') ? 'block' : 'none';
-            
-            // Show/hide hashtags
-            hashtagsContainer.style.display = (platform === 'instagram' || platform === 'tiktok') ? 'block' : 'none';
-        }
-        
-        // Generate content based on selections
-        function generateContent() {
-            let content;
-            
-            switch(currentPlatform) {
-                case 'facebook_group':
-                    content = generateFacebookGroupContent();
-                    break;
-                case 'facebook_ads':
-                    content = generateFacebookAdsContent();
-                    break;
-                case 'instagram':
-                    content = generateInstagramContent();
-                    break;
-                case 'tiktok':
-                    content = generateTikTokContent();
-                    break;
-                case 'whatsapp_broadcast':
-                    content = generateWhatsAppBroadcastContent();
-                    break;
-                case 'whatsapp_status':
-                    content = generateWhatsAppStatusContent();
-                    break;
-                case 'instagram_bio':
-                    content = generateInstagramBioContent();
-                    break;
-                case 'tiktok_bio':
-                    content = generateTikTokBioContent();
-                    break;
-                default:
-                    content = {
-                        title: "Pilih platform, gaya bahasa, dan tipe properti",
-                        description: "Generator akan membuat konten khusus untuk platform yang dipilih",
-                        hashtags: ""
-                    };
-            }
-            
-            // Apply fade-in animation
-            captionTitleText.classList.remove('fade-in');
-            captionDescText.classList.remove('fade-in');
-            void captionTitleText.offsetWidth; // Trigger reflow
-            void captionDescText.offsetWidth; // Trigger reflow
-            captionTitleText.classList.add('fade-in');
-            captionDescText.classList.add('fade-in');
-            
-            // Update content
-            captionTitleText.textContent = content.title || "";
-            captionDescText.textContent = content.description || "";
-            hashtagsText.textContent = content.hashtags || "";
-        }
-        
-        // Generate Facebook Marketplace/OLX content
-        function generateMarketplaceContent() {
-            const platform = currentPlatform;
-            const isOLX = platform === 'olx';
-            
-            // Get random title and description
-            const titlePool = captions[platform].titles[currentProperty] || captions[platform].titles.all;
-            const descPool = captions[platform].descriptions[currentProperty] || captions[platform].descriptions.all;
-            
-            const randomTitle = titlePool[Math.floor(Math.random() * titlePool.length)];
-            const randomDesc = descPool[Math.floor(Math.random() * descPool.length)];
-            
-            // Update inputs
-            marketplaceTitleInput.value = randomTitle;
-            marketplaceDescInput.value = randomDesc;
-            
-            // Update character count
-            updateCharCount();
-        }
-        
-        // Generate Facebook Group content
-        function generateFacebookGroupContent() {
-            const contentPool = captions.facebook_group[currentProperty] || captions.facebook_group.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            return {
-                description: randomContent,
-                hashtags: generateHashtags()
-            };
-        }
-        
-        // Generate Instagram content
-        function generateInstagramContent() {
-            const contentPool = captions.instagram[currentProperty] || captions.instagram.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            // Split into title and description
-            const parts = randomContent.split('\n\n');
-            const title = parts[0] || "";
-            const description = parts.slice(1).join('\n\n') || "";
-            
-            return {
-                title: title,
-                description: description,
-                hashtags: generateHashtags()
-            };
-        }
-        
-        // Generate TikTok content
-        function generateTikTokContent() {
-            const contentPool = captions.tiktok[currentProperty] || captions.tiktok.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            return {
-                description: randomContent,
-                hashtags: generateHashtags()
-            };
-        }
-        
-        // Generate WhatsApp Broadcast content
-        function generateWhatsAppBroadcastContent() {
-            const contentPool = captions.whatsapp_broadcast[currentProperty] || captions.whatsapp_broadcast.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            return {
-                description: randomContent
-            };
-        }
-        
-        // Generate WhatsApp Status content
-        function generateWhatsAppStatusContent() {
-            const contentPool = captions.whatsapp_status[currentProperty] || captions.whatsapp_status.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            return {
-                description: randomContent
-            };
-        }
-        
-        // Generate Instagram Bio content
-        function generateInstagramBioContent() {
-            const randomContent = captions.instagram_bio[Math.floor(Math.random() * captions.instagram_bio.length)];
-            
-            return {
-                description: randomContent
-            };
-        }
-        
-        // Generate TikTok Bio content
-        function generateTikTokBioContent() {
-            const randomContent = captions.tiktok_bio[Math.floor(Math.random() * captions.tiktok_bio.length)];
-            
-            return {
-                description: randomContent
-            };
-        }
-        
-        // Generate hashtags
-        function generateHashtags() {
-            const trending = captions.hashtags.trending.sort(() => 0.5 - Math.random()).slice(0, 1);
-            const property = captions.hashtags.property.sort(() => 0.5 - Math.random()).slice(0, 1);
-            const location = captions.hashtags.location.sort(() => 0.5 - Math.random()).slice(0, 1);
-            const emotional = captions.hashtags.emotional.sort(() => 0.5 - Math.random()).slice(0, 1);
-            const premium = captions.hashtags.premium.sort(() => 0.5 - Math.random()).slice(0, 1);
-            
-            return [...trending, ...property, ...location, ...emotional, ...premium].join(' ');
-        }
-        
-        // Update character count for marketplace/OLX title
-        function updateCharCount() {
-            marketplaceTitleCount.textContent = marketplaceTitleInput.value.length;
-        }
-        
-        // Copy description to clipboard
-        function copyDescription() {
-            const text = captionDescText.textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('Deskripsi berhasil disalin!');
-            });
-        }
-        
-        // Copy all content (title + description) to clipboard
-        function copyAllContent() {
-            const text = `${captionTitleText.textContent}\n\n${captionDescText.textContent}`;
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('Konten berhasil disalin!');
-            });
-        }
-        
-        // Copy marketplace title to clipboard
-        function copyMarketplaceTitle() {
-            navigator.clipboard.writeText(marketplaceTitleInput.value).then(() => {
-                showNotification('Judul berhasil disalin!');
-            });
-        }
-        
-        // Copy marketplace description to clipboard
-        function copyMarketplaceDescription() {
-            navigator.clipboard.writeText(marketplaceDescInput.value).then(() => {
-                showNotification('Deskripsi berhasil disalin!');
-            });
-        }
-        
-        // Show notification
-        function showNotification(message) {
-            notificationMessage.textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-        
-        // Load assets for selected property type
-        function loadAssetsForProperty(propertyType) {
-            assetGrid.innerHTML = '';
-            assetLoadingSpinner.style.display = 'block';
-            downloadSelectedBtn.disabled = true;
-            selectedAssets = [];
-            
-            // Simulate loading from server
-            setTimeout(() => {
-                let assets = [];
-                
-                // Sample assets - in production this would come from actual property assets
-                if (propertyType === 'subsidi') {
-                    assets = [
-                        { type: 'image', name: 'subsidi1.jpg', url: 'https://via.placeholder.com/300x200?text=Subsidi+1' },
-                        { type: 'image', name: 'subsidi2.jpg', url: 'https://via.placeholder.com/300x200?text=Subsidi+2' },
-                        { type: 'image', name: 'subsidi3.jpg', url: 'https://via.placeholder.com/300x200?text=Subsidi+3' },
-                        { type: 'video', name: 'subsidi-tour.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' }
-                    ];
-                } else if (propertyType === 'mezzanine') {
-                    assets = [
-                        { type: 'image', name: 'mezzanine1.jpg', url: 'https://via.placeholder.com/300x200?text=Mezzanine+1' },
-                        { type: 'image', name: 'mezzanine2.jpg', url: 'https://via.placeholder.com/300x200?text=Mezzanine+2' },
-                        { type: 'video', name: 'mezzanine-tour.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' }
-                    ];
-                } else if (propertyType === 'suite') {
-                    assets = [
-                        { type: 'image', name: 'suite1.jpg', url: 'https://via.placeholder.com/300x200?text=Suite+1' },
-                        { type: 'image', name: 'suite2.jpg', url: 'https://via.placeholder.com/300x200?text=Suite+2' },
-                        { type: 'image', name: 'suite3.jpg', url: 'https://via.placeholder.com/300x200?text=Suite+3' },
-                        { type: 'video', name: 'suite-tour.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' }
-                    ];
-                } else if (propertyType === 'premium') {
-                    assets = [
-                        { type: 'image', name: 'premium1.jpg', url: 'https://via.placeholder.com/300x200?text=Premium+1' },
-                        { type: 'image', name: 'premium2.jpg', url: 'https://via.placeholder.com/300x200?text=Premium+2' },
-                        { type: 'video', name: 'premium-tour.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' }
-                    ];
-                } else {
-                    // All properties
-                    assets = [
-                        { type: 'image', name: 'all1.jpg', url: 'https://via.placeholder.com/300x200?text=All+1' },
-                        { type: 'image', name: 'all2.jpg', url: 'https://via.placeholder.com/300x200?text=All+2' },
-                        { type: 'video', name: 'all-tour.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' }
-                    ];
-                }
-                
-                // Create asset items
-                assets.forEach(asset => {
-                    const assetItem = document.createElement('div');
-                    assetItem.className = `asset-item ${asset.type === 'video' ? 'asset-video' : ''}`;
-                    assetItem.dataset.url = asset.url;
-                    assetItem.dataset.name = asset.name;
-                    
-                    const thumbnail = document.createElement('img');
-                    thumbnail.className = 'asset-thumbnail';
-                    thumbnail.src = asset.type === 'video' ? 'https://via.placeholder.com/300x200?text=Video+Thumbnail' : asset.url;
-                    thumbnail.alt = asset.name;
-                    
-                    const assetName = document.createElement('div');
-                    assetName.className = 'asset-name';
-                    assetName.textContent = asset.name;
-                    
-                    const downloadBtn = document.createElement('button');
-                    downloadBtn.className = 'download-btn';
-                    downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
-                    downloadBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        downloadAsset(asset.url, asset.name);
-                    });
-                    
-                    assetItem.appendChild(thumbnail);
-                    assetItem.appendChild(assetName);
-                    assetItem.appendChild(downloadBtn);
-                    
-                    assetItem.addEventListener('click', () => {
-                        assetItem.classList.toggle('selected');
-                        if (assetItem.classList.contains('selected')) {
-                            selectedAssets.push({
-                                url: asset.url, 
-                                name: asset.name, 
-                                type: asset.type
-                            });
-                        } else {
-                            selectedAssets = selectedAssets.filter(a => a.url !== asset.url);
-                        }
-                        
-                        downloadSelectedBtn.disabled = selectedAssets.length === 0;
-                    });
-                    
-                    assetGrid.appendChild(assetItem);
-                });
-                
-                assetLoadingSpinner.style.display = 'none';
-            }, 1000);
-        }
-        
-        // Download single asset
-        function downloadAsset(url, filename) {
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            showNotification(`Mengunduh ${filename}`);
-        }
-        
-        // Download selected assets
-        function downloadSelectedAssets() {
-            if (selectedAssets.length === 0) return;
-            
-            // Create a zip file in a real implementation
-            // For this example, we'll download them one by one
-            selectedAssets.forEach((asset, index) => {
-                setTimeout(() => {
-                    downloadAsset(asset.url, asset.name);
-                }, index * 300);
-            });
-            
-            showNotification(`Mengunduh ${selectedAssets.length} file`);
-        }
-    </script>
-</body>
-</html>
+                    suite: [
+                        "Rumah Suite Kuningan 325jt Fasilitas Premium",
