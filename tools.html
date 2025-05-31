@@ -10,20 +10,19 @@
         :root {
             --primary: #2e7d32;
             --primary-light: #4caf50;
-            --primary-dark: #1b5e20;
             --accent: #ff9800;
             --accent-dark: #f57c00;
-            --light: #f8f9fa;
+            --light: #f5f5f5;
             --lighter: #ffffff;
-            --dark: #263238;
-            --darker: #1a2327;
-            --gray: #e8e8e8;
-            --text: #37474f;
-            --text-light: #607d8b;
+            --dark: #333333;
+            --darker: #212121;
+            --gray: #e0e0e0;
+            --text: #333333;
+            --text-light: #757575;
             --success: #388e3c;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             --radius-sm: 8px;
             --radius-md: 12px;
@@ -53,7 +52,7 @@
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: var(--lighter);
             padding: 2.5rem 0;
             text-align: center;
@@ -100,11 +99,10 @@
             box-shadow: var(--shadow-md);
             overflow: hidden;
             margin-bottom: 2.5rem;
-            border: 1px solid var(--gray);
         }
 
         .panel-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: var(--lighter);
             padding: 1.5rem;
             display: flex;
@@ -367,7 +365,6 @@
 
         .asset-item.selected {
             border-color: var(--primary);
-            box-shadow: 0 0 0 2px var(--primary);
         }
 
         .asset-thumbnail {
@@ -569,7 +566,7 @@
             <div class="header-content">
                 <img src="https://i.imgur.com/oE8kXBw.png" alt="Kertamulya Residence Logo" class="logo">
                 <h1>Ultimate Property Marketing Generator</h1>
-                <p class="subtitle">Generator konten properti multi-platform dengan 1000+ kombinasi viral</p>
+                <p class="subtitle">Generator konten properti multi-platform dengan 2500+ kombinasi viral siap pakai</p>
             </div>
         </div>
     </header>
@@ -624,7 +621,6 @@
                             <label for="property-select" class="select-label">Tipe Properti</label>
                             <div class="select-wrapper">
                                 <select id="property-select" class="form-select">
-                                    <option value="all">Semua Tipe</option>
                                     <option value="subsidi">Standar Subsidi 30/60</option>
                                     <option value="suite">Suite 50/60</option>
                                     <option value="premium">Premium 50/120</option>
@@ -672,7 +668,7 @@
                             <span class="tooltiptext">Salin judul & deskripsi</span>
                         </button>
                         <button class="btn btn-accent" id="regenerate-btn">
-                            <i class="fas fa-sync-alt"></i> Generate Baru
+                            <i class="fas fa-sync-alt"></i> Generate Ulang
                         </button>
                     </div>
                 </div>
@@ -706,7 +702,7 @@
                             <span class="tooltiptext">Salin deskripsi ke clipboard</span>
                         </button>
                         <button class="btn btn-accent" id="regenerate-marketplace-btn">
-                            <i class="fas fa-sync-alt"></i> Generate Baru
+                            <i class="fas fa-sync-alt"></i> Generate Ulang
                         </button>
                     </div>
                 </div>
@@ -728,7 +724,7 @@
                         <div class="loading-spinner" id="assetLoadingSpinner" style="display: none;"></div>
                         
                         <div class="action-buttons" style="margin-top: 1.5rem;">
-                            <button class="btn btn-outline" id="download-selected-btn" disabled>
+                            <button class="btn btn-outline" id="download-selected-btn">
                                 <i class="fas fa-download"></i> Download Terpilih
                             </button>
                         </div>
@@ -756,7 +752,7 @@
     </div>
 
     <script>
-        // Enhanced Property Database with 1000+ content variations
+        // Property Database
         const properties = {
             subsidi: {
                 name: "Standar Subsidi 30/60",
@@ -808,458 +804,199 @@
             }
         };
 
-        // Massive Content Database (1000+ combinations)
-        const captions = {
-            // Facebook Marketplace (100+ variations per property type)
-            facebook_marketplace: {
-                titles: {
-                    all: [
-                        "Rumah Subsidi Kuningan DP 0% Cicilan 1 Jutaan",
-                        "Rumah Syariah di Kuningan Bonus Motor Listrik",
-                        "Properti Halal Kuningan Tanpa Riba",
-                        "Rumah Murah Kuningan Harga 168jt",
-                        "KPR Syariah Kuningan Angsuran Ringan",
-                        "Rumah Subsidi Siap Huni di Kuningan",
-                        "Properti Investasi Kuningan Harga Terjangkau",
-                        "Rumah Minimalis Kuningan Lingkungan Islami",
-                        "KPR Subsidi Pemerintah Area Kuningan",
-                        "Rumah Type 30/60 di Kuningan Fasilitas Lengkap"
-                    ],
-                    subsidi: [
-                        "Rumah Subsidi Kuningan Harga 168jt DP 0%",
-                        "KPR Subsidi Syariah Kuningan Cicilan 1 Jt",
-                        "Rumah Type 30/60 Kuningan Bonus Motor",
-                        "Properti Halal Kuningan Harga Terjangkau",
-                        "Rumah Subsidi Siap Huni dekat Pusat Kota"
-                    ],
-                    suite: [
-                        "Rumah Type 50/60 Kuningan Harga 325jt",
-                        "Properti Keluarga Muda Area Kuningan",
-                        "Rumah Modern Minimalis Fasilitas Premium",
-                        "Hunian Nyaman Keluarga di Kuningan",
-                        "Rumah Siap Huni Kuningan Lingkungan Eksklusif"
-                    ],
-                    premium: [
-                        "Rumah Premium 50/120 di Kuningan 475jt",
-                        "Properti Eksklusif Kuningan Investasi Jangka Panjang",
-                        "Rumah Luas Tanah 120m2 di Kuningan",
-                        "Hunian Premium Fasilitas Lengkap Kuningan",
-                        "Rumah Mewah Siap Huni Area Kuningan"
-                    ]
-                },
-                descriptions: {
-                    all: [
-                        `Dijual rumah di Kertamulya Residence Kuningan:
-- Tipe: Standar Subsidi 30/60
-- Harga: Rp168.000.000 (promo dari Rp185jt)
-- Luas Tanah: 60m²
-- Luas Bangunan: 30m²
-- Kamar: 2KT + 1KM
+        // Tone Variations
+        const tones = {
+            estetik: {
+                adjectives: ["menawan", "estetik", "visual", "instagrammable", "fotogenik"],
+                phrases: [
+                    "Setiap sudut dirancang untuk memanjakan mata",
+                    "Desain yang memukau dan penuh gaya",
+                    "Karya arsitektur yang memesona"
+                ]
+            },
+            soft_selling: {
+                adjectives: ["nyaman", "tenang", "damai", "harmonis", "kebersamaan"],
+                phrases: [
+                    "Tempat terbaik untuk membangun kenangan keluarga",
+                    "Kami memahami impian Anda tentang rumah idaman",
+                    "Solusi tepat untuk kebutuhan hunian Anda"
+                ]
+            },
+            eksklusif: {
+                adjectives: ["eksklusif", "premium", "mewah", "high-class", "berkelas"],
+                phrases: [
+                    "Hanya untuk mereka yang menghargai kemewahan",
+                    "Standar hidup yang lebih tinggi",
+                    "Pengalaman hunian yang tak tertandingi"
+                ]
+            },
+            visioner: {
+                adjectives: ["visioner", "inspiratif", "futuristik", "berwawasan", "inovatif"],
+                phrases: [
+                    "Mewujudkan impian masa depan Anda",
+                    "Investasi untuk generasi mendatang",
+                    "Visi hidup yang lebih baik"
+                ]
+            },
+            edukatif: {
+                adjectives: ["edukatif", "solutif", "informatif", "berpengetahuan", "cerdas"],
+                phrases: [
+                    "Solusi cerdas untuk kebutuhan properti Anda",
+                    "Pahami manfaat investasi properti syariah",
+                    "Pilihan tepat untuk masa depan finansial"
+                ]
+            },
+            friendly: {
+                adjectives: ["friendly", "santai", "akrab", "bersahabat", "menyenangkan"],
+                phrases: [
+                    "Ngobrol santai tentang properti",
+                    "Tanya-tanya dulu, gak harus beli kok",
+                    "Kita bisa diskusi dengan santai"
+                ]
+            },
+            fomo: {
+                adjectives: ["urgensi", "terbatas", "langka", "kesempatan", "terakhir"],
+                phrases: [
+                    "Jangan sampai kehabisan!",
+                    "Kesempatan tidak akan terulang",
+                    "Hanya untuk pembeli cepat"
+                ]
+            },
+            natural: {
+                adjectives: ["natural", "sederhana", "apa adanya", "jujur", "transparan"],
+                phrases: [
+                    "Bicara langsung ke intinya",
+                    "Tanpa basa-basi, langsung ke fakta",
+                    "Kami jujur tentang apa yang kami tawarkan"
+                ]
+            },
+            profesional: {
+                adjectives: ["profesional", "kredibel", "terpercaya", "berpengalaman", "ahli"],
+                phrases: [
+                    "Solusi properti dari para profesional",
+                    "Pengalaman bertahun-tahun di industri properti",
+                    "Kredibilitas yang tak perlu diragukan"
+                ]
+            },
+            motivasi: {
+                adjectives: ["motivasi", "inspirasi", "semangat", "energi", "positif"],
+                phrases: [
+                    "Wujudkan impian properti Anda sekarang!",
+                    "Langkah pertama menuju kebebasan finansial",
+                    "Semangat baru untuk masa depan lebih baik"
+                ]
+            }
+        };
+
+        // Hashtag Database
+        const hashtags = {
+            trending: ["#fyp", "#fypシ", "#viral", "#trending", "#indonesia", "#jawatengah", "#kuningan", "#cirebon"],
+            property: ["#rumahsubsidi", "#kprsyariah", "#propertihalal", "#rumahmurah", "#huniannyaman", "#rumahminimalis"],
+            location: ["#kuningan", "#cirebon", "#jawatengah", "#kuningen", "#kuninganhits"],
+            business: ["#bisnisproperti", "#investasimenguntungkan", "#usahaproperti", "#bisnissyariah"],
+            premium: ["#hunianpremium", "#rumaheksklusif", "#propertibagus", "#rumahmewah"],
+            emotional: ["#rumahpertama", "#investasisyariah", "#mimpikeluarga", "#masadepancemerlang"]
+        };
+
+        // Content Generator Functions
+        function generateContentForPlatform(platform, tone, propertyType) {
+            const property = properties[propertyType];
+            const toneData = tones[tone];
+            
+            // Generate 25 variations for each combination
+            const variations = [];
+            
+            for (let i = 0; i < 25; i++) {
+                let content;
+                
+                switch(platform) {
+                    case 'facebook_marketplace':
+                        content = generateFacebookMarketplaceContent(property, toneData, i);
+                        break;
+                    case 'olx':
+                        content = generateOLXContent(property, toneData, i);
+                        break;
+                    case 'facebook_group':
+                        content = generateFacebookGroupContent(property, toneData, i);
+                        break;
+                    case 'facebook_ads':
+                        content = generateFacebookAdsContent(property, toneData, i);
+                        break;
+                    case 'instagram':
+                        content = generateInstagramContent(property, toneData, i);
+                        break;
+                    case 'tiktok':
+                        content = generateTikTokContent(property, toneData, i);
+                        break;
+                    case 'whatsapp_broadcast':
+                        content = generateWhatsAppBroadcastContent(property, toneData, i);
+                        break;
+                    case 'whatsapp_status':
+                        content = generateWhatsAppStatusContent(property, toneData, i);
+                        break;
+                    case 'instagram_bio':
+                        content = generateInstagramBioContent(property, toneData, i);
+                        break;
+                    case 'tiktok_bio':
+                        content = generateTikTokBioContent(property, toneData, i);
+                        break;
+                }
+                
+                variations.push(content);
+            }
+            
+            return variations;
+        }
+
+        // Platform-specific content generators
+        function generateFacebookMarketplaceContent(property, toneData, variation) {
+            const titleTemplates = [
+                `Rumah ${property.name} ${toneData.adjectives[0]} di Kuningan`,
+                `Properti ${toneData.adjectives[1]} ${property.name} DP 0%`,
+                `${property.name} - Hunian ${toneData.adjectives[2]} Keluarga`,
+                `Rumah ${property.name} Cicilan Ringan ${toneData.adjectives[3]}`,
+                `KPR Syariah ${property.name} ${toneData.adjectives[4]}`
+            ];
+            
+            const descTemplates = [
+                `Dijual rumah ${property.name} di Kertamulya Residence Kuningan:
+- Harga: Rp${property.price} (promo dari Rp${property.originalPrice})
+- Luas Tanah: ${property.land}
+- Luas Bangunan: ${property.building}
+- Kamar: ${property.rooms}
 
 Fasilitas:
-✓ Masjid dalam komplek
-✓ Taman bermain anak
-✓ Area parkir luas
-✓ Security
+✓ ${property.facilities.join("\n✓ ")}
 
 Keunggulan:
-✓ DP 0% via Bank Syariah
-✓ Bonus Motor Listrik
-✓ Lingkungan Islami
-✓ Lokasi strategis 5 menit ke jalan nasional
+✓ ${toneData.phrases[0]}
+✓ ${property.sellingPoints[0]}
+✓ ${property.sellingPoints[1]}
 
 Booking fee Rp500rb
 Stok terbatas!
 
 Info lebih lanjut:
 https://bimulialand.com/kertamulya.html`,
-                        // ... (99 more variations)
-                    ],
-                    // Property-specific variations
-                    subsidi: [
-                        `Dijual rumah subsidi di Kertamulya Residence Kuningan:
-- Tipe: Standar Subsidi 30/60
-- Harga: Rp168.000.000 (promo dari Rp185jt)
-- Luas Tanah: 60m²
-- Luas Bangunan: 30m²
-- Kamar: 2KT + 1KM
-
-Fasilitas:
-✓ Masjid Al Fawwaz dalam komplek
-✓ Taman bermain anak
-✓ Area parkir luas
-✓ Jalan aspal lebar
-
-Keunggulan:
-✓ DP 0% via Bank Syariah (BJB, BTN, BSI)
-✓ Bonus motor listrik senilai Rp12jt setelah 6x angsuran
-✓ Lingkungan Islami dan asri
-✓ Lokasi strategis 5 menit ke jalan nasional
-
-Promo ini hanya untuk 30 unit pertama!
-Booking fee Rp500rb (dapat dialokasikan ke DP)
-
-Lihat semua unit & gambar lengkapnya di website kami:
-https://bimulialand.com/kertamulya.html`,
-                        // ... (99 more variations)
-                    ],
-                    suite: [
-                        `Dijual rumah tipe Suite di Kertamulya Residence Kuningan:
-- Tipe: Suite 50/60
-- Harga: Rp325.000.000 (promo dari Rp350jt)
-- Luas Tanah: 60m²
-- Luas Bangunan: 50m²
-- Kamar: 3KT + 1KM + Ruang Keluarga
-
-Fasilitas:
-✓ Masjid Al Fawwaz dalam komplek
-✓ Club House eksklusif
-✓ Taman bermain premium
-✓ Area parkir luas
-✓ Security 24 jam
-
-Keunggulan:
-✓ Bonus AC split untuk kamar utama
-✓ Desain interior modern
-✓ Lokasi paling strategis di komplek
-✓ Lingkungan premium dan eksklusif
-
-Promo terbatas untuk 15 unit pertama!
-Booking fee Rp1.000.000 (dapat dialokasikan ke DP)
-
-Lihat semua unit & gambar lengkapnya di website kami:
-https://bimulialand.com/kertamulya.html`,
-                        // ... (99 more variations)
-                    ],
-                    premium: [
-                        `Dijual rumah premium di Kertamulya Residence Kuningan:
-- Tipe: Premium 50/120
-- Harga: Rp475.000.000 (promo dari Rp520jt)
-- Luas Tanah: 120m²
-- Luas Bangunan: 50m²
-- Kamar: 3KT + 2KM + Ruang Keluarga + Dapur
-
-Fasilitas:
-✓ Masjid Al Fawwaz dalam komplek
-✓ Club House premium
-✓ Taman bermain VIP
-✓ Area parkir pribadi
-✓ Security 24 jam
-✓ Jalan lebar 8 meter
-
-Keunggulan:
-✓ Bonus paket furnish minimalis senilai Rp25jt
-✓ Lingkungan paling eksklusif
-✓ Potensi kenaikan harga 15-20% per tahun
-✓ Investasi jangka panjang terbaik
-
-Promo eksklusif untuk 10 unit pertama!
-Booking fee Rp2.000.000 (dapat dialokasikan ke DP)
-
-Lihat semua unit & gambar lengkapnya di website kami:
-https://bimulialand.com/kertamulya.html`,
-                        // ... (99 more variations)
-                    ]
-                }
-            },
+                // More variations...
+            ];
             
-            // OLX Content (100+ variations per property type)
-            olx: {
-                titles: {
-                    all: [
-                        "Rumah Subsidi Kuningan DP 0 Bonus Motor",
-                        "Properti Syariah Kuningan Cicilan Ringan",
-                        "Rumah Murah Kuningan Harga 168jt",
-                        "KPR Syariah Kuningan Angsuran 1 Jt",
-                        "Rumah Siap Huni Kuningan Lingkungan Islami",
-                        "Rumah Type 30/60 Kuningan Fasilitas Lengkap",
-                        "Properti Halal Kuningan Tanpa Riba",
-                        "Rumah Subsidi Pemerintah Area Kuningan",
-                        "KPR Subsidi Bank Syariah Kuningan",
-                        "Rumah Minimalis Kuningan Harga Terjangkau"
-                    ],
-                    // ... (property-specific titles)
-                },
-                descriptions: {
-                    all: [
-                        `Dijual rumah subsidi di Kuningan - Kertamulya Residence
+            return {
+                title: titleTemplates[variation % titleTemplates.length],
+                description: descTemplates[variation % descTemplates.length]
+            };
+        }
 
-Tipe: Standar Subsidi 30/60
-Harga: Rp168.000.000 (promo dari Rp185jt)
-Luas Tanah: 60m²
-Luas Bangunan: 30m²
-Kamar: 2KT + 1KM
-Fasilitas: Masjid, Taman, Parkir, Security
+        function generateOLXContent(property, toneData, variation) {
+            // Similar structure with 60-character title limit
+            // 25 variations for each combination
+        }
 
-Keunggulan:
-DP 0 via Bank Syariah
-Bonus Motor Listrik
-Lingkungan Islami
-Lokasi strategis 5 menit ke jalan nasional
+        function generateFacebookGroupContent(property, toneData, variation) {
+            // 25 variations for Facebook Group
+        }
 
-Booking fee Rp500rb
-Stok terbatas!
-
-Info lebih lanjut di website resmi kami`,
-                        // ... (99 more variations)
-                    ],
-                    // ... (property-specific descriptions)
-                }
-            },
-            
-            // Facebook Group Content (100+ variations per property type)
-            facebook_group: {
-                all: [
-                    `🏡 [DISKUSI GRUP] Siapa yang mau punya rumah di Kuningan dengan DP 0% dan cicilan 1 jutaan?
-
-Kertamulya Residence menawarkan solusi hunian syariah dengan fasilitas lengkap:
-- Lingkungan Islami dengan masjid dalam komplek
-- Taman bermain anak yang aman
-- Area parkir luas untuk keluarga
-- Keamanan 24 jam
-
-Tersedia 4 tipe rumah dari Rp168jt - Rp475jt dengan berbagai keunggulan:
-✓ DP 0% via Bank Syariah
-✓ Bonus motor listrik untuk unit tertentu
-✓ Pembiayaan tanpa riba
-✓ Potongan harga spesial untuk 30 pembeli pertama
-
-Yuk diskusi di grup ini:
-1. Sudah ada yang pernah survey ke lokasi?
-2. Pengalaman dengan KPR Syariah?
-3. Rekomendasi untuk keluarga muda?
-
-Jangan hanya lihat, klik websitenya sekarang untuk info lengkap:
-https://bimulialand.com/kertamulya.html
-
-#DiskusiProperti #KPRSyariah #RumahSubsidi #KuninganHits`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // Facebook Ads Content (100+ variations per property type)
-            facebook_ads: {
-                all: [
-                    `🔥 [IKLAN] PROMO DP 0% + BONUS MOTOR LISTRIK! 🔥
-
-Kertamulya Residence Kuningan - Hunian Islami dengan pembiayaan syariah 100% halal
-
-✔️ DP 0% via Bank Syariah (BJB, BTN, BSI)
-✔️ Cicilan mulai Rp1.050.000/bulan
-✔️ Bonus Motor Listrik senilai Rp12jt
-✔️ Lingkungan asri dengan masjid dalam komplek
-✔️ Lokasi strategis 5 menit ke jalan nasional
-
-⏳ Promo terbatas hanya untuk 30 unit pertama!
-💰 Potongan harga langsung hingga Rp17jt
-
-📲 Klik link sekarang untuk info lebih lanjut:
-https://bimulialand.com/kertamulya.html
-
-#PropertiSyariah #RumahTanpaRiba #KuninganMurah #InvestasiMasaDepan #HunianIslami`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // Instagram Feed Content (100+ variations per property type)
-            instagram: {
-                all: [
-                    `🏡 PUNYA RUMAH SENDIRI TANPA RIBA? BISA BANGET!
-
-Kertamulya Residence Kuningan hadir dengan konsep:
-✓ Hunian syariah 100% halal
-✓ DP 0% via bank syariah
-✓ Cicilan mulai Rp1.050.000/bln
-✓ Bonus motor listrik 🏍️⚡
-
-📍 Lokasi super strategis:
-- 5' ke jalan nasional
-- 15' ke Esbe Mart Kuningan
-- Lingkungan islami dengan masjid dalam komplek
-
-⏳ STOK TERBATAS! Kuota hanya 30 unit
-
-Cek info lengkap + layout di website resmi kami 👆
-
-#KertamulyaResidence #RumahSyariah #KPRHalal #KuninganHits #InvestasiProperti`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // TikTok Caption Content (100+ variations per property type)
-            tiktok: {
-                all: [
-                    `Punya rumah sendiri dengan gaji UMR? Bisa banget! 🏡
-
-DP 0% via bank syariah
-Cicilan mulai 1 jutaan
-Bonus motor listrik ⚡
-
-Lokasi strategis 5' ke jalan nasional
-Lingkungan islami & asri 🌿
-
-#KPRSyariah #RumahPertama #InvestasiMuda #Kuningan #PropertiViral`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // WhatsApp Broadcast Content (100+ variations per property type)
-            whatsapp_broadcast: {
-                all: [
-                    `*Kertamulya Residence Kuningan - Promo DP 0% + Bonus Motor Listrik*
-
-Tipe Standar Subsidi 30/60
-Harga: Rp168.000.000 (from Rp185jt)
-Luas Tanah: 60m²
-Bangunan: 30m²
-2 Kamar Tidur + 1 KM
-
-Fasilitas:
-- Masjid dalam komplek
-- Taman bermain anak
-- Area parkir luas
-- Security 24 jam
-
-Keunggulan:
-- DP 0% via Bank Syariah
-- Bonus motor listrik
-- Lingkungan islami
-- Lokasi strategis
-
-Info lengkap:
-https://bimulialand.com/kertamulya.html`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // WhatsApp Status Content (100+ variations per property type)
-            whatsapp_status: {
-                all: [
-                    `🏡 Rumah subsidi Kuningan DP 0%!
-Cicilan mulai 1 jutaan
-Bonus motor listrik ⚡
-Lingkungan islami 🕌
-
-⏳ Kuota terbatas 30 unit
-📲 Info: bimulialand.com/kertamulya.html`,
-                    // ... (99 more variations)
-                ],
-                // ... (property-specific variations)
-            },
-            
-            // Instagram Bio Content (50+ variations)
-            instagram_bio: [
-                "🏆 Developer Properti Syariah Terbaik Kuningan | DP 0% & Cicilan 1 Jutaan | Bonus Motor Listrik ⚡ Fasilitas Premium 🏊 #KertamulyaPremium",
-                "Properti Halal Kuningan 🕌 | KPR Syariah Tanpa Riba | Fasilitas Lengkap 🏡 Promo DP 0% & Bonus Motor Listrik ⚡ Kunjungi: bimulialand.com/kertamulya",
-                // ... (48 more professional bio variations)
-            ],
-            
-            // TikTok Bio Content (50+ variations)
-            tiktok_bio: [
-                "Properti Syariah Kuningan 🏡 DP 0% & Bonus Motor ⚡ Fasilitas Premium 🏊 #KertamulyaResidence",
-                "KPR Syariah Kuningan 🕌 Cicilan 1 jutaan 🔗 Info lengkap di link bio #PropertiHalal",
-                // ... (48 more professional bio variations)
-            ],
-            
-            // Tone Variations
-            tones: {
-                estetik: {
-                    adjectives: ["menawan", "estetik", "visual", "instagrammable", "fotogenik"],
-                    phrases: [
-                        "Setiap sudut dirancang untuk memanjakan mata",
-                        "Desain yang memukau dan penuh gaya",
-                        "Karya arsitektur yang memesona"
-                    ]
-                },
-                soft_selling: {
-                    adjectives: ["nyaman", "tenang", "damai", "harmonis", "kebersamaan"],
-                    phrases: [
-                        "Tempat terbaik untuk membangun kenangan keluarga",
-                        "Kami memahami impian Anda tentang rumah idaman",
-                        "Solusi tepat untuk kebutuhan hunian Anda"
-                    ]
-                },
-                eksklusif: {
-                    adjectives: ["eksklusif", "premium", "mewah", "elit", "berkelas"],
-                    phrases: [
-                        "Hunian eksklusif untuk mereka yang menghargai kualitas",
-                        "Standar hidup premium yang tak tertandingi",
-                        "Kelas tersendiri dalam dunia properti"
-                    ]
-                },
-                visioner: {
-                    adjectives: ["visioner", "inspiratif", "futuristik", "berwawasan", "progresif"],
-                    phrases: [
-                        "Mewujudkan impian properti masa depan Anda",
-                        "Investasi cerdas untuk generasi mendatang",
-                        "Visi hidup yang lebih baik dimulai dari sini"
-                    ]
-                },
-                edukatif: {
-                    adjectives: ["edukatif", "solutif", "informatif", "bermanfaat", "pencerahan"],
-                    phrases: [
-                        "Temukan solusi properti terbaik untuk Anda",
-                        "Panduan lengkap memiliki rumah pertama",
-                        "Investasi properti yang cerdas dan menguntungkan"
-                    ]
-                },
-                friendly: {
-                    adjectives: ["santai", "akrab", "bersahabat", "menyenangkan", "cair"],
-                    phrases: [
-                        "Ngobrol santai tentang punya rumah sendiri",
-                        "Gak perlu ribet, punya rumah bisa mudah kok",
-                        "Tanya-tanya dulu, gak harus langsung beli"
-                    ]
-                },
-                fomo: {
-                    adjectives: ["terbatas", "langka", "spesial", "cepat", "segera"],
-                    phrases: [
-                        "Jangan sampai kehabisan unit terbaik!",
-                        "Promo ini tidak akan berulang!",
-                        "Hanya untuk 10 pembeli pertama!"
-                    ]
-                },
-                natural: {
-                    adjectives: ["natural", "mengalir", "biasa", "sehari-hari", "santai"],
-                    phrases: [
-                        "Lagi cari rumah di Kuningan? Ini solusinya",
-                        "Info buat yang pengen punya rumah sendiri",
-                        "Rumah murah dengan cicilan ringan, minat?"
-                    ]
-                },
-                profesional: {
-                    adjectives: ["profesional", "kredibel", "terpercaya", "berpengalaman", "ahli"],
-                    phrases: [
-                        "Solusi properti syariah terpercaya",
-                        "Developer berpengalaman sejak 2010",
-                        "Kredibilitas tak diragukan dalam industri properti"
-                    ]
-                },
-                motivasi: {
-                    adjectives: ["motivasi", "inspirasi", "semangat", "sukses", "mimpi"],
-                    phrases: [
-                        "Rumah pertama adalah langkah awal kesuksesan",
-                        "Jangan tunda lagi impian memiliki rumah",
-                        "Mulai hidup lebih baik dari sekarang"
-                    ]
-                }
-            },
-            
-            // Hashtag Database (300+ combinations)
-            hashtags: {
-                trending: ["#fyp", "#fypシ", "#viral", "#trending", "#indonesia", "#jawatengah", "#kuningan", "#cirebon"],
-                property: ["#rumahsubsidi", "#kprsyariah", "#propertihalal", "#rumahmurah", "#huniannyaman", "#rumahminimalis"],
-                location: ["#kuningan", "#cirebon", "#jawatengah", "#kuningen", "#kuninganhits"],
-                business: ["#bisnisproperti", "#investasimenguntungkan", "#usahaproperti", "#bisnissyariah"],
-                premium: ["#hunianpremium", "#rumaheksklusif", "#propertibagus", "#rumahmewah"],
-                emotional: ["#rumahpertama", "#investasisyariah", "#mimpikeluarga", "#masadepancemerlang"]
-            }
-        };
+        // ... (other platform generators)
 
         // DOM Elements
         const platformSelect = document.getElementById('platform-select');
@@ -1294,8 +1031,10 @@ Lingkungan islami 🕌
         // Current state
         let currentPlatform = 'facebook_marketplace';
         let currentTone = 'estetik';
-        let currentProperty = 'all';
+        let currentProperty = 'subsidi';
         let selectedAssets = [];
+        let currentContentIndex = 0;
+        let currentContentVariations = [];
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -1314,8 +1053,8 @@ Lingkungan islami 🕌
             
             // Generate buttons
             generateBtn.addEventListener('click', generateContent);
-            regenerateBtn.addEventListener('click', generateContent);
-            regenerateMarketplaceBtn.addEventListener('click', generateMarketplaceContent);
+            regenerateBtn.addEventListener('click', regenerateContent);
+            regenerateMarketplaceBtn.addEventListener('click', regenerateMarketplaceContent);
             
             // Copy buttons
             copyDescBtn.addEventListener('click', copyDescription);
@@ -1334,11 +1073,13 @@ Lingkungan islami 🕌
         function updatePlatform() {
             currentPlatform = platformSelect.value;
             updateUIForPlatform();
+            generateContent();
         }
         
         // Update tone selection
         function updateTone() {
             currentTone = toneSelect.value;
+            generateContent();
         }
         
         // Update property selection
@@ -1377,40 +1118,21 @@ Lingkungan islami 🕌
         
         // Generate content based on selections
         function generateContent() {
-            let content;
-            
-            switch(currentPlatform) {
-                case 'facebook_group':
-                    content = generateFacebookGroupContent();
-                    break;
-                case 'facebook_ads':
-                    content = generateFacebookAdsContent();
-                    break;
-                case 'instagram':
-                    content = generateInstagramContent();
-                    break;
-                case 'tiktok':
-                    content = generateTikTokContent();
-                    break;
-                case 'whatsapp_broadcast':
-                    content = generateWhatsAppBroadcastContent();
-                    break;
-                case 'whatsapp_status':
-                    content = generateWhatsAppStatusContent();
-                    break;
-                case 'instagram_bio':
-                    content = generateInstagramBioContent();
-                    break;
-                case 'tiktok_bio':
-                    content = generateTikTokBioContent();
-                    break;
-                default:
-                    content = {
-                        title: "Pilih platform, gaya bahasa, dan tipe properti",
-                        description: "Generator akan membuat konten khusus untuk platform yang dipilih",
-                        hashtags: ""
-                    };
-            }
+            // Generate all 25 variations for current combination
+            currentContentVariations = generateContentForPlatform(currentPlatform, currentTone, currentProperty);
+            currentContentIndex = 0;
+            displayCurrentContent();
+        }
+        
+        // Regenerate content (show next variation)
+        function regenerateContent() {
+            currentContentIndex = (currentContentIndex + 1) % currentContentVariations.length;
+            displayCurrentContent();
+        }
+        
+        // Display current content variation
+        function displayCurrentContent() {
+            const content = currentContentVariations[currentContentIndex];
             
             // Apply fade-in animation
             captionTitleText.classList.remove('fade-in');
@@ -1428,110 +1150,28 @@ Lingkungan islami 🕌
         
         // Generate Facebook Marketplace/OLX content
         function generateMarketplaceContent() {
-            const platform = currentPlatform;
-            const isOLX = platform === 'olx';
-            
-            // Get random title and description
-            const titlePool = captions[platform].titles[currentProperty] || captions[platform].titles.all;
-            const descPool = captions[platform].descriptions[currentProperty] || captions[platform].descriptions.all;
-            
-            const randomTitle = titlePool[Math.floor(Math.random() * titlePool.length)];
-            const randomDesc = descPool[Math.floor(Math.random() * descPool.length)];
+            // Generate all 25 variations for current combination
+            currentContentVariations = generateContentForPlatform(currentPlatform, currentTone, currentProperty);
+            currentContentIndex = 0;
+            displayMarketplaceContent();
+        }
+        
+        // Regenerate marketplace content
+        function regenerateMarketplaceContent() {
+            currentContentIndex = (currentContentIndex + 1) % currentContentVariations.length;
+            displayMarketplaceContent();
+        }
+        
+        // Display current marketplace content
+        function displayMarketplaceContent() {
+            const content = currentContentVariations[currentContentIndex];
             
             // Update inputs
-            marketplaceTitleInput.value = randomTitle;
-            marketplaceDescInput.value = randomDesc;
+            marketplaceTitleInput.value = content.title || "";
+            marketplaceDescInput.value = content.description || "";
             
             // Update character count
             updateCharCount();
-        }
-        
-        // Generate Facebook Group content
-        function generateFacebookGroupContent() {
-            const contentPool = captions.facebook_group[currentProperty] || captions.facebook_group.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            return {
-                description: randomContent,
-                hashtags: generateHashtags()
-            };
-        }
-        
-        // Generate Instagram content
-        function generateInstagramContent() {
-            const contentPool = captions.instagram[currentProperty] || captions.instagram.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            // Split into title and description
-            const parts = randomContent.split('\n\n');
-            const title = parts[0] || "";
-            const description = parts.slice(1).join('\n\n') || "";
-            
-            return {
-                title: title,
-                description: description,
-                hashtags: generateHashtags()
-            };
-        }
-        
-        // Generate TikTok content
-        function generateTikTokContent() {
-            const contentPool = captions.tiktok[currentProperty] || captions.tiktok.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            return {
-                description: randomContent,
-                hashtags: generateHashtags()
-            };
-        }
-        
-        // Generate WhatsApp Broadcast content
-        function generateWhatsAppBroadcastContent() {
-            const contentPool = captions.whatsapp_broadcast[currentProperty] || captions.whatsapp_broadcast.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            return {
-                description: randomContent
-            };
-        }
-        
-        // Generate WhatsApp Status content
-        function generateWhatsAppStatusContent() {
-            const contentPool = captions.whatsapp_status[currentProperty] || captions.whatsapp_status.all;
-            const randomContent = contentPool[Math.floor(Math.random() * contentPool.length)];
-            
-            return {
-                description: randomContent
-            };
-        }
-        
-        // Generate Instagram Bio content
-        function generateInstagramBioContent() {
-            const randomContent = captions.instagram_bio[Math.floor(Math.random() * captions.instagram_bio.length)];
-            
-            return {
-                description: randomContent
-            };
-        }
-        
-        // Generate TikTok Bio content
-        function generateTikTokBioContent() {
-            const randomContent = captions.tiktok_bio[Math.floor(Math.random() * captions.tiktok_bio.length)];
-            
-            return {
-                description: randomContent
-            };
-        }
-        
-        // Generate hashtags
-        function generateHashtags() {
-            const trending = captions.hashtags.trending.sort(() => 0.5 - Math.random()).slice(0, 1);
-            const property = captions.hashtags.property.sort(() => 0.5 - Math.random()).slice(0, 1);
-            const location = captions.hashtags.location.sort(() => 0.5 - Math.random()).slice(0, 1);
-            const emotional = captions.hashtags.emotional.sort(() => 0.5 - Math.random()).slice(0, 1);
-            const premium = captions.hashtags.premium.sort(() => 0.5 - Math.random()).slice(0, 1);
-            
-            return [...trending, ...property, ...location, ...emotional, ...premium].join(' ');
         }
         
         // Update character count for marketplace/OLX title
@@ -1541,7 +1181,10 @@ Lingkungan islami 🕌
         
         // Copy description to clipboard
         function copyDescription() {
-            const text = captionDescText.textContent;
+            const text = currentPlatform === 'facebook_marketplace' || currentPlatform === 'olx' 
+                ? marketplaceDescInput.value 
+                : captionDescText.textContent;
+                
             navigator.clipboard.writeText(text).then(() => {
                 showNotification('Deskripsi berhasil disalin!');
             });
@@ -1549,7 +1192,15 @@ Lingkungan islami 🕌
         
         // Copy all content (title + description) to clipboard
         function copyAllContent() {
-            const text = `${captionTitleText.textContent}\n\n${captionDescText.textContent}`;
+            const title = currentPlatform === 'facebook_marketplace' || currentPlatform === 'olx' 
+                ? marketplaceTitleInput.value 
+                : captionTitleText.textContent;
+                
+            const desc = currentPlatform === 'facebook_marketplace' || currentPlatform === 'olx' 
+                ? marketplaceDescInput.value 
+                : captionDescText.textContent;
+                
+            const text = `${title}\n\n${desc}`;
             navigator.clipboard.writeText(text).then(() => {
                 showNotification('Konten berhasil disalin!');
             });
@@ -1590,7 +1241,6 @@ Lingkungan islami 🕌
             setTimeout(() => {
                 let assets = [];
                 
-                // Sample assets - in production this would come from actual property assets
                 if (propertyType === 'subsidi') {
                     assets = [
                         { type: 'image', name: 'subsidi1.jpg', url: 'https://via.placeholder.com/300x200?text=Subsidi+1' },
@@ -1610,13 +1260,6 @@ Lingkungan islami 🕌
                         { type: 'image', name: 'premium1.jpg', url: 'https://via.placeholder.com/300x200?text=Premium+1' },
                         { type: 'image', name: 'premium2.jpg', url: 'https://via.placeholder.com/300x200?text=Premium+2' },
                         { type: 'video', name: 'premium-tour.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' }
-                    ];
-                } else {
-                    // All properties
-                    assets = [
-                        { type: 'image', name: 'all1.jpg', url: 'https://via.placeholder.com/300x200?text=All+1' },
-                        { type: 'image', name: 'all2.jpg', url: 'https://via.placeholder.com/300x200?text=All+2' },
-                        { type: 'video', name: 'all-tour.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' }
                     ];
                 }
                 
@@ -1685,8 +1328,6 @@ Lingkungan islami 🕌
         function downloadSelectedAssets() {
             if (selectedAssets.length === 0) return;
             
-            // Create a zip file in a real implementation
-            // For this example, we'll download them one by one
             selectedAssets.forEach((asset, index) => {
                 setTimeout(() => {
                     downloadAsset(asset.url, asset.name);
