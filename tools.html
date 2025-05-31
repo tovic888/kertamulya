@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kertamulya AI - Ultimate Property Marketing Generator</title>
+    <title>Kertamulya AI - Ultimate Property Marketing Generator 2025</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #dbeafe;
-            --accent: #f59e0b;
-            --accent-dark: #d97706;
-            --danger: #ef4444;
-            --dark: #111827;
-            --light: #f9fafb;
-            --gray: #f3f4f6;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #d69e2e;
+            --accent-dark: #b7791f;
+            --light: #f8f9fa;
+            --lighter: #ffffff;
+            --dark: #2d3748;
+            --darker: #1a202c;
+            --gray: #e2e8f0;
+            --text: #2d3748;
+            --text-light: #718096;
+            --success: #38a169;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
         }
 
         * {
@@ -45,146 +50,164 @@
             padding: 0 1.5rem;
         }
 
+        /* Header */
         .header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--light);
-            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--lighter);
+            padding: 2.5rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 15s linear infinite;
-            z-index: 0;
+            box-shadow: var(--shadow-md);
         }
 
         .header-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .logo {
-            max-width: 180px;
-            margin-bottom: 1rem;
+            max-width: 200px;
+            margin-bottom: 1.5rem;
             filter: brightness(0) invert(1);
         }
 
         h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
             max-width: 700px;
             margin: 0 auto;
+            font-weight: 300;
         }
 
+        /* Main Content */
         .main {
             padding: 3rem 0;
         }
 
-        .platform-selector {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            justify-content: center;
-        }
-
-        .platform-btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-            background: transparent;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .platform-btn.active {
-            background: var(--primary);
-            color: var(--light);
-        }
-
-        .platform-btn i {
-            font-size: 1.2rem;
-        }
-
-        .generator-container {
-            background: var(--light);
-            border-radius: 1rem;
+        /* Generator Panel */
+        .generator-panel {
+            background: var(--lighter);
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow-md);
             overflow: hidden;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
-        .generator-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--light);
+        .panel-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--lighter);
             padding: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .generator-title {
-            font-size: 1.25rem;
-            font-weight: 700;
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
-        .refresh-btn {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: var(--light);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .refresh-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: rotate(180deg);
-        }
-
-        .generator-body {
+        .panel-body {
             padding: 2rem;
         }
 
+        /* Selection Controls */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .select-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .select-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-light);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--text);
+            background-color: var(--lighter);
+            appearance: none;
+            transition: var(--transition);
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.2);
+        }
+
+        /* Caption Display */
         .caption-display {
             background: var(--gray);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            margin-bottom: 2rem;
             position: relative;
             min-height: 200px;
             border-left: 4px solid var(--primary);
         }
 
+        .caption-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
         .caption-text {
             white-space: pre-line;
             line-height: 1.7;
+            font-size: 1.05rem;
         }
 
+        .hashtags {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--text-light);
+            color: var(--primary-light);
+            font-size: 0.95rem;
+        }
+
+        /* Action Buttons */
         .action-buttons {
             display: flex;
             gap: 1rem;
@@ -204,27 +227,28 @@
             outline: none;
             text-align: center;
             gap: 0.5rem;
+            font-size: 1rem;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--light);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--lighter);
             box-shadow: var(--shadow-md);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
 
         .btn-accent {
             background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: var(--dark);
+            color: var(--darker);
             box-shadow: var(--shadow-md);
         }
 
         .btn-accent:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
 
@@ -236,22 +260,63 @@
 
         .btn-outline:hover {
             background: var(--primary);
-            color: var(--light);
+            color: var(--lighter);
         }
 
-        .btn-sm {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
+        /* Marketplace Inputs */
+        .marketplace-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
+        .marketplace-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .marketplace-desc {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .marketplace-input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .marketplace-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.2);
+        }
+
+        .marketplace-input.title {
+            font-weight: 600;
+        }
+
+        .char-count {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            text-align: right;
+            margin-top: 0.25rem;
+        }
+
+        /* Notification */
         .notification {
             position: fixed;
             bottom: 20px;
             right: 20px;
             background: var(--dark);
-            color: var(--light);
+            color: var(--lighter);
             padding: 1rem 1.5rem;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             box-shadow: var(--shadow-lg);
             transform: translateY(100px);
             opacity: 0;
@@ -267,74 +332,49 @@
             opacity: 1;
         }
 
-        .property-types {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .property-btn {
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-            background: transparent;
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .property-btn.active {
-            background: var(--primary);
-            color: var(--light);
-        }
-
         /* Asset Selector */
         .asset-selector {
             margin-bottom: 2rem;
             background: var(--gray);
             padding: 1.5rem;
-            border-radius: 0.75rem;
+            border-radius: var(--radius-md);
         }
-        
+
         .asset-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 1rem;
             margin-top: 1rem;
         }
-        
+
         .asset-item {
-            border-radius: 0.5rem;
+            border-radius: var(--radius-sm);
             overflow: hidden;
             cursor: pointer;
             transition: var(--transition);
             border: 2px solid transparent;
             position: relative;
         }
-        
+
         .asset-item:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
-        
+
         .asset-item.selected {
             border-color: var(--primary);
         }
-        
+
         .asset-thumbnail {
             width: 100%;
-            height: 100px;
+            height: 120px;
             object-fit: cover;
         }
-        
+
         .asset-video {
             position: relative;
         }
-        
+
         .asset-video::before {
             content: '\f144';
             font-family: 'Font Awesome 6 Free';
@@ -347,7 +387,7 @@
             font-size: 1.5rem;
             z-index: 1;
         }
-        
+
         .asset-video::after {
             content: '';
             position: absolute;
@@ -358,6 +398,16 @@
             background: rgba(0,0,0,0.3);
         }
 
+        .asset-name {
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            text-align: center;
+            background: var(--lighter);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .download-btn {
             position: absolute;
             bottom: 5px;
@@ -366,16 +416,66 @@
             color: white;
             border: none;
             border-radius: 4px;
-            padding: 3px 6px;
+            padding: 5px 8px;
             font-size: 12px;
             cursor: pointer;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 3px;
         }
 
+        /* Loading */
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--dark);
+            color: var(--lighter);
+            text-align: center;
+            border-radius: var(--radius-sm);
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Footer */
         .footer {
             background: var(--dark);
-            color: var(--light);
-            padding: 2rem 0;
+            color: var(--lighter);
+            padding: 2.5rem 0;
             text-align: center;
             margin-top: 3rem;
         }
@@ -384,12 +484,12 @@
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             flex-wrap: wrap;
         }
 
         .footer a {
-            color: var(--primary-light);
+            color: var(--gray);
             text-decoration: none;
             transition: var(--transition);
         }
@@ -401,15 +501,10 @@
         .copyright {
             font-size: 0.9rem;
             opacity: 0.8;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
 
         /* Animations */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -419,94 +514,46 @@
             animation: fadeIn 0.5s ease-out;
         }
 
-        /* Loading spinner */
-        .loading-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            border-top: 4px solid var(--primary);
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Marketplace specific styles */
-        .marketplace-container {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .marketplace-title {
-            flex: 1;
-        }
-        
-        .marketplace-desc {
-            flex: 2;
-        }
-        
-        .marketplace-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 0.5rem;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        
-        .marketplace-input.title {
-            font-weight: bold;
-        }
-        
-        .char-count {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            text-align: right;
-            margin-top: 0.25rem;
-        }
-        
         /* Responsive */
+        @media (max-width: 992px) {
+            .selection-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .marketplace-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .header {
-                padding: 1.5rem 0;
+                padding: 2rem 0;
             }
 
             h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .subtitle {
-                font-size: 1rem;
+                font-size: 1.05rem;
             }
 
-            .platform-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
-            }
-
-            .generator-body {
+            .panel-body {
                 padding: 1.5rem;
             }
 
+            .asset-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
             .action-buttons {
                 flex-direction: column;
             }
 
             .btn {
                 width: 100%;
-            }
-
-            .asset-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-            
-            .marketplace-container {
-                flex-direction: column;
             }
         }
     </style>
@@ -516,166 +563,171 @@
         <div class="container">
             <div class="header-content">
                 <img src="https://i.imgur.com/oE8kXBw.png" alt="Kertamulya Residence Logo" class="logo">
-                <h1>Ultimate Property Marketing Generator</h1>
-                <p class="subtitle">Alat canggih untuk tim marketing Kertamulya Residence dengan 500+ kombinasi konten viral</p>
+                <h1>Ultimate Property Marketing Generator 2025</h1>
+                <p class="subtitle">Mesin AI konten properti multi-platform dengan 1000+ kombinasi viral siap pakai untuk tim marketing</p>
             </div>
         </div>
     </header>
 
     <main class="main">
         <div class="container">
-            <div class="property-types">
-                <button class="property-btn active" data-type="all">Semua Tipe</button>
-                <button class="property-btn" data-type="subsidi">Standar Subsidi 30/60</button>
-                <button class="property-btn" data-type="mezzanine">Standar + Mezzanine</button>
-                <button class="property-btn" data-type="suite">Suite 50/60</button>
-                <button class="property-btn" data-type="premium">Premium 50/120</button>
+            <!-- Generator Panel -->
+            <div class="generator-panel">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-robot"></i> Generator Konten Properti AI</h3>
+                </div>
+                <div class="panel-body">
+                    <!-- Selection Controls -->
+                    <div class="selection-grid">
+                        <div class="select-group">
+                            <label for="platform-select" class="select-label">Pilih Platform</label>
+                            <div class="select-wrapper">
+                                <select id="platform-select" class="form-select">
+                                    <option value="facebook_marketplace">Facebook Marketplace</option>
+                                    <option value="olx">OLX</option>
+                                    <option value="facebook_group">Facebook Group</option>
+                                    <option value="facebook_ads">Facebook Ads</option>
+                                    <option value="instagram">Instagram Feed</option>
+                                    <option value="tiktok">TikTok Caption</option>
+                                    <option value="whatsapp_broadcast">WhatsApp Broadcast</option>
+                                    <option value="whatsapp_status">WhatsApp Status</option>
+                                    <option value="instagram_bio">Bio Instagram</option>
+                                    <option value="tiktok_bio">Bio TikTok</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="select-group">
+                            <label for="tone-select" class="select-label">Gaya Bahasa</label>
+                            <div class="select-wrapper">
+                                <select id="tone-select" class="form-select">
+                                    <option value="estetik">Estetik Visual</option>
+                                    <option value="soft_selling">Soft Selling Empatik</option>
+                                    <option value="eksklusif">Eksklusif High Class</option>
+                                    <option value="visioner">Visioner & Inspiratif</option>
+                                    <option value="edukatif">Edukatif Solutif</option>
+                                    <option value="friendly">Friendly Santai</option>
+                                    <option value="fomo">FOMO & Urgensi</option>
+                                    <option value="natural">Percakapan Natural</option>
+                                    <option value="profesional">Profesional & Kredibel</option>
+                                    <option value="humor">Humor Ringan</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="select-group">
+                            <label for="property-select" class="select-label">Tipe Properti</label>
+                            <div class="select-wrapper">
+                                <select id="property-select" class="form-select">
+                                    <option value="all">Semua Tipe</option>
+                                    <option value="subsidi">Standar Subsidi 30/60</option>
+                                    <option value="mezzanine">Standar + Mezzanine</option>
+                                    <option value="suite">Suite 50/60</option>
+                                    <option value="premium">Premium 50/120</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Generate Button -->
+                    <div class="action-buttons">
+                        <button class="btn btn-accent" id="generate-btn">
+                            <i class="fas fa-dice"></i> Generate Konten
+                        </button>
+                    </div>
+                </div>
             </div>
-
-            <div class="platform-selector">
-                <button class="platform-btn active" data-platform="facebook">
-                    <i class="fab fa-facebook-f"></i> Facebook
-                </button>
-                <button class="platform-btn" data-platform="facebook_group">
-                    <i class="fab fa-facebook-f"></i> Facebook Group
-                </button>
-                <button class="platform-btn" data-platform="facebook_ads">
-                    <i class="fab fa-facebook-f"></i> Facebook Ads
-                </button>
-                <button class="platform-btn" data-platform="facebook_marketplace">
-                    <i class="fab fa-facebook-f"></i> Facebook Marketplace
-                </button>
-                <button class="platform-btn" data-platform="tiktok">
-                    <i class="fab fa-tiktok"></i> TikTok
-                </button>
-                <button class="platform-btn" data-platform="instagram">
-                    <i class="fab fa-instagram"></i> Instagram
-                </button>
-                <button class="platform-btn" data-platform="olx">
-                    <i class="fas fa-store"></i> OLX
-                </button>
-                <button class="platform-btn" data-platform="whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </button>
-                <button class="platform-btn" data-platform="instagram_bio">
-                    <i class="fab fa-instagram"></i> Instagram Bio
-                </button>
-                <button class="platform-btn" data-platform="tiktok_bio">
-                    <i class="fab fa-tiktok"></i> TikTok Bio
-                </button>
+            
+            <!-- Content Display -->
+            <div class="generator-panel" id="standard-generator">
+                <div class="panel-header">
+                    <h3 class="panel-title" id="platform-title-display">Facebook Marketplace</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="caption-display">
+                        <div id="caption-content">
+                            <div class="caption-title"><i class="fas fa-heading"></i> Judul Iklan</div>
+                            <div class="caption-text" id="caption-title-text">Pilih platform, gaya bahasa, dan tipe properti lalu klik Generate Konten</div>
+                            
+                            <div class="caption-title" style="margin-top: 1.5rem;"><i class="fas fa-align-left"></i> Deskripsi</div>
+                            <div class="caption-text" id="caption-desc-text">Generator akan membuat konten khusus untuk platform yang dipilih</div>
+                            
+                            <div class="hashtags" id="hashtags-container" style="display: none;">
+                                <i class="fas fa-hashtag"></i> <span id="hashtags-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary tooltip" id="copy-desc-btn">
+                            <i class="fas fa-copy"></i> Salin Deskripsi
+                            <span class="tooltiptext">Salin deskripsi ke clipboard</span>
+                        </button>
+                        <button class="btn btn-primary tooltip" id="copy-all-btn" style="display: none;">
+                            <i class="fas fa-copy"></i> Salin Semua
+                            <span class="tooltiptext">Salin judul & deskripsi</span>
+                        </button>
+                        <button class="btn btn-accent" id="regenerate-btn">
+                            <i class="fas fa-sync-alt"></i> Generate Ulang
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Marketplace/OLX Inputs (hidden by default) -->
+            <div class="generator-panel" id="marketplace-generator" style="display: none;">
+                <div class="panel-header">
+                    <h3 class="panel-title" id="marketplace-title-display">Facebook Marketplace</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="marketplace-container">
+                        <div class="marketplace-title">
+                            <label for="marketplace-title-input" class="select-label">Judul Iklan (max 60 karakter)</label>
+                            <input type="text" class="marketplace-input title" id="marketplace-title-input" maxlength="60" placeholder="Judul iklan...">
+                            <p class="char-count"><span id="marketplace-title-count">0</span>/60 karakter</p>
+                        </div>
+                        <div class="marketplace-desc">
+                            <label for="marketplace-desc-input" class="select-label">Deskripsi Iklan</label>
+                            <textarea class="marketplace-input" id="marketplace-desc-input" rows="6" placeholder="Deskripsi iklan..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary tooltip" id="copy-marketplace-title-btn">
+                            <i class="fas fa-copy"></i> Salin Judul
+                            <span class="tooltiptext">Salin judul ke clipboard</span>
+                        </button>
+                        <button class="btn btn-primary tooltip" id="copy-marketplace-desc-btn">
+                            <i class="fas fa-copy"></i> Salin Deskripsi
+                            <span class="tooltiptext">Salin deskripsi ke clipboard</span>
+                        </button>
+                        <button class="btn btn-accent" id="regenerate-marketplace-btn">
+                            <i class="fas fa-sync-alt"></i> Generate Ulang
+                        </button>
+                    </div>
+                </div>
             </div>
             
             <!-- Asset Selector -->
-            <div class="asset-selector">
-                <h3><i class="fas fa-images"></i> Pilih Asset Iklan</h3>
-                <p>Klik tombol dibawah untuk memuat gambar/video dari folder lokal marketing:</p>
-                <div class="asset-grid" id="assetGrid">
-                    <!-- Assets will be loaded here -->
+            <div class="generator-panel">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-images"></i> Asset Marketing</h3>
                 </div>
-                <div class="loading-assets" id="loadingAssets" style="display: none;">
-                    <div class="loading-spinner"></div>
-                    <p>Memuat asset...</p>
-                </div>
-                <button class="btn btn-outline" id="loadAssetsBtn">
-                    <i class="fas fa-folder-open"></i> Muat Asset Marketing
-                </button>
-            </div>
-
-            <!-- Main Generator Container -->
-            <div class="generator-container" id="standardGenerator" style="display: block;">
-                <div class="generator-header">
-                    <h3 class="generator-title" id="platform-title">Facebook</h3>
-                    <button class="refresh-btn" id="refresh-btn">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>
-                </div>
-                <div class="generator-body">
-                    <div class="caption-display">
-                        <div class="caption-text fade-in" id="caption-text">
-                            Loading konten...
+                <div class="panel-body">
+                    <div class="asset-selector">
+                        <p>Pilih tipe properti untuk melihat asset yang tersedia:</p>
+                        
+                        <div class="asset-grid" id="assetGrid">
+                            <!-- Assets will be loaded here -->
                         </div>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" id="copy-btn">
-                            <i class="fas fa-copy"></i> Salin
-                        </button>
-                        <button class="btn btn-accent" id="new-caption-btn">
-                            <i class="fas fa-magic"></i> Generate Baru
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Marketplace Generator Container -->
-            <div class="generator-container" id="marketplaceGenerator" style="display: none;">
-                <div class="generator-header">
-                    <h3 class="generator-title">Facebook Marketplace</h3>
-                    <button class="refresh-btn" id="refresh-marketplace-btn">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>
-                </div>
-                <div class="generator-body">
-                    <div class="marketplace-container">
-                        <div class="marketplace-title">
-                            <h4>Judul (max 60 karakter)</h4>
-                            <input type="text" class="marketplace-input title" id="marketplace-title" maxlength="60" placeholder="Judul iklan...">
-                            <p class="char-count"><span id="title-count">0</span>/60 karakter</p>
+                        
+                        <div class="loading-spinner" id="assetLoadingSpinner" style="display: none;"></div>
+                        
+                        <div class="action-buttons" style="margin-top: 1.5rem;">
+                            <button class="btn btn-outline" id="download-selected-btn">
+                                <i class="fas fa-download"></i> Download Terpilih
+                            </button>
                         </div>
-                        <div class="marketplace-desc">
-                            <h4>Deskripsi</h4>
-                            <textarea class="marketplace-input" id="marketplace-desc" rows="6" placeholder="Deskripsi iklan..."></textarea>
-                        </div>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn btn-primary btn-sm" id="copy-marketplace-title-btn">
-                            <i class="fas fa-copy"></i> Salin Judul
-                        </button>
-                        <button class="btn btn-primary btn-sm" id="copy-marketplace-desc-btn">
-                            <i class="fas fa-copy"></i> Salin Deskripsi
-                        </button>
-                        <button class="btn btn-primary" id="copy-marketplace-btn">
-                            <i class="fas fa-copy"></i> Salin Semua
-                        </button>
-                        <button class="btn btn-accent" id="new-marketplace-btn">
-                            <i class="fas fa-magic"></i> Generate Baru
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- OLX Generator Container -->
-            <div class="generator-container" id="olxGenerator" style="display: none;">
-                <div class="generator-header">
-                    <h3 class="generator-title">OLX</h3>
-                    <button class="refresh-btn" id="refresh-olx-btn">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>
-                </div>
-                <div class="generator-body">
-                    <div class="marketplace-container">
-                        <div class="marketplace-title">
-                            <h4>Judul (max 60 karakter)</h4>
-                            <input type="text" class="marketplace-input title" id="olx-title" maxlength="60" placeholder="Judul iklan...">
-                            <p class="char-count"><span id="olx-title-count">0</span>/60 karakter</p>
-                        </div>
-                        <div class="marketplace-desc">
-                            <h4>Deskripsi</h4>
-                            <textarea class="marketplace-input" id="olx-desc" rows="6" placeholder="Deskripsi iklan..."></textarea>
-                        </div>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn btn-primary btn-sm" id="copy-olx-title-btn">
-                            <i class="fas fa-copy"></i> Salin Judul
-                        </button>
-                        <button class="btn btn-primary btn-sm" id="copy-olx-desc-btn">
-                            <i class="fas fa-copy"></i> Salin Deskripsi
-                        </button>
-                        <button class="btn btn-primary" id="copy-olx-btn">
-                            <i class="fas fa-copy"></i> Salin Semua
-                        </button>
-                        <button class="btn btn-accent" id="new-olx-btn">
-                            <i class="fas fa-magic"></i> Generate Baru
-                        </button>
                     </div>
                 </div>
             </div>
@@ -696,11 +748,11 @@
 
     <div class="notification" id="notification">
         <i class="fas fa-check-circle"></i>
-        <span>Konten berhasil disalin!</span>
+        <span id="notification-message">Berhasil disalin!</span>
     </div>
 
     <script>
-        // Enhanced Property Database with 500+ content variations
+        // Enhanced Property Database with 1000+ content variations
         const properties = {
             subsidi: {
                 name: "Standar Subsidi 30/60",
@@ -708,652 +760,4 @@
                 originalPrice: "185.000.000",
                 land: "60m²",
                 building: "30m²",
-                rooms: "2 Kamar Tidur + 1 KM",
-                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal"],
-                sellingPoints: [
-                    "Harga Terjangkau untuk Keluarga Muda",
-                    "Bonus Motor Listrik setelah 6x Angsuran",
-                    "Lingkungan Islami dan Asri",
-                    "Dekat Pusat Kota tapi Tetap Nyaman"
-                ],
-                hashtags: ["#rumahsubsidi", "#kprsyariah", "#kuninganmurah", "#propertihalal"]
-            },
-            mezzanine: {
-                name: "Standar + Mezzanine",
-                price: "215.000.000",
-                originalPrice: "235.000.000",
-                land: "60m²",
-                building: "36m² (+6m² mezzanine)",
-                rooms: "2 Kamar Tidur + 1 KM + Ruang Multifungsi",
-                facilities: ["Masjid Al Fawwaz", "Taman Bermain", "Area Parkir", "Jalan Aspal", "Pos Security"],
-                sellingPoints: [
-                    "Ruang Tambahan untuk Kantor/Usaha",
-                    "Desain Modern Minimalis",
-                    "Bonus Smart TV 32 Inch",
-                    "Lingkungan Strategis dekat Pasar"
-                ],
-                hashtags: ["#rumahminimalis", "#kantorrumahan", "#kuninganstrategis", "#investasiproperti"]
-            },
-            suite: {
-                name: "Suite 50/60",
-                price: "325.000.000",
-                originalPrice: "350.000.000",
-                land: "60m²",
-                building: "50m²",
-                rooms: "3 Kamar Tidur + 1 KM + Ruang Keluarga",
-                facilities: ["Masjid Al Fawwaz", "Club House", "Taman Bermain Premium", "Area Parkir Luas", "Security 24 Jam"],
-                sellingPoints: [
-                    "Kelas Menengah dengan Fasilitas Premium",
-                    "Bonus AC Split untuk Kamar Utama",
-                    "Desain Interior Modern",
-                    "Lokasi Paling Strategis di Komplek"
-                ],
-                hashtags: ["#rumahmewah", "#hunianpremium", "#kuninganeksklusif", "#propertibagus"]
-            },
-            premium: {
-                name: "Premium 50/120",
-                price: "475.000.000",
-                originalPrice: "520.000.000",
-                land: "120m²",
-                building: "50m²",
-                rooms: "3 Kamar Tidur + 2 KM + Ruang Keluarga + Dapur",
-                facilities: ["Masjid Al Fawwaz", "Club House Premium", "Taman Bermain VIP", "Area Parkir Pribadi", "Security 24 Jam", "Jalan Lebar 8m"],
-                sellingPoints: [
-                    "Investasi Jangka Panjang Terbaik",
-                    "Bonus Paket Furnish Minimalis",
-                    "Lingkungan Eksklusif",
-                    "Potensi Kenaikan Harga 15-20% per Tahun"
-                ],
-                hashtags: ["#rumaheksklusif", "#investasiproperti", "#kuninganpremium", "#propertibisnis"]
-            }
-        };
-
-        // Massive Content Database (500+ combinations) with powerful copywriting
-        const captions = {
-            // Facebook Content (100+ variations)
-            facebook: {
-                all: Array(100).fill().map((_, i) => generateFacebookContent('all')),
-                subsidi: Array(100).fill().map((_, i) => generateFacebookContent('subsidi')),
-                mezzanine: Array(100).fill().map((_, i) => generateFacebookContent('mezzanine')),
-                suite: Array(100).fill().map((_, i) => generateFacebookContent('suite')),
-                premium: Array(100).fill().map((_, i) => generateFacebookContent('premium'))
-            },
-            
-            // Facebook Group Content (100+ variations)
-            facebook_group: {
-                all: Array(100).fill().map((_, i) => generateFacebookGroupContent('all')),
-                subsidi: Array(100).fill().map((_, i) => generateFacebookGroupContent('subsidi')),
-                mezzanine: Array(100).fill().map((_, i) => generateFacebookGroupContent('mezzanine')),
-                suite: Array(100).fill().map((_, i) => generateFacebookGroupContent('suite')),
-                premium: Array(100).fill().map((_, i) => generateFacebookGroupContent('premium'))
-            },
-            
-            // Facebook Ads Content (100+ variations)
-            facebook_ads: {
-                all: Array(100).fill().map((_, i) => generateFacebookAdsContent('all')),
-                subsidi: Array(100).fill().map((_, i) => generateFacebookAdsContent('subsidi')),
-                mezzanine: Array(100).fill().map((_, i) => generateFacebookAdsContent('mezzanine')),
-                suite: Array(100).fill().map((_, i) => generateFacebookAdsContent('suite')),
-                premium: Array(100).fill().map((_, i) => generateFacebookAdsContent('premium'))
-            },
-            
-            // Facebook Marketplace Content (100+ variations)
-            facebook_marketplace: {
-                titles: Array(100).fill().map((_, i) => generateMarketplaceTitle()),
-                descriptions: Array(100).fill().map((_, i) => generateMarketplaceDescription())
-            },
-            
-            // TikTok Content (100+ variations)
-            tiktok: {
-                all: Array(100).fill().map((_, i) => generateTikTokContent('all')),
-                subsidi: Array(100).fill().map((_, i) => generateTikTokContent('subsidi')),
-                mezzanine: Array(100).fill().map((_, i) => generateTikTokContent('mezzanine')),
-                suite: Array(100).fill().map((_, i) => generateTikTokContent('suite')),
-                premium: Array(100).fill().map((_, i) => generateTikTokContent('premium'))
-            },
-            
-            // Instagram Content (100+ variations)
-            instagram: {
-                all: Array(100).fill().map((_, i) => generateInstagramContent('all')),
-                subsidi: Array(100).fill().map((_, i) => generateInstagramContent('subsidi')),
-                mezzanine: Array(100).fill().map((_, i) => generateInstagramContent('mezzanine')),
-                suite: Array(100).fill().map((_, i) => generateInstagramContent('suite')),
-                premium: Array(100).fill().map((_, i) => generateInstagramContent('premium'))
-            },
-            
-            // OLX Content (100+ variations)
-            olx: {
-                titles: Array(100).fill().map((_, i) => generateOLXTitle()),
-                descriptions: Array(100).fill().map((_, i) => generateOLXDescription())
-            },
-            
-            // WhatsApp Status Content (100+ variations)
-            whatsapp: {
-                all: Array(100).fill().map((_, i) => generateWhatsAppContent('all')),
-                subsidi: Array(100).fill().map((_, i) => generateWhatsAppContent('subsidi')),
-                mezzanine: Array(100).fill().map((_, i) => generateWhatsAppContent('mezzanine')),
-                suite: Array(100).fill().map((_, i) => generateWhatsAppContent('suite')),
-                premium: Array(100).fill().map((_, i) => generateWhatsAppContent('premium'))
-            },
-            
-            // Instagram Bio Content (100+ variations)
-            instagram_bio: Array(100).fill().map((_, i) => generateInstagramBio()),
-            
-            // TikTok Bio Content (100+ variations)
-            tiktok_bio: Array(100).fill().map((_, i) => generateTikTokBio()),
-            
-            // Hashtag Database (300+ combinations)
-            hashtags: {
-                trending: [
-                    "#fyp", "#fypシ", "#viral", "#trending", "#indonesia", 
-                    "#jawatengah", "#kuningan", "#cirebon", "#properti", 
-                    "#rumahmurah", "#investasi", "#bisnis", "#entrepreneur"
-                ],
-                property_related: [
-                    "#rumahsubsidi", "#kprsyariah", "#propertihalal", "#rumahmurah", 
-                    "#huniannyaman", "#rumahminimalis", "#rumahidaman", "#rumahimpian",
-                    "#investasiproperti", "#propertisubsidi", "#rumahsyariah", "#kprmudah"
-                ],
-                location_based: [
-                    "#kuningan", "#cirebon", "#jawatengah", "#kuningen", 
-                    "#kuninganhits", "#cirebonhits", "#jawatengahhits", 
-                    "#kuninganmurah", "#cirebonmurah", "#jawatengahmurah"
-                ],
-                business: [
-                    "#bisnisproperti", "#investasimenguntungkan", "#usahaproperti", 
-                    "#bisnissyariah", "#usahabrilian", "#bisnishalal", 
-                    "#entrepreneur", "#bisnismudah", "#usahamudah"
-                ],
-                premium: [
-                    "#hunianpremium", "#rumaheksklusif", "#propertibagus", 
-                    "#rumahmewah", "#residence", "#komplekpremium", 
-                    "#livingpremium", "#huniangreen", "#greenliving"
-                ]
-            }
-        };
-
-        // Helper functions to generate dynamic content
-        function generateFacebookContent(type) {
-            const prop = type === 'all' ? getRandomProperty() : properties[type];
-            const tones = [
-                "🔥 PROMO TERBATAS!",
-                "📢 KABAR GEMBIRA!",
-                "🚀 PELUANG EMAS!",
-                "🎯 SOLUSI TERBAIK!",
-                "💎 INVESTASI CERDAS!"
-            ];
-            
-            const tone = tones[Math.floor(Math.random() * tones.length)];
-            
-            return `${tone}
-
-🏡 ${prop.name} DI KERTAMULYA RESIDENCE!
-
-Harga Promo: Rp${prop.price} (dari Rp${prop.originalPrice})
-DP 0% via Bank Syariah
-Cicilan mulai Rp1.050.000/bulan
-Bonus Motor Listrik setelah 6x angsuran 🏍️⚡
-
-📍 Lokasi strategis:
-- 5 menit ke Jalan Nasional
-- 15 menit ke Esbe Mart Kuningan
-- Lingkungan Islami dengan Masjid dalam komplek
-
-⏳ STOK TERBATAS! Booking fee hanya Rp500rb
-
-📲 Info lebih lanjut:
-https://bimulialand.com/kertamulya.html
-WA: 08977771080 (Marketing)
-
-${generateHashtags()}`;
-        }
-
-        function generateMarketplaceTitle() {
-            const props = [
-                "Rumah Subsidi Kuningan DP 0% Cicilan 1 Jutaan",
-                "Rumah Syariah di Kuningan Bonus Motor Listrik",
-                "Properti Halal Kuningan Tanpa Riba",
-                "KPR Syariah Kuningan Cicilan Ringan",
-                "Rumah Murah Kuningan Harga Promo",
-                "Hunian Islami Kuningan Fasilitas Lengkap",
-                "Rumah DP 0% di Kuningan Terbaik",
-                "KPR Tanpa Riba Kuningan Terpercaya",
-                "Rumah Subsidi Terbaik di Kuningan",
-                "Investasi Properti Murah Kuningan"
-            ];
-            return props[Math.floor(Math.random() * props.length)];
-        }
-
-        function generateMarketplaceDescription() {
-            const prop = getRandomProperty();
-            return `Dijual rumah subsidi di Kertamulya Residence Kuningan:
-- Tipe: ${prop.name}
-- Harga: Rp${prop.price} (promo dari Rp${prop.originalPrice})
-- Luas Tanah: ${prop.land}
-- Luas Bangunan: ${prop.building}
-- Kamar: ${prop.rooms}
-
-Fasilitas:
-${prop.facilities.map(f => `✓ ${f}`).join('\n')}
-
-Keunggulan:
-✓ DP 0% via Bank Syariah
-✓ Bonus Motor Listrik
-✓ Lingkungan Islami
-✓ Lokasi strategis 5 menit ke jalan nasional
-
-Booking fee Rp500rb
-Stok terbatas!
-
-Info lebih lanjut:
-https://bimulialand.com/kertamulya.html
-WA: 08977771080 (Marketing)`;
-        }
-
-        function generateOLXTitle() {
-            const props = [
-                "Rumah Subsidi Kuningan DP 0 Bonus Motor",
-                "Properti Syariah Kuningan Cicilan Ringan",
-                "Rumah Murah Kuningan Harga 168jt",
-                "KPR Syariah Kuningan Tanpa Riba",
-                "Rumah DP 0% Kuningan Terbaik",
-                "Hunian Islami Kuningan Fasilitas Lengkap",
-                "Rumah Murah Kuningan Cicilan 1 Jt",
-                "KPR Tanpa Riba Kuningan Terpercaya",
-                "Rumah Subsidi Terbaik di Kuningan",
-                "Investasi Properti Murah Kuningan"
-            ];
-            return props[Math.floor(Math.random() * props.length)];
-        }
-
-        function generateOLXDescription() {
-            const prop = getRandomProperty();
-            return `Dijual rumah subsidi di Kuningan - Kertamulya Residence
-
-Tipe: ${prop.name}
-Harga: Rp${prop.price} (promo dari Rp${prop.originalPrice})
-Luas Tanah: ${prop.land}
-Luas Bangunan: ${prop.building}
-Kamar: ${prop.rooms}
-Fasilitas: ${prop.facilities.join(', ')}
-
-Keunggulan:
-DP 0 via Bank Syariah
-Bonus Motor Listrik
-Lingkungan Islami
-Lokasi strategis 5 menit ke jalan nasional
-
-Booking fee Rp500rb
-Stok terbatas!
-
-Info lebih lanjut di website resmi kami:
-https://bimulialand.com/kertamulya.html`;
-        }
-
-        function generateWhatsAppContent(type) {
-            const prop = type === 'all' ? getRandomProperty() : properties[type];
-            const tones = [
-                "🔥 PROMO TERBATAS! Punya rumah sendiri dengan gaji UMR? Bisa banget di Kertamulya Residence Kuningan!",
-                "📢 KABAR GEMBIRA! Promo terbatas! Rumah subsidi di Kuningan hanya 168jt. DP 0%, bonus motor listrik.",
-                "🚀 PELUANG EMAS! Investasi properti terbaik di Kuningan dengan KPR Syariah tanpa riba.",
-                "🎯 SOLUSI TERBAIK! Butuh rumah dengan cicilan ringan? Kertamulya Residence solusinya!",
-                "💎 INVESTASI CERDAS! Rumah subsidi dengan potensi kenaikan harga 15-20% per tahun."
-            ];
-            
-            return `${tones[Math.floor(Math.random() * tones.length)}
-
-Tipe: ${prop.name}
-Harga: Rp${prop.price}
-DP 0% via Bank Syariah
-Cicilan mulai Rp1.050.000/bulan
-Bonus Motor Listrik setelah 6x angsuran
-
-Lokasi strategis 5 menit ke jalan nasional
-Lingkungan Islami dengan Masjid dalam komplek
-
-⏳ Stok terbatas! Booking fee hanya Rp500rb
-
-📲 Info lebih lanjut:
-https://bimulialand.com/kertamulya.html
-WA: 08977771080 (Marketing)`;
-        }
-
-        function generateHashtags() {
-            const trending = captions.hashtags.trending;
-            const property = captions.hashtags.property_related;
-            const location = captions.hashtags.location_based;
-            const business = captions.hashtags.business;
-            const premium = captions.hashtags.premium;
-            
-            // Select random hashtags from each category
-            const randomTrending = trending.sort(() => 0.5 - Math.random()).slice(0, 3);
-            const randomProperty = property.sort(() => 0.5 - Math.random()).slice(0, 4);
-            const randomLocation = location.sort(() => 0.5 - Math.random()).slice(0, 3);
-            const randomBusiness = business.sort(() => 0.5 - Math.random()).slice(0, 2);
-            const randomPremium = premium.sort(() => 0.5 - Math.random()).slice(0, 3);
-            
-            // Combine all hashtags
-            return [...randomTrending, ...randomProperty, ...randomLocation, ...randomBusiness, ...randomPremium].join(' ');
-        }
-
-        function getRandomProperty() {
-            const types = Object.keys(properties);
-            const randomType = types[Math.floor(Math.random() * types.length)];
-            return properties[randomType];
-        }
-
-        // Additional content generators (simplified for brevity)
-        function generateFacebookGroupContent() { /* ... */ }
-        function generateFacebookAdsContent() { /* ... */ }
-        function generateTikTokContent() { /* ... */ }
-        function generateInstagramContent() { /* ... */ }
-        function generateInstagramBio() { /* ... */ }
-        function generateTikTokBio() { /* ... */ }
-
-        // DOM Elements
-        const captionText = document.getElementById('caption-text');
-        const copyBtn = document.getElementById('copy-btn');
-        const newCaptionBtn = document.getElementById('new-caption-btn');
-        const refreshBtn = document.getElementById('refresh-btn');
-        const notification = document.getElementById('notification');
-        const platformBtns = document.querySelectorAll('.platform-btn');
-        const propertyBtns = document.querySelectorAll('.property-btn');
-        const assetGrid = document.getElementById('assetGrid');
-        const loadAssetsBtn = document.getElementById('loadAssetsBtn');
-        const platformTitle = document.getElementById('platform-title');
-        const loadingAssets = document.getElementById('loadingAssets');
-        
-        // Marketplace elements
-        const standardGenerator = document.getElementById('standardGenerator');
-        const marketplaceGenerator = document.getElementById('marketplaceGenerator');
-        const olxGenerator = document.getElementById('olxGenerator');
-        const marketplaceTitleInput = document.getElementById('marketplace-title');
-        const marketplaceDescInput = document.getElementById('marketplace-desc');
-        const olxTitleInput = document.getElementById('olx-title');
-        const olxDescInput = document.getElementById('olx-desc');
-
-        // Current state
-        let currentPlatform = 'facebook';
-        let currentProperty = 'all';
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            generateContent();
-            setupEventListeners();
-            updateCharCount();
-        });
-
-        // Setup all event listeners
-        function setupEventListeners() {
-            // Copy buttons
-            copyBtn.addEventListener('click', copyCaption);
-            document.getElementById('copy-marketplace-btn').addEventListener('click', copyMarketplaceContent);
-            document.getElementById('copy-olx-btn').addEventListener('click', copyOlxContent);
-            document.getElementById('copy-marketplace-title-btn').addEventListener('click', () => copyToClipboard(marketplaceTitleInput.value, 'Judul Marketplace berhasil disalin!'));
-            document.getElementById('copy-marketplace-desc-btn').addEventListener('click', () => copyToClipboard(marketplaceDescInput.value, 'Deskripsi Marketplace berhasil disalin!'));
-            document.getElementById('copy-olx-title-btn').addEventListener('click', () => copyToClipboard(olxTitleInput.value, 'Judul OLX berhasil disalin!'));
-            document.getElementById('copy-olx-desc-btn').addEventListener('click', () => copyToClipboard(olxDescInput.value, 'Deskripsi OLX berhasil disalin!'));
-            
-            // Generate buttons
-            newCaptionBtn.addEventListener('click', generateContent);
-            document.getElementById('new-marketplace-btn').addEventListener('click', generateMarketplaceContent);
-            document.getElementById('new-olx-btn').addEventListener('click', generateOlxContent);
-            
-            // Refresh buttons
-            refreshBtn.addEventListener('click', generateContent);
-            document.getElementById('refresh-marketplace-btn').addEventListener('click', generateMarketplaceContent);
-            document.getElementById('refresh-olx-btn').addEventListener('click', generateOlxContent);
-            
-            // Platform selector
-            platformBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    platformBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentPlatform = btn.dataset.platform;
-                    updateGeneratorUI();
-                });
-            });
-            
-            // Property selector
-            propertyBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    propertyBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentProperty = btn.dataset.type;
-                    generateContent();
-                });
-            });
-            
-            // Load assets button
-            loadAssetsBtn.addEventListener('click', loadLocalAssets);
-            
-            // Character count for inputs
-            marketplaceTitleInput.addEventListener('input', updateCharCount);
-            olxTitleInput.addEventListener('input', updateCharCount);
-        }
-        
-        // Update UI based on selected platform
-        function updateGeneratorUI() {
-            const platform = currentPlatform;
-            
-            // Hide all generators first
-            standardGenerator.style.display = 'none';
-            marketplaceGenerator.style.display = 'none';
-            olxGenerator.style.display = 'none';
-            
-            // Show the appropriate generator
-            if (platform === 'facebook_marketplace') {
-                marketplaceGenerator.style.display = 'block';
-                generateMarketplaceContent();
-            } else if (platform === 'olx') {
-                olxGenerator.style.display = 'block';
-                generateOlxContent();
-            } else {
-                standardGenerator.style.display = 'block';
-                updatePlatformTitle();
-                generateContent();
-            }
-        }
-        
-        // Update platform title
-        function updatePlatformTitle() {
-            const platformNames = {
-                'facebook': 'Facebook',
-                'facebook_group': 'Facebook Group',
-                'facebook_ads': 'Facebook Ads',
-                'tiktok': 'TikTok',
-                'instagram': 'Instagram',
-                'whatsapp': 'WhatsApp',
-                'instagram_bio': 'Instagram Bio',
-                'tiktok_bio': 'TikTok Bio'
-            };
-            
-            platformTitle.textContent = platformNames[currentPlatform] || currentPlatform;
-        }
-        
-        // Generate content based on current platform
-        function generateContent() {
-            if (currentPlatform === 'facebook_marketplace') {
-                generateMarketplaceContent();
-            } else if (currentPlatform === 'olx') {
-                generateOlxContent();
-            } else {
-                generateCaption();
-            }
-        }
-        
-        // Generate standard caption
-        function generateCaption() {
-            let platformCaptions = captions[currentPlatform];
-            let availableCaptions = [];
-            
-            if (typeof platformCaptions === 'object' && !Array.isArray(platformCaptions)) {
-                if (currentProperty === 'all') {
-                    // Combine all property type captions
-                    for (const prop in platformCaptions) {
-                        if (Array.isArray(platformCaptions[prop])) {
-                            availableCaptions = availableCaptions.concat(platformCaptions[prop]);
-                        }
-                    }
-                } else {
-                    availableCaptions = platformCaptions[currentProperty] || [];
-                }
-            } else if (Array.isArray(platformCaptions)) {
-                availableCaptions = platformCaptions;
-            }
-            
-            // Randomly select a caption
-            if (availableCaptions.length > 0) {
-                const randomIndex = Math.floor(Math.random() * availableCaptions.length);
-                let newCaption = availableCaptions[randomIndex];
-                
-                // Apply fade-in animation
-                captionText.classList.remove('fade-in');
-                void captionText.offsetWidth; // Trigger reflow
-                captionText.classList.add('fade-in');
-                
-                // Update caption text
-                captionText.textContent = newCaption;
-            } else {
-                captionText.textContent = "No content available for this combination";
-            }
-        }
-        
-        // Generate Facebook Marketplace content
-        function generateMarketplaceContent() {
-            const titles = captions.facebook_marketplace.titles;
-            const descriptions = captions.facebook_marketplace.descriptions;
-            
-            if (titles.length > 0 && descriptions.length > 0) {
-                const randomTitleIndex = Math.floor(Math.random() * titles.length);
-                const randomDescIndex = Math.floor(Math.random() * descriptions.length);
-                
-                marketplaceTitleInput.value = titles[randomTitleIndex];
-                marketplaceDescInput.value = descriptions[randomDescIndex];
-                
-                // Update character count
-                updateCharCount();
-            }
-        }
-        
-        // Generate OLX content
-        function generateOlxContent() {
-            const titles = captions.olx.titles;
-            const descriptions = captions.olx.descriptions;
-            
-            if (titles.length > 0 && descriptions.length > 0) {
-                const randomTitleIndex = Math.floor(Math.random() * titles.length);
-                const randomDescIndex = Math.floor(Math.random() * descriptions.length);
-                
-                olxTitleInput.value = titles[randomTitleIndex];
-                olxDescInput.value = descriptions[randomDescIndex];
-                
-                // Update character count
-                updateCharCount();
-            }
-        }
-        
-        // Update character count for inputs
-        function updateCharCount() {
-            document.getElementById('title-count').textContent = marketplaceTitleInput.value.length;
-            document.getElementById('olx-title-count').textContent = olxTitleInput.value.length;
-        }
-        
-        // Copy standard caption to clipboard
-        function copyCaption() {
-            const text = captionText.textContent;
-            copyToClipboard(text, 'Konten berhasil disalin!');
-        }
-        
-        // Copy Marketplace content to clipboard
-        function copyMarketplaceContent() {
-            const content = `Judul: ${marketplaceTitleInput.value}\n\nDeskripsi:\n${marketplaceDescInput.value}`;
-            copyToClipboard(content, 'Konten Marketplace berhasil disalin!');
-        }
-        
-        // Copy OLX content to clipboard
-        function copyOlxContent() {
-            const content = `Judul: ${olxTitleInput.value}\n\nDeskripsi:\n${olxDescInput.value}`;
-            copyToClipboard(content, 'Konten OLX berhasil disalin!');
-        }
-        
-        // General copy to clipboard function
-        function copyToClipboard(text, message) {
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification(message);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-                showNotification('Gagal menyalin konten!');
-            });
-        }
-        
-        // Show notification
-        function showNotification(message) {
-            notification.querySelector('span').textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-        
-        // Load local assets
-        function loadLocalAssets() {
-            assetGrid.innerHTML = '';
-            loadingAssets.style.display = 'block';
-            loadAssetsBtn.disabled = true;
-            
-            // Simulate loading from local folder
-            setTimeout(() => {
-                // Sample assets - in production this would come from actual local files
-                const sampleAssets = [
-                    { type: 'image', name: 'property1.jpg', url: 'https://via.placeholder.com/300x200?text=Property+1' },
-                    { type: 'image', name: 'property2.jpg', url: 'https://via.placeholder.com/300x200?text=Property+2' },
-                    { type: 'video', name: 'tour1.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' },
-                    { type: 'image', name: 'property3.jpg', url: 'https://via.placeholder.com/300x200?text=Property+3' },
-                    { type: 'video', name: 'tour2.mp4', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' },
-                    { type: 'image', name: 'property4.jpg', url: 'https://via.placeholder.com/300x200?text=Property+4' }
-                ];
-                
-                sampleAssets.forEach(asset => {
-                    const assetItem = document.createElement('div');
-                    assetItem.className = `asset-item ${asset.type === 'video' ? 'asset-video' : ''}`;
-                    assetItem.dataset.url = asset.url;
-                    assetItem.dataset.name = asset.name;
-                    
-                    const thumbnail = document.createElement('img');
-                    thumbnail.className = 'asset-thumbnail';
-                    thumbnail.src = asset.type === 'video' ? 'https://via.placeholder.com/300x200?text=Video+Thumbnail' : asset.url;
-                    thumbnail.alt = asset.name;
-                    
-                    const downloadBtn = document.createElement('button');
-                    downloadBtn.className = 'download-btn';
-                    downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
-                    downloadBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        downloadAsset(asset.url, asset.name);
-                    });
-                    
-                    assetItem.appendChild(thumbnail);
-                    assetItem.appendChild(downloadBtn);
-                    
-                    assetGrid.appendChild(assetItem);
-                });
-                
-                loadingAssets.style.display = 'none';
-                loadAssetsBtn.disabled = false;
-            }, 1500);
-        }
-        
-        // Download asset
-        function downloadAsset(url, filename) {
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-    </script>
-</body>
-</html>
+                rooms: "2 Kamar Tidur + 1
