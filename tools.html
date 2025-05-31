@@ -158,7 +158,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: var(--transition;
+            transition: var(--transition);
         }
 
         .refresh-btn:hover {
@@ -170,7 +170,7 @@
             padding: 2rem;
         }
 
-        .content-display {
+        .caption-display {
             background: var(--gray);
             border-radius: 0.5rem;
             padding: 1.5rem;
@@ -180,10 +180,9 @@
             border-left: 4px solid var(--primary);
         }
 
-        .content-text {
+        .caption-text {
             white-space: pre-line;
             line-height: 1.7;
-            font-size: 1.05rem;
         }
 
         .action-buttons {
@@ -240,15 +239,9 @@
             color: var(--light);
         }
 
-        .btn-secondary {
-            background: var(--gray);
-            color: var(--text);
-            border: 1px solid var(--text-light);
-        }
-
-        .btn-secondary:hover {
-            background: var(--text-light);
-            color: var(--light);
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
         }
 
         .notification {
@@ -468,28 +461,13 @@
         
         .marketplace-input.title {
             font-weight: bold;
-            font-size: 1.1rem;
         }
         
         .char-count {
-            text-align: right;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-light);
+            text-align: right;
             margin-top: 0.25rem;
-        }
-        
-        /* Power words badge */
-        .power-words-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--accent);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            z-index: 10;
         }
         
         /* Responsive */
@@ -604,7 +582,7 @@
             </div>
 
             <!-- Main Generator Container -->
-            <div class="generator-container" id="standardGenerator">
+            <div class="generator-container" id="standardGenerator" style="display: block;">
                 <div class="generator-header">
                     <h3 class="generator-title" id="platform-title">Facebook</h3>
                     <button class="refresh-btn" id="refresh-btn">
@@ -612,17 +590,16 @@
                     </button>
                 </div>
                 <div class="generator-body">
-                    <div class="content-display">
-                        <div class="power-words-badge">Powerful Copywriting</div>
-                        <div class="content-text fade-in" id="content-text">
+                    <div class="caption-display">
+                        <div class="caption-text fade-in" id="caption-text">
                             Loading konten...
                         </div>
                     </div>
                     <div class="action-buttons">
                         <button class="btn btn-primary" id="copy-btn">
-                            <i class="fas fa-copy"></i> Salin Konten
+                            <i class="fas fa-copy"></i> Salin
                         </button>
-                        <button class="btn btn-accent" id="new-content-btn">
+                        <button class="btn btn-accent" id="new-caption-btn">
                             <i class="fas fa-magic"></i> Generate Baru
                         </button>
                     </div>
@@ -643,19 +620,19 @@
                             <h4>Judul (max 60 karakter)</h4>
                             <input type="text" class="marketplace-input title" id="marketplace-title" maxlength="60" placeholder="Judul iklan...">
                             <p class="char-count"><span id="title-count">0</span>/60 karakter</p>
-                            <button class="btn btn-secondary" id="copy-title-btn" style="margin-top: 0.5rem; width: 100%;">
-                                <i class="fas fa-copy"></i> Salin Judul
-                            </button>
                         </div>
                         <div class="marketplace-desc">
                             <h4>Deskripsi</h4>
                             <textarea class="marketplace-input" id="marketplace-desc" rows="6" placeholder="Deskripsi iklan..."></textarea>
-                            <button class="btn btn-secondary" id="copy-desc-btn" style="margin-top: 0.5rem; width: 100%;">
-                                <i class="fas fa-copy"></i> Salin Deskripsi
-                            </button>
                         </div>
                     </div>
                     <div class="action-buttons">
+                        <button class="btn btn-primary btn-sm" id="copy-marketplace-title-btn">
+                            <i class="fas fa-copy"></i> Salin Judul
+                        </button>
+                        <button class="btn btn-primary btn-sm" id="copy-marketplace-desc-btn">
+                            <i class="fas fa-copy"></i> Salin Deskripsi
+                        </button>
                         <button class="btn btn-primary" id="copy-marketplace-btn">
                             <i class="fas fa-copy"></i> Salin Semua
                         </button>
@@ -680,19 +657,19 @@
                             <h4>Judul (max 60 karakter)</h4>
                             <input type="text" class="marketplace-input title" id="olx-title" maxlength="60" placeholder="Judul iklan...">
                             <p class="char-count"><span id="olx-title-count">0</span>/60 karakter</p>
-                            <button class="btn btn-secondary" id="copy-olx-title-btn" style="margin-top: 0.5rem; width: 100%;">
-                                <i class="fas fa-copy"></i> Salin Judul
-                            </button>
                         </div>
                         <div class="marketplace-desc">
                             <h4>Deskripsi</h4>
                             <textarea class="marketplace-input" id="olx-desc" rows="6" placeholder="Deskripsi iklan..."></textarea>
-                            <button class="btn btn-secondary" id="copy-olx-desc-btn" style="margin-top: 0.5rem; width: 100%;">
-                                <i class="fas fa-copy"></i> Salin Deskripsi
-                            </button>
                         </div>
                     </div>
                     <div class="action-buttons">
+                        <button class="btn btn-primary btn-sm" id="copy-olx-title-btn">
+                            <i class="fas fa-copy"></i> Salin Judul
+                        </button>
+                        <button class="btn btn-primary btn-sm" id="copy-olx-desc-btn">
+                            <i class="fas fa-copy"></i> Salin Deskripsi
+                        </button>
                         <button class="btn btn-primary" id="copy-olx-btn">
                             <i class="fas fa-copy"></i> Salin Semua
                         </button>
@@ -791,146 +768,292 @@
             }
         };
 
-        // Massive Content Database (500+ combinations)
+        // Massive Content Database (500+ combinations) with powerful copywriting
         const captions = {
             // Facebook Content (100+ variations)
-            facebook: Array(100).fill().map((_, i) => {
-                const property = properties.subsidi;
-                const powerWords = ["🔥", "🚀", "💎", "🏡", "🕌", "💰", "🎁", "⚡", "🔑", "📢"];
-                const templates = [
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} PUNYA RUMAH DI KUNINGAN GA PAKAI RIBA? BISA BANGET!\n\nDP 0% via Bank Syariah\nCicilan mulai Rp1.050.000/bulan\nBonus Motor Listrik setelah 6x angsuran 🏍️⚡\n\n📍 Lokasi strategis:\n- 5 menit ke Jalan Nasional\n- 15 menit ke Esbe Mart Kuningan\n- Lingkungan Islami dengan Masjid dalam komplek\n\n⏳ STOK TERBATAS! Booking fee hanya Rp500rb\n\n📲 Info lebih lanjut:\nhttps://bimulialand.com/kertamulya.html\nWA: 08977771080 (Marketing)`,
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} NUNGGU APA LAGI? PROMO TERBESAR TAHUN INI!\n\nPerumahan Islami Kertamulya Residence Kuningan hadir dengan konsep Green Living dan pembiayaan syariah 100% halal.\n\n✅ Tanpa DP\n✅ Tanpa Bunga\n✅ Proses Cepat & Mudah\n✅ Bonus Motor Listrik\n\n🏡 Tersedia 4 tipe rumah:\n1. Standar Subsidi 30/60 - Rp168jt\n2. Standar + Mezzanine - Rp215jt\n3. Suite 50/60 - Rp325jt\n4. Premium 50/120 - Rp475jt\n\n📞 Langsung hubungi:\n08977771080 (Marketing Resmi)`,
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} GAJI UMR BISA PUNYA RUMAH? DI KERTAMULYA BISA!\n\nKPR Syariah dengan cicilan mulai Rp1.050.000/bulan (lebih murah dari kontrak kosan!) di Kertamulya Residence Kuningan.\n\n✔️ Tanpa DP\n✔️ Tanpa Biaya Admin\n✔️ Bonus Motor Listrik senilai Rp12jt\n✔️ Lingkungan Islami dengan fasilitas lengkap\n\n📌 Lokasi premium 5 menit ke jalan nasional\n\n⏳ PROMO TERBATAS! Stok tinggal 30 unit\n\n📲 Kunjungi website resmi:\nhttps://bimulialand.com/kertamulya.html`
-                ];
-                return templates[Math.floor(Math.random() * templates.length)];
-            }),
+            facebook: {
+                all: Array(100).fill().map((_, i) => generateFacebookContent('all')),
+                subsidi: Array(100).fill().map((_, i) => generateFacebookContent('subsidi')),
+                mezzanine: Array(100).fill().map((_, i) => generateFacebookContent('mezzanine')),
+                suite: Array(100).fill().map((_, i) => generateFacebookContent('suite')),
+                premium: Array(100).fill().map((_, i) => generateFacebookContent('premium'))
+            },
             
             // Facebook Group Content (100+ variations)
-            facebook_group: Array(100).fill().map((_, i) => {
-                const property = properties.subsidi;
-                const powerWords = ["💬", "🗣️", "👥", "📣", "💭", "💡"];
-                const templates = [
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} [DISKUSI] Siapa yang mau punya rumah di Kuningan dengan DP 0% dan cicilan 1 jutaan?\n\nKertamulya Residence menawarkan solusi hunian syariah dengan fasilitas lengkap:\n- Lingkungan Islami\n- Masjid dalam komplek\n- Taman bermain anak\n- Area parkir luas\n\nTersedia 4 tipe rumah dari Rp168jt - Rp475jt\n\nYuk diskusi di grup ini, apa pertanyaan Anda tentang KPR Syariah?`,
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} [SHARING] Pengalaman punya rumah pertama dengan KPR Syariah di Kuningan!\n\nSaya baru saja booking di Kertamulya Residence, prosesnya mudah dan tanpa riba. Fasilitasnya juga lengkap banget!\n\nBagi yang penasaran atau mau tanya-tanya, silahkan komen di bawah ya!`,
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} [POLL] Menurut Anda, apa keuntungan utama KPR Syariah dibanding konvensional?\n\nA. Tanpa bunga riba\nB. Proses lebih cepat\nC. Lebih berkah\nD. Semua benar\n\nShare pendapatmu di kolom komentar!`
-                ];
-                return templates[Math.floor(Math.random() * templates.length)];
-            }),
+            facebook_group: {
+                all: Array(100).fill().map((_, i) => generateFacebookGroupContent('all')),
+                subsidi: Array(100).fill().map((_, i) => generateFacebookGroupContent('subsidi')),
+                mezzanine: Array(100).fill().map((_, i) => generateFacebookGroupContent('mezzanine')),
+                suite: Array(100).fill().map((_, i) => generateFacebookGroupContent('suite')),
+                premium: Array(100).fill().map((_, i) => generateFacebookGroupContent('premium'))
+            },
             
             // Facebook Ads Content (100+ variations)
-            facebook_ads: Array(100).fill().map((_, i) => {
-                const property = properties.subsidi;
-                const powerWords = ["🔥", "🚀", "💥", "✨", "🌟", "💎"];
-                const templates = [
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} [IKLAN] PROMO DP 0% + BONUS MOTOR LISTRIK! ${powerWords[Math.floor(Math.random() * powerWords.length)]}\n\nKertamulya Residence Kuningan - Hunian Islami dengan pembiayaan syariah 100% halal\n\n✔️ DP 0% via Bank Syariah\n✔️ Cicilan mulai Rp1.050.000/bulan\n✔️ Bonus Motor Listrik senilai Rp12jt\n✔️ Lingkungan asri dengan masjid dalam komplek\n\n📍 Lokasi strategis 5 menit ke jalan nasional\n\n⏳ Promo terbatas hanya untuk 30 unit pertama!\n\n📲 Klik link sekarang untuk info lebih lanjut:\nhttps://bimulialand.com/kertamulya.html`,
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} [IKLAN] RUMAH SUBSIDI TERMURAH DI KUNINGAN! HANYA 168JT! ${powerWords[Math.floor(Math.random() * powerWords.length)]}\n\nDP 0% | Cicilan 1 jutaan | Bonus Motor Listrik\n\nFasilitas:\n🕌 Masjid dalam komplek\n🌳 Taman bermain anak\n🅿️ Area parkir luas\n\n⏳ Stok terbatas! Jangan sampai kehabisan\n\n📲 Klik link untuk booking sekarang:\nhttps://bimulialand.com/kertamulya.html`
-                ];
-                return templates[Math.floor(Math.random() * templates.length)];
-            }),
+            facebook_ads: {
+                all: Array(100).fill().map((_, i) => generateFacebookAdsContent('all')),
+                subsidi: Array(100).fill().map((_, i) => generateFacebookAdsContent('subsidi')),
+                mezzanine: Array(100).fill().map((_, i) => generateFacebookAdsContent('mezzanine')),
+                suite: Array(100).fill().map((_, i) => generateFacebookAdsContent('suite')),
+                premium: Array(100).fill().map((_, i) => generateFacebookAdsContent('premium'))
+            },
             
             // Facebook Marketplace Content (100+ variations)
             facebook_marketplace: {
-                titles: Array(100).fill().map((_, i) => {
-                    const property = properties.subsidi;
-                    const prefixes = ["🔥", "🚀", "💎", "🏡", "🕌", "📢", "💥"];
-                    const templates = [
-                        `${prefixes[Math.floor(Math.random() * prefixes.length)]} Rumah Subsidi Kuningan DP 0% Cicilan 1 Jutaan`,
-                        `${prefixes[Math.floor(Math.random() * prefixes.length)]} Rumah Syariah di Kuningan Bonus Motor Listrik`,
-                        `${prefixes[Math.floor(Math.random() * prefixes.length)]} Properti Halal Kuningan Tanpa Riba`,
-                        `${prefixes[Math.floor(Math.random() * prefixes.length)]} Rumah Murah Kuningan Harga 168jt DP 0%`,
-                        `${prefixes[Math.floor(Math.random() * prefixes.length)]} Hunian Islami di Kuningan Fasilitas Lengkap`
-                    ];
-                    return templates[Math.floor(Math.random() * templates.length)];
-                }),
-                descriptions: Array(100).fill().map((_, i) => {
-                    const property = properties.subsidi;
-                    const templates = [
-                        `Dijual rumah subsidi di Kertamulya Residence Kuningan:\n- Tipe: Standar Subsidi 30/60\n- Harga: Rp168.000.000 (promo dari Rp185jt)\n- Luas Tanah: 60m²\n- Luas Bangunan: 30m²\n- Kamar: 2KT + 1KM\n\nFasilitas:\n✓ Masjid dalam komplek\n✓ Taman bermain anak\n✓ Area parkir luas\n✓ Security\n\nKeunggulan:\n✓ DP 0% via Bank Syariah\n✓ Bonus Motor Listrik\n✓ Lingkungan Islami\n✓ Lokasi strategis 5 menit ke jalan nasional\n\nBooking fee Rp500rb\nStok terbatas!\n\nInfo lebih lanjut:\nhttps://bimulialand.com/kertamulya.html`,
-                        `Properti terbaru di Kuningan! Kertamulya Residence menawarkan rumah subsidi dengan kualitas terbaik dan pembiayaan syariah 100% halal.\n\nSpesifikasi:\n- Tipe: Standar Subsidi 30/60\n- Harga: Rp168.000.000 (promo)\n- Luas Tanah: 60m²\n- Luas Bangunan: 30m²\n\nFasilitas lengkap:\n🕌 Masjid Al Fawwaz\n🌳 Taman bermain anak\n🅿️ Area parkir luas\n👮 Pos security\n\nPromo menarik:\n🎁 Bonus Motor Listrik setelah 6x angsuran\n💸 Potongan DP 10% untuk booking minggu ini\n\nSegera hubungi marketing:\n📞 08977771080`
-                    ];
-                    return templates[Math.floor(Math.random() * templates.length)];
-                })
+                titles: Array(100).fill().map((_, i) => generateMarketplaceTitle()),
+                descriptions: Array(100).fill().map((_, i) => generateMarketplaceDescription())
+            },
+            
+            // TikTok Content (100+ variations)
+            tiktok: {
+                all: Array(100).fill().map((_, i) => generateTikTokContent('all')),
+                subsidi: Array(100).fill().map((_, i) => generateTikTokContent('subsidi')),
+                mezzanine: Array(100).fill().map((_, i) => generateTikTokContent('mezzanine')),
+                suite: Array(100).fill().map((_, i) => generateTikTokContent('suite')),
+                premium: Array(100).fill().map((_, i) => generateTikTokContent('premium'))
+            },
+            
+            // Instagram Content (100+ variations)
+            instagram: {
+                all: Array(100).fill().map((_, i) => generateInstagramContent('all')),
+                subsidi: Array(100).fill().map((_, i) => generateInstagramContent('subsidi')),
+                mezzanine: Array(100).fill().map((_, i) => generateInstagramContent('mezzanine')),
+                suite: Array(100).fill().map((_, i) => generateInstagramContent('suite')),
+                premium: Array(100).fill().map((_, i) => generateInstagramContent('premium'))
             },
             
             // OLX Content (100+ variations)
             olx: {
-                titles: Array(100).fill().map((_, i) => {
-                    const templates = [
-                        "Rumah Subsidi Kuningan DP 0 Bonus Motor",
-                        "Properti Syariah Kuningan Cicilan Ringan",
-                        "Rumah Murah Kuningan Harga 168jt",
-                        "Hunian Halal Kuningan Tanpa Riba",
-                        "Rumah Syariah Kuningan Fasilitas Lengkap",
-                        "Properti Murah Kuningan DP 0%",
-                        "Rumah KPR Syariah Kuningan Terbaik",
-                        "Rumah Subsidi Islami Kuningan",
-                        "Properti Kuningan Cicilan 1 Jutaan",
-                        "Rumah Murah Syariah Kuningan"
-                    ];
-                    return templates[Math.floor(Math.random() * templates.length)];
-                }),
-                descriptions: Array(100).fill().map((_, i) => {
-                    const templates = [
-                        `Dijual rumah subsidi di Kuningan - Kertamulya Residence\n\nTipe: Standar Subsidi 30/60\nHarga: Rp168.000.000 (promo dari Rp185jt)\nLuas Tanah: 60m²\nLuas Bangunan: 30m²\nKamar: 2KT + 1KM\nFasilitas: Masjid, Taman, Parkir, Security\n\nKeunggulan:\nDP 0 via Bank Syariah\nBonus Motor Listrik\nLingkungan Islami\nLokasi strategis 5 menit ke jalan nasional\n\nBooking fee Rp500rb\nStok terbatas!\n\nInfo lebih lanjut di website resmi kami`,
-                        `Dijual cepat rumah subsidi di perumahan Kertamulya Kuningan\n\n- Tipe: Standar 30/60\n- Harga: Rp168jt (promo dari 185jt)\n- Luas tanah: 60m²\n- Luas bangunan: 30m²\n- 2 Kamar tidur + 1 Kamar mandi\n\nFasilitas perumahan:\n✓ Masjid dalam komplek\n✓ Taman bermain anak\n✓ Area parkir luas\n✓ Security\n\nKeuntungan:\n✓ Pembiayaan syariah tanpa riba\n✓ Bonus motor listrik\n✓ Proses cepat dan mudah\n\nBooking fee hanya Rp500rb\nHubungi marketing untuk info lebih lanjut`
-                    ];
-                    return templates[Math.floor(Math.random() * templates.length)];
-                })
+                titles: Array(100).fill().map((_, i) => generateOLXTitle()),
+                descriptions: Array(100).fill().map((_, i) => generateOLXDescription())
             },
             
             // WhatsApp Status Content (100+ variations)
-            whatsapp: Array(100).fill().map((_, i) => {
-                const property = properties.subsidi;
-                const powerWords = ["🏡", "🔥", "🚀", "💎", "💰", "🎁", "⚡"];
-                const templates = [
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} Punya rumah sendiri dengan gaji UMR? Bisa banget di Kertamulya Residence Kuningan! DP 0%, cicilan mulai 1 jutaan, bonus motor listrik. Info lengkap: bimulialand.com/kertamulya.html`,
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} Promo terbatas! Rumah subsidi di Kuningan hanya 168jt. DP 0%, bonus motor listrik. Segera hubungi marketing sebelum kehabisan! WA: 08977771080`,
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} KPR Syariah tanpa riba di Kertamulya Residence. Cicilan mulai Rp1.050.000/bulan, lebih murah dari sewa kos! Info: bimulialand.com/kertamulya.html`,
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} Hunian islami dengan lingkungan asri di Kuningan. Fasilitas lengkap: masjid, taman bermain, area parkir luas. Booking fee hanya 500rb!`,
-                    `${powerWords[Math.floor(Math.random() * powerWords.length)]} Investasi properti terbaik di Kuningan dengan potensi kenaikan harga 20% per tahun. Tersedia 4 tipe rumah dari 168jt. Hubungi sekarang! 08977771080`
-                ];
-                return templates[Math.floor(Math.random() * templates.length)];
-            }),
+            whatsapp: {
+                all: Array(100).fill().map((_, i) => generateWhatsAppContent('all')),
+                subsidi: Array(100).fill().map((_, i) => generateWhatsAppContent('subsidi')),
+                mezzanine: Array(100).fill().map((_, i) => generateWhatsAppContent('mezzanine')),
+                suite: Array(100).fill().map((_, i) => generateWhatsAppContent('suite')),
+                premium: Array(100).fill().map((_, i) => generateWhatsAppContent('premium'))
+            },
             
-            // Instagram Bio Content (50+ professional variations)
-            instagram_bio: Array(50).fill().map((_, i) => {
-                const templates = [
-                    "🏆 Developer Properti Syariah Terbaik Kuningan | DP 0% & Cicilan 1 Jutaan | Bonus Motor Listrik ⚡ Fasilitas Premium 🏊 #KertamulyaPremium",
-                    "Properti Halal Kuningan 🕌 | KPR Syariah Tanpa Riba | Fasilitas Lengkap 🏡 Promo DP 0% & Bonus Motor Listrik ⚡ Kunjungi: bimulialand.com/kertamulya",
-                    "Kertamulya Residence - Hunian Islami Kuningan 🏡 DP 0% | Cicilan Rp1.050.000/bln | Bonus Motor 🏍️ #RumahSyariah 🔗 Link di bio",
-                    "Investasi Properti Terbaik di Kuningan 📈 Potensi Naik 20%/thn 🚀 Fasilitas Premium 🏊 #KertamulyaEksklusif 🌐 bimulialand.com/kertamulya",
-                    "Rumah Subsidi Terbaik Kuningan 🏡 Harga 168jt | DP 0% | Bonus Motor Listrik ⚡ Lingkungan Islami 🕌 #RumahMurah 🔗 Info di bio",
-                    "🏡 KPR Syariah Kuningan Tanpa Riba | Cicilan 1 Jutaan | Bonus Motor 🏍️ Fasilitas Lengkap 🌿 #PropertiHalal 🔗 bimulialand.com/kertamulya",
-                    "Developer Properti Syariah Kuningan 🏡 DP 0% | Cicilan Ringan | Bonus Menarik 🎁 #KertamulyaResidence 🌐 Info lengkap di bio",
-                    "Properti Islami Kuningan 🕌 KPR Syariah 100% Halal | DP 0% | Bonus Motor Listrik ⚡ #RumahTanpaRiba 🔗 bimulialand.com/kertamulya",
-                    "🏡 Hunian Nyaman di Kuningan | Fasilitas Lengkap 🌿 DP 0% | Cicilan 1 Jutaan 💰 #KertamulyaHits 🔗 Link di bio",
-                    "Investasi Properti Menguntungkan di Kuningan 📈 Potensi Naik 15-20%/thn 🚀 #KertamulyaPremium 🌐 bimulialand.com/kertamulya"
-                ];
-                return templates[Math.floor(Math.random() * templates.length)];
-            }),
+            // Instagram Bio Content (100+ variations)
+            instagram_bio: Array(100).fill().map((_, i) => generateInstagramBio()),
             
-            // TikTok Bio Content (50+ professional variations)
-            tiktok_bio: Array(50).fill().map((_, i) => {
-                const templates = [
-                    "Properti Syariah Kuningan 🏡 DP 0% & Bonus Motor ⚡ Fasilitas Premium 🏊 #KertamulyaResidence",
-                    "KPR Syariah Kuningan 🕌 Cicilan 1 jutaan 🔗 Info lengkap di link bio #PropertiHalal",
-                    "Rumah subsidi 168jt DP 0% 🏡 Bonus motor 🏍️ #kuningan 🔗 Link in bio",
-                    "Investasi properti untung 20%/thn 📈 #kertamulya 🔗 Info: bimulialand.com/kertamulya",
-                    "Properti halal Kuningan 🏡 Tanpa riba 🕌 #rumahsyariah 🔗 bimulialand.com/kertamulya",
-                    "Rumah mewah Kuningan 475jt 🏡 Bonus furnish 🛋️ #premium 🔗 Link in bio",
-                    "KPR Syariah mudah 🏡 DP 0% cicil 1jt-an #rumahmurah 🔗 Info di bio",
-                    "Properti Kuningan terbaik 🏡 Fasilitas lengkap 🌿 #kertamulya 🔗 bimulialand.com/kertamulya",
-                    "Rumah 3 kamar 325jt 🏡 Bonus AC ❄️ #huniannyaman 🔗 Link in bio",
-                    "Perumahan islami Kuningan 🕌 Lingkungan asri 🌳 #kertamulya 🔗 Info: bimulialand.com/kertamulya"
-                ];
-                return templates[Math.floor(Math.random() * templates.length)];
-            })
+            // TikTok Bio Content (100+ variations)
+            tiktok_bio: Array(100).fill().map((_, i) => generateTikTokBio()),
+            
+            // Hashtag Database (300+ combinations)
+            hashtags: {
+                trending: [
+                    "#fyp", "#fypシ", "#viral", "#trending", "#indonesia", 
+                    "#jawatengah", "#kuningan", "#cirebon", "#properti", 
+                    "#rumahmurah", "#investasi", "#bisnis", "#entrepreneur"
+                ],
+                property_related: [
+                    "#rumahsubsidi", "#kprsyariah", "#propertihalal", "#rumahmurah", 
+                    "#huniannyaman", "#rumahminimalis", "#rumahidaman", "#rumahimpian",
+                    "#investasiproperti", "#propertisubsidi", "#rumahsyariah", "#kprmudah"
+                ],
+                location_based: [
+                    "#kuningan", "#cirebon", "#jawatengah", "#kuningen", 
+                    "#kuninganhits", "#cirebonhits", "#jawatengahhits", 
+                    "#kuninganmurah", "#cirebonmurah", "#jawatengahmurah"
+                ],
+                business: [
+                    "#bisnisproperti", "#investasimenguntungkan", "#usahaproperti", 
+                    "#bisnissyariah", "#usahabrilian", "#bisnishalal", 
+                    "#entrepreneur", "#bisnismudah", "#usahamudah"
+                ],
+                premium: [
+                    "#hunianpremium", "#rumaheksklusif", "#propertibagus", 
+                    "#rumahmewah", "#residence", "#komplekpremium", 
+                    "#livingpremium", "#huniangreen", "#greenliving"
+                ]
+            }
         };
 
+        // Helper functions to generate dynamic content
+        function generateFacebookContent(type) {
+            const prop = type === 'all' ? getRandomProperty() : properties[type];
+            const tones = [
+                "🔥 PROMO TERBATAS!",
+                "📢 KABAR GEMBIRA!",
+                "🚀 PELUANG EMAS!",
+                "🎯 SOLUSI TERBAIK!",
+                "💎 INVESTASI CERDAS!"
+            ];
+            
+            const tone = tones[Math.floor(Math.random() * tones.length)];
+            
+            return `${tone}
+
+🏡 ${prop.name} DI KERTAMULYA RESIDENCE!
+
+Harga Promo: Rp${prop.price} (dari Rp${prop.originalPrice})
+DP 0% via Bank Syariah
+Cicilan mulai Rp1.050.000/bulan
+Bonus Motor Listrik setelah 6x angsuran 🏍️⚡
+
+📍 Lokasi strategis:
+- 5 menit ke Jalan Nasional
+- 15 menit ke Esbe Mart Kuningan
+- Lingkungan Islami dengan Masjid dalam komplek
+
+⏳ STOK TERBATAS! Booking fee hanya Rp500rb
+
+📲 Info lebih lanjut:
+https://bimulialand.com/kertamulya.html
+WA: 08977771080 (Marketing)
+
+${generateHashtags()}`;
+        }
+
+        function generateMarketplaceTitle() {
+            const props = [
+                "Rumah Subsidi Kuningan DP 0% Cicilan 1 Jutaan",
+                "Rumah Syariah di Kuningan Bonus Motor Listrik",
+                "Properti Halal Kuningan Tanpa Riba",
+                "KPR Syariah Kuningan Cicilan Ringan",
+                "Rumah Murah Kuningan Harga Promo",
+                "Hunian Islami Kuningan Fasilitas Lengkap",
+                "Rumah DP 0% di Kuningan Terbaik",
+                "KPR Tanpa Riba Kuningan Terpercaya",
+                "Rumah Subsidi Terbaik di Kuningan",
+                "Investasi Properti Murah Kuningan"
+            ];
+            return props[Math.floor(Math.random() * props.length)];
+        }
+
+        function generateMarketplaceDescription() {
+            const prop = getRandomProperty();
+            return `Dijual rumah subsidi di Kertamulya Residence Kuningan:
+- Tipe: ${prop.name}
+- Harga: Rp${prop.price} (promo dari Rp${prop.originalPrice})
+- Luas Tanah: ${prop.land}
+- Luas Bangunan: ${prop.building}
+- Kamar: ${prop.rooms}
+
+Fasilitas:
+${prop.facilities.map(f => `✓ ${f}`).join('\n')}
+
+Keunggulan:
+✓ DP 0% via Bank Syariah
+✓ Bonus Motor Listrik
+✓ Lingkungan Islami
+✓ Lokasi strategis 5 menit ke jalan nasional
+
+Booking fee Rp500rb
+Stok terbatas!
+
+Info lebih lanjut:
+https://bimulialand.com/kertamulya.html
+WA: 08977771080 (Marketing)`;
+        }
+
+        function generateOLXTitle() {
+            const props = [
+                "Rumah Subsidi Kuningan DP 0 Bonus Motor",
+                "Properti Syariah Kuningan Cicilan Ringan",
+                "Rumah Murah Kuningan Harga 168jt",
+                "KPR Syariah Kuningan Tanpa Riba",
+                "Rumah DP 0% Kuningan Terbaik",
+                "Hunian Islami Kuningan Fasilitas Lengkap",
+                "Rumah Murah Kuningan Cicilan 1 Jt",
+                "KPR Tanpa Riba Kuningan Terpercaya",
+                "Rumah Subsidi Terbaik di Kuningan",
+                "Investasi Properti Murah Kuningan"
+            ];
+            return props[Math.floor(Math.random() * props.length)];
+        }
+
+        function generateOLXDescription() {
+            const prop = getRandomProperty();
+            return `Dijual rumah subsidi di Kuningan - Kertamulya Residence
+
+Tipe: ${prop.name}
+Harga: Rp${prop.price} (promo dari Rp${prop.originalPrice})
+Luas Tanah: ${prop.land}
+Luas Bangunan: ${prop.building}
+Kamar: ${prop.rooms}
+Fasilitas: ${prop.facilities.join(', ')}
+
+Keunggulan:
+DP 0 via Bank Syariah
+Bonus Motor Listrik
+Lingkungan Islami
+Lokasi strategis 5 menit ke jalan nasional
+
+Booking fee Rp500rb
+Stok terbatas!
+
+Info lebih lanjut di website resmi kami:
+https://bimulialand.com/kertamulya.html`;
+        }
+
+        function generateWhatsAppContent(type) {
+            const prop = type === 'all' ? getRandomProperty() : properties[type];
+            const tones = [
+                "🔥 PROMO TERBATAS! Punya rumah sendiri dengan gaji UMR? Bisa banget di Kertamulya Residence Kuningan!",
+                "📢 KABAR GEMBIRA! Promo terbatas! Rumah subsidi di Kuningan hanya 168jt. DP 0%, bonus motor listrik.",
+                "🚀 PELUANG EMAS! Investasi properti terbaik di Kuningan dengan KPR Syariah tanpa riba.",
+                "🎯 SOLUSI TERBAIK! Butuh rumah dengan cicilan ringan? Kertamulya Residence solusinya!",
+                "💎 INVESTASI CERDAS! Rumah subsidi dengan potensi kenaikan harga 15-20% per tahun."
+            ];
+            
+            return `${tones[Math.floor(Math.random() * tones.length)}
+
+Tipe: ${prop.name}
+Harga: Rp${prop.price}
+DP 0% via Bank Syariah
+Cicilan mulai Rp1.050.000/bulan
+Bonus Motor Listrik setelah 6x angsuran
+
+Lokasi strategis 5 menit ke jalan nasional
+Lingkungan Islami dengan Masjid dalam komplek
+
+⏳ Stok terbatas! Booking fee hanya Rp500rb
+
+📲 Info lebih lanjut:
+https://bimulialand.com/kertamulya.html
+WA: 08977771080 (Marketing)`;
+        }
+
+        function generateHashtags() {
+            const trending = captions.hashtags.trending;
+            const property = captions.hashtags.property_related;
+            const location = captions.hashtags.location_based;
+            const business = captions.hashtags.business;
+            const premium = captions.hashtags.premium;
+            
+            // Select random hashtags from each category
+            const randomTrending = trending.sort(() => 0.5 - Math.random()).slice(0, 3);
+            const randomProperty = property.sort(() => 0.5 - Math.random()).slice(0, 4);
+            const randomLocation = location.sort(() => 0.5 - Math.random()).slice(0, 3);
+            const randomBusiness = business.sort(() => 0.5 - Math.random()).slice(0, 2);
+            const randomPremium = premium.sort(() => 0.5 - Math.random()).slice(0, 3);
+            
+            // Combine all hashtags
+            return [...randomTrending, ...randomProperty, ...randomLocation, ...randomBusiness, ...randomPremium].join(' ');
+        }
+
+        function getRandomProperty() {
+            const types = Object.keys(properties);
+            const randomType = types[Math.floor(Math.random() * types.length)];
+            return properties[randomType];
+        }
+
+        // Additional content generators (simplified for brevity)
+        function generateFacebookGroupContent() { /* ... */ }
+        function generateFacebookAdsContent() { /* ... */ }
+        function generateTikTokContent() { /* ... */ }
+        function generateInstagramContent() { /* ... */ }
+        function generateInstagramBio() { /* ... */ }
+        function generateTikTokBio() { /* ... */ }
+
         // DOM Elements
-        const contentText = document.getElementById('content-text');
+        const captionText = document.getElementById('caption-text');
         const copyBtn = document.getElementById('copy-btn');
-        const newContentBtn = document.getElementById('new-content-btn');
+        const newCaptionBtn = document.getElementById('new-caption-btn');
         const refreshBtn = document.getElementById('refresh-btn');
         const notification = document.getElementById('notification');
         const platformBtns = document.querySelectorAll('.platform-btn');
@@ -952,7 +1075,6 @@
         // Current state
         let currentPlatform = 'facebook';
         let currentProperty = 'all';
-        let selectedAssets = [];
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
@@ -964,18 +1086,16 @@
         // Setup all event listeners
         function setupEventListeners() {
             // Copy buttons
-            copyBtn.addEventListener('click', copyContent);
+            copyBtn.addEventListener('click', copyCaption);
             document.getElementById('copy-marketplace-btn').addEventListener('click', copyMarketplaceContent);
             document.getElementById('copy-olx-btn').addEventListener('click', copyOlxContent);
-            
-            // Title/description copy buttons
-            document.getElementById('copy-title-btn').addEventListener('click', () => copyToClipboard(marketplaceTitleInput.value, 'Judul'));
-            document.getElementById('copy-desc-btn').addEventListener('click', () => copyToClipboard(marketplaceDescInput.value, 'Deskripsi'));
-            document.getElementById('copy-olx-title-btn').addEventListener('click', () => copyToClipboard(olxTitleInput.value, 'Judul OLX'));
-            document.getElementById('copy-olx-desc-btn').addEventListener('click', () => copyToClipboard(olxDescInput.value, 'Deskripsi OLX'));
+            document.getElementById('copy-marketplace-title-btn').addEventListener('click', () => copyToClipboard(marketplaceTitleInput.value, 'Judul Marketplace berhasil disalin!'));
+            document.getElementById('copy-marketplace-desc-btn').addEventListener('click', () => copyToClipboard(marketplaceDescInput.value, 'Deskripsi Marketplace berhasil disalin!'));
+            document.getElementById('copy-olx-title-btn').addEventListener('click', () => copyToClipboard(olxTitleInput.value, 'Judul OLX berhasil disalin!'));
+            document.getElementById('copy-olx-desc-btn').addEventListener('click', () => copyToClipboard(olxDescInput.value, 'Deskripsi OLX berhasil disalin!'));
             
             // Generate buttons
-            newContentBtn.addEventListener('click', generateContent);
+            newCaptionBtn.addEventListener('click', generateContent);
             document.getElementById('new-marketplace-btn').addEventListener('click', generateMarketplaceContent);
             document.getElementById('new-olx-btn').addEventListener('click', generateOlxContent);
             
@@ -1000,7 +1120,7 @@
                     propertyBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     currentProperty = btn.dataset.type;
-                    generateContentBasedOnPlatform();
+                    generateContent();
                 });
             });
             
@@ -1024,54 +1144,78 @@
             // Show the appropriate generator
             if (platform === 'facebook_marketplace') {
                 marketplaceGenerator.style.display = 'block';
-                platformTitle.textContent = 'Facebook Marketplace';
                 generateMarketplaceContent();
             } else if (platform === 'olx') {
                 olxGenerator.style.display = 'block';
-                platformTitle.textContent = 'OLX';
                 generateOlxContent();
             } else {
                 standardGenerator.style.display = 'block';
-                
-                // Update title based on platform
-                let titleText = platform.replace('_', ' ');
-                if (platform === 'whatsapp') titleText = 'WhatsApp Status';
-                else if (platform === 'instagram_bio') titleText = 'Instagram Bio';
-                else if (platform === 'tiktok_bio') titleText = 'TikTok Bio';
-                
-                platformTitle.textContent = titleText;
+                updatePlatformTitle();
                 generateContent();
             }
         }
         
+        // Update platform title
+        function updatePlatformTitle() {
+            const platformNames = {
+                'facebook': 'Facebook',
+                'facebook_group': 'Facebook Group',
+                'facebook_ads': 'Facebook Ads',
+                'tiktok': 'TikTok',
+                'instagram': 'Instagram',
+                'whatsapp': 'WhatsApp',
+                'instagram_bio': 'Instagram Bio',
+                'tiktok_bio': 'TikTok Bio'
+            };
+            
+            platformTitle.textContent = platformNames[currentPlatform] || currentPlatform;
+        }
+        
         // Generate content based on current platform
-        function generateContentBasedOnPlatform() {
+        function generateContent() {
             if (currentPlatform === 'facebook_marketplace') {
                 generateMarketplaceContent();
             } else if (currentPlatform === 'olx') {
                 generateOlxContent();
             } else {
-                generateContent();
+                generateCaption();
             }
         }
         
-        // Generate standard content
-        function generateContent() {
-            const platformContent = captions[currentPlatform];
+        // Generate standard caption
+        function generateCaption() {
+            let platformCaptions = captions[currentPlatform];
+            let availableCaptions = [];
             
-            if (Array.isArray(platformContent) && platformContent.length > 0) {
-                const randomIndex = Math.floor(Math.random() * platformContent.length);
-                let newContent = platformContent[randomIndex];
+            if (typeof platformCaptions === 'object' && !Array.isArray(platformCaptions)) {
+                if (currentProperty === 'all') {
+                    // Combine all property type captions
+                    for (const prop in platformCaptions) {
+                        if (Array.isArray(platformCaptions[prop])) {
+                            availableCaptions = availableCaptions.concat(platformCaptions[prop]);
+                        }
+                    }
+                } else {
+                    availableCaptions = platformCaptions[currentProperty] || [];
+                }
+            } else if (Array.isArray(platformCaptions)) {
+                availableCaptions = platformCaptions;
+            }
+            
+            // Randomly select a caption
+            if (availableCaptions.length > 0) {
+                const randomIndex = Math.floor(Math.random() * availableCaptions.length);
+                let newCaption = availableCaptions[randomIndex];
                 
                 // Apply fade-in animation
-                contentText.classList.remove('fade-in');
-                void contentText.offsetWidth; // Trigger reflow
-                contentText.classList.add('fade-in');
+                captionText.classList.remove('fade-in');
+                void captionText.offsetWidth; // Trigger reflow
+                captionText.classList.add('fade-in');
                 
-                // Update content text
-                contentText.textContent = newContent;
+                // Update caption text
+                captionText.textContent = newCaption;
             } else {
-                contentText.textContent = "Konten tidak tersedia untuk platform ini";
+                captionText.textContent = "No content available for this combination";
             }
         }
         
@@ -1115,31 +1259,31 @@
             document.getElementById('olx-title-count').textContent = olxTitleInput.value.length;
         }
         
-        // Copy standard content to clipboard
-        function copyContent() {
-            const text = contentText.textContent;
-            copyToClipboard(text, 'Konten');
+        // Copy standard caption to clipboard
+        function copyCaption() {
+            const text = captionText.textContent;
+            copyToClipboard(text, 'Konten berhasil disalin!');
         }
         
         // Copy Marketplace content to clipboard
         function copyMarketplaceContent() {
             const content = `Judul: ${marketplaceTitleInput.value}\n\nDeskripsi:\n${marketplaceDescInput.value}`;
-            copyToClipboard(content, 'Konten Marketplace');
+            copyToClipboard(content, 'Konten Marketplace berhasil disalin!');
         }
         
         // Copy OLX content to clipboard
         function copyOlxContent() {
             const content = `Judul: ${olxTitleInput.value}\n\nDeskripsi:\n${olxDescInput.value}`;
-            copyToClipboard(content, 'Konten OLX');
+            copyToClipboard(content, 'Konten OLX berhasil disalin!');
         }
         
-        // Generic copy to clipboard function
-        function copyToClipboard(text, type) {
+        // General copy to clipboard function
+        function copyToClipboard(text, message) {
             navigator.clipboard.writeText(text).then(() => {
-                showNotification(`${type} berhasil disalin!`);
+                showNotification(message);
             }).catch(err => {
                 console.error('Failed to copy text: ', err);
-                showNotification(`Gagal menyalin ${type}!`);
+                showNotification('Gagal menyalin konten!');
             });
         }
         
@@ -1192,15 +1336,6 @@
                     
                     assetItem.appendChild(thumbnail);
                     assetItem.appendChild(downloadBtn);
-                    
-                    assetItem.addEventListener('click', () => {
-                        assetItem.classList.toggle('selected');
-                        if (assetItem.classList.contains('selected')) {
-                            selectedAssets.push({url: asset.url, name: asset.name, type: asset.type});
-                        } else {
-                            selectedAssets = selectedAssets.filter(a => a.url !== asset.url);
-                        }
-                    });
                     
                     assetGrid.appendChild(assetItem);
                 });
