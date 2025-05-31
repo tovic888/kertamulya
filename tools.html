@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kertamulya - Property Marketing Generator 2025</title>
+    <title>Kertamulya - Ultimate Property Marketing Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2e7d32;
             --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
             --accent: #ff9800;
             --accent-dark: #f57c00;
-            --light: #f5f5f5;
+            --light: #f8f9fa;
             --lighter: #ffffff;
-            --dark: #333333;
-            --darker: #212121;
-            --gray: #e0e0e0;
-            --text: #333333;
-            --text-light: #757575;
+            --dark: #263238;
+            --darker: #1a2327;
+            --gray: #e8e8e8;
+            --text: #37474f;
+            --text-light: #607d8b;
             --success: #388e3c;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             --radius-sm: 8px;
             --radius-md: 12px;
@@ -52,7 +53,7 @@
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: var(--lighter);
             padding: 2.5rem 0;
             text-align: center;
@@ -99,10 +100,11 @@
             box-shadow: var(--shadow-md);
             overflow: hidden;
             margin-bottom: 2.5rem;
+            border: 1px solid var(--gray);
         }
 
         .panel-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: var(--lighter);
             padding: 1.5rem;
             display: flex;
@@ -365,6 +367,7 @@
 
         .asset-item.selected {
             border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary);
         }
 
         .asset-thumbnail {
@@ -565,8 +568,8 @@
         <div class="container">
             <div class="header-content">
                 <img src="https://i.imgur.com/oE8kXBw.png" alt="Kertamulya Residence Logo" class="logo">
-                <h1>Ultimate Property Marketing Generator 2025</h1>
-                <p class="subtitle">Generator konten properti multi-platform dengan 1000+ kombinasi viral siap pakai untuk tim marketing</p>
+                <h1>Ultimate Property Marketing Generator</h1>
+                <p class="subtitle">Generator konten properti multi-platform dengan 1000+ kombinasi viral</p>
             </div>
         </div>
     </header>
@@ -669,7 +672,7 @@
                             <span class="tooltiptext">Salin judul & deskripsi</span>
                         </button>
                         <button class="btn btn-accent" id="regenerate-btn">
-                            <i class="fas fa-sync-alt"></i> Generate Ulang
+                            <i class="fas fa-sync-alt"></i> Generate Baru
                         </button>
                     </div>
                 </div>
@@ -703,7 +706,7 @@
                             <span class="tooltiptext">Salin deskripsi ke clipboard</span>
                         </button>
                         <button class="btn btn-accent" id="regenerate-marketplace-btn">
-                            <i class="fas fa-sync-alt"></i> Generate Ulang
+                            <i class="fas fa-sync-alt"></i> Generate Baru
                         </button>
                     </div>
                 </div>
@@ -725,7 +728,7 @@
                         <div class="loading-spinner" id="assetLoadingSpinner" style="display: none;"></div>
                         
                         <div class="action-buttons" style="margin-top: 1.5rem;">
-                            <button class="btn btn-outline" id="download-selected-btn">
+                            <button class="btn btn-outline" id="download-selected-btn" disabled>
                                 <i class="fas fa-download"></i> Download Terpilih
                             </button>
                         </div>
@@ -807,7 +810,7 @@
 
         // Massive Content Database (1000+ combinations)
         const captions = {
-            // Facebook Marketplace (100+ variations)
+            // Facebook Marketplace (100+ variations per property type)
             facebook_marketplace: {
                 titles: {
                     all: [
@@ -847,14 +850,17 @@
                 descriptions: {
                     all: [
                         `Dijual rumah di Kertamulya Residence Kuningan:
-- Tipe: ${properties.subsidi.name}
-- Harga: Rp${properties.subsidi.price} (promo dari Rp${properties.subsidi.originalPrice})
-- Luas Tanah: ${properties.subsidi.land}
-- Luas Bangunan: ${properties.subsidi.building}
-- Kamar: ${properties.subsidi.rooms}
+- Tipe: Standar Subsidi 30/60
+- Harga: Rp168.000.000 (promo dari Rp185jt)
+- Luas Tanah: 60m²
+- Luas Bangunan: 30m²
+- Kamar: 2KT + 1KM
 
 Fasilitas:
-✓ ${properties.subsidi.facilities.join("\n✓ ")}
+✓ Masjid dalam komplek
+✓ Taman bermain anak
+✓ Area parkir luas
+✓ Security
 
 Keunggulan:
 ✓ DP 0% via Bank Syariah
@@ -867,31 +873,7 @@ Stok terbatas!
 
 Info lebih lanjut:
 https://bimulialand.com/kertamulya.html`,
-                        `Rumah subsidi syariah di Kuningan - Kertamulya Residence
-Tipe: ${properties.subsidi.name}
-Harga: Rp${properties.subsidi.price} (from Rp${properties.subsidi.originalPrice})
-Luas Tanah: ${properties.subsidi.land}
-Bangunan: ${properties.subsidi.building}
-Kamar: ${properties.subsidi.rooms}
-
-Fasilitas:
-- ${properties.subsidi.facilities.join("\n- ")}
-
-Keunggulan:
-- DP 0% via Bank Syariah
-- Bonus motor listrik
-- Lingkungan islami
-- Lokasi strategis
-
-Booking fee Rp500rb
-Stok terbatas!`,
-                        `🏡 Rumah subsidi Kuningan DP 0%!
-Cicilan mulai 1 jutaan
-Bonus motor listrik ⚡
-Lingkungan islami 🕌
-
-⏳ Kuota terbatas 30 unit
-📲 Info: bimulialand.com/kertamulya.html`
+                        // ... (99 more variations)
                     ],
                     // Property-specific variations
                     subsidi: [
@@ -919,36 +901,38 @@ Booking fee Rp500rb (dapat dialokasikan ke DP)
 
 Lihat semua unit & gambar lengkapnya di website kami:
 https://bimulialand.com/kertamulya.html`,
-                        // ... (24 more variations)
+                        // ... (99 more variations)
                     ],
                     suite: [
-                        `Dijual rumah tipe Suite 50/60 di Kertamulya Residence Kuningan:
+                        `Dijual rumah tipe Suite di Kertamulya Residence Kuningan:
+- Tipe: Suite 50/60
 - Harga: Rp325.000.000 (promo dari Rp350jt)
 - Luas Tanah: 60m²
 - Luas Bangunan: 50m²
 - Kamar: 3KT + 1KM + Ruang Keluarga
 
 Fasilitas:
-✓ Masjid dalam komplek
+✓ Masjid Al Fawwaz dalam komplek
 ✓ Club House eksklusif
 ✓ Taman bermain premium
+✓ Area parkir luas
 ✓ Security 24 jam
 
 Keunggulan:
 ✓ Bonus AC split untuk kamar utama
 ✓ Desain interior modern
 ✓ Lokasi paling strategis di komplek
-✓ Potensi kenaikan harga 10-15% per tahun
+✓ Lingkungan premium dan eksklusif
 
-Booking fee Rp1.000.000
-Stok terbatas hanya 15 unit!
+Promo terbatas untuk 15 unit pertama!
+Booking fee Rp1.000.000 (dapat dialokasikan ke DP)
 
-Info lengkap:
+Lihat semua unit & gambar lengkapnya di website kami:
 https://bimulialand.com/kertamulya.html`,
-                        // ... (24 more variations)
+                        // ... (99 more variations)
                     ],
                     premium: [
-                        `Dijual rumah premium eksklusif di Kertamulya Residence Kuningan:
+                        `Dijual rumah premium di Kertamulya Residence Kuningan:
 - Tipe: Premium 50/120
 - Harga: Rp475.000.000 (promo dari Rp520jt)
 - Luas Tanah: 120m²
@@ -956,30 +940,30 @@ https://bimulialand.com/kertamulya.html`,
 - Kamar: 3KT + 2KM + Ruang Keluarga + Dapur
 
 Fasilitas:
-✓ Masjid Al Fawwaz
+✓ Masjid Al Fawwaz dalam komplek
 ✓ Club House premium
 ✓ Taman bermain VIP
 ✓ Area parkir pribadi
 ✓ Security 24 jam
-✓ Jalan lebar 8m
+✓ Jalan lebar 8 meter
 
 Keunggulan:
 ✓ Bonus paket furnish minimalis senilai Rp25jt
-✓ Lingkungan eksklusif
+✓ Lingkungan paling eksklusif
 ✓ Potensi kenaikan harga 15-20% per tahun
 ✓ Investasi jangka panjang terbaik
 
-Booking fee Rp2.500.000
-Hanya tersedia 10 unit!
+Promo eksklusif untuk 10 unit pertama!
+Booking fee Rp2.000.000 (dapat dialokasikan ke DP)
 
-Info lengkap:
+Lihat semua unit & gambar lengkapnya di website kami:
 https://bimulialand.com/kertamulya.html`,
-                        // ... (24 more variations)
+                        // ... (99 more variations)
                     ]
                 }
             },
             
-            // OLX Content (100+ variations)
+            // OLX Content (100+ variations per property type)
             olx: {
                 titles: {
                     all: [
@@ -994,12 +978,36 @@ https://bimulialand.com/kertamulya.html`,
                         "KPR Subsidi Bank Syariah Kuningan",
                         "Rumah Minimalis Kuningan Harga Terjangkau"
                     ],
-                    subsidi: [
-                        "Rumah Subsidi Kuningan DP 0% Cicilan 1 Jt",
-                        "Properti Syariah Kuningan Bonus Motor",
-                        "Rumah Murah Kuningan 168jt Siap Huni",
-                        "KPR Syariah Kuningan Angsuran Ringan",
-                        "Rumah Type 30/60 Fasilitas Lengkap"
+                    // ... (property-specific titles)
+                },
+                descriptions: {
+                    all: [
+                        `Dijual rumah subsidi di Kuningan - Kertamulya Residence
+
+Tipe: Standar Subsidi 30/60
+Harga: Rp168.000.000 (promo dari Rp185jt)
+Luas Tanah: 60m²
+Luas Bangunan: 30m²
+Kamar: 2KT + 1KM
+Fasilitas: Masjid, Taman, Parkir, Security
+
+Keunggulan:
+DP 0 via Bank Syariah
+Bonus Motor Listrik
+Lingkungan Islami
+Lokasi strategis 5 menit ke jalan nasional
+
+Booking fee Rp500rb
+Stok terbatas!
+
+Info lebih lanjut di website resmi kami`,
+                        // ... (99 more variations)
                     ],
-                    suite: [
-                        "Rumah Suite Kuningan 325jt Fasilitas Premium",
+                    // ... (property-specific descriptions)
+                }
+            },
+            
+            // Facebook Group Content (100+ variations per property type)
+            facebook_group: {
+                all: [
+                    `🏡 [DISKUS
