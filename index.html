@@ -2171,34 +2171,39 @@ button, input, textarea, select {
     width: 32px !important;  /* Ganti dengan ukuran yang diinginkan */
     height: 32px !important;
 } 
- /* Hover Effects */
-  .testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+/* Animation for shiny button */
+  @keyframes shine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
   }
   
-  .testimonial-card:hover .photo-container img {
-    transform: scale(1.05);
+  /* Hover Effects */
+  .proof-card:hover {
+    transform: translateY(-10px) scale(1.02);
   }
   
-  .cta-button:hover {
-    box-shadow: 0 15px 30px rgba(46, 204, 113, 0.4);
-  }
-  
-  .cta-button:hover span:last-child {
-    opacity: 1;
+  .proof-card:hover img {
+    transform: scale(1.1);
   }
   
   /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .testimonial-grid {
+  @media (max-width: 992px) {
+    .proof-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .proof-grid {
       grid-template-columns: 1fr;
     }
     
-    .section-header h2 {
+    .section-title h2 {
       font-size: 2rem;
     }
   }
+
   </style>
 </head>
 <body>
@@ -2721,110 +2726,80 @@ button, input, textarea, select {
     </div>
   </div>
 </section>
-<!-- ===== MODERN TESTIMONIAL SECTION ===== -->
-<section class="testimonial-section" style="background: linear-gradient(135deg, #f8f9fa 0%, #eef2f5 100%); padding: 80px 0;">
-  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-    
-    <!-- Section Header -->
-    <div class="section-header" style="text-align: center; margin-bottom: 60px;">
-      <h2 style="font-size: 2.4rem; color: #2c3e50; margin-bottom: 15px; font-weight: 700; letter-spacing: -0.5px;">Real Stories from Our Visitors</h2>
-      <p style="font-size: 1.2rem; color: #7f8c8d; max-width: 700px; margin: 0 auto; line-height: 1.6;">
-        See why <span style="color: #e74c3c; font-weight: 600;">100+ families</span> chose Kertamulya after their visit
+
+  <!-- ===== MODERN PROOF SECTION ===== -->
+<section class="section proof-section" style="background: #f8f9fa; padding: 80px 0; position: relative; overflow: hidden;">
+  <!-- Background Decoration -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 70% 30%, rgba(46,204,113,0.05) 0%, transparent 60%); z-index: 0;"></div>
+  
+  <div class="container" style="position: relative; z-index: 1;">
+    <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+      <h2 style="font-size: 2.5rem; color: #111; margin-bottom: 15px; font-weight: 800;">Mereka Sudah Survey Duluan!</h2>
+      <p style="font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+        Lihat bagaimana calon penghuni memastikan kualitas Kertamulya Residence
       </p>
+      <div style="background: #e74c3c; color: white; display: inline-block; padding: 8px 20px; border-radius: 50px; margin-top: 15px; font-weight: 600; font-size: 0.9rem;">
+        <i class="fas fa-bolt"></i> BAYAR Rp100rb → SURVEY → PUTUSKAN
+      </div>
     </div>
 
-    <!-- Testimonial Grid -->
-    <div class="testimonial-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px;">
-      
-      <!-- Testimonial 1 -->
-      <div class="testimonial-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.08); position: relative;">
-        <div class="photo-container" style="height: 320px; overflow: hidden;">
-          <img src="img/survey/survey1.webp" alt="Happy Visitor" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+    <!-- Modern Grid - 1 Baris 3 Foto -->
+    <div class="proof-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 50px;">
+      <!-- Proof 1 -->
+      <div class="proof-card" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+        <div style="width: 100%; padding-top: 100%; position: relative;">
+          <img src="img/survey/survey1.webp" alt="Survey 1" 
+               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
         </div>
-        <div class="testimonial-content" style="padding: 25px; position: relative; background: rgba(255,255,255,0.9); margin-top: -50px; border-radius: 16px 16px 0 0; backdrop-filter: blur(5px);">
-          <div class="quote-icon" style="position: absolute; top: -25px; left: 25px; width: 50px; height: 50px; background: #2ecc71; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
-            <i class="fas fa-quote-left"></i>
-          </div>
-          <h3 style="font-size: 1.3rem; margin: 15px 0 10px; color: #2c3e50; font-weight: 600;">Pak Budi & Family</h3>
-          <p style="font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 15px;">
-            "The facilities exceeded our expectations. Our kids loved the playground and we appreciated the quality materials used."
-          </p>
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div class="rating" style="color: #f1c40f;">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <div class="date" style="font-size: 0.85rem; color: #95a5a6;">
-              <i class="far fa-calendar-alt"></i> 15 Jun 2024
-            </div>
-          </div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); padding: 25px; color: white;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 8px; font-weight: 700;">Pak Budi</h3>
+          <p style="font-size: 1rem; opacity: 0.9; margin: 0;">"Bayar Rp100rb untuk amankan stok, survey lokasi 2 hari kemudian!"</p>
         </div>
       </div>
       
-      <!-- Testimonial 2 -->
-      <div class="testimonial-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.08); position: relative;">
-        <div class="photo-container" style="height: 320px; overflow: hidden;">
-          <img src="img/survey/survey2.webp" alt="Happy Visitor" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+      <!-- Proof 2 -->
+      <div class="proof-card" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+        <div style="width: 100%; padding-top: 100%; position: relative;">
+          <img src="img/survey/survey2.webp" alt="Survey 2" 
+               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
         </div>
-        <div class="testimonial-content" style="padding: 25px; position: relative; background: rgba(255,255,255,0.9); margin-top: -50px; border-radius: 16px 16px 0 0; backdrop-filter: blur(5px);">
-          <div class="quote-icon" style="position: absolute; top: -25px; left: 25px; width: 50px; height: 50px; background: #2ecc71; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
-            <i class="fas fa-quote-left"></i>
-          </div>
-          <h3 style="font-size: 1.3rem; margin: 15px 0 10px; color: #2c3e50; font-weight: 600;">Bu Ani</h3>
-          <p style="font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 15px;">
-            "The sales team was incredibly knowledgeable. All our questions were answered thoroughly during the visit."
-          </p>
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div class="rating" style="color: #f1c40f;">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-            </div>
-            <div class="date" style="font-size: 0.85rem; color: #95a5a6;">
-              <i class="far fa-calendar-alt"></i> 10 Jun 2024
-            </div>
-          </div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); padding: 25px; color: white;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 8px; font-weight: 700;">Bu Ani</h3>
+          <p style="font-size: 1rem; opacity: 0.9; margin: 0;">"Lihat langsung lokasi, lebih bagus dari ekspektasi!"</p>
         </div>
       </div>
       
-      <!-- Testimonial 3 -->
-      <div class="testimonial-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.08); position: relative;">
-        <div class="photo-container" style="height: 320px; overflow: hidden;">
-          <img src="img/survey/survey3.webp" alt="Happy Visitor" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+      <!-- Proof 3 -->
+      <div class="proof-card" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+        <div style="width: 100%; padding-top: 100%; position: relative;">
+          <img src="img/survey/survey3.webp" alt="Survey 3" 
+               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
         </div>
-        <div class="testimonial-content" style="padding: 25px; position: relative; background: rgba(255,255,255,0.9); margin-top: -50px; border-radius: 16px 16px 0 0; backdrop-filter: blur(5px);">
-          <div class="quote-icon" style="position: absolute; top: -25px; left: 25px; width: 50px; height: 50px; background: #2ecc71; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
-            <i class="fas fa-quote-left"></i>
-          </div>
-          <h3 style="font-size: 1.3rem; margin: 15px 0 10px; color: #2c3e50; font-weight: 600;">Ahmad Family</h3>
-          <p style="font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 15px;">
-            "We visited in the morning and booked by afternoon. The process was smooth and transparent."
-          </p>
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div class="rating" style="color: #f1c40f;">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            </div>
-            <div class="date" style="font-size: 0.85rem; color: #95a5a6;">
-              <i class="far fa-calendar-alt"></i> 5 Jun 2024
-            </div>
-          </div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); padding: 25px; color: white;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 8px; font-weight: 700;">Keluarga Ahmad</h3>
+          <p style="font-size: 1rem; opacity: 0.9; margin: 0;">"Survey pagi, dapat penjelasan lengkap, sorenya putuskan!"</p>
         </div>
       </div>
     </div>
 
-    <!-- CTA Section -->
-    <div class="cta-container" style="text-align: center; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 900px; margin: 0 auto; position: relative; overflow: hidden;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #2ecc71, #f1c40f);"></div>
-      <h3 style="font-size: 1.8rem; color: #2c3e50; margin-bottom: 20px; font-weight: 700;">Ready to See for Yourself?</h3>
-      <p style="font-size: 1.1rem; color: #7f8c8d; max-width: 700px; margin: 0 auto 30px; line-height: 1.6;">
-        Secure your unit with just <span style="color: #e74c3c; font-weight: 600;">Rp100.000</span> and visit at your convenience.
-        <span style="display: block; margin-top: 10px; color: #2ecc71; font-weight: 600;">100% refundable if you're not satisfied.</span>
-      </p>
-      <a href="#unitBooking" class="cta-button" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; padding: 16px 40px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; text-decoration: none; box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3); transition: all 0.3s ease; position: relative; overflow: hidden;">
-        <span style="position: relative; z-index: 2;">
-          <i class="fas fa-calendar-check" style="margin-right: 10px;"></i> Book Your Visit Now
+    <!-- Modern CTA -->
+    <div style="text-align: center; margin-top: 40px;">
+      <div style="display: inline-block; background: rgba(231, 76, 60, 0.1); border-left: 4px solid #e74c3c; padding: 15px 25px; border-radius: 0 8px 8px 0; margin-bottom: 20px;">
+        <p style="margin: 0; font-size: 1.1rem; color: #e74c3c; font-weight: 600;">
+          <i class="fas fa-exclamation-circle"></i> STOK TERBATAS! HANYA 30 UNIT TERSISA
+        </p>
+      </div>
+      
+      <a href="#unitBooking" 
+         style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; padding: 18px 35px; border-radius: 50px; font-size: 1.2rem; font-weight: 700; text-decoration: none; box-shadow: 0 10px 25px rgba(46, 204, 113, 0.3); transition: all 0.3s ease; position: relative; overflow: hidden;">
+        <span style="position: relative; z-index: 1;">
+          <i class="fas fa-lock" style="margin-right: 10px;"></i> AMANKAN STOK SEKARANG - Rp100.000
         </span>
-        <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #27ae60, #2ecc71); opacity: 0; transition: opacity 0.3s ease; z-index: 1;"></span>
+        <span style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%); transform: rotate(30deg); animation: shine 3s infinite; opacity: 0.7;"></span>
       </a>
-      <p style="font-size: 0.9rem; color: #e74c3c; margin-top: 20px; font-weight: 600;">
-        <i class="fas fa-exclamation-circle"></i> Only 12 units remaining in this phase!
+      
+      <p style="font-size: 0.9rem; color: #666; margin-top: 20px;">
+        <i class="fas fa-sync-alt" style="color: #2ecc71;"></i> Uang kembali 100% jika tidak cocok
       </p>
     </div>
   </div>
