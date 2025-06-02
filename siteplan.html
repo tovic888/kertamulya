@@ -715,4 +715,138 @@
                     <span>Terisi/Sold</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-color legend-investor
+                    <div class="legend-color legend-investor"></div>
+                    <span>Investor</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-booking"></div>
+                    <span>Booking</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="sidebar">
+            <div class="sidebar-title">
+                <i class="fas fa-filter"></i>
+                <span>Filters</span>
+            </div>
+
+            <div class="cluster-filter">
+                <div class="filter-title">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Cluster</span>
+                </div>
+                <div class="filter-options">
+                    <button class="filter-btn zaitun active" data-cluster="zaitun">
+                        <i class="fas fa-check"></i>
+                        Zaitun
+                    </button>
+                    <button class="filter-btn tin active" data-cluster="tin">
+                        <i class="fas fa-check"></i>
+                        Tin
+                    </button>
+                    <button class="filter-btn rumah active" data-cluster="rumah">
+                        <i class="fas fa-check"></i>
+                        Rumah
+                    </button>
+                    <button class="filter-btn tamar active" data-cluster="tamar">
+                        <i class="fas fa-check"></i>
+                        Tamar
+                    </button>
+                </div>
+            </div>
+
+            <div class="status-filter">
+                <div class="filter-title">
+                    <i class="fas fa-tag"></i>
+                    <span>Status</span>
+                </div>
+                <div class="status-options">
+                    <div class="status-option active" data-status="all">
+                        <div class="status-color" style="background: linear-gradient(135deg, #e74c3c, #f1c40f, #ecf0f1);"></div>
+                        <span>All Status</span>
+                    </div>
+                    <div class="status-option" data-status="sold">
+                        <div class="status-color" style="background-color: var(--sold);"></div>
+                        <span>Terisi/Sold</span>
+                    </div>
+                    <div class="status-option" data-status="investor">
+                        <div class="status-color" style="background-color: var(--investor);"></div>
+                        <span>Investor</span>
+                    </div>
+                    <div class="status-option" data-status="booking">
+                        <div class="status-color" style="background-color: var(--booking);"></div>
+                        <span>Booking</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stats-title">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Quick Stats</span>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-blocks">0</div>
+                        <div class="stat-label">Total Units</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="available-blocks">0</div>
+                        <div class="stat-label">Available</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="sold-blocks">0</div>
+                        <div class="stat-label">Sold</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="booking-blocks">0</div>
+                        <div class="stat-label">Booking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-plan-container">
+            <div class="floating-bg">
+                <div class="floating-circle" style="width: 300px; height: 300px; top: -50px; left: -50px;"></div>
+                <div class="floating-circle" style="width: 200px; height: 200px; bottom: -50px; right: -50px;"></div>
+            </div>
+
+            <div class="site-plan-header">
+                <h1 class="site-plan-title">Site Plan Overview</h1>
+                <div class="view-controls">
+                    <button class="view-btn tooltip" id="zoom-in">
+                        <i class="fas fa-search-plus"></i>
+                        <span class="tooltip-text">Zoom In</span>
+                    </button>
+                    <button class="view-btn tooltip" id="zoom-out">
+                        <i class="fas fa-search-minus"></i>
+                        <span class="tooltip-text">Zoom Out</span>
+                    </button>
+                    <button class="view-btn tooltip" id="reset-view">
+                        <i class="fas fa-expand"></i>
+                        <span class="tooltip-text">Reset View</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="site-plan">
+                <!-- Zaitun Cluster -->
+                <div class="cluster cluster-zaitun">
+                    <div class="cluster-header">
+                        <div class="cluster-name">
+                            <div class="cluster-color"></div>
+                            <span>Zaitun</span>
+                        </div>
+                        <div class="cluster-count"><span id="zaitun-count">0</span> units</div>
+                    </div>
+                    <div class="blocks-container" id="zaitun-blocks">
+                        <!-- Blocks will be generated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Tin Cluster -->
+                <
