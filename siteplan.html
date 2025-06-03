@@ -741,4 +741,1146 @@
 
         .footer-content {
             max-width: 1200px;
-            margin: 0
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--secondary);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .social-icon:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 280px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding: 1.5rem;
+                order: 2;
+            }
+            
+            .site-plan-container {
+                order: 1;
+            }
+            
+            .filter-options {
+                justify-content: center;
+            }
+            
+            .status-options {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .status-legend {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .site-plan-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .view-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .site-plan-map {
+                height: 500px;
+            }
+            
+            .modal {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .info-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .info-label {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main App -->
+    <div id="app-container">
+        <header>
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="img/branding/logo-kertamulya.png" alt="Kertamulya Residence" class="logo">
+                    <span class="logo-text">Site Plan</span>
+                </div>
+                <div class="user-controls">
+                    <div class="status-legend">
+                        <div class="legend-item">
+                            <div class="legend-color legend-sold"></div>
+                            <span>Terisi/Sold</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color legend-investor"></div>
+                            <span>Investor</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color legend-booking"></div>
+                            <span>Booking</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color legend-available"></div>
+                            <span>Available</span>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-avatar" id="user-avatar">AD</div>
+                        <button class="logout-btn" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="sidebar-title">
+                    <i class="fas fa-filter"></i>
+                    <span>Filters</span>
+                </div>
+
+                <div class="cluster-filter">
+                    <div class="filter-title">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Cluster</span>
+                    </div>
+                    <div class="filter-options">
+                        <button class="filter-btn zaitun active" data-cluster="zaitun">
+                            <i class="fas fa-check"></i>
+                            Zaitun
+                        </button>
+                        <button class="filter-btn tin active" data-cluster="tin">
+                            <i class="fas fa-check"></i>
+                            Tin
+                        </button>
+                        <button class="filter-btn rumah active" data-cluster="rumah">
+                            <i class="fas fa-check"></i>
+                            Rumah
+                        </button>
+                        <button class="filter-btn tamar active" data-cluster="tamar">
+                            <i class="fas fa-check"></i>
+                            Tamar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="status-filter">
+                    <div class="filter-title">
+                        <i class="fas fa-tag"></i>
+                        <span>Status</span>
+                    </div>
+                    <div class="status-options">
+                        <div class="status-option active" data-status="all">
+                            <div class="status-color" style="background: linear-gradient(135deg, var(--sold), var(--investor), var(--primary));"></div>
+                            <span>All Status</span>
+                        </div>
+                        <div class="status-option" data-status="available">
+                            <div class="status-color status-available"></div>
+                            <span>Available</span>
+                        </div>
+                        <div class="status-option" data-status="sold">
+                            <div class="status-color status-sold"></div>
+                            <span>Terisi/Sold</span>
+                        </div>
+                        <div class="status-option" data-status="investor">
+                            <div class="status-color status-investor"></div>
+                            <span>Investor</span>
+                        </div>
+                        <div class="status-option" data-status="booking">
+                            <div class="status-color status-booking"></div>
+                            <span>Booking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stats-title">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Quick Stats</span>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="total-blocks">0</div>
+                            <div class="stat-label">Total Units</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="available-blocks">0</div>
+                            <div class="stat-label">Available</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="sold-blocks">0</div>
+                            <div class="stat-label">Sold</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="booking-blocks">0</div>
+                            <div class="stat-label">Booking</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-container" id="sales-stats-container">
+                    <div class="stats-title">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Sales Performance</span>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="mea-sales">0</div>
+                            <div class="stat-label">MEA Sales</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="jatra-sales">0</div>
+                            <div class="stat-label">Jatra Sales</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="subsidi-sales">0</div>
+                            <div class="stat-label">Subsidi</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="komersial-sales">0</div>
+                            <div class="stat-label">Komersial</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-plan-container">
+                <div class="site-plan-header">
+                    <h1 class="site-plan-title">Site Plan Overview</h1>
+                    <div class="view-controls">
+                        <button class="view-btn" id="zoom-in">
+                            <i class="fas fa-search-plus"></i>
+                            <span>Zoom In</span>
+                        </button>
+                        <button class="view-btn" id="zoom-out">
+                            <i class="fas fa-search-minus"></i>
+                            <span>Zoom Out</span>
+                        </button>
+                        <button class="view-btn" id="reset-view">
+                            <i class="fas fa-expand"></i>
+                            <span>Reset View</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="site-plan-layout">
+                    <div class="site-plan-map" id="site-map">
+                        <!-- Main Road -->
+                        <div class="road road-horizontal" style="top: 50%; left: 0; width: 100%;"></div>
+                        <div class="road road-vertical" style="left: 50%; top: 0; height: 100%;"></div>
+                        
+                        <!-- Features -->
+                        <div class="map-feature" style="top: 10%; left: 10%;">
+                            <i class="fas fa-road"></i>
+                            <span>Jalan Raya Kertayasa</span>
+                        </div>
+                        <div class="map-feature" style="top: 10%; right: 10%;">
+                            <i class="fas fa-gate"></i>
+                            <span>Gate & Security</span>
+                        </div>
+                        <div class="map-feature" style="bottom: 15%; left: 10%;">
+                            <i class="fas fa-utensils"></i>
+                            <span>Ruko & Pujasera</span>
+                        </div>
+                        <div class="map-feature" style="bottom: 15%; right: 10%;">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Club House & Sport</span>
+                        </div>
+                        <div class="map-feature" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <i class="fas fa-mosque"></i>
+                            <span>Masjid Al Fawwaz</span>
+                        </div>
+                        
+                        <!-- Clusters -->
+                        <div class="cluster-area cluster-zaitun" style="top: 20%; left: 20%; width: 25%; height: 25%;">
+                            <div class="cluster-blocks" id="zaitun-blocks">
+                                <!-- Blocks will be generated by JavaScript -->
+                            </div>
+                            <div class="cluster-name">Zaitun (Komersil)</div>
+                        </div>
+                        
+                        <div class="cluster-area cluster-tin" style="top: 20%; right: 20%; width: 25%; height: 25%;">
+                            <div class="cluster-blocks" id="tin-blocks">
+                                <!-- Blocks will be generated by JavaScript -->
+                            </div>
+                            <div class="cluster-name">Tin (Komersil)</div>
+                        </div>
+                        
+                        <div class="cluster-area cluster-rumah" style="bottom: 25%; left: 20%; width: 25%; height: 25%;">
+                            <div class="cluster-blocks" id="rumah-blocks">
+                                <!-- Blocks will be generated by JavaScript -->
+                            </div>
+                            <div class="cluster-name">Rumah (Subsidi)</div>
+                        </div>
+                        
+                        <div class="cluster-area cluster-tamar" style="bottom: 25%; right: 20%; width: 25%; height: 25%;">
+                            <div class="cluster-blocks" id="tamar-blocks">
+                                <!-- Blocks will be generated by JavaScript -->
+                            </div>
+                            <div class="cluster-name">Tamar (Subsidi)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit Details Modal -->
+        <div class="modal-overlay" id="unit-modal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2 class="modal-title">Unit Details</h2>
+                    <button class="modal-close" id="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="unit-info">
+                        <div class="info-row">
+                            <div class="info-label">Cluster:</div>
+                            <div class="info-value" id="modal-cluster">-</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Block/Unit:</div>
+                            <div class="info-value" id="modal-unit">-</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Type:</div>
+                            <div class="info-value" id="modal-type">-</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Status:</div>
+                            <div class="info-value">
+                                <span class="status-badge" id="modal-status">-</span>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Price:</div>
+                            <div class="info-value" id="modal-price">-</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Last Update:</div>
+                            <div class="info-value" id="modal-update">-</div>
+                        </div>
+                        <div class="info-row" id="customer-info-row">
+                            <div class="info-label">Customer:</div>
+                            <div class="info-value" id="modal-customer">-</div>
+                        </div>
+                        <div class="info-row" id="payment-info-row">
+                            <div class="info-label">Payment:</div>
+                            <div class="info-value" id="modal-payment">-</div>
+                        </div>
+                        <div class="info-row" id="marketing-info-row">
+                            <div class="info-label">Marketing:</div>
+                            <div class="info-value" id="modal-marketing">-</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Admin Form -->
+                    <div id="admin-form">
+                        <div class="form-group">
+                            <label class="form-label" for="booking-date">Tanggal Booking</label>
+                            <input type="date" class="form-control" id="booking-date">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="customer-name">Nama Konsumen</label>
+                            <input type="text" class="form-control" id="customer-name" placeholder="Nama lengkap konsumen">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="customer-job">Pekerjaan</label>
+                            <input type="text" class="form-control" id="customer-job" placeholder="Pekerjaan konsumen">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="payment-method">Pembayaran</label>
+                            <select class="form-control" id="payment-method">
+                                <option value="">Pilih Metode</option>
+                                <option value="transfer">Transfer ke BANK BSI PT. Rumah Mulia Indonesia</option>
+                                <option value="tunai">Tunai</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="scheme">Skema</label>
+                            <select class="form-control" id="scheme">
+                                <option value="">Pilih Skema</option>
+                                <option value="subsidi">Subsidi</option>
+                                <option value="komersial">Komersial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="gimmick">Gimmick</label>
+                            <select class="form-control" id="gimmick">
+                                <option value="">Pilih Gimmick</option>
+                                <option value="motor">Motor Listrik</option>
+                                <option value="kompor">Kompor Listrik</option>
+                                <option value="both">Motor + Kompor</option>
+                                <option value="none">Tidak Ada</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="doc-status">Status Berkas</label>
+                            <select class="form-control" id="doc-status">
+                                <option value="none">BERKAS BELUM ADA/BELUM LENGKAP</option>
+                                <option value="submitted">BERKAS SUDAH DIAJUKAN ke BANK</option>
+                                <option value="akad">SUDAH AKAD</option>
+                                <option value="preparing">PEMBERKASAN MASIH DIPERSIAPKAN OLEH KONSUMEN</option>
+                                <option value="rejected">REJECT BANK</option>
+                                <option value="withdrawn">MUNDUR</option>
+                                <option value="sp3">SUDAH TURUN SP3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="doc-stage">Tahapan Pemberkasan</label>
+                            <textarea class="form-control" id="doc-stage" rows="2" placeholder="Detail tahapan pemberkasan"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="priority">Unit Prioritas</label>
+                            <select class="form-control" id="priority">
+                                <option value="no">Tidak</option>
+                                <option value="yes">Ya</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="marketing-type">Marketing</label>
+                            <select class="form-control" id="marketing-type">
+                                <option value="mea">MEA</option>
+                                <option value="jatra">Jatra</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="bank">Bank Pelaksana</label>
+                            <select class="form-control" id="bank">
+                                <option value="bjb">BJB Syariah</option>
+                                <option value="btn">BTN Syariah</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="akad-date">Tanggal Akad</label>
+                            <input type="date" class="form-control" id="akad-date">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="target-date">Target Selesai Pemberkasan</label>
+                            <input type="date" class="form-control" id="target-date">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="realization-date">Realisasi Tanggal Akad</label>
+                            <input type="date" class="form-control" id="realization-date">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="notes">Keterangan</label>
+                            <textarea class="form-control" id="notes" rows="3" placeholder="Catatan tambahan"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Marketing/Jatra Form -->
+                    <div id="marketing-form">
+                        <div class="form-group">
+                            <label class="form-label" for="m-customer-name">Nama Konsumen</label>
+                            <input type="text" class="form-control" id="m-customer-name" placeholder="Nama lengkap konsumen">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="m-customer-job">Pekerjaan</label>
+                            <input type="text" class="form-control" id="m-customer-job" placeholder="Pekerjaan konsumen">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="m-payment-method">Pembayaran</label>
+                            <select class="form-control" id="m-payment-method">
+                                <option value="">Pilih Metode</option>
+                                <option value="transfer">Transfer ke BANK BSI PT. Rumah Mulia Indonesia</option>
+                                <option value="tunai">Tunai</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="m-scheme">Skema</label>
+                            <select class="form-control" id="m-scheme">
+                                <option value="">Pilih Skema</option>
+                                <option value="subsidi">Subsidi</option>
+                                <option value="komersial">Komersial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="m-gimmick">Gimmick</label>
+                            <select class="form-control" id="m-gimmick">
+                                <option value="">Pilih Gimmick</option>
+                                <option value="motor">Motor Listrik</option>
+                                <option value="kompor">Kompor Listrik</option>
+                                <option value="both">Motor + Kompor</option>
+                                <option value="none">Tidak Ada</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="action-btn secondary" id="modal-cancel">
+                            <i class="fas fa-times"></i>
+                            Close
+                        </button>
+                        <button class="action-btn primary" id="modal-action">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2025 Kertamulya Residence. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            const authData = JSON.parse(localStorage.getItem('kertamulya_auth'));
+            if (!authData) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Set current user
+            const currentUser = {
+                username: authData.username,
+                role: authData.role
+            };
+            
+            // Update user avatar
+            document.getElementById('user-avatar').textContent = 
+                currentUser.username.substring(0, 2).toUpperCase();
+            
+            // Hide admin features for non-admin users
+            if (currentUser.role !== 'admin') {
+                document.getElementById('sales-stats-container').style.display = 'none';
+            }
+            
+            // Cluster data with actual block counts
+            const clusters = {
+                zaitun: { 
+                    name: 'Zaitun', 
+                    blocks: {
+                        'A': 28, 'B': 14, 'C': 23, 'D': 12, 'E': 12
+                    },
+                    type: 'komersial',
+                    color: 'zaitun',
+                    booked: {
+                        'A': [5,7,9,10,11,1,3,2,4,6,16,15,14,13,12],
+                        'B': Array.from({length: 14}, (_, i) => i + 1), // All sold
+                        'C': [],
+                        'D': [],
+                        'E': []
+                    },
+                    sold: {
+                        'A': [],
+                        'B': Array.from({length: 14}, (_, i) => i + 1),
+                        'C': [],
+                        'D': [],
+                        'E': []
+                    }
+                },
+                tin: { 
+                    name: 'Tin', 
+                    blocks: {
+                        'A': 19
+                    },
+                    type: 'komersial',
+                    color: 'tin',
+                    booked: {
+                        'A': [16,21,5,6,9,13,19]
+                    },
+                    sold: {
+                        'A': [1,2,3,4,7,8,10,11,12,14,15,17,18]
+                    }
+                },
+                rumah: { 
+                    name: 'Rumah', 
+                    blocks: {
+                        'A': 23, 'B': 23, 'C': 28, 'D': 15, 'E': 17, 'F': 22, 'G': 22
+                    },
+                    type: 'subsidi',
+                    color: 'rumah',
+                    booked: {
+                        'A': [14,18,7,22,28],
+                        'B': [2,10,14,18,20,22,23,1,3,7,9],
+                        'C': [8,12,14,16,18,20,9,11,15,17,19],
+                        'D': [7,11,13,14,15],
+                        'E': [],
+                        'F': [],
+                        'G': [4,6,14,16,20,22]
+                    },
+                    sold: {
+                        'A': [],
+                        'B': [],
+                        'C': [],
+                        'D': [],
+                        'E': [],
+                        'F': [],
+                        'G': []
+                    }
+                },
+                tamar: { 
+                    name: 'Tamar', 
+                    blocks: {
+                        'A': 28, 'B': 18, 'C': 22, 'D': 20, 'E': 22, 'F': 18
+                    },
+                    type: 'subsidi',
+                    color: 'tamar',
+                    booked: {
+                        'A': [28,27,26,25,24,23,22,21,20,7,8,9,10,12,13,14,15],
+                        'B': [],
+                        'C': [13,7,5,3,1],
+                        'D': [19,1,20,4],
+                        'E': [1,2],
+                        'F': []
+                    },
+                    sold: {
+                        'A': [],
+                        'B': [],
+                        'C': [],
+                        'D': [],
+                        'E': [],
+                        'F': []
+                    }
+                }
+            };
+
+            // Generate units data based on actual booking and sold information
+            const unitsData = {};
+            let totalBlocks = 0;
+            let soldBlocks = 0;
+            let investorBlocks = 0;
+            let bookingBlocks = 0;
+            let meaSales = 0;
+            let jatraSales = 0;
+            let subsidiSales = 0;
+            let komersialSales = 0;
+
+            // Generate blocks for each cluster and block
+            for (const [clusterId, cluster] of Object.entries(clusters)) {
+                unitsData[clusterId] = {};
+                
+                for (const [blockId, blockCount] of Object.entries(cluster.blocks)) {
+                    unitsData[clusterId][blockId] = [];
+                    
+                    for (let i = 1; i <= blockCount; i++) {
+                        // Determine status
+                        let status, statusText;
+                        let marketingType = '';
+                        let scheme = cluster.type;
+                        
+                        // Check if unit is booked
+                        const isBooked = cluster.booked[blockId]?.includes(i);
+                        const isSold = cluster.sold[blockId]?.includes(i);
+                        
+                        if (isSold) {
+                            status = 'sold';
+                            statusText = 'Sold';
+                            soldBlocks++;
+                            marketingType = Math.random() > 0.5 ? 'mea' : 'jatra';
+                            
+                            if (marketingType === 'mea') meaSales++;
+                            else jatraSales++;
+                            
+                            if (scheme === 'subsidi') subsidiSales++;
+                            else komersialSales++;
+                        } else if (isBooked) {
+                            status = 'booking';
+                            statusText = 'Booking';
+                            bookingBlocks++;
+                            marketingType = currentUser.role === 'mea' ? 'mea' : 'jatra';
+                            
+                            if (marketingType === 'mea') meaSales++;
+                            else jatraSales++;
+                        } else {
+                            status = 'available';
+                            statusText = 'Available';
+                        }
+                        
+                        // Unit details
+                        const unitId = `${clusterId}-${blockId}-${i}`;
+                        const unitNumber = `${blockId}${i.toString().padStart(2, '0')}`;
+                        
+                        // Random price based on cluster type
+                        const price = cluster.type === 'subsidi' 
+                            ? (Math.floor(Math.random() * 3) + 2) * 100000000 // 200-500jt
+                            : (Math.floor(Math.random() * 10) + 5) * 100000000; // 500jt-1.5M
+                        
+                        unitsData[clusterId][blockId].push({
+                            id: unitId,
+                            number: unitNumber,
+                            block: blockId,
+                            type: `Type ${blockId}`,
+                            status: status,
+                            statusText: statusText,
+                            price: new Intl.NumberFormat('id-ID', { 
+                                style: 'currency', 
+                                currency: 'IDR', 
+                                maximumFractionDigits: 0 
+                            }).format(price),
+                            lastUpdate: new Date(Date.now() - Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000).toLocaleDateString(),
+                            marketingType: marketingType,
+                            scheme: scheme,
+                            customerName: status !== 'available' ? `Customer ${Math.floor(Math.random() * 1000)}` : '',
+                            customerJob: status !== 'available' ? ['PNS', 'Swasta', 'Wiraswasta', 'Profesional'][Math.floor(Math.random() * 4)] : '',
+                            bookingDate: status !== 'available' ? new Date(Date.now() - Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : '',
+                            paymentMethod: status !== 'available' ? 'transfer' : '',
+                            gimmick: status !== 'available' ? ['motor', 'kompor', 'both', 'none'][Math.floor(Math.random() * 4)] : '',
+                            docStatus: status === 'sold' ? ['none', 'submitted', 'akad', 'preparing', 'rejected', 'withdrawn', 'sp3'][Math.floor(Math.random() * 7)] : '',
+                            priority: status !== 'available' ? Math.random() > 0.8 ? 'yes' : 'no' : '',
+                            bank: status === 'sold' ? ['bjb', 'btn'][Math.floor(Math.random() * 2)] : '',
+                            akadDate: status === 'sold' && Math.random() > 0.5 ? new Date(Date.now() - Math.floor(Math.random() * 15) * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : '',
+                            notes: status !== 'available' ? Math.random() > 0.7 ? 'Some additional notes about this unit' : '' : ''
+                        });
+
+                        totalBlocks++;
+                    }
+                }
+            }
+
+            // Initialize the app
+            initializeApp();
+            
+            function initializeApp() {
+                // Update stats
+                updateStats();
+                
+                // Render blocks for each cluster
+                renderBlocks();
+                
+                // Setup filters
+                setupFilters();
+                
+                // Setup modals
+                setupModals();
+            }
+
+            function updateStats() {
+                document.getElementById('total-blocks').textContent = totalBlocks;
+                document.getElementById('available-blocks').textContent = totalBlocks - soldBlocks - bookingBlocks;
+                document.getElementById('sold-blocks').textContent = soldBlocks;
+                document.getElementById('booking-blocks').textContent = bookingBlocks;
+                
+                if (currentUser.role === 'admin') {
+                    document.getElementById('mea-sales').textContent = meaSales;
+                    document.getElementById('jatra-sales').textContent = jatraSales;
+                    document.getElementById('subsidi-sales').textContent = subsidiSales;
+                    document.getElementById('komersial-sales').textContent = komersialSales;
+                }
+            }
+
+            function renderBlocks() {
+                for (const [clusterId, cluster] of Object.entries(clusters)) {
+                    const blockData = unitsData[clusterId];
+                    
+                    for (const [blockId, units] of Object.entries(blockData)) {
+                        const container = document.getElementById(`${clusterId}-blocks`);
+                        
+                        // Create block container if it doesn't exist
+                        let blockContainer = document.getElementById(`${clusterId}-${blockId}-blocks`);
+                        if (!blockContainer) {
+                            blockContainer = document.createElement('div');
+                            blockContainer.id = `${clusterId}-${blockId}-blocks`;
+                            blockContainer.className = 'cluster-blocks';
+                            
+                            // Calculate grid layout (approximately square)
+                            const blockCount = units.length;
+                            const cols = Math.ceil(Math.sqrt(blockCount));
+                            const rows = Math.ceil(blockCount / cols);
+                            
+                            blockContainer.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+                            blockContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+                            
+                            container.appendChild(blockContainer);
+                        } else {
+                            blockContainer.innerHTML = '';
+                        }
+                        
+                        // Add units to the block
+                        units.forEach(unit => {
+                            const block = document.createElement('div');
+                            block.className = `block ${unit.status}`;
+                            block.dataset.id = unit.id;
+                            
+                            const label = document.createElement('div');
+                            label.className = 'block-label';
+                            label.textContent = unit.number.substring(1); // Remove block letter
+                            block.appendChild(label);
+                            
+                            blockContainer.appendChild(block);
+                            
+                            // Add click event to show modal
+                            block.addEventListener('click', () => showUnitModal(unit));
+                        });
+                    }
+                }
+            }
+
+            function setupFilters() {
+                const clusterFilterBtns = document.querySelectorAll('.filter-btn[data-cluster]');
+                const statusOptions = document.querySelectorAll('.status-option[data-status]');
+                
+                clusterFilterBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        this.classList.toggle('active');
+                        const cluster = this.dataset.cluster;
+                        
+                        // Show/hide cluster
+                        const clusterElement = document.querySelector(`.cluster-${cluster}`);
+                        if (this.classList.contains('active')) {
+                            clusterElement.style.display = 'flex';
+                        } else {
+                            clusterElement.style.display = 'none';
+                        }
+                    });
+                });
+                
+                statusOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        statusOptions.forEach(opt => opt.classList.remove('active'));
+                        this.classList.add('active');
+                        applyStatusFilter(this.dataset.status);
+                    });
+                });
+                
+                // View controls
+                document.getElementById('zoom-in').addEventListener('click', function() {
+                    const map = document.getElementById('site-map');
+                    const currentScale = parseFloat(map.style.transform?.replace('scale(', '')?.replace(')', '')) || 1;
+                    map.style.transform = `scale(${currentScale * 1.1})`;
+                });
+                
+                document.getElementById('zoom-out').addEventListener('click', function() {
+                    const map = document.getElementById('site-map');
+                    const currentScale = parseFloat(map.style.transform?.replace('scale(', '')?.replace(')', '')) || 1;
+                    if (currentScale > 0.5) {
+                        map.style.transform = `scale(${currentScale * 0.9})`;
+                    }
+                });
+                
+                document.getElementById('reset-view').addEventListener('click', function() {
+                    document.getElementById('site-map').style.transform = 'scale(1)';
+                });
+            }
+
+            function applyStatusFilter(status) {
+                // Reset all blocks to visible first
+                document.querySelectorAll('.block').forEach(block => {
+                    block.style.display = 'flex';
+                });
+                
+                // Apply status filter
+                if (status !== 'all') {
+                    document.querySelectorAll('.block').forEach(block => {
+                        const isCorrectStatus = block.classList.contains(status);
+                        
+                        if (!isCorrectStatus) {
+                            block.style.display = 'none';
+                        }
+                    });
+                }
+            }
+
+            function setupModals() {
+                const unitModal = document.getElementById('unit-modal');
+                const modalClose = document.getElementById('modal-close');
+                const modalCancel = document.getElementById('modal-cancel');
+                const modalAction = document.getElementById('modal-action');
+                let currentUnit = null;
+                
+                function showUnitModal(unit) {
+                    currentUnit = unit;
+                    const cluster = clusters[unit.id.split('-')[0]];
+                    
+                    // Set basic info
+                    document.getElementById('modal-cluster').textContent = `${cluster.name} (${cluster.type === 'subsidi' ? 'Subsidi' : 'Komersil'})`;
+                    document.getElementById('modal-unit').textContent = unit.number;
+                    document.getElementById('modal-type').textContent = unit.type;
+                    document.getElementById('modal-price').textContent = unit.price;
+                    document.getElementById('modal-update').textContent = unit.lastUpdate;
+                    
+                    // Set status badge
+                    const statusBadge = document.getElementById('modal-status');
+                    statusBadge.textContent = unit.statusText;
+                    statusBadge.className = 'status-badge';
+                    
+                    if (unit.status === 'sold') statusBadge.classList.add('badge-sold');
+                    else if (unit.status === 'investor') statusBadge.classList.add('badge-investor');
+                    else if (unit.status === 'booking') statusBadge.classList.add('badge-booking');
+                    else statusBadge.classList.add('badge-available');
+                    
+                    // Show/hide customer info based on status
+                    const customerInfo = document.getElementById('customer-info-row');
+                    const paymentInfo = document.getElementById('payment-info-row');
+                    const marketingInfo = document.getElementById('marketing-info-row');
+                    
+                    if (unit.status !== 'available') {
+                        customerInfo.style.display = 'flex';
+                        paymentInfo.style.display = 'flex';
+                        marketingInfo.style.display = 'flex';
+                        
+                        document.getElementById('modal-customer').textContent = 
+                            `${unit.customerName} (${unit.customerJob})`;
+                        document.getElementById('modal-payment').textContent = 
+                            unit.paymentMethod === 'transfer' 
+                                ? 'Transfer ke BANK BSI PT. Rumah Mulia Indonesia' 
+                                : 'Tunai';
+                        document.getElementById('modal-marketing').textContent = 
+                            unit.marketingType === 'mea' ? 'Marketing MEA' : 'Jatra Partner';
+                    } else {
+                        customerInfo.style.display = 'none';
+                        paymentInfo.style.display = 'none';
+                        marketingInfo.style.display = 'none';
+                    }
+                    
+                    // Show appropriate form based on user role
+                    if (currentUser.role === 'admin') {
+                        document.getElementById('admin-form').style.display = 'block';
+                        document.getElementById('marketing-form').style.display = 'none';
+                        
+                        // Fill admin form
+                        document.getElementById('booking-date').value = unit.bookingDate || '';
+                        document.getElementById('customer-name').value = unit.customerName || '';
+                        document.getElementById('customer-job').value = unit.customerJob || '';
+                        document.getElementById('payment-method').value = unit.paymentMethod || '';
+                        document.getElementById('scheme').value = unit.scheme || '';
+                        document.getElementById('gimmick').value = unit.gimmick || '';
+                        document.getElementById('doc-status').value = unit.docStatus || 'none';
+                        document.getElementById('marketing-type').value = unit.marketingType || 'mea';
+                        document.getElementById('priority').value = unit.priority || 'no';
+                        document.getElementById('bank').value = unit.bank || 'bjb';
+                        document.getElementById('akad-date').value = unit.akadDate || '';
+                        document.getElementById('target-date').value = '';
+                        document.getElementById('realization-date').value = '';
+                        document.getElementById('notes').value = unit.notes || '';
+                    } else {
+                        document.getElementById('admin-form').style.display = 'none';
+                        document.getElementById('marketing-form').style.display = 'block';
+                        
+                        // Fill marketing form
+                        document.getElementById('m-customer-name').value = unit.customerName || '';
+                        document.getElementById('m-customer-job').value = unit.customerJob || '';
+                        document.getElementById('m-payment-method').value = unit.paymentMethod || '';
+                        document.getElementById('m-scheme').value = unit.scheme || '';
+                        document.getElementById('m-gimmick').value = unit.gimmick || '';
+                    }
+                    
+                    unitModal.classList.add('active');
+                }
+                
+                function closeUnitModal() {
+                    unitModal.classList.remove('active');
+                    currentUnit = null;
+                }
+                
+                modalClose.addEventListener('click', closeUnitModal);
+                modalCancel.addEventListener('click', closeUnitModal);
+                
+                modalAction.addEventListener('click', function() {
+                    if (!currentUnit) return;
+                    
+                    // Get unit identifiers
+                    const [clusterId, blockId, unitNum] = currentUnit.id.split('-');
+                    const unitIndex = parseInt(unitNum) - 1;
+                    
+                    if (currentUser.role === 'admin') {
+                        // Update unit data from admin form
+                        unitsData[clusterId][blockId][unitIndex].customerName = 
+                            document.getElementById('customer-name').value;
+                        unitsData[clusterId][blockId][unitIndex].customerJob = 
+                            document.getElementById('customer-job').value;
+                        unitsData[clusterId][blockId][unitIndex].paymentMethod = 
+                            document.getElementById('payment-method').value;
+                        unitsData[clusterId][blockId][unitIndex].scheme = 
+                            document.getElementById('scheme').value;
+                        unitsData[clusterId][blockId][unitIndex].gimmick = 
+                            document.getElementById('gimmick').value;
+                        unitsData[clusterId][blockId][unitIndex].docStatus = 
+                            document.getElementById('doc-status').value;
+                        unitsData[clusterId][blockId][unitIndex].marketingType = 
+                            document.getElementById('marketing-type').value;
+                        unitsData[clusterId][blockId][unitIndex].priority = 
+                            document.getElementById('priority').value;
+                        unitsData[clusterId][blockId][unitIndex].bank = 
+                            document.getElementById('bank').value;
+                        unitsData[clusterId][blockId][unitIndex].akadDate = 
+                            document.getElementById('akad-date').value;
+                        unitsData[clusterId][blockId][unitIndex].notes = 
+                            document.getElementById('notes').value;
+                        unitsData[clusterId][blockId][unitIndex].lastUpdate = 
+                            new Date().toLocaleDateString();
+                        
+                        // Update status if changed to sold
+                        const newDocStatus = document.getElementById('doc-status').value;
+                        if (newDocStatus === 'akad' && unitsData[clusterId][blockId][unitIndex].status !== 'sold') {
+                            unitsData[clusterId][blockId][unitIndex].status = 'sold';
+                            unitsData[clusterId][blockId][unitIndex].statusText = 'Sold';
+                            soldBlocks++;
+                            bookingBlocks--;
+                            
+                            if (unitsData[clusterId][blockId][unitIndex].marketingType === 'mea') meaSales++;
+                            else jatraSales++;
+                            
+                            if (unitsData[clusterId][blockId][unitIndex].scheme === 'subsidi') subsidiSales++;
+                            else komersialSales++;
+                            
+                            // Update the block visually
+                            const block = document.querySelector(`.block[data-id="${currentUnit.id}"]`);
+                            block.classList.remove('booking');
+                            block.classList.add('sold');
+                        }
+                    } else {
+                        // Update unit data from marketing form
+                        const customerName = document.getElementById('m-customer-name').value;
+                        const customerJob = document.getElementById('m-customer-job').value;
+                        const paymentMethod = document.getElementById('m-payment-method').value;
+                        const scheme = document.getElementById('m-scheme').value;
+                        const gimmick = document.getElementById('m-gimmick').value;
+                        
+                        unitsData[clusterId][blockId][unitIndex].customerName = customerName;
+                        unitsData[clusterId][blockId][unitIndex].customerJob = customerJob;
+                        unitsData[clusterId][blockId][unitIndex].paymentMethod = paymentMethod;
+                        unitsData[clusterId][blockId][unitIndex].scheme = scheme;
+                        unitsData[clusterId][blockId][unitIndex].gimmick = gimmick;
+                        unitsData[clusterId][blockId][unitIndex].marketingType = currentUser.role;
+                        unitsData[clusterId][blockId][unitIndex].lastUpdate = new Date().toLocaleDateString();
+                        
+                        // If this was an available unit, change to booking
+                        if (unitsData[clusterId][blockId][unitIndex].status === 'available' && 
+                            customerName && customerJob && paymentMethod && scheme) {
+                            unitsData[clusterId][blockId][unitIndex].status = 'booking';
+                            unitsData[clusterId][blockId][unitIndex].statusText = 'Booking';
+                            bookingBlocks++;
+                            
+                            if (currentUser.role === 'mea') meaSales++;
+                            else jatraSales++;
+                            
+                            // Update the block visually
+                            const block = document.querySelector(`.block[data-id="${currentUnit.id}"]`);
+                            block.classList.remove('available');
+                            block.classList.add('booking');
+                        }
+                    }
+                    
+                    // Update stats
+                    updateStats();
+                    closeUnitModal();
+                });
+                
+                // Close modal when clicking outside
+                unitModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeUnitModal();
+                    }
+                });
+            }
+            
+            // Logout functionality
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('kertamulya_auth');
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+</html>
