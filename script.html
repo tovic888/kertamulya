@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOP Marketing In-House - Kertamulya Residence</title>
+    <title>Script Marketing In-House - Kertamulya Residence</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -79,25 +79,6 @@
         .logo-text {
             font-weight: 700;
             font-size: 1.2rem;
-        }
-
-        .print-btn {
-            background-color: var(--light);
-            color: var(--primary-dark);
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .print-btn:hover {
-            background-color: var(--gray-dark);
-            transform: translateY(-2px);
         }
 
         .hero {
@@ -191,23 +172,32 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .step {
+        .flow-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             margin-bottom: 30px;
-            border-left: 3px solid var(--primary-light);
-            padding-left: 20px;
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 15px;
             position: relative;
         }
 
-        .step:last-child {
-            margin-bottom: 0;
+        .flow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: -20px;
+            width: 2px;
+            background-color: var(--primary-light);
         }
 
         .step-number {
-            position: absolute;
-            left: -15px;
-            top: 0;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             background-color: var(--primary);
             color: var(--light);
             border-radius: 50%;
@@ -215,22 +205,35 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            flex-shrink: 0;
             box-shadow: var(--shadow-sm);
         }
 
-        .step-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 15px;
-            padding-left: 20px;
-        }
-
         .step-content {
+            flex: 1;
             background-color: var(--gray);
             padding: 20px;
             border-radius: 8px;
-            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .step-content::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid var(--gray);
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
         }
 
         .dialog {
@@ -270,31 +273,6 @@
         .note.danger {
             background-color: #f8d7da;
             border-left-color: var(--danger);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid var(--gray-dark);
-            border-radius: 4px;
-            font-family: 'Poppins', sans-serif;
-            transition: var(--transition);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
         }
 
         .house-type-selector {
@@ -391,46 +369,21 @@
             color: var(--text-light);
         }
 
-        .action-btns {
-            display: flex;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 4px;
+        .form-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--accent);
             font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
             text-decoration: none;
+            transition: var(--transition);
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--light);
-            border: none;
+        .form-link:hover {
+            text-decoration: underline;
         }
 
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
+        .form-link i {
+            margin-right: 5px;
         }
 
         footer {
@@ -479,22 +432,25 @@
                 margin-bottom: 5px;
                 margin-right: 0;
             }
-        }
 
-        @media print {
-            header, footer, .tabs, .print-btn {
-                display: none;
+            .flow-step {
+                flex-direction: column;
             }
-            
-            .tab-content {
-                display: block !important;
-                box-shadow: none;
-                padding: 0;
-                margin: 0;
+
+            .flow-step:not(:last-child)::after {
+                left: 20px;
+                top: 40px;
+                bottom: -20px;
+                height: auto;
             }
-            
-            .step {
-                page-break-inside: avoid;
+
+            .step-content::before {
+                left: 20px;
+                top: -10px;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 10px solid var(--gray);
+                border-top: none;
             }
         }
     </style>
@@ -505,20 +461,16 @@
             <div class="header-content">
                 <div class="logo">
                     <img src="img/logo-kertamulya.png" alt="Kertamulya Residence">
-                    <span class="logo-text">SOP Marketing In-House</span>
+                    <span class="logo-text">Script Marketing In-House</span>
                 </div>
-                <button class="print-btn" id="printBtn">
-                    <i class="fas fa-print"></i>
-                    Cetak SOP
-                </button>
             </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>Standard Operating Procedure</h1>
-            <p>Panduan lengkap untuk tim marketing in-house Kertamulya Residence</p>
+            <h1>Framework Closing Marketing</h1>
+            <p>Alur penjualan dan script untuk tim marketing in-house Kertamulya Residence</p>
             <span class="badge">Versi 2.0 - Juni 2025</span>
         </div>
     </section>
@@ -526,750 +478,408 @@
     <section class="main-content">
         <div class="container">
             <div class="tabs">
-                <button class="tab-btn active" data-tab="website">Dari Website</button>
-                <button class="tab-btn" data-tab="hold-stok">Hold Stok Rp100rb</button>
-                <button class="tab-btn" data-tab="umum">Datang Umum</button>
+                <button class="tab-btn active" data-tab="hold-stok">Hold Stok Rp100rb</button>
+                <button class="tab-btn" data-tab="freelance">Dari Marketing Freelance</button>
+                <button class="tab-btn" data-tab="general">Info General</button>
             </div>
 
-            <!-- Tab 1: Customer dari Website -->
-            <div class="tab-content active" id="website-tab">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Pembukaan & Penyambutan</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Assalamu'alaikum warahmatullahi wabarakatuh, selamat datang di Kertamulya Residence. Silakan duduk ya."</div>
-                        </div>
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Sebelumnya sudah melihat informasi di website kami ya? Ada unit yang sedang diminati?"</div>
-                        </div>
-                        <div class="note">
-                            <i class="fas fa-lightbulb"></i> Tunjukkan sikap ramah dan profesional. Berikan minuman jika memungkinkan.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Pendataan Customer</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Boleh saya minta data dasar dulu ya untuk keperluan administrasi kami."</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-input" placeholder="Nama customer">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Nomor WhatsApp</label>
-                            <input type="tel" class="form-input" placeholder="Nomor aktif">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Alamat</label>
-                            <input type="text" class="form-input" placeholder="Alamat saat ini">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Kecamatan & Kota</label>
-                            <input type="text" class="form-input" placeholder="Lokasi tempat tinggal">
-                        </div>
-                        
-                        <div class="note">
-                            <i class="fas fa-info-circle"></i> Pastikan data diisi lengkap dan benar untuk keperluan follow-up dan pengajuan KPR.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Validasi Informasi Website</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Informasi dari website apakah sudah cukup jelas atau ada yang ingin ditanyakan lagi?"</div>
-                        </div>
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kalau boleh saya jelaskan ulang, Kertamulya Residence adalah perumahan islami pertama di Kuningan dengan konsep green living..."</div>
-                        </div>
-                        <div class="note warning">
-                            <i class="fas fa-exclamation-triangle"></i> Pastikan customer memahami semua informasi penting sebelum lanjut ke tahap berikutnya.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Penjelasan Tipe Rumah</h3>
-                    <div class="step-content">
-                        <div class="house-type-selector">
-                            <button class="type-btn active" data-type="subsidi">Subsidi</button>
-                            <button class="type-btn" data-type="suite">Suite</button>
-                            <button class="type-btn" data-type="premium">Premium</button>
-                        </div>
-                        
-                        <div class="house-type-content active" id="subsidi-content">
-                            <h4>Spesifikasi Tipe Subsidi</h4>
-                            <ul class="spec-list">
-                                <li>Tanah 60 m², bangunan 30 m²</li>
-                                <li>2 kamar tidur, 1 kamar mandi</li>
-                                <li>Keramik Milan 40x40, plafon GRC</li>
-                                <li>Rangka atap baja ringan, kusen aluminium, atap metal pasir</li>
-                                <li>Tidak termasuk taman, sekat pintu, dan dapur</li>
-                            </ul>
-                            <div class="note">
-                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp166 juta dengan DP 0% via KPR Subsidi
+            <!-- Tab 1: Hold Stok Rp100rb -->
+            <div class="tab-content active" id="hold-stok-tab">
+                <div class="flow-chart">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Validasi Hold Stok</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Assalamu'alaikum, selamat datang di Kertamulya Residence. Dengan Bapak/Ibu siapa tadi?"</div>
                             </div>
-                        </div>
-                        
-                        <div class="house-type-content" id="suite-content">
-                            <h4>Spesifikasi Tipe Suite</h4>
-                            <ul class="spec-list">
-                                <li>Tanah dan bangunan lebih luas dari tipe subsidi</li>
-                                <li>Desain modern dengan layout optimal</li>
-                                <li>Material bangunan berkualitas premium</li>
-                                <li>Canopy tidak termasuk dalam paket standar</li>
-                                <li>Pembangunan ±3-4 bulan setelah akad</li>
-                            </ul>
-                            <div class="note">
-                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp277 juta dengan berbagai pilihan pembiayaan
+                            <div class="dialog">
+                                <div class="dialog-role">Customer:</div>
+                                <div class="dialog-text">"Saya sudah transfer 100 ribu dari website."</div>
                             </div>
-                        </div>
-                        
-                        <div class="house-type-content" id="premium-content">
-                            <h4>Spesifikasi Tipe Premium</h4>
-                            <ul class="spec-list">
-                                <li>Luas tanah dan bangunan terbesar</li>
-                                <li>Desain eksklusif dengan material terbaik</li>
-                                <li>Fasilitas tambahan seperti gazebo dan taman pribadi</li>
-                                <li>Canopy tidak termasuk dalam paket standar</li>
-                                <li>Pembangunan ±3-4 bulan setelah akad</li>
-                            </ul>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Baik, saya cek dulu ya. Mohon tunjukkan bukti transfernya."</div>
+                            </div>
                             <div class="note">
-                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp408 juta dengan berbagai pilihan pembiayaan
+                                <i class="fas fa-check-circle"></i> Verifikasi bukti transfer dan cocokkan dengan data di sistem
+                            </div>
+                            <a href="https://bimulialand.com/kertamulya/script" class="form-link">
+                                <i class="fas fa-link"></i> Link Form Inhouse
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Konfirmasi Tipe Unit</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Unit yang Bapak/Ibu hold tipe apa ya? Subsidi, Suite, atau Premium?"</div>
+                            </div>
+                            <div class="note">
+                                <i class="fas fa-info-circle"></i> Pastikan unit masih available di sistem
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h3 class="step-title">Survey Rumah Contoh</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Ayo kita lihat langsung rumah contohnya ya. Biar lebih jelas gambaran unit yang tersedia."</div>
-                        </div>
-                        
-                        <h4>Poin yang Harus Ditunjukkan:</h4>
-                        <ul class="spec-list">
-                            <li>Posisi kamar, dapur, dan kamar mandi</li>
-                            <li>Sistem ventilasi dan pencahayaan alami</li>
-                            <li>Kualitas material bangunan</li>
-                            <li>Lingkungan sekitar perumahan</li>
-                            <li>Fasilitas umum yang tersedia</li>
-                        </ul>
-                        
-                        <div class="note">
-                            <i class="fas fa-lightbulb"></i> Tekankan kebebasan renovasi setelah akad sesuai kebutuhan customer.
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Penjelasan Produk</h3>
+                            <div class="house-type-selector">
+                                <button class="type-btn active" data-type="subsidi">Subsidi</button>
+                                <button class="type-btn" data-type="suite">Suite</button>
+                                <button class="type-btn" data-type="premium">Premium</button>
+                            </div>
+                            
+                            <div class="house-type-content active" id="hold-subsidi-content">
+                                <h4>Spesifikasi Tipe Subsidi</h4>
+                                <ul class="spec-list">
+                                    <li>Tanah 60 m², bangunan 30 m²</li>
+                                    <li>2 kamar tidur, 1 kamar mandi</li>
+                                    <li>Keramik Milan 40x40, plafon GRC</li>
+                                    <li>Rangka atap baja ringan, kusen aluminium, atap metal pasir</li>
+                                    <li>Tidak termasuk taman, sekat pintu, dan dapur</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="house-type-content" id="hold-suite-content">
+                                <h4>Spesifikasi Tipe Suite</h4>
+                                <ul class="spec-list">
+                                    <li>Tanah dan bangunan lebih luas dari tipe subsidi</li>
+                                    <li>Desain modern dengan layout optimal</li>
+                                    <li>Material bangunan berkualitas premium</li>
+                                    <li>Canopy tidak termasuk dalam paket standar</li>
+                                    <li>Pembangunan ±3-4 bulan setelah akad</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="house-type-content" id="hold-premium-content">
+                                <h4>Spesifikasi Tipe Premium</h4>
+                                <ul class="spec-list">
+                                    <li>Luas tanah dan bangunan terbesar</li>
+                                    <li>Desain eksklusif dengan material terbaik</li>
+                                    <li>Fasilitas tambahan seperti gazebo dan taman pribadi</li>
+                                    <li>Canopy tidak termasuk dalam paket standar</li>
+                                    <li>Pembangunan ±3-4 bulan setelah akad</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">6</div>
-                    <h3 class="step-title">Arahkan ke Booking Fee</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kalau sudah cocok, kita bisa lanjut ke proses booking ya. Untuk tipe ini booking fee-nya Rp500.000."</div>
-                        </div>
-                        
-                        <h4>Detail Booking Fee:</h4>
-                        <ul class="spec-list">
-                            <li><strong>Subsidi:</strong> Rp500.000</li>
-                            <li><strong>Suite:</strong> Rp2.000.000</li>
-                            <li><strong>Premium:</strong> Rp2.000.000</li>
-                        </ul>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Booking fee bisa transfer ke rekening kami atau bayar langsung di sini. Kami akan kirimkan bukti booking resminya."</div>
-                        </div>
-                        
-                        <div class="note warning">
-                            <i class="fas fa-exclamation-triangle"></i> Pastikan customer memahami bahwa booking fee tidak dapat dikembalikan jika cancel setelah 3 hari.
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Survey Unit</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Ayo kita lihat langsung unitnya ya. Saya akan tunjukkan detailnya."</div>
+                            </div>
+                            <ul class="spec-list">
+                                <li>Tunjukkan posisi kamar, dapur, dan kamar mandi</li>
+                                <li>Demonstrasikan kualitas material bangunan</li>
+                                <li>Jelaskan fasilitas lingkungan sekitar</li>
+                                <li>Tekankan keunggulan lokasi</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">7</div>
-                    <h3 class="step-title">Validasi Penghasilan (Khusus Subsidi)</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Untuk KPR subsidi, saya perlu tanya sedikit tentang penghasilan bulanan kakak ya."</div>
-                        </div>
-                        
-                        <h4>Pertanyaan Penting:</h4>
-                        <ul class="spec-list">
-                            <li>Penghasilan bulanan (minimal Rp4 juta untuk KPR Subsidi)</li>
-                            <li>Status pekerjaan (pegawai/usaha)</li>
-                            <li>Cicilan aktif yang sedang berjalan</li>
-                            <li>Status kepemilikan rumah saat ini</li>
-                        </ul>
-                        
-                        <div class="note danger">
-                            <i class="fas fa-exclamation-circle"></i> Jika beban cicilan terlalu tinggi, arahkan ke solusi lain seperti cash bertahap atau tunggu hingga cicilan lain lunas.
+                    <div class="flow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Pelunasan Booking Fee</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Kalau sudah cocok, kita lanjut ke pelunasan booking fee ya. Tinggal Rp400rb lagi untuk tipe Subsidi (total Rp500rb) atau Rp1.9jt untuk tipe Suite/Premium (total Rp2jt)."</div>
+                            </div>
+                            <div class="note warning">
+                                <i class="fas fa-exclamation-triangle"></i> Rp100rb sudah termasuk dalam total booking fee
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">8</div>
-                    <h3 class="step-title">Dokumen KPR</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Untuk pengajuan KPR, berikut dokumen yang perlu disiapkan:"</div>
-                        </div>
-                        
-                        <h4>Dokumen Wajib:</h4>
-                        <ul class="doc-list">
-                            <li>KTP suami istri (4 rangkap)</li>
-                            <li>Kartu Keluarga</li>
-                            <li>NPWP (jika ada)</li>
-                            <li>Buku tabungan 3 bulan terakhir</li>
-                            <li>Slip gaji/surat penghasilan</li>
-                            <li>Surat belum punya rumah</li>
-                            <li>Surat domisili jika alamat beda dengan KTP</li>
-                        </ul>
-                        
-                        <div class="note">
-                            <i class="fas fa-clock"></i> Proses pengajuan KPR biasanya memakan waktu 14-30 hari kerja setelah dokumen lengkap.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">9</div>
-                    <h3 class="step-title">Arah ke Bank Rekanan</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kami bekerja sama dengan beberapa bank syariah terkemuka. Berikut rekomendasi untuk kakak:"</div>
-                        </div>
-                        
-                        <div class="bank-card">
-                            <h4 class="bank-name"><i class="fas fa-university"></i> BTN Syariah</h4>
-                            <p class="bank-desc">Proses cepat (14-21 hari), persyaratan relatif sederhana, cocok untuk pegawai dengan penghasilan tetap.</p>
-                        </div>
-                        
-                        <div class="bank-card">
-                            <h4 class="bank-name"><i class="fas fa-university"></i> BJB Syariah</h4>
-                            <p class="bank-desc">Suku bunga kompetitif, fleksibel untuk wiraswasta, proses 21-30 hari kerja.</p>
-                        </div>
-                        
-                        <div class="note">
-                            <i class="fas fa-handshake"></i> Kami akan bantu dari pengumpulan dokumen sampai akad di notaris.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">10</div>
-                    <h3 class="step-title">Penutup & Follow-up</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Terima kasih atas kunjungannya. Kami akan follow-up dalam 1x24 jam untuk proses selanjutnya."</div>
-                        </div>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Ada pertanyaan lain yang bisa saya bantu?"</div>
-                        </div>
-                        
-                        <div class="note">
-                            <i class="fas fa-calendar-check"></i> Jadwalkan pertemuan berikutnya sebelum customer pulang, baik untuk survei ulang atau pengumpulan dokumen.
+                    <div class="flow-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Proses Selanjutnya</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Setelah booking fee lunas, kita akan proses ke tahap berikutnya:"</div>
+                            </div>
+                            <ul class="spec-list">
+                                <li>Pengumpulan dokumen untuk KPR</li>
+                                <li>Pengajuan ke bank rekanan (BTN Syariah/BJB Syariah)</li>
+                                <li>Penjadwalan akad di notaris</li>
+                            </ul>
+                            <div class="note">
+                                <i class="fas fa-clock"></i> Proses biasanya memakan waktu 14-30 hari kerja setelah dokumen lengkap
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab 2: Customer dari Website + Hold Stok Rp100rb -->
-            <div class="tab-content" id="hold-stok-tab">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Pembukaan & Validasi Hold Stok</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Assalamu'alaikum warahmatullahi wabarakatuh, selamat datang di Kertamulya Residence. Dengan kakak siapa tadi?"</div>
-                        </div>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Customer:</div>
-                            <div class="dialog-text">"Saya sudah transfer 100 ribu dari website."</div>
-                        </div>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Baik kak, jadi kakak sudah melakukan pembayaran penahanan stok ya. Boleh saya lihat bukti transfer atau chat konfirmasinya sebentar?"</div>
-                        </div>
-                        
-                        <div class="note">
-                            <i class="fas fa-check-circle"></i> Verifikasi bukti transfer dan cocokkan dengan data di sistem sebelum melanjutkan.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Pendataan & Input Sistem</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Oke, atas nama kakak. Siap, saya bantu prosesnya. Sebelum lanjut, saya input dulu datanya ya kak."</div>
-                        </div>
-                        
-                        <h4>Data yang Harus Diinput:</h4>
-                        <ul class="spec-list">
-                            <li>Nama lengkap</li>
-                            <li>Nomor WhatsApp</li>
-                            <li>Alamat lengkap</li>
-                            <li>Tipe rumah yang diminati</li>
-                            <li>Metode pembayaran (KPR/Cash)</li>
-                            <li>Sumber info: Website</li>
-                            <li>Status: Sudah bayar hold stok Rp100.000</li>
-                        </ul>
-                        
-                        <div class="note warning">
-                            <i class="fas fa-exclamation-triangle"></i> Pastikan menandai "Sudah bayar hold stok" di sistem untuk menghindari kesalahan administrasi.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Validasi Informasi Website</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Informasi dari website—gambar, video, atau spesifikasi—sudah cukup jelas semua kak? Kalau perlu dijelaskan ulang, saya bantu sekarang."</div>
-                        </div>
-                        
-                        <div class="note">
-                            <i class="fas fa-info-circle"></i> Jelaskan kembali fitur utama yang mungkin terlewat saat customer browsing website.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Penjelasan Tipe Rumah</h3>
-                    <div class="step-content">
-                        <div class="house-type-selector">
-                            <button class="type-btn active" data-type="subsidi">Subsidi</button>
-                            <button class="type-btn" data-type="suite">Suite</button>
-                            <button class="type-btn" data-type="premium">Premium</button>
-                        </div>
-                        
-                        <div class="house-type-content active" id="hold-subsidi-content">
-                            <h4>Spesifikasi Tipe Subsidi</h4>
-                            <ul class="spec-list">
-                                <li>Tanah 60 m², bangunan 30 m²</li>
-                                <li>2 kamar tidur, 1 kamar mandi</li>
-                                <li>Keramik Milan 40x40, plafon GRC</li>
-                                <li>Rangka atap baja ringan, kusen aluminium, atap metal pasir</li>
-                                <li>Tidak termasuk taman, sekat pintu, dan dapur</li>
-                            </ul>
-                            <div class="note">
-                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp166 juta dengan DP 0% via KPR Subsidi
+            <!-- Tab 2: Dari Marketing Freelance -->
+            <div class="tab-content" id="freelance-tab">
+                <div class="flow-chart">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Identifikasi Sumber</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Assalamu'alaikum, selamat datang di Kertamulya Residence. Dari mana Bapak/Ibu mengetahui info perumahan kami?"</div>
                             </div>
-                        </div>
-                        
-                        <div class="house-type-content" id="hold-suite-content">
-                            <h4>Spesifikasi Tipe Suite</h4>
-                            <ul class="spec-list">
-                                <li>Tanah dan bangunan lebih luas dari tipe subsidi</li>
-                                <li>Desain modern dengan layout optimal</li>
-                                <li>Material bangunan berkualitas premium</li>
-                                <li>Canopy tidak termasuk dalam paket standar</li>
-                                <li>Pembangunan ±3-4 bulan setelah akad</li>
-                            </ul>
-                            <div class="note">
-                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp277 juta dengan berbagai pilihan pembiayaan
+                            <div class="dialog">
+                                <div class="dialog-role">Customer:</div>
+                                <div class="dialog-text">"Dari teman/marketing freelance [nama]."</div>
                             </div>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Oh baik, dari rekanan kami ya. Mari kita bahas lebih detail."</div>
+                            </div>
+                            <a href="https://bimulialand.com/kertamulya/script" class="form-link">
+                                <i class="fas fa-link"></i> Link Form Inhouse
+                            </a>
                         </div>
-                        
-                        <div class="house-type-content" id="hold-premium-content">
-                            <h4>Spesifikasi Tipe Premium</h4>
-                            <ul class="spec-list">
-                                <li>Luas tanah dan bangunan terbesar</li>
-                                <li>Desain eksklusif dengan material terbaik</li>
-                                <li>Fasilitas tambahan seperti gazebo dan taman pribadi</li>
-                                <li>Canopy tidak termasuk dalam paket standar</li>
-                                <li>Pembangunan ±3-4 bulan setelah akad</li>
-                            </ul>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Tentukan Kebutuhan</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Tipe rumah apa yang Bapak/Ibu cari? Kami punya 3 pilihan: Subsidi, Suite, dan Premium."</div>
+                            </div>
                             <div class="note">
-                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp408 juta dengan berbagai pilihan pembiayaan
+                                <i class="fas fa-lightbulb"></i> Dengarkan kebutuhan customer untuk rekomendasi terbaik
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h3 class="step-title">Survey Rumah Contoh</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kita langsung ke rumah contohnya ya kak. Biar lebih yakin dengan kondisi aslinya."</div>
-                        </div>
-                        
-                        <h4>Poin yang Harus Ditekankan:</h4>
-                        <ul class="spec-list">
-                            <li>Tunjukkan posisi kamar, dapur, ventilasi, pencahayaan</li>
-                            <li>Jelaskan detail yang terlihat langsung</li>
-                            <li>Tekankan kebebasan renovasi setelah akad</li>
-                            <li>Perlihatkan fasilitas lingkungan sekitar</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">6</div>
-                    <h3 class="step-title">Pelunasan Booking Fee</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kalau sudah cocok, bisa langsung lanjut pelunasan booking fee ya kak. Tinggal Rp400 ribu lagi karena sebelumnya sudah transfer 100 ribu."</div>
-                        </div>
-                        
-                        <h4>Detail Pelunasan:</h4>
-                        <ul class="spec-list">
-                            <li><strong>Subsidi:</strong> Total Rp500.000 (Rp100.000 sudah dibayar)</li>
-                            <li><strong>Suite/Premium:</strong> Total Rp2.000.000 (Rp100.000 sudah dibayar)</li>
-                        </ul>
-                        
-                        <div class="note">
-                            <i class="fas fa-undo"></i> Ingatkan customer bahwa Rp100.000 akan dikembalikan jika tidak jadi setelah survei.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">7</div>
-                    <h3 class="step-title">Validasi Penghasilan (Khusus Subsidi)</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Untuk KPR subsidi, saya tanya sedikit ya kak. Penghasilan bulanan berapa? Ada cicilan aktif saat ini?"</div>
-                        </div>
-                        
-                        <h4>Kriteria Kelayakan:</h4>
-                        <ul class="spec-list">
-                            <li>Penghasilan minimal Rp4 juta per bulan</li>
-                            <li>Beban cicilan tidak melebihi 40% penghasilan</li>
-                            <li>Belum memiliki rumah (atau hanya 1 rumah)</li>
-                            <li>Usia maksimal 55 tahun saat tenor berakhir</li>
-                        </ul>
-                        
-                        <div class="note danger">
-                            <i class="fas fa-exclamation-circle"></i> Jika tidak memenuhi kriteria, arahkan ke opsi pembelian cash bertahap.
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Penjelasan Produk</h3>
+                            <div class="house-type-selector">
+                                <button class="type-btn active" data-type="subsidi">Subsidi</button>
+                                <button class="type-btn" data-type="suite">Suite</button>
+                                <button class="type-btn" data-type="premium">Premium</button>
+                            </div>
+                            
+                            <div class="house-type-content active" id="free-subsidi-content">
+                                <h4>Keunggulan Tipe Subsidi</h4>
+                                <ul class="spec-list">
+                                    <li>Harga terjangkau mulai Rp166 juta</li>
+                                    <li>DP 0% via KPR Subsidi</li>
+                                    <li>Cicilan mulai Rp1.2jt/bulan</li>
+                                    <li>Bonus motor listrik setelah 6x angsuran</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="house-type-content" id="free-suite-content">
+                                <h4>Keunggulan Tipe Suite</h4>
+                                <ul class="spec-list">
+                                    <li>Luas bangunan lebih besar (50m²)</li>
+                                    <li>Desain modern dan elegan</li>
+                                    <li>Material bangunan premium</li>
+                                    <li>Bonus motor listrik setelah 6x angsuran</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="house-type-content" id="free-premium-content">
+                                <h4>Keunggulan Tipe Premium</h4>
+                                <ul class="spec-list">
+                                    <li>Luas tanah terbesar (120m²)</li>
+                                    <li>Desain eksklusif dengan material terbaik</li>
+                                    <li>Fasilitas tambahan seperti gazebo</li>
+                                    <li>Bonus motor listrik setelah 6x angsuran</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">8</div>
-                    <h3 class="step-title">Dokumen KPR</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Berikut dokumen yang perlu disiapkan untuk pengajuan KPR:"</div>
-                        </div>
-                        
-                        <h4>Dokumen Wajib:</h4>
-                        <ul class="doc-list">
-                            <li>KTP suami istri (4 rangkap)</li>
-                            <li>Kartu Keluarga</li>
-                            <li>NPWP (jika ada)</li>
-                            <li>Buku tabungan 3 bulan terakhir</li>
-                            <li>Slip gaji/surat penghasilan</li>
-                            <li>Surat belum punya rumah</li>
-                            <li>Surat domisili jika alamat beda dengan KTP</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">9</div>
-                    <h3 class="step-title">Arah ke Bank Rekanan</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kami bekerja sama dengan BTN Syariah dan BJB Syariah. Kami bantu arahkan ke bank yang cocok dengan profil kakak."</div>
-                        </div>
-                        
-                        <div class="bank-card">
-                            <h4 class="bank-name"><i class="fas fa-university"></i> BTN Syariah</h4>
-                            <p class="bank-desc">Proses cepat (14-21 hari), persyaratan relatif sederhana, cocok untuk pegawai dengan penghasilan tetap.</p>
-                        </div>
-                        
-                        <div class="bank-card">
-                            <h4 class="bank-name"><i class="fas fa-university"></i> BJB Syariah</h4>
-                            <p class="bank-desc">Suku bunga kompetitif, fleksibel untuk wiraswasta, proses 21-30 hari kerja.</p>
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Survey Unit</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Mari kita lihat langsung unitnya. Saya akan tunjukkan semua detailnya."</div>
+                            </div>
+                            <div class="note">
+                                <i class="fas fa-map-marked-alt"></i> Tunjukkan lokasi strategis dan fasilitas lingkungan
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">10</div>
-                    <h3 class="step-title">Penutup & Follow-up</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Terima kasih sudah memilih Kertamulya Residence. Kami akan follow-up via WhatsApp untuk proses selanjutnya."</div>
+                    <div class="flow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Penawaran Booking</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Kalau sudah cocok, kita bisa langsung booking unitnya. Booking fee hanya Rp500rb untuk tipe Subsidi atau Rp2jt untuk Suite/Premium."</div>
+                            </div>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Setelah booking, kami akan bantu proses KPR atau cash bertahap sesuai kebutuhan Bapak/Ibu."</div>
+                            </div>
                         </div>
-                        
-                        <div class="note">
-                            <i class="fas fa-clock"></i> Kirim follow-up dalam 1x24 jam dengan ringkasan diskusi dan langkah berikutnya.
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Closing</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Bagaimana Bapak/Ibu? Apakah ada pertanyaan lagi atau kita lanjut ke proses booking?"</div>
+                            </div>
+                            <div class="note warning">
+                                <i class="fas fa-handshake"></i> Berikan sense of urgency: "Unit ini banyak peminatnya, lebih baik segera diputuskan"
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab 3: Customer Datang Umum -->
-            <div class="tab-content" id="umum-tab">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Pembukaan & Identifikasi Sumber</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Assalamu'alaikum warahmatullahi wabarakatuh, selamat datang di Kertamulya Residence. Silakan duduk ya kak."</div>
-                        </div>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kalau boleh tahu, sebelumnya kakak tahu informasi Kertamulya ini dari siapa ya?"</div>
-                        </div>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Customer:</div>
-                            <div class="dialog-text">"Dari teman/marketing freelance/nama orang."</div>
-                        </div>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Oh, baik kak. Berarti dari marketing rekanan kami ya. Siap, saya bantu proses selanjutnya."</div>
-                        </div>
-                        
-                        <div class="note">
-                            <i class="fas fa-user-tag"></i> Catat nama referensi untuk keperluan komisi jika ada.
+            <!-- Tab 3: Info General -->
+            <div class="tab-content" id="general-tab">
+                <div class="flow-chart">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Pembukaan</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Assalamu'alaikum, selamat datang di Kertamulya Residence. Perumahan islami pertama di Kuningan dengan konsep green living."</div>
+                            </div>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Ada info khusus yang Bapak/Ibu cari?"</div>
+                            </div>
+                            <a href="https://bimulialand.com/kertamulya/script" class="form-link">
+                                <i class="fas fa-link"></i> Link Form Inhouse
+                            </a>
                         </div>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Pendataan Customer</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Sebelum kita mulai survey dan diskusi, saya isi dulu data dasarnya ya kak."</div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Qualifying Kebutuhan</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Untuk hunian yang Bapak/Ibu cari, lebih prioritas yang seperti apa? Harga, lokasi, atau spesifikasi?"</div>
+                            </div>
+                            <div class="note">
+                                <i class="fas fa-lightbulb"></i> Dengarkan jawaban untuk menentukan tipe yang akan ditawarkan
+                            </div>
                         </div>
-                        
-                        <h4>Data yang Wajib Diisi:</h4>
-                        <ul class="spec-list">
-                            <li>Nama lengkap</li>
-                            <li>Nomor WhatsApp</li>
-                            <li>Alamat lengkap</li>
-                            <li>Kecamatan & Kota</li>
-                            <li>Tipe rumah yang diminati</li>
-                            <li>Metode pembayaran (KPR/Cash)</li>
-                            <li>Sumber info: Marketing Freelance/Teman</li>
-                        </ul>
                     </div>
-                </div>
 
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Validasi & Penjelasan Produk</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Sebelum lanjut, saya bantu jelaskan dulu tipe yang kakak pilih ya. Biar tidak ada yang terlewat."</div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Penawaran Produk</h3>
+                            <div class="house-type-selector">
+                                <button class="type-btn active" data-type="subsidi">Subsidi</button>
+                                <button class="type-btn" data-type="suite">Suite</button>
+                                <button class="type-btn" data-type="premium">Premium</button>
+                            </div>
+                            
+                            <div class="house-type-content active" id="gen-subsidi-content">
+                                <h4>Spesial Untuk Hari Ini:</h4>
+                                <ul class="spec-list">
+                                    <li>Tanah 60m² + Bangunan 30m² hanya Rp166 juta</li>
+                                    <li>DP 0% via KPR Subsidi</li>
+                                    <li>Cicilan mulai Rp1.2jt/bulan</li>
+                                    <li>Bonus motor listrik senilai Rp15 juta</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="house-type-content" id="gen-suite-content">
+                                <h4>Spesial Untuk Hari Ini:</h4>
+                                <ul class="spec-list">
+                                    <li>Tanah 60m² + Bangunan 50m² hanya Rp277 juta</li>
+                                    <li>DP mulai 10% via KPR Syariah</li>
+                                    <li>Bonus motor listrik senilai Rp15 juta</li>
+                                    <li>Desain modern dengan material premium</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="house-type-content" id="gen-premium-content">
+                                <h4>Spesial Untuk Hari Ini:</h4>
+                                <ul class="spec-list">
+                                    <li>Tanah 120m² + Bangunan 50m² hanya Rp408 juta</li>
+                                    <li>DP mulai 20% via KPR Syariah</li>
+                                    <li>Bonus motor listrik senilai Rp15 juta</li>
+                                    <li>Gazebo dan taman pribadi</li>
+                                </ul>
+                            </div>
                         </div>
-                        
-                        <div class="house-type-selector">
-                            <button class="type-btn active" data-type="subsidi">Subsidi</button>
-                            <button class="type-btn" data-type="suite">Suite</button>
-                            <button class="type-btn" data-type="premium">Premium</button>
-                        </div>
-                        
-                        <div class="house-type-content active" id="umum-subsidi-content">
-                            <h4>Spesifikasi Tipe Subsidi</h4>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Tunjukkan Bukti Nyata</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Ini testimoni dari penghuni yang sudah menikmati Kertamulya Residence."</div>
+                            </div>
                             <ul class="spec-list">
-                                <li>Tanah 60 m², bangunan 30 m²</li>
-                                <li>2 kamar tidur, 1 kamar mandi</li>
-                                <li>Keramik Milan 40x40, plafon GRC</li>
-                                <li>Rangka atap baja ringan, kusen aluminium, atap metal pasir</li>
-                                <li>Tidak termasuk taman, sekat pintu, dan dapur</li>
+                                <li>Tunjukkan foto/video testimoni</li>
+                                <li>Ceritakan success story pembeli sebelumnya</li>
+                                <li>Tekankan keunggulan komunitas islami</li>
                             </ul>
                         </div>
-                        
-                        <div class="house-type-content" id="umum-suite-content">
-                            <h4>Spesifikasi Tipe Suite</h4>
-                            <ul class="spec-list">
-                                <li>Tanah dan bangunan lebih luas dari tipe subsidi</li>
-                                <li>Desain modern dengan layout optimal</li>
-                                <li>Material bangunan berkualitas premium</li>
-                                <li>Canopy tidak termasuk dalam paket standar</li>
-                                <li>Pembangunan ±3-4 bulan setelah akad</li>
-                            </ul>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Ajakan Survey</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Bagaimana kalau kita lihat langsung unitnya? Saya bisa antar sekarang juga."</div>
+                            </div>
+                            <div class="note warning">
+                                <i class="fas fa-exclamation-triangle"></i> 80% closing terjadi setelah customer melihat unit langsung
+                            </div>
                         </div>
-                        
-                        <div class="house-type-content" id="umum-premium-content">
-                            <h4>Spesifikasi Tipe Premium</h4>
-                            <ul class="spec-list">
-                                <li>Luas tanah dan bangunan terbesar</li>
-                                <li>Desain eksklusif dengan material terbaik</li>
-                                <li>Fasilitas tambahan seperti gazebo dan taman pribadi</li>
-                                <li>Canopy tidak termasuk dalam paket standar</li>
-                                <li>Pembangunan ±3-4 bulan setelah akad</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Informasi dari marketing sebelumnya apakah sudah lengkap atau ada yang ingin diklarifikasi ulang kak?"</div>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Penawaran Spesial</h3>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Khusus hari ini, ada promo tambahan diskon 5% untuk booking langsung."</div>
+                            </div>
+                            <div class="dialog">
+                                <div class="dialog-role">Marketing:</div>
+                                <div class="dialog-text">"Kita bisa mulai dengan hold stok Rp100rb dulu, unit tidak akan kami jual ke orang lain."</div>
+                            </div>
+                            <div class="note danger">
+                                <i class="fas fa-clock"></i> Buat sense of urgency: "Promo hanya hari ini saja"
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Survey Rumah Contoh</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kalau sudah cukup jelas, kita lihat rumah contohnya ya kak. Biar lebih yakin dengan kondisi aslinya."</div>
-                        </div>
-                        
-                        <h4>Panduan Survey:</h4>
-                        <ul class="spec-list">
-                            <li>Tunjukkan spek real: posisi kamar, dapur, ventilasi</li>
-                            <li>Jelaskan kualitas material yang digunakan</li>
-                            <li>Sampaikan kebebasan renovasi pasca-akad</li>
-                            <li>Perlihatkan fasilitas lingkungan sekitar</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h3 class="step-title">Arahkan ke Booking Fee</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kalau kakak sudah cocok, kita bisa lanjut ke proses booking ya."</div>
-                        </div>
-                        
-                        <h4>Nominal Booking Fee:</h4>
-                        <ul class="spec-list">
-                            <li><strong>Subsidi:</strong> Rp500.000</li>
-                            <li><strong>Suite/Premium:</strong> Rp2.000.000</li>
-                        </ul>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Booking bisa transfer ke admin, atau cash langsung. Saya bantu input dan kirimkan bukti booking-nya."</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">6</div>
-                    <h3 class="step-title">Validasi KPR (Jika Subsidi)</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Kalau metode bayarnya pakai KPR subsidi, saya tanya sedikit ya kak."</div>
-                        </div>
-                        
-                        <h4>Pertanyaan Penting:</h4>
-                        <ul class="spec-list">
-                            <li>Penghasilan per bulan?</li>
-                            <li>Pekerjaan (pegawai/usaha)?</li>
-                            <li>Ada cicilan aktif?</li>
-                        </ul>
-                        
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Nanti kami bantu arahkan solusinya kak, agar tetap bisa lanjut proses."</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">7</div>
-                    <h3 class="step-title">Pemberkasan & Bank Rekanan</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Setelah booking dan berkas lengkap, kami ajukan ke BTN Syariah atau BJB Syariah sesuai profil kakak. Kami bantu dari awal sampai akad."</div>
-                        </div>
-                        
-                        <h4>Dokumen KPR Subsidi:</h4>
-                        <ul class="doc-list">
-                            <li>KTP suami istri (4 rangkap)</li>
-                            <li>KK</li>
-                            <li>NPWP</li>
-                            <li>Buku tabungan 3 bulan terakhir</li>
-                            <li>Slip gaji / surat penghasilan</li>
-                            <li>Surat belum punya rumah</li>
-                            <li>Surat domisili jika alamat beda</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">8</div>
-                    <h3 class="step-title">Penutup & Follow-up</h3>
-                    <div class="step-content">
-                        <div class="dialog">
-                            <div class="dialog-role">Marketing:</div>
-                            <div class="dialog-text">"Terima kasih atas kunjungannya. Kami akan follow-up dalam 1x24 jam untuk proses selanjutnya."</div>
-                        </div>
-                        
-                        <div class="note">
-                            <i class="fas fa-calendar-check"></i> Jadwalkan pertemuan berikutnya sebelum customer pulang, baik untuk survei ulang atau pengumpulan dokumen.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="action-btns">
-                <a href="#" class="btn btn-primary">
-                    <i class="fas fa-download"></i> Unduh PDF
-                </a>
-                <a href="#" class="btn btn-outline">
-                    <i class="fas fa-share-alt"></i> Bagikan
-                </a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p class="footer-text">© 2025 Kertamulya Residence - SOP Marketing In-House</p>
+            <p class="footer-text">© 2025 Kertamulya Residence - Script Marketing In-House</p>
         </div>
     </footer>
 
@@ -1314,11 +924,6 @@
                     // Show selected content
                     document.getElementById(`${parentTab}-${type}-content`).classList.add('active');
                 });
-            });
-            
-            // Print functionality
-            document.getElementById('printBtn').addEventListener('click', function() {
-                window.print();
             });
             
             // Initialize first tab content
