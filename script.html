@@ -340,84 +340,6 @@
             border-bottom: 1px dashed var(--gray-dark);
         }
 
-        .action-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-2px);
-        }
-
-        .btn-print {
-            background-color: var(--accent);
-            color: var(--dark);
-        }
-
-        .btn-print:hover {
-            background-color: var(--accent-dark);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        .summary-card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-
-        .summary-card:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .summary-card h3 {
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .summary-card h3 i {
-            margin-right: 0.5rem;
-        }
-
         table {
             width: 100%;
             border-collapse: collapse;
@@ -451,7 +373,7 @@
                 font-size: 12pt;
             }
 
-            header, .action-buttons, .tab-container {
+            header, .tab-container {
                 display: none;
             }
 
@@ -508,14 +430,6 @@
             }
 
             .form-group .form-value {
-                width: 100%;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
                 width: 100%;
             }
         }
@@ -638,79 +552,144 @@
                     </div>
                 </div>
 
-<!-- Step 4 - Form Inhouse (Updated) -->
-    <div class="step">
-        <div class="step-header">
-            <div class="step-number">4</div>
-            <div class="step-title">Isi Form Inhouse (WAJIB SOP)</div>
-            <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
-        </div>
-        <div class="step-content">
-            <div class="script-box marketing">
-                <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
-                <div class="script-content">
-                    <p>"Saya isi dulu data dasarnya ya kak, sebentar."</p>
-                    <p><em>Isi data sambil ngobrol natural:</em></p>
+                <!-- Step 4 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Isi Form Inhouse (WAJIB SOP)</div>
+                        <div class="script-content">
+                            <div class="script-box notes">
+                                <div class="script-title"><i class="fas fa-exclamation-triangle"></i> Penting:</div>
+                                <div class="script-content">
+                                    <p>Form harus diisi lengkap sebagai bagian dari SOP perusahaan dan tracking marketing.</p>
+                                    <p>Silakan buka form inhouse di: <a href="https://bimulialand.com/kertamulya/script" target="_blank">https://bimulialand.com/kertamulya/script</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="script-box marketing">
+                            <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                            <div class="script-content">
+                                <p>"Saya isi dulu data dasarnya ya kak, sebentar."</p>
+                                <p><em>Isi data sambil ngobrol natural:</em></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-example">
-                <div class="form-group">
-                    <label>Nama Lengkap</label>
-                    <div class="form-value">[Nama Customer]</div>
-                </div>
-                <div class="form-group">
-                    <label>Nomor WhatsApp</label>
-                    <div class="form-value">[08xxxxxxxxxx]</div>
-                </div>
-                <div class="form-group">
-                    <label>Alamat</label>
-                    <div class="form-value">[Alamat lengkap]</div>
-                </div>
-                <div class="form-group">
-                    <label>Kecamatan & Kota</label>
-                    <div class="form-value">[Kecamatan], [Kota]</div>
-                </div>
-                <div class="form-group">
-                    <label>Pekerjaan</label>
-                    <div class="form-value">[Pegawai Swasta/PNS/Wiraswasta/dll]</div>
-                </div>
-                <div class="form-group">
-                    <label>Pilihan Tipe Rumah</label>
-                    <div class="form-value">
-                        <span class="badge badge-primary">Subsidi</span>
-                        <span class="badge badge-accent">Suite</span>
-                        <span class="badge badge-danger">Premium</span>
+                <!-- Step 5 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Penjelasan Detail Tipe (Jika Customer Minta)</div>
+                        <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="script-box marketing">
+                            <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                            <div class="script-content">
+                                <p>"Untuk tipe subsidi, luas tanahnya 60 meter, bangunan 30 meter, 2 kamar tidur, 1 kamar mandi."</p>
+                                <p>"Pondasi batu kali + cakar ayam, plafon GRC, keramik Milan 40x40, atap metal pasir."</p>
+                                <p>"Taman, dapur, dan sekat belum termasuk ya kak — bisa kakak desain sendiri setelah akad."</p>
+                                <p><em>(Jika tipe Suite atau Premium, jelaskan versi upgrade dan progress 3-4 bulan setelah akad)</em></p>
+                            </div>
+                        </div>
+
+                        <div class="script-box notes">
+                            <div class="script-title"><i class="fas fa-lightbulb"></i> Tips Penjelasan:</div>
+                            <div class="script-content">
+                                <ul>
+                                    <li>Gunakan bahasa sederhana, hindari jargon teknis</li>
+                                    <li>Tunjukkan gambar/denah jika ada</li>
+                                    <li>Fokus pada keunggulan tipe yang dipilih</li>
+                                    <li>Jujur tentang apa yang tidak termasuk</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Metode Pembayaran</label>
-                    <div class="form-value">
-                        <span class="badge badge-primary">KPR</span>
-                        <span class="badge badge-accent">Cash Bertahap</span>
-                        <span class="badge">Cash Keras</span>
+
+                <!-- Step 6 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Survey Rumah Contoh</div>
+                        <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="script-box marketing">
+                            <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                            <div class="script-content">
+                                <p>"Kalau sudah oke, kita langsung lihat rumah contohnya ya kak. Biar kakak bisa lihat langsung posisi ruangannya dan lingkungannya."</p>
+                            </div>
+                        </div>
+
+                        <div class="script-box notes">
+                            <div class="script-title"><i class="fas fa-map-marked-alt"></i> Di Lapangan:</div>
+                            <div class="script-content">
+                                <ul>
+                                    <li>Tunjukkan posisi kamar, dapur</li>
+                                    <li>Demonstrasikan sirkulasi udara dan pencahayaan</li>
+                                    <li>Tegaskan bagian yang bisa direnovasi pasca-akad</li>
+                                    <li>Jelaskan fasilitas lingkungan (masjid, playground, dll)</li>
+                                    <li>Jangan overpromise, jelaskan realita yang ada</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Penghasilan (Jika KPR)</label>
-                    <div class="form-value">[Jumlah penghasilan per bulan]</div>
-                </div>
-                <div class="form-group">
-                    <label>Sumber Info</label>
-                    <div class="form-value">[Website/Brosur/Freelance Marketing]</div>
-                </div>
-                <div class="form-group">
-                    <label>Checklist Fitur Tidak Termasuk</label>
-                    <div class="form-value">
-                        <span class="badge">Taman</span>
-                        <span class="badge">Sekat</span>
-                        <span class="badge">Dapur</span>
-                        <span class="badge">Canopy</span>
+
+                <!-- Step 7 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">7</div>
+                        <div class="step-title">Arah ke Booking Fee</div>
+                        <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="script-box marketing">
+                            <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                            <div class="script-content">
+                                <p>"Kalau kakak sudah cocok, kita lanjut ke proses pelunasan booking fee ya."</p>
+                                <p>"Karena kakak sudah transfer Rp100.000 sebelumnya untuk pengamanan stok, tinggal melunasi sisanya sesuai tipe yang dipilih."</p>
+                            </div>
+                        </div>
+
+                        <div class="script-box danger">
+                            <div class="script-title"><i class="fas fa-money-bill-wave"></i> Booking Fee Per Tipe:</div>
+                            <div class="script-content">
+                                <p><strong>Subsidi:</strong> Rp500.000 → sisa Rp400.000</p>
+                                <p><strong>Suite/Premium:</strong> Rp2.000.000 → sisa Rp1.900.000</p>
+                            </div>
+                        </div>
+
+                        <div class="script-box marketing">
+                            <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                            <div class="script-content">
+                                <p>"Bisa transfer ke admin atau cash langsung. Nanti saya bantu buatkan bukti booking-nya."</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
+                <!-- Step 8 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">8</div>
+                        <div class="step-title">Validasi Penghasilan & Cicilan (Khusus KPR Subsidi)</div>
+                        <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="script-box notes">
+                            <div class="script-title"><i class="fas fa-info-circle"></i> Catatan:</div>
+                            <div class="script-content">
+                                <p>Validasi KPR sudah termasuk dalam form inhouse di: <a href="https://bimulialand.com/kertamulya/script" target="_blank">https://bimulialand.com/kertamulya/script</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Step 9 -->
                 <div class="step">
@@ -720,21 +699,6 @@
                         <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="step-content">
-                        <div class="script-box danger">
-                            <div class="script-title"><i class="fas fa-file-alt"></i> KPR Subsidi Berkas:</div>
-                            <div class="script-content">
-                                <ul>
-                                    <li>KTP suami istri (4 rangkap)</li>
-                                    <li>KK</li>
-                                    <li>NPWP</li>
-                                    <li>Buku tabungan 3 bulan</li>
-                                    <li>Slip gaji / surat penghasilan</li>
-                                    <li>Surat belum punya rumah</li>
-                                    <li>Surat domisili (jika alamat KTP beda)</li>
-                                </ul>
-                            </div>
-                        </div>
-
                         <div class="script-box marketing">
                             <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
                             <div class="script-content">
@@ -793,7 +757,7 @@
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">8. Kelayakan KPR</td>
-                                    <td>Tanyakan penghasilan + cicilan</td>
+                                    <td>Sudah termasuk dalam form inhouse</td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">9. Berkas & Bank</td>
@@ -857,22 +821,7 @@
                             <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
                             <div class="script-content">
                                 <p>"Saya isi dulu data dasar kakak ya, untuk keperluan internal kami."</p>
-                            </div>
-                        </div>
-
-                        <div class="script-box notes">
-                            <div class="script-title"><i class="fas fa-check-circle"></i> Data yang diisi:</div>
-                            <div class="script-content">
-                                <ul>
-                                    <li>Nama</li>
-                                    <li>No WA</li>
-                                    <li>Alamat</li>
-                                    <li>Kecamatan & Kota</li>
-                                    <li>Sumber informasi: Brosur / CFD / Lokasi langsung</li>
-                                    <li>Tipe Rumah diminati: Subsidi / Suite / Premium</li>
-                                    <li>Metode Pembayaran: tanyakan (lihat poin berikut)</li>
-                                    <li>Checklist fitur tidak termasuk (taman, sekat, dapur/canopy)</li>
-                                </ul>
+                                <p>Silakan buka form inhouse di: <a href="https://bimulialand.com/kertamulya/script" target="_blank">https://bimulialand.com/kertamulya/script</a></p>
                             </div>
                         </div>
                     </div>
@@ -895,13 +844,6 @@
                                     <li>Cash keras (langsung lunas)</li>
                                     <li>Cash bertahap ke developer (maksimal 6 bulan)</li>
                                 </ul>
-                            </div>
-                        </div>
-
-                        <div class="script-box notes">
-                            <div class="script-title"><i class="fas fa-lightbulb"></i> Catatan:</div>
-                            <div class="script-content">
-                                <p>Catat pilihan customer untuk arahkan proses selanjutnya.</p>
                             </div>
                         </div>
                     </div>
@@ -1001,23 +943,10 @@
                         <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="step-content">
-                        <div class="script-box marketing">
-                            <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
-                            <div class="script-content">
-                                <p>"Kalau metode bayarnya KPR, saya tanya sedikit ya kak untuk verifikasi awal."</p>
-                                <p><em>Tanya sopan:</em></p>
-                                <ul>
-                                    <li>Penghasilan bulanan?</li>
-                                    <li>Pekerjaan (pegawai/usaha)?</li>
-                                    <li>Ada cicilan berjalan?</li>
-                                </ul>
-                            </div>
-                        </div>
-
                         <div class="script-box notes">
-                            <div class="script-title"><i class="fas fa-user-check"></i> Jika kondisi tidak ideal:</div>
+                            <div class="script-title"><i class="fas fa-info-circle"></i> Catatan:</div>
                             <div class="script-content">
-                                <p>"Nanti kami bantu arahkan opsi terbaik kak, agar tetap bisa lanjut proses sesuai kondisi."</p>
+                                <p>Validasi KPR sudah termasuk dalam form inhouse di: <a href="https://bimulialand.com/kertamulya/script" target="_blank">https://bimulialand.com/kertamulya/script</a></p>
                             </div>
                         </div>
                     </div>
@@ -1031,33 +960,8 @@
                         <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="step-content">
-                        <div class="script-box danger">
-                            <div class="script-title"><i class="fas fa-file-alt"></i> Dokumen KPR:</div>
-                            <div class="script-content">
-                                <ul>
-                                    <li>KTP suami istri (4 rangkap)</li>
-                                    <li>KK</li>
-                                    <li>NPWP</li>
-                                    <li>Buku tabungan 3 bulan</li>
-                                    <li>Slip gaji / surat penghasilan</li>
-                                    <li>Surat belum punya rumah</li>
-                                    <li>Surat domisili jika alamat beda</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 10 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">10</div>
-                        <div class="step-title">Bank Rekanan</div>
-                        <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
-                    </div>
-                    <div class="step-content">
                         <div class="script-box marketing">
-                            <div class="script-title"><i class="fas fa-university"></i> Marketing:</div>
+                            <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
                             <div class="script-content">
                                 <p>"Kita akan bantu proses sesuai kondisi kakak, dan dampingi sampai akad."</p>
                                 <p><strong>Bank Rekanan:</strong> BTN Syariah & BJB Syariah</p>
@@ -1094,7 +998,7 @@
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">3. Isi Form</td>
-                                    <td>Data dasar lengkap</td>
+                                    <td>Gunakan form online yang tersedia</td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">4. Sistem Pembelian</td>
@@ -1114,15 +1018,11 @@
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">8. Validasi KPR</td>
-                                    <td>Tanya penghasilan & cicilan</td>
+                                    <td>Sudah termasuk dalam form inhouse</td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">9. Pemberkasan</td>
                                     <td>Siapkan dokumen lengkap</td>
-                                </tr>
-                                <tr>
-                                    <td style="font-weight: 500;">10. Bank Rekanan</td>
-                                    <td>BTN Syariah & BJB Syariah</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1183,22 +1083,7 @@
                             <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
                             <div class="script-content">
                                 <p>"Saya input dulu datanya ya kak, sambil ngobrol sebentar."</p>
-                            </div>
-                        </div>
-
-                        <div class="script-box notes">
-                            <div class="script-title"><i class="fas fa-check-circle"></i> Data yang diisi:</div>
-                            <div class="script-content">
-                                <ul>
-                                    <li>Nama</li>
-                                    <li>Nomor WA</li>
-                                    <li>Alamat</li>
-                                    <li>Kecamatan & Kota</li>
-                                    <li>Tipe Rumah diminati</li>
-                                    <li>Metode Pembayaran</li>
-                                    <li>Sumber: Marketing Freelance</li>
-                                    <li>Checklist sesuai tipe rumah</li>
-                                </ul>
+                                <p>Silakan buka form inhouse di: <a href="https://bimulialand.com/kertamulya/script" target="_blank">https://bimulialand.com/kertamulya/script</a></p>
                             </div>
                         </div>
                     </div>
@@ -1307,10 +1192,10 @@
                         <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="step-content">
-                        <div class="script-box marketing">
-                            <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-box notes">
+                            <div class="script-title"><i class="fas fa-info-circle"></i> Catatan:</div>
                             <div class="script-content">
-                                <p>"Tanyakan penghasilan, pekerjaan, cicilan berjalan. Beri solusi jika ada kendala."</p>
+                                <p>Validasi KPR sudah termasuk dalam form inhouse di: <a href="https://bimulialand.com/kertamulya/script" target="_blank">https://bimulialand.com/kertamulya/script</a></p>
                             </div>
                         </div>
                     </div>
@@ -1321,23 +1206,6 @@
                     <div class="step-header">
                         <div class="step-number">10</div>
                         <div class="step-title">Pemberkasan</div>
-                        <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
-                    </div>
-                    <div class="step-content">
-                        <div class="script-box notes">
-                            <div class="script-title"><i class="fas fa-file-alt"></i> Dokumen:</div>
-                            <div class="script-content">
-                                <p>Siapkan dokumen KPR seperti dalam SOP umum.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 11 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">11</div>
-                        <div class="step-title">Bank Rekanan</div>
                         <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="step-content">
@@ -1378,7 +1246,7 @@
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">3. Isi Form</td>
-                                    <td>Data dasar lengkap</td>
+                                    <td>Gunakan form online yang tersedia</td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">4. Sistem Pembelian</td>
@@ -1402,15 +1270,11 @@
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">9. Validasi KPR</td>
-                                    <td>Tanya penghasilan & cicilan</td>
+                                    <td>Sudah termasuk dalam form inhouse</td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight: 500;">10. Pemberkasan</td>
                                     <td>Siapkan dokumen lengkap</td>
-                                </tr>
-                                <tr>
-                                    <td style="font-weight: 500;">11. Bank Rekanan</td>
-                                    <td>BTN Syariah & BJB Syariah</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1418,17 +1282,9 @@
                 </div>
             </div>
         </div>
-
-       <!-- Action buttons (Updated) -->
-    <div class="action-buttons">
-        <button class="btn btn-primary" onclick="location.reload()">
-            <i class="fas fa-sync-alt"></i> Refresh
-        </button>
-    </div>
     </div>
 
     <script>
-        // Script remains the same except print functionality removal
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize accordion functionality
             const steps = document.querySelectorAll('.step');
