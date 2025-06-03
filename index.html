@@ -2597,20 +2597,11 @@ document.addEventListener('DOMContentLoaded', function() {
   animateProgressBars();
   
   // Initialize video modal buttons
-  document.querySelectorAll('[data-modal-type="video"]').forEach(btn => {
+  document.querySelectorAll('[onclick*="showModal(\'video\'"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      const type = this.dataset.houseType;
+      const type = this.getAttribute('onclick').match(/showModal\('video', '([^']+)'/)[1];
       showVideoModal(type);
-    });
-  });
-  
-  // Initialize gallery modal buttons
-  document.querySelectorAll('[data-modal-type="gallery"]').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const type = this.dataset.houseType;
-      showGalleryModal(type);
     });
   });
 });
@@ -2629,30 +2620,22 @@ function updateCountdown() {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
   
-  // Update elements if they exist
-  const daysEl = document.getElementById('days');
-  const hoursEl = document.getElementById('hours');
-  const minutesEl = document.getElementById('minutes');
-  const secondsEl = document.getElementById('seconds');
+  document.getElementById('days').textContent = days.toString().padStart(2, '0');
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
   
-  if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
-  if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
-  if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
-  if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+  const totalDuration = 3 * 24 * 60 * 60 * 1000;
+  const elapsed = totalDuration - distance;
+  const progressPercent = (elapsed / totalDuration) * 100;
   
-  const progressBar = document.querySelector('.progress-bar');
-  if (progressBar) {
-    const totalDuration = 3 * 24 * 60 * 60 * 1000;
-    const elapsed = totalDuration - distance;
-    const progressPercent = (elapsed / totalDuration) * 100;
-    progressBar.style.width = `${100 - progressPercent}%`;
-    
-    if (distance < (24 * 60 * 60 * 1000)) {
-      document.querySelectorAll('.countdown-number').forEach(el => {
-        el.style.color = '#ff6b6b';
-      });
-      progressBar.style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
-    }
+  document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
+  
+  if (distance < (24 * 60 * 60 * 1000)) {
+    document.querySelectorAll('.countdown-number').forEach(el => {
+      el.style.color = '#ff6b6b';
+    });
+    document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
   }
 }
 
@@ -2678,7 +2661,7 @@ function setupTypeSelector() {
 // ========== NOTIFICATIONS ==========
 function showRandomNotification() {
   const notifications = [
-    "Pak Budi baru saja booking unit Hunian Suite!",
+    "Pak Budi baru saja booking unit Hunian Suite !",
     "Bu Ani membeli Tipe Standard",
     "12 unit terjual hari ini!",
     "Promo motor gratis hanya 3 hari lagi",
@@ -2687,8 +2670,6 @@ function showRandomNotification() {
   
   const notification = document.getElementById('notification');
   const notificationText = document.getElementById('notificationText');
-  
-  if (!notification || !notificationText) return;
   
   notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
   notification.style.display = 'flex';
@@ -2705,6 +2686,7 @@ function showRandomNotification() {
   }, 5000);
 }
 
+
 function animateSoldCount() {
   const soldCount = document.querySelector('.sold-count');
   if (!soldCount) return;
@@ -2713,7 +2695,7 @@ function animateSoldCount() {
   const target = parseInt(soldCount.textContent) || 12;
   const increment = target / 20;
   
-  soldCount.textContent = '0';
+  soldCount.textContent = '0'; // Reset to 0 before animation
   
   const interval = setInterval(() => {
     count += increment;
@@ -2725,6 +2707,23 @@ function animateSoldCount() {
   }, 50);
 }
 
+// Call this function when the hero section is in view
+document.addEventListener('DOMContentLoaded', function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateSoldCount();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.5});
+
+  const heroSection = document.querySelector('.hero');
+  if (heroSection) {
+    observer.observe(heroSection);
+  }
+});
+
 // ========== FAQ ACCORDION ==========
 function setupFAQAccordion() {
   const faqItems = document.querySelectorAll('.faq-item');
@@ -2733,10 +2732,12 @@ function setupFAQAccordion() {
     const question = item.querySelector('.faq-question');
     
     question.addEventListener('click', () => {
+      // Toggle current item
       const isActive = item.classList.contains('active');
       const answer = item.querySelector('.faq-answer');
       const icon = item.querySelector('.faq-question i');
       
+      // Close all other items first
       faqItems.forEach(otherItem => {
         if (otherItem !== item) {
           otherItem.classList.remove('active');
@@ -2745,6 +2746,7 @@ function setupFAQAccordion() {
         }
       });
       
+      // Then toggle current item
       item.classList.toggle('active');
       
       if (item.classList.contains('active')) {
@@ -2756,6 +2758,7 @@ function setupFAQAccordion() {
       }
     });
     
+    // Initialize first item as active
     if (item === faqItems[0]) {
       item.classList.add('active');
       item.querySelector('.faq-answer').style.maxHeight = item.querySelector('.faq-answer').scrollHeight + 'px';
@@ -2764,55 +2767,60 @@ function setupFAQAccordion() {
   });
 }
 
-// ========== GALLERY MODAL ==========
-const galleryImages = {
-  standard: [
-    'img/tipe-rumah/standart/standar-utama.webp',
-    'img/tipe-rumah/standart/standar1.webp',
-    'img/tipe-rumah/standart/standar2.webp',
-    'img/tipe-rumah/standart/standar3.webp',
-    'img/tipe-rumah/standart/standar4.webp',
-    'img/tipe-rumah/standart/standar5.webp',
-    'img/tipe-rumah/standart/standar6.webp',
-    'img/tipe-rumah/standart/standar7.webp',
-    'img/tipe-rumah/standart/denah-standar.webp',
-    'img/tipe-rumah/standart/spek-standar.webp'
-  ],
-  suite: [
-    'img/tipe-rumah/suite/suite-utama.webp',
-    'img/tipe-rumah/suite/suite1.webp',
-    'img/tipe-rumah/suite/suite2.webp',
-    'img/tipe-rumah/suite/suite3.webp',
-    'img/tipe-rumah/suite/suite4.webp',
-    'img/tipe-rumah/suite/suite5.webp',
-    'img/tipe-rumah/suite/denah-suite1.webp',
-    'img/tipe-rumah/suite/denah-suite2.webp',
-    'img/tipe-rumah/suite/spek-suite.webp'
-  ],
-  premium: [
-    'img/tipe-rumah/premium/premium-utama.webp',
-    'img/tipe-rumah/premium/premium1.webp',
-    'img/tipe-rumah/premium/premium2.webp',
-    'img/tipe-rumah/premium/premium3.webp',
-    'img/tipe-rumah/premium/premium4.webp',
-    'img/tipe-rumah/premium/premium5.webp',
-    'img/tipe-rumah/premium/denah-premium1.webp',
-    'img/tipe-rumah/premium/denah-premium2.webp',
-    'img/tipe-rumah/premium/spek-premium.webp'
-  ]
-};
+// Call this on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', setupFAQAccordion);
 
+// ========== GALLERY MODAL ==========
 function initGalleryModal() {
-  document.querySelectorAll('[data-modal-type="gallery"]').forEach(btn => {
+  // Image sets with local image paths
+  const galleryImages = {
+    standard: [
+      'img/tipe-rumah/standart/standar-utama.webp',
+      'img/tipe-rumah/standart/standar1.webp',
+      'img/tipe-rumah/standart/standar2.webp',
+      'img/tipe-rumah/standart/standar3.webp',
+      'img/tipe-rumah/standart/standar4.webp',
+      'img/tipe-rumah/standart/standar5.webp',
+      'img/tipe-rumah/standart/standar6.webp',
+      'img/tipe-rumah/standart/standar7.webp',
+      'img/tipe-rumah/standart/denah-standar.webp',
+      'img/tipe-rumah/standart/spek-standar.webp'
+    ],
+    suite: [
+      'img/tipe-rumah/suite/suite-utama.webp',
+      'img/tipe-rumah/suite/suite1.webp',
+      'img/tipe-rumah/suite/suite2.webp',
+      'img/tipe-rumah/suite/suite3.webp',
+      'img/tipe-rumah/suite/suite4.webp',
+      'img/tipe-rumah/suite/suite5.webp',
+      'img/tipe-rumah/suite/denah-suite1.webp',
+      'img/tipe-rumah/suite/denah-suite2.webp',
+      'img/tipe-rumah/suite/spek-suite.webp'
+    ],
+    premium: [
+      'img/tipe-rumah/premium/premium-utama.webp',
+      'img/tipe-rumah/premium/premium1.webp',
+      'img/tipe-rumah/premium/premium2.webp',
+      'img/tipe-rumah/premium/premium3.webp',
+      'img/tipe-rumah/premium/premium4.webp',
+      'img/tipe-rumah/premium/premium5.webp',
+      'img/tipe-rumah/premium/denah-premium1.webp',
+      'img/tipe-rumah/premium/denah-premium2.webp',
+      'img/tipe-rumah/premium/spek-premium.webp'
+    ]
+  };
+
+  // Initialize gallery buttons
+  document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      const type = this.dataset.houseType;
-      showGalleryModal(type);
+      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
+      showGalleryModal(type, galleryImages);
     });
   });
 }
 
-function showGalleryModal(type) {
+function showGalleryModal(type, images) {
   const titleMap = {
     standard: 'Standard 30/60',
     suite: 'Suite 50/60',
@@ -2823,39 +2831,36 @@ function showGalleryModal(type) {
   const carousel = document.getElementById('galleryCarousel');
   carousel.innerHTML = '';
 
-  galleryImages[type].forEach(img => {
+  // Add slides to carousel
+  images[type].forEach(img => {
     const slide = document.createElement('div');
     slide.className = 'gallery-slide';
     slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
     carousel.appendChild(slide);
   });
 
-  if (typeof $.fn.slick !== 'undefined') {
-    $(carousel).slick({
-      dots: true,
-      infinite: true,
-      speed: 300,
-      slidesToShow: 1,
-      adaptiveHeight: true,
-      autoplay: false,
-      arrows: true,
-      prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-      nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-    });
-  }
+  // Initialize Slick Carousel
+  $(carousel).slick({
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    adaptiveHeight: true,
+    autoplay: false,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+  });
 
+  // Show modal
   document.getElementById('galleryModal').classList.add('active');
 }
 
 // ========== VIDEO MODAL ==========
 function showVideoModal(type) {
   const videoId = getVideoId(type);
-  const iframe = document.getElementById('videoFrame');
-  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-  document.getElementById('videoModal').style.display = 'flex';
-  setTimeout(() => {
-    document.getElementById('videoModal').style.opacity = '1';
-  }, 10);
+  document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  document.getElementById('videoModal').classList.add('active');
 }
 
 function getVideoId(type) {
@@ -2866,60 +2871,142 @@ function getVideoId(type) {
     testimonial1: 'LgHbkuOKsw0',
     testimonial2: 'UF5V1-Vu6uI'
   };
-  return videoIds[type] || '2vYd5Fd_-Q8';
+  return videoIds[type] || '';
 }
 
 // ========== MODAL FUNCTIONS ==========
+function showModal(type, subtype = null, houseType = null) {
+  if (type === 'gallery' && subtype) {
+    const galleryImages = {
+      standard: [
+        'img/tipe-rumah/standart/standar-utama.webp',
+        'img/tipe-rumah/standart/standar1.webp',
+        'img/tipe-rumah/standart/standar2.webp',
+        'img/tipe-rumah/standart/standar3.webp',
+        'img/tipe-rumah/standart/standar4.webp',
+        'img/tipe-rumah/standart/standar5.webp',
+        'img/tipe-rumah/standart/standar6.webp',
+        'img/tipe-rumah/standart/standar7.webp',
+        'img/tipe-rumah/standart/denah-standar.webp',
+        'img/tipe-rumah/standart/spek-standar.webp'
+      ],
+      suite: [
+        'img/tipe-rumah/suite/suite-utama.webp',
+        'img/tipe-rumah/suite/suite1.webp',
+        'img/tipe-rumah/suite/suite2.webp',
+        'img/tipe-rumah/suite/suite3.webp',
+        'img/tipe-rumah/suite/suite4.webp',
+        'img/tipe-rumah/suite/suite5.webp',
+        'img/tipe-rumah/suite/denah-suite1.webp',
+        'img/tipe-rumah/suite/denah-suite2.webp',
+        'img/tipe-rumah/suite/spek-suite.webp'
+      ],
+      premium: [
+        'img/tipe-rumah/premium/premium-utama.webp',
+        'img/tipe-rumah/premium/premium1.webp',
+        'img/tipe-rumah/premium/premium2.webp',
+        'img/tipe-rumah/premium/premium3.webp',
+        'img/tipe-rumah/premium/premium4.webp',
+        'img/tipe-rumah/premium/premium5.webp',
+        'img/tipe-rumah/premium/denah-premium1.webp',
+        'img/tipe-rumah/premium/denah-premium2.webp',
+        'img/tipe-rumah/premium/spek-premium.webp'
+      ]
+    };
+    showGalleryModal(subtype, galleryImages);
+  }
+  else if (type === 'booking') {
+    if (houseType) document.getElementById('type').value = houseType;
+    document.getElementById('bookingModal').classList.add('active');
+  }
+  else if (type === 'video' && subtype) {
+    showVideoModal(subtype);
+  }
+}
+
 function hideModal(type) {
   if (type === 'gallery') {
-    document.getElementById('galleryModal').classList.remove('active');
     const carousel = document.getElementById('galleryCarousel');
-    if (typeof $.fn.slick !== 'undefined' && $(carousel).hasClass('slick-initialized')) {
+    if ($(carousel).hasClass('slick-initialized')) {
       $(carousel).slick('unslick');
     }
-  } else if (type === 'video') {
-    const videoModal = document.getElementById('videoModal');
-    videoModal.style.opacity = '0';
-    setTimeout(() => {
-      videoModal.style.display = 'none';
-      document.getElementById('videoFrame').src = '';
-    }, 300);
+    document.getElementById('galleryModal').classList.remove('active');
+  } 
+  else if (type === 'booking') {
+    document.getElementById('bookingModal').classList.remove('active');
+  } 
+  else if (type === 'video') {
+    document.getElementById('videoFrame').src = '';
+    document.getElementById('videoModal').classList.remove('active');
   }
 }
 
 // ========== PROGRESS BARS ==========
 function animateProgressBars() {
-  const stockIndicators = document.querySelectorAll('.stock-indicator');
+  const progressBars = document.querySelectorAll('.progress-fill');
   
-  stockIndicators.forEach(indicator => {
-    const stock = parseInt(indicator.parentElement.dataset.stock);
-    const fill = indicator.querySelector('.progress-fill');
+  progressBars.forEach(bar => {
+    const card = bar.closest('.type-card');
+    const stock = parseInt(card.dataset.stock);
+    const percentage = (stock / 10) * 100;
     
-    if (stock <= 1) {
-      fill.style.background = 'linear-gradient(90deg, #e74c3c, #c0392b)';
-    } else if (stock <= 4) {
-      fill.style.background = 'linear-gradient(90deg, #f39c12, #e67e22)';
-    }
+    bar.style.width = '0%';
+    setTimeout(() => {
+      bar.style.width = `${percentage}%`;
+    }, 300);
   });
 }
 
-// Close modals when clicking outside
-document.addEventListener('click', function(e) {
-  if (e.target.classList.contains('modal')) {
-    hideModal('gallery');
-  }
-  if (e.target.classList.contains('video-modal')) {
-    hideModal('video');
+// Initialize Intersection Observer for progress bars
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) animateProgressBars();
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.type-card').forEach(card => {
+  observer.observe(card);
+});
+
+// Fungsi untuk mengatur type selector
+function setupTypeSelector() {
+  const typeBtns = document.querySelectorAll('.type-btn');
+  const typeCards = document.querySelectorAll('.type-card');
+  
+  typeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Hapus class active dari semua tombol
+      typeBtns.forEach(b => b.classList.remove('active'));
+      
+      // Tambah class active ke tombol yang diklik
+      this.classList.add('active');
+      
+      const selectedType = this.dataset.type;
+      
+      // Tampilkan/sembunyikan card berdasarkan tipe yang dipilih
+      typeCards.forEach(card => {
+        if (selectedType === 'all' || card.dataset.type === selectedType) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+// Panggil fungsi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+  setupTypeSelector();
+  
+  // Juga panggil saat konten selesai dimuat (untuk memastikan)
+  if (document.readyState === 'complete') {
+    setupTypeSelector();
   }
 });
 
-// Close modals with ESC key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    hideModal('gallery');
-    hideModal('video');
-  }
-});
+// Fallback jika DOMContentLoaded tidak terpicu
+window.addEventListener('load', setupTypeSelector);
 </script>
 
 <!-- Load remaining non-critical JS -->
