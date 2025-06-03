@@ -1483,39 +1483,6 @@ button, input, textarea, select {
   border: none;
 }
 </style>
-
-<!-- Load critical JS inline -->
-<script>
-// Simple DOM ready check
-function domReady(fn) {
-  document.readyState === "complete" ? fn() : document.addEventListener("DOMContentLoaded", fn);
-}
-
-// Load non-critical JS after page load
-function loadDeferredResources() {
-  const resources = [
-    'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js'
-  ];
-  
-  resources.forEach(src => {
-    const script = document.createElement('script');
-    script.src = src;
-    script.async = true;
-    document.body.appendChild(script);
-  });
-  
-  // Load fonts after main content
-  const fontLink = document.createElement('link');
-  fontLink.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap';
-  fontLink.rel = 'stylesheet';
-  document.head.appendChild(fontLink);
-}
-
-// Start loading deferred resources after DOM is ready
-domReady(loadDeferredResources);
-</script>
 </head>
 
 <body>
