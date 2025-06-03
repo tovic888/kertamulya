@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!-- Basic Meta Tags -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +21,7 @@
 <meta property="og:url" content="https://bimulialand.com/kertamulya/">
 <meta property="og:title" content="🔥 Kertamulya Residence - Perumahan Islami Kuningan | DP 0% + Motor Gratis">
 <meta property="og:description" content="Perumahan Islami pertama di Kuningan dengan konsep Green Living. Cicilan mulai Rp1 juta-an/bulan via BJB Syariah & BTN Syariah.">
-<meta property="og:image" content="https://bimulialand.com/kertamulya/img/social/og-image.webp">
+<meta property="og:image" content="https://bimulialand.com/kertamulya/img/social/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Tampilan Depan Kertamulya Residence - Perumahan Islami di Kuningan">
@@ -31,28 +35,100 @@
 <meta name="twitter:creator" content="@kertamulya">
 <meta name="twitter:title" content="🔥 Kertamulya Residence - Perumahan Islami Kuningan | DP 0% + Motor Gratis">
 <meta name="twitter:description" content="Perumahan Islami pertama di Kuningan dengan konsep Green Living. Cicilan mulai Rp1 juta-an/bulan via BJB Syariah & BTN Syariah.">
-<meta name="twitter:image" content="https://bimulialand.com/kertamulya/img/social/twitter-image.webp">
+<meta name="twitter:image" content="https://bimulialand.com/kertamulya/img/social/twitter-image.jpg">
 
-<!-- Favicon -->
-<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.webp">
-<link rel="icon" type="image/webp" sizes="32x32" href="/img/favicon/favicon-32x32.webp">
-<link rel="icon" type="image/webp" sizes="16x16" href="/img/favicon/favicon-16x16.webp">
+<!-- Fixed Favicon & App Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
 <link rel="manifest" href="/img/favicon/site.webmanifest">
 <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#2ecc71">
-<link rel="shortcut icon" href="/img/favicon/favicon.webp">
+<link rel="shortcut icon" href="/img/favicon/favicon.ico">
 <meta name="msapplication-TileColor" content="#2ecc71">
 <meta name="theme-color" content="#2ecc71">
 
+<!-- Single SVG favicon (no duplicates) -->
+<link rel="icon" type="image/svg+xml" href="/img/favicon/favicon.svg">
+
 <!-- Preload Critical Resources -->
-<link rel="preload" href="img/hero/hero-background.webp" as="image" media="(min-width: 769px)">
-<link rel="preload" href="img/hero/hero-background-mobile.webp" as="image" media="(max-width: 768px)">
+<link rel="preload" href="/img/hero/hero-background.webp" as="image" imagesrcset="/img/hero/hero-background-small.webp 480w, /img/hero/hero-background-medium.webp 768w, /img/hero/hero-background-large.webp 1200w" imagesizes="100vw">
 <link rel="preload" href="/fonts/poppins-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Inline Critical CSS -->
-<style>
-/* ===== VARIABEL GLOBAL & RESET ===== */
+<!-- External CSS & JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- Schema Markup (Real Estate) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Residence",
+  "name": "Kertamulya Residence",
+  "description": "Perumahan Islami pertama di Kuningan dengan konsep Green Living.",
+  "image": "https://bimulialand.com/kertamulya/img/social/schema-image.jpg",
+  "url": "https://bimulialand.com/kertamulya/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jl. Kertayasa, Blok Congkleng",
+    "addressLocality": "Kuningan",
+    "addressRegion": "Jawa Barat",
+    "postalCode": "45573",
+    "addressCountry": "ID"
+  },
+  "priceRange": "Rp166Juta - Rp408Juta",
+  "telephone": "+628977771080",
+  "offers": {
+    "@type": "Offer",
+    "price": "166000000",
+    "priceCurrency": "IDR"
+  }
+}
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2884489408426118');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2884489408426118&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- Google Tag Manager (GTM) -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXX');</script>
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXX');
+</script>
+
+<!-- Fonts & CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+   /* ===== VARIABEL GLOBAL & RESET ===== */
 :root {
   --primary: #2ecc71;
   --primary-dark: #27ae60;
@@ -70,7 +146,17 @@
   --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
 
+.container {
+  max-width: 100%;
+  padding: 0 15px;
+}
+  
 * {
   margin: 0;
   padding: 0;
@@ -148,7 +234,113 @@ button, input, textarea, select {
   max-width: 700px;
   margin: 0 auto;
 }
+/* ===== KOMPONEN UI UMUM ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.75rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-align: center;
+  gap: 0.5rem;
+}
 
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--light);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-accent:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: var(--light);
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* Badge Styles */
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.badge:after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255,255,255,0.3) 0%,
+    rgba(255,255,255,0) 60%
+  );
+  transform: rotate(30deg);
+}
+
+.badge-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+
+.badge-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+}
+
+.badge-danger {
+  background: linear-gradient(135deg, #ff4d4d, #cc0000);
+  color: white;
+}
 /* ===== HERO SECTION ===== */
 .hero {
   position: relative;
@@ -257,7 +449,988 @@ button, input, textarea, select {
   50% { transform: scale(0.95); }
   75% { transform: scale(1.05); }
 }
+/* ===== TIPE RUMAH ===== */
+.house-types {
+  background-color: var(--gray);
+}
 
+.type-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.type-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+}
+
+.type-btn.active {
+  background: var(--primary);
+  color: var(--light);
+}
+
+.type-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.type-card {
+  background: var(--light);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  display: flex; /* Tambahkan ini */
+  flex-direction: column;
+}
+
+.type-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.type-card-header {
+  position: relative;
+}
+
+.type-card-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+}
+
+.type-card-image {
+  height: 250px;
+  overflow: hidden;
+}
+
+.type-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.type-card:hover .type-card-image img {
+  transform: scale(1.05);
+}
+
+.type-card-actions {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 2;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+.type-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.type-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.type-card-price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.type-card-price .old {
+  text-decoration: line-through;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.type-card-price .new {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+}
+
+.type-card-price .new:after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  animation: pulse-border 1.5s infinite;
+  opacity: 0;
+}
+
+.type-card-features {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+.type-card-feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.type-card-feature i {
+  color: var(--primary);
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+}
+
+@keyframes pulse-border {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+}
+/* ===== WHY CHOOSE US SECTION ===== */
+.why-choose {
+  background: linear-gradient(135deg, var(--primary-light), #e8f8ef);
+  padding: 5rem 0;
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.reason-card {
+  background: var(--light);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.reason-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.reason-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--primary-dark);
+  font-size: 1.5rem;
+}
+
+.reason-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.reason-desc {
+  color: var(--text-light);
+  font-size: 0.9375rem;
+}
+
+/* ===== FACILITIES SECTION ===== */
+.facilities-section {
+  padding: 5rem 0;
+}
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.facility-card {
+  background: var(--light);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.facility-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.facility-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.facility-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.facility-card:hover .facility-image img {
+  transform: scale(1.05);
+}
+
+.facility-content {
+  padding: 1.5rem;
+}
+
+.facility-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.facility-desc {
+  color: var(--text-light);
+  font-size: 0.9375rem;
+}
+
+ /* ===== LOCATION SECTION IMPROVEMENTS ===== */
+    .location-section {
+      background: var(--gray);
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    .location-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .location-map-container {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .location-map {
+      height: 450px;
+      width: 100%;
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 3px solid var(--light);
+    }
+
+    .location-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .btn-map-directions {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 10;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: var(--dark);
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(241, 196, 15, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      transition: var(--transition);
+      animation: pulse 2s infinite;
+    }
+
+    .btn-map-directions:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(241, 196, 15, 0.6);
+    }
+
+    .location-address {
+      background: var(--primary-dark);
+      color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .location-address i {
+      color: var(--accent);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* Improved Access Items Grid */
+    .location-access {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .access-item {
+      background: var(--light);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border-left: 4px solid var(--primary);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .access-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-left-color: var(--accent);
+    }
+
+    .access-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+      font-size: 1.25rem;
+      box-shadow: 0 4px 8px rgba(46, 204, 113, 0.2);
+    }
+
+    .access-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      flex-grow: 1;
+    }
+
+    .access-info {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .access-time {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-weight: 600;
+    }
+
+    .access-time i {
+      color: var(--accent);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .location-map {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .location-access {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .location-map {
+        height: 350px;
+      }
+      
+      .access-item {
+        padding: 1.25rem;
+      }
+      
+      .access-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+      
+      .btn-map-directions {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+        bottom: 15px;
+        right: 15px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .location-map {
+        height: 300px;
+      }
+      
+      .location-access {
+        grid-template-columns: 1fr;
+      }
+      
+      .btn-map-directions {
+        padding: 0.5rem 1rem;
+        font-size: 0.7rem;
+        bottom: 10px;
+        right: 10px;
+      }
+      
+      .location-address {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+      }
+    }
+    /* ===== TESTIMONI ===== */
+.testimonials {
+  background: linear-gradient(135deg, #111, #222);
+  color: var(--light);
+}
+
+.testimonials .section-title h2 {
+  color: var(--light);
+}
+
+.testimonials .section-title h2:after {
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+}
+
+.testimonials .section-title p {
+  color: rgba(255,255,255,0.8);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(241, 196, 15, 0.3);
+  transition: var(--transition);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent);
+}
+
+.testimonial-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.testimonial-rating {
+  color: var(--accent);
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.testimonial-text {
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1rem;
+  border-left: 3px solid var(--accent);
+  font-size: 0.9375rem;
+}
+
+.testimonial-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+/* ===== VIDEO SECTION ===== */
+.video-section {
+  background: var(--gray);
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-md);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+/* ===== CTA SECTION ===== */
+.cta-section {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--light);
+  text-align: center;
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: rotate 15s linear infinite;
+  z-index: 0;
+}
+
+.cta-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.cta-desc {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.countdown-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  position: relative;
+  z-index: 1;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.countdown-item {
+  text-align: center;
+  background: rgba(255,255,255,0.15);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  min-width: 80px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.countdown-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.countdown-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--light);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.countdown-label {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.countdown-separator {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--light);
+  margin: 0 0.25rem;
+  opacity: 0.7;
+  position: relative;
+  top: -5px;
+}
+
+.countdown-progress {
+  height: 6px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  border-radius: 3px;
+  animation: progressShrink 3s linear infinite;
+}
+
+/* Animations */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes progressShrink {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+/* Pulse Animation for Button */
+.btn.pulse-animation {
+  animation: pulse 2s infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 15px rgba(241, 196, 15, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(241, 196, 15, 0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .cta-title {
+    font-size: 1.8rem;
+  }
+  
+  .cta-desc {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 3rem 0;
+  }
+  
+  .countdown-item {
+    min-width: 60px;
+    padding: 0.75rem;
+  }
+  
+  .countdown-number {
+    font-size: 1.5rem;
+  }
+  
+  .countdown-separator {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cta-title {
+    font-size: 1.5rem;
+  }
+  
+  .cta-desc {
+    font-size: 0.9rem;
+  }
+  
+  .countdown-item {
+    min-width: 50px;
+    padding: 0.5rem;
+  }
+  
+  .countdown-number {
+    font-size: 1.2rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.7rem;
+  }
+  
+  .countdown-separator {
+    font-size: 1rem;
+    top: -3px;
+  }
+}
+    
+/* ===== FAQ SECTION ===== */
+.faq-item {
+  background: var(--light);
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.faq-question {
+  padding: 1.25rem;
+  background: var(--primary);
+  color: var(--light);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.faq-question i {
+  transition: transform 0.3s;
+}
+
+.faq-answer {
+  padding: 0 1.25rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-item.active .faq-answer {
+  padding: 1.25rem;
+  max-height: 500px;
+}
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--dark);
+  color: var(--light);
+  padding: 4rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-logo {
+  max-width: 180px;
+  margin-bottom: 1.5rem;
+  filter: brightness(0) invert(1);
+}
+
+.footer-about {
+  font-size: 0.9375rem;
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.footer-social a:hover {
+  background: var(--primary);
+  transform: translateY(-3px);
+}
+
+.footer-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--light);
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.footer-heading:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--accent);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+  color: var(--light);
+  opacity: 0.8;
+  transition: var(--transition);
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+  color: var(--primary);
+}
+
+.footer-links a i {
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.9375rem;
+  opacity: 0.8;
+}
+
+.footer-contact i {
+  color: var(--accent);
+}
+
+.bank-partners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.bank-logo {
+  height: 50px;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(2);
+  opacity: 0.8;
+  transition: var(--transition);
+}
+
+.bank-logo:hover {
+  filter: none;
+  opacity: 1;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.875rem;
+  opacity: 0.6;
+}
+
+.legal-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.legal-links a {
+  color: var(--light);
+  opacity: 0.6;
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+
+.legal-links a:hover {
+  opacity: 1;
+  color: var(--primary);
+}
+/* ===== KOMPONEN TAMBAHAN ===== */
 /* Notification */
 .notification {
   position: fixed;
@@ -281,7 +1454,383 @@ button, input, textarea, select {
   text-overflow: ellipsis;
 }
 
-/* Responsiveness */
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--light);
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--danger);
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  border: none;
+  outline: none;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--dark);
+  text-align: center;
+}
+
+.modal-desc {
+  color: var(--text-light);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--dark);
+}
+.form-group label.important:after {
+  content: ' *';
+  color: var(--danger);
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+  outline: none;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 0.875rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--primary);
+  color: var(--light);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.form-submit:hover {
+  background: var(--primary-dark);
+}
+
+/* Video Modal */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-modal.active {
+  display: flex;
+}
+
+.video-modal-content {
+  width: 90%;
+  max-width: 900px;
+  position: relative;
+}
+
+.video-modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: var(--danger);
+  color: var(--light);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.video-iframe {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-iframe iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ===== GALLERY MODAL STYLES ===== */
+.gallery-modal .modal-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 100%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.gallery-modal .modal-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  background: rgba(0,0,0,0.85);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.gallery-modal .modal-title {
+  color: white;
+  padding: 15px;
+  margin: 0;
+  text-align: center;
+  font-size: 1.2rem;
+  background: rgba(0,0,0,0.6);
+}
+
+.gallery-modal .modal-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--danger);
+  color: white;
+  z-index: 1100;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-carousel {
+  flex-grow: 1;
+  position: relative;
+  height: 70vh;
+}
+
+.slick-list, 
+.slick-track {
+  height: 100%;
+}
+
+.slick-slide {
+  height: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.slick-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+
+.slick-slide img:hover {
+  transform: scale(1.02);
+}
+
+/* Navigation arrows */
+.slick-prev, 
+.slick-next {
+  width: 50px;
+  height: 50px;
+  z-index: 1000;
+  background: rgba(0,0,0,0.7) !important;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.slick-prev:hover, 
+.slick-next:hover {
+  background: var(--primary) !important;
+  transform: scale(1.1);
+}
+
+.slick-prev {
+  left: 15px;
+}
+
+.slick-next {
+  right: 15px;
+}
+
+/* Dots navigation */
+.slick-dots {
+  bottom: 15px;
+}
+
+.slick-dots li button:before {
+  color: white;
+  opacity: 0.5;
+  font-size: 10px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--accent);
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gallery-carousel {
+    height: 60vh;
+  }
+  
+  .slick-slide {
+    padding: 10px;
+  }
+  
+  .slick-prev, 
+  .slick-next {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .slick-prev {
+    left: 5px;
+  }
+  
+  .slick-next {
+    right: 5px;
+  }
+  
+  .gallery-modal .modal-close {
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Fireworks Animation */
+.firework-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: firework-explode 1s ease-out forwards;
+}
+
+@keyframes firework-explode {
+  0% { 
+    transform: translate(0, 0);
+    opacity: 1;
+    width: 6px;
+    height: 6px;
+  }
+  100% { 
+    transform: translate(var(--random-x), var(--random-y));
+    opacity: 0;
+    width: 2px;
+    height: 2px;
+  }
+}
+/* ===== RESPONSIVENESS ===== */
 @media (max-width: 992px) {
   .section {
     padding: 4rem 0;
@@ -309,98 +1858,411 @@ button, input, textarea, select {
     flex-direction: column;
   }
   
+  .type-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
   .notification {
     bottom: 7rem;
     font-size: 0.75rem;
   }
+  
+   .gallery-carousel img {
+    max-height: 50vh;
+  }
+  
+  .slick-prev, 
+  .slick-next {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .slick-prev:before, 
+  .slick-next:before {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 576px) {
+  .type-card-actions {
+    gap: 0.3rem;
+  }
+  
+  .type-card-actions .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+  
   .section-title h2 {
     font-size: 1.5rem;
   }
-}
-</style>
-
-<!-- Defer non-critical CSS -->
-<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="styles.css"></noscript>
-
-<!-- Preload Fonts -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"></noscript>
-
-<!-- Schema Markup -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Residence",
-  "name": "Kertamulya Residence",
-  "description": "Perumahan Islami pertama di Kuningan dengan konsep Green Living.",
-  "image": "https://bimulialand.com/kertamulya/img/social/schema-image.webp",
-  "url": "https://bimulialand.com/kertamulya/",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Jl. Kertayasa, Blok Congkleng",
-    "addressLocality": "Kuningan",
-    "addressRegion": "Jawa Barat",
-    "postalCode": "45573",
-    "addressCountry": "ID"
-  },
-  "priceRange": "Rp166Juta - Rp408Juta",
-  "telephone": "+628977771080",
-  "offers": {
-    "@type": "Offer",
-    "price": "166000000",
-    "priceCurrency": "IDR"
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .countdown {
+    gap: 0.5rem;
+  }
+  
+  .countdown-number {
+    font-size: 1.5rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.75rem;
   }
 }
-</script>
+@media (max-width: 992px) {
+  /* styles untuk tablet */
+}
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2884489408426118');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2884489408426118&ev=PageView&noscript=1"
-/></noscript>
+@media (max-width: 768px) {
+  /* styles untuk mobile besar */
+}
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-XXXXXX');</script>
+@media (max-width: 576px) {
+  /* styles untuk mobile kecil */
+}
+
+/* ===== STOCK INDICATOR STYLES ===== */
+.stock-indicator {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0,0,0,0.7);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  min-width: 80px;
+}
+
+.stock-indicator .stock-text {
+  color: white;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+.stock-progress {
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  border-radius: 2px;
+}
+
+/* Warna berbeda berdasarkan stok */
+[data-stock="1"] .progress-fill {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+[data-stock="2"] .progress-fill,
+[data-stock="3"] .progress-fill,
+[data-stock="4"] .progress-fill {
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stock-indicator {
+    padding: 0.3rem;
+  }
+  .stock-text {
+    font-size: 0.6rem;
+  }
+}
+
+/* ===== UNIT BOOKING SECTION ===== */
+.unit-booking {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  position: relative;
+  overflow: hidden;
+}
+
+.unit-booking::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(46, 204, 113, 0.05) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.unit-booking-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.unit-booking-content {
+  padding: 2rem;
+}
+
+.unit-booking h2 {
+  font-size: 2.25rem;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.unit-booking .subtitle {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+.benefits-list {
+  margin-bottom: 2.5rem;
+}
+
+.benefit-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+
+.benefit-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-dark);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.benefit-text h4 {
+  font-size: 1.1rem;
+  color: var(--dark);
+  margin-bottom: 0.25rem;
+}
+
+.benefit-text p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.small-text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.unit-booking-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transform-style: preserve-3d;
+}
+
+.card-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.card-header h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.price-tag {
+  background: var(--accent);
+  color: var(--dark);
+  font-weight: 800;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  display: inline-block;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.card-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.card-feature i {
+  color: var(--primary);
+}
+
+.stock-warning {
+  background: rgba(231, 76, 60, 0.1);
+  border-left: 4px solid var(--danger);
+  padding: 0.75rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.stock-warning i {
+  color: var(--danger);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .unit-booking-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .unit-booking h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .unit-booking h2 {
+    font-size: 1.6rem;
+  }
+  
+  .price-tag {
+    font-size: 1.1rem;
+  }
+}
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+.logo-favicon {
+    width: 32px !important;  /* Ganti dengan ukuran yang diinginkan */
+    height: 32px !important;
+} 
+ @keyframes shine {
+    0% { left: -50%; }
+    100% { left: 150%; }
+  }
+  .proof-card:hover img {
+    transform: scale(1.05);
+  }
+  .proof-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  }
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(241, 196, 15, 0.5);
+  }
+     /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .proof-section {
+      padding: 3rem 0;
+    }
+    
+    .section-header h2 {
+      font-size: 1.5rem !important;
+    }
+    
+    .proof-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+    
+    .proof-card {
+      aspect-ratio: 1/1.2 !important;
+      height: auto !important;
+    }
+    
+    .proof-overlay {
+      padding: 1rem !important;
+    }
+    
+    .proof-overlay h3 {
+      font-size: 1rem !important;
+    }
+    
+    .proof-overlay p {
+      font-size: 0.8rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    
+    .cta-button {
+      font-size: 0.9rem !important;
+      padding: 0.8rem 1.5rem !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .proof-section {
+      padding: 2rem 0;
+    }
+    
+    .section-header h2 {
+      font-size: 1.3rem !important;
+    }
+    
+    .proof-card {
+      aspect-ratio: 1/1.1 !important;
+    }
+    
+    .proof-overlay {
+      padding: 0.8rem !important;
+    }
+  }
+  </style>
 </head>
-
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
 <div class="urgency-banner" style="background: #e74c3c; color: white; padding: 10px 0; text-align: center; font-weight: bold; animation: blink 1s infinite;">
-  ⚠️ Stok Rumah Subsidi Tinggal 30 Unit. Amankan Sekarang.!
-</div>
+  ⚠️ Stok Rumah Subsidi Tinggal 30 Unit. Amankan Sekarang.!</div>
 
-<!-- Hero Section -->
-<section class="hero">
+ <!-- Hero Section -->
+
+ <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <img src="img/branding/logo-kertamulya.webp" 
+      <!-- Preload hero image dan gunakan format WebP -->
+      <link rel="preload" href="img/hero/hero-background-mobile.webp" as="image" media="(max-width: 768px)">
+      <link rel="preload" href="img/hero/hero-background.webp" as="image" media="(min-width: 769px)">
+      
+      <!-- Logo dengan dimensi eksplisit dan format WebP -->
+      <img src="img/branding/logo-kertamulya.png" 
            alt="Kertamulya Residence" 
            class="hero-logo" 
            loading="eager" 
-           width="200" height="80"
-           decoding="async">
+           width="200" height="80">
       
       <h1>Hunian Islami Tenang & Strategis di Kuningan</h1>
       <p>Tanpa DP. Cicilan Mulai 1 Jutaan. Bonus Motor Listrik.</p>
@@ -419,11 +2281,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- Notification -->
-<div class="notification" id="notification">
-  <i class="fas fa-bell"></i>
-  <span id="notificationText">Pak Budi baru saja booking unit Hunian Suite !</span>
-</div>
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <i class="fas fa-bell"></i>
+    <span id="notificationText">Pak Budi baru saja booking unit Hunian Suite !</span>
+  </div>
+
+  
 
 <!-- House Types Section -->
 <section class="house-types section" id="house-types">
@@ -456,7 +2320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           
           <div class="type-card-image">
-            <img src="img/tipe-rumah/standart/standar-utama.webp" alt="Tipe Standard 30/60 (Subsidi)" loading="lazy" decoding="async">
+            <img src="img/tipe-rumah/standart/standar-utama.webp" alt="Tipe Standard 30/60 (Subsidi)" loading="lazy">
           </div>
           <div class="type-card-actions">
             <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'standard')">
@@ -491,9 +2355,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
             <a href="#unitBooking" class="btn btn-primary btn-block">
-              <i class="fas fa-lock"></i> Kunci Stok – Rp 100rb
-            </a>
-          </div>
+  <i class="fas fa-lock"></i> Kunci Stok – Rp 100rb
+</a>
+                  </div>
       </div>
       
       <!-- Suite Type -->
@@ -505,14 +2369,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           
           <!-- Stock Indicator -->
           <div class="stock-indicator">
-            <div class="stock-progress">
-              <div class="progress-fill" style="width: 10%"></div>
-            </div>
-            <span class="stock-text">Tersisa 28 unit</span>
-          </div>
+  <div class="stock-progress">
+    <div class="progress-fill" style="width: 10%"></div>
+  </div>
+  <span class="stock-text">Tersisa 28 unit</span>
+</div>
           
           <div class="type-card-image">
-            <img src="img/tipe-rumah/suite/suite-utama.webp" alt="Hunian Suite 50/60" loading="lazy" decoding="async">
+            <img src="img/tipe-rumah/suite/suite-utama.webp" alt="Hunian Suite  50/60" loading="lazy">
           </div>
           <div class="type-card-actions">
             <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'suite')">
@@ -524,7 +2388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <div class="type-card-body">
-          <h3 class="type-card-title">Hunian Suite 50/60</h3>
+          <h3 class="type-card-title">Hunian Suite  50/60</h3>
           <div class="type-card-price">
             <span class="old">Rp309 Juta</span>
             <span class="new">Rp277 Juta</span>
@@ -546,9 +2410,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <i class="fas fa-couch"></i> Ruang Tamu & Keluarga
             </div>
           </div>
-          <a href="#unitBooking" class="btn btn-primary btn-block">
-            <i class="fas fa-lock"></i> Kunci Stok – Rp 100rb
-          </a>
+                     <a href="#unitBooking" class="btn btn-primary btn-block">
+  <i class="fas fa-lock"></i> Kunci Stok – Rp 100rb
+</a>
+
         </div>
       </div>
       
@@ -568,7 +2433,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           
           <div class="type-card-image">
-            <img src="img/tipe-rumah/premium/premium-utama.webp" alt="Hunian Premium 50/120" loading="lazy" decoding="async">
+            <img src="img/tipe-rumah/premium/premium-utama.webp" alt="Hunian Premium 50/120" loading="lazy">
           </div>
           <div class="type-card-actions">
             <button class="btn btn-primary btn-sm" onclick="showModal('gallery', 'premium')">
@@ -602,14 +2467,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <i class="fas fa-umbrella-beach"></i> Gazebo & Taman Pribadi
             </div>
           </div>
-          <a href="#unitBooking" class="btn btn-primary btn-block">
-            <i class="fas fa-lock"></i> Kunci Stok – Rp 100rb
-          </a>
+          
+            <a href="#unitBooking" class="btn btn-primary btn-block">
+  <i class="fas fa-lock"></i> Kunci Stok – Rp 100rb
+</a>
+          
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- Why Choose Us Section -->
 <section class="why-choose" id="why-choose">
@@ -677,6 +2545,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+
 <!-- Facilities Section -->
 <section class="facilities-section" id="facilities">
   <div class="container">
@@ -689,7 +2558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Facility 1 -->
       <div class="facility-card">
         <div class="facility-image">
-          <img src="img/fasilitas/masjid.webp" alt="Masjid Al Fawwaz" loading="lazy" decoding="async">
+          <img src="img/fasilitas/masjid.webp" alt="Masjid Al Fawwaz" loading="lazy">
         </div>
         <div class="facility-content">
           <h3 class="facility-title">Masjid Al Fawwaz</h3>
@@ -700,7 +2569,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Facility 2 -->
       <div class="facility-card">
         <div class="facility-image">
-          <img src="img/fasilitas/tahfidz.webp" alt="Saung Tahfidz" loading="lazy" decoding="async">
+          <img src="img/fasilitas/tahfidz.webp" alt="Saung Tahfidz" loading="lazy">
         </div>
         <div class="facility-content">
           <h3 class="facility-title">Saung Tahfidz</h3>
@@ -711,7 +2580,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Facility 3 -->
       <div class="facility-card">
         <div class="facility-image">
-          <img src="img/fasilitas/olahraga.webp" alt="Sunnah Sport" loading="lazy" decoding="async">
+          <img src="img/fasilitas/olahraga.webp" alt="Sunnah Sport" loading="lazy">
         </div>
         <div class="facility-content">
           <h3 class="facility-title">Sunnah Sport</h3>
@@ -722,7 +2591,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Facility 4 -->
       <div class="facility-card">
         <div class="facility-image">
-          <img src="img/fasilitas/community.webp" alt="Community Center" loading="lazy" decoding="async">
+          <img src="img/fasilitas/community.webp" alt="Community Center" loading="lazy">
         </div>
         <div class="facility-content">
           <h3 class="facility-title">Community Center</h3>
@@ -733,7 +2602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Facility 5 -->
       <div class="facility-card">
         <div class="facility-image">
-          <img src="img/fasilitas/greenhouse.webp" alt="Green House" loading="lazy" decoding="async">
+          <img src="img/fasilitas/greenhouse.webp" alt="Green House" loading="lazy">
         </div>
         <div class="facility-content">
           <h3 class="facility-title">Green House</h3>
@@ -744,7 +2613,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Facility 6 -->
       <div class="facility-card">
         <div class="facility-image">
-          <img src="img/fasilitas/playground.webp" alt="Playground" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/THJSL1O.jpeg" alt="Playground" loading="lazy">
         </div>
         <div class="facility-content">
           <h3 class="facility-title">Playground Islami</h3>
@@ -765,17 +2634,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     <div class="location-container">
       <div class="location-map-container">
-        <div class="location-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence%2C%20Jl.%20Kertayasa%2C%20Blok%20Congkleng%2C%20Kertayasa%2C%20Kec.%20Sindangagung%2C%20Kabupaten%20Kuningan%2C%20Jawa%20Barat%2045573!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
-          <a href="https://maps.app.goo.gl/mdAmsNKHCpSuX7mo9" class="btn btn-accent btn-map-directions" target="_blank">
-            <i class="fas fa-directions"></i> Petunjuk Arah
-          </a>
-        </div>
-        <div class="location-address">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Kertamulya Residence, Jl. Kertayasa, Blok Congkleng, Kertayasa, Kec. Sindangagung, Kab. Kuningan, Jawa Barat</span>
-        </div>
-      </div>
+  <div class="location-map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.347096756235!2d108.4820093147725!3d-6.982794794971878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1686e6a7e6a5%3A0x3a3b3b3b3b3b3b3b!2sKertamulya%20Residence%2C%20Jl.%20Kertayasa%2C%20Blok%20Congkleng%2C%20Kertayasa%2C%20Kec.%20Sindangagung%2C%20Kabupaten%20Kuningan%2C%20Jawa%20Barat%2045573!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+    <a href="https://maps.app.goo.gl/mdAmsNKHCpSuX7mo9" class="btn btn-accent btn-map-directions" target="_blank">
+      <i class="fas fa-directions"></i> Petunjuk Arah
+    </a>
+  </div>
+  <div class="location-address">
+    <i class="fas fa-map-marker-alt"></i>
+    <span>Kertamulya Residence, Jl. Kertayasa, Blok Congkleng, Kertayasa, Kec. Sindangagung, Kab. Kuningan, Jawa Barat</span>
+  </div>
+</div>
       
       <div class="location-access">
         <div class="access-item">
@@ -896,7 +2765,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- MODERN SURVEY PROOF SECTION -->
+<!-- ===== MODERN SURVEY PROOF SECTION ===== -->
 <section class="proof-section" style="background: linear-gradient(to bottom, #f8f9fa, #ffffff); padding: 4rem 0;">
   <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
     <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
@@ -916,7 +2785,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="proof-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
       <!-- Proof 1 -->
       <div class="proof-card" style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08); height: auto; aspect-ratio: 1/1.33;">
-        <img src="img/survey/survey1.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" loading="lazy" decoding="async">
+        <img src="img/survey/survey1.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
         <div class="proof-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1.5rem 1.25rem; color: white;">
           <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Pak Budi</h3>
           <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4; margin-bottom: 1rem;">
@@ -931,7 +2800,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       <!-- Proof 2 -->
       <div class="proof-card" style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08); height: auto; aspect-ratio: 1/1.33;">
-        <img src="img/survey/survey2.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" loading="lazy" decoding="async">
+        <img src="img/survey/survey2.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
         <div class="proof-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1.5rem 1.25rem; color: white;">
           <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Pak Anton</h3>
           <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4; margin-bottom: 1rem;">
@@ -946,7 +2815,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       <!-- Proof 3 -->
       <div class="proof-card" style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08); height: auto; aspect-ratio: 1/1.33;">
-        <img src="img/survey/survey3.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" loading="lazy" decoding="async">
+        <img src="img/survey/survey3.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
         <div class="proof-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1.5rem 1.25rem; color: white;">
           <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Keluarga Ahmad</h3>
           <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4; margin-bottom: 1rem;">
@@ -964,7 +2833,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="proof-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
       <!-- Proof 4 -->
       <div class="proof-card" style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08); height: auto; aspect-ratio: 1/1.33;">
-        <img src="img/survey/survey4.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" loading="lazy" decoding="async">
+        <img src="img/survey/survey4.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
         <div class="proof-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1.5rem 1.25rem; color: white;">
           <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Pak Wahyu</h3>
           <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4; margin-bottom: 1rem;">
@@ -979,7 +2848,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       <!-- Proof 5 -->
       <div class="proof-card" style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08); height: auto; aspect-ratio: 1/1.33;">
-        <img src="img/survey/survey5.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" loading="lazy" decoding="async">
+        <img src="img/survey/survey5.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
         <div class="proof-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1.5rem 1.25rem; color: white;">
           <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Pak Tri M</h3>
           <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4; margin-bottom: 1rem;">
@@ -994,7 +2863,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       <!-- Proof 6 -->
       <div class="proof-card" style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08); height: auto; aspect-ratio: 1/1.33;">
-        <img src="img/survey/survey6.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" loading="lazy" decoding="async">
+        <img src="img/survey/survey6.webp" alt="Survey Kertamulya" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
         <div class="proof-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 1.5rem 1.25rem; color: white;">
           <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">Pak Soyfan</h3>
           <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4; margin-bottom: 1rem;">
@@ -1054,7 +2923,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="testimonial-grid">
       <div class="testimonial-card">
         <div class="testimonial-header">
-          <img src="img/testimoni/testimoni-1.webp" alt="Pak Encep" class="testimonial-avatar" loading="lazy" decoding="async">  
+        <img src="img/testimoni/testimoni-1.webp" alt="Pak Encep" class="testimonial-avatar" loading="lazy">  
           <div>
             <h4 class="testimonial-name">Pak Encep</h4>
             <div class="testimonial-rating">
@@ -1077,7 +2946,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       <div class="testimonial-card">
         <div class="testimonial-header">
-          <img src="img/testimoni/testimoni-2.webp" alt="Pak Erfan" class="testimonial-avatar" loading="lazy" decoding="async">
+          <img src="img/testimoni/testimoni-2.webp" alt="Pak Erfan" class="testimonial-avatar" loading="lazy">
+
           <div>
             <h4 class="testimonial-name">Pak Erfan</h4>
             <div class="testimonial-rating">
@@ -1093,14 +2963,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "Motor listrik benar-benar diberikan setelah 6x angsuran. Sekarang anak-anak bisa belajar mengaji di masjid komplek dengan nyaman."
         </p>
         <div class="testimonial-footer">
-          <span>Hunian Suite 50/60</span>
+          <span>Hunian Suite  50/60</span>
           <span>Mar 2025</span>
         </div>
       </div>
       
       <div class="testimonial-card">
         <div class="testimonial-header">
-          <img src="img/testimoni/testimoni-3.webp" alt="Bu Sofyan" class="testimonial-avatar" loading="lazy" decoding="async">
+          <img src="img/testimoni/testimoni-3.webp" alt="Bu Sofyan" class="testimonial-avatar" loading="lazy">
           <div>
             <h4 class="testimonial-name">Bu Sofyan</h4>
             <div class="testimonial-rating">
@@ -1122,167 +2992,164 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- Video Testimonials -->
-    <div class="video-section-container" style="margin-top: 40px;">
-      <div class="video-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-        <!-- Video 1 -->
-        <div class="video-item">
-          <div class="video-wrapper" onclick="showModal('video', 'testimonial1')" style="cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 1rem; overflow: hidden; border: 1px solid rgba(241, 196, 15, 0.3);">
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-              <img src="img/testimoni/video-thumbnail1.webp" 
-                   alt="Testimoni Video 1" 
-                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
-                   loading="lazy" decoding="async">
-              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
-                <div style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                  <i class="fas fa-play" style="color: #f1c40f; font-size: 24px;"></i>
-                </div>
-              </div>
-            </div>
-            <div style="padding: 15px; text-align: center; font-weight: 600; color: var(--light);">
-              GAK USAH RAGU UNTUK BELI DISINI!!
+   <!-- In the Testimonials section, replace the video testimonial part with: -->
+<div class="video-section-container" style="margin-top: 40px;">
+  <div class="video-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+    <!-- Video 1 -->
+    <div class="video-item">
+      <div class="video-wrapper" onclick="showModal('video', 'testimonial1')" style="cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 1rem; overflow: hidden; border: 1px solid rgba(241, 196, 15, 0.3);">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+          <img src="https://img.youtube.com/vi/LgHbkuOKsw0/maxresdefault.jpg" 
+               alt="Testimoni Video 1" 
+               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
+            <div style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-play" style="color: #f1c40f; font-size: 24px;"></i>
             </div>
           </div>
         </div>
-        
-        <!-- Video 2 -->
-        <div class="video-item">
-          <div class="video-wrapper" onclick="showModal('video', 'testimonial2')" style="cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 1rem; overflow: hidden; border: 1px solid rgba(241, 196, 15, 0.3);">
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-              <img src="img/testimoni/video-thumbnail2.webp" 
-                   alt="Testimoni Video 2" 
-                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
-                   loading="lazy" decoding="async">
-              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
-                <div style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                  <i class="fas fa-play" style="color: #f1c40f; font-size: 24px;"></i>
-                </div>
-              </div>
-            </div>
-            <div style="padding: 15px; text-align: center; font-weight: 600; color: var(--light);">
-              BENTUK RUMAHNYA TIDAK MONOTON 😍
+        <div style="padding: 15px; text-align: center; font-weight: 600; color: var(--light);">
+          GAK USAH RAGU UNTUK BELI DISINI!!
+        </div>
+      </div>
+    </div>
+    
+    <!-- Video 2 -->
+    <div class="video-item">
+      <div class="video-wrapper" onclick="showModal('video', 'testimonial2')" style="cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 1rem; overflow: hidden; border: 1px solid rgba(241, 196, 15, 0.3);">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+          <img src="https://img.youtube.com/vi/UF5V1-Vu6uI/maxresdefault.jpg" 
+               alt="Testimoni Video 2" 
+               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
+            <div style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-play" style="color: #f1c40f; font-size: 24px;"></i>
             </div>
           </div>
+        </div>
+        <div style="padding: 15px; text-align: center; font-weight: 600; color: var(--light);">
+          BENTUK RUMAHNYA TIDAK MONOTON 😍
         </div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- Video Section -->
-<section class="video-section section">
-  <div class="container">
-    <div class="section-title">
-      <h2>Video Kertamulya Residence</h2>
-      <p>Lihat langsung keindahan dan fasilitas perumahan kami</p>
-    </div>
-    
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/2vYd5Fd_-Q8?si=-_V7M7Yw_a_Aa090" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-    </div>
+</div>
   </div>
 </section>
 
-<!-- FAQ -->
+  <!-- Video Section -->
+  <section class="video-section section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Video Kertamulya Residence</h2>
+        <p>Lihat langsung keindahan dan fasilitas perumahan kami</p>
+      </div>
+      
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/2vYd5Fd_-Q8?si=-_V7M7Yw_a_Aa090" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+   <!-- FAQ -->
 <section class="section" id="faq">
-  <div class="container">
-    <div class="section-title">
-      <h2>Pertanyaan yang Sering Diajukan</h2>
-      <p>Temukan jawaban untuk pertanyaan Anda</p>
-    </div>
-    
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Apa itu biaya Kunci Stok – Rp 100.000?</span>
-        <i class="fas fa-chevron-down"></i>
+    <div class="container">
+      <div class="section-title">
+        <h2>Pertanyaan yang Sering Diajukan</h2>
+        <p>Temukan jawaban untuk pertanyaan Anda</p>
       </div>
-      <div class="faq-answer">
-        <p>Biaya Rp 100.000 adalah tanda keseriusan Anda untuk mengunci unit yang diinginkan selama 7 hari. Biaya ini bukan booking fee, melainkan jaminan bahwa unit tidak akan dijual ke orang lain selama masa survei.</p>
-      </div>
-    </div>
+       <div class="faq-item">
+  <div class="faq-question">
+    <span>Apa itu biaya Kunci Stok – Rp 100.000?</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="faq-answer">
+    <p>Biaya Rp 100.000 adalah tanda keseriusan Anda untuk mengunci unit yang diinginkan selama 7 hari. Biaya ini bukan booking fee, melainkan jaminan bahwa unit tidak akan dijual ke orang lain selama masa survei.</p>
+  </div>
+</div>
 
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Apakah biaya Kunci Stok – Rp 100rb bisa refund?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Ya, biaya akan dikembalikan 100% jika setelah survei lokasi Anda memutuskan untuk tidak melanjutkan pembelian. Kami ingin Anda benar-benar yakin dengan pilihan.</p>
-      </div>
-    </div>
+<div class="faq-item">
+  <div class="faq-question">
+    <span>Apakah biaya Kunci Stok – Rp 100rb bisa refund?</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="faq-answer">
+    <p>Ya, biaya akan dikembalikan 100% jika setelah survei lokasi Anda memutuskan untuk tidak melanjutkan pembelian. Kami ingin Anda benar-benar yakin dengan pilihan.</p>
+  </div>
+</div>
 
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Bagaimana jika tidak survei dalam 7 hari?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Biaya Kunci Stok – Rp 100rb akan hangus jika tidak ada konfirmasi survei dalam 7 hari. Kami memberikan waktu yang cukup untuk mengatur jadwal kunjungan.</p>
-      </div>
-    </div>
+<div class="faq-item">
+  <div class="faq-question">
+    <span>Bagaimana jika tidak survei dalam 7 hari?</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="faq-answer">
+    <p>Biaya Kunci Stok – Rp 100rb akan hangus jika tidak ada konfirmasi survei dalam 7 hari. Kami memberikan waktu yang cukup untuk mengatur jadwal kunjungan.</p>
+  </div>
+</div>
 
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Apakah biaya Kunci Stok – Rp 100rb termasuk booking fee?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Tidak, biaya ini terpisah dari booking fee. Setelah survei dan memutuskan untuk membeli, Anda hanya perlu melunasi sisa booking fee (Standard: Rp400rb, Suite/Premium: Rp1.9jt).</p>
-      </div>
+<div class="faq-item">
+  <div class="faq-question">
+    <span>Apakah biaya Kunci Stok – Rp 100rb termasuk booking fee?</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  <div class="faq-answer">
+    <p>Tidak, biaya ini terpisah dari booking fee. Setelah survei dan memutuskan untuk membeli, Anda hanya perlu melunasi sisa booking fee (Standard: Rp400rb, Suite/Premium: Rp1.9jt).</p>
+  </div>
+</div>
+<div class="faq-container">
+  <div class="faq-item">
+    <div class="faq-question">
+      <span>Benarkah hanya dengan booking fee 500rb sudah bisa dapat rumah?</span>
+      <i class="fas fa-chevron-down"></i>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Benarkah hanya dengan booking fee 500rb sudah bisa dapat rumah?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Benar! Booking fee 500rb untuk pilih unit yang Anda inginkan. Setelah itu, tim kami akan membantu proses pengajuan KPR ke bank syariah mitra kami tanpa biaya tambahan.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Berapa lama proses dari booking sampai rumah bisa ditempati?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Proses biasanya memakan waktu 14-30 hari kerja setelah dokumen lengkap, tergantung bank yang dipilih. BTN Syariah biasanya paling cepat (14-60 hari), sedangkan BJB Syariah sekitar 21-60 hari.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Apakah ada jaminan motor listrik benar-benar diberikan?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Ya, kami memberikan jaminan tertulis dalam akad bahwa motor listrik akan diberikan setelah 6x angsuran tepat waktu. Sudah ada 37 penghuni yang menerimanya sesuai janji.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Bagaimana jika KPR saya tidak disetujui bank?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Kami menyediakan opsi pembelian cash bertahap langsung ke developer dengan skema yang fleksibel. Booking fee 500rb bisa dialihkan ke skema ini jika KPR tidak disetujui.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-question">
-        <span>Apa perbedaan tipe Standard dan Suite?</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-      <div class="faq-answer">
-        <p>Hunian Suite memiliki material lebih premium (keramik granit, rangka baja tebal), desain lebih modern, dan fasilitas tambahan seperti shower. Tipe Standard tetap berkualitas dengan harga lebih terjangkau.</p>
-      </div>
+    <div class="faq-answer">
+      <p>Benar! Booking fee 500rb untuk pilih unit yang Anda inginkan. Setelah itu, tim kami akan membantu proses pengajuan KPR ke bank syariah mitra kami tanpa biaya tambahan.</p>
     </div>
   </div>
-</section>
-
+  
+  <div class="faq-item">
+    <div class="faq-question">
+      <span>Berapa lama proses dari booking sampai rumah bisa ditempati?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Proses biasanya memakan waktu 14-30 hari kerja setelah dokumen lengkap, tergantung bank yang dipilih. BTN Syariah biasanya paling cepat (14-60 hari), sedangkan BJB Syariah sekitar 21-60 hari.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">
+      <span>Apakah ada jaminan motor listrik benar-benar diberikan?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Ya, kami memberikan jaminan tertulis dalam akad bahwa motor listrik akan diberikan setelah 6x angsuran tepat waktu. Sudah ada 37 penghuni yang menerimanya sesuai janji.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">
+      <span>Bagaimana jika KPR saya tidak disetujui bank?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Kami menyediakan opsi pembelian cash bertahap langsung ke developer dengan skema yang fleksibel. Booking fee 500rb bisa dialihkan ke skema ini jika KPR tidak disetujui.</p>
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">
+      <span>Apa perbedaan tipe Standard dan Suite?</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      <p>Hunian Suite  memiliki material lebih premium (keramik granit, rangka baja tebal), desain lebih modern, dan fasilitas tambahan seperti shower. Tipe Standard tetap berkualitas dengan harga lebih terjangkau.</p>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </section>
 <!-- UNIT BOOKING SECTION -->
 <section class="unit-booking section" id="unitBooking">
   <div class="container">
@@ -1372,70 +3239,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <img src="img/branding/logo-kertamulya-footer.png" alt="Kertamulya Residence" class="footer-logo" loading="lazy">
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-about">
-        <img src="img/branding/logo-kertamulya-footer.webp" alt="Kertamulya Residence" class="footer-logo" loading="lazy" decoding="async">
-
-        <p class="footer-about">Perumahan Islami pertama di Kuningan dengan konsep Green Living. Memberikan solusi kepemilikan rumah mudah melalui kerjasama dengan bank syariah terkemuka.</p>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/kertamulyaresidence/" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://facebook.com/kertamulyaresidence" target="_blank" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://www.youtube.com/@bimulialand759" target="_blank" aria-label="YouTube">
-            <i class="fab fa-youtube"></i>
-          </a>
-          <a href="https://www.tiktok.com/@bimulia_land" target="_blank" aria-label="TikTok">
-            <i class="fab fa-tiktok"></i>
-          </a>
+          <p class="footer-about">Perumahan Islami pertama di Kuningan dengan konsep Green Living. Memberikan solusi kepemilikan rumah mudah melalui kerjasama dengan bank syariah terkemuka.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/kertamulyaresidence/" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://facebook.com/kertamulyaresidence" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.youtube.com/@bimulialand759" target="_blank" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.tiktok.com/@bimulia_land" target="_blank" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </div>
         </div>
-      </div>
-      
-      <div class="footer-links">
-        <h3 class="footer-heading">Link Cepat</h3>
-        <ul>
-          <li><a href="#house-types"><i class="fas fa-chevron-right"></i> Tipe Rumah</a></li>
-          <li><a href="#why-choose"><i class="fas fa-chevron-right"></i> Keunggulan</a></li>
-          <li><a href="#facilities"><i class="fas fa-chevron-right"></i> Fasilitas</a></li>
-          <li><a href="#location"><i class="fas fa-chevron-right"></i> Lokasi</a></li>
-          <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimoni</a></li>
-          <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-contact">
-        <h3 class="footer-heading">Kontak Kami</h3>
-        <p><i class="fas fa-map-marker-alt"></i> Jl. Kertayasa, Blok Congkleng, Kuningan</p>
-        <p><i class="fas fa-phone"></i> +62 897-7771-080</p>
-        <p><i class="fas fa-envelope"></i> info@kertamulyaresidence.com</p>
-        <p><i class="fas fa-clock"></i> Buka Setiap Hari 08.00 - 17.00 WIB</p>
         
-        <h3 class="footer-heading" style="margin-top: 1.5rem;">Bank Partner</h3>
-        <div class="bank-partners">
-          <img src="img/bank/bjb.webp" alt="BJB Syariah" class="bank-logo" loading="lazy" decoding="async">
-          <img src="img/bank/btn.webp" alt="BTN Syariah" class="bank-logo" loading="lazy" decoding="async">
-          <img src="img/bank/bsi.webp" alt="BSI" class="bank-logo" loading="lazy" decoding="async">
+        <div class="footer-links">
+  <h3 class="footer-heading">Link Cepat</h3>
+  <ul>
+    <li><a href="#house-types"><i class="fas fa-chevron-right"></i> Tipe Rumah</a></li>
+    <li><a href="#why-choose"><i class="fas fa-chevron-right"></i> Keunggulan</a></li>
+    <li><a href="#facilities"><i class="fas fa-chevron-right"></i> Fasilitas</a></li>
+    <li><a href="#location"><i class="fas fa-chevron-right"></i> Lokasi</a></li>
+    <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimoni</a></li>
+    <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+  </ul>
+</div>
+        
+        <div class="footer-contact">
+          <h3 class="footer-heading">Kontak Kami</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Jl. Kertayasa, Blok Congkleng, Kuningan</p>
+          <p><i class="fas fa-phone"></i> +62 897-7771-080</p>
+          <p><i class="fas fa-envelope"></i> info@kertamulyaresidence.com</p>
+          <p><i class="fas fa-clock"></i> Buka Setiap Hari 08.00 - 17.00 WIB</p>
+          
+          <h3 class="footer-heading" style="margin-top: 1.5rem;">Bank Partner</h3>
+          <div class="bank-partners">
+           <img src="img/bank/bjb.png" alt="BJB Syariah" class="bank-logo" loading="lazy">
+<img src="img/bank/btn.png" alt="BTN Syariah" class="bank-logo" loading="lazy">
+<img src="img/bank/bsi.png" alt="BSI" class="bank-logo" loading="lazy">
+          </div>
         </div>
       </div>
+      
+      <div class="copyright">
+        &copy; 2025 PT. Rumah Mulia Indonesia. All Rights Reserved.
+      </div>
+      
+      <div class="legal-links">
+        <a href="Kebijakan Privasi.html">Kebijakan Privasi</a>
+    <a href="Syarat & Ketentuan.html">Syarat & Ketentuan</a>
+    <a href="Disclaimer.html">Disclaimer</a>
+      </div>
     </div>
-    
-    <div class="copyright">
-      &copy; 2025 PT. Rumah Mulia Indonesia. All Rights Reserved.
-    </div>
-    
-    <div class="legal-links">
-      <a href="Kebijakan Privasi.html">Kebijakan Privasi</a>
-      <a href="Syarat & Ketentuan.html">Syarat & Ketentuan</a>
-      <a href="Disclaimer.html">Disclaimer</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 <!-- Gallery Modal -->
 <div class="modal gallery-modal" id="galleryModal">
@@ -1448,6 +3314,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+
 <!-- Video Modal -->
 <div class="video-modal" id="videoModal">
   <div class="video-modal-content">
@@ -1457,11 +3324,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </div>
-
-<!-- Deferred JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" defer></script>
-<script defer>
+<!-- Slick JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
 // ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all components
@@ -1565,6 +3431,7 @@ function showRandomNotification() {
   }, 5000);
 }
 
+
 function animateSoldCount() {
   const soldCount = document.querySelector('.sold-count');
   if (!soldCount) return;
@@ -1645,6 +3512,9 @@ function setupFAQAccordion() {
   });
 }
 
+// Call this on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', setupFAQAccordion);
+
 // ========== GALLERY MODAL ==========
 function initGalleryModal() {
   // Image sets with local image paths
@@ -1710,7 +3580,7 @@ function showGalleryModal(type, images) {
   images[type].forEach(img => {
     const slide = document.createElement('div');
     slide.className = 'gallery-slide';
-    slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy" decoding="async">`;
+    slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
     carousel.appendChild(slide);
   });
 
@@ -1869,9 +3739,19 @@ function setupTypeSelector() {
     });
   });
 }
-</script>
 
-<!-- Load Font Awesome asynchronously -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+// Panggil fungsi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+  setupTypeSelector();
+  
+  // Juga panggil saat konten selesai dimuat (untuk memastikan)
+  if (document.readyState === 'complete') {
+    setupTypeSelector();
+  }
+});
+
+// Fallback jika DOMContentLoaded tidak terpicu
+window.addEventListener('load', setupTypeSelector);
+</script>
 </body>
-</html>
+</html> 
