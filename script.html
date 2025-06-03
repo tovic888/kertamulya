@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Script Marketing In-House - Kertamulya Residence</title>
+    <title>SOP & Script Marketing In-House Kertamulya Residence</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,21 +12,19 @@
         :root {
             --primary: #2ecc71;
             --primary-dark: #27ae60;
-            --primary-light: #e8f8f0;
-            --accent: #3498db;
-            --accent-dark: #2980b9;
-            --dark: #2c3e50;
-            --darker: #1a252f;
-            --light: #ffffff;
-            --gray: #f8f9fa;
-            --gray-dark: #e9ecef;
-            --text: #495057;
-            --text-light: #6c757d;
+            --primary-light: #d5f8e5;
+            --accent: #f1c40f;
+            --accent-dark: #f39c12;
             --danger: #e74c3c;
-            --warning: #f39c12;
+            --dark: #2c3e50;
+            --light: #ffffff;
+            --gray: #f5f7fa;
+            --gray-dark: #e0e6ed;
+            --text: #34495e;
+            --text-light: #7f8c8d;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
         }
 
@@ -41,416 +39,328 @@
             line-height: 1.6;
             color: var(--text);
             background-color: var(--gray);
-            -webkit-font-smoothing: antialiased;
+            padding: 0;
+            margin: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 2rem;
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--light);
-            padding: 20px 0;
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
             box-shadow: var(--shadow-md);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .logo {
+            max-width: 180px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .sop-container {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            border-bottom: 1px solid var(--gray-dark);
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step-header {
+            padding: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        .logo img {
-            height: 40px;
-        }
-
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/hero-bg.jpg') center/cover no-repeat;
-            color: var(--light);
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 6px 12px;
-            background-color: var(--accent);
-            color: var(--light);
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .main-content {
-            padding: 40px 0;
-        }
-
-        .tabs {
-            display: flex;
-            background-color: var(--light);
-            border-radius: 8px 8px 0 0;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 15px 20px;
-            background: none;
-            border: none;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: var(--text-light);
             cursor: pointer;
             transition: var(--transition);
-            text-align: center;
-            position: relative;
+            background-color: white;
         }
 
-        .tab-btn.active {
-            color: var(--primary-dark);
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-            background-color: var(--light);
-            padding: 30px;
-            border-radius: 0 0 8px 8px;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 30px;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .flow-chart {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .flow-step {
-            display: flex;
-            gap: 15px;
-            position: relative;
-        }
-
-        .flow-step:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 40px;
-            bottom: -20px;
-            width: 2px;
-            background-color: var(--primary-light);
+        .step-header:hover {
+            background-color: var(--gray);
         }
 
         .step-number {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background-color: var(--primary);
-            color: var(--light);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            margin-right: 1rem;
             flex-shrink: 0;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .step-content {
-            flex: 1;
-            background-color: var(--gray);
-            padding: 20px;
-            border-radius: 8px;
-            position: relative;
-        }
-
-        .step-content::before {
-            content: '';
-            position: absolute;
-            left: -10px;
-            top: 20px;
-            width: 0;
-            height: 0;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-right: 10px solid var(--gray);
         }
 
         .step-title {
+            font-weight: 600;
             font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 10px;
+            flex-grow: 1;
         }
 
-        .dialog {
-            display: flex;
-            margin-bottom: 15px;
-        }
-
-        .dialog:last-child {
-            margin-bottom: 0;
-        }
-
-        .dialog-role {
-            font-weight: 600;
-            color: var(--primary-dark);
-            min-width: 100px;
-            margin-right: 15px;
-        }
-
-        .dialog-text {
-            flex: 1;
-        }
-
-        .note {
-            background-color: var(--primary-light);
-            border-left: 4px solid var(--primary);
-            padding: 15px;
-            border-radius: 0 4px 4px 0;
-            margin: 15px 0;
-            font-size: 0.9rem;
-        }
-
-        .note.warning {
-            background-color: #fff3cd;
-            border-left-color: var(--warning);
-        }
-
-        .note.danger {
-            background-color: #f8d7da;
-            border-left-color: var(--danger);
-        }
-
-        .house-type-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .type-btn {
-            flex: 1;
-            padding: 10px;
-            background-color: var(--gray-dark);
-            border: none;
-            border-radius: 4px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            cursor: pointer;
+        .step-icon {
+            color: var(--text-light);
             transition: var(--transition);
         }
 
-        .type-btn.active {
-            background-color: var(--primary);
-            color: var(--light);
-        }
-
-        .house-type-content {
-            display: none;
-        }
-
-        .house-type-content.active {
-            display: block;
-        }
-
-        .spec-list {
-            list-style-type: none;
-        }
-
-        .spec-list li {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .spec-list li::before {
-            content: '•';
+        .step.active .step-icon {
+            transform: rotate(180deg);
             color: var(--primary);
-            font-weight: bold;
-            margin-right: 10px;
         }
 
-        .doc-list {
-            list-style-type: none;
+        .step-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            background-color: var(--gray);
         }
 
-        .doc-list li {
-            margin-bottom: 8px;
-            padding-left: 25px;
-            position: relative;
+        .step.active .step-content {
+            padding: 1.5rem;
+            max-height: 1000px;
         }
 
-        .doc-list li::before {
-            content: '\f15c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        .bank-card {
-            background-color: var(--light);
-            border-radius: 8px;
-            padding: 20px;
+        .script-box {
+            background-color: white;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
             box-shadow: var(--shadow-sm);
-            margin-bottom: 15px;
-            border-left: 4px solid var(--accent);
         }
 
-        .bank-name {
+        .script-box.marketing {
+            border-left-color: var(--primary);
+            background-color: rgba(46, 204, 113, 0.05);
+        }
+
+        .script-box.customer {
+            border-left-color: var(--accent);
+            background-color: rgba(241, 196, 15, 0.05);
+        }
+
+        .script-box.notes {
+            border-left-color: var(--text-light);
+            background-color: rgba(127, 140, 141, 0.05);
+        }
+
+        .script-box.danger {
+            border-left-color: var(--danger);
+            background-color: rgba(231, 76, 60, 0.05);
+        }
+
+        .script-title {
             font-weight: 600;
-            color: var(--accent-dark);
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
             display: flex;
             align-items: center;
-            gap: 10px;
         }
 
-        .bank-name i {
-            font-size: 1.2rem;
+        .script-title i {
+            margin-right: 0.5rem;
         }
 
-        .bank-desc {
-            font-size: 0.9rem;
-            color: var(--text-light);
+        .script-content {
+            line-height: 1.7;
         }
 
-        .form-link {
+        .script-content p {
+            margin-bottom: 0.5rem;
+        }
+
+        .script-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
             display: inline-block;
-            margin-top: 20px;
-            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
             font-weight: 600;
-            text-decoration: none;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-primary {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .badge-accent {
+            background-color: rgba(241, 196, 15, 0.2);
+            color: #b08d0e;
+        }
+
+        .badge-danger {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #c0392b;
+        }
+
+        .form-example {
+            background-color: white;
+            border: 1px solid var(--gray-dark);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .form-group label {
+            width: 200px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-group .form-value {
+            flex-grow: 1;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--gray-dark);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
             transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            border: none;
         }
 
-        .form-link:hover {
-            text-decoration: underline;
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
         }
 
-        .form-link i {
-            margin-right: 5px;
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            box-shadow: var(--shadow-md);
         }
 
-        footer {
-            background-color: var(--darker);
-            color: var(--light);
-            padding: 30px 0;
-            text-align: center;
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
         }
 
-        .footer-text {
-            opacity: 0.8;
-            font-size: 0.9rem;
+        .btn-outline:hover {
+            background-color: var(--primary-light);
         }
 
-        /* Responsive styles */
+        .btn-print {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-print:hover {
+            background-color: var(--accent-dark);
+            box-shadow: var(--shadow-md);
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+                font-size: 12pt;
+            }
+
+            header, .action-buttons {
+                display: none;
+            }
+
+            .step {
+                border-bottom: 1px solid #ddd;
+            }
+
+            .step-header {
+                cursor: default;
+                background-color: white !important;
+            }
+
+            .step-content {
+                max-height: none !important;
+                padding: 1.5rem !important;
+                display: block !important;
+                background-color: white !important;
+            }
+
+            .script-box {
+                page-break-inside: avoid;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .tabs {
-                flex-direction: column;
-            }
-            
-            .tab-btn {
-                text-align: left;
-                border-bottom: 1px solid var(--gray-dark);
-            }
-            
-            .tab-btn.active::after {
-                height: 100%;
-                width: 3px;
-                left: auto;
-                right: 0;
-            }
-            
-            .house-type-selector {
-                flex-direction: column;
-            }
-            
-            .dialog {
-                flex-direction: column;
-            }
-            
-            .dialog-role {
-                margin-bottom: 5px;
-                margin-right: 0;
+            .container {
+                padding: 1rem;
             }
 
-            .flow-step {
-                flex-direction: column;
+            .step-header {
+                padding: 1rem;
             }
 
-            .flow-step:not(:last-child)::after {
-                left: 20px;
-                top: 40px;
-                bottom: -20px;
-                height: auto;
+            .step-content {
+                padding: 0 1rem;
             }
 
-            .step-content::before {
-                left: 20px;
-                top: -10px;
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                border-bottom: 10px solid var(--gray);
-                border-top: none;
+            .step.active .step-content {
+                padding: 1rem;
+            }
+
+            .form-group label {
+                width: 100%;
+                margin-bottom: 0.25rem;
+            }
+
+            .form-group .form-value {
+                width: 100%;
             }
         }
     </style>
@@ -458,477 +368,443 @@
 <body>
     <header>
         <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="img/logo-kertamulya.png" alt="Kertamulya Residence">
-                    <span class="logo-text">Script Marketing In-House</span>
-                </div>
-            </div>
+            <h1>SOP & Script Marketing In-House</h1>
+            <p class="subtitle">Panduan melayani customer yang sudah transfer Rp100.000 untuk penahanan stok via website</p>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Framework Closing Marketing</h1>
-            <p>Alur penjualan dan script untuk tim marketing in-house Kertamulya Residence</p>
-            <span class="badge">Versi 2.0 - Juni 2025</span>
-        </div>
-    </section>
+    <div class="container">
+        <div class="sop-container">
+            <!-- Step 1 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Penyambutan Awal</div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="script-box notes">
+                        <div class="script-title"><i class="fas fa-info-circle"></i> Catatan:</div>
+                        <div class="script-content">
+                            <p>Marketing in-house <strong>tidak tahu</strong> customer ini sudah transfer atau tidak. Gunakan sambutan netral dan tunggu customer bicara terlebih dahulu.</p>
+                        </div>
+                    </div>
 
-    <section class="main-content">
-        <div class="container">
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="hold-stok">Hold Stok Rp100rb</button>
-                <button class="tab-btn" data-tab="freelance">Dari Marketing Freelance</button>
-                <button class="tab-btn" data-tab="general">Info General</button>
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing Inhouse:</div>
+                        <div class="script-content">
+                            <p>"Assalamu'alaikum kak, silakan duduk ya. Ada yang bisa saya bantu?"</p>
+                        </div>
+                    </div>
+
+                    <div class="script-box notes">
+                        <div class="script-title"><i class="fas fa-bullseye"></i> Target Respon:</div>
+                        <div class="script-content">
+                            <p>Tunggu customer buka suara:</p>
+                            <p>"Saya kemarin sudah transfer Rp100.000 untuk hold stok. Mau konfirmasi tipe subsidi dan survei lokasi."</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Tab 1: Hold Stok Rp100rb -->
-            <div class="tab-content active" id="hold-stok-tab">
-                <div class="flow-chart">
-                    <div class="flow-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Validasi Hold Stok</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Assalamu'alaikum, selamat datang di Kertamulya Residence. Dengan Bapak/Ibu siapa tadi?"</div>
-                            </div>
-                            <div class="dialog">
-                                <div class="dialog-role">Customer:</div>
-                                <div class="dialog-text">"Saya sudah transfer 100 ribu dari website."</div>
-                            </div>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Baik, saya cek dulu ya. Mohon tunjukkan bukti transfernya."</div>
-                            </div>
-                            <div class="note">
-                                <i class="fas fa-check-circle"></i> Verifikasi bukti transfer dan cocokkan dengan data di sistem
-                            </div>
-                            <a href="https://bimulialand.com/kertamulya/script" class="form-link">
-                                <i class="fas fa-link"></i> Link Form Inhouse
-                            </a>
+            <!-- Step 2 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Validasi Data & Crosscheck WhatsApp</div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-content">
+                            <p>"Baik kak, sebelumnya atas nama siapa ya? Biar saya cek data konfirmasinya dulu di WhatsApp admin kami."</p>
+                            <p><em>(cek nama di WA atau bukti transfer)</em></p>
+                            <p>"Oh iya, atas nama ini ya kak. Baik, sudah masuk. Saya bantu proses selanjutnya."</p>
                         </div>
                     </div>
 
-                    <div class="flow-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Konfirmasi Tipe Unit</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Unit yang Bapak/Ibu hold tipe apa ya? Subsidi, Suite, atau Premium?"</div>
-                            </div>
-                            <div class="note">
-                                <i class="fas fa-info-circle"></i> Pastikan unit masih available di sistem
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flow-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Penjelasan Produk</h3>
-                            <div class="house-type-selector">
-                                <button class="type-btn active" data-type="subsidi">Subsidi</button>
-                                <button class="type-btn" data-type="suite">Suite</button>
-                                <button class="type-btn" data-type="premium">Premium</button>
-                            </div>
-                            
-                            <div class="house-type-content active" id="hold-subsidi-content">
-                                <h4>Spesifikasi Tipe Subsidi</h4>
-                                <ul class="spec-list">
-                                    <li>Tanah 60 m², bangunan 30 m²</li>
-                                    <li>2 kamar tidur, 1 kamar mandi</li>
-                                    <li>Keramik Milan 40x40, plafon GRC</li>
-                                    <li>Rangka atap baja ringan, kusen aluminium, atap metal pasir</li>
-                                    <li>Tidak termasuk taman, sekat pintu, dan dapur</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="house-type-content" id="hold-suite-content">
-                                <h4>Spesifikasi Tipe Suite</h4>
-                                <ul class="spec-list">
-                                    <li>Tanah dan bangunan lebih luas dari tipe subsidi</li>
-                                    <li>Desain modern dengan layout optimal</li>
-                                    <li>Material bangunan berkualitas premium</li>
-                                    <li>Canopy tidak termasuk dalam paket standar</li>
-                                    <li>Pembangunan ±3-4 bulan setelah akad</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="house-type-content" id="hold-premium-content">
-                                <h4>Spesifikasi Tipe Premium</h4>
-                                <ul class="spec-list">
-                                    <li>Luas tanah dan bangunan terbesar</li>
-                                    <li>Desain eksklusif dengan material terbaik</li>
-                                    <li>Fasilitas tambahan seperti gazebo dan taman pribadi</li>
-                                    <li>Canopy tidak termasuk dalam paket standar</li>
-                                    <li>Pembangunan ±3-4 bulan setelah akad</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flow-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Survey Unit</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Ayo kita lihat langsung unitnya ya. Saya akan tunjukkan detailnya."</div>
-                            </div>
-                            <ul class="spec-list">
-                                <li>Tunjukkan posisi kamar, dapur, dan kamar mandi</li>
-                                <li>Demonstrasikan kualitas material bangunan</li>
-                                <li>Jelaskan fasilitas lingkungan sekitar</li>
-                                <li>Tekankan keunggulan lokasi</li>
+                    <div class="script-box notes">
+                        <div class="script-title"><i class="fas fa-check-circle"></i> Yang Harus Dilakukan:</div>
+                        <div class="script-content">
+                            <ul>
+                                <li>Minta nama lengkap customer</li>
+                                <li>Cek WhatsApp admin untuk konfirmasi transfer</li>
+                                <li>Jika tidak ada di WA, minta bukti transfer</li>
+                                <li>Verifikasi nominal dan tanggal transfer</li>
                             </ul>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="flow-step">
-                        <div class="step-number">5</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Pelunasan Booking Fee</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Kalau sudah cocok, kita lanjut ke pelunasan booking fee ya. Tinggal Rp400rb lagi untuk tipe Subsidi (total Rp500rb) atau Rp1.9jt untuk tipe Suite/Premium (total Rp2jt)."</div>
-                            </div>
-                            <div class="note warning">
-                                <i class="fas fa-exclamation-triangle"></i> Rp100rb sudah termasuk dalam total booking fee
-                            </div>
+            <!-- Step 3 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Validasi Pemahaman Website</div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-content">
+                            <p>"Kalau boleh tanya sedikit, apakah informasi dari website sudah kakak pelajari semua? Tipe rumah, lokasi, dan prosesnya?"</p>
                         </div>
                     </div>
 
-                    <div class="flow-step">
-                        <div class="step-number">6</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Proses Selanjutnya</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Setelah booking fee lunas, kita akan proses ke tahap berikutnya:"</div>
+                    <div class="script-box notes">
+                        <div class="script-title"><i class="fas fa-random"></i> Dua Kemungkinan Jawaban Customer:</div>
+                        <div class="script-content">
+                            <div class="script-box customer">
+                                <div class="script-title"><i class="fas fa-user"></i> A. "Sudah, saya paham."</div>
+                                <div class="script-content">
+                                    <p>"Baik kak, saya bantu lanjut isi data dan kita bisa langsung survey rumah contohnya."</p>
+                                </div>
                             </div>
-                            <ul class="spec-list">
-                                <li>Pengumpulan dokumen untuk KPR</li>
-                                <li>Pengajuan ke bank rekanan (BTN Syariah/BJB Syariah)</li>
-                                <li>Penjadwalan akad di notaris</li>
-                            </ul>
-                            <div class="note">
-                                <i class="fas fa-clock"></i> Proses biasanya memakan waktu 14-30 hari kerja setelah dokumen lengkap
+
+                            <div class="script-box customer">
+                                <div class="script-title"><i class="fas fa-user"></i> B. "Sudah lihat, tapi saya masih ingin dijelaskan ulang."</div>
+                                <div class="script-content">
+                                    <p>"Siap kak, saya bantu jelaskan dulu tipenya ya."</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab 2: Dari Marketing Freelance -->
-            <div class="tab-content" id="freelance-tab">
-                <div class="flow-chart">
-                    <div class="flow-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Identifikasi Sumber</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Assalamu'alaikum, selamat datang di Kertamulya Residence. Dari mana Bapak/Ibu mengetahui info perumahan kami?"</div>
-                            </div>
-                            <div class="dialog">
-                                <div class="dialog-role">Customer:</div>
-                                <div class="dialog-text">"Dari teman/marketing freelance [nama]."</div>
-                            </div>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Oh baik, dari rekanan kami ya. Mari kita bahas lebih detail."</div>
-                            </div>
-                            <a href="https://bimulialand.com/kertamulya/script" class="form-link">
-                                <i class="fas fa-link"></i> Link Form Inhouse
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="flow-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Tentukan Kebutuhan</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Tipe rumah apa yang Bapak/Ibu cari? Kami punya 3 pilihan: Subsidi, Suite, dan Premium."</div>
-                            </div>
-                            <div class="note">
-                                <i class="fas fa-lightbulb"></i> Dengarkan kebutuhan customer untuk rekomendasi terbaik
+            <!-- Step 4 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Isi Form Inhouse (WAJIB SOP)</div>
+                    <div class="script-content">
+                        <div class="script-box notes">
+                            <div class="script-title"><i class="fas fa-exclamation-triangle"></i> Penting:</div>
+                            <div class="script-content">
+                                <p>Form harus diisi lengkap sebagai bagian dari SOP perusahaan dan tracking marketing.</p>
                             </div>
                         </div>
                     </div>
-
-                    <div class="flow-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Penjelasan Produk</h3>
-                            <div class="house-type-selector">
-                                <button class="type-btn active" data-type="subsidi">Subsidi</button>
-                                <button class="type-btn" data-type="suite">Suite</button>
-                                <button class="type-btn" data-type="premium">Premium</button>
-                            </div>
-                            
-                            <div class="house-type-content active" id="free-subsidi-content">
-                                <h4>Keunggulan Tipe Subsidi</h4>
-                                <ul class="spec-list">
-                                    <li>Harga terjangkau mulai Rp166 juta</li>
-                                    <li>DP 0% via KPR Subsidi</li>
-                                    <li>Cicilan mulai Rp1.2jt/bulan</li>
-                                    <li>Bonus motor listrik setelah 6x angsuran</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="house-type-content" id="free-suite-content">
-                                <h4>Keunggulan Tipe Suite</h4>
-                                <ul class="spec-list">
-                                    <li>Luas bangunan lebih besar (50m²)</li>
-                                    <li>Desain modern dan elegan</li>
-                                    <li>Material bangunan premium</li>
-                                    <li>Bonus motor listrik setelah 6x angsuran</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="house-type-content" id="free-premium-content">
-                                <h4>Keunggulan Tipe Premium</h4>
-                                <ul class="spec-list">
-                                    <li>Luas tanah terbesar (120m²)</li>
-                                    <li>Desain eksklusif dengan material terbaik</li>
-                                    <li>Fasilitas tambahan seperti gazebo</li>
-                                    <li>Bonus motor listrik setelah 6x angsuran</li>
-                                </ul>
-                            </div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-content">
+                            <p>"Saya isi dulu data dasarnya ya kak, sebentar."</p>
+                            <p><em>Isi data sambil ngobrol natural:</em></p>
                         </div>
                     </div>
 
-                    <div class="flow-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Survey Unit</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Mari kita lihat langsung unitnya. Saya akan tunjukkan semua detailnya."</div>
-                            </div>
-                            <div class="note">
-                                <i class="fas fa-map-marked-alt"></i> Tunjukkan lokasi strategis dan fasilitas lingkungan
+                    <div class="form-example">
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <div class="form-value">[Nama Customer]</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor WhatsApp</label>
+                            <div class="form-value">[08xxxxxxxxxx]</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Alamat</label>
+                            <div class="form-value">[Alamat lengkap]</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Kecamatan & Kota</label>
+                            <div class="form-value">[Kecamatan], [Kota]</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Pilihan Tipe Rumah</label>
+                            <div class="form-value">
+                                <span class="badge badge-primary">Subsidi</span>
+                                <span class="badge badge-accent">Suite</span>
+                                <span class="badge badge-danger">Premium</span>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="flow-step">
-                        <div class="step-number">5</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Penawaran Booking</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Kalau sudah cocok, kita bisa langsung booking unitnya. Booking fee hanya Rp500rb untuk tipe Subsidi atau Rp2jt untuk Suite/Premium."</div>
-                            </div>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Setelah booking, kami akan bantu proses KPR atau cash bertahap sesuai kebutuhan Bapak/Ibu."</div>
+                        <div class="form-group">
+                            <label>Metode Pembayaran</label>
+                            <div class="form-value">
+                                <span class="badge badge-primary">KPR</span>
+                                <span class="badge badge-accent">Cash Bertahap</span>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="flow-step">
-                        <div class="step-number">6</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Closing</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Bagaimana Bapak/Ibu? Apakah ada pertanyaan lagi atau kita lanjut ke proses booking?"</div>
-                            </div>
-                            <div class="note warning">
-                                <i class="fas fa-handshake"></i> Berikan sense of urgency: "Unit ini banyak peminatnya, lebih baik segera diputuskan"
+                        <div class="form-group">
+                            <label>Sumber Info</label>
+                            <div class="form-value">Website Hold Stok</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Checklist Fitur Tidak Termasuk</label>
+                            <div class="form-value">
+                                <span class="badge">Taman</span>
+                                <span class="badge">Sekat</span>
+                                <span class="badge">Dapur</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab 3: Info General -->
-            <div class="tab-content" id="general-tab">
-                <div class="flow-chart">
-                    <div class="flow-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Pembukaan</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Assalamu'alaikum, selamat datang di Kertamulya Residence. Perumahan islami pertama di Kuningan dengan konsep green living."</div>
-                            </div>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Ada info khusus yang Bapak/Ibu cari?"</div>
-                            </div>
-                            <a href="https://bimulialand.com/kertamulya/script" class="form-link">
-                                <i class="fas fa-link"></i> Link Form Inhouse
-                            </a>
+            <!-- Step 5 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Penjelasan Detail Tipe (Jika Customer Minta)</div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-content">
+                            <p>"Untuk tipe subsidi, luas tanahnya 60 meter, bangunan 30 meter, 2 kamar tidur, 1 kamar mandi."</p>
+                            <p>"Pondasi batu kali + cakar ayam, plafon GRC, keramik Milan 40x40, atap metal pasir."</p>
+                            <p>"Taman, dapur, dan sekat belum termasuk ya kak — bisa kakak desain sendiri setelah akad."</p>
+                            <p><em>(Jika tipe Suite atau Premium, jelaskan versi upgrade dan progress 3-4 bulan setelah akad)</em></p>
                         </div>
                     </div>
 
-                    <div class="flow-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Qualifying Kebutuhan</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Untuk hunian yang Bapak/Ibu cari, lebih prioritas yang seperti apa? Harga, lokasi, atau spesifikasi?"</div>
-                            </div>
-                            <div class="note">
-                                <i class="fas fa-lightbulb"></i> Dengarkan jawaban untuk menentukan tipe yang akan ditawarkan
-                            </div>
+                    <div class="script-box notes">
+                        <div class="script-title"><i class="fas fa-lightbulb"></i> Tips Penjelasan:</div>
+                        <div class="script-content">
+                            <ul>
+                                <li>Gunakan bahasa sederhana, hindari jargon teknis</li>
+                                <li>Tunjukkan gambar/denah jika ada</li>
+                                <li>Fokus pada keunggulan tipe yang dipilih</li>
+                                <li>Jujur tentang apa yang tidak termasuk</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Survey Rumah Contoh</div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-content">
+                            <p>"Kalau sudah oke, kita langsung lihat rumah contohnya ya kak. Biar kakak bisa lihat langsung posisi ruangannya dan lingkungannya."</p>
                         </div>
                     </div>
 
-                    <div class="flow-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Penawaran Produk</h3>
-                            <div class="house-type-selector">
-                                <button class="type-btn active" data-type="subsidi">Subsidi</button>
-                                <button class="type-btn" data-type="suite">Suite</button>
-                                <button class="type-btn" data-type="premium">Premium</button>
-                            </div>
-                            
-                            <div class="house-type-content active" id="gen-subsidi-content">
-                                <h4>Spesial Untuk Hari Ini:</h4>
-                                <ul class="spec-list">
-                                    <li>Tanah 60m² + Bangunan 30m² hanya Rp166 juta</li>
-                                    <li>DP 0% via KPR Subsidi</li>
-                                    <li>Cicilan mulai Rp1.2jt/bulan</li>
-                                    <li>Bonus motor listrik senilai Rp15 juta</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="house-type-content" id="gen-suite-content">
-                                <h4>Spesial Untuk Hari Ini:</h4>
-                                <ul class="spec-list">
-                                    <li>Tanah 60m² + Bangunan 50m² hanya Rp277 juta</li>
-                                    <li>DP mulai 10% via KPR Syariah</li>
-                                    <li>Bonus motor listrik senilai Rp15 juta</li>
-                                    <li>Desain modern dengan material premium</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="house-type-content" id="gen-premium-content">
-                                <h4>Spesial Untuk Hari Ini:</h4>
-                                <ul class="spec-list">
-                                    <li>Tanah 120m² + Bangunan 50m² hanya Rp408 juta</li>
-                                    <li>DP mulai 20% via KPR Syariah</li>
-                                    <li>Bonus motor listrik senilai Rp15 juta</li>
-                                    <li>Gazebo dan taman pribadi</li>
-                                </ul>
-                            </div>
+                    <div class="script-box notes">
+                        <div class="script-title"><i class="fas fa-map-marked-alt"></i> Di Lapangan:</div>
+                        <div class="script-content">
+                            <ul>
+                                <li>Tunjukkan posisi kamar, dapur</li>
+                                <li>Demonstrasikan sirkulasi udara dan pencahayaan</li>
+                                <li>Tegaskan bagian yang bisa direnovasi pasca-akad</li>
+                                <li>Jelaskan fasilitas lingkungan (masjid, playground, dll)</li>
+                                <li>Jangan overpromise, jelaskan realita yang ada</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">7</div>
+                    <div class="step-title">Arah ke Booking Fee</div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-content">
+                            <p>"Kalau kakak sudah cocok, kita lanjut ke proses pelunasan booking fee ya."</p>
+                            <p>"Karena kakak sudah transfer Rp100.000 sebelumnya untuk pengamanan stok, tinggal melunasi sisanya sesuai tipe yang dipilih."</p>
                         </div>
                     </div>
 
-                    <div class="flow-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Tunjukkan Bukti Nyata</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Ini testimoni dari penghuni yang sudah menikmati Kertamulya Residence."</div>
-                            </div>
-                            <ul class="spec-list">
-                                <li>Tunjukkan foto/video testimoni</li>
-                                <li>Ceritakan success story pembeli sebelumnya</li>
-                                <li>Tekankan keunggulan komunitas islami</li>
+                    <div class="script-box danger">
+                        <div class="script-title"><i class="fas fa-money-bill-wave"></i> Booking Fee Per Tipe:</div>
+                        <div class="script-content">
+                            <p><strong>Subsidi:</strong> Rp500.000 → sisa Rp400.000</p>
+                            <p><strong>Suite/Premium:</strong> Rp2.000.000 → sisa Rp1.900.000</p>
+                        </div>
+                    </div>
+
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-content">
+                            <p>"Bisa transfer ke admin atau cash langsung. Nanti saya bantu buatkan bukti booking-nya."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">8</div>
+                    <div class="step-title">Validasi Penghasilan & Cicilan (Khusus KPR Subsidi)</div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-content">
+                            <p>"Kalau metode bayarnya KPR subsidi, saya tanya sedikit ya kak. Ini untuk proses ke bank nanti."</p>
+                            <p><em>Tanya sopan:</em></p>
+                            <ul>
+                                <li>Penghasilan per bulan? (maks Rp12jt)</li>
+                                <li>Pekerjaan (pegawai/usaha)?</li>
+                                <li>Ada cicilan berjalan?</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="flow-step">
-                        <div class="step-number">5</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Ajakan Survey</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Bagaimana kalau kita lihat langsung unitnya? Saya bisa antar sekarang juga."</div>
-                            </div>
-                            <div class="note warning">
-                                <i class="fas fa-exclamation-triangle"></i> 80% closing terjadi setelah customer melihat unit langsung
-                            </div>
+                    <div class="script-box notes">
+                        <div class="script-title"><i class="fas fa-user-check"></i> Jika Kondisi Agak Berat:</div>
+                        <div class="script-content">
+                            <p>"Nanti kami bantu arahkan ke skema yang memungkinkan kak. Tujuan kami bantu kakak bisa akad, bukan ditolak."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 9 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">9</div>
+                    <div class="step-title">Arah Pemberkasan</div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <div class="script-box danger">
+                        <div class="script-title"><i class="fas fa-file-alt"></i> KPR Subsidi Berkas:</div>
+                        <div class="script-content">
+                            <ul>
+                                <li>KTP suami istri (4 rangkap)</li>
+                                <li>KK</li>
+                                <li>NPWP</li>
+                                <li>Buku tabungan 3 bulan</li>
+                                <li>Slip gaji / surat penghasilan</li>
+                                <li>Surat belum punya rumah</li>
+                                <li>Surat domisili (jika alamat KTP beda)</li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="flow-step">
-                        <div class="step-number">6</div>
-                        <div class="step-content">
-                            <h3 class="step-title">Penawaran Spesial</h3>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Khusus hari ini, ada promo tambahan diskon 5% untuk booking langsung."</div>
-                            </div>
-                            <div class="dialog">
-                                <div class="dialog-role">Marketing:</div>
-                                <div class="dialog-text">"Kita bisa mulai dengan hold stok Rp100rb dulu, unit tidak akan kami jual ke orang lain."</div>
-                            </div>
-                            <div class="note danger">
-                                <i class="fas fa-clock"></i> Buat sense of urgency: "Promo hanya hari ini saja"
-                            </div>
+                    <div class="script-box marketing">
+                        <div class="script-title"><i class="fas fa-user-tie"></i> Marketing:</div>
+                        <div class="script-content">
+                            <p>"Setelah booking fee lunas dan berkas lengkap, kita bantu proses ke bank partner kami."</p>
+                            <p>"Biasanya BTN Syariah atau BJB Syariah — sesuai profil kakak."</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <p class="footer-text">© 2025 Kertamulya Residence - Script Marketing In-House</p>
+        <!-- Rangkuman Inti -->
+        <div class="sop-container">
+            <div class="step active">
+                <div class="step-header">
+                    <div class="step-number"><i class="fas fa-star"></i></div>
+                    <div class="step-title">Rangkuman Inti untuk Marketing Inhouse</div>
+                    <div class="step-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="step-content">
+                    <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                        <thead>
+                            <tr style="background-color: var(--primary); color: white;">
+                                <th style="padding: 1rem; text-align: left;">Langkah</th>
+                                <th style="padding: 1rem; text-align: left;">Fokus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--gray-dark);">
+                                <td style="padding: 1rem; font-weight: 500;">1. Sambutan</td>
+                                <td style="padding: 1rem;">Jangan lebay, tunggu customer bicara</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-dark);">
+                                <td style="padding: 1rem; font-weight: 500;">2. Validasi nama</td>
+                                <td style="padding: 1rem;">Minta nama dan bukti transfer</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-dark);">
+                                <td style="padding: 1rem; font-weight: 500;">3. Tanya info website</td>
+                                <td style="padding: 1rem;">Tawarkan penjelasan ulang jika perlu</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-dark);">
+                                <td style="padding: 1rem; font-weight: 500;">4. Isi form</td>
+                                <td style="padding: 1rem;">Jangan skip, harus SOP</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-dark);">
+                                <td style="padding: 1rem; font-weight: 500;">5. Jelaskan tipe</td>
+                                <td style="padding: 1rem;">Sesuai kebutuhan, jangan terlalu panjang</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-dark);">
+                                <td style="padding: 1rem; font-weight: 500;">6. Survey rumah</td>
+                                <td style="padding: 1rem;">Tunjukkan realita, tidak overpromise</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-dark);">
+                                <td style="padding: 1rem; font-weight: 500;">7. Booking fee</td>
+                                <td style="padding: 1rem;">Langsung arahkan sesuai sisa pembayaran</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--gray-dark);">
+                                <td style="padding: 1rem; font-weight: 500;">8. Kelayakan KPR</td>
+                                <td style="padding: 1rem;">Tanyakan penghasilan + cicilan</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem; font-weight: 500;">9. Berkas & Bank</td>
+                                <td style="padding: 1rem;">Siapkan berkas, arahkan ke BTN/BJB Syariah</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </footer>
+
+        <div class="action-buttons">
+            <button class="btn btn-outline" onclick="window.print()">
+                <i class="fas fa-file-pdf"></i> Print to PDF
+            </button>
+            <button class="btn btn-primary" onclick="location.reload()">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Tab functionality
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
+            // Initialize accordion functionality
+            const steps = document.querySelectorAll('.step');
             
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons and contents
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
+            steps.forEach(step => {
+                const header = step.querySelector('.step-header');
+                
+                header.addEventListener('click', () => {
+                    // Close all other steps
+                    steps.forEach(otherStep => {
+                        if (otherStep !== step) {
+                            otherStep.classList.remove('active');
+                        }
+                    });
                     
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Show corresponding content
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                    // Toggle current step
+                    step.classList.toggle('active');
                 });
             });
-            
-            // House type selector functionality
-            const typeBtns = document.querySelectorAll('.type-btn');
-            
-            typeBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const parentTab = this.closest('.tab-content').id.replace('-tab', '');
-                    const type = this.getAttribute('data-type');
-                    
-                    // Remove active class from all buttons in this tab
-                    this.parentNode.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Hide all content in this tab
-                    document.querySelectorAll(`#${parentTab}-tab .house-type-content`).forEach(c => c.classList.remove('active'));
-                    
-                    // Show selected content
-                    document.getElementById(`${parentTab}-${type}-content`).classList.add('active');
-                });
-            });
-            
-            // Initialize first tab content
-            document.querySelector('.tab-btn.active').click();
+
+            // Open first step by default
+            if (steps.length > 0) {
+                steps[0].classList.add('active');
+            }
         });
+
+        // Print functionality
+        function printDocument() {
+            window.print();
+        }
     </script>
 </body>
 </html>
