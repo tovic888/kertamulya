@@ -43,7 +43,6 @@
 
 <link rel="preload" href="/img/hero/hero-background.webp" as="image" imagesrcset="/img/hero/hero-background-small.webp 480w, /img/hero/hero-background-medium.webp 768w, /img/hero/hero-background-large.webp 1200w" imagesizes="100vw">
 <link rel="preload" href="/fonts/poppins-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/img/hero/hero-background.webp" as="image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -611,14 +610,23 @@ button, input, textarea, select {
 
 .location-map-container {
   position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  width: 100%;
+  height: 100%;
+  min-height: 450px; /* Tambahkan ini */
 }
 
-.location-map {
-  height: 450px;
+.location-map iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  border: none;
+}
+.location-map {
+  height: 100%;
+  width: 100%;
+  min-height: 450px; /* Tambahkan ini */
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
@@ -2589,11 +2597,20 @@ document.addEventListener('DOMContentLoaded', function() {
   animateProgressBars();
   
   // Initialize video modal buttons
-  document.querySelectorAll('[onclick*="showModal(\'video\'"]').forEach(btn => {
+  document.querySelectorAll('[data-modal-type="video"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      const type = this.getAttribute('onclick').match(/showModal\('video', '([^']+)'/)[1];
+      const type = this.dataset.houseType;
       showVideoModal(type);
+    });
+  });
+  
+  // Initialize gallery modal buttons
+  document.querySelectorAll('[data-modal-type="gallery"]').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const type = this.dataset.houseType;
+      showGalleryModal(type);
     });
   });
 });
@@ -2612,22 +2629,30 @@ function updateCountdown() {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
   
-  document.getElementById('days').textContent = days.toString().padStart(2, '0');
-  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  // Update elements if they exist
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
   
-  const totalDuration = 3 * 24 * 60 * 60 * 1000;
-  const elapsed = totalDuration - distance;
-  const progressPercent = (elapsed / totalDuration) * 100;
+  if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+  if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+  if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+  if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
   
-  document.querySelector('.progress-bar').style.width = `${100 - progressPercent}%`;
-  
-  if (distance < (24 * 60 * 60 * 1000)) {
-    document.querySelectorAll('.countdown-number').forEach(el => {
-      el.style.color = '#ff6b6b';
-    });
-    document.querySelector('.progress-bar').style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
+  const progressBar = document.querySelector('.progress-bar');
+  if (progressBar) {
+    const totalDuration = 3 * 24 * 60 * 60 * 1000;
+    const elapsed = totalDuration - distance;
+    const progressPercent = (elapsed / totalDuration) * 100;
+    progressBar.style.width = `${100 - progressPercent}%`;
+    
+    if (distance < (24 * 60 * 60 * 1000)) {
+      document.querySelectorAll('.countdown-number').forEach(el => {
+        el.style.color = '#ff6b6b';
+      });
+      progressBar.style.background = 'linear-gradient(90deg, #ff6b6b, #ff0000)';
+    }
   }
 }
 
@@ -2653,7 +2678,7 @@ function setupTypeSelector() {
 // ========== NOTIFICATIONS ==========
 function showRandomNotification() {
   const notifications = [
-    "Pak Budi baru saja booking unit Hunian Suite !",
+    "Pak Budi baru saja booking unit Hunian Suite!",
     "Bu Ani membeli Tipe Standard",
     "12 unit terjual hari ini!",
     "Promo motor gratis hanya 3 hari lagi",
@@ -2662,6 +2687,8 @@ function showRandomNotification() {
   
   const notification = document.getElementById('notification');
   const notificationText = document.getElementById('notificationText');
+  
+  if (!notification || !notificationText) return;
   
   notificationText.textContent = notifications[Math.floor(Math.random() * notifications.length)];
   notification.style.display = 'flex';
@@ -2686,7 +2713,7 @@ function animateSoldCount() {
   const target = parseInt(soldCount.textContent) || 12;
   const increment = target / 20;
   
-  soldCount.textContent = '0'; // Reset to 0 before animation
+  soldCount.textContent = '0';
   
   const interval = setInterval(() => {
     count += increment;
@@ -2706,12 +2733,10 @@ function setupFAQAccordion() {
     const question = item.querySelector('.faq-question');
     
     question.addEventListener('click', () => {
-      // Toggle current item
       const isActive = item.classList.contains('active');
       const answer = item.querySelector('.faq-answer');
       const icon = item.querySelector('.faq-question i');
       
-      // Close all other items first
       faqItems.forEach(otherItem => {
         if (otherItem !== item) {
           otherItem.classList.remove('active');
@@ -2720,7 +2745,6 @@ function setupFAQAccordion() {
         }
       });
       
-      // Then toggle current item
       item.classList.toggle('active');
       
       if (item.classList.contains('active')) {
@@ -2732,7 +2756,6 @@ function setupFAQAccordion() {
       }
     });
     
-    // Initialize first item as active
     if (item === faqItems[0]) {
       item.classList.add('active');
       item.querySelector('.faq-answer').style.maxHeight = item.querySelector('.faq-answer').scrollHeight + 'px';
@@ -2742,56 +2765,54 @@ function setupFAQAccordion() {
 }
 
 // ========== GALLERY MODAL ==========
-function initGalleryModal() {
-  // Image sets with local image paths
-  const galleryImages = {
-    standard: [
-      'img/tipe-rumah/standart/standar-utama.webp',
-      'img/tipe-rumah/standart/standar1.webp',
-      'img/tipe-rumah/standart/standar2.webp',
-      'img/tipe-rumah/standart/standar3.webp',
-      'img/tipe-rumah/standart/standar4.webp',
-      'img/tipe-rumah/standart/standar5.webp',
-      'img/tipe-rumah/standart/standar6.webp',
-      'img/tipe-rumah/standart/standar7.webp',
-      'img/tipe-rumah/standart/denah-standar.webp',
-      'img/tipe-rumah/standart/spek-standar.webp'
-    ],
-    suite: [
-      'img/tipe-rumah/suite/suite-utama.webp',
-      'img/tipe-rumah/suite/suite1.webp',
-      'img/tipe-rumah/suite/suite2.webp',
-      'img/tipe-rumah/suite/suite3.webp',
-      'img/tipe-rumah/suite/suite4.webp',
-      'img/tipe-rumah/suite/suite5.webp',
-      'img/tipe-rumah/suite/denah-suite1.webp',
-      'img/tipe-rumah/suite/denah-suite2.webp',
-      'img/tipe-rumah/suite/spek-suite.webp'
-    ],
-    premium: [
-      'img/tipe-rumah/premium/premium-utama.webp',
-      'img/tipe-rumah/premium/premium1.webp',
-      'img/tipe-rumah/premium/premium2.webp',
-      'img/tipe-rumah/premium/premium3.webp',
-      'img/tipe-rumah/premium/premium4.webp',
-      'img/tipe-rumah/premium/premium5.webp',
-      'img/tipe-rumah/premium/denah-premium1.webp',
-      'img/tipe-rumah/premium/denah-premium2.webp',
-      'img/tipe-rumah/premium/spek-premium.webp'
-    ]
-  };
+const galleryImages = {
+  standard: [
+    'img/tipe-rumah/standart/standar-utama.webp',
+    'img/tipe-rumah/standart/standar1.webp',
+    'img/tipe-rumah/standart/standar2.webp',
+    'img/tipe-rumah/standart/standar3.webp',
+    'img/tipe-rumah/standart/standar4.webp',
+    'img/tipe-rumah/standart/standar5.webp',
+    'img/tipe-rumah/standart/standar6.webp',
+    'img/tipe-rumah/standart/standar7.webp',
+    'img/tipe-rumah/standart/denah-standar.webp',
+    'img/tipe-rumah/standart/spek-standar.webp'
+  ],
+  suite: [
+    'img/tipe-rumah/suite/suite-utama.webp',
+    'img/tipe-rumah/suite/suite1.webp',
+    'img/tipe-rumah/suite/suite2.webp',
+    'img/tipe-rumah/suite/suite3.webp',
+    'img/tipe-rumah/suite/suite4.webp',
+    'img/tipe-rumah/suite/suite5.webp',
+    'img/tipe-rumah/suite/denah-suite1.webp',
+    'img/tipe-rumah/suite/denah-suite2.webp',
+    'img/tipe-rumah/suite/spek-suite.webp'
+  ],
+  premium: [
+    'img/tipe-rumah/premium/premium-utama.webp',
+    'img/tipe-rumah/premium/premium1.webp',
+    'img/tipe-rumah/premium/premium2.webp',
+    'img/tipe-rumah/premium/premium3.webp',
+    'img/tipe-rumah/premium/premium4.webp',
+    'img/tipe-rumah/premium/premium5.webp',
+    'img/tipe-rumah/premium/denah-premium1.webp',
+    'img/tipe-rumah/premium/denah-premium2.webp',
+    'img/tipe-rumah/premium/spek-premium.webp'
+  ]
+};
 
-  // Initialize gallery buttons
-  document.querySelectorAll('[onclick*="showModal(\'gallery\'"]').forEach(btn => {
+function initGalleryModal() {
+  document.querySelectorAll('[data-modal-type="gallery"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      const type = this.getAttribute('onclick').match(/showModal\('gallery', '([^']+)'/)[1];
-      showGalleryModal(type, galleryImages);
+      const type = this.dataset.houseType;
+      showGalleryModal(type);
     });
   });
 }
 
-function showGalleryModal(type, images) {
+function showGalleryModal(type) {
   const titleMap = {
     standard: 'Standard 30/60',
     suite: 'Suite 50/60',
@@ -2802,15 +2823,13 @@ function showGalleryModal(type, images) {
   const carousel = document.getElementById('galleryCarousel');
   carousel.innerHTML = '';
 
-  // Add slides to carousel
-  images[type].forEach(img => {
+  galleryImages[type].forEach(img => {
     const slide = document.createElement('div');
     slide.className = 'gallery-slide';
     slide.innerHTML = `<img src="${img}" alt="${titleMap[type]}" loading="lazy">`;
     carousel.appendChild(slide);
   });
 
-  // Initialize Slick Carousel if available
   if (typeof $.fn.slick !== 'undefined') {
     $(carousel).slick({
       dots: true,
@@ -2825,15 +2844,18 @@ function showGalleryModal(type, images) {
     });
   }
 
-  // Show modal
   document.getElementById('galleryModal').classList.add('active');
 }
 
 // ========== VIDEO MODAL ==========
 function showVideoModal(type) {
   const videoId = getVideoId(type);
-  document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-  document.getElementById('videoModal').classList.add('active');
+  const iframe = document.getElementById('videoFrame');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  document.getElementById('videoModal').style.display = 'flex';
+  setTimeout(() => {
+    document.getElementById('videoModal').style.opacity = '1';
+  }, 10);
 }
 
 function getVideoId(type) {
@@ -2844,54 +2866,10 @@ function getVideoId(type) {
     testimonial1: 'LgHbkuOKsw0',
     testimonial2: 'UF5V1-Vu6uI'
   };
-  return videoIds[type] || '';
+  return videoIds[type] || '2vYd5Fd_-Q8';
 }
 
 // ========== MODAL FUNCTIONS ==========
-function showModal(type, subtype = null, houseType = null) {
-  if (type === 'gallery' && subtype) {
-    const galleryImages = {
-      standard: [
-        'img/tipe-rumah/standart/standar-utama.webp',
-        'img/tipe-rumah/standart/standar1.webp',
-        'img/tipe-rumah/standart/standar2.webp',
-        'img/tipe-rumah/standart/standar3.webp',
-        'img/tipe-rumah/standart/standar4.webp',
-        'img/tipe-rumah/standart/standar5.webp',
-        'img/tipe-rumah/standart/standar6.webp',
-        'img/tipe-rumah/standart/standar7.webp',
-        'img/tipe-rumah/standart/denah-standar.webp',
-        'img/tipe-rumah/standart/spek-standar.webp'
-      ],
-      suite: [
-        'img/tipe-rumah/suite/suite-utama.webp',
-        'img/tipe-rumah/suite/suite1.webp',
-        'img/tipe-rumah/suite/suite2.webp',
-        'img/tipe-rumah/suite/suite3.webp',
-        'img/tipe-rumah/suite/suite4.webp',
-        'img/tipe-rumah/suite/suite5.webp',
-        'img/tipe-rumah/suite/denah-suite1.webp',
-        'img/tipe-rumah/suite/denah-suite2.webp',
-        'img/tipe-rumah/suite/spek-suite.webp'
-      ],
-      premium: [
-        'img/tipe-rumah/premium/premium-utama.webp',
-        'img/tipe-rumah/premium/premium1.webp',
-        'img/tipe-rumah/premium/premium2.webp',
-        'img/tipe-rumah/premium/premium3.webp',
-        'img/tipe-rumah/premium/premium4.webp',
-        'img/tipe-rumah/premium/premium5.webp',
-        'img/tipe-rumah/premium/denah-premium1.webp',
-        'img/tipe-rumah/premium/denah-premium2.webp',
-        'img/tipe-rumah/premium/spek-premium.webp'
-      ]
-    };
-    showGalleryModal(subtype, galleryImages);
-  } else if (type === 'video' && subtype) {
-    showVideoModal(subtype);
-  }
-}
-
 function hideModal(type) {
   if (type === 'gallery') {
     document.getElementById('galleryModal').classList.remove('active');
@@ -2900,8 +2878,12 @@ function hideModal(type) {
       $(carousel).slick('unslick');
     }
   } else if (type === 'video') {
-    document.getElementById('videoModal').classList.remove('active');
-    document.getElementById('videoFrame').src = '';
+    const videoModal = document.getElementById('videoModal');
+    videoModal.style.opacity = '0';
+    setTimeout(() => {
+      videoModal.style.display = 'none';
+      document.getElementById('videoFrame').src = '';
+    }, 300);
   }
 }
 
