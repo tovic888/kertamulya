@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Marketing In-House - Kertamulya Residence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --primary-light: #e8f8f0;
+            --accent: #3498db;
+            --accent-dark: #2980b9;
+            --dark: #2c3e50;
+            --darker: #1a252f;
+            --light: #ffffff;
+            --gray: #f8f9fa;
+            --gray-dark: #e9ecef;
+            --text: #495057;
+            --text-light: #6c757d;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--gray);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            padding: 20px 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .print-btn {
+            background-color: var(--light);
+            color: var(--primary-dark);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .print-btn:hover {
+            background-color: var(--gray-dark);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/hero-bg.jpg') center/cover no-repeat;
+            color: var(--light);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: var(--accent);
+            color: var(--light);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .tabs {
+            display: flex;
+            background-color: var(--light);
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-dark);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step {
+            margin-bottom: 30px;
+            border-left: 3px solid var(--primary-light);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -15px;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .step-content {
+            background-color: var(--gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .dialog {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .dialog:last-child {
+            margin-bottom: 0;
+        }
+
+        .dialog-role {
+            font-weight: 600;
+            color: var(--primary-dark);
+            min-width: 100px;
+            margin-right: 15px;
+        }
+
+        .dialog-text {
+            flex: 1;
+        }
+
+        .note {
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 0 4px 4px 0;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .note.warning {
+            background-color: #fff3cd;
+            border-left-color: var(--warning);
+        }
+
+        .note.danger {
+            background-color: #f8d7da;
+            border-left-color: var(--danger);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--gray-dark);
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+        }
+
+        .house-type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .type-btn {
+            flex: 1;
+            padding: 10px;
+            background-color: var(--gray-dark);
+            border: none;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .type-btn.active {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .house-type-content {
+            display: none;
+        }
+
+        .house-type-content.active {
+            display: block;
+        }
+
+        .spec-list {
+            list-style-type: none;
+        }
+
+        .spec-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .spec-list li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .doc-list {
+            list-style-type: none;
+        }
+
+        .doc-list li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .doc-list li::before {
+            content: '\f15c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .bank-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .bank-name {
+            font-weight: 600;
+            color: var(--accent-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bank-name i {
+            font-size: 1.2rem;
+        }
+
+        .bank-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        footer {
+            background-color: var(--darker);
+            color: var(--light);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                text-align: left;
+                border-bottom: 1px solid var(--gray-dark);
+            }
+            
+            .tab-btn.active::after {
+                height: 100%;
+                width: 3px;
+                left: auto;
+                right: 0;
+            }
+            
+            .house-type-selector {
+                flex-direction: column;
+            }
+            
+            .dialog {
+                flex-direction: column;
+            }
+            
+            .dialog-role {
+                margin-bottom: 5px;
+                margin-right: 0;
+            }
+        }
+
+        @media print {
+            header, footer, .tabs, .print-btn {
+                display: none;
+            }
+            
+            .tab-content {
+                display: block !important;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .step {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="img/logo-kertamulya.png" alt="Kertamulya Residence">
+                    <span class="logo-text">SOP Marketing In-House</span>
+                </div>
+                <button class="print-btn" id="printBtn">
+                    <i class="fas fa-print"></i>
+                    Cetak SOP
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Standard Operating Procedure</h1>
+            <p>Panduan lengkap untuk tim marketing in-house Kertamulya Residence</p>
+            <span class="badge">Versi 2.0 - Juni 2025</span>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="website">Dari Website</button>
+                <button class="tab-btn" data-tab="hold-stok">Hold Stok Rp100rb</button>
+                <button class="tab-btn" data-tab="umum">Datang Umum</button>
+            </div>
+
+            <!-- Tab 1: Customer dari Website -->
+            <div class="tab-content active" id="website-tab">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Pembukaan & Penyambutan</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Assalamu'alaikum warahmatullahi wabarakatuh, selamat datang di Kertamulya Residence. Silakan duduk ya."</div>
+                        </div>
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Sebelumnya sudah melihat informasi di website kami ya? Ada unit yang sedang diminati?"</div>
+                        </div>
+                        <div class="note">
+                            <i class="fas fa-lightbulb"></i> Tunjukkan sikap ramah dan profesional. Berikan minuman jika memungkinkan.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Pendataan Customer</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Boleh saya minta data dasar dulu ya untuk keperluan administrasi kami."</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-input" placeholder="Nama customer">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nomor WhatsApp</label>
+                            <input type="tel" class="form-input" placeholder="Nomor aktif">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Alamat</label>
+                            <input type="text" class="form-input" placeholder="Alamat saat ini">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kecamatan & Kota</label>
+                            <input type="text" class="form-input" placeholder="Lokasi tempat tinggal">
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle"></i> Pastikan data diisi lengkap dan benar untuk keperluan follow-up dan pengajuan KPR.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Validasi Informasi Website</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Informasi dari website apakah sudah cukup jelas atau ada yang ingin ditanyakan lagi?"</div>
+                        </div>
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Kalau boleh saya jelaskan ulang, Kertamulya Residence adalah perumahan islami pertama di Kuningan dengan konsep green living..."</div>
+                        </div>
+                        <div class="note warning">
+                            <i class="fas fa-exclamation-triangle"></i> Pastikan customer memahami semua informasi penting sebelum lanjut ke tahap berikutnya.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Penjelasan Tipe Rumah</h3>
+                    <div class="step-content">
+                        <div class="house-type-selector">
+                            <button class="type-btn active" data-type="subsidi">Subsidi</button>
+                            <button class="type-btn" data-type="suite">Suite</button>
+                            <button class="type-btn" data-type="premium">Premium</button>
+                        </div>
+                        
+                        <div class="house-type-content active" id="subsidi-content">
+                            <h4>Spesifikasi Tipe Subsidi</h4>
+                            <ul class="spec-list">
+                                <li>Tanah 60 m², bangunan 30 m²</li>
+                                <li>2 kamar tidur, 1 kamar mandi</li>
+                                <li>Keramik Milan 40x40, plafon GRC</li>
+                                <li>Rangka atap baja ringan, kusen aluminium, atap metal pasir</li>
+                                <li>Tidak termasuk taman, sekat pintu, dan dapur</li>
+                            </ul>
+                            <div class="note">
+                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp166 juta dengan DP 0% via KPR Subsidi
+                            </div>
+                        </div>
+                        
+                        <div class="house-type-content" id="suite-content">
+                            <h4>Spesifikasi Tipe Suite</h4>
+                            <ul class="spec-list">
+                                <li>Tanah dan bangunan lebih luas dari tipe subsidi</li>
+                                <li>Desain modern dengan layout optimal</li>
+                                <li>Material bangunan berkualitas premium</li>
+                                <li>Canopy tidak termasuk dalam paket standar</li>
+                                <li>Pembangunan ±3-4 bulan setelah akad</li>
+                            </ul>
+                            <div class="note">
+                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp277 juta dengan berbagai pilihan pembiayaan
+                            </div>
+                        </div>
+                        
+                        <div class="house-type-content" id="premium-content">
+                            <h4>Spesifikasi Tipe Premium</h4>
+                            <ul class="spec-list">
+                                <li>Luas tanah dan bangunan terbesar</li>
+                                <li>Desain eksklusif dengan material terbaik</li>
+                                <li>Fasilitas tambahan seperti gazebo dan taman pribadi</li>
+                                <li>Canopy tidak termasuk dalam paket standar</li>
+                                <li>Pembangunan ±3-4 bulan setelah akad</li>
+                            </ul>
+                            <div class="note">
+                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp408 juta dengan berbagai pilihan pembiayaan
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Survey Rumah Contoh</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Ayo kita lihat langsung rumah contohnya ya. Biar lebih jelas gambaran unit yang tersedia."</div>
+                        </div>
+                        
+                        <h4>Poin yang Harus Ditunjukkan:</h4>
+                        <ul class="spec-list">
+                            <li>Posisi kamar, dapur, dan kamar mandi</li>
+                            <li>Sistem ventilasi dan pencahayaan alami</li>
+                            <li>Kualitas material bangunan</li>
+                            <li>Lingkungan sekitar perumahan</li>
+                            <li>Fasilitas umum yang tersedia</li>
+                        </ul>
+                        
+                        <div class="note">
+                            <i class="fas fa-lightbulb"></i> Tekankan kebebasan renovasi setelah akad sesuai kebutuhan customer.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h3 class="step-title">Arahkan ke Booking Fee</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Kalau sudah cocok, kita bisa lanjut ke proses booking ya. Untuk tipe ini booking fee-nya Rp500.000."</div>
+                        </div>
+                        
+                        <h4>Detail Booking Fee:</h4>
+                        <ul class="spec-list">
+                            <li><strong>Subsidi:</strong> Rp500.000</li>
+                            <li><strong>Suite:</strong> Rp2.000.000</li>
+                            <li><strong>Premium:</strong> Rp2.000.000</li>
+                        </ul>
+                        
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Booking fee bisa transfer ke rekening kami atau bayar langsung di sini. Kami akan kirimkan bukti booking resminya."</div>
+                        </div>
+                        
+                        <div class="note warning">
+                            <i class="fas fa-exclamation-triangle"></i> Pastikan customer memahami bahwa booking fee tidak dapat dikembalikan jika cancel setelah 3 hari.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <h3 class="step-title">Validasi Penghasilan (Khusus Subsidi)</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Untuk KPR subsidi, saya perlu tanya sedikit tentang penghasilan bulanan kakak ya."</div>
+                        </div>
+                        
+                        <h4>Pertanyaan Penting:</h4>
+                        <ul class="spec-list">
+                            <li>Penghasilan bulanan (minimal Rp4 juta untuk KPR Subsidi)</li>
+                            <li>Status pekerjaan (pegawai/usaha)</li>
+                            <li>Cicilan aktif yang sedang berjalan</li>
+                            <li>Status kepemilikan rumah saat ini</li>
+                        </ul>
+                        
+                        <div class="note danger">
+                            <i class="fas fa-exclamation-circle"></i> Jika beban cicilan terlalu tinggi, arahkan ke solusi lain seperti cash bertahap atau tunggu hingga cicilan lain lunas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">8</div>
+                    <h3 class="step-title">Dokumen KPR</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Untuk pengajuan KPR, berikut dokumen yang perlu disiapkan:"</div>
+                        </div>
+                        
+                        <h4>Dokumen Wajib:</h4>
+                        <ul class="doc-list">
+                            <li>KTP suami istri (4 rangkap)</li>
+                            <li>Kartu Keluarga</li>
+                            <li>NPWP (jika ada)</li>
+                            <li>Buku tabungan 3 bulan terakhir</li>
+                            <li>Slip gaji/surat penghasilan</li>
+                            <li>Surat belum punya rumah</li>
+                            <li>Surat domisili jika alamat beda dengan KTP</li>
+                        </ul>
+                        
+                        <div class="note">
+                            <i class="fas fa-clock"></i> Proses pengajuan KPR biasanya memakan waktu 14-30 hari kerja setelah dokumen lengkap.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">9</div>
+                    <h3 class="step-title">Arah ke Bank Rekanan</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Kami bekerja sama dengan beberapa bank syariah terkemuka. Berikut rekomendasi untuk kakak:"</div>
+                        </div>
+                        
+                        <div class="bank-card">
+                            <h4 class="bank-name"><i class="fas fa-university"></i> BTN Syariah</h4>
+                            <p class="bank-desc">Proses cepat (14-21 hari), persyaratan relatif sederhana, cocok untuk pegawai dengan penghasilan tetap.</p>
+                        </div>
+                        
+                        <div class="bank-card">
+                            <h4 class="bank-name"><i class="fas fa-university"></i> BJB Syariah</h4>
+                            <p class="bank-desc">Suku bunga kompetitif, fleksibel untuk wiraswasta, proses 21-30 hari kerja.</p>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-handshake"></i> Kami akan bantu dari pengumpulan dokumen sampai akad di notaris.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">10</div>
+                    <h3 class="step-title">Penutup & Follow-up</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Terima kasih atas kunjungannya. Kami akan follow-up dalam 1x24 jam untuk proses selanjutnya."</div>
+                        </div>
+                        
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Ada pertanyaan lain yang bisa saya bantu?"</div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-calendar-check"></i> Jadwalkan pertemuan berikutnya sebelum customer pulang, baik untuk survei ulang atau pengumpulan dokumen.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Customer dari Website + Hold Stok Rp100rb -->
+            <div class="tab-content" id="hold-stok-tab">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Pembukaan & Validasi Hold Stok</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Assalamu'alaikum warahmatullahi wabarakatuh, selamat datang di Kertamulya Residence. Dengan kakak siapa tadi?"</div>
+                        </div>
+                        
+                        <div class="dialog">
+                            <div class="dialog-role">Customer:</div>
+                            <div class="dialog-text">"Saya sudah transfer 100 ribu dari website."</div>
+                        </div>
+                        
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Baik kak, jadi kakak sudah melakukan pembayaran penahanan stok ya. Boleh saya lihat bukti transfer atau chat konfirmasinya sebentar?"</div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-check-circle"></i> Verifikasi bukti transfer dan cocokkan dengan data di sistem sebelum melanjutkan.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Pendataan & Input Sistem</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Oke, atas nama kakak. Siap, saya bantu prosesnya. Sebelum lanjut, saya input dulu datanya ya kak."</div>
+                        </div>
+                        
+                        <h4>Data yang Harus Diinput:</h4>
+                        <ul class="spec-list">
+                            <li>Nama lengkap</li>
+                            <li>Nomor WhatsApp</li>
+                            <li>Alamat lengkap</li>
+                            <li>Tipe rumah yang diminati</li>
+                            <li>Metode pembayaran (KPR/Cash)</li>
+                            <li>Sumber info: Website</li>
+                            <li>Status: Sudah bayar hold stok Rp100.000</li>
+                        </ul>
+                        
+                        <div class="note warning">
+                            <i class="fas fa-exclamation-triangle"></i> Pastikan menandai "Sudah bayar hold stok" di sistem untuk menghindari kesalahan administrasi.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Validasi Informasi Website</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Informasi dari website—gambar, video, atau spesifikasi—sudah cukup jelas semua kak? Kalau perlu dijelaskan ulang, saya bantu sekarang."</div>
+                        </div>
+                        
+                        <div class="note">
+                            <i class="fas fa-info-circle"></i> Jelaskan kembali fitur utama yang mungkin terlewat saat customer browsing website.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Penjelasan Tipe Rumah</h3>
+                    <div class="step-content">
+                        <div class="house-type-selector">
+                            <button class="type-btn active" data-type="subsidi">Subsidi</button>
+                            <button class="type-btn" data-type="suite">Suite</button>
+                            <button class="type-btn" data-type="premium">Premium</button>
+                        </div>
+                        
+                        <div class="house-type-content active" id="hold-subsidi-content">
+                            <h4>Spesifikasi Tipe Subsidi</h4>
+                            <ul class="spec-list">
+                                <li>Tanah 60 m², bangunan 30 m²</li>
+                                <li>2 kamar tidur, 1 kamar mandi</li>
+                                <li>Keramik Milan 40x40, plafon GRC</li>
+                                <li>Rangka atap baja ringan, kusen aluminium, atap metal pasir</li>
+                                <li>Tidak termasuk taman, sekat pintu, dan dapur</li>
+                            </ul>
+                            <div class="note">
+                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp166 juta dengan DP 0% via KPR Subsidi
+                            </div>
+                        </div>
+                        
+                        <div class="house-type-content" id="hold-suite-content">
+                            <h4>Spesifikasi Tipe Suite</h4>
+                            <ul class="spec-list">
+                                <li>Tanah dan bangunan lebih luas dari tipe subsidi</li>
+                                <li>Desain modern dengan layout optimal</li>
+                                <li>Material bangunan berkualitas premium</li>
+                                <li>Canopy tidak termasuk dalam paket standar</li>
+                                <li>Pembangunan ±3-4 bulan setelah akad</li>
+                            </ul>
+                            <div class="note">
+                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp277 juta dengan berbagai pilihan pembiayaan
+                            </div>
+                        </div>
+                        
+                        <div class="house-type-content" id="hold-premium-content">
+                            <h4>Spesifikasi Tipe Premium</h4>
+                            <ul class="spec-list">
+                                <li>Luas tanah dan bangunan terbesar</li>
+                                <li>Desain eksklusif dengan material terbaik</li>
+                                <li>Fasilitas tambahan seperti gazebo dan taman pribadi</li>
+                                <li>Canopy tidak termasuk dalam paket standar</li>
+                                <li>Pembangunan ±3-4 bulan setelah akad</li>
+                            </ul>
+                            <div class="note">
+                                <i class="fas fa-money-bill-wave"></i> Harga mulai Rp408 juta dengan berbagai pilihan pembiayaan
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Survey Rumah Contoh</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Kita langsung ke rumah contohnya ya kak. Biar lebih yakin dengan kondisi aslinya."</div>
+                        </div>
+                        
+                        <h4>Poin yang Harus Ditekankan:</h4>
+                        <ul class="spec-list">
+                            <li>Tunjukkan posisi kamar, dapur, ventilasi, pencahayaan</li>
+                            <li>Jelaskan detail yang terlihat langsung</li>
+                            <li>Tekankan kebebasan renovasi setelah akad</li>
+                            <li>Perlihatkan fasilitas lingkungan sekitar</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h3 class="step-title">Pelunasan Booking Fee</h3>
+                    <div class="step-content">
+                        <div class="dialog">
+                            <div class="dialog-role">Marketing:</div>
+                            <div class="dialog-text">"Kalau sudah cocok, bisa langsung lanjut pelunasan booking fee ya kak. Tinggal Rp400 ribu lagi karena sebelumnya sudah transfer 100 ribu."</div>
+                        </div>
+                        
+                        <h4>Detail Pelunasan:</h
