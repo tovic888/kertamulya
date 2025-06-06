@@ -45,6 +45,7 @@
       background-color: var(--light);
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     h1, h2, h3, h4 {
@@ -54,6 +55,7 @@
     }
 
     .container {
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 16px;
@@ -1479,6 +1481,30 @@
       .modal-content {
         max-height: 80vh;
       }
+      
+      .payment-amount {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      
+      .info-label {
+        min-width: auto;
+      }
+      
+      .special-offer {
+        flex-direction: column;
+      }
+      
+      .step-content h4 {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -1492,7 +1518,7 @@
   <main class="container">
     <div class="checkout-header">
       <h1>Reservasi Eksklusif</h1>
-      <p>Lakukan pembayaran Rp 100.543 untuk mengamankan unit pilihan Anda selama 24 jam</p>
+      <p>Lakukan pembayaran <span id="dynamicAmount">Rp 100.543</span> untuk mengamankan unit pilihan Anda selama 24 jam</p>
     </div>
     
     <div class="checkout-grid">
@@ -1537,7 +1563,7 @@
                 <li><i class="fas fa-check"></i> Gratis Notaris & Cek Sertifikat</li>
                 <li><i class="fas fa-check"></i> Gratis AJB & BPHTB</li>
               </ul>
-              <p>Cukup transfer Booking Fee Rp 100.543 dan datang survei.<br>✅ Cocok lanjut — tidak cocok uang kembali 100%</p>
+              <p>Cukup transfer Booking Fee <span class="highlight" id="offerAmount">Rp 100.543</span> dan datang survei.<br>✅ Cocok lanjut — tidak cocok uang kembali 100%</p>
             </div>
           </div>
           
@@ -1803,7 +1829,7 @@
         <div class="modal-section">
           <h4><i class="fas fa-file-invoice-dollar"></i> Pembayaran Awal</h4>
           <ul class="modal-list">
-            <li><i class="fas fa-check"></i> Pembayaran Rp 100.543 mengamankan unit selama 24 jam</li>
+            <li><i class="fas fa-check"></i> Pembayaran <span id="modalAmount">Rp 100.543</span> mengamankan unit selama 24 jam</li>
             <li><i class="fas fa-check"></i> Uang kembali 100% jika tidak cocok setelah survei</li>
             <li><i class="fas fa-times"></i> Tidak dapat dikembalikan jika tidak survei dalam 24 jam</li>
           </ul>
@@ -1850,7 +1876,7 @@
             <li><i class="fas fa-check"></i> DP 0% MURNI – Bebas biaya apapun dari bank</li>
             <li><i class="fas fa-check"></i> Sudah termasuk biaya pajak, admin, notaris, AJB, asuransi & lainnya</li>
             <li><i class="fas fa-check"></i> Tidak ada biaya tambahan sama sekali</li>
-            <li><i class="fas fa-check"></i> Cukup transfer Booking Fee Rp 100.xxx dan survei unit</li>
+            <li><i class="fas fa-check"></i> Cukup transfer Booking Fee <span id="successAmount">Rp 100.543</span> dan survei unit</li>
             <li><i class="fas fa-check"></i> DP 0% hanya diberikan ke nama yang sudah isi form dan validasi WhatsApp</li>
           </ul>
           <p>Segera jadwalkan survei agar kesempatan ini tidak hangus!</p>
@@ -1866,6 +1892,22 @@
   </div>
 
   <script>
+    // Generate random 3-digit number for payment amount
+    function generateRandomAmount() {
+      const randomDigits = Math.floor(100 + Math.random() * 900); // Generate 100-999
+      const amount = `100.${randomDigits}`;
+      
+      // Update all amount displays
+      document.getElementById('dynamicAmount').textContent = `Rp ${amount}`;
+      document.getElementById('offerAmount').textContent = `Rp ${amount}`;
+      document.getElementById('paymentAmount').textContent = `Rp ${amount}`;
+      document.getElementById('confirm-amount').textContent = `Rp ${amount}`;
+      document.getElementById('modalAmount').textContent = `Rp ${amount}`;
+      document.getElementById('successAmount').textContent = `Rp ${amount}`;
+      
+      return amount;
+    }
+
     // Variabel global
     let currentStep = 1;
     const totalSteps = 3;
@@ -1964,13 +2006,6 @@
           document.getElementById('confirm-name').textContent = document.getElementById('fullName').value;
           document.getElementById('confirm-whatsapp').textContent = document.getElementById('whatsapp').value;
           document.getElementById('confirm-email').textContent = document.getElementById('email').value;
-          
-          // Generate booking amount based on last 3 digits of WhatsApp number
-          const whatsapp = document.getElementById('whatsapp').value.trim();
-          const lastThree = whatsapp.slice(-3);
-          const amount = '100.' + lastThree;
-          document.getElementById('paymentAmount').textContent = `Rp ${amount}`;
-          document.getElementById('confirm-amount').textContent = `Rp ${amount}`;
         } else if (currentStep === 2) {
           document.getElementById('confirm-houseType').textContent = document.getElementById('houseType').options[document.getElementById('houseType').selectedIndex].text;
         }
@@ -2195,6 +2230,9 @@ Wassalamualaikum warahmatullahi wabarakatuh
     
     // Inisialisasi saat DOM siap
     document.addEventListener('DOMContentLoaded', function() {
+      // Generate random amount
+      generateRandomAmount();
+      
       // Update progress bar awal
       updateProgressBar();
       
