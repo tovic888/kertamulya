@@ -1817,18 +1817,20 @@
         <div class="card">
           <!-- Trust Badge -->
           <div class="trust-badge">
-            <div class="trust-badge-content">
-              <div class="trust-item">
-                <i class="fas fa-fire"></i> Sudah 23 orang booking minggu ini
-              </div>
-              <div class="trust-item">
-                <i class="fas fa-clock"></i> Tipe Suite hanya tersisa 4 unit
-              </div>
-              <div class="trust-item">
-                <i class="fas fa-comment"></i> "Booking fee-nya aman, sudah survei barusan – Dimas (Bandung)"
-              </div>
-            </div>
-          </div>
+  <div class="trust-badge-content">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      <div class="trust-item" style="display: inline-block; margin-right: 30px;">
+        <i class="fas fa-fire"></i> Sudah 23 orang booking minggu ini
+      </div>
+      <div class="trust-item" style="display: inline-block; margin-right: 30px;">
+        <i class="fas fa-clock"></i> Tipe Suite hanya tersisa 4 unit
+      </div>
+      <div class="trust-item" style="display: inline-block;">
+        <i class="fas fa-comment"></i> "Booking fee-nya aman, sudah survei barusan - Dimas (Bandung)"
+      </div>
+    </marquee>
+  </div>
+</div>
           
           <form id="bookingForm">
             <!-- Progress Bar -->
@@ -2154,7 +2156,7 @@
         }
         
         // Validasi whatsapp
-        const whatsappRegex = /^[0-9]{10,13}$/;
+        const whatsappRegex = /^(\+62|62|0)8[1-9][0-9]{6,9}$/;
         if (!whatsappRegex.test(whatsapp)) {
           document.getElementById('whatsappError').style.display = 'block';
           isValid = false;
@@ -2266,8 +2268,8 @@
     
     // Fungsi untuk mengirim pesan WhatsApp
     function sendWhatsAppMessage(data) {
-      const whatsappNumber = formatTo62(data.whatsapp);
-      const message = `📩 INVOICE PEMBAYARAN RESERVASI
+    const whatsappNumber = data.whatsapp.startsWith('0') ? '62' + data.whatsapp.substring(1) : data.whatsapp;
+    const message = `📩 INVOICE PEMBAYARAN RESERVASI
 
 Assalamualaikum warahmatullahi wabarakatuh Kak ${data.fullName} 👋
 
@@ -2302,75 +2304,90 @@ Wassalamualaikum warahmatullahi wabarakatuh
 
 ✉ Pesan otomatis dari sistem reservasi Kertamulya`;
 
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-      
-      // Buka jendela baru untuk mengirim WhatsApp
-      window.open(whatsappUrl, '_blank');
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Buka jendela baru untuk mengirim WhatsApp
+    window.open(whatsappUrl, '_blank');
+}
+    
+   // Fungsi untuk menyimpan data ke database
+async function saveToDatabase(data) {
+  try {
+    const response = await fetch('/admin/save_reservation.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+    
+    if (!response.ok) {
+      throw new Error('Gagal menyimpan data');
     }
     
-    // Fungsi untuk menyimpan data ke database
-    async function saveToDatabase(data) {
-      try {
-        const response = await fetch('save_reservation.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-        
-        if (!response.ok) {
-          throw new Error('Gagal menyimpan data');
-        }
-        
-        return await response.json();
-      } catch (error) {
-        console.error('Error:', error);
-        return { success: false, message: error.message };
-      }
-    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error:', error);
+    return { success: false, message: error.message };
+  }
+}
+ // Di bagian handleSubmit
+async function handleSubmit(event) {
+    event.preventDefault();
     
-    // Fungsi untuk menangani submit form
-    async function handleSubmit(event) {
-      event.preventDefault();
-      
-      if (validateStep(currentStep)) {
-        // Kumpulkan data form
+    if (validateStep(currentStep)) {
         const formData = {
-          fullName: document.getElementById('fullName').value.trim(),
-          whatsapp: document.getElementById('whatsapp').value.trim(),
-          email: document.getElementById('email').value.trim(),
-          address: document.getElementById('address').value.trim(),
-          houseType: document.getElementById('houseType').options[document.getElementById('houseType').selectedIndex].text,
-          amount: document.getElementById('confirm-amount').textContent.replace('Rp ', '')
+            fullName: document.getElementById('fullName').value.trim(),
+            whatsapp: document.getElementById('whatsapp').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            address: document.getElementById('address').value.trim(),
+            houseType: document.getElementById('houseType').options[document.getElementById('houseType').selectedIndex].text,
+            amount: document.getElementById('confirm-amount').textContent.replace('Rp ', '')
         };
         
-        // Simpan ke database
-        const saveResult = await saveToDatabase(formData);
-        
-        if (saveResult.success) {
-          // Tampilkan modal sukses
-          document.getElementById('successModal').style.display = 'flex';
-          
-          // Kirim WhatsApp message
-          sendWhatsAppMessage(formData);
-          
-          // Reset form
-          document.getElementById('bookingForm').reset();
-          currentStep = 1;
-          updateProgressBar();
-          
-          // Sembunyikan semua step dan tampilkan step 1
-          document.querySelectorAll('.form-step').forEach(step => {
-            step.classList.remove('active');
-          });
-          document.getElementById('step1').classList.add('active');
-        } else {
-          alert('Gagal menyimpan data: ' + saveResult.message);
+        try {
+            const response = await fetch('/kertamulya/admin/save_reservation.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+            
+            if (result.success) {
+                document.getElementById('successModal').style.display = 'flex';
+                
+                // Kirim WhatsApp (akan aktif setelah API dipasang)
+                sendWhatsAppMessage({
+                    fullName: formData.fullName,
+                    whatsapp: formData.whatsapp,
+                    email: formData.email,
+                    address: formData.address,
+                    houseType: formData.houseType,
+                    amount: formData.amount,
+                    reservationCode: result.code
+                });
+                
+                // Reset form
+                document.getElementById('bookingForm').reset();
+                currentStep = 1;
+                updateProgressBar();
+                document.querySelectorAll('.form-step').forEach(step => {
+                    step.classList.remove('active');
+                });
+                document.getElementById('step1').classList.add('active');
+            } else {
+                throw new Error(result.message || 'Terjadi kesalahan');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan: ' + error.message);
         }
-      }
     }
+}
     
     // Fungsi untuk countdown timer
     function updateCountdown() {
@@ -2449,6 +2466,42 @@ Wassalamualaikum warahmatullahi wabarakatuh
       // Setup copy buttons
       setupCopyButtons();
     });
-  </script>
+    // Fungsi untuk mengirim data reservasi
+async function saveReservation(data) {
+    try {
+     const response = await fetch('/kertamulya/admin/save_reservation.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData)
+});
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Tampilkan modal sukses
+            document.getElementById('successModal').style.display = 'flex';
+            
+            // Reset form
+            document.getElementById('bookingForm').reset();
+            currentStep = 1;
+            updateProgressBar();
+            
+            // Sembunyikan semua step dan tampilkan step 1
+            document.querySelectorAll('.form-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById('step1').classList.add('active');
+        } else {
+            alert('Gagal menyimpan data: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat menyimpan data');
+    }
+}
+
+</script>
 </body>
 </html>
