@@ -86,46 +86,44 @@ document.addEventListener('DOMContentLoaded', function() {
 }
   // ========== MOBILE MENU ==========
   function initMobileMenu() {
-  if (!mobileMenuToggle || !mobileMenu) return;
+    if (!mobileMenuToggle || !mobileMenu) return;
 
-  mobileMenuToggle.addEventListener('click', function() {
-    mobileMenu.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    // Close when clicking outside
-    if (mobileMenu.classList.contains('active')) {
-      document.addEventListener('click', closeMenuOnClickOutside);
-    } else {
-      document.removeEventListener('click', closeMenuOnClickOutside);
-    }
-  });
+    mobileMenuToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
 
-  function closeMenuOnClickOutside(e) {
-    if (!mobileMenu.contains(e.target) && e.target !== mobileMenuToggle) {
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
-      document.removeEventListener('click', closeMenuOnClickOutside);
-    }
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
   }
 
-  document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', function() {
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  });
-}
+ // ========== URGENCY BANNER ==========
+function initUrgencyBanner() {
+  const urgencyBanner = document.querySelector('.urgency-banner');
+  const header = document.querySelector('.main-header');
+  const countdownItems = document.querySelectorAll('.countdown-item span:first-child');
+  const mobileCountdown = document.getElementById('mobile-countdown');
 
-  // ========== URGENCY BANNER (Modified to 1-day countdown) ==========
-  function initUrgencyBanner() {
-    if (!urgencyBanner) return;
+  if (!urgencyBanner) return;
 
-    // Set 1-day countdown from first visit
-    let targetTime = localStorage.getItem('countdownTarget');
+  // Initialize countdown timer
+  initCountdown();
+
+  // Handle scroll behavior
+  initScrollBehavior();
+
+  function initCountdown() {
+    // Set 1-day countdown from first visit with IP tracking
     const ipKey = 'user_ip_' + (window.userIP || 'default');
+    let targetTime = localStorage.getItem('countdownTarget');
     
     if (!targetTime) {
       const now = new Date();
-      now.setDate(now.getDate() + 1); // Changed from 3 days to 1 day
+      now.setDate(now.getDate() + 1); // 1-day countdown
       targetTime = now.getTime();
       localStorage.setItem('countdownTarget', targetTime);
       localStorage.setItem(ipKey, 'registered');
@@ -133,15 +131,18 @@ document.addEventListener('DOMContentLoaded', function() {
       targetTime = parseInt(targetTime);
     }
 
+    // Update countdown display
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = targetTime - now;
       
+      // Calculate time units
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
       
+      // Update desktop countdown
       if (countdownItems.length >= 4) {
         countdownItems[0].textContent = days.toString().padStart(2, '0');
         countdownItems[1].textContent = hours.toString().padStart(2, '0');
@@ -149,31 +150,53 @@ document.addEventListener('DOMContentLoaded', function() {
         countdownItems[3].textContent = seconds.toString().padStart(2, '0');
       }
       
+      // Update mobile countdown (HH:MM:SS format)
+      if (mobileCountdown) {
+        mobileCountdown.textContent = 
+          `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+      
+      // Handle expired countdown
       if (distance < 0) {
         clearInterval(countdownTimer);
-        if (urgencyBanner.querySelector('.countdown')) {
-          urgencyBanner.querySelector('.countdown').innerHTML = '<span>Promo telah berakhir!</span>';
+        const countdownElement = urgencyBanner.querySelector('.countdown');
+        if (countdownElement) {
+          countdownElement.innerHTML = '<span>Promo telah berakhir!</span>';
+        }
+        if (mobileCountdown) {
+          mobileCountdown.textContent = '00:00:00';
         }
       }
     }
     
+    // Initial update and set interval
     updateCountdown();
     const countdownTimer = setInterval(updateCountdown, 1000);
-    
+  }
+
+  function initScrollBehavior() {
     let lastScroll = 0;
+    const bannerHeight = urgencyBanner.offsetHeight;
+    
     window.addEventListener('scroll', function() {
-      const currentScroll = window.pageYOffset;
-      
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        urgencyBanner.style.transform = 'translateY(-100%)';
-        if (header) header.style.top = '0';
-      } else if (currentScroll < 300) {
-        urgencyBanner.style.transform = 'translateY(0)';
-        if (header) header.style.top = urgencyBanner.offsetHeight + 'px';
+      if (window.innerWidth > 768) { // Only apply scroll behavior on desktop
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > lastScroll && currentScroll > 100) {
+          // Scrolling down - hide banner
+          urgencyBanner.style.transform = 'translateY(-100%)';
+          if (header) header.style.top = '0';
+        } else if (currentScroll < 300) {
+          // Scrolling up - show banner
+          urgencyBanner.style.transform = 'translateY(0)';
+          if (header) header.style.top = bannerHeight + 'px';
+        }
+        
+        lastScroll = currentScroll;
       }
-      lastScroll = currentScroll;
     });
   }
+}
 
   // ========== ANIMATED COUNTERS ==========
   function initAnimatedCounters() {
