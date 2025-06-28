@@ -86,20 +86,34 @@ document.addEventListener('DOMContentLoaded', function() {
 }
   // ========== MOBILE MENU ==========
   function initMobileMenu() {
-    if (!mobileMenuToggle || !mobileMenu) return;
+  if (!mobileMenuToggle || !mobileMenu) return;
 
-    mobileMenuToggle.addEventListener('click', function() {
-      mobileMenu.classList.toggle('active');
-      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    });
+  mobileMenuToggle.addEventListener('click', function() {
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    // Close when clicking outside
+    if (mobileMenu.classList.contains('active')) {
+      document.addEventListener('click', closeMenuOnClickOutside);
+    } else {
+      document.removeEventListener('click', closeMenuOnClickOutside);
+    }
+  });
 
-    document.querySelectorAll('.mobile-menu a').forEach(link => {
-      link.addEventListener('click', function() {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
+  function closeMenuOnClickOutside(e) {
+    if (!mobileMenu.contains(e.target) && e.target !== mobileMenuToggle) {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+      document.removeEventListener('click', closeMenuOnClickOutside);
+    }
   }
+
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+}
 
   // ========== URGENCY BANNER (Modified to 1-day countdown) ==========
   function initUrgencyBanner() {
